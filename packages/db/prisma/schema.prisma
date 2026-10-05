@@ -1630,6 +1630,7 @@ model CrmPipeline {
 
   @@unique([workspaceId, id], map: "crm_pipeline_workspace_id_id_key")
   @@unique([workspaceId, slug], map: "crm_pipeline_workspace_slug_key")
+  @@unique([workspaceId], map: "crm_pipeline_one_default_per_workspace_key", where: { isDefault: true, isArchived: false })
   @@index([workspaceId, isArchived], map: "crm_pipeline_workspace_archived_idx")
   @@map("crm_pipeline")
 }
@@ -1649,7 +1650,7 @@ model CrmPipelineStage {
   createdAt           DateTime             @default(now()) @map("created_at")
   updatedAt           DateTime             @updatedAt @map("updated_at")
 
-  pipeline    CrmPipeline                  @relation("PipelineStages", fields: [workspaceId, pipelineId], references: [workspaceId, id], onDelete: Cascade)
+  pipeline    CrmPipeline                  @relation("PipelineStages", fields: [workspaceId, pipelineId], references: [workspaceId, id], onDelete: Cascade, map: "crm_pipeline_stage_pipeline_fkey")
   assignments         CrmDealPipelineAssignment[] @relation("StageAssignments")
   legacyStageMappings CrmLegacyDealStageMapping[] @relation("LegacyStageMappings")
 
@@ -1671,8 +1672,8 @@ model CrmDealPipelineAssignment {
   createdAt   DateTime @default(now()) @map("created_at")
   updatedAt   DateTime @updatedAt @map("updated_at")
 
-  pipeline CrmPipeline      @relation("PipelineAssignments", fields: [workspaceId, pipelineId], references: [workspaceId, id], onDelete: Restrict)
-  stage    CrmPipelineStage @relation("StageAssignments", fields: [workspaceId, pipelineId, stageId], references: [workspaceId, pipelineId, id], onDelete: Restrict)
+  pipeline CrmPipeline      @relation("PipelineAssignments", fields: [workspaceId, pipelineId], references: [workspaceId, id], onDelete: Restrict, map: "crm_deal_pipeline_assignment_pipeline_fkey")
+  stage    CrmPipelineStage @relation("StageAssignments", fields: [workspaceId, pipelineId, stageId], references: [workspaceId, pipelineId, id], onDelete: Restrict, map: "crm_deal_pipeline_assignment_stage_fkey")
 
   @@unique([workspaceId, dealId], map: "crm_deal_pipeline_assignment_workspace_deal_key")
   @@index([workspaceId, pipelineId, stageId], map: "crm_deal_pipeline_assignment_stage_idx")
@@ -1690,8 +1691,8 @@ model CrmLegacyDealStageMapping {
   createdAt   DateTime  @default(now()) @map("created_at")
   updatedAt   DateTime  @updatedAt @map("updated_at")
 
-  pipeline CrmPipeline      @relation("LegacyStagePipelineMappings", fields: [workspaceId, pipelineId], references: [workspaceId, id], onDelete: Restrict)
-  stage    CrmPipelineStage @relation("LegacyStageMappings", fields: [workspaceId, pipelineId, stageId], references: [workspaceId, pipelineId, id], onDelete: Restrict)
+  pipeline CrmPipeline      @relation("LegacyStagePipelineMappings", fields: [workspaceId, pipelineId], references: [workspaceId, id], onDelete: Restrict, map: "crm_legacy_deal_stage_mapping_pipeline_fkey")
+  stage    CrmPipelineStage @relation("LegacyStageMappings", fields: [workspaceId, pipelineId, stageId], references: [workspaceId, pipelineId, id], onDelete: Restrict, map: "crm_legacy_deal_stage_mapping_stage_fkey")
 
   @@id([workspaceId, legacyStage])
   @@index([workspaceId, pipelineId, stageId], map: "crm_legacy_deal_stage_mapping_target_idx")
@@ -1788,10 +1789,11 @@ model CrmMigrationBatch {
   createdAt    DateTime @default(now()) @map("created_at")
   updatedAt    DateTime @updatedAt @map("updated_at")
 
-  job CrmMigrationJob @relation(fields: [workspaceId, jobId], references: [workspaceId, id], onDelete: Cascade)
+  job CrmMigrationJob @relation(fields: [workspaceId, jobId], references: [workspaceId, id], onDelete: Cascade, map: "crm_migration_batch_job_fkey")
 
   @@unique([workspaceId, jobId, batchIndex], map: "crm_migration_batch_workspace_job_index_key")
   @@index([workspaceId, jobId, status], map: "crm_migration_batch_status_idx")
+  @@index([workspaceId, jobId, status, leaseExpiresAt], map: "crm_migration_batch_lease_idx")
   @@map("crm_migration_batch")
 }
 
@@ -1807,7 +1809,7 @@ model CrmMigrationIssue {
   details     Json?
   createdAt   DateTime                  @default(now()) @map("created_at")
 
-  job CrmMigrationJob @relation(fields: [workspaceId, jobId], references: [workspaceId, id], onDelete: Cascade)
+  job CrmMigrationJob @relation(fields: [workspaceId, jobId], references: [workspaceId, id], onDelete: Cascade, map: "crm_migration_issue_job_fkey")
 
   @@index([workspaceId, jobId, severity, rowNumber], map: "crm_migration_issue_job_severity_row_idx")
   @@map("crm_migration_issue")
@@ -1823,7 +1825,7 @@ model CrmMigrationEvent {
   details     Json     @default("{}")
   createdAt   DateTime @default(now()) @map("created_at")
 
-  job CrmMigrationJob @relation(fields: [workspaceId, jobId], references: [workspaceId, id], onDelete: Cascade)
+  job CrmMigrationJob @relation(fields: [workspaceId, jobId], references: [workspaceId, id], onDelete: Cascade, map: "crm_migration_event_job_fkey")
 
   @@index([workspaceId, jobId, createdAt], map: "crm_migration_event_job_created_idx")
   @@index([workspaceId, type, createdAt], map: "crm_migration_event_type_created_idx")
@@ -1847,9 +1849,9 @@ model GovernedActionReceipt {
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
 
-  @@unique([workspaceId, actionId, idempotencyKey])
-  @@index([workspaceId, status, leaseExpiresAt])
-  @@index([workspaceId, actionId, createdAt])
+  @@unique([workspaceId, actionId, idempotencyKey], map: "GovernedActionReceipt_workspace_action_key")
+  @@index([workspaceId, status, leaseExpiresAt], map: "GovernedActionReceipt_workspace_status_lease")
+  @@index([workspaceId, actionId, createdAt], map: "GovernedActionReceipt_workspace_action_created")
   @@index([workspaceId, payloadDigest])
 }
 
@@ -1883,8 +1885,8 @@ model GovernedActionApproval {
 
   continuation GovernedActionContinuation?
   @@unique([workspaceId, id])
-  @@index([workspaceId, status, expiresAt])
-  @@index([workspaceId, actionId, payloadDigest])
+  @@index([workspaceId, status, expiresAt], map: "GovernedActionApproval_workspace_status_expiry")
+  @@index([workspaceId, actionId, payloadDigest], map: "GovernedActionApproval_workspace_action_digest")
   @@unique([workspaceId, requestKey])
   @@index([workspaceId, runId])
 }
@@ -1901,9 +1903,9 @@ model GovernedActionAuditEvent {
   detailsJson   Json
   occurredAt    DateTime @default(now())
 
-  @@index([workspaceId, occurredAt])
-  @@index([workspaceId, actionId, occurredAt])
-  @@index([workspaceId, correlationId])
+  @@index([workspaceId, occurredAt], map: "GovernedActionAuditEvent_workspace_occurred")
+  @@index([workspaceId, actionId, occurredAt], map: "GovernedActionAuditEvent_workspace_action_occurred")
+  @@index([workspaceId, correlationId], map: "GovernedActionAuditEvent_workspace_correlation")
 }
 
 
