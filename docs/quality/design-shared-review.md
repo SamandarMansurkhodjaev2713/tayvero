@@ -12,3 +12,7 @@ Eight concrete critique / improvement rounds in the parent lane:
 8. Independent finish review found touch-inaccessible long CSV cells and mobile agent search compressed to an icon. Both repaired narrowly, with final320px search248px and no document overflow. No further P0/P1 was found in the reviewed scope.
 
 Explicit shared UI formatting used Biome stdin for five source files because the incumbent configuration excludes packages/ui/src/components. Token generated-contract check and workspace lock audit passed. Browser theme evidence covers all8appearances at768px. Full semantic and Next logs are separate from the fixtures; no production readiness or perfect-design guarantee is claimed.
+
+## Keyboard focus follow-up
+
+A final native-keyboard check exposed focus loss when the externally opened command dialog closed. Source confirmed QuickSwitcher controls CommandDialog through URL state without a DialogTrigger. Five checks refined the fix: capture the active opener before default autofocus; retain ordinary dialog initial focus; restore only a still-connected element; leave default close behavior available when no valid opener exists; mount the actual shared CommandDialog and verify Header Enter → Escape returns focus to the named search button. This check used synthetic fixtures, not authenticated search queries. No search/record/action contracts changed.

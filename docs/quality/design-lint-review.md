@@ -15,9 +15,12 @@ The original root Biome report had 38 errors: 19 control-character regex finding
 | Check | Result and evidence |
 | --- | --- |
 | Root Biome lint | **PASS:** 1,107 files, 0 errors, 87 warnings, 12 informational findings. [`design-lint-results.json`](design-lint-results.json) is the actual JSON report. Shared UI component exclusions are the existing root configuration; this does not claim lint coverage of those excluded files. |
-| Root Biome check | **PASS observed:** 1,106 files, 0 errors, 87 warnings, 12 informational findings before report artifacts were written. A subsequent check caught only concurrent formatting of `generated-tenant-audit.json`; the release owner performs the final formatter/check after all writers finish. |
+| Root Biome check | **PASS:** final check after the source fixes and review artifacts: 1,107 files, 0 errors, 87 warnings, 12 informational findings. This includes formatting and import organization in addition to lint. |
 | Portable behavior suites | **PASS:** 202 tests, 0 failures, 0 skips. [`design-lint-tests.tap`](design-lint-tests.tap) records action registry, governed action runtime, security core, integration runtime, migration core, pipeline runtime, public error, pipeline editor, and legacy bridge suites. |
+| Boundary and continuation wiring suites | **PASS:** 30 tests, 0 failures, 0 skips; checks cover governed action calls, migration persistence, pipeline API/dual write, and native continuation wiring. |
 | JavaScript syntax | **PASS:** `node tools/quality/check-esm.mjs` checked 205 files, no failures. |
 | TypeScript syntax | **PASS:** `node tools/quality/check-typescript-syntax.mjs` checked 995 files with TypeScript 5.9.2, no failures. This is syntax verification, not the monorepo typecheck. |
+
+The migration and pipeline feature gates retain their existing default-off behavior. The bridge still leaves legacy `Deal.stage` compatibility in place; the extracted stage persistence helper uses the same already-scoped transaction client.
 
 The broader first Node test attempt included migration source filesystem suites and failed the required POSIX/O_NOFOLLOW configuration checks on native Windows. The source-store guards were preserved; Linux CI must verify those suites and PostgreSQL after the helper refactors. The preview build was also attempted with Node; its existing `Bun.resolveSync` dependency requires Bun, so that invocation did not validate the bundle. No browser session, authenticated acceptance, production deployment, or complete accessibility conformance is claimed by this review.

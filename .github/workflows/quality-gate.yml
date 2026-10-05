@@ -101,6 +101,13 @@ jobs:
           TEST_DATABASE_URL: postgresql://postgres@127.0.0.1:5432/tayvero_operations_test
         run: bun run gate:operations-postgres
 
+      - name: Prepare repository integration database
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        env:
+          NODE_ENV: test
+        # Separate from the two acceptance databases; guarded creation, no reset.
+        run: bun run --cwd packages/db db:test > docs/quality/generated-repository-test-db.log 2>&1
+
       - name: Run repository quality gate
         if: ${{ !cancelled() && steps.install.outcome == 'success' }}
         run: bun run quality:gate

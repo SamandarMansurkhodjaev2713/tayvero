@@ -7,15 +7,13 @@ import {
 	DialogHeader,
 	DialogTitle,
 } from "@crm/ui/components/dialog";
-import {
-	InputGroup,
-	InputGroupAddon,
-} from "@crm/ui/components/input-group";
+import { InputGroup, InputGroupAddon } from "@crm/ui/components/input-group";
 
 import { cn } from "@crm/ui/lib/utils";
 import { Command as CommandPrimitive } from "cmdk";
 import { CheckIcon, SearchIcon } from "lucide-react";
 import type * as React from "react";
+import { useRef } from "react";
 
 function Command({
 	className,
@@ -46,16 +44,30 @@ function CommandDialog({
 	className?: string;
 	showCloseButton?: boolean;
 }) {
+	const returnFocus = useRef<HTMLElement | null>(null);
 	return (
 		<Dialog {...props}>
 			<DialogContent
+				onOpenAutoFocus={() => {
+					const active = document.activeElement;
+					returnFocus.current = active instanceof HTMLElement ? active : null;
+				}}
+				onCloseAutoFocus={(event) => {
+					if (returnFocus.current?.isConnected) {
+						event.preventDefault();
+						returnFocus.current.focus();
+					}
+				}}
 				className={cn(
 					"top-1/3 translate-y-0 overflow-hidden rounded-lg p-0",
 					className,
 				)}
 				showCloseButton={showCloseButton}
 			>
-				<DialogHeader className="sr-only"><DialogTitle>{title}</DialogTitle><DialogDescription>{description}</DialogDescription></DialogHeader>
+				<DialogHeader className="sr-only">
+					<DialogTitle>{title}</DialogTitle>
+					<DialogDescription>{description}</DialogDescription>
+				</DialogHeader>
 				{children}
 			</DialogContent>
 		</Dialog>

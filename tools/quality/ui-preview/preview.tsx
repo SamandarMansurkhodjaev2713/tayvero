@@ -1,11 +1,5 @@
 import { Button } from "@crm/ui/components/button";
-import {
-	Dialog,
-	DialogContent,
-	DialogDescription,
-	DialogHeader,
-	DialogTitle,
-} from "@crm/ui/components/dialog";
+import { CommandDialog } from "@crm/ui/components/command";
 import { Input } from "@crm/ui/components/input";
 import {
 	Table,
@@ -269,20 +263,16 @@ function PreviewContent() {
 								</div>
 							</div>
 						)}
-						<Dialog open={searchOpen} onOpenChange={setSearchOpen}>
-							<DialogContent>
-								<DialogHeader>
-									<DialogTitle>Sample record</DialogTitle>
-									<DialogDescription>
-										This preview uses synthetic data. No customer record or
-										action will be created.
-									</DialogDescription>
-								</DialogHeader>
-								<Button onClick={() => setSearchOpen(false)}>
-									Close preview
-								</Button>
-							</DialogContent>
-						</Dialog>
+						<CommandDialog
+							open={searchOpen}
+							onOpenChange={setSearchOpen}
+							title="Sample record"
+							description="This preview uses synthetic data. No customer record or action will be created."
+						>
+							<Button onClick={() => setSearchOpen(false)}>
+								Close preview
+							</Button>
+						</CommandDialog>
 					</MobileNavProvider>
 				</TooltipProvider>
 			</ThemeProvider>
