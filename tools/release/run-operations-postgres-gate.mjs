@@ -5,6 +5,7 @@ import { existsSync, mkdirSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { resolveTestDatabase } from "../../packages/db/src/test-database.mjs";
 import { createEvidenceRedactor } from "../quality/lib/redact-evidence.mjs";
+import { hasCompleteTestEvidence, parseBunTestSummary } from "../quality/lib/test-evidence.mjs";
 
 const root = resolve(import.meta.dirname, "../..");
 const directory = resolve(root, "docs/quality");
@@ -35,13 +36,16 @@ if (!blockers.length) {
     run("Migration receipts, bound approvals and native-continuation persistence on PostgreSQL", ["test", "--preload", "./apps/api/test/setup.ts", "apps/api/test/operations-postgres.integration.spec.ts"]);
   }
 }
-const passed = !blockers.length && commands.length === 3 && commands.every(row => row.status === "passed");
+const acceptance = commands.find(row => row.command.startsWith("bun test "));
+const testSummary = parseBunTestSummary(`${acceptance?.stdout ?? ""}\n${acceptance?.stderr ?? ""}`);
+const passed = !blockers.length && commands.length === 3 && commands.every(row => row.status === "passed") && hasCompleteTestEvidence(testSummary);
 const report = {
   scopeId: "MIG-APPROVAL-POSTGRES-001", generatedAt: new Date().toISOString(),
   status: passed ? "VERIFIED" : blockers.length ? "BLOCKED_EXTERNAL" : "FAILED",
   criticalChecksPassed: passed, wholeProductProductionReady: false,
   safety: { explicitTestDatabaseRequired: true, productionDatabaseFallback: false, automaticReset: false, remoteRequiresExplicitOptIn: true },
   blockers, commands: commands.map(({ stdout, stderr, ...row }) => ({ ...row, stdoutTail: stdout.slice(-8000), stderrTail: stderr.slice(-8000) })),
+  testSummary,
   nextScopeId: passed ? "MIG-APPROVAL-AUTHENTICATED-E2E-001" : "MIG-APPROVAL-POSTGRES-001",
 };
 mkdirSync(directory, { recursive: true });

@@ -82,11 +82,23 @@ jobs:
         run: bun install --frozen-lockfile
 
       - name: Verify disposable pipeline database
+        id: pipeline
         if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        env:
+          TEST_DATABASE_URL: postgresql://postgres@127.0.0.1:5432/tayvero_pipeline_test
         run: bun run gate:pipeline-postgres
+
+      - name: Verify deployed schema agrees with Prisma (read-only)
+        if: ${{ !cancelled() && steps.pipeline.outcome == 'success' }}
+        env:
+          DATABASE_URL: postgresql://postgres@127.0.0.1:5432/tayvero_pipeline_test
+        # Exit 2 means drift and keeps the job failed; the SQL is diagnostic only.
+        run: bun run --cwd packages/db prisma migrate diff --from-config-datasource --to-schema prisma/schema.prisma --script --exit-code > docs/quality/generated-test-db-schema-diff.sql
 
       - name: Verify disposable migration and approval database
         if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        env:
+          TEST_DATABASE_URL: postgresql://postgres@127.0.0.1:5432/tayvero_operations_test
         run: bun run gate:operations-postgres
 
       - name: Run repository quality gate

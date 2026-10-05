@@ -5,6 +5,7 @@ import { resolve } from "node:path";
 import process from "node:process";
 import { resolveTestDatabase } from "../../packages/db/src/test-database.mjs";
 import { createEvidenceRedactor } from "../quality/lib/redact-evidence.mjs";
+import { hasCompleteTestEvidence, parseBunTestSummary } from "../quality/lib/test-evidence.mjs";
 
 const root = resolve(import.meta.dirname, "../..");
 const qualityDir = resolve(root, "docs/quality");
@@ -79,7 +80,9 @@ if (blockers.length === 0) {
 	}
 }
 
-const verified = blockers.length === 0 && commands.length === 3 && commands.every((item) => item.status === "passed");
+const acceptance = commands.find(row => row.command.startsWith("bun test "));
+const testSummary = parseBunTestSummary(`${acceptance?.stdoutTail ?? ""}\n${acceptance?.stderrTail ?? ""}`);
+const verified = blockers.length === 0 && commands.length === 3 && commands.every((item) => item.status === "passed") && hasCompleteTestEvidence(testSummary);
 const report = {
 	stage: "CRM-PIPE-POSTGRES-005",
 	scopeId: "CRM-PIPE-POSTGRES-005",
@@ -99,6 +102,7 @@ const report = {
 	environment: { bunPresent, depsPresent, testDatabaseConfigured: Boolean(testUrl) },
 	blockers,
 	commands,
+	testSummary,
 };
 mkdirSync(qualityDir, { recursive: true });
 writeFileSync(reportPath, `${JSON.stringify(report, null, 2)}\n`, "utf8");

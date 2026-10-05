@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import {
 	hasCompleteTestEvidence,
+	parseBunTestSummary,
 	parseTestSummary,
 } from "../lib/test-evidence.mjs";
 
@@ -13,6 +14,27 @@ const summary = (overrides = {}) => ({
 	cancelled: 0,
 	todo: 0,
 	...overrides,
+});
+
+test("Bun acceptance requires positive totals, all passing and no skipped or todo cases", () => {
+	assert.equal(
+		hasCompleteTestEvidence(
+			parseBunTestSummary(
+				" 8 pass\n 0 fail\nRan 8 tests across 1 file. [489.00ms]",
+			),
+		),
+		true,
+	);
+	for (const output of [
+		"",
+		"0 pass\n0 fail\nRan 0 tests across 1 file.",
+		"1 pass\n0 fail\n1 skip\nRan 2 tests across 1 file.",
+		"1 pass\n0 fail\n1 todo\nRan 2 tests across 1 file.",
+		"1 pass\n1 fail\nRan 2 tests across 1 file.",
+		"8 pass\n0 fail",
+	]) {
+		assert.equal(hasCompleteTestEvidence(parseBunTestSummary(output)), false);
+	}
 });
 
 test("release test evidence accepts a complete TAP summary on LF and Windows CRLF", () => {
