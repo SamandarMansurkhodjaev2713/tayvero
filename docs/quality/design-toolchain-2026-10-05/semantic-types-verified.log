@@ -1,0 +1,85 @@
+$ turbo run check-types
+• turbo 2.10.8
+
+   • Packages in scope: @crm/action-registry, @crm/agent-action-runtime, @crm/auth, @crm/db, @crm/env, @crm/integration-runtime, @crm/migration-core, @crm/migration-runtime, @crm/pipeline-core, @crm/pipeline-runtime, @crm/security-core, @crm/telemetry, @crm/typescript-config, @crm/ui, @crm/validation, agent, api, app
+   • Running check-types in 18 packages
+   • Remote caching disabled
+
+@crm/db:build: cache miss, executing 7b1eb8f74f03c00e
+app:typegen: cache miss, executing 08f854bb9f5a1706
+@crm/env:check-types: cache hit, replaying logs f80eeeb7cc897a34
+@crm/env:check-types: $ tsc --noEmit
+@crm/db:build: $ prisma generate
+app:typegen: $ next typegen
+app:typegen: Generating route types...
+app:typegen: ✓ Types generated successfully
+@crm/db:build: Loaded Prisma config from prisma.config.ts.
+@crm/db:build: 
+@crm/db:build: Prisma schema loaded from prisma\schema.prisma.
+@crm/db:build: ┌─────────────────────────────────────────────────────────┐
+@crm/db:build: │  Update available 7.9.1 -> 8.0.0-rc.19                  │
+@crm/db:build: │                                                         │
+@crm/db:build: │  This is a major update - please follow the guide at    │
+@crm/db:build: │  https://pris.ly/d/major-version-upgrade                │
+@crm/db:build: │                                                         │
+@crm/db:build: │  Run the following to update                            │
+@crm/db:build: │    npm i --save-dev prisma@latest                       │
+@crm/db:build: │    npm i @prisma/client@latest                          │
+@crm/db:build: └─────────────────────────────────────────────────────────┘
+@crm/db:build: 
+@crm/db:build: ✔ Generated Prisma Client (7.9.1) to .\src\generated\prisma in 830ms
+@crm/db:build: 
+@crm/ui:check-types: cache miss, executing 489d64bc4ce4d049
+@crm/auth:check-types: cache miss, executing 2f74b6cf6e90e859
+@crm/db:check-types: cache miss, executing 0c5ffac692584068
+@crm/telemetry:check-types: cache miss, executing effb505bc37dd92c
+agent:check-types: cache miss, executing 0bf62e867b72d51f
+@crm/validation:check-types: cache miss, executing 98051fc198cd9980
+api:build: cache miss, executing d73e1f16435d54ae
+api:trpc:generate: cache miss, executing 64c7a0a7d7d868ba
+@crm/ui:check-types: $ tsc --noEmit
+@crm/auth:check-types: $ tsc --noEmit
+@crm/db:check-types: $ tsc --noEmit
+@crm/telemetry:check-types: $ tsc --noEmit
+agent:check-types: $ tsc --noEmit
+@crm/validation:check-types: $ tsc --noEmit
+api:build: $ bun build src/main.ts --target=bun --outdir dist --packages=external --sourcemap
+api:trpc:generate: $ nestjs-trpc generate -e src/app.module.ts -r "**/*.router.ts" -o src/generated
+api:build: Bundled 206 modules in 193ms
+api:build: 
+api:build:   main.js      0.83 MB  (entry point)
+api:build:   main.js.map  1.47 MB  (source map)
+api:build: 
+app:check-types: cache miss, executing 7c293d48ee56d80a
+app:check-types: $ tsc --noEmit
+api:trpc:generate: ✓ Generated server.ts successfully!
+api:trpc:generate: 
+api:trpc:generate:   Output:     C:\Users\sam4k\Downloads\AgenrCRM_OS\crm-release\apps\api\src/generated\server.ts
+api:trpc:generate:   Routers:    24
+api:trpc:generate:   Procedures: 185
+api:trpc:generate: 
+api:check-types: cache miss, executing 41b8ff1ddb9fb1fa
+api:check-types: $ tsc --noEmit
+agent:check-types: agent/lib/approval-continuation.ts(3,27): error TS7016: Could not find a declaration file for module '@crm/agent-action-runtime'. 'C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/agent-action-runtime/src/index.mjs' implicitly has an 'any' type.
+agent:check-types:   Try `npm i --save-dev @types/crm__agent-action-runtime` if it exists or add a new declaration (.d.ts) file containing `declare module '@crm/agent-action-runtime';`
+agent:check-types: agent/lib/governed-run-actions.ts(131,43): error TS2345: Argument of type 'GovernedRunActionAuthorizationRequest' is not assignable to parameter of type '{ manifest: { id: string; risk: string; mutating: boolean; }; }'.
+agent:check-types:   Type 'Readonly<{ actionId: "crm.activity.create"; runId: string; callId: string; input: Readonly<{ type: "NOTE" | "TASK"; targetKind: "company" | "contact" | "deal"; targetId: string; subject?: string | null | undefined; body?: string | ... 1 more ... | undefined; dueAt?: string | ... 1 more ... | undefined; }>; context: ...' is not assignable to type '{ manifest: { id: string; risk: string; mutating: boolean; }; }'.
+agent:check-types:     Types of property 'manifest' are incompatible.
+agent:check-types:       Property 'mutating' is missing in type 'Readonly<{ id: string; version: string; risk: "LOW" | "MEDIUM" | "HIGH" | "CRITICAL"; permissions: readonly string[]; }>' but required in type '{ id: string; risk: string; mutating: boolean; }'.
+agent:check-types: agent/lib/governed-run-actions.ts(149,3): error TS2322: Type 'Promise<{ actionId: string; activityId: string; replayed: boolean; } | undefined>' is not assignable to type 'Promise<Readonly<{ actionId: string; activityId: string; replayed: boolean; }>>'.
+agent:check-types:   Type '{ actionId: string; activityId: string; replayed: boolean; } | undefined' is not assignable to type 'Readonly<{ actionId: string; activityId: string; replayed: boolean; }>'.
+agent:check-types:     Type 'undefined' is not assignable to type 'Readonly<{ actionId: string; activityId: string; replayed: boolean; }>'.
+agent:check-types: agent/lib/governed-run-actions.ts(156,3): error TS2322: Type 'Promise<{ actionId: string; messageId: string; destination: string; replayed: boolean; } | undefined>' is not assignable to type 'Promise<Readonly<{ actionId: string; messageId: string; destination: string; replayed: boolean; }>>'.
+agent:check-types:   Type '{ actionId: string; messageId: string; destination: string; replayed: boolean; } | undefined' is not assignable to type 'Readonly<{ actionId: string; messageId: string; destination: string; replayed: boolean; }>'.
+agent:check-types:     Type 'undefined' is not assignable to type 'Readonly<{ actionId: string; messageId: string; destination: string; replayed: boolean; }>'.
+agent:check-types: agent/lib/run-runtime.ts(632,20): error TS2339: Property 'aborted' does not exist on type 'object'.
+agent:check-types: agent/lib/run-runtime.ts(633,20): error TS2339: Property 'addEventListener' does not exist on type 'object'.
+agent:check-types: agent/lib/run-runtime.ts(634,20): error TS2339: Property 'removeEventListener' does not exist on type 'object'.
+agent#check-types:  ERROR  command (C:\Users\sam4k\Downloads\AgenrCRM_OS\crm-release\apps\agent) C:\Users\sam4k\Downloads\AgenrCRM_OS\.tooling\node_modules\bun\bin\bun.exe run check-types exited (2)
+
+ Tasks:    9 successful, 13 total
+Cached:    1 cached, 13 total
+  Time:    26.363s 
+Failed:    agent#check-types
+
+ ERROR  run failed: command  exited (2)

@@ -1,0 +1,92 @@
+$ next build
+▲ Next.js 16.3.0 (Turbopack)
+✓ Running next.config.ts took 189ms
+- Cache Components enabled
+- Partial Prefetching enabled
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 7.1s
+  Running TypeScript ...
+  Finished TypeScript in 10.2s ...
+  Collecting page data using 15 workers ...
+  Generating static pages using 15 workers (0/36) ...
+  Generating static pages using 15 workers (9/36) 
+⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+  Generating static pages using 15 workers (18/36) 
+  Generating static pages using 15 workers (27/36) 
+✓ Generating static pages using 15 workers (36/36) in 3.6s
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├   /[slug]
+│ └ ◐ /[slug]
+├   /[slug]/agents
+│ └ ◐ /[slug]/agents
+├   /[slug]/agents/[agentId]
+│ └ ◐ /[slug]/agents/[agentId]
+├   /[slug]/chat
+│ └ ◐ /[slug]/chat
+├   /[slug]/chat/[chatId]
+│ └ ◐ /[slug]/chat/[chatId]
+├   /[slug]/companies
+│ └ ◐ /[slug]/companies
+├   /[slug]/companies/[companyId]
+│ └ ◐ /[slug]/companies/[companyId]
+├   /[slug]/contacts
+│ └ ◐ /[slug]/contacts
+├   /[slug]/contacts/[contactId]
+│ └ ◐ /[slug]/contacts/[contactId]
+├   /[slug]/deals
+│ └ ◐ /[slug]/deals
+├   /[slug]/deals/[dealId]
+│ └ ◐ /[slug]/deals/[dealId]
+├   /[slug]/operations
+│ └ ◐ /[slug]/operations
+├   /[slug]/settings
+│ └ ◐ /[slug]/settings
+├   /[slug]/settings/api-keys
+│ └ ◐ /[slug]/settings/api-keys
+├   /[slug]/settings/appearance
+│ └ ◐ /[slug]/settings/appearance
+├   /[slug]/settings/connections
+│ └ ◐ /[slug]/settings/connections
+├   /[slug]/settings/connections/google
+│ └ ◐ /[slug]/settings/connections/google
+├   /[slug]/settings/connections/intake
+│ └ ◐ /[slug]/settings/connections/intake
+├   /[slug]/settings/connections/microsoft
+│ └ ◐ /[slug]/settings/connections/microsoft
+├   /[slug]/settings/connections/slack
+│ └ ◐ /[slug]/settings/connections/slack
+├   /[slug]/settings/connections/slack/people
+│ └ ◐ /[slug]/settings/connections/slack/people
+├   /[slug]/settings/currencies
+│ └ ◐ /[slug]/settings/currencies
+├   /[slug]/settings/members
+│ └ ◐ /[slug]/settings/members
+├   /[slug]/settings/migrations
+│ └ ◐ /[slug]/settings/migrations
+├   /[slug]/settings/pipelines
+│ └ ◐ /[slug]/settings/pipelines
+├   /[slug]/settings/sso
+│ └ ◐ /[slug]/settings/sso
+├   /[slug]/settings/tracking
+│ └ ◐ /[slug]/settings/tracking
+├ ƒ /api/[...path]
+├ ƒ /eve/v1/[...path]
+├ ƒ /grant-access
+├ ƒ /onboarding
+├ ƒ /onboarding/research
+├ ◐ /sign-in
+├ ƒ /t/[site]
+└ ○ /t/crm.js
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)             prerendered as static content
+◐  (Partial Prerender)  prerendered as static HTML with dynamic server-streamed content
+ƒ  (Dynamic)            server-rendered on demand
+

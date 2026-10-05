@@ -81,7 +81,10 @@ function StatCard({
 				</span>
 			) : null}
 			<div className="flex flex-wrap items-baseline gap-x-2.5 gap-y-1">
-				<span data-slot="stat-value" className="font-medium text-3xl tracking-tight tabular-nums">
+				<span
+					data-slot="stat-value"
+					className="font-medium text-3xl tracking-tight tabular-nums"
+				>
 					{value}
 				</span>
 				{delta ? <StatDeltaText delta={delta} /> : null}

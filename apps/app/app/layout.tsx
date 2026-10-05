@@ -1,8 +1,8 @@
 import "@crm/ui/globals.css";
-import { APPEARANCE_BOOTSTRAP } from "@crm/ui/theme/appearance";
 import { Toaster } from "@crm/ui/components/sonner";
 import { TooltipProvider } from "@crm/ui/components/tooltip";
 import { cn } from "@crm/ui/lib/utils";
+import { APPEARANCE_BOOTSTRAP } from "@crm/ui/theme/appearance";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
@@ -21,6 +21,9 @@ const fontMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+	metadataBase: new URL(
+		process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000",
+	),
 	title: {
 		default: "Tayvero — Agentic Business OS",
 		template: "%s · Tayvero",
@@ -48,6 +51,7 @@ export default function RootLayout({
 			className={cn(fontSans.variable, fontMono.variable, "h-full antialiased")}
 		>
 			<body className="flex min-h-full flex-col font-sans">
+				{/* biome-ignore lint/security/noDangerouslySetInnerHtml: Static first-party bootstrap only; storage values are mapped through a fixed allowlist. */}
 				<script dangerouslySetInnerHTML={{ __html: APPEARANCE_BOOTSTRAP }} />
 				<NuqsAdapter>
 					<TRPCReactProvider>

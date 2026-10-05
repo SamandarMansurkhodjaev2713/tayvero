@@ -1,0 +1,30 @@
+$ next build
+▲ Next.js 16.3.0 (Turbopack)
+✓ Running next.config.ts took 105ms
+- Cache Components enabled
+- Partial Prefetching enabled
+
+  Creating an optimized production build ...
+
+> Build error occurred
+Error: Turbopack build failed with 1 error:
+./apps/app/app/(app)/[slug]/operations/operations-center.tsx:401:11
+Error: Expected '</', got 'ident'
+  399 | 									{/* biome-ignore lint/a11y/noNoninteractiveTabindex: This bounded table viewport must sup...
+  400 | <section
+> 401 | 										className="overflow-auto"
+      | ^^^^^^^^^
+  402 | 										tabIndex={0}
+  403 | 										
+  404 | 										aria-label={t.runs}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./apps/app/app/(app)/[slug]/operations/operations-center.tsx
+    ./apps/app/app/(app)/[slug]/operations/page.tsx
+
+
+    at <unknown> (./apps/app/app/(app)/[slug]/operations/operations-center.tsx:401:11)
+error: script "build" exited with code 1

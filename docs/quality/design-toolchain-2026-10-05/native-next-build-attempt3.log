@@ -1,0 +1,85 @@
+$ next build
+▲ Next.js 16.3.0 (Turbopack)
+✓ Running next.config.ts took 289ms
+- Cache Components enabled
+- Partial Prefetching enabled
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 14.1s
+  Running TypeScript ...
+  Finished TypeScript in 52s ...
+  Collecting page data using 15 workers ...
+  Generating static pages using 15 workers (0/36) ...
+Error: Route "/[slug]/settings/migrations": Next.js encountered uncached or runtime data during prerendering.
+
+`fetch(...)`, `cookies()`, `headers()`, `params`, `searchParams`, or `connection()` accessed outside of `<Suspense>` prevents the route from being prerendered, blocking the page load and leading to a slower user experience.
+
+Ways to fix this:
+  - [stream] Provide a placeholder with `<Suspense fallback={...}>` around the data access
+  - [cache] For uncached data (`fetch`, database calls): cache the access with `"use cache"` (does not apply to `connection()`)
+  - [block] Set `export const instant = false` to allow a blocking route
+
+Learn more: https://nextjs.org/docs/messages/blocking-prerender-dynamic
+    at div (<anonymous>)
+    at div (<anonymous>)
+    at div (<anonymous>)
+    at div (<anonymous>)
+    at <unknown> (components\mobile-nav.tsx:12:37)
+    at a.s (..\..\packages\ui\src\components\tooltip.tsx:8:2)
+    at <unknown> (components\appearance-provider.tsx:31:38)
+    at <unknown> (components\theme-provider.tsx:8:2)
+    at <unknown> (lib\trpc\client.tsx:27:37)
+    at body (<anonymous>)
+    at html (<anonymous>)
+  10 | const MobileNavContext = createContext<MobileNavContextValue | null>(null);
+  11 |
+> 12 | export function MobileNavProvider({ children }: { children: React.ReactNode }) {
+     |                                     ^
+  13 | 	const [open, setOpen] = useState(false);
+  14 | 	const value = useMemo(() => ({ open, setOpen }), [open]);
+  15 | 	return (
+To get a more detailed stack trace and pinpoint the issue, try one of the following:
+  - Start the app in development mode by running `next dev`, then open "/[slug]/settings/migrations" in your browser to investigate the error.
+  - Rerun the production build with `next build --debug-prerender` to generate better stack traces.
+Error occurred prerendering page "/[slug]/settings/migrations". Read more: https://nextjs.org/docs/messages/prerender-error
+Export encountered an error on /(app)/[slug]/settings/migrations/page: /[slug]/settings/migrations, exiting the build.
+Error: Route "/[slug]/companies": Next.js encountered URL data `useParams()` in a Client Component outside of `<Suspense>`.
+
+This blocks prerendering because the value is only available at runtime.
+
+Ways to fix this:
+  - [stream] Wrap the component in `<Suspense fallback={...}>` so the hook value streams in after prerendering
+  - [block] Set `export const instant = false` to allow a blocking route
+
+Learn more: https://nextjs.org/docs/messages/blocking-prerender-client-hook
+    at <unknown> (components\import-data-link.tsx:6:48)
+    at div (<anonymous>)
+    at div (<anonymous>)
+    at header (<anonymous>)
+    at div (<anonymous>)
+    at main (<anonymous>)
+    at ViewTransition (<anonymous>)
+    at div (<anonymous>)
+    at div (<anonymous>)
+    at div (<anonymous>)
+    at <unknown> (components\mobile-nav.tsx:12:37)
+    at a.s (..\..\packages\ui\src\components\tooltip.tsx:8:2)
+    at <unknown> (components\appearance-provider.tsx:31:38)
+    at <unknown> (components\theme-provider.tsx:8:2)
+    at <unknown> (lib\trpc\client.tsx:27:37)
+    at body (<anonymous>)
+    at html (<anonymous>)
+  4 | import { useWorkspaceUrl } from "@/lib/use-workspace-url";
+  5 | import { useOperationsLocale } from "@/lib/use-operations-locale";
+> 6 | export function ImportDataLink() { const url = useWorkspaceUrl(); const { text } = useOperationsLocale(); return <Button asChild variant="outline"><Link href={url("/settings/migrations")}>{text.migration}</Link></Button>; }
+    |                                                ^
+  7 | {
+  digest: 'CLIENT_HOOK_DYNAMIC'
+}
+To get a more detailed stack trace and pinpoint the issue, try one of the following:
+  - Start the app in development mode by running `next dev`, then open "/[slug]/companies" in your browser to investigate the error.
+  - Rerun the production build with `next build --debug-prerender` to generate better stack traces.
+Error occurred prerendering page "/[slug]/companies". Read more: https://nextjs.org/docs/messages/prerender-error
+Export encountered an error on /(app)/[slug]/companies/page: /[slug]/companies, exiting the build.
+⨯ Next.js build worker exited with code: 1 and signal: null
+error: script "build" exited with code 1

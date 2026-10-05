@@ -10,12 +10,21 @@ export function ProductShot() {
 			<figure>
 				<div className="tayvero-landing-image-frame">
 					<Image
+						className="tayvero-landing-shot-light"
 						src="/landing/tayvero-workspace-light.jpg"
 						alt="Рабочее пространство Tayvero: обзор сделок, графики и следующие шаги на демонстрационных данных"
-						width={2560}
-						height={1777}
+						width={1080}
+						height={720}
 						sizes="(max-width: 700px) calc(100vw - 40px), (max-width: 1440px) 92vw, 1280px"
 						priority
+					/>
+					<Image
+						className="tayvero-landing-shot-dark"
+						src="/landing/tayvero-workspace-dark.jpg"
+						alt="Тёмная тема рабочего пространства Tayvero на демонстрационных данных"
+						width={1080}
+						height={720}
+						sizes="(max-width: 700px) calc(100vw - 40px), (max-width: 1440px) 92vw, 1280px"
 					/>
 				</div>
 				<figcaption>

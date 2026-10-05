@@ -38,7 +38,13 @@ const buttonVariants = cva(
 				"icon-lg": "size-9",
 			},
 		},
-		compoundVariants: [{ wrap: true, className: "max-w-full h-auto min-h-9 whitespace-normal py-2 text-center" }],
+		compoundVariants: [
+			{
+				wrap: true,
+				className:
+					"max-w-full h-auto min-h-9 whitespace-normal py-2 text-center",
+			},
+		],
 		defaultVariants: {
 			wrap: false,
 			variant: "default",

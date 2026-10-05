@@ -133,7 +133,10 @@ export function TeamAgentsIndex({ initialAgents }: { initialAgents: Agents }) {
 			</WorkspaceMetrics>
 
 			<WorkspaceToolbar>
-				<label htmlFor={searchId} className="min-w-48 flex-1">
+				<label
+					htmlFor={searchId}
+					className="w-full min-w-48 flex-none sm:w-auto sm:flex-1"
+				>
 					<span className="sr-only">Search team agents</span>
 					<InputGroup>
 						<InputGroupAddon>

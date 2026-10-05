@@ -1,30 +1,48 @@
 "use client";
 
-import {
-	POSTHOG_HOST,
-	POSTHOG_KEY,
-	POSTHOG_UI_HOST,
-} from "@crm/telemetry/project";
 import { useMountEffect } from "@crm/ui/hooks/use-mount-effect";
-import { analyticsAllowed } from "@/lib/analytics";
+import { landingAnalyticsPolicyAllows } from "./analytics-policy";
 
 export type CtaLocation = "hero" | "closing";
 
+function allowed(): boolean {
+	if (globalThis.window === undefined) return false;
+	return landingAnalyticsPolicyAllows({
+		enabled: process.env.NEXT_PUBLIC_LANDING_ANALYTICS_ENABLED,
+		key: process.env.NEXT_PUBLIC_POSTHOG_KEY,
+		hostname: window.location.hostname,
+		doNotTrack: navigator.doNotTrack,
+	});
+}
+
+async function initializeLandingAnalytics() {
+	if (!allowed()) return null;
+	const { default: posthog } = await import("posthog-js");
+	posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY?.trim() ?? "", {
+		api_host:
+			process.env.NEXT_PUBLIC_POSTHOG_HOST || "https://us.i.posthog.com",
+		defaults: "2026-06-25",
+		autocapture: false,
+		capture_pageview: false,
+		capture_pageleave: false,
+		disable_session_recording: true,
+		person_profiles: "never",
+	});
+	return posthog;
+}
+
+let clientReady: ReturnType<typeof initializeLandingAnalytics> | null = null;
+
+function landingClient() {
+	if (!allowed()) return Promise.resolve(null);
+	clientReady ??= initializeLandingAnalytics().catch(() => null);
+	return clientReady;
+}
+
 export function LandingAnalytics() {
 	useMountEffect(() => {
-		if (!analyticsAllowed(window.location.hostname)) return;
-
-		import("posthog-js")
-			.then(({ default: posthog }) => {
-				posthog.init(POSTHOG_KEY, {
-					api_host: POSTHOG_HOST,
-					ui_host: POSTHOG_UI_HOST,
-					defaults: "2026-06-25",
-				});
-			})
-			.catch(() => {});
+		void landingClient();
 	});
-
 	return null;
 }
 
@@ -32,12 +50,7 @@ export function captureLanding(
 	event: "setup_prompt_copied" | "github_star_clicked",
 	location: CtaLocation,
 ): void {
-	if (globalThis.window === undefined) return;
-	if (!analyticsAllowed(window.location.hostname)) return;
-
-	import("posthog-js")
-		.then(({ default: posthog }) => {
-			posthog.capture(event, { cta_location: location });
-		})
+	void landingClient()
+		.then((client) => client?.capture(event, { cta_location: location }))
 		.catch(() => {});
 }

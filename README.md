@@ -12,7 +12,7 @@
 
 </div>
 
-![Tayvero — светлая тема рабочего пространства](docs/images/tayvero-workspace-light.png)
+![Tayvero — светлая тема рабочего пространства](docs/images/tayvero-workspace-light.jpg)
 
 <sub>Превью React-компонентов на демонстрационных данных. Скриншот показывает дизайн интерфейса; подключение к авторизованному backend этим изображением не подтверждается.</sub>
 
@@ -43,7 +43,7 @@ Tayvero объединяет CRM и управляемые агентные пр
 <details>
 <summary><strong>Тёмная тема рабочего пространства</strong></summary>
 
-![Tayvero — тёмная тема рабочего пространства](docs/images/tayvero-workspace-dark.png)
+![Tayvero — тёмная тема рабочего пространства](docs/images/tayvero-workspace-dark.jpg)
 
 Демонстрационное превью React-компонентов, не запись production-сессии.
 

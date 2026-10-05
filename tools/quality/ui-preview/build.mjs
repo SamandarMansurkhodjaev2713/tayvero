@@ -23,7 +23,7 @@ const virtual = {
 };
 await esbuild({
   entryPoints:[path.join(root,"tools/quality/ui-preview/preview.tsx")], outfile:path.join(out,"app.js"),
-  platform:"browser", format:"esm", bundle:true, jsx:"automatic", minify:false, define:{"process.env.NODE_ENV":JSON.stringify("production")},
+  platform:"browser", format:"esm", bundle:true, jsx:"automatic", minify:false, define:{"process.env.NODE_ENV":JSON.stringify("production"),"process.env.NEXT_PUBLIC_LANDING_ANALYTICS_ENABLED":JSON.stringify("false"),"process.env.NEXT_PUBLIC_POSTHOG_KEY":JSON.stringify(""),"process.env.NEXT_PUBLIC_POSTHOG_HOST":JSON.stringify("https://example.test")},
   plugins:[{name:"isolated-ui-fixtures", setup(build){
     build.onResolve({filter:/page-transition$/}, ()=>({path:"@/components/page-transition",namespace:"fixture"}));
     build.onResolve({filter:/^(next\/(link|navigation|image)|@\/|@crm\/telemetry\/project$)/}, args=>{

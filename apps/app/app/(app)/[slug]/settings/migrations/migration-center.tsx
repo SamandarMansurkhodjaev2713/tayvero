@@ -832,8 +832,7 @@ function MigrationMapping({ view }: { view: MigrationView }) {
 										{row.map((cell, j) => (
 											<td
 												key={preview.preview.headers[j]}
-												className="max-w-64 truncate p-3"
-												title={cell}
+												className="max-w-64 whitespace-normal p-3 [overflow-wrap:anywhere]"
 											>
 												{cell}
 											</td>

@@ -67,18 +67,37 @@ jobs:
       - name: Generate job-local keys (not deployment credentials)
         shell: bash
         run: |
-          echo "BETTER_AUTH_SECRET=$(openssl rand -hex 32)" >> "$GITHUB_ENV"
-          echo "AGENT_BRIDGE_SECRET=$(openssl rand -hex 32)" >> "$GITHUB_ENV"
-          echo "CREDENTIAL_VAULT_KEYS={\"ci-ephemeral\":\"$(openssl rand -base64 32)\"}" >> "$GITHUB_ENV"
+          auth_key=$(openssl rand -hex 32)
+          bridge_key=$(openssl rand -hex 32)
+          vault_key=$(openssl rand -base64 32)
+          vault_keys="{\"ci-ephemeral\":\"$vault_key\"}"
+          echo "::add-mask::$auth_key"
+          echo "::add-mask::$bridge_key"
+          echo "::add-mask::$vault_key"
+          echo "::add-mask::$vault_keys"
+          printf 'BETTER_AUTH_SECRET=%s\nAGENT_BRIDGE_SECRET=%s\nCREDENTIAL_VAULT_KEYS=%s\n' "$auth_key" "$bridge_key" "$vault_keys" >> "$GITHUB_ENV"
 
       - name: Install dependencies
+        id: install
         run: bun install --frozen-lockfile
 
       - name: Verify disposable pipeline database
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
         run: bun run gate:pipeline-postgres
 
       - name: Verify disposable migration and approval database
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
         run: bun run gate:operations-postgres
 
       - name: Run repository quality gate
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
         run: bun run quality:gate
+
+      - name: Preserve acceptance reports and logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: postgres-quality-evidence-${{ github.run_id }}-${{ github.run_attempt }}
+          path: docs/quality/generated-*
+          if-no-files-found: warn
+          retention-days: 14

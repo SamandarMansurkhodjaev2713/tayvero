@@ -147,6 +147,15 @@
 	height: auto;
 	display: block;
 }
+.tayvero-landing-image-frame .tayvero-landing-shot-dark {
+	display: none;
+}
+.dark .tayvero-landing-image-frame .tayvero-landing-shot-light {
+	display: none;
+}
+.dark .tayvero-landing-image-frame .tayvero-landing-shot-dark {
+	display: block;
+}
 .tayvero-landing-product figcaption {
 	display: flex;
 	justify-content: space-between;

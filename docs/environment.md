@@ -182,26 +182,29 @@ feature is only ever wrong), **no `GOOGLE_WORKSPACE_DOMAIN`** (`ALLOWED_SIGN_IN`
 says who is internal — two sources is how a colleague becomes a lead), **no
 `GMAIL_BACKFILL_DAYS`**, **no `OUTLOOK_BACKFILL_DAYS`**, **no rate provider variable**.
 
-## Telemetry is on, and turning it off is one variable
+## Telemetry belongs to the install owner and is off by default
 
-`CRM_TELEMETRY_DISABLED="1"` — or `DO_NOT_TRACK=1`, honoured identically — and nothing
-is sent. No client is constructed, so there is no queue waiting to flush later.
+`.env.example` sets `CRM_TELEMETRY_DISABLED=true` and leaves `POSTHOG_KEY` empty.
+The server creates no client when either an opt-out is active or the owner key is
+missing. `DO_NOT_TRACK=1` and test mode also disable it. Configure your own
+`POSTHOG_KEY` / `POSTHOG_HOST` to opt in; no inherited account key is used.
 
-- **Server side only**, `posthog-node` in the API and the agent. **`posthog-js`
-  appears once, on the `product.example` landing page**, and nowhere a record can be
-  reached: autocapture on a CRM would lift contact names and deal amounts out of
-  somebody else's database. That one import is gated on
-  `window.location.hostname`, not on `IS_MARKETING` — turning the landing page on
-  for your own domain never loads it. `docs/telemetry.md`.
-- **There is no variable for the destination.** The project key and host are
-  constants in `packages/telemetry/src/project.ts`. A `phc_` key is write-only —
-  it can send events and read nothing back — so making it configurable would
-  only imply it were a secret. Edit the constants to point somewhere else.
-- **The install ID is a row, not a file** — `install`, one row, UUID written by
-  the migration. Vercel's filesystem is ephemeral, so `~/.crm/telemetry-id`
-  would count containers.
-- Declared in `env.validation.ts` as optional, like everything else here. Every
-  event and the never-sent list are in **`docs/telemetry.md`**.
+- Server reporting uses `posthog-node`, a property allowlist and an install UUID
+  stored in the database. No browser SDK is loaded in authenticated CRM views.
+- The public landing separately requires `NEXT_PUBLIC_LANDING_ANALYTICS_ENABLED=true`
+  and a nonempty owner-provided `NEXT_PUBLIC_POSTHOG_KEY`. The host is controlled by
+  `NEXT_PUBLIC_POSTHOG_HOST`; browser DNT also disables collection.
+- The existing marketing allowlist in `apps/app/lib/analytics.ts` still names the
+  inherited `product.example` / `www.product.example` placeholders. Configure and
+  review your actual marketing hostname there before enabling browser analytics.
+  These are not a claim of a Tayvero deployment. `IS_MARKETING=true` alone enables
+  neither analytics nor access to additional hosts.
+- Landing autocapture, automatic pageview/pageleave, session replay and person
+  profiles are disabled. Only the two authored CTA events are deliberately emitted.
+  Receiver privacy/retention and SDK-added metadata remain the owner's configuration
+  responsibility. No external receiver setting is certified by this source.
+- See `docs/telemetry.md` for event properties and evidence boundaries. Public
+  PostHog project keys identify a destination; they must still belong to your project.
 
 ## Not env vars
 

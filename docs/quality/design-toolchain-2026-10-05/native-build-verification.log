@@ -1,0 +1,178 @@
+$ turbo run build
+• turbo 2.10.8
+
+   • Packages in scope: @crm/action-registry, @crm/agent-action-runtime, @crm/auth, @crm/db, @crm/env, @crm/integration-runtime, @crm/migration-core, @crm/migration-runtime, @crm/pipeline-core, @crm/pipeline-runtime, @crm/security-core, @crm/telemetry, @crm/typescript-config, @crm/ui, @crm/validation, agent, api, app
+   • Running build in 18 packages
+   • Remote caching disabled
+
+@crm/db:build: cache miss, executing 88c09273b60aa1af
+@crm/db:build: $ prisma generate
+@crm/db:build: Loaded Prisma config from prisma.config.ts.
+@crm/db:build: 
+@crm/db:build: Prisma schema loaded from prisma\schema.prisma.
+@crm/db:build: 
+@crm/db:build: ✔ Generated Prisma Client (7.9.1) to .\src\generated\prisma in 627ms
+@crm/db:build: 
+agent:build: cache miss, executing 2b3806bb4b36eefa
+api:build: cache miss, executing 2d0416c35e3b46ef
+agent:build: $ eve build
+api:build: $ bun build src/main.ts --target=bun --outdir dist --packages=external --sourcemap
+api:build: Bundled 206 modules in 101ms
+api:build: 
+api:build:   main.js      0.83 MB  (entry point)
+api:build:   main.js.map  1.47 MB  (source map)
+api:build: 
+app:build: cache miss, executing de3774d60d3b06c2
+app:build: $ next build
+app:build: ▲ Next.js 16.3.0 (Turbopack)
+app:build: ✓ Running next.config.ts took 150ms
+app:build: - Cache Components enabled
+app:build: - Partial Prefetching enabled
+app:build: 
+app:build:   Creating an optimized production build ...
+agent:build: [agent] off  Web research (PERPLEXITY_API_KEY)
+agent:build: [prisma:error] 
+agent:build: Invalid `prisma.install.update()` invocation:
+agent:build: 
+agent:build: 
+agent:build: Can't reach database server at 127.0.0.1:5432 [install.update]
+agent:build: [prisma:error] 
+agent:build: [agent] off  Company brand data (Settings → General)
+agent:build: [agent] off  LinkedIn (Settings → General)
+agent:build: Invalid `prisma.appSetting.findUnique()` invocation:
+agent:build: [agent] off  Picture storage (BLOB_READ_WRITE_TOKEN)
+agent:build: 
+agent:build: 
+agent:build: Can't reach database server at 127.0.0.1:5432 [appSetting.findUnique]
+agent:build: [agent] could not read the Context.dev key from the database: 
+agent:build: Invalid `prisma.appSetting.findUnique()` invocation:
+agent:build: 
+agent:build: 
+agent:build: Can't reach database server at 127.0.0.1:5432
+agent:build: [prisma:error] 
+agent:build: Invalid `prisma.install.findUnique()` invocation:
+agent:build: 
+agent:build: 
+agent:build: Can't reach database server at 127.0.0.1:5432 [install.findUnique]
+agent:build: [33m[PLUGIN_TIMINGS] [0mYour build spent significant time in plugins. Here is a breakdown:
+agent:build:   - eve-authored-relative-extension-resolver (46%)
+agent:build:   - eve-authored-asset-import (33%)
+agent:build: See https://rolldown.rs/reference/InputOptions.checks#plugintimings for more details.
+agent:build: 
+agent:build: [33m[PLUGIN_TIMINGS] [0mYour build spent significant time in plugins. Here is a breakdown:
+agent:build:   - eve-authored-asset-import (36%)
+agent:build:   - eve-authored-relative-extension-resolver (35%)
+agent:build: See https://rolldown.rs/reference/InputOptions.checks#plugintimings for more details.
+agent:build: 
+agent:build: [33m[PLUGIN_TIMINGS] [0mYour build spent significant time in plugins. Here is a breakdown:
+agent:build:   - eve-authored-relative-extension-resolver (47%)
+agent:build:   - eve-authored-asset-import (30%)
+agent:build: See https://rolldown.rs/reference/InputOptions.checks#plugintimings for more details.
+agent:build: 
+agent:build: [33m[PLUGIN_TIMINGS] [0mYour build spent significant time in plugin `eve-authored-asset-import`. See https://rolldown.rs/reference/InputOptions.checks#plugintimings for more details.
+agent:build: 
+agent:build: [33m[PLUGIN_TIMINGS] [0mYour build spent significant time in plugins. Here is a breakdown:
+agent:build:   - eve-authored-asset-import (40%)
+agent:build:   - eve-authored-relative-extension-resolver (21%)
+agent:build:   - eve-runtime-loader-package-boundary (21%)
+agent:build: See https://rolldown.rs/reference/InputOptions.checks#plugintimings for more details.
+agent:build: 
+agent:build: [33m[PLUGIN_TIMINGS] [0mYour build spent significant time in plugins. Here is a breakdown:
+agent:build:   - eve-authored-asset-import (38%)
+agent:build:   - eve-authored-relative-extension-resolver (21%)
+agent:build: See https://rolldown.rs/reference/InputOptions.checks#plugintimings for more details.
+agent:build: 
+agent:build: [33m[PLUGIN_TIMINGS] [0mYour build spent significant time in plugins. Here is a breakdown:
+agent:build:   - eve-authored-relative-extension-resolver (42%)
+agent:build:   - eve-authored-asset-import (34%)
+agent:build: See https://rolldown.rs/reference/InputOptions.checks#plugintimings for more details.
+agent:build: 
+agent:build: [33m[PLUGIN_TIMINGS] [0mYour build spent significant time in plugins. Here is a breakdown:
+agent:build:   - eve-authored-asset-import (34%)
+agent:build:   - eve-authored-relative-extension-resolver (31%)
+agent:build: See https://rolldown.rs/reference/InputOptions.checks#plugintimings for more details.
+agent:build: 
+agent:build: [33m[PLUGIN_TIMINGS] [0mYour build spent significant time in plugins. Here is a breakdown:
+agent:build:   - eve-authored-relative-extension-resolver (42%)
+agent:build:   - eve-authored-asset-import (35%)
+agent:build: See https://rolldown.rs/reference/InputOptions.checks#plugintimings for more details.
+agent:build: 
+agent:build: [33m[PLUGIN_TIMINGS] [0mYour build spent significant time in plugins. Here is a breakdown:
+agent:build:   - eve-authored-relative-extension-resolver (39%)
+agent:build:   - eve-authored-asset-import (36%)
+agent:build: See https://rolldown.rs/reference/InputOptions.checks#plugintimings for more details.
+agent:build: 
+agent:build: [33m[PLUGIN_TIMINGS] [0mYour build spent significant time in plugins. Here is a breakdown:
+agent:build:   - eve-authored-relative-extension-resolver (38%)
+agent:build:   - eve-authored-asset-import (36%)
+agent:build: See https://rolldown.rs/reference/InputOptions.checks#plugintimings for more details.
+agent:build: 
+agent:build: [33m[PLUGIN_TIMINGS] [0mYour build spent significant time in plugins. Here is a breakdown:
+agent:build:   - eve-authored-relative-extension-resolver (44%)
+agent:build:   - eve-authored-asset-import (30%)
+agent:build: See https://rolldown.rs/reference/InputOptions.checks#plugintimings for more details.
+agent:build: 
+agent:build: [33m[PLUGIN_TIMINGS] [0mYour build spent significant time in plugins. Here is a breakdown:
+agent:build:   - eve-authored-relative-extension-resolver (39%)
+agent:build:   - eve-authored-asset-import (32%)
+agent:build:   - eve-package-tsconfig-paths (21%)
+agent:build: See https://rolldown.rs/reference/InputOptions.checks#plugintimings for more details.
+agent:build: 
+agent:build: [33m[PLUGIN_TIMINGS] [0mYour build spent significant time in plugins. Here is a breakdown:
+agent:build:   - eve-authored-relative-extension-resolver (54%)
+agent:build:   - eve-authored-asset-import (33%)
+agent:build: See https://rolldown.rs/reference/InputOptions.checks#plugintimings for more details.
+agent:build: 
+agent:build: [33m[PLUGIN_TIMINGS] [0mYour build spent significant time in plugins. Here is a breakdown:
+agent:build:   - eve-authored-relative-extension-resolver (50%)
+agent:build:   - eve-authored-asset-import (23%)
+agent:build: See https://rolldown.rs/reference/InputOptions.checks#plugintimings for more details.
+agent:build: 
+agent:build: [33m[PLUGIN_TIMINGS] [0mYour build spent significant time in plugin `eve-authored-relative-extension-resolver`. See https://rolldown.rs/reference/InputOptions.checks#plugintimings for more details.
+agent:build: 
+agent:build: [nitro] √ Generated public .eve/builds/muv8fkb9-5891e365-da7c-4b60-9491-0b4fa957885d/output/public
+agent:build: [nitro] i Building server (builder: rolldown, preset: node-server, compatibility date: 2026-10-05)
+agent:build: i Tracing dependencies:
+agent:build: - just-bash (3.2.0)
+agent:build: - node-liblzma (2.2.0)
+agent:build: - minimatch (10.2.6)
+agent:build: - diff (8.0.4)
+agent:build: - sprintf-js (1.1.3)
+agent:build: - quickjs-emscripten (0.32.0)
+agent:build: - seek-bzip (2.0.0)
+agent:build: - turndown (7.2.4)
+agent:build: - sql.js (1.14.1)
+agent:build: - @mongodb-js/zstd (7.0.0)
+agent:build: - brace-expansion (5.0.9)
+agent:build: - quickjs-emscripten-core (0.32.0)
+agent:build: - @jitl/quickjs-wasmfile-release-asyncify (0.32.0)
+agent:build: - @jitl/quickjs-wasmfile-debug-sync (0.32.0)
+agent:build: - @jitl/quickjs-wasmfile-debug-asyncify (0.32.0)
+agent:build: - @jitl/quickjs-wasmfile-release-sync (0.32.0)
+agent:build: - node-gyp-build (4.8.4)
+agent:build: - @mixmark-io/domino (2.2.0)
+agent:build: - @jitl/quickjs-ffi-types (0.32.0)
+agent:build: - balanced-match (4.0.4)
+agent:build: Build failed with 1 error:
+agent:build: 
+agent:build: [plugin nitro:externals]
+agent:build: Error: ENOSPC: no space left on device, copyfile 'C:\Users\sam4k\Downloads\AgenrCRM_OS\crm-release\node_modules\.bun\@jitl+quickjs-wasmfile-release-sync@0.32.0\node_modules\@jitl\quickjs-wasmfile-release-sync\dist\emscripten-module.wasm' -> 'C:\Users\sam4k\Downloads\AgenrCRM_OS\crm-release\apps\agent\.eve\builds\muv8fkb9-5891e365-da7c-4b60-9491-0b4fa957885d\output\server\node_modules\@jitl\quickjs-wasmfile-release-sync\dist\emscripten-module.wasm'
+agent:build:     at async Module.copyFile (node:internal/fs/promises:619:10)
+agent:build:     at async file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/node_modules/.bun/nf3@0.3.23/node_modules/nf3/dist/_chunks/trace.mjs:330:11
+agent:build:     at async Promise.all (index 4)
+agent:build:     at async writePackage (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/node_modules/.bun/nf3@0.3.23/node_modules/nf3/dist/_chunks/trace.mjs:319:3)
+agent:build:     at async Promise.all (index 15)
+agent:build:     at async traceNodeModules (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/node_modules/.bun/nf3@0.3.23/node_modules/nf3/dist/_chunks/trace.mjs:377:2)
+agent:build:     at async PluginContextImpl.handler (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/node_modules/.bun/nitro@3.0.260610-beta+4a3d73aa8a579c13/node_modules/nitro/dist/_build/common.mjs:28369:5)
+agent:build:     at async plugin (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/node_modules/.bun/rolldown@1.2.1/node_modules/rolldown/dist/shared/bindingify-input-options-EnUlEF0T.mjs:1449:3)
+agent:build:     at async plugin.<computed> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/node_modules/.bun/rolldown@1.2.1/node_modules/rolldown/dist/shared/bindingify-input-options-EnUlEF0T.mjs:1906:12)
+agent:build: error: script "build" exited with code 1
+agent#build:  ERROR  command (C:\Users\sam4k\Downloads\AgenrCRM_OS\crm-release\apps\agent) C:\Users\sam4k\Downloads\AgenrCRM_OS\.tooling\node_modules\bun\bin\bun.exe run build exited (1)
+
+ Tasks:    2 successful, 4 total
+Cached:    0 cached, 4 total
+  Time:    1m47.718s 
+Failed:    agent#build
+
+ ERROR  run failed: command  exited (1)
+error: script "build" exited with code 1

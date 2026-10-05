@@ -1,0 +1,33 @@
+$ next build
+▲ Next.js 16.3.0 (Turbopack)
+✓ Running next.config.ts took 114ms
+- Cache Components enabled
+- Partial Prefetching enabled
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 10.4s
+  Running TypeScript ...
+app/(app)/[slug]/settings/migrations/migration-center.tsx(786,11): error TS18047: 'preview' is possibly 'null'.
+app/(app)/[slug]/settings/migrations/migration-center.tsx(798,22): error TS18047: 'preview' is possibly 'null'.
+app/(app)/[slug]/settings/migrations/migration-center.tsx(799,8): error TS18047: 'preview' is possibly 'null'.
+app/(app)/[slug]/settings/migrations/migration-center.tsx(814,11): error TS18047: 'preview' is possibly 'null'.
+app/(app)/[slug]/settings/migrations/migration-center.tsx(826,10): error TS18047: 'preview' is possibly 'null'.
+app/(app)/[slug]/settings/migrations/migration-center.tsx(827,19): error TS18047: 'preview' is possibly 'null'.
+app/(app)/[slug]/settings/migrations/migration-center.tsx(829,13): error TS18047: 'preview' is possibly 'null'.
+app/(app)/[slug]/settings/migrations/migration-center.tsx(833,18): error TS18047: 'preview' is possibly 'null'.
+app/(app)/[slug]/settings/migrations/migration-center.tsx(872,14): error TS18047: 'prepared' is possibly 'null'.
+app/(app)/[slug]/settings/migrations/migration-center.tsx(876,14): error TS18047: 'prepared' is possibly 'null'.
+app/(app)/[slug]/settings/migrations/migration-center.tsx(880,14): error TS18047: 'prepared' is possibly 'null'.
+app/(app)/[slug]/settings/migrations/migration-center.tsx(881,13): error TS18047: 'prepared' is possibly 'null'.
+app/(app)/[slug]/settings/migrations/migration-center.tsx(885,8): error TS18047: 'prepared' is possibly 'null'.
+app/(app)/[slug]/settings/migrations/migration-center.tsx(888,21): error TS18047: 'prepared' is possibly 'null'.
+app/(app)/[slug]/settings/migrations/migration-center.tsx(891,9): error TS18047: 'prepared' is possibly 'null'.
+app/(app)/[slug]/settings/migrations/migration-center.tsx(948,7): error TS2322: Type 'string | null' is not assignable to type 'string'.
+  Type 'null' is not assignable to type 'string'.
+app/(app)/[slug]/settings/migrations/migration-center.tsx(949,16): error TS18048: 'capabilities.data' is possibly 'undefined'.
+app/(app)/[slug]/settings/migrations/migration-center.tsx(1019,22): error TS18048: 'capabilities.data' is possibly 'undefined'.
+app/(app)/[slug]/settings/migrations/migration-center.tsx(1020,28): error TS18048: 'capabilities.data' is possibly 'undefined'.
+app/(app)/[slug]/settings/migrations/migration-center.tsx(1172,11): error TS18048: 'capabilities.data' is possibly 'undefined'.
+Failed to type check.
+
+error: script "build" exited with code 1
