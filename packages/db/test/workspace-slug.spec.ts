@@ -45,6 +45,8 @@ describe("workspaceSlug", () => {
 	});
 
 	it("gives one name one answer, whoever asks", () => {
-		expect(workspaceSlug("CRM")).toBe(workspaceSlug("comp  ai"));
+		expect(workspaceSlug("Tayvero CRM")).toBe(
+			workspaceSlug("  tayvero  crm  "),
+		);
 	});
 });
