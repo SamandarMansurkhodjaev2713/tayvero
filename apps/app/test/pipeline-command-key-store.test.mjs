@@ -33,7 +33,10 @@ test("clears only the key that completed", () => {
 });
 
 test("bounds retained failed-command keys", () => {
-	const store = createPipelineCommandKeyStore({ capacity: 2, keyFactory: factory() });
+	const store = createPipelineCommandKeyStore({
+		capacity: 2,
+		keyFactory: factory(),
+	});
 	store.get("pipeline-create:a", "a");
 	store.get("pipeline-create:b", "b");
 	store.get("pipeline-create:c", "c");

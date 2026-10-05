@@ -1,12 +1,12 @@
 {
-  "pipelineId": "replace-with-default-pipeline-id",
-  "mapping": {
-    "DEMO_BOOKED": "replace-with-open-stage-id",
-    "QUALIFIED_TO_BUY": "replace-with-open-stage-id",
-    "UNQUALIFIED_TO_BUY": "replace-with-lost-stage-id",
-    "DECISION_MAKER_BOUGHT_IN": "replace-with-open-stage-id",
-    "CONTRACT_SENT": "replace-with-open-stage-id",
-    "CLOSED_WON": "replace-with-won-stage-id",
-    "CLOSED_LOST": "replace-with-lost-stage-id"
-  }
+	"pipelineId": "replace-with-default-pipeline-id",
+	"mapping": {
+		"DEMO_BOOKED": "replace-with-open-stage-id",
+		"QUALIFIED_TO_BUY": "replace-with-open-stage-id",
+		"UNQUALIFIED_TO_BUY": "replace-with-lost-stage-id",
+		"DECISION_MAKER_BOUGHT_IN": "replace-with-open-stage-id",
+		"CONTRACT_SENT": "replace-with-open-stage-id",
+		"CLOSED_WON": "replace-with-won-stage-id",
+		"CLOSED_LOST": "replace-with-lost-stage-id"
+	}
 }

@@ -2,14 +2,21 @@ const SAFE_SCOPE = /^[A-Za-z0-9_.:-]{1,120}$/;
 const DEFAULT_CAPACITY = 64;
 
 function assertText(value, label, maxLength) {
-	if (typeof value !== "string" || value.length < 1 || value.length > maxLength) {
+	if (
+		typeof value !== "string" ||
+		value.length < 1 ||
+		value.length > maxLength
+	) {
 		throw new TypeError(`${label} must be a non-empty bounded string.`);
 	}
 	return value;
 }
 
 function defaultKeyFactory(scope) {
-	if (!globalThis.crypto || typeof globalThis.crypto.randomUUID !== "function") {
+	if (
+		!globalThis.crypto ||
+		typeof globalThis.crypto.randomUUID !== "function"
+	) {
 		throw new Error("Secure browser UUID generation is unavailable.");
 	}
 	return `${scope}:${globalThis.crypto.randomUUID()}`;
@@ -47,7 +54,9 @@ export function createPipelineCommandKeyStore({
 			key.length > 200 ||
 			!/^[A-Za-z0-9_.:-]+$/.test(key)
 		) {
-			throw new Error("Command-key factory returned an invalid idempotency key.");
+			throw new Error(
+				"Command-key factory returned an invalid idempotency key.",
+			);
 		}
 		entries.delete(scope);
 		entries.set(scope, Object.freeze({ fingerprint, key }));

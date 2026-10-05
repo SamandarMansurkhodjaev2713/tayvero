@@ -1,4 +1,3 @@
-import { drainApprovalContinuations } from "../lib/approval-continuation";
 import { timingSafeEqual } from "node:crypto";
 import { EnrichmentStatus, Prisma } from "@crm/db";
 import { MAX_ATTEMPTS } from "@crm/db/agent-tasks";
@@ -6,6 +5,7 @@ import { schemas } from "@crm/validation";
 import { eveTurnFailure } from "@crm/validation/eve-stream";
 import { defineChannel, GET, POST } from "eve/channels";
 import { z } from "zod";
+import { drainApprovalContinuations } from "../lib/approval-continuation";
 import { persistBuilderInputRequest } from "../lib/builder-input";
 import { verifyKey } from "../lib/context-dev";
 import {
@@ -103,11 +103,15 @@ export async function closeTask(
 
 export default defineChannel({
 	routes: [
-    POST("/internal/crm/continuation-dispatch", async (request, { waitUntil }) => {
-      if (!authorised(request)) return new Response("Unauthorized", { status: 401 });
-      waitUntil(drainApprovalContinuations());
-      return new Response(null, { status: 202 });
-    }),
+		POST(
+			"/internal/crm/continuation-dispatch",
+			async (request, { waitUntil }) => {
+				if (!authorised(request))
+					return new Response("Unauthorized", { status: 401 });
+				waitUntil(drainApprovalContinuations());
+				return new Response(null, { status: 202 });
+			},
+		),
 		GET("/internal/crm/dispatch-health", async (request) => {
 			if (!authorised(request)) {
 				return new Response("Unauthorized", { status: 401 });

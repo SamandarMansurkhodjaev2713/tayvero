@@ -1,15 +1,12 @@
 {
-  "generatedAt": "2026-10-05T12:39:29.669Z",
-  "findingCount": 0,
-  "errorCount": 0,
-  "migrationCount": 0,
-  "findings": [],
-  "policy": {
-    "checkFailsOn": [
-      "error",
-      "migration"
-    ],
-    "testsAndFixturesExcluded": true,
-    "soleExecutorBoundary": "packages/agent-action-runtime/src/index.mjs"
-  }
+	"generatedAt": "2026-10-05T12:39:29.669Z",
+	"findingCount": 0,
+	"errorCount": 0,
+	"migrationCount": 0,
+	"findings": [],
+	"policy": {
+		"checkFailsOn": ["error", "migration"],
+		"testsAndFixturesExcluded": true,
+		"soleExecutorBoundary": "packages/agent-action-runtime/src/index.mjs"
+	}
 }

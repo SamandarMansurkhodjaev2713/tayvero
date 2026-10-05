@@ -3,8 +3,8 @@ import { db } from "@crm/db";
 import type { AgentTriggerService } from "../src/agent/agent-trigger.service";
 import { ActivityStampService } from "../src/crm/activity-stamp.service";
 import { ConversionService } from "../src/currency/conversion.service";
-import { DealsService } from "../src/deals/deals.service";
 import { DealPipelineBridgeService } from "../src/deals/deal-pipeline-bridge.service";
+import { DealsService } from "../src/deals/deals.service";
 import { FieldsService } from "../src/fields/fields.service";
 import { withDiscardedCrmEvents } from "./agent-trigger.stub";
 

@@ -1,7 +1,5 @@
 import { WORKSPACE_ID } from "@crm/auth";
 import type { Db } from "@crm/db";
-import { InjectDatabase } from "../../database/database.constants";
-import { requireDeploymentMembership, WorkspaceAccessError } from "../workspace-access.mjs";
 import { Injectable } from "@nestjs/common";
 import { TRPCError } from "@trpc/server";
 import type {
@@ -9,8 +7,13 @@ import type {
 	MiddlewareResponse,
 	TRPCMiddleware,
 } from "nestjs-trpc";
+import { InjectDatabase } from "../../database/database.constants";
 import { setRequestUserId } from "../../logging/request-context";
 import type { AuthedTrpcContext, BaseTrpcContext } from "../context.types";
+import {
+	requireDeploymentMembership,
+	WorkspaceAccessError,
+} from "../workspace-access.mjs";
 
 @Injectable()
 export class AuthMiddleware implements TRPCMiddleware {
@@ -24,9 +27,20 @@ export class AuthMiddleware implements TRPCMiddleware {
 		}
 
 		try {
-			await requireDeploymentMembership({ session: ctx.session, workspaceId: WORKSPACE_ID, findMembership: ({ workspaceId, userId }) => this.db.member.findUnique({ where: { organizationId_userId: { organizationId: workspaceId, userId } }, select: { role: true } }) });
+			await requireDeploymentMembership({
+				session: ctx.session,
+				workspaceId: WORKSPACE_ID,
+				findMembership: ({ workspaceId, userId }) =>
+					this.db.member.findUnique({
+						where: {
+							organizationId_userId: { organizationId: workspaceId, userId },
+						},
+						select: { role: true },
+					}),
+			});
 		} catch (error) {
-			if (error instanceof WorkspaceAccessError) throw new TRPCError({ code: error.code, message: error.message });
+			if (error instanceof WorkspaceAccessError)
+				throw new TRPCError({ code: error.code, message: error.message });
 			throw error;
 		}
 

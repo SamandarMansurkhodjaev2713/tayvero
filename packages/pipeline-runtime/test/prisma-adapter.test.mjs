@@ -2,8 +2,8 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { RESERVED_STAGE_KEY_PREFIX } from "@crm/pipeline-core";
 import {
-	PipelineRuntimeError,
 	createPrismaPipelineRepository,
+	PipelineRuntimeError,
 } from "../src/index.mjs";
 
 function row(overrides = {}) {
@@ -209,7 +209,10 @@ test("retries only bounded Prisma serialization conflicts", async () => {
 		random: () => 0,
 		sleep: async (delay) => delays.push(delay),
 	});
-	assert.equal(await repository.transaction(async () => "committed"), "committed");
+	assert.equal(
+		await repository.transaction(async () => "committed"),
+		"committed",
+	);
 	assert.equal(calls.filter(([name]) => name === "transaction").length, 3);
 	assert.deepEqual(delays, [5, 5]);
 });
@@ -228,7 +231,11 @@ test("does not retry permanent Prisma errors", async () => {
 
 test("maps exhausted serialization retries to a stable runtime error", async () => {
 	const { client, calls } = fakePrisma({
-		transactionFailures: [{ code: "P2034" }, { code: "P2034" }, { code: "P2034" }],
+		transactionFailures: [
+			{ code: "P2034" },
+			{ code: "P2034" },
+			{ code: "P2034" },
+		],
 	});
 	const repository = createPrismaPipelineRepository(client, {
 		transactionMaxAttempts: 3,
@@ -293,7 +300,9 @@ test("enforces the maximum number of pipelines inside the transaction", async ()
 	const { client } = fakePrisma({ pipelineCount: 200 });
 	const repository = createPrismaPipelineRepository(client);
 	await assert.rejects(
-		repository.transaction((tx) => tx.insertPipeline(nextPipeline({ version: 1 }))),
+		repository.transaction((tx) =>
+			tx.insertPipeline(nextPipeline({ version: 1 })),
+		),
 		(error) =>
 			error instanceof PipelineRuntimeError && error.code === "PIPELINE_LIMIT",
 	);
@@ -328,7 +337,10 @@ test("atomically hands off the default during pipeline creation", async () => {
 test("maps a duplicate slug to a stable domain error", async () => {
 	const { client } = fakePrisma({
 		pipelineCount: 1,
-		pipelineCreateError: { code: "P2002", meta: { target: ["workspace_id", "slug"] } },
+		pipelineCreateError: {
+			code: "P2002",
+			meta: { target: ["workspace_id", "slug"] },
+		},
 	});
 	const repository = createPrismaPipelineRepository(client);
 	await assert.rejects(
@@ -353,10 +365,14 @@ test("neutralizes stage keys and positions before an ordered replacement", async
 	await repository.replacePipeline("workspace-1", "pipeline-1", 1, next);
 	const firstUpsert = calls.findIndex(([name]) => name === "stage.upsert");
 	const neutralizations = calls.filter(([name]) => name === "stage.update");
-	const lastNeutralize = calls.map(([name]) => name).lastIndexOf("stage.update");
+	const lastNeutralize = calls
+		.map(([name]) => name)
+		.lastIndexOf("stage.update");
 	assert.ok(lastNeutralize >= 0 && lastNeutralize < firstUpsert);
 	assert.ok(
-		neutralizations.every(([, args]) => args.data.key.startsWith(RESERVED_STAGE_KEY_PREFIX)),
+		neutralizations.every(([, args]) =>
+			args.data.key.startsWith(RESERVED_STAGE_KEY_PREFIX),
+		),
 	);
 });
 
@@ -407,11 +423,11 @@ test("sets the default pipeline with an optimistic version predicate", async () 
 		pipelineFindFirst: (args) =>
 			args.select
 				? {
-					id: "pipeline-1",
-					version: 7,
-					isDefault: false,
-					isArchived: false,
-				}
+						id: "pipeline-1",
+						version: 7,
+						isDefault: false,
+						isArchived: false,
+					}
 				: row({ version: 8, isDefault: true }),
 	});
 	const repository = createPrismaPipelineRepository(client);

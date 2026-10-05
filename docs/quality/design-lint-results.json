@@ -1,0 +1,1713 @@
+{
+	"summary": {
+		"changed": 0,
+		"unchanged": 1107,
+		"matches": 0,
+		"duration": 821283000,
+		"errors": 0,
+		"warnings": 87,
+		"infos": 12,
+		"skipped": 0,
+		"suggestedFixesSkipped": 0,
+		"diagnosticsNotPrinted": 0,
+		"scannerDuration": 13682100
+	},
+	"diagnostics": [
+		{
+			"severity": "info",
+			"message": "Avoid redundant `Boolean` call",
+			"category": "lint/complexity/noExtraBooleanCast",
+			"location": {
+				"path": "apps\\api\\src\\operations\\operations-core.mjs",
+				"start": {
+					"line": 274,
+					"column": 13
+				},
+				"end": {
+					"line": 274,
+					"column": 37
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "info",
+			"message": "Template literals are preferred over string concatenation.",
+			"category": "lint/style/useTemplate",
+			"location": {
+				"path": "apps\\app\\app\\(app)\\[slug]\\settings\\pipelines\\pipeline-settings.tsx",
+				"start": {
+					"line": 418,
+					"column": 11
+				},
+				"end": {
+					"line": 418,
+					"column": 52
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "info",
+			"message": "Template literals are preferred over string concatenation.",
+			"category": "lint/style/useTemplate",
+			"location": {
+				"path": "docs\\quality\\preview\\appearance-preview.html",
+				"start": {
+					"line": 687,
+					"column": 466
+				},
+				"end": {
+					"line": 687,
+					"column": 924
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "info",
+			"message": "Unnecessary use of boolean literals in conditional expression.",
+			"category": "lint/complexity/noUselessTernary",
+			"location": {
+				"path": "packages\\action-registry\\src\\registry.mjs",
+				"start": {
+					"line": 188,
+					"column": 6
+				},
+				"end": {
+					"line": 190,
+					"column": 11
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "info",
+			"message": "Template literals are preferred over string concatenation.",
+			"category": "lint/style/useTemplate",
+			"location": {
+				"path": "packages\\db\\test\\test-database.test.mjs",
+				"start": {
+					"line": 73,
+					"column": 3
+				},
+				"end": {
+					"line": 73,
+					"column": 27
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "info",
+			"message": "Template literals are preferred over string concatenation.",
+			"category": "lint/style/useTemplate",
+			"location": {
+				"path": "packages\\migration-core\\test\\csv-hardening.test.mjs",
+				"start": {
+					"line": 76,
+					"column": 3
+				},
+				"end": {
+					"line": 76,
+					"column": 27
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "info",
+			"message": "Template literals are preferred over string concatenation.",
+			"category": "lint/style/useTemplate",
+			"location": {
+				"path": "packages\\migration-runtime\\test\\source-store.test.mjs",
+				"start": {
+					"line": 166,
+					"column": 40
+				},
+				"end": {
+					"line": 166,
+					"column": 66
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "info",
+			"message": "Template literals are preferred over string concatenation.",
+			"category": "lint/style/useTemplate",
+			"location": {
+				"path": "packages\\security-core\\test\\credential-vault.test.mjs",
+				"start": {
+					"line": 83,
+					"column": 4
+				},
+				"end": {
+					"line": 83,
+					"column": 71
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "info",
+			"message": "Template literals are preferred over string concatenation.",
+			"category": "lint/style/useTemplate",
+			"location": {
+				"path": "packages\\ui\\src\\theme\\appearance.mjs",
+				"start": {
+					"line": 260,
+					"column": 3
+				},
+				"end": {
+					"line": 275,
+					"column": 24
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "info",
+			"message": "Template literals are preferred over string concatenation.",
+			"category": "lint/style/useTemplate",
+			"location": {
+				"path": "scripts\\audit-tenant-boundaries.mjs",
+				"start": {
+					"line": 186,
+					"column": 29
+				},
+				"end": {
+					"line": 186,
+					"column": 67
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "info",
+			"message": "Template literals are preferred over string concatenation.",
+			"category": "lint/style/useTemplate",
+			"location": {
+				"path": "scripts\\audit-tenant-boundaries.mjs",
+				"start": {
+					"line": 198,
+					"column": 3
+				},
+				"end": {
+					"line": 198,
+					"column": 43
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "info",
+			"message": "Template literals are preferred over string concatenation.",
+			"category": "lint/style/useTemplate",
+			"location": {
+				"path": "tools\\preview\\generate-appearance-preview.mjs",
+				"start": {
+					"line": 18,
+					"column": 13
+				},
+				"end": {
+					"line": 18,
+					"column": 78
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Change to an optional chain.",
+			"category": "lint/complexity/useOptionalChain",
+			"location": {
+				"path": "apps\\agent\\agent\\lib\\run-runtime.ts",
+				"start": {
+					"line": 262,
+					"column": 6
+				},
+				"end": {
+					"line": 262,
+					"column": 38
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Change to an optional chain.",
+			"category": "lint/complexity/useOptionalChain",
+			"location": {
+				"path": "apps\\agent\\agent\\lib\\run-runtime.ts",
+				"start": {
+					"line": 286,
+					"column": 6
+				},
+				"end": {
+					"line": 286,
+					"column": 38
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Avoid barrel files, they slow down performance, and cause large module graphs with modules that go unused.",
+			"category": "lint/performance/noBarrelFile",
+			"location": {
+				"path": "apps\\agent\\agent\\lib\\tasks.ts",
+				"start": {
+					"line": 29,
+					"column": 1
+				},
+				"end": {
+					"line": 29,
+					"column": 66
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Change to an optional chain.",
+			"category": "lint/complexity/useOptionalChain",
+			"location": {
+				"path": "apps\\agent\\src\\governed-run-action-runtime.mjs",
+				"start": {
+					"line": 156,
+					"column": 7
+				},
+				"end": {
+					"line": 156,
+					"column": 44
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Change to an optional chain.",
+			"category": "lint/complexity/useOptionalChain",
+			"location": {
+				"path": "apps\\agent\\src\\run-execution-budget.mjs",
+				"start": {
+					"line": 15,
+					"column": 3
+				},
+				"end": {
+					"line": 16,
+					"column": 27
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Avoid barrel files, they slow down performance, and cause large module graphs with modules that go unused.",
+			"category": "lint/performance/noBarrelFile",
+			"location": {
+				"path": "apps\\api\\src\\deals\\deals.contracts.ts",
+				"start": {
+					"line": 10,
+					"column": 1
+				},
+				"end": {
+					"line": 10,
+					"column": 56
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Avoid barrel files, they slow down performance, and cause large module graphs with modules that go unused.",
+			"category": "lint/performance/noBarrelFile",
+			"location": {
+				"path": "apps\\api\\src\\google\\google.constants.ts",
+				"start": {
+					"line": 1,
+					"column": 1
+				},
+				"end": {
+					"line": 9,
+					"column": 39
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Avoid barrel files, they slow down performance, and cause large module graphs with modules that go unused.",
+			"category": "lint/performance/noBarrelFile",
+			"location": {
+				"path": "apps\\api\\src\\mailbox\\mailbox.constants.ts",
+				"start": {
+					"line": 10,
+					"column": 1
+				},
+				"end": {
+					"line": 19,
+					"column": 20
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Avoid barrel files, they slow down performance, and cause large module graphs with modules that go unused.",
+			"category": "lint/performance/noBarrelFile",
+			"location": {
+				"path": "apps\\api\\src\\microsoft\\microsoft.constants.ts",
+				"start": {
+					"line": 1,
+					"column": 1
+				},
+				"end": {
+					"line": 8,
+					"column": 39
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Change to an optional chain.",
+			"category": "lint/complexity/useOptionalChain",
+			"location": {
+				"path": "apps\\api\\src\\migrations\\background-import.mjs",
+				"start": {
+					"line": 75,
+					"column": 6
+				},
+				"end": {
+					"line": 76,
+					"column": 28
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Several of these imports are unused.",
+			"category": "lint/correctness/noUnusedImports",
+			"location": {
+				"path": "apps\\api\\src\\tracking\\tracking.service.ts",
+				"start": {
+					"line": 40,
+					"column": 2
+				},
+				"end": {
+					"line": 40,
+					"column": 13
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Forbidden non-null assertion.",
+			"category": "lint/style/noNonNullAssertion",
+			"location": {
+				"path": "apps\\api\\test\\operations-postgres.integration.spec.ts",
+				"start": {
+					"line": 320,
+					"column": 17
+				},
+				"end": {
+					"line": 320,
+					"column": 39
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Forbidden non-null assertion.",
+			"category": "lint/style/noNonNullAssertion",
+			"location": {
+				"path": "apps\\api\\test\\operations-postgres.integration.spec.ts",
+				"start": {
+					"line": 320,
+					"column": 17
+				},
+				"end": {
+					"line": 320,
+					"column": 29
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Forbidden non-null assertion.",
+			"category": "lint/style/noNonNullAssertion",
+			"location": {
+				"path": "apps\\api\\test\\operations-postgres.integration.spec.ts",
+				"start": {
+					"line": 340,
+					"column": 19
+				},
+				"end": {
+					"line": 340,
+					"column": 41
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Forbidden non-null assertion.",
+			"category": "lint/style/noNonNullAssertion",
+			"location": {
+				"path": "apps\\api\\test\\operations-postgres.integration.spec.ts",
+				"start": {
+					"line": 340,
+					"column": 19
+				},
+				"end": {
+					"line": 340,
+					"column": 31
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Forbidden non-null assertion.",
+			"category": "lint/style/noNonNullAssertion",
+			"location": {
+				"path": "apps\\api\\test\\operations-postgres.integration.spec.ts",
+				"start": {
+					"line": 564,
+					"column": 17
+				},
+				"end": {
+					"line": 564,
+					"column": 38
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Forbidden non-null assertion.",
+			"category": "lint/style/noNonNullAssertion",
+			"location": {
+				"path": "apps\\api\\test\\operations-postgres.integration.spec.ts",
+				"start": {
+					"line": 575,
+					"column": 17
+				},
+				"end": {
+					"line": 575,
+					"column": 52
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Avoid barrel files, they slow down performance, and cause large module graphs with modules that go unused.",
+			"category": "lint/performance/noBarrelFile",
+			"location": {
+				"path": "apps\\app\\postcss.config.mjs",
+				"start": {
+					"line": 1,
+					"column": 1
+				},
+				"end": {
+					"line": 1,
+					"column": 50
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Change to an optional chain.",
+			"category": "lint/complexity/useOptionalChain",
+			"location": {
+				"path": "docs\\quality\\preview\\appearance-preview.html",
+				"start": {
+					"line": 685,
+					"column": 112
+				},
+				"end": {
+					"line": 685,
+					"column": 129
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Avoid the use of the !important style.",
+			"category": "lint/complexity/noImportantStyles",
+			"location": {
+				"path": "docs\\quality\\preview\\appearance-preview.html",
+				"start": {
+					"line": 675,
+					"column": 25
+				},
+				"end": {
+					"line": 675,
+					"column": 35
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Avoid the use of the !important style.",
+			"category": "lint/complexity/noImportantStyles",
+			"location": {
+				"path": "docs\\quality\\preview\\appearance-preview.html",
+				"start": {
+					"line": 676,
+					"column": 30
+				},
+				"end": {
+					"line": 676,
+					"column": 40
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Avoid the use of the !important style.",
+			"category": "lint/complexity/noImportantStyles",
+			"location": {
+				"path": "docs\\quality\\preview\\appearance-preview.html",
+				"start": {
+					"line": 677,
+					"column": 32
+				},
+				"end": {
+					"line": 677,
+					"column": 42
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Avoid the use of the !important style.",
+			"category": "lint/complexity/noImportantStyles",
+			"location": {
+				"path": "docs\\quality\\preview\\appearance-preview.html",
+				"start": {
+					"line": 678,
+					"column": 31
+				},
+				"end": {
+					"line": 678,
+					"column": 41
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Descending specificity selector found. This selector specificity is (0, 0, 1)",
+			"category": "lint/style/noDescendingSpecificity",
+			"location": {
+				"path": "docs\\quality\\preview\\appearance-preview.html",
+				"start": {
+					"line": 683,
+					"column": 192
+				},
+				"end": {
+					"line": 683,
+					"column": 197
+				}
+			},
+			"advices": [
+				{
+					"start": {
+						"line": 572,
+						"column": 1
+					},
+					"end": {
+						"line": 572,
+						"column": 25
+					},
+					"text": "Descending specificity selector may not be applied. Consider rearranging the order of the selectors. See MDN web docs for more details."
+				}
+			]
+		},
+		{
+			"severity": "warning",
+			"message": "Avoid barrel files, they slow down performance, and cause large module graphs with modules that go unused.",
+			"category": "lint/performance/noBarrelFile",
+			"location": {
+				"path": "packages\\action-registry\\src\\index.mjs",
+				"start": {
+					"line": 1,
+					"column": 1
+				},
+				"end": {
+					"line": 1,
+					"column": 52
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Change to an optional chain.",
+			"category": "lint/complexity/useOptionalChain",
+			"location": {
+				"path": "packages\\agent-action-runtime\\src\\approval-continuation.mjs",
+				"start": {
+					"line": 175,
+					"column": 4
+				},
+				"end": {
+					"line": 176,
+					"column": 33
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Change to an optional chain.",
+			"category": "lint/complexity/useOptionalChain",
+			"location": {
+				"path": "packages\\agent-action-runtime\\src\\approval-lifecycle.mjs",
+				"start": {
+					"line": 541,
+					"column": 6
+				},
+				"end": {
+					"line": 542,
+					"column": 48
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Avoid barrel files, they slow down performance, and cause large module graphs with modules that go unused.",
+			"category": "lint/performance/noBarrelFile",
+			"location": {
+				"path": "packages\\agent-action-runtime\\src\\index.mjs",
+				"start": {
+					"line": 1518,
+					"column": 1
+				},
+				"end": {
+					"line": 1518,
+					"column": 74
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Change to an optional chain.",
+			"category": "lint/complexity/useOptionalChain",
+			"location": {
+				"path": "packages\\agent-action-runtime\\src\\index.mjs",
+				"start": {
+					"line": 986,
+					"column": 7
+				},
+				"end": {
+					"line": 986,
+					"column": 41
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Change to an optional chain.",
+			"category": "lint/complexity/useOptionalChain",
+			"location": {
+				"path": "packages\\agent-action-runtime\\src\\index.mjs",
+				"start": {
+					"line": 1083,
+					"column": 4
+				},
+				"end": {
+					"line": 1084,
+					"column": 30
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Avoid use of the deprecated __proto__ accessor.",
+			"category": "lint/suspicious/noProto",
+			"location": {
+				"path": "packages\\agent-action-runtime\\test\\governed-action-runtime.test.mjs",
+				"start": {
+					"line": 900,
+					"column": 19
+				},
+				"end": {
+					"line": 900,
+					"column": 37
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "This variable executor is unused.",
+			"category": "lint/correctness/noUnusedVariables",
+			"location": {
+				"path": "packages\\agent-action-runtime\\test\\governed-action-runtime.test.mjs",
+				"start": {
+					"line": 507,
+					"column": 10
+				},
+				"end": {
+					"line": 507,
+					"column": 18
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Avoid barrel files, they slow down performance, and cause large module graphs with modules that go unused.",
+			"category": "lint/performance/noBarrelFile",
+			"location": {
+				"path": "packages\\auth\\src\\index.ts",
+				"start": {
+					"line": 1,
+					"column": 1
+				},
+				"end": {
+					"line": 6,
+					"column": 21
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Do not use export all ( export * from ... ).",
+			"category": "lint/performance/noReExportAll",
+			"location": {
+				"path": "packages\\business-os-core\\src\\index.mjs",
+				"start": {
+					"line": 3,
+					"column": 8
+				},
+				"end": {
+					"line": 3,
+					"column": 35
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Do not use export all ( export * from ... ).",
+			"category": "lint/performance/noReExportAll",
+			"location": {
+				"path": "packages\\business-os-core\\src\\index.mjs",
+				"start": {
+					"line": 4,
+					"column": 8
+				},
+				"end": {
+					"line": 4,
+					"column": 35
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Do not use export all ( export * from ... ).",
+			"category": "lint/performance/noReExportAll",
+			"location": {
+				"path": "packages\\business-os-core\\src\\index.mjs",
+				"start": {
+					"line": 5,
+					"column": 8
+				},
+				"end": {
+					"line": 5,
+					"column": 44
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Do not use export all ( export * from ... ).",
+			"category": "lint/performance/noReExportAll",
+			"location": {
+				"path": "packages\\business-os-core\\src\\index.mjs",
+				"start": {
+					"line": 6,
+					"column": 8
+				},
+				"end": {
+					"line": 6,
+					"column": 39
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Do not use export all ( export * from ... ).",
+			"category": "lint/performance/noReExportAll",
+			"location": {
+				"path": "packages\\business-os-core\\src\\index.mjs",
+				"start": {
+					"line": 7,
+					"column": 8
+				},
+				"end": {
+					"line": 7,
+					"column": 29
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Do not use export all ( export * from ... ).",
+			"category": "lint/performance/noReExportAll",
+			"location": {
+				"path": "packages\\business-os-core\\src\\index.mjs",
+				"start": {
+					"line": 8,
+					"column": 8
+				},
+				"end": {
+					"line": 8,
+					"column": 32
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Do not use export all ( export * from ... ).",
+			"category": "lint/performance/noReExportAll",
+			"location": {
+				"path": "packages\\business-os-core\\src\\index.mjs",
+				"start": {
+					"line": 9,
+					"column": 8
+				},
+				"end": {
+					"line": 9,
+					"column": 29
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Do not use export all ( export * from ... ).",
+			"category": "lint/performance/noReExportAll",
+			"location": {
+				"path": "packages\\business-os-core\\src\\index.mjs",
+				"start": {
+					"line": 10,
+					"column": 8
+				},
+				"end": {
+					"line": 10,
+					"column": 27
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Avoid barrel files, they slow down performance, and cause large module graphs with modules that go unused.",
+			"category": "lint/performance/noBarrelFile",
+			"location": {
+				"path": "packages\\business-os-core\\src\\index.mjs",
+				"start": {
+					"line": 1,
+					"column": 1
+				},
+				"end": {
+					"line": 1,
+					"column": 36
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Do not use export all ( export * from ... ).",
+			"category": "lint/performance/noReExportAll",
+			"location": {
+				"path": "packages\\business-os-core\\src\\index.mjs",
+				"start": {
+					"line": 1,
+					"column": 8
+				},
+				"end": {
+					"line": 1,
+					"column": 36
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Do not use export all ( export * from ... ).",
+			"category": "lint/performance/noReExportAll",
+			"location": {
+				"path": "packages\\business-os-core\\src\\index.mjs",
+				"start": {
+					"line": 2,
+					"column": 8
+				},
+				"end": {
+					"line": 2,
+					"column": 38
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "This variable error is unused.",
+			"category": "lint/correctness/noUnusedVariables",
+			"location": {
+				"path": "packages\\db\\scripts\\test-db.ts",
+				"start": {
+					"line": 35,
+					"column": 11
+				},
+				"end": {
+					"line": 35,
+					"column": 16
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Avoid barrel files, they slow down performance, and cause large module graphs with modules that go unused.",
+			"category": "lint/performance/noBarrelFile",
+			"location": {
+				"path": "packages\\db\\src\\blob.ts",
+				"start": {
+					"line": 5,
+					"column": 1
+				},
+				"end": {
+					"line": 5,
+					"column": 54
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Avoid barrel files, they slow down performance, and cause large module graphs with modules that go unused.",
+			"category": "lint/performance/noBarrelFile",
+			"location": {
+				"path": "packages\\db\\src\\fields.ts",
+				"start": {
+					"line": 18,
+					"column": 1
+				},
+				"end": {
+					"line": 18,
+					"column": 32
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Do not use export all ( export * from ... ).",
+			"category": "lint/performance/noReExportAll",
+			"location": {
+				"path": "packages\\db\\src\\fields.ts",
+				"start": {
+					"line": 18,
+					"column": 8
+				},
+				"end": {
+					"line": 18,
+					"column": 32
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Several of these imports are unused.",
+			"category": "lint/correctness/noUnusedImports",
+			"location": {
+				"path": "packages\\db\\src\\fields.ts",
+				"start": {
+					"line": 3,
+					"column": 2
+				},
+				"end": {
+					"line": 3,
+					"column": 23
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Avoid barrel files, they slow down performance, and cause large module graphs with modules that go unused.",
+			"category": "lint/performance/noBarrelFile",
+			"location": {
+				"path": "packages\\db\\src\\index.ts",
+				"start": {
+					"line": 1,
+					"column": 1
+				},
+				"end": {
+					"line": 7,
+					"column": 19
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Do not use export all ( export * from ... ).",
+			"category": "lint/performance/noReExportAll",
+			"location": {
+				"path": "packages\\db\\src\\index.ts",
+				"start": {
+					"line": 9,
+					"column": 8
+				},
+				"end": {
+					"line": 9,
+					"column": 42
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Avoid barrel files, they slow down performance, and cause large module graphs with modules that go unused.",
+			"category": "lint/performance/noBarrelFile",
+			"location": {
+				"path": "packages\\integration-runtime\\src\\index.mjs",
+				"start": {
+					"line": 1,
+					"column": 1
+				},
+				"end": {
+					"line": 1,
+					"column": 56
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Avoid barrel files, they slow down performance, and cause large module graphs with modules that go unused.",
+			"category": "lint/performance/noBarrelFile",
+			"location": {
+				"path": "packages\\migration-core\\src\\index.mjs",
+				"start": {
+					"line": 1,
+					"column": 1
+				},
+				"end": {
+					"line": 6,
+					"column": 20
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Change to an optional chain.",
+			"category": "lint/complexity/useOptionalChain",
+			"location": {
+				"path": "packages\\migration-runtime\\src\\coordinator.mjs",
+				"start": {
+					"line": 453,
+					"column": 7
+				},
+				"end": {
+					"line": 454,
+					"column": 33
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Change to an optional chain.",
+			"category": "lint/complexity/useOptionalChain",
+			"location": {
+				"path": "packages\\migration-runtime\\src\\coordinator.mjs",
+				"start": {
+					"line": 520,
+					"column": 7
+				},
+				"end": {
+					"line": 521,
+					"column": 33
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Avoid barrel files, they slow down performance, and cause large module graphs with modules that go unused.",
+			"category": "lint/performance/noBarrelFile",
+			"location": {
+				"path": "packages\\migration-runtime\\src\\index.mjs",
+				"start": {
+					"line": 1,
+					"column": 1
+				},
+				"end": {
+					"line": 1,
+					"column": 57
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Several of these imports are unused.",
+			"category": "lint/correctness/noUnusedImports",
+			"location": {
+				"path": "packages\\migration-runtime\\src\\prisma-repository.mjs",
+				"start": {
+					"line": 2,
+					"column": 16
+				},
+				"end": {
+					"line": 2,
+					"column": 37
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Change to an optional chain.",
+			"category": "lint/complexity/useOptionalChain",
+			"location": {
+				"path": "packages\\migration-runtime\\src\\state.mjs",
+				"start": {
+					"line": 21,
+					"column": 6
+				},
+				"end": {
+					"line": 21,
+					"column": 54
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Several of these imports are unused.",
+			"category": "lint/correctness/noUnusedImports",
+			"location": {
+				"path": "packages\\migration-runtime\\test\\source-store.test.mjs",
+				"start": {
+					"line": 6,
+					"column": 2
+				},
+				"end": {
+					"line": 6,
+					"column": 7
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Avoid barrel files, they slow down performance, and cause large module graphs with modules that go unused.",
+			"category": "lint/performance/noBarrelFile",
+			"location": {
+				"path": "packages\\pipeline-core\\src\\index.mjs",
+				"start": {
+					"line": 1,
+					"column": 1
+				},
+				"end": {
+					"line": 1,
+					"column": 52
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Change to an optional chain.",
+			"category": "lint/complexity/useOptionalChain",
+			"location": {
+				"path": "packages\\pipeline-runtime\\src\\in-memory-repository.mjs",
+				"start": {
+					"line": 229,
+					"column": 4
+				},
+				"end": {
+					"line": 230,
+					"column": 69
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Change to an optional chain.",
+			"category": "lint/complexity/useOptionalChain",
+			"location": {
+				"path": "packages\\pipeline-runtime\\src\\in-memory-repository.mjs",
+				"start": {
+					"line": 263,
+					"column": 4
+				},
+				"end": {
+					"line": 264,
+					"column": 63
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Avoid barrel files, they slow down performance, and cause large module graphs with modules that go unused.",
+			"category": "lint/performance/noBarrelFile",
+			"location": {
+				"path": "packages\\pipeline-runtime\\src\\index.mjs",
+				"start": {
+					"line": 1,
+					"column": 1
+				},
+				"end": {
+					"line": 1,
+					"column": 62
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Avoid barrel files, they slow down performance, and cause large module graphs with modules that go unused.",
+			"category": "lint/performance/noBarrelFile",
+			"location": {
+				"path": "packages\\security-core\\src\\index.mjs",
+				"start": {
+					"line": 1,
+					"column": 1
+				},
+				"end": {
+					"line": 1,
+					"column": 64
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "This parameter tenantField is unused.",
+			"category": "lint/correctness/noUnusedFunctionParameters",
+			"location": {
+				"path": "packages\\security-core\\src\\tenant-boundary.mjs",
+				"start": {
+					"line": 59,
+					"column": 42
+				},
+				"end": {
+					"line": 59,
+					"column": 53
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Avoid barrel files, they slow down performance, and cause large module graphs with modules that go unused.",
+			"category": "lint/performance/noBarrelFile",
+			"location": {
+				"path": "packages\\telemetry\\src\\index.ts",
+				"start": {
+					"line": 1,
+					"column": 1
+				},
+				"end": {
+					"line": 22,
+					"column": 22
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Avoid the use of the !important style.",
+			"category": "lint/complexity/noImportantStyles",
+			"location": {
+				"path": "packages\\ui\\src\\styles\\globals.css",
+				"start": {
+					"line": 881,
+					"column": 19
+				},
+				"end": {
+					"line": 881,
+					"column": 29
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Avoid the use of the !important style.",
+			"category": "lint/complexity/noImportantStyles",
+			"location": {
+				"path": "packages\\ui\\src\\styles\\globals.css",
+				"start": {
+					"line": 882,
+					"column": 31
+				},
+				"end": {
+					"line": 882,
+					"column": 41
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Avoid the use of the !important style.",
+			"category": "lint/complexity/noImportantStyles",
+			"location": {
+				"path": "packages\\ui\\src\\styles\\globals.css",
+				"start": {
+					"line": 1510,
+					"column": 25
+				},
+				"end": {
+					"line": 1510,
+					"column": 35
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Avoid the use of the !important style.",
+			"category": "lint/complexity/noImportantStyles",
+			"location": {
+				"path": "packages\\ui\\src\\styles\\globals.css",
+				"start": {
+					"line": 1511,
+					"column": 30
+				},
+				"end": {
+					"line": 1511,
+					"column": 40
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Avoid the use of the !important style.",
+			"category": "lint/complexity/noImportantStyles",
+			"location": {
+				"path": "packages\\ui\\src\\styles\\globals.css",
+				"start": {
+					"line": 1512,
+					"column": 32
+				},
+				"end": {
+					"line": 1512,
+					"column": 42
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Avoid the use of the !important style.",
+			"category": "lint/complexity/noImportantStyles",
+			"location": {
+				"path": "packages\\ui\\src\\styles\\globals.css",
+				"start": {
+					"line": 1513,
+					"column": 31
+				},
+				"end": {
+					"line": 1513,
+					"column": 41
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Several of these imports are unused.",
+			"category": "lint/correctness/noUnusedImports",
+			"location": {
+				"path": "scripts\\audit-tenant-boundaries.mjs",
+				"start": {
+					"line": 2,
+					"column": 29
+				},
+				"end": {
+					"line": 2,
+					"column": 33
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Change to an optional chain.",
+			"category": "lint/complexity/useOptionalChain",
+			"location": {
+				"path": "scripts\\verify-security-config.mjs",
+				"start": {
+					"line": 68,
+					"column": 6
+				},
+				"end": {
+					"line": 68,
+					"column": 39
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "The environment variable CREDENTIAL_VAULT_ENFORCE is not listed as a dependency in turbo.json. Add this environment variable a task's 'env'/'passThroughEnv', or to 'globalEnv', 'globalPassThroughEnv', in your turbo.json(c) configuration to ensure correct caching behavior in Turborepo.",
+			"category": "lint/suspicious/noUndeclaredEnvVars",
+			"location": {
+				"path": "scripts\\verify-security-config.mjs",
+				"start": {
+					"line": 19,
+					"column": 32
+				},
+				"end": {
+					"line": 19,
+					"column": 68
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "The environment variable CREDENTIAL_VAULT_ACTIVE_KEY_ID is not listed as a dependency in turbo.json. Add this environment variable a task's 'env'/'passThroughEnv', or to 'globalEnv', 'globalPassThroughEnv', in your turbo.json(c) configuration to ensure correct caching behavior in Turborepo.",
+			"category": "lint/suspicious/noUndeclaredEnvVars",
+			"location": {
+				"path": "scripts\\verify-security-config.mjs",
+				"start": {
+					"line": 20,
+					"column": 21
+				},
+				"end": {
+					"line": 20,
+					"column": 63
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "The environment variable CREDENTIAL_VAULT_KEYS is not listed as a dependency in turbo.json. Add this environment variable a task's 'env'/'passThroughEnv', or to 'globalEnv', 'globalPassThroughEnv', in your turbo.json(c) configuration to ensure correct caching behavior in Turborepo.",
+			"category": "lint/suspicious/noUndeclaredEnvVars",
+			"location": {
+				"path": "scripts\\verify-security-config.mjs",
+				"start": {
+					"line": 21,
+					"column": 24
+				},
+				"end": {
+					"line": 21,
+					"column": 57
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Forbidden non-null assertion.",
+			"category": "lint/style/noNonNullAssertion",
+			"location": {
+				"path": "tools\\migrations\\source-cleanup.ts",
+				"start": {
+					"line": 22,
+					"column": 13
+				},
+				"end": {
+					"line": 22,
+					"column": 21
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Forbidden non-null assertion.",
+			"category": "lint/style/noNonNullAssertion",
+			"location": {
+				"path": "tools\\migrations\\source-cleanup.ts",
+				"start": {
+					"line": 23,
+					"column": 9
+				},
+				"end": {
+					"line": 23,
+					"column": 17
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Forbidden non-null assertion.",
+			"category": "lint/style/noNonNullAssertion",
+			"location": {
+				"path": "tools\\migrations\\source-cleanup.ts",
+				"start": {
+					"line": 23,
+					"column": 21
+				},
+				"end": {
+					"line": 23,
+					"column": 31
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Forbidden non-null assertion.",
+			"category": "lint/style/noNonNullAssertion",
+			"location": {
+				"path": "tools\\migrations\\source-cleanup.ts",
+				"start": {
+					"line": 36,
+					"column": 38
+				},
+				"end": {
+					"line": 36,
+					"column": 56
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Several of these imports are unused.",
+			"category": "lint/correctness/noUnusedImports",
+			"location": {
+				"path": "tools\\quality\\lib\\workspace-lock.mjs",
+				"start": {
+					"line": 2,
+					"column": 16
+				},
+				"end": {
+					"line": 2,
+					"column": 24
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "This import is unused.",
+			"category": "lint/correctness/noUnusedImports",
+			"location": {
+				"path": "tools\\quality\\test\\operations-boundary.test.mjs",
+				"start": {
+					"line": 2,
+					"column": 8
+				},
+				"end": {
+					"line": 2,
+					"column": 21
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Forbidden non-null assertion.",
+			"category": "lint/style/noNonNullAssertion",
+			"location": {
+				"path": "tools\\quality\\ui-preview\\preview.tsx",
+				"start": {
+					"line": 292,
+					"column": 12
+				},
+				"end": {
+					"line": 292,
+					"column": 44
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Several of these imports are unused.",
+			"category": "lint/correctness/noUnusedImports",
+			"location": {
+				"path": "tools\\release\\run-agent-action-repair-gate.mjs",
+				"start": {
+					"line": 10,
+					"column": 10
+				},
+				"end": {
+					"line": 10,
+					"column": 18
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "Several of these imports are unused.",
+			"category": "lint/correctness/noUnusedImports",
+			"location": {
+				"path": "tools\\release\\run-agent-action-repair-gate.mjs",
+				"start": {
+					"line": 6,
+					"column": 2
+				},
+				"end": {
+					"line": 6,
+					"column": 14
+				}
+			},
+			"advices": []
+		},
+		{
+			"severity": "warning",
+			"message": "The character doesn't need to be escaped.",
+			"category": "lint/suspicious/noUselessEscapeInString",
+			"location": {
+				"path": "tools\\release\\verify-agent-action-repair.mjs",
+				"start": {
+					"line": 180,
+					"column": 51
+				},
+				"end": {
+					"line": 180,
+					"column": 52
+				}
+			},
+			"advices": []
+		}
+	],
+	"command": "lint"
+}

@@ -1,5 +1,3 @@
-import { executionBudgetExpired } from "../../src/run-execution-budget.mjs";
-import { continuationEnabled } from "./approval-continuation";
 import { db, Prisma } from "@crm/db";
 import { CRM_EVENT_CATALOG } from "@crm/db/crm-events";
 import { lockIdempotencyKey } from "@crm/db/idempotency";
@@ -7,6 +5,8 @@ import { crmEventTask } from "@crm/validation/agent-events";
 import { readAgentTriggerConfig } from "@crm/validation/agent-manifest";
 import type { SendFn } from "eve/channels";
 import { z } from "zod";
+import { executionBudgetExpired } from "../../src/run-execution-budget.mjs";
+import { continuationEnabled } from "./approval-continuation";
 import { DISPATCH } from "./dispatch-config";
 import { DEPENDENCY_UNAVAILABLE, runDependencyFailure } from "./run-preflight";
 import {
@@ -473,8 +473,8 @@ export async function dispatchAgentRun(runId: string, send: SendFn) {
 		throw new Error("Agent run was already claimed or is not live.");
 	}
 
-  // Persist exactly the identity supplied to the native root session, not the version editor.
-  const principalId = run.initiatedById ?? run.agent.createdById;
+	// Persist exactly the identity supplied to the native root session, not the version editor.
+	const principalId = run.initiatedById ?? run.agent.createdById;
 	const claim = await db.$transaction(async (tx) => {
 		const [agent] = await tx.$queryRaw<Array<{ id: string; status: string }>>`
 			SELECT id, status
@@ -500,7 +500,7 @@ export async function dispatchAgentRun(runId: string, send: SendFn) {
 				status: "RUNNING",
 				startedAt: new Date(),
 				modelId: run.version.modelId,
-        principalId,
+				principalId,
 			},
 		});
 		return updated.count === 1
@@ -556,16 +556,28 @@ export async function failRun(runId: string, code: string, message: string) {
 			return { id: run.id, status: run.status };
 		}
 
-    if (code === "RUN_TIMED_OUT") {
-      // The discovery query may predate a native wait/resume. Recheck while holding the run lock.
-      const native = continuationEnabled();
-      const current = await tx.agentRun.findUnique({ where: { id: runId }, select: {
-        status: true, sessionId: true, startedAt: true, cancelRequestedAt: true,
-        ...(native ? { approvalExecutionDeadlineAt: true } : {}),
-      } });
-      if (!executionBudgetExpired(current, { now: new Date(), timeoutMs: DISPATCH.run.executionTimeoutMs, continuationEnabled: native }))
-        return { id: run.id, status: run.status };
-    }
+		if (code === "RUN_TIMED_OUT") {
+			// The discovery query may predate a native wait/resume. Recheck while holding the run lock.
+			const native = continuationEnabled();
+			const current = await tx.agentRun.findUnique({
+				where: { id: runId },
+				select: {
+					status: true,
+					sessionId: true,
+					startedAt: true,
+					cancelRequestedAt: true,
+					...(native ? { approvalExecutionDeadlineAt: true } : {}),
+				},
+			});
+			if (
+				!executionBudgetExpired(current, {
+					now: new Date(),
+					timeoutMs: DISPATCH.run.executionTimeoutMs,
+					continuationEnabled: native,
+				})
+			)
+				return { id: run.id, status: run.status };
+		}
 
 		const sequence = run.nextEventSequence + 1;
 		const finishedAt = new Date();
@@ -760,12 +772,14 @@ async function timeOutOverrunningRuns() {
 		where: {
 			status: "RUNNING",
 			sessionId: { not: null },
-      ...(continuationEnabled() ? {
-        OR: [
-          { approvalExecutionDeadlineAt: null, startedAt: { lt: overrun } },
-          { approvalExecutionDeadlineAt: { lt: new Date() } },
-        ],
-      } : { startedAt: { lt: overrun } }),
+			...(continuationEnabled()
+				? {
+						OR: [
+							{ approvalExecutionDeadlineAt: null, startedAt: { lt: overrun } },
+							{ approvalExecutionDeadlineAt: { lt: new Date() } },
+						],
+					}
+				: { startedAt: { lt: overrun } }),
 		},
 		orderBy: [{ startedAt: "asc" }, { id: "asc" }],
 		take: RUN_BATCH * 3,

@@ -1,0 +1,446 @@
+
+
+Migrate isolated test database
+bun run --cwd packages/db db:test
+passed
+  created tayvero_operations_test
+Datasource "db": PostgreSQL database "tayvero_operations_test", schema "public" at "127.0.0.1:5432"
+
+66 migrations found in prisma/migrations
+
+Applying migration `20260731150000_init`
+Applying migration `20260731160000_remove_organizations`
+Applying migration `20260731164536_add_crm_models`
+Applying migration `20260731200000_add_google_sync`
+Applying migration `20260731210000_forward_only_sync`
+Applying migration `20260731220000_denormalise_last_activity`
+Applying migration `20260731230000_logo_dark_mode`
+Applying migration `20260801000000_contact_avatar`
+Applying migration `20260801120000_contact_summary_and_socials`
+Applying migration `20260801130000_contact_socials_checked`
+Applying migration `20260801140000_contact_intelligence`
+Applying migration `20260801160000_agent_conversations`
+Applying migration `20260801170000_conversations_on_deals`
+Applying migration `20260801180000_task_timeline_position`
+Applying migration `20260801190000_agent_task_attempts`
+Applying migration `20260802120000_app_settings`
+Applying migration `20260803151440_add_workspace_organization`
+Applying migration `20260803160044_add_sso_provider`
+Applying migration `20260803162518_workspace_profile`
+Applying migration `20260803190000_workspace_onboarded_metadata`
+Applying migration `20260803200000_blank_website_is_not_onboarded`
+Applying migration `20260803210000_agent_builder_foundation`
+Applying migration `20260803210000_suppressed_contact`
+Applying migration `20260803220000_context_dev_api_key`
+Applying migration `20260804160000_agent_conversation_command_type`
+Applying migration `20260804210000_agent_builder_artifacts`
+Applying migration `20260805120000_deal_description`
+Applying migration `20260805130000_builder_submission_concurrency`
+Applying migration `20260805130000_multi_currency`
+Applying migration `20260805140000_single_active_conversation_share`
+Applying migration `20260805150000_deal_base_currency`
+Applying migration `20260805160000_telemetry_install`
+Applying migration `20260805220000_conversation_attachments`
+Applying migration `20260806140000_dynamic_fields`
+Applying migration `20260806150000_field_value_record_indexes_and_user_fk`
+Applying migration `20260806160000_agent_version_model_context_window`
+Applying migration `20260807120000_outlook_mail`
+Applying migration `20260809120000_slack_member_matches`
+Applying migration `20260810090000_agent_conversation_pending_input`
+Applying migration `20260810100000_agent_task_deal_events`
+Applying migration `20260810110000_agent_event_conversation`
+Applying migration `20260810111000_canonical_builder_tokens`
+Applying migration `20260810120000_plural_agent_triggers`
+Applying migration `20260810120000_website_tracking`
+Applying migration `20260810130000_drop_unused_slack_unmatched`
+Applying migration `20260810130000_tracking_hardening`
+Applying migration `20260810140000_source_attribution`
+Applying migration `20260811050330_slack_workspace_grant`
+Applying migration `20260811212311_slack_install_cancel_delivery_task_subject`
+Applying migration `20260820150251_archive_crm_records`
+Applying migration `20260820150700_list_building_fields`
+Applying migration `20260820152910_add_api_keys`
+Applying migration `20260820154345_saved_views`
+Applying migration `20260820154825_field_show_on_filter`
+Applying migration `20260820160000_backfill_seniority_function`
+Applying migration `20260820161500_archive_scoped_uniqueness`
+Applying migration `20260831190000_configurable_pipeline_and_migration_center`
+Applying migration `20260831190000_governed_action_execution`
+Applying migration `20260901150000_pipeline_api_runtime`
+Applying migration `20260905120000_deal_stage_dual_write_bridge`
+Applying migration `20260905133000_migration_runtime_durability`
+Applying migration `20260914090000_migration_source_and_receipts`
+Applying migration `20260914100000_bound_action_approvals`
+Applying migration `20260915100000_approval_continuation`
+Applying migration `20260918090000_migration_source_lifecycle`
+Applying migration `20260918091000_background_import`
+
+The following migration(s) have been applied:
+
+migrations/
+  └─ 20260731150000_init/
+    └─ migration.sql
+  └─ 20260731160000_remove_organizations/
+    └─ migration.sql
+  └─ 20260731164536_add_crm_models/
+    └─ migration.sql
+  └─ 20260731200000_add_google_sync/
+    └─ migration.sql
+  └─ 20260731210000_forward_only_sync/
+    └─ migration.sql
+  └─ 20260731220000_denormalise_last_activity/
+    └─ migration.sql
+  └─ 20260731230000_logo_dark_mode/
+    └─ migration.sql
+  └─ 20260801000000_contact_avatar/
+    └─ migration.sql
+  └─ 20260801120000_contact_summary_and_socials/
+    └─ migration.sql
+  └─ 20260801130000_contact_socials_checked/
+    └─ migration.sql
+  └─ 20260801140000_contact_intelligence/
+    └─ migration.sql
+  └─ 20260801160000_agent_conversations/
+    └─ migration.sql
+  └─ 20260801170000_conversations_on_deals/
+    └─ migration.sql
+  └─ 20260801180000_task_timeline_position/
+    └─ migration.sql
+  └─ 20260801190000_agent_task_attempts/
+    └─ migration.sql
+  └─ 20260802120000_app_settings/
+    └─ migration.sql
+  └─ 20260803151440_add_workspace_organization/
+    └─ migration.sql
+  └─ 20260803160044_add_sso_provider/
+    └─ migration.sql
+  └─ 20260803162518_workspace_profile/
+    └─ migration.sql
+  └─ 20260803190000_workspace_onboarded_metadata/
+    └─ migration.sql
+  └─ 20260803200000_blank_website_is_not_onboarded/
+    └─ migration.sql
+  └─ 20260803210000_agent_builder_foundation/
+    └─ migration.sql
+  └─ 20260803210000_suppressed_contact/
+    └─ migration.sql
+  └─ 20260803220000_context_dev_api_key/
+    └─ migration.sql
+  └─ 20260804160000_agent_conversation_command_type/
+    └─ migration.sql
+  └─ 20260804210000_agent_builder_artifacts/
+    └─ migration.sql
+  └─ 20260805120000_deal_description/
+    └─ migration.sql
+  └─ 20260805130000_builder_submission_concurrency/
+    └─ migration.sql
+  └─ 20260805130000_multi_currency/
+    └─ migration.sql
+  └─ 20260805140000_single_active_conversation_share/
+    └─ migration.sql
+  └─ 20260805150000_deal_base_currency/
+    └─ migration.sql
+  └─ 20260805160000_telemetry_install/
+    └─ migration.sql
+  └─ 20260805220000_conversation_attachments/
+    └─ migration.sql
+  └─ 20260806140000_dynamic_fields/
+    └─ migration.sql
+  └─ 20260806150000_field_value_record_indexes_and_user_fk/
+    └─ migration.sql
+  └─ 20260806160000_agent_version_model_context_window/
+    └─ migration.sql
+  └─ 20260807120000_outlook_mail/
+    └─ migration.sql
+  └─ 20260809120000_slack_member_matches/
+    └─ migration.sql
+  └─ 20260810090000_agent_conversation_pending_input/
+    └─ migration.sql
+  └─ 20260810100000_agent_task_deal_events/
+    └─ migration.sql
+  └─ 20260810110000_agent_event_conversation/
+    └─ migration.sql
+  └─ 20260810111000_canonical_builder_tokens/
+    └─ migration.sql
+  └─ 20260810120000_plural_agent_triggers/
+    └─ migration.sql
+  └─ 20260810120000_website_tracking/
+    └─ migration.sql
+  └─ 20260810130000_drop_unused_slack_unmatched/
+    └─ migration.sql
+  └─ 20260810130000_tracking_hardening/
+    └─ migration.sql
+  └─ 20260810140000_source_attribution/
+    └─ migration.sql
+  └─ 20260811050330_slack_workspace_grant/
+    └─ migration.sql
+  └─ 20260811212311_slack_install_cancel_delivery_task_subject/
+    └─ migration.sql
+  └─ 20260820150251_archive_crm_records/
+    └─ migration.sql
+  └─ 20260820150700_list_building_fields/
+    └─ migration.sql
+  └─ 20260820152910_add_api_keys/
+    └─ migration.sql
+  └─ 20260820154345_saved_views/
+    └─ migration.sql
+  └─ 20260820154825_field_show_on_filter/
+    └─ migration.sql
+  └─ 20260820160000_backfill_seniority_function/
+    └─ migration.sql
+  └─ 20260820161500_archive_scoped_uniqueness/
+    └─ migration.sql
+  └─ 20260831190000_configurable_pipeline_and_migration_center/
+    └─ migration.sql
+  └─ 20260831190000_governed_action_execution/
+    └─ migration.sql
+  └─ 20260901150000_pipeline_api_runtime/
+    └─ migration.sql
+  └─ 20260905120000_deal_stage_dual_write_bridge/
+    └─ migration.sql
+  └─ 20260905133000_migration_runtime_durability/
+    └─ migration.sql
+  └─ 20260914090000_migration_source_and_receipts/
+    └─ migration.sql
+  └─ 20260914100000_bound_action_approvals/
+    └─ migration.sql
+  └─ 20260915100000_approval_continuation/
+    └─ migration.sql
+  └─ 20260918090000_migration_source_lifecycle/
+    └─ migration.sql
+  └─ 20260918091000_background_import/
+    └─ migration.sql
+
+All migrations have been successfully applied.
+
+$ bun scripts/test-db.ts
+Loaded Prisma config from prisma.config.ts.
+
+Prisma schema loaded from prisma/schema.prisma.
+
+
+Generate Prisma
+bun run --cwd packages/db db:generate
+passed
+
+✔ Generated Prisma Client (7.9.1) to ./src/generated/prisma in 496ms
+
+
+$ prisma generate
+Loaded Prisma config from prisma.config.ts.
+
+Prisma schema loaded from prisma/schema.prisma.
+
+
+Migration receipts, bound approvals and native-continuation persistence on PostgreSQL
+bun test --preload ./apps/api/test/setup.ts apps/api/test/operations-postgres.integration.spec.ts
+passed
+bun test v1.3.12 (700fc117)
+
+
+::group::apps/api/test/operations-postgres.integration.spec.ts:
+(pass) Migration source and receipts — actual PostgreSQL > restores encrypted source and the same command across independent service instances [129.00ms]
+(pass) Migration source and receipts — actual PostgreSQL > commits row receipts with CRM writes and replay never creates duplicates [173.00ms]
+[prisma:error] 
+Invalid `client.crmMigrationSource.updateMany()` invocation in
+/home/runner/work/tayvero/tayvero/apps/api/src/migrations/source-lifecycle.mjs:13:57
+
+  10     await client.crmMigrationSourceEvent.create({ data: { workspaceId: c.tenantId, sourceId: id, actorId: c.actorId, type, details, createdAt: time() } });
+  11 }
+  12 async function lock(client, c, row) {
+→ 13     const changed = await client.crmMigrationSource.updateMany(
+Transaction failed due to a write conflict or a deadlock. Please retry your transaction [crmMigrationSource.updateMany]
+(pass) Migration source and receipts — actual PostgreSQL > serializes competing import commands and produces one persisted intent [47.00ms]
+[prisma:error] 
+Invalid `client.crmMigrationJob.updateMany()` invocation in
+/home/runner/work/tayvero/tayvero/packages/migration-runtime/src/prisma-repository.mjs:192:49
+
+  189 },
+  190 
+  191 async replaceJob(tenantId, id, expectedVersion, next) {
+→ 192 	const result = await client.crmMigrationJob.updateMany(
+Transaction failed due to a write conflict or a deadlock. Please retry your transaction [crmMigrationJob.updateMany]
+[prisma:error] 
+Invalid `client.crmMigrationBatch.updateMany()` invocation in
+/home/runner/work/tayvero/tayvero/packages/migration-runtime/src/prisma-repository.mjs:248:51
+
+  245 const current = toBatch(row);
+  246 const proposed = updater({ ...current });
+  247 const next = nextBatchState(current, proposed);
+→ 248 const result = await client.crmMigrationBatch.updateMany(
+Transaction failed due to a write conflict or a deadlock. Please retry your transaction [crmMigrationBatch.updateMany]
+[prisma:error] 
+Invalid `client[row.entityType].create()` invocation in
+/home/runner/work/tayvero/tayvero/apps/api/src/migrations/migration-application.mjs:394:45
+
+  391 }
+  392 if (!matches.length) {
+  393 	const recordId = `mig_${hash([c.tenantId, row.id, number]).slice(0, 40)}`;
+→ 394 	record = await client[row.entityType].create(
+Transaction failed due to a write conflict or a deadlock. Please retry your transaction [contact.create]
+[prisma:error] 
+Invalid `client.crmMigrationJob.updateMany()` invocation in
+/home/runner/work/tayvero/tayvero/apps/api/src/migrations/migration-application.mjs:322:48
+
+  319 	fail("JOB_STOPPED", "Import was stopped");
+  320 // A no-change guarded write takes a job row lock. Cancel/rollback cannot acknowledge
+  321 // ahead of this transaction then be followed by its late customer writes.
+→ 322 const locked = await client.crmMigrationJob.updateMany(
+Transaction failed due to a write conflict or a deadlock. Please retry your transaction [crmMigrationJob.updateMany]
+[prisma:error] 
+Invalid `client.crmMigrationJob.updateMany()` invocation in
+/home/runner/work/tayvero/tayvero/packages/migration-runtime/src/prisma-repository.mjs:192:49
+
+  189 },
+  190 
+  191 async replaceJob(tenantId, id, expectedVersion, next) {
+→ 192 	const result = await client.crmMigrationJob.updateMany(
+Transaction failed due to a write conflict or a deadlock. Please retry your transaction [crmMigrationJob.updateMany]
+(pass) Migration source and receipts — actual PostgreSQL > concurrent worker attempts do not duplicate a row, including a recoverable claim conflict [209.00ms]
+[prisma:error] 
+Invalid `		db.crmMigrationJob.update()` invocation in
+/home/runner/work/tayvero/tayvero/apps/api/test/operations-postgres.integration.spec.ts:263:24
+
+  260 const p = await prepare("constraints");
+  261 await expect(
+  262 	Promise.resolve(
+→ 263 		db.crmMigrationJob.update(
+Foreign key constraint violated on the constraint: `crm_migration_job_workspace_id_source_id_fkey` [crmMigrationJob.update]
+[prisma:error] 
+Invalid `		db.crmMigrationRowReceipt.create()` invocation in
+/home/runner/work/tayvero/tayvero/apps/api/test/operations-postgres.integration.spec.ts:275:31
+
+  272 });
+  273 await expect(
+  274 	Promise.resolve(
+→ 275 		db.crmMigrationRowReceipt.create(
+Unique constraint failed on the fields: (`workspace_id`, `job_id`, `row_number`) [crmMigrationRowReceipt.create]
+[prisma:error] 
+Invalid `tx.crmMigrationRowReceipt.create()` invocation in
+/home/runner/work/tayvero/tayvero/apps/api/test/operations-postgres.integration.spec.ts:291:37
+
+  288 		ownerId: authorId,
+  289 	},
+  290 });
+→ 291 await tx.crmMigrationRowReceipt.create(
+Unique constraint failed on the fields: (`workspace_id`, `job_id`, `row_number`) [crmMigrationRowReceipt.create]
+(pass) Migration source and receipts — actual PostgreSQL > enforces tenant-composite source and row receipt constraints in the database [72.00ms]
+(pass) Migration source and receipts — actual PostgreSQL > cancellation prevents new writes and safe rollback preserves later edits [158.00ms]
+[prisma:error] 
+Invalid `client.governedActionApproval.updateMany()` invocation in
+/home/runner/work/tayvero/tayvero/packages/agent-action-runtime/src/approval-lifecycle.mjs:227:69
+
+  224 at = now();
+  225 if (row.expiresAt <= at)
+  226     return null;
+→ 227 const updated = await client.governedActionApproval.updateMany(
+Transaction failed due to a write conflict or a deadlock. Please retry your transaction [governedActionApproval.updateMany]
+(pass) Bound consent — actual PostgreSQL transaction and compare-and-swap > allows exactly one conflicting decision and exactly one consumption [36.00ms]
+(pass) Bound consent — actual PostgreSQL transaction and compare-and-swap > audits deadline expiration and rejects a stale or wrong execution identity [15.00ms]
+[prisma:error] 
+Invalid `client.agentRun.updateMany()` invocation in
+/home/runner/work/tayvero/tayvero/packages/agent-action-runtime/src/approval-continuation.mjs:181:45
+
+  178 const waited=at.getTime()-date(run.approvalWaitStartedAt).getTime();
+  179 const oldDeadline=date(run.approvalExecutionDeadlineAt ?? new Date(date(run.startedAt).getTime()+executionBudgetMs));
+  180 if(oldDeadline<=date(run.approvalWaitStartedAt) || waited<0 || at.getTime()-date(run.startedAt).getTime()>7*86400000){await block(client,row,"RUN_WAIT_BUDGET_INVALID");return null;}
+→ 181 const updated=await client.agentRun.updateMany(
+Transaction failed due to a write conflict or a deadlock. Please retry your transaction [agentRun.updateMany]
+(pass) Native approval continuation — actual PostgreSQL acceptance (transport excluded) > competing independent dispatchers acquire a single exact-session claim [60.00ms]
+[prisma:error] 
+Invalid `client.governedActionContinuation.updateMany()` invocation in
+/home/runner/work/tayvero/tayvero/packages/agent-action-runtime/src/approval-continuation.mjs:75:60
+
+  72   } });
+  73 }
+  74 async function cas(client, row, change) {
+→ 75   const result = await client.governedActionContinuation.updateMany(
+Transaction failed due to a write conflict or a deadlock. Please retry your transaction [governedActionContinuation.updateMany]
+(pass) Native approval continuation — actual PostgreSQL acceptance (transport excluded) > one-time transport admission and exact request binding survive new store instances [44.00ms]
+(pass) Native approval continuation — actual PostgreSQL acceptance (transport excluded) > expired dispatch leases are quarantined, not reacquired after process replacement [68.00ms]
+[prisma:error] 
+Invalid `		db.governedActionContinuation.create()` invocation in
+/home/runner/work/tayvero/tayvero/apps/api/test/operations-postgres.integration.spec.ts:616:35
+
+  613 });
+  614 await expect(
+  615 	Promise.resolve(
+→ 616 		db.governedActionContinuation.create(
+Unique constraint failed on the fields: (`"workspaceId"`, `"approvalId"`) [governedActionContinuation.create]
+[prisma:error] 
+Invalid `		db.governedActionContinuation.update()` invocation in
+/home/runner/work/tayvero/tayvero/apps/api/test/operations-postgres.integration.spec.ts:623:35
+
+  620 ).rejects.toThrow();
+  621 await expect(
+  622 	Promise.resolve(
+→ 623 		db.governedActionContinuation.update(
+Foreign key constraint violated on the constraint: `gac_approval_fk` [governedActionContinuation.update]
+(pass) Native approval continuation — actual PostgreSQL acceptance (transport excluded) > database uniqueness and workspace FK fence repeated/native cross-tenant requests [36.00ms]
+(pass) Native approval continuation — actual PostgreSQL acceptance (transport excluded) > native request replacement commits quarantine and blocks subsequent delivery [38.00ms]
+[prisma:error] 
+Invalid `client.crmMigrationSource.updateMany()` invocation in
+/home/runner/work/tayvero/tayvero/apps/api/src/migrations/source-lifecycle.mjs:13:57
+
+  10     await client.crmMigrationSourceEvent.create({ data: { workspaceId: c.tenantId, sourceId: id, actorId: c.actorId, type, details, createdAt: time() } });
+  11 }
+  12 async function lock(client, c, row) {
+→ 13     const changed = await client.crmMigrationSource.updateMany(
+Transaction failed due to a write conflict or a deadlock. Please retry your transaction [crmMigrationSource.updateMany]
+(pass) source lifecycle and background worker acceptance > serializes source deletion against publishing a prepared job [26.00ms]
+[prisma:error] 
+Invalid `client.crmMigrationSource.updateMany()` invocation in
+/home/runner/work/tayvero/tayvero/apps/api/src/migrations/source-lifecycle.mjs:13:57
+
+  10     await client.crmMigrationSourceEvent.create({ data: { workspaceId: c.tenantId, sourceId: id, actorId: c.actorId, type, details, createdAt: time() } });
+  11 }
+  12 async function lock(client, c, row) {
+→ 13     const changed = await client.crmMigrationSource.updateMany(
+Transaction failed due to a write conflict or a deadlock. Please retry your transaction [crmMigrationSource.updateMany]
+[prisma:error] 
+Invalid `client.crmMigrationSource.updateMany()` invocation in
+/home/runner/work/tayvero/tayvero/apps/api/src/migrations/source-lifecycle.mjs:65:61
+
+  62 const current = await source(client, c, id, true);
+  63 if (!current.deletedAt || current.sha256 !== expectedSha256 || await referenced(client, c, id))
+  64     fail('SOURCE_CHANGED', 'Source deletion intent changed');
+→ 65 const updated = await client.crmMigrationSource.updateMany(
+Transaction failed due to a write conflict or a deadlock. Please retry your transaction [crmMigrationSource.updateMany]
+(pass) source lifecycle and background worker acceptance > persists one audit completion for concurrent physical removal [28.00ms]
+[prisma:error] 
+Invalid `client.crmMigrationJob.updateMany()` invocation in
+/home/runner/work/tayvero/tayvero/apps/api/src/migrations/background-import.mjs:87:70
+
+  84 const row = await job(client, c, candidate.id);
+  85 if (!row.backgroundEnabled || row.backgroundVersion !== candidate.backgroundVersion || (row.backgroundNextAttemptAt && new Date(row.backgroundNextAttemptAt) > time()))
+  86     return null;
+→ 87 const changed = await client.crmMigrationJob.updateMany(
+Transaction failed due to a write conflict or a deadlock. Please retry your transaction [crmMigrationJob.updateMany]
+[prisma:error] 
+Invalid `client.crmMigrationJob.updateMany()` invocation in
+/home/runner/work/tayvero/tayvero/apps/api/src/migrations/background-import.mjs:87:70
+
+  84 const row = await job(client, c, candidate.id);
+  85 if (!row.backgroundEnabled || row.backgroundVersion !== candidate.backgroundVersion || (row.backgroundNextAttemptAt && new Date(row.backgroundNextAttemptAt) > time()))
+  86     return null;
+→ 87 const changed = await client.crmMigrationJob.updateMany(
+Transaction failed due to a write conflict or a deadlock. Please retry your transaction [crmMigrationJob.updateMany]
+[prisma:error] 
+Invalid `client.crmMigrationJob.updateMany()` invocation in
+/home/runner/work/tayvero/tayvero/apps/api/src/migrations/background-import.mjs:87:70
+
+  84 const row = await job(client, c, candidate.id);
+  85 if (!row.backgroundEnabled || row.backgroundVersion !== candidate.backgroundVersion || (row.backgroundNextAttemptAt && new Date(row.backgroundNextAttemptAt) > time()))
+  86     return null;
+→ 87 const changed = await client.crmMigrationJob.updateMany(
+Transaction failed due to a write conflict or a deadlock. Please retry your transaction [crmMigrationJob.updateMany]
+(pass) source lifecycle and background worker acceptance > two worker connections honor one queue claim and exact row receipts [222.00ms]
+(pass) source lifecycle and background worker acceptance > keeps every referenced source even after all rows are complete [68.00ms]
+
+::endgroup::
+
+ 17 pass
+ 0 fail
+ 53 expect() calls
+Ran 17 tests across 1 file. [1.73s]
+

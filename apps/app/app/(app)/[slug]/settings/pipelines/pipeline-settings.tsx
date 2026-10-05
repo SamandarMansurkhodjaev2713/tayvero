@@ -1,9 +1,9 @@
 "use client";
 
 import Add from "@carbon/icons-react/es/Add";
+import Archive from "@carbon/icons-react/es/Archive";
 import ArrowDown from "@carbon/icons-react/es/ArrowDown";
 import ArrowUp from "@carbon/icons-react/es/ArrowUp";
-import Archive from "@carbon/icons-react/es/Archive";
 import Checkmark from "@carbon/icons-react/es/Checkmark";
 import Renew from "@carbon/icons-react/es/Renew";
 import TrashCan from "@carbon/icons-react/es/TrashCan";
@@ -34,11 +34,7 @@ import {
 	EmptyHeader,
 	EmptyTitle,
 } from "@crm/ui/components/empty";
-import {
-	Field,
-	FieldDescription,
-	FieldLabel,
-} from "@crm/ui/components/field";
+import { Field, FieldDescription, FieldLabel } from "@crm/ui/components/field";
 import { Input } from "@crm/ui/components/input";
 import {
 	Select,
@@ -68,13 +64,13 @@ import {
 	draftFromPipeline,
 	moveStage,
 	newPipelineDraft,
+	type PipelineDraft,
 	removeStage,
 	toCreateMutationInput,
-	toUpdateMutationInput,
 	toggleTransition,
+	toUpdateMutationInput,
 	updateStage,
 	validatePipelineDraft,
-	type PipelineDraft,
 } from "./pipeline-editor-model.mjs";
 
 type ArchiveCandidate = {
@@ -82,7 +78,6 @@ type ArchiveCandidate = {
 	name: string;
 	version: number;
 };
-
 
 export function PipelineSettings() {
 	const trpc = useTRPC();
@@ -121,7 +116,10 @@ export function PipelineSettings() {
 	const update = useMutation(
 		trpc.pipelines.update.mutationOptions({
 			onSuccess: async (_data, variables) => {
-				commandKeys.clear(`pipeline-update:${variables.id}`, variables.idempotencyKey);
+				commandKeys.clear(
+					`pipeline-update:${variables.id}`,
+					variables.idempotencyKey,
+				);
 				await invalidate();
 				setDraft(null);
 				toast.success("Pipeline saved.");
@@ -135,7 +133,10 @@ export function PipelineSettings() {
 	const setDefault = useMutation(
 		trpc.pipelines.setDefault.mutationOptions({
 			onSuccess: async (_data, variables) => {
-				commandKeys.clear(`pipeline-default:${variables.id}`, variables.idempotencyKey);
+				commandKeys.clear(
+					`pipeline-default:${variables.id}`,
+					variables.idempotencyKey,
+				);
 				await invalidate();
 				toast.success("Default pipeline changed.");
 			},
@@ -148,7 +149,10 @@ export function PipelineSettings() {
 	const archive = useMutation(
 		trpc.pipelines.archive.mutationOptions({
 			onSuccess: async (_data, variables) => {
-				commandKeys.clear(`pipeline-archive:${variables.id}`, variables.idempotencyKey);
+				commandKeys.clear(
+					`pipeline-archive:${variables.id}`,
+					variables.idempotencyKey,
+				);
 				await invalidate();
 				setArchiveCandidate(null);
 				toast.success("Pipeline archived.");
@@ -162,7 +166,10 @@ export function PipelineSettings() {
 	const restore = useMutation(
 		trpc.pipelines.restore.mutationOptions({
 			onSuccess: async (_data, variables) => {
-				commandKeys.clear(`pipeline-restore:${variables.id}`, variables.idempotencyKey);
+				commandKeys.clear(
+					`pipeline-restore:${variables.id}`,
+					variables.idempotencyKey,
+				);
 				await invalidate();
 				toast.success("Pipeline restored.");
 			},
@@ -263,9 +270,7 @@ export function PipelineSettings() {
 											) : null}
 										</div>
 										<p className="mt-1 text-xs text-muted-foreground">
-											{pipeline.stages
-												.map((stage) => stage.name)
-												.join(" → ")}
+											{pipeline.stages.map((stage) => stage.name).join(" → ")}
 										</p>
 									</button>
 									{canManage ? (
@@ -280,12 +285,12 @@ export function PipelineSettings() {
 															id: pipeline.id,
 															expectedVersion: pipeline.version,
 															idempotencyKey: commandKey(
-											`pipeline-default:${pipeline.id}`,
-											{
-												id: pipeline.id,
-												version: pipeline.version,
-											},
-										),
+																`pipeline-default:${pipeline.id}`,
+																{
+																	id: pipeline.id,
+																	version: pipeline.version,
+																},
+															),
 														})
 													}
 												>
@@ -302,12 +307,12 @@ export function PipelineSettings() {
 															id: pipeline.id,
 															expectedVersion: pipeline.version,
 															idempotencyKey: commandKey(
-													`pipeline-restore:${pipeline.id}`,
-													{
-														id: pipeline.id,
-														version: pipeline.version,
-													},
-												),
+																`pipeline-restore:${pipeline.id}`,
+																{
+																	id: pipeline.id,
+																	version: pipeline.version,
+																},
+															),
 														})
 													}
 												>
@@ -419,9 +424,7 @@ export function PipelineSettings() {
 								});
 							}}
 						>
-							{archive.isPending ? (
-								<Spinner data-icon="inline-start" />
-							) : null}
+							{archive.isPending ? <Spinner data-icon="inline-start" /> : null}
 							Archive pipeline
 						</AlertDialogAction>
 					</AlertDialogFooter>
@@ -523,8 +526,8 @@ function PipelineEditor({
 											Make this the default pipeline
 										</FieldLabel>
 										<FieldDescription>
-											New deals will start in this pipeline. The first pipeline is
-											always made default by the server.
+											New deals will start in this pipeline. The first pipeline
+											is always made default by the server.
 										</FieldDescription>
 									</div>
 								</Field>
@@ -733,15 +736,18 @@ function StageEditor({
 			<div className="mt-3">
 				<p className="mb-2 text-xs font-medium">Allowed previous stages</p>
 				<p className="mb-2 text-xs text-muted-foreground">
-					Leave every option unchecked to allow entry from any non-current stage.
+					Leave every option unchecked to allow entry from any non-current
+					stage.
 				</p>
 				<div className="flex flex-wrap gap-x-4 gap-y-2">
 					{draft.stages
 						.filter((source) => source.key !== stage.key)
 						.map((source) => {
 							const checked = stage.allowedFromStageKeys.includes(source.key);
+							const transitionId = `${colorId}-from-${source.key}`;
 							return (
 								<label
+									htmlFor={transitionId}
 									key={source.id ?? source.key}
 									className={cn(
 										"flex items-center gap-2 text-xs",
@@ -749,6 +755,7 @@ function StageEditor({
 									)}
 								>
 									<Checkbox
+										id={transitionId}
 										checked={checked}
 										disabled={busy}
 										onCheckedChange={(value) =>

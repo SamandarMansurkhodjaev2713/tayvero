@@ -25,9 +25,7 @@ async function main() {
 	}
 
 	if (!JOINS_FOR_REAL) {
-		console.log(
-			"NOTE  CRM joins no channel in this run. A join is permanent.",
-		);
+		console.log("NOTE  CRM joins no channel in this run. A join is permanent.");
 	}
 
 	console.log(await runSlackPeopleMatch());

@@ -6,9 +6,9 @@ import {
 	newPipelineDraft,
 	removeStage,
 	toCreateMutationInput,
+	toggleTransition,
 	toMutationInput,
 	toUpdateMutationInput,
-	toggleTransition,
 	updateStage,
 	validatePipelineDraft,
 } from "../app/(app)/[slug]/settings/pipelines/pipeline-editor-model.mjs";
@@ -65,7 +65,10 @@ test("create mutation excludes server-owned identity and preserves default inten
 	assert.equal("tenantId" in input, false);
 	assert.equal("workspaceId" in input, false);
 	assert.equal(input.isDefault, true);
-	assert.equal(input.stages.some((stage) => "id" in stage), false);
+	assert.equal(
+		input.stages.some((stage) => "id" in stage),
+		false,
+	);
 });
 
 test("update mutation preserves optimistic version and existing stage identity", () => {
@@ -83,10 +86,7 @@ test("update mutation preserves optimistic version and existing stage identity",
 	assert.equal(input.stages[0].id, "stage-0");
 	assert.equal("tenantId" in input, false);
 	assert.equal("workspaceId" in input, false);
-	assert.deepEqual(
-		toMutationInput(draft, "pipeline-update:12345678"),
-		input,
-	);
+	assert.deepEqual(toMutationInput(draft, "pipeline-update:12345678"), input);
 });
 
 test("validation rejects malformed probabilities, colors, positions and transitions", () => {

@@ -1,0 +1,57 @@
+$ turbo run check-types
+• turbo 2.10.8
+
+   • Packages in scope: @crm/action-registry, @crm/agent-action-runtime, @crm/auth, @crm/db, @crm/env, @crm/integration-runtime, @crm/migration-core, @crm/migration-runtime, @crm/pipeline-core, @crm/pipeline-runtime, @crm/security-core, @crm/telemetry, @crm/typescript-config, @crm/ui, @crm/validation, agent, api, app
+   • Running check-types in 18 packages
+   • Remote caching disabled
+
+app:typegen: cache miss, executing 3482d978439a6896
+@crm/env:check-types: cache hit, replaying logs 9d3ff0575e05e88b
+@crm/env:check-types: $ tsc --noEmit
+app:typegen: $ next typegen
+@crm/db:build: cache hit, replaying logs 8bbeaf73850b93e8
+@crm/db:build: $ prisma generate
+@crm/db:build: Loaded Prisma config from prisma.config.ts.
+@crm/db:build: 
+@crm/db:build: Prisma schema loaded from prisma\schema.prisma.
+@crm/db:build: 
+@crm/db:build: ✔ Generated Prisma Client (7.9.1) to .\src\generated\prisma in 542ms
+@crm/db:build: 
+@crm/telemetry:check-types: cache miss, executing 91933f1cc05c8205
+agent:check-types: cache miss, executing c3a5df638f463762
+@crm/ui:check-types: cache miss, executing b61a99638b68d448
+api:build: cache miss, executing 880e44c35e228dc4
+api:trpc:generate: cache miss, executing fa348e7b710f8adc
+@crm/auth:check-types: cache hit, replaying logs a6306edef0528f01
+@crm/auth:check-types: $ tsc --noEmit
+@crm/db:check-types: cache hit, replaying logs cb40108125667d0b
+@crm/db:check-types: $ tsc --noEmit
+@crm/validation:check-types: cache hit, replaying logs b0875c5171b750b6
+@crm/validation:check-types: $ tsc --noEmit
+@crm/telemetry:check-types: $ tsc --noEmit
+agent:check-types: $ tsc --noEmit
+@crm/ui:check-types: $ tsc --noEmit
+api:build: $ bun build src/main.ts --target=bun --outdir dist --packages=external --sourcemap
+api:trpc:generate: $ nestjs-trpc generate -e src/app.module.ts -r "**/*.router.ts" -o src/generated
+api:build: Bundled 206 modules in 151ms
+api:build: 
+api:build:   main.js      0.83 MB  (entry point)
+api:build:   main.js.map  1.47 MB  (source map)
+api:build: 
+app:typegen: Generating route types...
+app:typegen: ✓ Types generated successfully
+app:check-types: cache miss, executing b6c733220933e589
+app:check-types: $ tsc --noEmit
+api:trpc:generate: ✓ Generated server.ts successfully!
+api:trpc:generate: 
+api:trpc:generate:   Output:     C:\Users\sam4k\Downloads\AgenrCRM_OS\crm-release\apps\api\src/generated\server.ts
+api:trpc:generate:   Routers:    24
+api:trpc:generate:   Procedures: 185
+api:trpc:generate: 
+api:check-types: cache miss, executing 31e37f3f755e0481
+api:check-types: $ tsc --noEmit
+
+ Tasks:    13 successful, 13 total
+Cached:    5 cached, 13 total
+  Time:    37.504s 
+

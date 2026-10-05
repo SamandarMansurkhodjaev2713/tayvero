@@ -1,20 +1,20 @@
 [
-  {
-    "command": "node tools/release/run-pipeline-postgres-gate.mjs",
-    "startedAt": "2026-09-17T21:00:33.612961+00:00",
-    "exitCode": 2,
-    "stdout": "{\"artifactState\":\"BLOCKED_EXTERNAL\",\"criticalChecksPassed\":false,\"nextScopeId\":\"CRM-PIPE-POSTGRES-005\",\"blockers\":[\"TEST_DATABASE_URL is required explicitly; never fall back to DATABASE_URL.\",\"TEST_DATABASE_URL is required explicitly; this gate never falls back to DATABASE_URL.\",\"Bun is required for Prisma generation and Bun integration tests.\",\"Installed workspace dependencies are required (node_modules/.bin is absent).\"]}\n",
-    "stderr": "",
-    "expectedVerification": "REAL_POSTGRESQL",
-    "status": "BLOCKED_EXTERNAL"
-  },
-  {
-    "command": "node tools/release/run-operations-postgres-gate.mjs",
-    "startedAt": "2026-09-17T21:00:33.648548+00:00",
-    "exitCode": 2,
-    "stdout": "{\"status\":\"BLOCKED_EXTERNAL\",\"blockers\":[\"TEST_DATABASE_URL is required explicitly; never fall back to DATABASE_URL.\",\"Bun is not available.\",\"Installed workspace dependencies including Prisma are required.\"],\"nextScopeId\":\"MIG-APPROVAL-POSTGRES-001\"}\n",
-    "stderr": "",
-    "expectedVerification": "REAL_POSTGRESQL",
-    "status": "BLOCKED_EXTERNAL"
-  }
+	{
+		"command": "node tools/release/run-pipeline-postgres-gate.mjs",
+		"startedAt": "2026-09-17T21:00:33.612961+00:00",
+		"exitCode": 2,
+		"stdout": "{\"artifactState\":\"BLOCKED_EXTERNAL\",\"criticalChecksPassed\":false,\"nextScopeId\":\"CRM-PIPE-POSTGRES-005\",\"blockers\":[\"TEST_DATABASE_URL is required explicitly; never fall back to DATABASE_URL.\",\"TEST_DATABASE_URL is required explicitly; this gate never falls back to DATABASE_URL.\",\"Bun is required for Prisma generation and Bun integration tests.\",\"Installed workspace dependencies are required (node_modules/.bin is absent).\"]}\n",
+		"stderr": "",
+		"expectedVerification": "REAL_POSTGRESQL",
+		"status": "BLOCKED_EXTERNAL"
+	},
+	{
+		"command": "node tools/release/run-operations-postgres-gate.mjs",
+		"startedAt": "2026-09-17T21:00:33.648548+00:00",
+		"exitCode": 2,
+		"stdout": "{\"status\":\"BLOCKED_EXTERNAL\",\"blockers\":[\"TEST_DATABASE_URL is required explicitly; never fall back to DATABASE_URL.\",\"Bun is not available.\",\"Installed workspace dependencies including Prisma are required.\"],\"nextScopeId\":\"MIG-APPROVAL-POSTGRES-001\"}\n",
+		"stderr": "",
+		"expectedVerification": "REAL_POSTGRESQL",
+		"status": "BLOCKED_EXTERNAL"
+	}
 ]

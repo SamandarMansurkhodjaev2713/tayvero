@@ -2,10 +2,10 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { parsePipelineDefinition } from "@crm/pipeline-core";
 import {
-	InMemoryPipelineRepository,
-	PipelineRuntimeError,
 	canonicalJson,
 	createPipelineRuntime,
+	InMemoryPipelineRepository,
+	PipelineRuntimeError,
 	payloadHash,
 } from "../src/index.mjs";
 
@@ -158,7 +158,10 @@ test("keeps an explicitly non-default later pipeline non-default", async () => {
 	});
 	const pipelines = await runtime.listPipelines(context());
 	assert.equal(created.isDefault, false);
-	assert.equal(pipelines.find((pipeline) => pipeline.id === "p1").isDefault, true);
+	assert.equal(
+		pipelines.find((pipeline) => pipeline.id === "p1").isDefault,
+		true,
+	);
 	assert.equal(pipelines.find((pipeline) => pipeline.id === "p1").version, 1);
 });
 
@@ -180,7 +183,9 @@ test("replays a concurrently committed command after a deterministic mutation ra
 					throw new Error("audit must not run in the losing transaction");
 				},
 				putReceipt: async () => {
-					throw new Error("receipt must not be written by the losing transaction");
+					throw new Error(
+						"receipt must not be written by the losing transaction",
+					);
 				},
 			});
 		},
@@ -260,7 +265,12 @@ test("canonical payload hashing rejects cycles, sparse arrays and custom seriali
 	);
 
 	assert.throws(
-		() => canonicalJson({ toJSON() { return { forged: true }; } }),
+		() =>
+			canonicalJson({
+				toJSON() {
+					return { forged: true };
+				},
+			}),
 		(error) =>
 			error instanceof PipelineRuntimeError &&
 			error.code === "UNSUPPORTED_PAYLOAD_VALUE",
@@ -593,6 +603,7 @@ test("enforces the bounded pipeline count", async () => {
 				isDefault: false,
 			}),
 		),
-		(error) => error instanceof PipelineRuntimeError && error.code === "PIPELINE_LIMIT",
+		(error) =>
+			error instanceof PipelineRuntimeError && error.code === "PIPELINE_LIMIT",
 	);
 });

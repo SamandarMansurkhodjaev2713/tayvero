@@ -1,4 +1,3 @@
-
 import { z } from "zod";
 
 const safeId = z
@@ -81,9 +80,7 @@ export const pipelineSetDefaultInput = z
 		expectedVersion: positiveVersion,
 	})
 	.strict();
-export type PipelineStateCommandInput = z.infer<
-	typeof pipelineSetDefaultInput
->;
+export type PipelineStateCommandInput = z.infer<typeof pipelineSetDefaultInput>;
 
 export const pipelineArchiveInput = pipelineSetDefaultInput;
 export const pipelineRestoreInput = pipelineSetDefaultInput;

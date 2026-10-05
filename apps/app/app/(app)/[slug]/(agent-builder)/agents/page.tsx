@@ -22,7 +22,8 @@ export default function AgentsPage() {
 				<PageShellHeading>
 					<PageShellTitle>Agents</PageShellTitle>
 					<PageShellDescription>
-						See what is running, review the latest result, and open an agent to manage its access.
+						See what is running, review the latest result, and open an agent to
+						manage its access.
 					</PageShellDescription>
 				</PageShellHeading>
 			</PageShellHeader>

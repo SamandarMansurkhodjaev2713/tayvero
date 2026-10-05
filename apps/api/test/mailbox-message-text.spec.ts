@@ -247,7 +247,10 @@ describe("rootMessageId", () => {
 			{ name: "Message-ID", value: "<reply-a@product.example>" },
 		];
 		const repB = [
-			{ name: "References", value: "<root@acme.com> <reply-a@product.example>" },
+			{
+				name: "References",
+				value: "<root@acme.com> <reply-a@product.example>",
+			},
 			{ name: "Message-ID", value: "<reply-b@product.example>" },
 		];
 

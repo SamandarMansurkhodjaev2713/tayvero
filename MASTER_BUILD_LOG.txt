@@ -1,0 +1,10 @@
+TAYVERO 2026-10-05 — executed evidence index
+
+Windows native toolchain: docs/quality/design-toolchain-review.json and design-toolchain-2026-10-05/*.log.
+Monorepo semantic:13/13 tasks. IndependentNext:36/36pages. WholeEvebuild:ENOSPC.
+Windows dependency-free:575/502passed/73failed/zero skips; POSIX safeguards preserved.
+Linux first CI:575/575 zero skips, pipelinePG step passed, operationsPG failed.
+CI source:https://github.com/SamandarMansurkhodjaev2713/tayvero/actions/runs/37312917348
+Latest reports/diagnosis added after CI artifact retrieval.
+Browser fixtures:actualReactcomponents/syntheticdata/disabledmutations,8appearances,320/393/768/1440CSSpx.
+No authenticatedE2E/provider/staging/productiondatabase acceptance inferred.

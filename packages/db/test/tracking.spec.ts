@@ -221,8 +221,12 @@ describe("the allow-list", () => {
 
 describe("the domain an event belongs to", () => {
 	test("is the parent when the scope covers subdomains", () => {
-		expect(matchedHost("docs.product.example", CONFIG)?.host).toBe("product.example");
-		expect(matchedHost("product.example", CONFIG)?.host).toBe("product.example");
+		expect(matchedHost("docs.product.example", CONFIG)?.host).toBe(
+			"product.example",
+		);
+		expect(matchedHost("product.example", CONFIG)?.host).toBe(
+			"product.example",
+		);
 	});
 
 	test("is the exact row when that is the whole of the scope", () => {
@@ -245,8 +249,12 @@ describe("the domain an event belongs to", () => {
 			],
 		};
 
-		expect(matchedHost("docs.product.example", both)?.host).toBe("docs.product.example");
-		expect(matchedHost("blog.product.example", both)?.host).toBe("product.example");
+		expect(matchedHost("docs.product.example", both)?.host).toBe(
+			"docs.product.example",
+		);
+		expect(matchedHost("blog.product.example", both)?.host).toBe(
+			"product.example",
+		);
 	});
 });
 
@@ -301,7 +309,11 @@ describe("the submission dedupe key", () => {
 	test("collapses the same form inside one minute", () => {
 		const at = new Date("2026-08-10T12:00:10.000Z");
 		const later = new Date("2026-08-10T12:00:50.000Z");
-		const parts = { host: "product.example", path: "/pricing", email: "a@b.com" };
+		const parts = {
+			host: "product.example",
+			path: "/pricing",
+			email: "a@b.com",
+		};
 
 		expect(dedupeKey({ ...parts, at })).toBe(
 			dedupeKey({ ...parts, at: later }),

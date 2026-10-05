@@ -1,9 +1,8 @@
 import "@crm/env/load";
 
-import { resolveTestDatabase } from "./test-database.mjs";
-
 import { PrismaPg } from "@prisma/adapter-pg";
 import { type Prisma, PrismaClient } from "./generated/prisma/client";
+import { resolveTestDatabase } from "./test-database.mjs";
 
 const connectionString =
 	process.env.NODE_ENV === "test" ? testDatabase() : liveDatabase();

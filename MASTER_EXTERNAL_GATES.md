@@ -1,38 +1,17 @@
-# MASTER_EXTERNAL_GATES — 18 сентября 2026
+# MASTER_EXTERNAL_GATES — 5 октября 2026
 
-## Внешние gates, фактически не пройденные
-
-| Scope | Статус | Что требуется |
+| Gate | Фактический статус | Что остаётся |
 |---|---|---|
-| CRM-PIPE-POSTGRES-005 | BLOCKED_EXTERNAL | Реальная disposable PostgreSQL: migration/backfill/concurrency/reconciliation |
-| MIG-APPROVAL-POSTGRES-001 | BLOCKED_EXTERNAL | Prisma generation и все source/receipt/approval/continuation/lifecycle/worker DB tests |
-| FULL-TOOLCHAIN | BLOCKED_EXTERNAL | Bun 1.3.12, frozen dependencies, formatter/lint, semantic types, native codegen/build |
-| MIG-WORKER-STAGING-001 | BLOCKED_EXTERNAL | Авторизованные API/Next, supervisor, две реальные worker процессы, shared volume, restart/revocation |
-| AGENT-APPROVAL-NATIVE-ACCEPTANCE-001 | BLOCKED_EXTERNAL | Locked Eve 0.29.4, exact child sessions, hooks/routes, once-only side effects |
-| AUTHENTICATED-APP-E2E | BLOCKED_EXTERNAL | Новые UI flows, roles/proxy, темы/responsive/keyboard/assistive technology |
-| BACKUP-RESTORE/LOAD/LIVE PROVIDERS | BLOCKED_EXTERNAL | Реальное эксплуатационное доказательство, не только локальные unit tests |
+| Linux dependency-free regression | 575/575, zero skipped, первый CI | Перепроверка финального commit с новыми tooling regressions |
+| Semantic toolchain | 13/13 tasks passed | Финальный evidence в design-toolchain-review.json |
+| Native Next production | exit0,36/36pages | Authenticated E2E и deployment configuration |
+| CRM-PIPE-POSTGRES-005 | VERIFIED: CI5 3/3, zero skipped | Следующий shadow-read scope под default-OFF rollout |
+| MIG-APPROVAL-POSTGRES-001 | VERIFIED: CI5 17/17, zero skipped | Authenticated E2E и staging остаются отдельными |
+| Eve native packaging | ENOSPC на Windows | Достаточные ресурсы + locked runtime packaging/acceptance |
+| MIG-WORKER-STAGING-001 | NOT_VERIFIED | Два процесса, private POSIX volume, supervisor, restart/revocation/draining |
+| Authenticated app E2E | NOT_VERIFIED | Owner/admin/member/revoked, real routes/query/mutations |
+| Providers / backup / restore / load | NOT_VERIFIED | Реальные подтверждения в разрешённом окружении |
 
-Node22 и TypeScript parser есть. Bun/psql/postgres/initdb/docker/dependency tree/TEST_DATABASE_URL отсутствуют.
-Повторные обращения к registry.npmjs.org и deb.debian.org завершились curl exit6 (DNS). Оба DB-gate фактически
-вызваны; BLOCKED_EXTERNAL, не green skip. Логи и environment.json сохранены. Реальных DB/provider вызовов 0.
-Две новые SQL-миграции и четыре дополнительных PostgreSQL acceptance-теста написаны, НЕ применены/выполнены.
+Локально TEST_DATABASE_URL отсутствует; process-only dummy localhost DATABASE_URL использовался для codegen, не acceptance. CI использует disposable PostgreSQL16 и явно named _test database; production database не подключалась. Windows POSIX failures не пропущены и не превращены в green. Business provider calls=0.
 
-## Это незавершённый КОД, не внешние blockers
-
-- Guided reconciliation для неопределённого agent continuation/action; bounded terminal/orphan ticket retention.
-- Referenced/terminal migration-source retention/архивирование, quota policy, temp-file janitor, exhaustive source
-  inventory pagination, object-storage adapter, worker heartbeat/alerting. Новый worker реализован, но не развёрнут.
-- XLSX, сделки/связи/custom fields/merge/update, расширенная история/объёмы и direct Bitrix24/Kommo adapters.
-- Полноценные self-maintaining proposals/remediation, Outcome Ledger/CEO Brief, полезные каналы и onboarding.
-- Telegram/WhatsApp/1C, unified Inbox, полная RU/UZ/EN, provisioning/shared tenancy/credential migration.
-
-15 старых tenant findings остаются. Никаких новых baseline exemptions. Dedicated workspace не стал shared SaaS.
-ERP/HR-suite/telephony/marketplace/MCP ecosystem/multi-region — DEFERRED_BY_DESIGN.
-
-## Что нужно предоставить через среду, не через чат
-
-Network-enabled dev/CI, explicit disposable TEST_DATABASE_URL, locked toolchain; затем HTTPS staging, два admin,
-разные роли и реальные worker процессы. Для источников — проверенный private persistent POSIX volume, одинаковый
-service UID и исторические ключи через secret manager. Согласованный backup/restore DB+volume+keys обязателен.
-Не подставлять production DATABASE_URL в тесты, не применять новые миграции к клиенту автоматически. Все новые
-flags OFF. Legacy Deal.stage authoritative; после реального pipeline gate нужны shadow/observation, не auto cutover.
+Не завершены кодом: полный onboarding/channels/proposals/Outcome/shared-tenancy, XLSX/deal/link import, terminal-source policy, exhaustive source pagination и worker health supervision. Эти задачи не сводятся к предоставлению credentials. Guards, default-OFF rollout и legacy Deal.stage authoritative сохранены.

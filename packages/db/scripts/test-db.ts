@@ -1,9 +1,12 @@
 import "@crm/env/load";
-import { resolveTestDatabase, assertTestDatabaseResetAllowed } from "../src/test-database.mjs";
 import { spawnSync } from "node:child_process";
 import { existsSync, readdirSync } from "node:fs";
 import { dirname, join } from "node:path";
 import pg from "pg";
+import {
+	assertTestDatabaseResetAllowed,
+	resolveTestDatabase,
+} from "../src/test-database.mjs";
 
 const SCHEMA = join(dirname(import.meta.dirname), "prisma", "schema.prisma");
 const MIGRATIONS = join(dirname(import.meta.dirname), "prisma", "migrations");
@@ -56,7 +59,10 @@ async function create(
 
 			// Never rebuild automatically: stale data may belong to another test run.
 			if (!forced) {
-				fail([reason, "No database was dropped. Use an isolated fresh database, or explicitly set ALLOW_TEST_DATABASE_RESET=1 and pass --reset."]);
+				fail([
+					reason,
+					"No database was dropped. Use an isolated fresh database, or explicitly set ALLOW_TEST_DATABASE_RESET=1 and pass --reset.",
+				]);
 			}
 			console.log(`  rebuilding ${database}: explicit reset approved`);
 			await drop(client, database);
@@ -98,7 +104,8 @@ async function stale(target: string, database: string): Promise<string | null> {
 	}
 
 	// Pending additive migrations are not evidence of drift. Deploy them first.
-	if ([...onDisk].some((migration) => !applied.includes(migration))) return null;
+	if ([...onDisk].some((migration) => !applied.includes(migration)))
+		return null;
 	return drifted(target) ? `${database} no longer matches schema.prisma` : null;
 }
 
@@ -108,7 +115,9 @@ async function appliedMigrations(target: string): Promise<string[] | null> {
 	try {
 		await client.connect();
 	} catch {
-		fail(["Could not inspect the existing test database. No reset was attempted."]);
+		fail([
+			"Could not inspect the existing test database. No reset was attempted.",
+		]);
 	}
 
 	try {

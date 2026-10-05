@@ -12,5 +12,12 @@ const required = [
 ];
 for (const path of required) await access(path);
 const progress = await readFile("progress.md", "utf8");
-if (!progress.includes("CRM-PIPE-DUAL-WRITE-004")) throw new Error("Progress ledger is missing CRM-PIPE-DUAL-WRITE-004");
-console.log(JSON.stringify({ ok: true, requiredFiles: required.length, nextScopeId: "CRM-PIPE-POSTGRES-005" }));
+if (!progress.includes("CRM-PIPE-DUAL-WRITE-004"))
+	throw new Error("Progress ledger is missing CRM-PIPE-DUAL-WRITE-004");
+console.log(
+	JSON.stringify({
+		ok: true,
+		requiredFiles: required.length,
+		nextScopeId: "CRM-PIPE-POSTGRES-005",
+	}),
+);

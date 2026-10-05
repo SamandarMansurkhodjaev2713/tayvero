@@ -1,4 +1,3 @@
-
 import {
 	PipelineDomainError,
 	parseAssignment,
@@ -6,9 +5,9 @@ import {
 	planDealStageTransition,
 } from "@crm/pipeline-core";
 import { payloadHash } from "./canonical.mjs";
-import { createRuntimeContext, requirePermission } from "./context.mjs";
 import { MAX_PIPELINES_PER_WORKSPACE } from "./constants.mjs";
-import { PipelineRuntimeError, fail } from "./errors.mjs";
+import { createRuntimeContext, requirePermission } from "./context.mjs";
+import { fail, PipelineRuntimeError } from "./errors.mjs";
 
 const SAFE_ID = /^[A-Za-z0-9][A-Za-z0-9_.:@/-]{0,127}$/;
 const ACTION_PERMISSIONS = Object.freeze({
@@ -48,14 +47,17 @@ function identifier(value, code, label) {
 
 function positiveVersion(value, path = "expectedVersion") {
 	if (!Number.isSafeInteger(value) || value < 1) {
-		fail("INVALID_VERSION", `${path} must be a positive safe integer`, { path });
+		fail("INVALID_VERSION", `${path} must be a positive safe integer`, {
+			path,
+		});
 	}
 	return value;
 }
 
 function entityId(result) {
 	if (result === null || typeof result !== "object") return null;
-	if (typeof result.id === "string" && SAFE_ID.test(result.id)) return result.id;
+	if (typeof result.id === "string" && SAFE_ID.test(result.id))
+		return result.id;
 	if (typeof result.dealId === "string" && SAFE_ID.test(result.dealId)) {
 		return result.dealId;
 	}
@@ -97,7 +99,9 @@ function parseActionResult(action, value) {
 	if (action === "deal.transition") {
 		return parseRepositoryAssignment(value, `receipt.${action}.result`);
 	}
-	fail("INVALID_ACTION", "Pipeline command action is not replayable", { action });
+	fail("INVALID_ACTION", "Pipeline command action is not replayable", {
+		action,
+	});
 }
 
 async function withRuntimeErrorBoundary(operation) {
@@ -112,18 +116,8 @@ async function withRuntimeErrorBoundary(operation) {
 	}
 }
 
-async function readCommittedReceipt(
-	repository,
-	context,
-	action,
-	key,
-	hash,
-) {
-	const existing = await repository.getReceipt(
-		context.tenantId,
-		action,
-		key,
-	);
+async function readCommittedReceipt(repository, context, action, key, hash) {
+	const existing = await repository.getReceipt(context.tenantId, action, key);
 	if (!existing) return Object.freeze({ found: false, result: null });
 	if (existing.payloadHash !== hash) {
 		fail(
@@ -231,8 +225,14 @@ function createPipelineRuntimeInternal({ repository }) {
 			const context = createRuntimeContext(contextInput);
 			requirePermission(context, "pipeline.read");
 			const values = await repository.listPipelines(context.tenantId);
-			if (!Array.isArray(values) || values.length > MAX_PIPELINES_PER_WORKSPACE) {
-				fail("CORRUPT_PIPELINE_DATA", "Pipeline list is invalid or exceeds its bound");
+			if (
+				!Array.isArray(values) ||
+				values.length > MAX_PIPELINES_PER_WORKSPACE
+			) {
+				fail(
+					"CORRUPT_PIPELINE_DATA",
+					"Pipeline list is invalid or exceeds its bound",
+				);
 			}
 			return Object.freeze(
 				values.map((value, index) =>
@@ -289,7 +289,10 @@ function createPipelineRuntimeInternal({ repository }) {
 			const context = createRuntimeContext(contextInput);
 			requirePermission(context, "pipeline.create");
 			if (definition?.tenantId !== context.tenantId) {
-				fail("TENANT_MISMATCH", "Pipeline tenant must come from trusted context");
+				fail(
+					"TENANT_MISMATCH",
+					"Pipeline tenant must come from trusted context",
+				);
 			}
 			const pipeline = parsePipelineDefinition(definition);
 			if (pipeline.version !== 1) {
@@ -341,7 +344,10 @@ function createPipelineRuntimeInternal({ repository }) {
 			const context = createRuntimeContext(contextInput);
 			requirePermission(context, "pipeline.update");
 			if (definition?.tenantId !== context.tenantId) {
-				fail("TENANT_MISMATCH", "Pipeline tenant must come from trusted context");
+				fail(
+					"TENANT_MISMATCH",
+					"Pipeline tenant must come from trusted context",
+				);
 			}
 			const version = positiveVersion(expectedVersion);
 			const parsed = parsePipelineDefinition(definition);
@@ -358,11 +364,18 @@ function createPipelineRuntimeInternal({ repository }) {
 				idempotencyKey(rawKey),
 				{ parsed, expectedVersion: version },
 				async (tx) => {
-					const currentValue = await tx.getPipeline(context.tenantId, parsed.id);
-					if (!currentValue) fail("PIPELINE_NOT_FOUND", "Pipeline was not found");
+					const currentValue = await tx.getPipeline(
+						context.tenantId,
+						parsed.id,
+					);
+					if (!currentValue)
+						fail("PIPELINE_NOT_FOUND", "Pipeline was not found");
 					const current = parseRepositoryPipeline(currentValue);
 					if (current.isArchived) {
-						fail("PIPELINE_ARCHIVED", "Restore an archived pipeline before editing it");
+						fail(
+							"PIPELINE_ARCHIVED",
+							"Restore an archived pipeline before editing it",
+						);
 					}
 					if (
 						current.isDefault !== parsed.isDefault ||
@@ -423,7 +436,10 @@ function createPipelineRuntimeInternal({ repository }) {
 			const context = createRuntimeContext(contextInput);
 			requirePermission(context, "pipeline.migrate");
 			if (assignment?.tenantId !== context.tenantId) {
-				fail("TENANT_MISMATCH", "Assignment tenant must come from trusted context");
+				fail(
+					"TENANT_MISMATCH",
+					"Assignment tenant must come from trusted context",
+				);
 			}
 			const parsed = parseAssignment(assignment);
 			return repository.transaction(async (tx) =>
@@ -463,14 +479,18 @@ function createPipelineRuntimeInternal({ repository }) {
 				async (tx) => {
 					const assignmentValue = await tx.getAssignment(context.tenantId, id);
 					if (!assignmentValue) {
-						fail("ASSIGNMENT_NOT_FOUND", "Deal pipeline assignment was not found");
+						fail(
+							"ASSIGNMENT_NOT_FOUND",
+							"Deal pipeline assignment was not found",
+						);
 					}
 					const assignment = parseRepositoryAssignment(assignmentValue);
 					const pipelineValue = await tx.getPipeline(
 						context.tenantId,
 						assignment.pipelineId,
 					);
-					if (!pipelineValue) fail("PIPELINE_NOT_FOUND", "Pipeline was not found");
+					if (!pipelineValue)
+						fail("PIPELINE_NOT_FOUND", "Pipeline was not found");
 					const pipeline = parseRepositoryPipeline(pipelineValue);
 					const plan = planDealStageTransition({
 						pipeline,
@@ -508,7 +528,8 @@ function createPipelineRuntimeInternal({ repository }) {
 				{ pipelineId: id, expectedVersion: version },
 				async (tx) => {
 					const currentValue = await tx.getPipeline(context.tenantId, id);
-					if (!currentValue) fail("PIPELINE_NOT_FOUND", "Pipeline was not found");
+					if (!currentValue)
+						fail("PIPELINE_NOT_FOUND", "Pipeline was not found");
 					const current = parseRepositoryPipeline(currentValue);
 					if (current.version !== version) {
 						fail("STALE_PIPELINE", "Pipeline changed after it was read", {
@@ -561,7 +582,8 @@ function createPipelineRuntimeInternal({ repository }) {
 				{ pipelineId: id, expectedVersion: version },
 				async (tx) => {
 					const currentValue = await tx.getPipeline(context.tenantId, id);
-					if (!currentValue) fail("PIPELINE_NOT_FOUND", "Pipeline was not found");
+					if (!currentValue)
+						fail("PIPELINE_NOT_FOUND", "Pipeline was not found");
 					const current = parseRepositoryPipeline(currentValue);
 					if (current.version !== version) {
 						fail("STALE_PIPELINE", "Pipeline changed after it was read", {

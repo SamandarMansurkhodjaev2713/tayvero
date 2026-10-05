@@ -50,7 +50,7 @@ export class DealPipelineBridgeService {
 			},
 		});
 
-		let plan;
+		let plan: ReturnType<typeof planLegacyStageAssignmentSync>;
 		try {
 			plan = planLegacyStageAssignmentSync({ ...input, mapping, assignment });
 		} catch (error) {

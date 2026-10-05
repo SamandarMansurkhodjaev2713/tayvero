@@ -1,6 +1,6 @@
-import { ImportDataLink } from "@/components/import-data-link";
 import type { Metadata } from "next";
 import { Suspense } from "react";
+import { ImportDataLink } from "@/components/import-data-link";
 import {
 	PageShell,
 	PageShellActions,
@@ -35,7 +35,7 @@ export default function CompaniesPage({
 					</PageShellDescription>
 				</PageShellHeading>
 				<PageShellActions>
-          <ImportDataLink />
+					<ImportDataLink />
 					<CreateCompanySheet />
 				</PageShellActions>
 			</PageShellHeader>

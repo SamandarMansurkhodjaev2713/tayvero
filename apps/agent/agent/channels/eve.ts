@@ -1,4 +1,3 @@
-import { authenticateNativeContinuation } from "../lib/approval-continuation";
 import {
 	type AuthFn,
 	extractBearerToken,
@@ -8,6 +7,7 @@ import {
 	withAuthChallenges,
 } from "eve/channels/auth";
 import { eveChannel } from "eve/channels/eve";
+import { authenticateNativeContinuation } from "../lib/approval-continuation";
 
 export const BRIDGE_ISSUER = "crm-app";
 export const BRIDGE_AUDIENCE = "crm-agent";
@@ -45,5 +45,10 @@ export function repFromCrm(secret: string): AuthFn<Request> {
 const secret = process.env.AGENT_BRIDGE_SECRET;
 
 export default eveChannel({
-	auth: [withAuthChallenges(authenticateNativeContinuation, [{ scheme: "Bearer" }]), ...(secret ? [repFromCrm(secret)] : []), vercelOidc(), localDev()],
+	auth: [
+		withAuthChallenges(authenticateNativeContinuation, [{ scheme: "Bearer" }]),
+		...(secret ? [repFromCrm(secret)] : []),
+		vercelOidc(),
+		localDev(),
+	],
 });

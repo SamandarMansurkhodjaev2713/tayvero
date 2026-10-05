@@ -46,6 +46,8 @@ import {
 	paginate,
 	resolveOrderBy,
 } from "../trpc/list-input";
+import { evaluateDealHealth } from "./deal-health.mjs";
+import { DealPipelineBridgeService } from "./deal-pipeline-bridge.service";
 import type {
 	ClosingWindow,
 	DealAttachContactInput,
@@ -59,8 +61,6 @@ import type {
 	SetStageInput,
 } from "./deals.contracts";
 import { CLOSING_WINDOWS } from "./deals.contracts";
-import { DealPipelineBridgeService } from "./deal-pipeline-bridge.service";
-import { evaluateDealHealth } from "./deal-health.mjs";
 
 const OWNER_SELECT = {
 	id: true,
@@ -204,14 +204,20 @@ export class DealsService {
 				description: true,
 				stage: true,
 				stageChangedAt: true,
-                lastActivityAt: true,
-                _count: { select: { activities: { where: { type: ActivityType.TASK, completedAt: null } } } },
-                activities: {
-                    where: { type: ActivityType.TASK, completedAt: null },
-                    orderBy: [{ dueAt: { sort: "asc", nulls: "last" } }, { id: "asc" }],
-                    take: 1,
-                    select: { id: true, dueAt: true },
-                },
+				lastActivityAt: true,
+				_count: {
+					select: {
+						activities: {
+							where: { type: ActivityType.TASK, completedAt: null },
+						},
+					},
+				},
+				activities: {
+					where: { type: ActivityType.TASK, completedAt: null },
+					orderBy: [{ dueAt: { sort: "asc", nulls: "last" } }, { id: "asc" }],
+					take: 1,
+					select: { id: true, dueAt: true },
+				},
 				amount: true,
 				currency: true,
 				baseAmount: true,
@@ -237,9 +243,9 @@ export class DealsService {
 
 		const {
 			contacts,
-            activities: pendingTasks,
-            _count,
-            lastActivityAt,
+			activities: pendingTasks,
+			_count,
+			lastActivityAt,
 			amount,
 			baseAmount,
 			fxRate,
@@ -250,8 +256,14 @@ export class DealsService {
 
 		return {
 			...rest,
-            lastActivityAt: lastActivityAt?.toISOString() ?? null,
-            health: evaluateDealHealth({ ...deal, lastActivityAt, pendingTaskCount: _count?.activities, nextTask: pendingTasks?.[0] ?? null, contactCount: contacts.length }),
+			lastActivityAt: lastActivityAt?.toISOString() ?? null,
+			health: evaluateDealHealth({
+				...deal,
+				lastActivityAt,
+				pendingTaskCount: _count?.activities,
+				nextTask: pendingTasks?.[0] ?? null,
+				contactCount: contacts.length,
+			}),
 			fields: await this.fields.valuesFor("DEAL", id),
 			amountCents: toCents(amount),
 			baseAmountCents: toCents(baseAmount),
@@ -498,7 +510,12 @@ export class DealsService {
 		const closed = isClosedStage(input.stage);
 		const transition = await this.agent.withCrmEvents(async (tx, emit) => {
 			const [deal] = await tx.$queryRaw<
-				Array<{ id: string; stage: DealStage; companyId: string; stageChangedAt: Date }>
+				Array<{
+					id: string;
+					stage: DealStage;
+					companyId: string;
+					stageChangedAt: Date;
+				}>
 			>`
 				SELECT id, stage, "companyId", "stageChangedAt"
 				FROM deal

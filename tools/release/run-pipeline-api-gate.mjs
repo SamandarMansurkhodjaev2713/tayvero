@@ -1,11 +1,6 @@
 #!/usr/bin/env node
 import { spawnSync } from "node:child_process";
-import {
-	mkdirSync,
-	readdirSync,
-	statSync,
-	writeFileSync,
-} from "node:fs";
+import { mkdirSync, readdirSync, statSync, writeFileSync } from "node:fs";
 import { join, relative, resolve } from "node:path";
 import process from "node:process";
 
@@ -19,7 +14,10 @@ const buildLogPath = resolve(
 	qualityDirectory,
 	"generated-pipeline-api-003-build.log",
 );
-const generalReportPath = resolve(qualityDirectory, "generated-build-report.json");
+const generalReportPath = resolve(
+	qualityDirectory,
+	"generated-build-report.json",
+);
 const generalBuildLogPath = resolve(qualityDirectory, "generated-build.log");
 const MAX_BUFFER_BYTES = 64 * 1024 * 1024;
 const DEFAULT_TIMEOUT_MS = 120_000;
@@ -93,7 +91,10 @@ function execute({
 	} else if (result.error?.code === "ENOENT") {
 		status = "not_available";
 		reason = `${command} is not installed in the verification environment`;
-	} else if (result.error?.code === "ETIMEDOUT" || result.signal === "SIGTERM") {
+	} else if (
+		result.error?.code === "ETIMEDOUT" ||
+		result.signal === "SIGTERM"
+	) {
 		status = "timeout";
 		reason = `Command exceeded ${timeoutMs}ms`;
 	} else {
@@ -374,7 +375,9 @@ const bun = execute({
 commands.push(bun);
 let dependencyTreePresent = false;
 try {
-	dependencyTreePresent = statSync(resolve(root, "node_modules/.bin")).isDirectory();
+	dependencyTreePresent = statSync(
+		resolve(root, "node_modules/.bin"),
+	).isDirectory();
 } catch {
 	dependencyTreePresent = false;
 }

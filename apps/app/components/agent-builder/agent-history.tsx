@@ -115,7 +115,7 @@ export function AgentRuns({
 						<button
 							type="button"
 							aria-expanded={expanded === run.id}
-                            onClick={() =>
+							onClick={() =>
 								setExpanded((current) => (current === run.id ? null : run.id))
 							}
 							className="flex min-h-14 w-full min-w-0 flex-col items-stretch gap-3 px-4 py-3 text-left outline-none hover:bg-muted/40 focus-visible:bg-muted/40 sm:flex-row sm:items-center sm:justify-between sm:gap-5 sm:px-5 sm:py-2"
@@ -169,8 +169,13 @@ export function AgentRuns({
 									variant="outline"
 									size="sm"
 									disabled={retryingRunId === run.id || run.canRetry !== true}
-									title={run.retryBlockedReason ?? (run.canRetry === true ? "Retry this run" : "Retry safety is unavailable from this API version")}
-                                    onClick={() => onRetry(run.id)}
+									title={
+										run.retryBlockedReason ??
+										(run.canRetry === true
+											? "Retry this run"
+											: "Retry safety is unavailable from this API version")
+									}
+									onClick={() => onRetry(run.id)}
 								>
 									<Icon icon={Renew} data-icon="inline-start" />
 									Retry
@@ -192,11 +197,26 @@ export function AgentRuns({
 						) : null}
 					</div>
 
-					{expanded === run.id ? <>
-                        {run.retryBlockedReason && ["FAILED", "CANCELLED"].includes(run.status) ? <p role="status" className="border-t px-5 py-3 text-sm text-muted-foreground">{run.retryBlockedReason}</p> : null}
-                        {run.actionsTruncated ? <p className="px-5 py-2 text-xs text-muted-foreground">Showing the first {run.actions.length} of {run.totalActions} actions. This is not the complete action history.</p> : null}
-                        <ExpandedRun run={run} />
-                    </> : null}
+					{expanded === run.id ? (
+						<>
+							{run.retryBlockedReason &&
+							["FAILED", "CANCELLED"].includes(run.status) ? (
+								<p
+									role="status"
+									className="border-t px-5 py-3 text-sm text-muted-foreground"
+								>
+									{run.retryBlockedReason}
+								</p>
+							) : null}
+							{run.actionsTruncated ? (
+								<p className="px-5 py-2 text-xs text-muted-foreground">
+									Showing the first {run.actions.length} of {run.totalActions}{" "}
+									actions. This is not the complete action history.
+								</p>
+							) : null}
+							<ExpandedRun run={run} />
+						</>
+					) : null}
 				</div>
 			))}
 

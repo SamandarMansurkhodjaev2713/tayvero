@@ -132,7 +132,16 @@ export const agentSaveFileInput = agentIdInput.extend({
 export type AgentSaveFileInput = z.infer<typeof agentSaveFileInput>;
 
 const agentListItemOutput = z.object({
-    lastRun: z.object({id:z.string(),status:agentRunStatus,createdAt:z.string(),finishedAt:z.string().nullable(),costUsd:z.string().nullable()}).nullable().optional(),
+	lastRun: z
+		.object({
+			id: z.string(),
+			status: agentRunStatus,
+			createdAt: z.string(),
+			finishedAt: z.string().nullable(),
+			costUsd: z.string().nullable(),
+		})
+		.nullable()
+		.optional(),
 	id: z.string(),
 	name: z.string(),
 	description: z.string().nullable(),
@@ -276,10 +285,10 @@ const agentRunActionOutput = z.object({
 });
 
 const agentRunSummaryOutput = z.object({
-    canRetry: z.boolean().optional(),
-    retryBlockedReason: z.string().nullable().optional(),
-    totalActions: z.number().optional(),
-    actionsTruncated: z.boolean().optional(),
+	canRetry: z.boolean().optional(),
+	retryBlockedReason: z.string().nullable().optional(),
+	totalActions: z.number().optional(),
+	actionsTruncated: z.boolean().optional(),
 	id: z.string(),
 	status: agentRunStatus,
 	triggerType: agentTriggerType,

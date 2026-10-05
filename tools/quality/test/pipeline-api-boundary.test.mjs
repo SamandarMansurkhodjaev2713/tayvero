@@ -38,7 +38,10 @@ test("pipeline router is registered and requires authenticated interactive sessi
 });
 
 test("pipeline mutations replay stable commands before reading mutable state", async () => {
-	const [service, core] = await Promise.all([source("service"), source("core")]);
+	const [service, core] = await Promise.all([
+		source("service"),
+		source("core"),
+	]);
 	assert.match(service, /createDeterministicPipelineIdFactory/);
 	assert.match(service, /pipelineCreateCommandPayload/);
 	assert.match(service, /pipelineUpdateCommandPayload/);
@@ -80,7 +83,10 @@ test("public pipeline contracts are strict and expose no tenant selector", async
 	assert.match(contracts, /pipelineSetDefaultInput[\s\S]*expectedVersion/);
 	const objectCount = (contracts.match(/z\s*\.object\(/g) ?? []).length;
 	const strictCount = (contracts.match(/\.strict\(\)/g) ?? []).length;
-	assert.ok(strictCount >= objectCount, "every public Zod object must be strict");
+	assert.ok(
+		strictCount >= objectCount,
+		"every public Zod object must be strict",
+	);
 });
 
 test("pipeline persistence uses bounded reads and serializable optimistic mutations", async () => {

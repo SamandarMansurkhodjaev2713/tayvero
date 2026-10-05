@@ -11,7 +11,6 @@ import {
 } from "@nestjs/common";
 import { InjectDatabase } from "../database/database.constants";
 import { AgentAccessService } from "./agent-access.service";
-import { runRetryPolicy } from "./run-retry-policy.mjs";
 import { AGENT_DISPATCH } from "./agent-dispatch.config";
 import { AgentTriggerService } from "./agent-trigger.service";
 import type {
@@ -19,6 +18,7 @@ import type {
 	AgentRetryRunInput,
 	AgentRunNowInput,
 } from "./agents.contracts";
+import { runRetryPolicy } from "./run-retry-policy.mjs";
 
 const CANCELLABLE_STATUSES: readonly AgentRunStatus[] = [
 	"QUEUED",
@@ -72,7 +72,7 @@ export class AgentRunsService {
 					},
 				},
 				actions: {
-                    take: 100,
+					take: 100,
 					orderBy: { plannedAt: "asc" },
 					select: {
 						id: true,
@@ -99,10 +99,16 @@ export class AgentRunsService {
 			...run,
 			totalEvents: _count.events,
 			eventsTruncated: _count.events > run.events.length,
-            totalActions: _count.actions,
-            actionsTruncated: _count.actions > run.actions.length,
-            canRetry: runRetryPolicy({ ...run, actionsTruncated: _count.actions > run.actions.length }).allowed,
-            retryBlockedReason: runRetryPolicy({ ...run, actionsTruncated: _count.actions > run.actions.length }).reason,
+			totalActions: _count.actions,
+			actionsTruncated: _count.actions > run.actions.length,
+			canRetry: runRetryPolicy({
+				...run,
+				actionsTruncated: _count.actions > run.actions.length,
+			}).allowed,
+			retryBlockedReason: runRetryPolicy({
+				...run,
+				actionsTruncated: _count.actions > run.actions.length,
+			}).reason,
 			canCancel:
 				CANCELLABLE_STATUSES.includes(run.status) &&
 				(agent.canManage || run.initiatedBy?.id === userId),
@@ -267,15 +273,20 @@ export class AgentRunsService {
 					triggerId: true,
 					triggerType: true,
 					input: true,
-                    errorCode: true,
-                    actions: { select: {status:true,attemptCount:true,externalId:true} },
+					errorCode: true,
+					actions: {
+						select: { status: true, attemptCount: true, externalId: true },
+					},
 				},
 			});
 			if (!previous || previous.agentId !== input.id) {
 				throw new NotFoundException(`No run with id ${input.runId}.`);
 			}
-            const retry = runRetryPolicy(previous);
-            if (!retry.allowed) throw new ConflictException(retry.reason ?? "Review this run before retrying.");
+			const retry = runRetryPolicy(previous);
+			if (!retry.allowed)
+				throw new ConflictException(
+					retry.reason ?? "Review this run before retrying.",
+				);
 
 			const [agent] = await tx.$queryRaw<
 				Array<{ id: string; status: string; currentVersionId: string | null }>

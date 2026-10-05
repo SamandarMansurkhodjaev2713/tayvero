@@ -1,12 +1,122 @@
 import { createHash } from "node:crypto";
 import {
 	PipelineDomainError,
-	RESERVED_STAGE_KEY_PREFIX,
 	parseAssignment,
 	parsePipelineDefinition,
+	RESERVED_STAGE_KEY_PREFIX,
 } from "@crm/pipeline-core";
 import { MAX_PIPELINES_PER_WORKSPACE } from "./constants.mjs";
-import { PipelineRuntimeError, fail } from "./errors.mjs";
+import { fail, PipelineRuntimeError } from "./errors.mjs";
+
+async function replacePipelineStages(
+	client,
+	tenantId,
+	id,
+	current,
+	next,
+	removedIds,
+) {
+	for (let index = 0; index < current.stages.length; index += 1) {
+		const stage = current.stages[index];
+		try {
+			await client.crmPipelineStage.update({
+				where: {
+					workspaceId_pipelineId_id: {
+						workspaceId: tenantId,
+						pipelineId: id,
+						id: stage.id,
+					},
+				},
+				data: {
+					position: TEMP_POSITION_BASE + index,
+					key: temporaryKey(stage.id, index),
+				},
+			});
+		} catch (error) {
+			if (isPrismaRecordNotFound(error)) {
+				fail("STALE_PIPELINE", "A pipeline stage changed during the update", {
+					stageId: stage.id,
+				});
+			}
+			throw error;
+		}
+	}
+
+	try {
+		for (const stage of next.stages) {
+			await client.crmPipelineStage.upsert({
+				where: {
+					workspaceId_pipelineId_id: {
+						workspaceId: tenantId,
+						pipelineId: id,
+						id: stage.id,
+					},
+				},
+				create: {
+					id: stage.id,
+					workspaceId: tenantId,
+					pipelineId: id,
+					key: stage.key,
+					name: stage.name,
+					position: stage.position,
+					stageType: stage.type,
+					probabilityBps: stage.probabilityBps,
+					color: stage.color,
+					allowedFromStageIds: [...stage.allowedFromStageIds],
+					version: 1,
+				},
+				update: {
+					key: stage.key,
+					name: stage.name,
+					position: stage.position,
+					stageType: stage.type,
+					probabilityBps: stage.probabilityBps,
+					color: stage.color,
+					allowedFromStageIds: [...stage.allowedFromStageIds],
+					version: { increment: 1 },
+				},
+			});
+		}
+	} catch (error) {
+		if (isPrismaUniqueViolation(error)) {
+			fail(
+				"PIPELINE_STAGE_CONFLICT",
+				"Pipeline stage ID, key or position conflicts with another stage",
+			);
+		}
+		if (isPrismaForeignKeyViolation(error)) {
+			fail("STAGE_IN_USE", "A stage relation changed concurrently");
+		}
+		throw error;
+	}
+
+	if (removedIds.length > 0) {
+		try {
+			const deletion = await client.crmPipelineStage.deleteMany({
+				where: {
+					workspaceId: tenantId,
+					pipelineId: id,
+					id: { in: removedIds },
+				},
+			});
+			if (deletion.count !== removedIds.length) {
+				fail("STALE_PIPELINE", "Pipeline stages changed during the update", {
+					expectedRemoved: removedIds.length,
+					actualRemoved: deletion.count,
+				});
+			}
+		} catch (error) {
+			if (isPrismaForeignKeyViolation(error)) {
+				fail(
+					"STAGE_IN_USE",
+					"A stage gained an assignment while the pipeline was being updated",
+					{ stageIds: removedIds },
+				);
+			}
+			throw error;
+		}
+	}
+}
 
 const TEMP_POSITION_BASE = 1_000_000;
 const TEMP_KEY_PREFIX = RESERVED_STAGE_KEY_PREFIX;
@@ -18,7 +128,11 @@ const DEFAULT_RETRY_MAX_DELAY_MS = 100;
 const HASH = /^[0-9a-f]{64}$/;
 
 function hasFunction(value, name) {
-	return value !== null && typeof value === "object" && typeof value[name] === "function";
+	return (
+		value !== null &&
+		typeof value === "object" &&
+		typeof value[name] === "function"
+	);
 }
 
 function assertDelegate(client, name, methods) {
@@ -75,7 +189,10 @@ function boundedInteger(value, fallback, path, { min, max }) {
 }
 
 function asStringArray(value, path) {
-	if (!Array.isArray(value) || value.some((entry) => typeof entry !== "string")) {
+	if (
+		!Array.isArray(value) ||
+		value.some((entry) => typeof entry !== "string")
+	) {
 		fail("CORRUPT_PIPELINE_DATA", `${path} must be a string array`, { path });
 	}
 	return value;
@@ -151,7 +268,12 @@ function temporaryKey(stageId, index) {
 }
 
 function prismaCode(error, code) {
-	return error !== null && typeof error === "object" && "code" in error && error.code === code;
+	return (
+		error !== null &&
+		typeof error === "object" &&
+		"code" in error &&
+		error.code === code
+	);
 }
 
 function isPrismaUniqueViolation(error) {
@@ -171,7 +293,8 @@ function isPrismaSerializationFailure(error) {
 }
 
 function uniqueTargetContains(error, field) {
-	if (error === null || typeof error !== "object" || !("meta" in error)) return false;
+	if (error === null || typeof error !== "object" || !("meta" in error))
+		return false;
 	const target = error.meta?.target;
 	if (Array.isArray(target)) return target.includes(field);
 	return typeof target === "string" && target.includes(field);
@@ -183,7 +306,10 @@ function defaultSleep(delayMs) {
 
 function retryDelayMs(attempt, baseDelayMs, maxDelayMs, random) {
 	if (baseDelayMs === 0) return 0;
-	const ceiling = Math.min(maxDelayMs, baseDelayMs * 2 ** Math.max(0, attempt - 1));
+	const ceiling = Math.min(
+		maxDelayMs,
+		baseDelayMs * 2 ** Math.max(0, attempt - 1),
+	);
 	const sample = random();
 	if (!Number.isFinite(sample) || sample < 0 || sample >= 1) {
 		fail(
@@ -196,11 +322,9 @@ function retryDelayMs(attempt, baseDelayMs, maxDelayMs, random) {
 
 function assertPipelineResult(value, operation) {
 	if (!value) {
-		fail(
-			"CORRUPT_PIPELINE_DATA",
-			`Pipeline disappeared after ${operation}`,
-			{ operation },
-		);
+		fail("CORRUPT_PIPELINE_DATA", `Pipeline disappeared after ${operation}`, {
+			operation,
+		});
 	}
 	return value;
 }
@@ -216,7 +340,8 @@ function changedStageTypeIds(current, next) {
 }
 
 export function createPrismaPipelineRepository(prisma, options = {}) {
-	const receiptDelegate = options.receiptDelegate ?? "crmPipelineCommandReceipt";
+	const receiptDelegate =
+		options.receiptDelegate ?? "crmPipelineCommandReceipt";
 	const auditDelegate = options.auditDelegate ?? "crmPipelineAuditEvent";
 	const transactionMaxAttempts = boundedInteger(
 		options.transactionMaxAttempts,
@@ -318,7 +443,9 @@ export function createPrismaPipelineRepository(prisma, options = {}) {
 						{ maxPipelines: MAX_PIPELINES_PER_WORKSPACE },
 					);
 				}
-				return rows.map((row, index) => toDomainPipeline(row, `pipelines[${index}]`));
+				return rows.map((row, index) =>
+					toDomainPipeline(row, `pipelines[${index}]`),
+				);
 			},
 
 			async getPipeline(tenantId, id) {
@@ -389,7 +516,10 @@ export function createPrismaPipelineRepository(prisma, options = {}) {
 								"Another request changed the default pipeline concurrently",
 							);
 						}
-						fail("PIPELINE_EXISTS", "Pipeline ID or stage identity already exists");
+						fail(
+							"PIPELINE_EXISTS",
+							"Pipeline ID or stage identity already exists",
+						);
 					}
 					throw error;
 				}
@@ -398,7 +528,10 @@ export function createPrismaPipelineRepository(prisma, options = {}) {
 			async replacePipeline(tenantId, id, expectedVersion, nextInput) {
 				const next = parsePipelineDefinition(nextInput);
 				if (next.tenantId !== tenantId || next.id !== id) {
-					fail("TENANT_MISMATCH", "Replacement identity does not match its selector");
+					fail(
+						"TENANT_MISMATCH",
+						"Replacement identity does not match its selector",
+					);
 				}
 				const currentRow = await client.crmPipeline.findFirst({
 					where: { workspaceId: tenantId, id },
@@ -425,9 +558,13 @@ export function createPrismaPipelineRepository(prisma, options = {}) {
 						removedIds,
 					);
 					if (assigned > 0) {
-						fail("STAGE_IN_USE", "A stage with assigned deals cannot be removed", {
-							stageIds: removedIds,
-						});
+						fail(
+							"STAGE_IN_USE",
+							"A stage with assigned deals cannot be removed",
+							{
+								stageIds: removedIds,
+							},
+						);
 					}
 				}
 				if (typeChangedIds.length > 0) {
@@ -459,7 +596,10 @@ export function createPrismaPipelineRepository(prisma, options = {}) {
 					});
 				} catch (error) {
 					if (isPrismaUniqueViolation(error)) {
-						fail("PIPELINE_SLUG_EXISTS", "Another pipeline already uses this slug");
+						fail(
+							"PIPELINE_SLUG_EXISTS",
+							"Another pipeline already uses this slug",
+						);
 					}
 					throw error;
 				}
@@ -470,110 +610,14 @@ export function createPrismaPipelineRepository(prisma, options = {}) {
 					);
 				}
 
-				for (let index = 0; index < current.stages.length; index += 1) {
-					const stage = current.stages[index];
-					try {
-						await client.crmPipelineStage.update({
-							where: {
-								workspaceId_pipelineId_id: {
-									workspaceId: tenantId,
-									pipelineId: id,
-									id: stage.id,
-								},
-							},
-							data: {
-								position: TEMP_POSITION_BASE + index,
-								key: temporaryKey(stage.id, index),
-							},
-						});
-					} catch (error) {
-						if (isPrismaRecordNotFound(error)) {
-							fail("STALE_PIPELINE", "A pipeline stage changed during the update", {
-								stageId: stage.id,
-							});
-						}
-						throw error;
-					}
-				}
-
-				try {
-					for (const stage of next.stages) {
-						await client.crmPipelineStage.upsert({
-							where: {
-								workspaceId_pipelineId_id: {
-									workspaceId: tenantId,
-									pipelineId: id,
-									id: stage.id,
-								},
-							},
-							create: {
-								id: stage.id,
-								workspaceId: tenantId,
-								pipelineId: id,
-								key: stage.key,
-								name: stage.name,
-								position: stage.position,
-								stageType: stage.type,
-								probabilityBps: stage.probabilityBps,
-								color: stage.color,
-								allowedFromStageIds: [...stage.allowedFromStageIds],
-								version: 1,
-							},
-							update: {
-								key: stage.key,
-								name: stage.name,
-								position: stage.position,
-								stageType: stage.type,
-								probabilityBps: stage.probabilityBps,
-								color: stage.color,
-								allowedFromStageIds: [...stage.allowedFromStageIds],
-								version: { increment: 1 },
-							},
-						});
-					}
-				} catch (error) {
-					if (isPrismaUniqueViolation(error)) {
-						fail(
-							"PIPELINE_STAGE_CONFLICT",
-							"Pipeline stage ID, key or position conflicts with another stage",
-						);
-					}
-					if (isPrismaForeignKeyViolation(error)) {
-						fail("STAGE_IN_USE", "A stage relation changed concurrently");
-					}
-					throw error;
-				}
-
-				if (removedIds.length > 0) {
-					try {
-						const deletion = await client.crmPipelineStage.deleteMany({
-							where: {
-								workspaceId: tenantId,
-								pipelineId: id,
-								id: { in: removedIds },
-							},
-						});
-						if (deletion.count !== removedIds.length) {
-							fail(
-								"STALE_PIPELINE",
-								"Pipeline stages changed during the update",
-								{
-									expectedRemoved: removedIds.length,
-									actualRemoved: deletion.count,
-								},
-							);
-						}
-					} catch (error) {
-						if (isPrismaForeignKeyViolation(error)) {
-							fail(
-								"STAGE_IN_USE",
-								"A stage gained an assignment while the pipeline was being updated",
-								{ stageIds: removedIds },
-							);
-						}
-						throw error;
-					}
-				}
+				await replacePipelineStages(
+					client,
+					tenantId,
+					id,
+					current,
+					next,
+					removedIds,
+				);
 				return assertPipelineResult(
 					await repository.getPipeline(tenantId, id),
 					"update",
@@ -583,7 +627,12 @@ export function createPrismaPipelineRepository(prisma, options = {}) {
 			async setDefault(tenantId, pipelineId, expectedVersion) {
 				const target = await client.crmPipeline.findFirst({
 					where: { workspaceId: tenantId, id: pipelineId },
-					select: { id: true, version: true, isDefault: true, isArchived: true },
+					select: {
+						id: true,
+						version: true,
+						isDefault: true,
+						isArchived: true,
+					},
 				});
 				if (!target) fail("PIPELINE_NOT_FOUND", "Pipeline was not found");
 				if (target.version !== expectedVersion) {
@@ -697,7 +746,10 @@ export function createPrismaPipelineRepository(prisma, options = {}) {
 			async replaceAssignment(tenantId, dealId, expectedVersion, nextInput) {
 				const next = parseAssignment(nextInput);
 				if (next.tenantId !== tenantId || next.dealId !== dealId) {
-					fail("TENANT_MISMATCH", "Assignment identity does not match its selector");
+					fail(
+						"TENANT_MISMATCH",
+						"Assignment identity does not match its selector",
+					);
 				}
 				try {
 					const result = await client.crmDealPipelineAssignment.updateMany({
@@ -718,7 +770,10 @@ export function createPrismaPipelineRepository(prisma, options = {}) {
 					return next;
 				} catch (error) {
 					if (isPrismaForeignKeyViolation(error)) {
-						fail("PIPELINE_STAGE_NOT_FOUND", "Target pipeline stage was not found");
+						fail(
+							"PIPELINE_STAGE_NOT_FOUND",
+							"Target pipeline stage was not found",
+						);
 					}
 					throw error;
 				}

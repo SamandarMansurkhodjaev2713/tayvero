@@ -2,20 +2,20 @@
 
 import {
 	APPEARANCE_STORAGE_KEY,
-	DEFAULT_APPEARANCE,
+	type Appearance,
 	applyAppearance,
+	DEFAULT_APPEARANCE,
 	normalizeAppearance,
 	parseAppearance,
-	type Appearance,
 } from "@crm/ui/theme/appearance";
 import {
 	createContext,
+	type ReactNode,
 	useCallback,
 	useContext,
 	useEffect,
 	useRef,
 	useState,
-	type ReactNode,
 } from "react";
 
 type AppearanceContextValue = {
@@ -29,7 +29,9 @@ type AppearanceContextValue = {
 const Context = createContext<AppearanceContextValue | null>(null);
 
 export function AppearanceProvider({ children }: { children: ReactNode }) {
-	const [appearance, setAppearance] = useState<Appearance>({ ...DEFAULT_APPEARANCE });
+	const [appearance, setAppearance] = useState<Appearance>({
+		...DEFAULT_APPEARANCE,
+	});
 	const current = useRef<Appearance>({ ...DEFAULT_APPEARANCE });
 	const [ready, setReady] = useState(false);
 	const [persisted, setPersisted] = useState(true);
@@ -74,10 +76,13 @@ export function AppearanceProvider({ children }: { children: ReactNode }) {
 		}
 	}, []);
 
-	const update = useCallback((patch: Partial<Omit<Appearance, "version">>) => {
-		// Compose successive updates against the latest value, even before a render.
-		save(normalizeAppearance({ ...current.current, ...patch, version: 1 }));
-	}, [save]);
+	const update = useCallback(
+		(patch: Partial<Omit<Appearance, "version">>) => {
+			// Compose successive updates against the latest value, even before a render.
+			save(normalizeAppearance({ ...current.current, ...patch, version: 1 }));
+		},
+		[save],
+	);
 	const reset = useCallback(() => save({ ...DEFAULT_APPEARANCE }), [save]);
 
 	return (

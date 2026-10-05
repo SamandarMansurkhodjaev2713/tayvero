@@ -39,7 +39,10 @@ export class PipelineDomainError extends Error {
 
 export function normalizePipelineSlug(value: unknown): string;
 export function parsePipelineDefinition(input: unknown): PipelineDefinition;
-export function parseAssignment(input: unknown, path?: string): DealPipelineAssignment;
+export function parseAssignment(
+	input: unknown,
+	path?: string,
+): DealPipelineAssignment;
 export function planDealStageTransition(input: {
 	pipeline: unknown;
 	assignment: unknown;
@@ -51,8 +54,12 @@ export function planDealStageTransition(input: {
 	assignment: DealPipelineAssignment;
 	event: Readonly<Record<string, unknown>> | null;
 }>;
-export function buildLegacyStageMigrationPlan(input: unknown): Readonly<Record<string, unknown>>;
-export function calculatePipelineAnalytics(input: unknown): Readonly<Record<string, unknown>>;
+export function buildLegacyStageMigrationPlan(
+	input: unknown,
+): Readonly<Record<string, unknown>>;
+export function calculatePipelineAnalytics(
+	input: unknown,
+): Readonly<Record<string, unknown>>;
 export const PipelineDefinitionJsonSchema: Readonly<Record<string, unknown>>;
 
 export const LEGACY_DEAL_STAGES: readonly [
@@ -65,7 +72,10 @@ export const LEGACY_DEAL_STAGES: readonly [
 	"CLOSED_LOST",
 ];
 export type LegacyDealStage = (typeof LEGACY_DEAL_STAGES)[number];
-export function parseLegacyDealStage(value: unknown, path?: string): LegacyDealStage;
+export function parseLegacyDealStage(
+	value: unknown,
+	path?: string,
+): LegacyDealStage;
 export function compileLegacyStageMapping(input: {
 	pipeline: unknown;
 	mapping: unknown;

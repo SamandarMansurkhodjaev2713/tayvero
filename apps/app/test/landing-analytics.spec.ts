@@ -17,7 +17,9 @@ describe("analyticsAllowed", () => {
 	});
 
 	it("refuses a preview deployment", () => {
-		expect(analyticsAllowed("crm-git-preview-telemetry.vercel.app")).toBe(false);
+		expect(analyticsAllowed("crm-git-preview-telemetry.vercel.app")).toBe(
+			false,
+		);
 	});
 
 	it("refuses a host that merely ends in the marketing domain", () => {

@@ -5,20 +5,32 @@ import { resolve } from "node:path";
 import process from "node:process";
 import { resolveTestDatabase } from "../../packages/db/src/test-database.mjs";
 import { createEvidenceRedactor } from "../quality/lib/redact-evidence.mjs";
-import { hasCompleteTestEvidence, parseBunTestSummary } from "../quality/lib/test-evidence.mjs";
+import {
+	hasCompleteTestEvidence,
+	parseBunTestSummary,
+} from "../quality/lib/test-evidence.mjs";
 
 const root = resolve(import.meta.dirname, "../..");
 const qualityDir = resolve(root, "docs/quality");
-const reportPath = resolve(qualityDir, "generated-pipeline-postgres-005-report.json");
-const logPath = resolve(qualityDir, "generated-pipeline-postgres-005-build.log");
+const reportPath = resolve(
+	qualityDir,
+	"generated-pipeline-postgres-005-report.json",
+);
+const logPath = resolve(
+	qualityDir,
+	"generated-pipeline-postgres-005-build.log",
+);
 const testUrl = process.env.TEST_DATABASE_URL ?? null;
 const liveUrl = process.env.DATABASE_URL ?? null;
 const bunPresent = commandAvailable("bun", ["--version"]);
 const depsPresent = existsSync(resolve(root, "node_modules/.bin"));
 
 function databaseName(value) {
-	try { return new URL(value).pathname.replace(/^\//, ""); }
-	catch { return value; }
+	try {
+		return new URL(value).pathname.replace(/^\//, "");
+	} catch {
+		return value;
+	}
 }
 
 function commandAvailable(command, args) {
@@ -55,38 +67,87 @@ function run(label, command, args, env = process.env) {
 const blockers = [];
 // Keep the simple guards below as visible defense in depth; canonical checks
 // also reject the same live database under alternate credentials or aliases.
-try { resolveTestDatabase(process.env); }
-catch (error) { blockers.push(error.message); }
-if (!testUrl) blockers.push("TEST_DATABASE_URL is required explicitly; this gate never falls back to DATABASE_URL.");
-if (testUrl && !databaseName(testUrl).endsWith("_test")) blockers.push("TEST_DATABASE_URL must name a database ending in _test.");
-if (testUrl && liveUrl && testUrl === liveUrl) blockers.push("TEST_DATABASE_URL must not equal DATABASE_URL.");
-if (!bunPresent) blockers.push("Bun is required for Prisma generation and Bun integration tests.");
-if (!depsPresent) blockers.push("Installed workspace dependencies are required (node_modules/.bin is absent).");
+try {
+	resolveTestDatabase(process.env);
+} catch (error) {
+	blockers.push(error.message);
+}
+if (!testUrl)
+	blockers.push(
+		"TEST_DATABASE_URL is required explicitly; this gate never falls back to DATABASE_URL.",
+	);
+if (testUrl && !databaseName(testUrl).endsWith("_test"))
+	blockers.push("TEST_DATABASE_URL must name a database ending in _test.");
+if (testUrl && liveUrl && testUrl === liveUrl)
+	blockers.push("TEST_DATABASE_URL must not equal DATABASE_URL.");
+if (!bunPresent)
+	blockers.push(
+		"Bun is required for Prisma generation and Bun integration tests.",
+	);
+if (!depsPresent)
+	blockers.push(
+		"Installed workspace dependencies are required (node_modules/.bin is absent).",
+	);
 
 const commands = [];
 if (blockers.length === 0) {
-	const env = { ...process.env, NODE_ENV: "test", CRM_PIPELINE_DUAL_WRITE_MODE: "strict" };
-	commands.push(run("Create/migrate isolated PostgreSQL test database", "bun", ["run", "--cwd", "packages/db", "db:test"], env));
+	const env = {
+		...process.env,
+		NODE_ENV: "test",
+		CRM_PIPELINE_DUAL_WRITE_MODE: "strict",
+	};
+	commands.push(
+		run(
+			"Create/migrate isolated PostgreSQL test database",
+			"bun",
+			["run", "--cwd", "packages/db", "db:test"],
+			env,
+		),
+	);
 	if (commands.at(-1).status === "passed") {
-		commands.push(run("Generate Prisma client for integration tests", "bun", ["run", "--cwd", "packages/db", "db:generate"], { ...env, DATABASE_URL: testUrl }));
+		commands.push(
+			run(
+				"Generate Prisma client for integration tests",
+				"bun",
+				["run", "--cwd", "packages/db", "db:generate"],
+				{ ...env, DATABASE_URL: testUrl },
+			),
+		);
 	}
 	if (commands.at(-1).status === "passed") {
-		commands.push(run(
-			"Deal pipeline PostgreSQL transaction/rollback/concurrency suite",
-			"bun",
-			["test", "--preload", "./apps/api/test/setup.ts", "apps/api/test/deal-pipeline-dual-write.integration.spec.ts"],
-			{ ...env, TEST_RUN_ID: `postgres-gate-${Date.now()}` },
-		));
+		commands.push(
+			run(
+				"Deal pipeline PostgreSQL transaction/rollback/concurrency suite",
+				"bun",
+				[
+					"test",
+					"--preload",
+					"./apps/api/test/setup.ts",
+					"apps/api/test/deal-pipeline-dual-write.integration.spec.ts",
+				],
+				{ ...env, TEST_RUN_ID: `postgres-gate-${Date.now()}` },
+			),
+		);
 	}
 }
 
-const acceptance = commands.find(row => row.command.startsWith("bun test "));
-const testSummary = parseBunTestSummary(`${acceptance?.stdoutTail ?? ""}\n${acceptance?.stderrTail ?? ""}`);
-const verified = blockers.length === 0 && commands.length === 3 && commands.every((item) => item.status === "passed") && hasCompleteTestEvidence(testSummary);
+const acceptance = commands.find((row) => row.command.startsWith("bun test "));
+const testSummary = parseBunTestSummary(
+	`${acceptance?.stdoutTail ?? ""}\n${acceptance?.stderrTail ?? ""}`,
+);
+const verified =
+	blockers.length === 0 &&
+	commands.length === 3 &&
+	commands.every((item) => item.status === "passed") &&
+	hasCompleteTestEvidence(testSummary);
 const report = {
 	stage: "CRM-PIPE-POSTGRES-005",
 	scopeId: "CRM-PIPE-POSTGRES-005",
-	artifactState: verified ? "VERIFIED_CHECKPOINT" : blockers.length ? "BLOCKED_EXTERNAL" : "FAILED",
+	artifactState: verified
+		? "VERIFIED_CHECKPOINT"
+		: blockers.length
+			? "BLOCKED_EXTERNAL"
+			: "FAILED",
 	criticalChecksPassed: verified,
 	nextScopeId: verified ? "CRM-PIPE-SHADOW-READ-006" : "CRM-PIPE-POSTGRES-005",
 	generatedAt: new Date().toISOString(),
@@ -99,13 +160,28 @@ const report = {
 		remoteDatabaseRequiresExplicitOptIn: true,
 		automaticDatabaseReset: false,
 	},
-	environment: { bunPresent, depsPresent, testDatabaseConfigured: Boolean(testUrl) },
+	environment: {
+		bunPresent,
+		depsPresent,
+		testDatabaseConfigured: Boolean(testUrl),
+	},
 	blockers,
 	commands,
 	testSummary,
 };
 mkdirSync(qualityDir, { recursive: true });
-writeFileSync(reportPath, `${JSON.stringify(report, null, 2)}\n`, "utf8");
-writeFileSync(logPath, `${commands.map((item) => `${item.label}: ${item.status}\n${item.stdoutTail}\n${item.stderrTail}`).join("\n\n")}\n`, "utf8");
-console.log(JSON.stringify({ artifactState: report.artifactState, criticalChecksPassed: verified, nextScopeId: report.nextScopeId, blockers }));
+writeFileSync(reportPath, `${JSON.stringify(report, null, "\t")}\n`, "utf8");
+writeFileSync(
+	logPath,
+	`${commands.map((item) => `${item.label}: ${item.status}\n${item.stdoutTail}\n${item.stderrTail}`).join("\n\n")}\n`,
+	"utf8",
+);
+console.log(
+	JSON.stringify({
+		artifactState: report.artifactState,
+		criticalChecksPassed: verified,
+		nextScopeId: report.nextScopeId,
+		blockers,
+	}),
+);
 if (!verified) process.exitCode = blockers.length > 0 ? 2 : 1;

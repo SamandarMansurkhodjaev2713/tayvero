@@ -66,17 +66,30 @@ export class AgentDefinitionsService {
 					select: { id: true, type: true, name: true, nextRunAt: true },
 				},
 				runs: {
-                    orderBy: [{ createdAt: "desc" }, { id: "desc" }],
-                    take: 1,
-                    select: { id: true, status: true, createdAt: true, finishedAt: true, costUsd: true },
-                },
-                _count: { select: { runs: true } },
+					orderBy: [{ createdAt: "desc" }, { id: "desc" }],
+					take: 1,
+					select: {
+						id: true,
+						status: true,
+						createdAt: true,
+						finishedAt: true,
+						costUsd: true,
+					},
+				},
+				_count: { select: { runs: true } },
 			},
 		});
 
 		return rows.map(({ runs, _count, ...row }) => ({
-            ...row,
-            lastRun: runs?.[0] ? { ...runs[0], createdAt: runs[0].createdAt.toISOString(), finishedAt: runs[0].finishedAt?.toISOString() ?? null, costUsd: runs[0].costUsd?.toString() ?? null } : null,
+			...row,
+			lastRun: runs?.[0]
+				? {
+						...runs[0],
+						createdAt: runs[0].createdAt.toISOString(),
+						finishedAt: runs[0].finishedAt?.toISOString() ?? null,
+						costUsd: runs[0].costUsd?.toString() ?? null,
+					}
+				: null,
 			createdAt: row.createdAt.toISOString(),
 			updatedAt: row.updatedAt.toISOString(),
 			currentVersion: row.currentVersion

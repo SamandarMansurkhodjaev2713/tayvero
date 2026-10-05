@@ -1,0 +1,13 @@
+
+
+Migrate isolated test database
+bun run --cwd packages/db db:test
+failed
+
+$ bun scripts/test-db.ts
+
+  tayvero_test no longer matches schema.prisma
+  No database was dropped. Use an isolated fresh database, or explicitly set ALLOW_TEST_DATABASE_RESET=1 and pass --reset.
+
+error: script "db:test" exited with code 1
+

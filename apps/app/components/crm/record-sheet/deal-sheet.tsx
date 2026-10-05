@@ -4,8 +4,8 @@ import Add from "@carbon/icons-react/es/Add";
 import Close from "@carbon/icons-react/es/Close";
 import UserMultiple from "@carbon/icons-react/es/UserMultiple";
 import { CURRENCIES, normalizeCurrency } from "@crm/db/currency";
-import { parseAmountInput, formatAmountInput } from "@crm/db/money-input";
 import type { FieldValueJson } from "@crm/db/fields";
+import { formatAmountInput, parseAmountInput } from "@crm/db/money-input";
 import { Button } from "@crm/ui/components/button";
 import { EmptyCellValue } from "@crm/ui/components/empty-cell";
 import {
@@ -140,7 +140,12 @@ export function DealSheet({ dealId }: { dealId: string }) {
 				{
 					value: "overview",
 					label: "Overview",
-					content: <DealOverview deal={deal} onReviewActivity={() => setTab("activity")} />,
+					content: (
+						<DealOverview
+							deal={deal}
+							onReviewActivity={() => setTab("activity")}
+						/>
+					),
 				},
 				{
 					value: "contacts",
@@ -248,7 +253,13 @@ export function DealSheet({ dealId }: { dealId: string }) {
 	);
 }
 
-function DealOverview({ deal, onReviewActivity }: { deal: Deal; onReviewActivity: () => void }) {
+function DealOverview({
+	deal,
+	onReviewActivity,
+}: {
+	deal: Deal;
+	onReviewActivity: () => void;
+}) {
 	const trpc = useTRPC();
 	const cache = useCrmCache();
 
@@ -275,7 +286,10 @@ function DealOverview({ deal, onReviewActivity }: { deal: Deal; onReviewActivity
 
 	return (
 		<DetailSheetBody>
-            <DealHealthPanel health={deal.health} onReviewActivity={onReviewActivity} />
+			<DealHealthPanel
+				health={deal.health}
+				onReviewActivity={onReviewActivity}
+			/>
 			<DetailSheetSection title="Stage">
 				<StageStepper dealId={deal.id} stage={deal.stage} />
 
@@ -306,13 +320,22 @@ function DealOverview({ deal, onReviewActivity }: { deal: Deal; onReviewActivity
 					<InlineField
 						label="Amount"
 						value={
-							deal.amountCents === null ? null : formatAmountInput(deal.amountCents)
+							deal.amountCents === null
+								? null
+								: formatAmountInput(deal.amountCents)
 						}
 						placeholder="24000"
 						saving={isSaving("amountCents")}
 						onSave={(next) => {
-                            try { save({ amountCents: parseAmountInput(next) }); }
-                            catch (error) { toast.error(error instanceof Error ? error.message : "Check the amount and try again."); }
+							try {
+								save({ amountCents: parseAmountInput(next) });
+							} catch (error) {
+								toast.error(
+									error instanceof Error
+										? error.message
+										: "Check the amount and try again.",
+								);
+							}
 						}}
 						render={(value) =>
 							formatMoney(parseAmountInput(value) ?? 0, currency)

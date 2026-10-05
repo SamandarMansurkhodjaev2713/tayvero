@@ -1,0 +1,143 @@
+{
+	"schemaVersion": 2,
+	"generatedAt": "2026-10-05T13:10:12Z",
+	"title": "Design System: Tayvero",
+	"extensions": {
+		"colorMeta": {
+			"primary": {
+				"role": "primary",
+				"displayName": "Selected palette accent",
+				"canonical": "var(--primary)"
+			},
+			"canvas": {
+				"role": "neutral",
+				"displayName": "Selected canvas",
+				"canonical": "var(--background)"
+			},
+			"surface": {
+				"role": "neutral",
+				"displayName": "Selected card surface",
+				"canonical": "var(--card)"
+			}
+		},
+		"shadows": [
+			{
+				"name": "button-low",
+				"value": "0px 1px 2px 0px hsl(0 0% 0% / 0.04)",
+				"purpose": "Shared default and outline button separation."
+			},
+			{
+				"name": "overlay-lg",
+				"value": "0px 4px 8px -2px hsl(0 0% 0% / 0.08)",
+				"purpose": "Existing shared large shadow vocabulary."
+			}
+		],
+		"motion": [
+			{
+				"name": "table-hover",
+				"value": "background-color 120ms ease-out",
+				"purpose": "Shared table state feedback; suppressed for reduced motion."
+			},
+			{
+				"name": "landing-arrive",
+				"value": "600ms cubic-bezier(0.16, 1, 0.3, 1)",
+				"purpose": "Scoped public hero entrance only when motion is allowed."
+			}
+		],
+		"breakpoints": [
+			{
+				"name": "sm",
+				"value": "640px"
+			},
+			{
+				"name": "operating-mobile",
+				"value": "700px"
+			},
+			{
+				"name": "expanded-navigation",
+				"value": "1100px"
+			}
+		]
+	},
+	"components": [
+		{
+			"name": "Primary button",
+			"kind": "button",
+			"refersTo": "button-primary",
+			"description": "Shared default action, bound to the selected appearance.",
+			"html": "<button class=\"ds-button\">Save changes</button>",
+			"css": ".ds-button{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:36px;padding:0 12px;border:1px solid transparent;border-radius:var(--radius,5px);font:500 13px var(--font-sans,Geist,sans-serif);cursor:pointer;transition:color .15s,background-color .15s,border-color .15s;}.ds-button:focus-visible{outline:2px solid var(--ring);outline-offset:3px}.ds-button:disabled{pointer-events:none;opacity:.5}@media(max-width:700px){.ds-button{min-height:40px}}@media(prefers-reduced-motion:reduce){.ds-button{transition:none}}.ds-button{background:var(--primary);color:var(--primary-foreground);box-shadow:var(--shadow-2xs)}.ds-button:hover{background:color-mix(in oklch,var(--primary),black 12%)}.ds-button:active{background:color-mix(in oklch,var(--primary),black 22%);box-shadow:none}"
+		},
+		{
+			"name": "Outline button",
+			"kind": "button",
+			"description": "Secondary action using the shared outline treatment.",
+			"html": "<button class=\"ds-button\">Review details</button>",
+			"css": ".ds-button{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:36px;padding:0 12px;border:1px solid transparent;border-radius:var(--radius,5px);font:500 13px var(--font-sans,Geist,sans-serif);cursor:pointer;transition:color .15s,background-color .15s,border-color .15s;}.ds-button:focus-visible{outline:2px solid var(--ring);outline-offset:3px}.ds-button:disabled{pointer-events:none;opacity:.5}@media(max-width:700px){.ds-button{min-height:40px}}@media(prefers-reduced-motion:reduce){.ds-button{transition:none}}.ds-button{border-color:var(--border);background:var(--background);color:var(--foreground);box-shadow:var(--shadow-2xs)}.ds-button:hover{background:var(--muted);color:var(--foreground)}"
+		},
+		{
+			"name": "Ghost button",
+			"kind": "button",
+			"description": "Low-emphasis action with a visible hover and focus state.",
+			"html": "<button class=\"ds-button\">Clear filters</button>",
+			"css": ".ds-button{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:36px;padding:0 12px;border:1px solid transparent;border-radius:var(--radius,5px);font:500 13px var(--font-sans,Geist,sans-serif);cursor:pointer;transition:color .15s,background-color .15s,border-color .15s;}.ds-button:focus-visible{outline:2px solid var(--ring);outline-offset:3px}.ds-button:disabled{pointer-events:none;opacity:.5}@media(max-width:700px){.ds-button{min-height:40px}}@media(prefers-reduced-motion:reduce){.ds-button{transition:none}}.ds-button{background:transparent;color:var(--foreground)}.ds-button:hover{background:var(--muted)}"
+		},
+		{
+			"name": "Destructive button",
+			"kind": "button",
+			"description": "Destructive action uses the semantic role across all palettes.",
+			"html": "<button class=\"ds-button\">Delete record</button>",
+			"css": ".ds-button{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:36px;padding:0 12px;border:1px solid transparent;border-radius:var(--radius,5px);font:500 13px var(--font-sans,Geist,sans-serif);cursor:pointer;transition:color .15s,background-color .15s,border-color .15s;}.ds-button:focus-visible{outline:2px solid var(--ring);outline-offset:3px}.ds-button:disabled{pointer-events:none;opacity:.5}@media(max-width:700px){.ds-button{min-height:40px}}@media(prefers-reduced-motion:reduce){.ds-button{transition:none}}.ds-button{background:var(--destructive);color:var(--destructive-foreground);box-shadow:var(--shadow-2xs)}.ds-button:hover{background:color-mix(in oklch,var(--destructive),black 12%)}.ds-button:active{background:color-mix(in oklch,var(--destructive),black 22%);box-shadow:none}"
+		},
+		{
+			"name": "Input",
+			"kind": "input",
+			"refersTo": "input",
+			"description": "Shared text field; maintain an accessible label at the call site.",
+			"html": "<label class=\"ds-field\">Search<input class=\"ds-input\" type=\"search\" placeholder=\"Search records\"></label>",
+			"css": ".ds-field{display:grid;gap:8px;font:400 13px var(--font-sans,Geist,sans-serif);color:var(--foreground)}.ds-input{width:100%;min-width:0;box-sizing:border-box;height:36px;padding:4px 12px;border:1px solid var(--input);border-radius:var(--radius,5px);background:var(--card);color:var(--foreground);font:400 14px var(--font-sans,Geist,sans-serif)}.ds-input::placeholder{color:var(--muted-foreground)}.ds-input:hover{border-color:color-mix(in srgb,var(--ring) 50%,transparent)}.ds-input:focus-visible{border-color:var(--ring);outline:2px solid var(--ring);outline-offset:3px}.ds-input:disabled{opacity:.6;cursor:not-allowed;background:var(--muted)}.ds-input[aria-invalid=true]{border-color:var(--destructive)}@media(max-width:700px){.ds-input{min-height:40px;font-size:16px}}"
+		},
+		{
+			"name": "Navigation",
+			"kind": "nav",
+			"description": "Selected route remains explicit in compact or labeled navigation.",
+			"html": "<nav class=\"ds-nav\" aria-label=\"Workspace\"><a class=\"ds-nav-item\" aria-current=\"page\" href=\"#overview\">Overview</a><a class=\"ds-nav-item\" href=\"#deals\">Deals</a></nav>",
+			"css": ".ds-nav{display:grid;gap:4px;padding:14px;background:var(--sidebar);font:400 13px var(--font-sans,Geist,sans-serif)}.ds-nav-item{display:flex;align-items:center;min-height:40px;padding:0 12px;border-radius:var(--radius,5px);color:var(--sidebar-foreground);text-decoration:none}.ds-nav-item[aria-current=page]{background:var(--sidebar-accent);color:var(--sidebar-primary);font-weight:600}.ds-nav-item:hover{background:var(--sidebar-accent)}.ds-nav-item:focus-visible{outline:2px solid var(--sidebar-ring);outline-offset:3px}"
+		},
+		{
+			"name": "Status",
+			"kind": "chip",
+			"description": "Text plus semantic tone; the dot reinforces rather than replaces the label.",
+			"html": "<span class=\"ds-status\">Pending review</span>",
+			"css": ".ds-status{display:inline-flex;align-items:center;gap:6px;max-width:100%;padding:4px 8px;border-radius:var(--radius-sm,4px);color:var(--warning);background:color-mix(in srgb,var(--warning) 8%,var(--card));font:500 12px/1.4 var(--font-sans,Geist,sans-serif);overflow-wrap:anywhere}.ds-status::before{content:'';width:5px;height:5px;flex-shrink:0;border-radius:50%;background:currentColor}@media(forced-colors:active){.ds-status{border:1px solid CanvasText}}"
+		},
+		{
+			"name": "Workspace panel",
+			"kind": "card",
+			"refersTo": "workspace-panel",
+			"description": "Shared section with title, explanation and body; not a new page-local card.",
+			"html": "<section class=\"ds-panel\"><header class=\"ds-panel-head\"><h2>Evidence</h2><p>Review the available context.</p></header><div class=\"ds-panel-body\">No evidence loaded.</div></section>",
+			"css": ".ds-panel{min-width:0;overflow:clip;border:1px solid var(--border);border-radius:var(--radius-lg,8px);background:var(--card);color:var(--foreground);font-family:var(--font-sans,Geist,sans-serif)}.ds-panel-head{padding:20px 24px;border-bottom:1px solid var(--border)}.ds-panel-head h2{margin:0;font-size:15px;font-weight:600;line-height:1.5;letter-spacing:-.015em}.ds-panel-head p{margin:5px 0 0;max-width:65ch;font-size:13px;line-height:1.6;color:var(--muted-foreground)}.ds-panel-body{padding:20px 24px;font-size:13px}@media(max-width:700px){.ds-panel-head,.ds-panel-body{padding:18px 16px}}"
+		},
+		{
+			"name": "Metric band",
+			"kind": "custom",
+			"description": "Definition-list metrics share one surface; sample values are placeholders.",
+			"html": "<dl class=\"ds-metrics\"><div class=\"ds-metric\"><dt>Metric</dt><dd>—</dd></div><div class=\"ds-metric\"><dt>Metric</dt><dd>—</dd></div></dl>",
+			"css": ".ds-metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));margin:0;border:1px solid var(--border);border-radius:var(--radius-lg,8px);background:var(--card);overflow:hidden;font-family:var(--font-sans,Geist,sans-serif)}.ds-metric{min-width:0;padding:22px 24px;border-inline-start:1px solid var(--border)}.ds-metric:first-child{border-inline-start:0}.ds-metric dt{font-size:13px;line-height:1.5;color:var(--muted-foreground)}.ds-metric dd{margin:10px 0 0;color:var(--foreground);font-size:clamp(24px,2.2vw,32px);font-weight:600;line-height:1.2;letter-spacing:-.04em;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}@media(max-width:700px){.ds-metric{padding:18px 16px}}"
+		}
+	],
+	"narrative": {
+		"overview": "The incumbent interface is a restrained operating workspace: a named shell, clear task hierarchy, one metric band and consistent panels for action and evidence. Brand expression comes from typography, controlled density and a selected palette. Public marketing uses a separate editorial composition.",
+		"dos": [
+			"**Do** extend `packages/ui` for recurring variants and consume generated semantic tokens.",
+			"**Do** keep pending, failed, successful and unknown results distinct, with recovery and coverage context.",
+			"**Do** preserve wrapping search, readable localized text and both density settings."
+		],
+		"donts": [
+			"**Don't** copy obsolete fallback colors, hardcode a new per-screen palette or recolor semantic states as brand accents.",
+			"**Don't** treat preview images as proof of authenticated operation or claim complete localization, SaaS tenancy or production readiness.",
+			"**Don't** change permission boundaries or default-OFF execution guards as part of visual work."
+		]
+	}
+}

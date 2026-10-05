@@ -1,13 +1,12 @@
-
 import { randomUUID } from "node:crypto";
 import { isWorkspaceRole } from "@crm/auth";
 import type { Db } from "@crm/db";
 import {
-	PipelineRuntimeError,
 	createPipelineRuntime,
 	createPrismaPipelineRepository,
 	type PipelineRuntime,
 	type PipelineRuntimeContext,
+	PipelineRuntimeError,
 } from "@crm/pipeline-runtime";
 import {
 	BadRequestException,
@@ -24,11 +23,11 @@ import { InjectDatabase } from "../database/database.constants";
 import { getRequestContext } from "../logging/request-context";
 import type { AuthedTrpcContext } from "../trpc/context.types";
 import {
-	type PipelineApiOutput,
 	canManagePipelines,
 	createDeterministicPipelineIdFactory,
 	createPipelineDefinition,
 	isPipelineInputError,
+	type PipelineApiOutput,
 	permissionsForWorkspaceRole,
 	pipelineCreateCommandPayload,
 	pipelineUpdateCommandPayload,
@@ -124,7 +123,10 @@ export class PipelinesService {
 	): Promise<PipelineApiOutput> {
 		const principal = await this.principal(ctx);
 		return this.execute(async () => {
-			const pipeline = await this.runtime.getPipeline(principal.context, pipelineId);
+			const pipeline = await this.runtime.getPipeline(
+				principal.context,
+				pipelineId,
+			);
 			if (!pipeline) throw new NotFoundException("Pipeline was not found.");
 			return toPipelineApiModel(pipeline, principal.canManage);
 		});
@@ -188,7 +190,10 @@ export class PipelinesService {
 				return toPipelineApiModel(replay.result, principal.canManage);
 			}
 
-			const current = await this.runtime.getPipeline(principal.context, input.id);
+			const current = await this.runtime.getPipeline(
+				principal.context,
+				input.id,
+			);
 			if (!current) throw new NotFoundException("Pipeline was not found.");
 			const definition = updatePipelineDefinition({
 				current,
@@ -207,8 +212,12 @@ export class PipelinesService {
 				select: { legacyStage: true, stageId: true },
 			});
 			if (legacyMappings.length > 0) {
-				const currentStageById = new Map(current.stages.map((stage) => [stage.id, stage]));
-				const nextStageById = new Map(definition.stages.map((stage) => [stage.id, stage]));
+				const currentStageById = new Map(
+					current.stages.map((stage) => [stage.id, stage]),
+				);
+				const nextStageById = new Map(
+					definition.stages.map((stage) => [stage.id, stage]),
+				);
 				const incompatible = legacyMappings.find((mapping) => {
 					const previous = currentStageById.get(mapping.stageId);
 					const next = nextStageById.get(mapping.stageId);
@@ -245,7 +254,10 @@ export class PipelinesService {
 	): Promise<PipelineApiOutput> {
 		const principal = await this.principal(ctx);
 		return this.execute(async () => {
-			if (process.env.CRM_PIPELINE_DUAL_WRITE_MODE?.trim().toLowerCase() === "strict") {
+			if (
+				process.env.CRM_PIPELINE_DUAL_WRITE_MODE?.trim().toLowerCase() ===
+				"strict"
+			) {
 				const mappings = await this.db.crmLegacyDealStageMapping.findMany({
 					where: { workspaceId: principal.context.tenantId },
 					select: { pipelineId: true },
@@ -313,9 +325,11 @@ export class PipelinesService {
 		if (expiresAt === null || expiresAt <= Date.now()) {
 			throw new UnauthorizedException("The session has expired.");
 		}
-		const workspaceId = "activeOrganizationId" in session.session
-			&& typeof session.session.activeOrganizationId === "string"
-			? session.session.activeOrganizationId.trim() : undefined;
+		const workspaceId =
+			"activeOrganizationId" in session.session &&
+			typeof session.session.activeOrganizationId === "string"
+				? session.session.activeOrganizationId.trim()
+				: undefined;
 		if (!workspaceId) {
 			throw new PreconditionFailedException(
 				"Select an active workspace before managing pipelines.",
@@ -334,7 +348,9 @@ export class PipelinesService {
 			select: { role: true },
 		});
 		if (!membership || !isWorkspaceRole(membership.role)) {
-			throw new ForbiddenException("You are not an active member of this workspace.");
+			throw new ForbiddenException(
+				"You are not an active member of this workspace.",
+			);
 		}
 		return {
 			context: {

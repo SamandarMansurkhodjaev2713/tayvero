@@ -1,38 +1,11 @@
-# MASTER_NEXT_SCOPE — 18 сентября 2026
+# MASTER_NEXT_SCOPE — 5 октября 2026
 
-Единственный baseline для следующей работы: `tayvero-master-2026-09-18.zip`.
-Точный SHA финальных ZIP-байтов — внешний MASTER_SHA256.txt / MASTER_REPORT.json рядом с архивом.
+Продолжать от текущего tayvero-master-2026-10-05.zip / публичного main. SHA конечного ZIP — внешний MASTER_SHA256.txt. Исторический source ZIP отсутствовал и не был заново сертифицирован.
 
-Primary NEXT_SCOPE_ID: `CRM-PIPE-POSTGRES-005`.
-Parallel: `MIG-APPROVAL-POSTGRES-001` (включает новые lifecycle/worker tests).
-Process/UI: `MIG-WORKER-STAGING-001`, `MIG-APPROVAL-AUTHENTICATED-E2E-001`.
-Native agent: `AGENT-APPROVAL-NATIVE-ACCEPTANCE-001`.
+Primary NEXT_SCOPE_ID: MIG-APPROVAL-AUTHENTICATED-E2E-001. PostgreSQL acceptance выполнен на CI5: pipeline3/3 и operations17/17, zero skips; schema diff пуст. Запустить реальные owner/admin/member/revoked flows, затем worker/native staging. Независимый pipeline code next: CRM-PIPE-SHADOW-READ-006.
 
-```sh
-bun install --frozen-lockfile
-bun run gate:pipeline-postgres
-bun run gate:operations-postgres
-bun run quality:gate
-```
+После DB acceptance: MIG-APPROVAL-AUTHENTICATED-E2E-001, MIG-WORKER-STAGING-001, AGENT-APPROVAL-NATIVE-ACCEPTANCE-001. Независимое code next: AGENT-CONTINUATION-RECONCILIATION-001.
 
-Только isolated TEST_DATABASE_URL. Не ослаблять assertions и не подменять её production DATABASE_URL.
-MIG-SOURCE-LIFECYCLE-001 и MIG-BACKGROUND-WORKER-001 реализованы и проверены локально, но не выданы за
-production-verified. Новые migrations не применены, Prisma/native codegen/full semantic types/build отсутствуют.
-Нельзя просто включить flags и считать полную систему испытанной.
+Только explicit isolated TEST_DATABASE_URL, никогда production DATABASE_URL. Сначала .env configuration, затем bun install --frozen-lockfile. Prisma codegen, semantic checks и Next build уже выполнены, но не заменяют реальную БД, worker/native/provider acceptance. Все guarded writes/continuation/background flags остаются под прежним default-OFF rollout.
 
-После DB/toolchain acceptance: migration-source-lifecycle-and-worker runbook, supervisor, shared source volume,
-ключи и два concurrent процесса; restart после row commit, pause/cancel/revoke; authenticated browser в темах.
-Native continuation — отдельная матрица approval-continuation-operations.md. Старый Deal.stage не переключать
-сразу после одного зелёного DB теста: сначала shadow reads и наблюдение.
-
-Если внешняя среда остаётся недоступной, следующий независимый high-value code scope:
-`AGENT-CONTINUATION-RECONCILIATION-001` — операторская сверка неопределённого исхода по evidence, без unsafe
-reset/whole-run replay и без ручного объявления success. Затем lifecycle source-history policy/pagination,
-meaningful channel+onboarding и self-maintaining proposals/Outcome instrumentation.
-
-Retention сейчас сознательно сохраняет ВСЕ referenced sources, в том числе terminal. Не удалять их ради quota20;
-не считать bounded scan полноценным janitor всех temp/backup/object-store данных. Новый worker делает импорт
-независимым от страницы только когда он реально запущен; расписание не означает health.
-
-Начать с SHA/CRC/master docs и baseline tests. Сохранить текущие темы/namespace/guard baselines. Итог следующего
-прохода: один cumulative ZIP, реальные diffs/test logs, внешние gate статусы и повтор из свежей распаковки.
+Не выдавать UI fixtures за authenticated application E2E. Для следующей UI проверки: real owner/admin/member/revoked sessions, 320/393/768/1440px, все4палитры и оба режима, keyboard/focus/reduced motion, slow/error/empty/stale query и clipboard denied. Shared rules — DESIGN.md и docs/design.md.

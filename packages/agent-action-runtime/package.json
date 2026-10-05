@@ -1,21 +1,21 @@
 {
-  "name": "@crm/agent-action-runtime",
-  "version": "0.1.0",
-  "private": true,
-  "type": "module",
-  "exports": {
-    ".": "./src/index.mjs",
-    "./digest": {
-      "types": "./src/digest.d.mts",
-      "default": "./src/digest.mjs"
-    },
-    "./continuation": {
-      "types": "./src/approval-continuation.d.mts",
-      "default": "./src/approval-continuation.mjs"
-    }
-  },
-  "scripts": {
-    "test": "node --test test/*.test.mjs",
-    "verify": "node --check src/*.mjs && node --test test/*.test.mjs"
-  }
+	"name": "@crm/agent-action-runtime",
+	"version": "0.1.0",
+	"private": true,
+	"type": "module",
+	"exports": {
+		".": "./src/index.mjs",
+		"./digest": {
+			"types": "./src/digest.d.mts",
+			"default": "./src/digest.mjs"
+		},
+		"./continuation": {
+			"types": "./src/approval-continuation.d.mts",
+			"default": "./src/approval-continuation.mjs"
+		}
+	},
+	"scripts": {
+		"test": "node --test test/*.test.mjs",
+		"verify": "node --check src/*.mjs && node --test test/*.test.mjs"
+	}
 }

@@ -1,0 +1,28 @@
+{
+	"scopeId": "MIG-APPROVAL-POSTGRES-001",
+	"generatedAt": "2026-10-05T13:02:52.751Z",
+	"status": "FAILED",
+	"criticalChecksPassed": false,
+	"wholeProductProductionReady": false,
+	"safety": {
+		"explicitTestDatabaseRequired": true,
+		"productionDatabaseFallback": false,
+		"automaticReset": false,
+		"remoteRequiresExplicitOptIn": true
+	},
+	"blockers": [],
+	"commands": [
+		{
+			"label": "Migrate isolated test database",
+			"command": "bun run --cwd packages/db db:test",
+			"startedAt": "2026-10-05T13:02:52.009Z",
+			"durationMs": 742,
+			"status": "failed",
+			"exitCode": 1,
+			"error": "",
+			"stdoutTail": "",
+			"stderrTail": "$ bun scripts/test-db.ts\n\n  tayvero_test no longer matches schema.prisma\n  No database was dropped. Use an isolated fresh database, or explicitly set ALLOW_TEST_DATABASE_RESET=1 and pass --reset.\n\nerror: script \"db:test\" exited with code 1\n"
+		}
+	],
+	"nextScopeId": "MIG-APPROVAL-POSTGRES-001"
+}

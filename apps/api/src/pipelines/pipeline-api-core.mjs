@@ -1,14 +1,18 @@
 import { createHash } from "node:crypto";
 import {
-	PipelineDomainError,
 	normalizePipelineSlug,
+	PipelineDomainError,
 	parsePipelineDefinition,
 } from "@crm/pipeline-core";
 
 const SAFE_ID = /^[A-Za-z0-9][A-Za-z0-9_.:@/-]{0,127}$/;
 const IDEMPOTENCY_KEY = /^[A-Za-z0-9_.:-]{8,200}$/;
 const MANAGER_ROLES = new Set(["owner", "admin"]);
-const FORBIDDEN_OBJECT_KEYS = new Set(["__proto__", "constructor", "prototype"]);
+const FORBIDDEN_OBJECT_KEYS = new Set([
+	"__proto__",
+	"constructor",
+	"prototype",
+]);
 const READ_PERMISSIONS = Object.freeze(["pipeline.read", "deal.transition"]);
 const MANAGE_PERMISSIONS = Object.freeze([
 	...READ_PERMISSIONS,
@@ -20,7 +24,13 @@ const MANAGE_PERMISSIONS = Object.freeze([
 	"pipeline.migrate",
 	"deal.reopen",
 ]);
-const CREATE_FIELDS = new Set(["idempotencyKey", "name", "slug", "isDefault", "stages"]);
+const CREATE_FIELDS = new Set([
+	"idempotencyKey",
+	"name",
+	"slug",
+	"isDefault",
+	"stages",
+]);
 const UPDATE_FIELDS = new Set([
 	"id",
 	"idempotencyKey",
@@ -110,12 +120,20 @@ function normalizeIdempotencyKey(value) {
 function normalizeCommandStage(raw, index, allowId) {
 	const path = `stages[${index}]`;
 	const stage = plainObject(raw, path);
-	assertExactFields(stage, allowId ? UPDATE_STAGE_FIELDS : CREATE_STAGE_FIELDS, path);
+	assertExactFields(
+		stage,
+		allowId ? UPDATE_STAGE_FIELDS : CREATE_STAGE_FIELDS,
+		path,
+	);
 	const allowedFromStageKeys = ownValue(stage, "allowedFromStageKeys") ?? [];
 	if (!Array.isArray(allowedFromStageKeys)) {
-		fail("INVALID_TRANSITION_SOURCES", `${path}.allowedFromStageKeys must be an array`, {
-			path: `${path}.allowedFromStageKeys`,
-		});
+		fail(
+			"INVALID_TRANSITION_SOURCES",
+			`${path}.allowedFromStageKeys must be an array`,
+			{
+				path: `${path}.allowedFromStageKeys`,
+			},
+		);
 	}
 	const normalized = {
 		...(allowId && ownValue(stage, "id") !== undefined
@@ -135,7 +153,9 @@ function normalizeCommandStage(raw, index, allowId) {
 		color:
 			ownValue(stage, "color") === undefined ? null : ownValue(stage, "color"),
 		allowedFromStageKeys: allowedFromStageKeys.map((sourceKey) =>
-			typeof sourceKey === "string" ? sourceKey.trim().toLowerCase() : sourceKey,
+			typeof sourceKey === "string"
+				? sourceKey.trim().toLowerCase()
+				: sourceKey,
 		),
 	};
 	return Object.freeze({
@@ -153,7 +173,11 @@ function commandPayload(input, allowedFields, allowStageIds, path) {
 		fail("INVALID_STAGES", "Pipeline stages must be an array");
 	}
 	const requestedDefault = ownValue(value, "isDefault");
-	if (!allowStageIds && requestedDefault !== undefined && typeof requestedDefault !== "boolean") {
+	if (
+		!allowStageIds &&
+		requestedDefault !== undefined &&
+		typeof requestedDefault !== "boolean"
+	) {
 		fail("INVALID_DEFAULT_FLAG", "Pipeline default flag must be boolean");
 	}
 	const payload = {
@@ -193,7 +217,10 @@ export function createDeterministicPipelineIdFactory({
 		fail("INVALID_TENANT_ID", "Tenant ID is invalid");
 	}
 	const key = normalizeIdempotencyKey(idempotencyKey);
-	if (pipelineId !== null && (typeof pipelineId !== "string" || !SAFE_ID.test(pipelineId))) {
+	if (
+		pipelineId !== null &&
+		(typeof pipelineId !== "string" || !SAFE_ID.test(pipelineId))
+	) {
 		fail("INVALID_PIPELINE_ID", "Pipeline ID is invalid");
 	}
 	return (kind) => {
@@ -201,7 +228,9 @@ export function createDeterministicPipelineIdFactory({
 			fail("INVALID_ID_KIND", "Generated ID kind is invalid");
 		}
 		const digest = createHash("sha256")
-			.update(JSON.stringify(["crm-pipeline-id-v1", tenantId, key, pipelineId, kind]))
+			.update(
+				JSON.stringify(["crm-pipeline-id-v1", tenantId, key, pipelineId, kind]),
+			)
 			.digest("hex")
 			.slice(0, 32);
 		return `${kind === "pipeline" ? "pl" : "st"}_${digest}`;
@@ -224,9 +253,13 @@ function generatedId(idFactory, kind) {
 export function permissionsForWorkspaceRole(role) {
 	if (MANAGER_ROLES.has(role)) return MANAGE_PERMISSIONS;
 	if (role === "member") return READ_PERMISSIONS;
-	fail("INVALID_WORKSPACE_ROLE", "Workspace membership has an unsupported role", {
-		role,
-	});
+	fail(
+		"INVALID_WORKSPACE_ROLE",
+		"Workspace membership has an unsupported role",
+		{
+			role,
+		},
+	);
 }
 
 export function canManagePipelines(role) {
@@ -239,10 +272,15 @@ function normalizeDraftStages({ drafts, current, idFactory }) {
 	}
 	const currentStages = current?.stages ?? [];
 	const currentById = new Map(currentStages.map((stage) => [stage.id, stage]));
-	const currentByKey = new Map(currentStages.map((stage) => [stage.key, stage]));
+	const currentByKey = new Map(
+		currentStages.map((stage) => [stage.key, stage]),
+	);
 	const usedIds = new Set();
 	const normalized = drafts.map((draft, index) => {
-		const key = typeof draft.key === "string" ? draft.key.trim().toLowerCase() : draft.key;
+		const key =
+			typeof draft.key === "string"
+				? draft.key.trim().toLowerCase()
+				: draft.key;
 		let id;
 		if (draft.id !== undefined) {
 			if (!current) {
@@ -339,10 +377,14 @@ export function updatePipelineDefinition({ current, input, idFactory }) {
 	const pipeline = parsePipelineDefinition(current);
 	const draft = pipelineUpdateCommandPayload(input);
 	if (draft.id !== pipeline.id) {
-		fail("PIPELINE_ID_MISMATCH", "The request ID does not match the loaded pipeline", {
-			requestId: draft.id,
-			pipelineId: pipeline.id,
-		});
+		fail(
+			"PIPELINE_ID_MISMATCH",
+			"The request ID does not match the loaded pipeline",
+			{
+				requestId: draft.id,
+				pipelineId: pipeline.id,
+			},
+		);
 	}
 	if (draft.expectedVersion !== pipeline.version) {
 		fail("STALE_PIPELINE", "Pipeline changed after the editor was opened", {
@@ -366,7 +408,9 @@ export function updatePipelineDefinition({ current, input, idFactory }) {
 
 export function toPipelineApiModel(pipelineInput, canManage) {
 	const pipeline = parsePipelineDefinition(pipelineInput);
-	const keyById = new Map(pipeline.stages.map((stage) => [stage.id, stage.key]));
+	const keyById = new Map(
+		pipeline.stages.map((stage) => [stage.id, stage.key]),
+	);
 	return Object.freeze({
 		id: pipeline.id,
 		name: pipeline.name,
@@ -400,5 +444,8 @@ export function toPipelineApiModel(pipelineInput, canManage) {
 }
 
 export function isPipelineInputError(error) {
-	return error instanceof PipelineApiCoreError || error instanceof PipelineDomainError;
+	return (
+		error instanceof PipelineApiCoreError ||
+		error instanceof PipelineDomainError
+	);
 }

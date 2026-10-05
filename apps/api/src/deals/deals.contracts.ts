@@ -1,7 +1,7 @@
 import { DealStage } from "@crm/db";
 import { FIELD_ENTITIES, FIELD_TYPES } from "@crm/db/fields";
-import { z } from "zod";
 import { MAX_AMOUNT_CENTS } from "@crm/db/money-input";
+import { z } from "zod";
 import { bulkIdsInput } from "../crm/bulk";
 import { currencyCode } from "../currency/currency.contracts";
 import { recordFieldValues } from "../fields/fields.contracts";
@@ -226,20 +226,40 @@ export const dealListOutput = z.object({
 export type DealListResult = z.infer<typeof dealListOutput>;
 
 export const dealHealthOutput = z.object({
-    ruleset: z.string(), checkedAt: z.string(), timeZone: z.string(),
-    status: z.enum(["CLEAR", "NEEDS_ATTENTION", "INSUFFICIENT_DATA", "NOT_APPLICABLE"]),
-    attentionScore: z.number().min(0).max(100).nullable(),
-    unknown: z.array(z.string()), notEvaluated: z.array(z.string()),
-    signals: z.array(z.object({
-        id: z.string(), weight: z.number(), title: z.string(), explanation: z.string(), recommendation: z.string(),
-        evidence: z.object({model: z.string(),recordId:z.string(),field:z.string(),value:z.string().nullable(),checkedAt:z.string()}),
-    })),
+	ruleset: z.string(),
+	checkedAt: z.string(),
+	timeZone: z.string(),
+	status: z.enum([
+		"CLEAR",
+		"NEEDS_ATTENTION",
+		"INSUFFICIENT_DATA",
+		"NOT_APPLICABLE",
+	]),
+	attentionScore: z.number().min(0).max(100).nullable(),
+	unknown: z.array(z.string()),
+	notEvaluated: z.array(z.string()),
+	signals: z.array(
+		z.object({
+			id: z.string(),
+			weight: z.number(),
+			title: z.string(),
+			explanation: z.string(),
+			recommendation: z.string(),
+			evidence: z.object({
+				model: z.string(),
+				recordId: z.string(),
+				field: z.string(),
+				value: z.string().nullable(),
+				checkedAt: z.string(),
+			}),
+		}),
+	),
 });
 
 export const dealDetailOutput = z.object({
-    // Additive/optional for rolling upgrades and older cached detail responses.
-    health: dealHealthOutput.optional(),
-    lastActivityAt: z.string().nullable().optional(),
+	// Additive/optional for rolling upgrades and older cached detail responses.
+	health: dealHealthOutput.optional(),
+	lastActivityAt: z.string().nullable().optional(),
 	id: z.string(),
 	name: z.string(),
 	description: z.string().nullable(),

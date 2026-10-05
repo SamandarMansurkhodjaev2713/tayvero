@@ -104,12 +104,165 @@
 		}
 	],
 	"notVerified": [
-		"Full POSIX regression on a supported Linux private volume",
-		"Real disposable PostgreSQL migration, receipt and concurrency acceptance",
 		"Successful resource-sufficient Eve production packaging",
 		"Authenticated Next/tRPC role and session E2E",
 		"Native continuation exact-session execution",
 		"Real supervisors, shared storage, backup/restore and load",
 		"Live business providers and production deployment"
-	]
+	],
+	"publicationCI": {
+		"repositoryQuality": {
+			"verified": false,
+			"formatterErrors": 328,
+			"failedStage": "format:check"
+		},
+		"localInvariants": {
+			"runId": "37312917348",
+			"todo": 0,
+			"passed": 575,
+			"tests": 575,
+			"verified": true,
+			"cancelled": 0,
+			"skipped": 0,
+			"failed": 0
+		},
+		"productionDatabaseUsed": false,
+		"operationsPostgres": {
+			"reason": "Migrated database does not match schema.prisma; guarded reuse refused without reset",
+			"testCommandsExecuted": 0,
+			"report": "design-toolchain-2026-10-05/ci2-operations-postgres-report.json",
+			"verified": false,
+			"databaseCommandsExecuted": 1
+		},
+		"platform": "ubuntu-latest",
+		"runId": "37313730989",
+		"postgres": "16",
+		"sourceCommit": "e3ce6769760ca832bfbe103914e2996cb220b8ee",
+		"pipelinePostgres": {
+			"passed": 3,
+			"tests": 3,
+			"report": "design-toolchain-2026-10-05/ci2-pipeline-postgres-report.json",
+			"verified": true,
+			"skipped": 0,
+			"failed": 0
+		}
+	},
+	"finalSourceChecks": {
+		"nextProductionBuild": {
+			"typescriptSeconds": 15.1,
+			"log": "design-toolchain-2026-10-05/native-next-build-final-release.log",
+			"total": 36,
+			"exitCode": 0,
+			"compileSeconds": 6.8,
+			"metadataBaseWarning": false,
+			"prerendered": 36
+		},
+		"semanticTypes": {
+			"seconds": 37.504,
+			"tasksTotal": 13,
+			"log": "design-toolchain-2026-10-05/semantic-types-final.log",
+			"exitCode": 0,
+			"tasksPassed": 13,
+			"cached": 5
+		}
+	},
+	"postgresRefinement": {
+		"operations": {
+			"skipped": 0,
+			"failed": 3,
+			"verified": false,
+			"tests": 17,
+			"passed": 14
+		},
+		"apiSemanticExitCode": 0,
+		"diagnosticRunId": "37314432780",
+		"schemaDrift": {
+			"foreignKeyNameMismatches": 8,
+			"verified": false,
+			"generatedSqlExecuted": false,
+			"refinement": "Declare existing indexes and map existing SQL names; preserve historical migrations and default-pipeline uniqueness",
+			"missingDeclaredIndexes": 2,
+			"indexNameMismatches": 8
+		},
+		"transactionFailure": {
+			"initialCode": "P2034",
+			"refinement": "Borrowed repository attempts1; existing outer transaction retries on fresh transaction",
+			"genericP2039RetryAdded": false,
+			"sqlstate": "25P02",
+			"maskedByAbortedTransactionCode": "P2039"
+		},
+		"nextActualPostgresRequired": true,
+		"sourceCommit": "9c2fef4a715122b88269a103123d4286d387c1e8",
+		"targetedRepositoryTests": {
+			"skipped": 0,
+			"tests": 8,
+			"passed": 8
+		},
+		"localInvariants": {
+			"passed": 578,
+			"failed": 0,
+			"skipped": 0,
+			"todo": 0,
+			"tests": 578,
+			"cancelled": 0
+		}
+	},
+	"verifiedPostgresCI": {
+		"fullQualityVerified": false,
+		"platform": "ubuntu-latest",
+		"productionDatabaseUsed": false,
+		"postgres": "16",
+		"nativeTransportVerified": false,
+		"localRegression": {
+			"failed": 0,
+			"cancelled": 0,
+			"skipped": 0,
+			"passed": 580,
+			"tests": 580,
+			"todo": 0
+		},
+		"operations": {
+			"skipped": 0,
+			"failed": 0,
+			"cancelled": 0,
+			"passed": 17,
+			"todo": 0,
+			"verified": true,
+			"tests": 17,
+			"report": "design-toolchain-2026-10-05/ci5-operations-postgres-report.json"
+		},
+		"automaticReset": false,
+		"deployedSchema": {
+			"verified": true,
+			"exitCode": 0,
+			"diagnostic": "This is an empty migration",
+			"sqlExecuted": false,
+			"log": "design-toolchain-2026-10-05/ci5-test-db-schema-diff.sql"
+		},
+		"localInvariantsFailedStage": "tenant ratchet after partial formatting publication",
+		"sourceCommit": "c1efdf5e559a971846c4525663188f37349b36f3",
+		"pipeline": {
+			"skipped": 0,
+			"failed": 0,
+			"cancelled": 0,
+			"passed": 3,
+			"todo": 0,
+			"verified": true,
+			"tests": 3,
+			"report": "design-toolchain-2026-10-05/ci5-pipeline-postgres-report.json"
+		},
+		"runId": "37315398522"
+	},
+	"tenantRatchetRefinement": {
+		"testQueriesGivenRealWorkspacePredicate": 3,
+		"temporaryFormattedFindings": 18,
+		"newFindings": 0,
+		"beforeFindings": 15,
+		"afterFindings": 15,
+		"baselineFingerprintMultisetUnchanged": true,
+		"verifiedLocally": true,
+		"ratchetLogicChanged": false,
+		"finalPublicationCIRequired": true,
+		"baselineEntriesExpanded": false
+	}
 }

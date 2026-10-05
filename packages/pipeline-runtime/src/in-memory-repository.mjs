@@ -57,8 +57,10 @@ export class InMemoryPipelineRepository {
 	async listPipelines(tenantId) {
 		const values = [...this.#pipelines.values()]
 			.filter((pipeline) => pipeline.tenantId === tenantId)
-			.sort((left, right) =>
-				left.name.localeCompare(right.name) || left.id.localeCompare(right.id),
+			.sort(
+				(left, right) =>
+					left.name.localeCompare(right.name) ||
+					left.id.localeCompare(right.id),
 			);
 		if (values.length > MAX_PIPELINES_PER_WORKSPACE) {
 			fail(
@@ -117,7 +119,10 @@ export class InMemoryPipelineRepository {
 	async replacePipeline(tenantId, id, expectedVersion, nextInput) {
 		const next = parsePipelineDefinition(nextInput);
 		if (next.tenantId !== tenantId || next.id !== id) {
-			fail("TENANT_MISMATCH", "Replacement identity does not match its selector");
+			fail(
+				"TENANT_MISMATCH",
+				"Replacement identity does not match its selector",
+			);
 		}
 		const storageKey = entityKey(tenantId, id);
 		const current = this.#pipelines.get(storageKey);
@@ -132,7 +137,9 @@ export class InMemoryPipelineRepository {
 			next.slug !== current.slug &&
 			[...this.#pipelines.values()].some(
 				(item) =>
-					item.tenantId === tenantId && item.id !== id && item.slug === next.slug,
+					item.tenantId === tenantId &&
+					item.id !== id &&
+					item.slug === next.slug,
 			)
 		) {
 			fail("PIPELINE_SLUG_EXISTS", "Pipeline slug already exists");
@@ -218,7 +225,10 @@ export class InMemoryPipelineRepository {
 		const pipeline = this.#pipelines.get(
 			entityKey(assignment.tenantId, assignment.pipelineId),
 		);
-		if (!pipeline || !pipeline.stages.some((stage) => stage.id === assignment.stageId)) {
+		if (
+			!pipeline ||
+			!pipeline.stages.some((stage) => stage.id === assignment.stageId)
+		) {
 			fail("PIPELINE_STAGE_NOT_FOUND", "Assignment stage was not found");
 		}
 		this.#assignments.set(storageKey, copy(assignment));
@@ -232,7 +242,10 @@ export class InMemoryPipelineRepository {
 	async replaceAssignment(tenantId, dealId, expectedVersion, nextInput) {
 		const next = parseAssignment(nextInput);
 		if (next.tenantId !== tenantId || next.dealId !== dealId) {
-			fail("TENANT_MISMATCH", "Assignment identity does not match its selector");
+			fail(
+				"TENANT_MISMATCH",
+				"Assignment identity does not match its selector",
+			);
 		}
 		const storageKey = entityKey(tenantId, dealId);
 		const current = this.#assignments.get(storageKey);
@@ -246,7 +259,10 @@ export class InMemoryPipelineRepository {
 			});
 		}
 		const pipeline = this.#pipelines.get(entityKey(tenantId, next.pipelineId));
-		if (!pipeline || !pipeline.stages.some((stage) => stage.id === next.stageId)) {
+		if (
+			!pipeline ||
+			!pipeline.stages.some((stage) => stage.id === next.stageId)
+		) {
 			fail("PIPELINE_STAGE_NOT_FOUND", "Target pipeline stage was not found");
 		}
 		this.#assignments.set(storageKey, copy(next));

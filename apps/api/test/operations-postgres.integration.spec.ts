@@ -392,7 +392,7 @@ describe("Bound consent — actual PostgreSQL transaction and compare-and-swap",
 		]);
 		expect(results.filter((row) => row.status === "fulfilled").length).toBe(1);
 		const final = await db.governedActionApproval.findUniqueOrThrow({
-			where: { id: row.id },
+			where: { id: row.id, workspaceId },
 		});
 		const approved =
 			final.status === "APPROVED" ? row : await request("consume-approved");
@@ -421,7 +421,7 @@ describe("Bound consent — actual PostgreSQL transaction and compare-and-swap",
 		expect(
 			(
 				await db.governedActionApproval.findUniqueOrThrow({
-					where: { id: approved.id },
+					where: { id: approved.id, workspaceId },
 				})
 			).status,
 		).toBe("CONSUMED");
@@ -429,7 +429,7 @@ describe("Bound consent — actual PostgreSQL transaction and compare-and-swap",
 	it("audits deadline expiration and rejects a stale or wrong execution identity", async () => {
 		const row = await request("expired");
 		await db.governedActionApproval.update({
-			where: { id: row.id },
+			where: { id: row.id, workspaceId },
 			data: {
 				createdAt: new Date(Date.now() - 120000),
 				expiresAt: new Date(Date.now() - 60000),

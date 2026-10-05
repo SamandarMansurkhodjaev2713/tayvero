@@ -373,14 +373,37 @@ describe("manual agent runs", () => {
 		}
 	});
 
-    it("refuses whole-run retry after a recorded external side effect", async () => {
-        const first = await service.runNow({ id: agentId, clientRequestId: crypto.randomUUID() }, userId);
-        await db.agentAction.create({ data: { agentId, runId: first.id, type: "slack.message.post", provider: "slack", summary: "Already sent", status: "SUCCEEDED", attemptCount: 1, externalId: "test-message", idempotencyKey: crypto.randomUUID() } });
-        await db.agentRun.update({ where: { id: first.id }, data: { status: "FAILED", finishedAt: new Date() } });
-        await expect(service.retryRun({id:agentId,runId:first.id,clientRequestId:crypto.randomUUID()},userId)).rejects.toThrow("could duplicate");
-        const history = await service.list(agentId, 1, userId);
-        expect(history[0]?.canRetry).toBe(false);
-    });
+	it("refuses whole-run retry after a recorded external side effect", async () => {
+		const first = await service.runNow(
+			{ id: agentId, clientRequestId: crypto.randomUUID() },
+			userId,
+		);
+		await db.agentAction.create({
+			data: {
+				agentId,
+				runId: first.id,
+				type: "slack.message.post",
+				provider: "slack",
+				summary: "Already sent",
+				status: "SUCCEEDED",
+				attemptCount: 1,
+				externalId: "test-message",
+				idempotencyKey: crypto.randomUUID(),
+			},
+		});
+		await db.agentRun.update({
+			where: { id: first.id },
+			data: { status: "FAILED", finishedAt: new Date() },
+		});
+		await expect(
+			service.retryRun(
+				{ id: agentId, runId: first.id, clientRequestId: crypto.randomUUID() },
+				userId,
+			),
+		).rejects.toThrow("could duplicate");
+		const history = await service.list(agentId, 1, userId);
+		expect(history[0]?.canRetry).toBe(false);
+	});
 
 	it("allows only one agent to claim a globally reused request id", async () => {
 		const otherAgent = await db.agentDefinition.create({

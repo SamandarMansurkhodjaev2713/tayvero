@@ -1,6 +1,4 @@
 import { auth } from "@crm/auth";
-import { OperationsModule } from "./operations/operations.module";
-import { MigrationsModule } from "./migrations/migrations.module";
 import { Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
 import { AuthModule as BetterAuthModule } from "@thallesp/nestjs-better-auth";
@@ -28,6 +26,8 @@ import { LoggingModule } from "./logging/logging.module";
 import { logAuthRoute } from "./logging/request-logger.middleware";
 import { MailboxModule } from "./mailbox/mailbox.module";
 import { MicrosoftModule } from "./microsoft/microsoft.module";
+import { MigrationsModule } from "./migrations/migrations.module";
+import { OperationsModule } from "./operations/operations.module";
 import { PipelinesModule } from "./pipelines/pipelines.module";
 import { SavedViewsModule } from "./saved-views/saved-views.module";
 import { SearchModule } from "./search/search.module";

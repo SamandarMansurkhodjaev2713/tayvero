@@ -1,4 +1,3 @@
-
 import type {
 	DealPipelineAssignment,
 	PipelineDefinition,
@@ -81,7 +80,9 @@ export interface PipelineRepository extends PipelineRepositoryTransaction {
 }
 
 export interface PipelineRuntime {
-	listPipelines(context: PipelineRuntimeContext): Promise<readonly PipelineDefinition[]>;
+	listPipelines(
+		context: PipelineRuntimeContext,
+	): Promise<readonly PipelineDefinition[]>;
 	getPipeline(
 		context: PipelineRuntimeContext,
 		pipelineId: string,

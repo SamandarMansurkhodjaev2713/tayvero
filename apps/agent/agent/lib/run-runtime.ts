@@ -1,9 +1,8 @@
-import { WORKSPACE_ID } from "@crm/db/workspace";
-import { continuationEnabled } from "./approval-continuation";
 import { createHash, randomUUID } from "node:crypto";
 import { ActivityType, db, type Prisma } from "@crm/db";
 import type { AgentActionStatus, AgentTriggerType } from "@crm/db/enums";
 import { lockIdempotencyKey } from "@crm/db/idempotency";
+import { WORKSPACE_ID } from "@crm/db/workspace";
 import {
 	AGENT_ACTION_TYPES,
 	type AgentManifestResource,
@@ -12,6 +11,7 @@ import {
 import { z } from "zod";
 import { readCompanyHistory, readDealHistory } from "./accounts";
 import { isGovernedAgentActionType } from "./agent-actions";
+import { continuationEnabled } from "./approval-continuation";
 import { readCrmHistory } from "./crm";
 import { DISPATCH } from "./dispatch-config";
 import { searchCrm } from "./lookup";
@@ -355,9 +355,7 @@ export async function executeRunActivitySideEffect(
 	}
 	const target = await targetRecord(input.targetKind, input.targetId);
 	if (!target) {
-		throw runActionPrecondition(
-			"The requested CRM target no longer exists.",
-		);
+		throw runActionPrecondition("The requested CRM target no longer exists.");
 	}
 	throwIfGovernedRunActionAborted(execution.signal);
 
@@ -1014,12 +1012,33 @@ export async function finishRun(
 		if (run.status !== "RUNNING") {
 			throw new Error(`This agent run already ended with ${run.status}.`);
 		}
-    if (continuationEnabled() && await tx.governedActionContinuation.findFirst({
-      where: { workspaceId: WORKSPACE_ID, runId, OR: [
-        { status: { in: ["PREPARED", "BOUND", "READY", "DISPATCHING", "RECONCILIATION_REQUIRED"] } },
-        { status: "DELIVERED", decision: "approve" },
-      ] }, select: { id: true },
-    })) throw new Error("A native approval/continuation is still pending or needs reconciliation.");
+		if (
+			continuationEnabled() &&
+			(await tx.governedActionContinuation.findFirst({
+				where: {
+					workspaceId: WORKSPACE_ID,
+					runId,
+					OR: [
+						{
+							status: {
+								in: [
+									"PREPARED",
+									"BOUND",
+									"READY",
+									"DISPATCHING",
+									"RECONCILIATION_REQUIRED",
+								],
+							},
+						},
+						{ status: "DELIVERED", decision: "approve" },
+					],
+				},
+				select: { id: true },
+			}))
+		)
+			throw new Error(
+				"A native approval/continuation is still pending or needs reconciliation.",
+			);
 		const noActionAccepted =
 			runReportedNoActionNeeded(input.result) &&
 			(await noActionNeededRefusal(tx, run)) === null;

@@ -31,3 +31,18 @@ Viewed: workspace light/dark, operations desktop/mobile, approval desktop/mobile
 Fixture data is synthetic and business mutations are disabled. These captures mount actual components but do not prove authenticated end-to-end operation, database concurrency, provider delivery or migration execution. Parent-reported semantic checks and the successful 36-page Next production build are separate engineering evidence. During confirmation the parent reports actual Linux local-invariants CI success and a passed pipeline PostgreSQL gate, while the operations PostgreSQL gate has a failure under diagnosis. These updated engineering results are owned by the baseline verifier, not independently certified here; the Windows regression’s 73 POSIX failures describe that host, and the Eve packaging resource failure remains separate. Nothing in this review changes a permission, approval digest/version, runtime contract or default-OFF execution flag.
 
 Questions skipped: this finish review is part of already authorized polishing, and the identified repair has a narrow implementation with no product-policy choice required.
+
+## Documentation field notes
+
+Source-only handoff decisions, checked against the current implementation and the existing settled workspace light/dark images. These notes add durable guidance; they do not repeat browser or backend verification.
+
+| Decision | Source evidence and documentation consequence |
+| --- | --- |
+| Preserve four palettes in both modes | `packages/ui/src/theme/appearance.mjs` defines eight token sets; its generated CSS supersedes the initial green fallback. Replace the obsolete single-green rule and keep the generated definitions authoritative. |
+| Reuse operating composition | `packages/ui/src/components/workspace.tsx` implements metrics as a definition list, panels as titled sections and distinct notice/status/toolbar APIs. Document those APIs instead of encouraging new per-page dashboard cards. |
+| Preserve readable density and type | Shared `globals.css` defines fluid operating titles/values, tabular metrics and comfortable/compact table variables. Record the existing scale, not a second token system. |
+| Protect mobile task controls | Shared CSS supplies 40px mobile targets and 16px form text; `team-agents-index.tsx` gives search a full-width mobile row. Document wrapping fields, actions and bounded table scrollers as future implementation precedents. |
+| Keep marketing scoped | `apps/app/components/landing/landing.css` owns editorial type and composition under `.tayvero-landing*`; shared Button and semantic colors remain in use. State this narrow exception so marketing geometry does not spread into task screens. |
+| Keep product and outcome truth | Current README describes active development, separate workspace deployments and partial localization; existing operations reviews distinguish unknown/pending/failed/successful outcomes. Documentation retains these limits and default-OFF guards without claiming full readiness. |
+
+Updated `docs/design.md`, added root `DESIGN.md` and its extensions-only `.impeccable/design.json`. On this Windows filesystem, `docs/DESIGN.md` and `docs/design.md` resolve to the same existing file; root `DESIGN.md` is a separate portable summary. No product-context interview or invented product brief was introduced.

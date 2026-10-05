@@ -14,7 +14,11 @@ import {
 	queueEventAgentRuns,
 } from "../agent/lib/custom-agent-dispatch";
 import { createGovernedRunActivity } from "../agent/lib/governed-run-actions";
-import { finishRun, runResultOf, stageRunResult } from "../agent/lib/run-runtime";
+import {
+	finishRun,
+	runResultOf,
+	stageRunResult,
+} from "../agent/lib/run-runtime";
 
 const attachmentBytes = z.object({ data: z.instanceof(Uint8Array) });
 
@@ -789,7 +793,11 @@ describe("durable custom-agent runtime", () => {
 		expect(
 			attempts.filter((attempt) => attempt.status === "fulfilled").length,
 		).toBeGreaterThanOrEqual(1);
-		const replay = await createGovernedRunActivity(run.id, "shared-call", input);
+		const replay = await createGovernedRunActivity(
+			run.id,
+			"shared-call",
+			input,
+		);
 		expect(replay.replayed).toBe(true);
 		let reusedCallError: Error | null = null;
 		try {

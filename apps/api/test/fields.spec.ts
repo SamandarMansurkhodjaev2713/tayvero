@@ -15,8 +15,8 @@ import type { FaviconService } from "../src/companies/favicon.service";
 import { ContactsService } from "../src/contacts/contacts.service";
 import { ActivityStampService } from "../src/crm/activity-stamp.service";
 import { ConversionService } from "../src/currency/conversion.service";
-import { DealsService } from "../src/deals/deals.service";
 import { DealPipelineBridgeService } from "../src/deals/deal-pipeline-bridge.service";
+import { DealsService } from "../src/deals/deals.service";
 import { FieldsService } from "../src/fields/fields.service";
 import { withDiscardedCrmEvents } from "./agent-trigger.stub";
 
@@ -69,7 +69,14 @@ const contacts = new ContactsService(
 	stamp,
 	fields,
 );
-const deals = new DealsService(db, agent, stamp, conversion, fields, new DealPipelineBridgeService());
+const deals = new DealsService(
+	db,
+	agent,
+	stamp,
+	conversion,
+	fields,
+	new DealPipelineBridgeService(),
+);
 
 let companyId: string;
 let bridgeSecret: string | undefined;

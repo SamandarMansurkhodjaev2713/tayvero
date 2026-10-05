@@ -1,612 +1,606 @@
 {
-  "stage": "AUTONOMOUS-AGENT-GOVERNANCE-CHECKPOINT",
-  "criticalChecksPassed": false,
-  "nextScopeId": "AGENT-ACTION-INTEGRATION-002-REPAIR",
-  "commands": [
-    {
-      "label": "Action runtime module exists",
-      "argv": [],
-      "status": "passed",
-      "returncode": 0,
-      "durationSeconds": 0,
-      "critical": true,
-      "stdout": "packages/agent-action-runtime/src/index.mjs",
-      "stderr": ""
-    },
-    {
-      "label": "Action durable stores exists",
-      "argv": [],
-      "status": "passed",
-      "returncode": 0,
-      "durationSeconds": 0,
-      "critical": true,
-      "stdout": "packages/agent-action-runtime/src/prisma-stores.mjs",
-      "stderr": ""
-    },
-    {
-      "label": "Action runtime tests exists",
-      "argv": [],
-      "status": "passed",
-      "returncode": 0,
-      "durationSeconds": 0,
-      "critical": true,
-      "stdout": "packages/agent-action-runtime/test/governed-action-runtime.test.mjs",
-      "stderr": ""
-    },
-    {
-      "label": "Action store tests exists",
-      "argv": [],
-      "status": "passed",
-      "returncode": 0,
-      "durationSeconds": 0,
-      "critical": true,
-      "stdout": "packages/agent-action-runtime/test/prisma-stores.test.mjs",
-      "stderr": ""
-    },
-    {
-      "label": "Agent app governed composition exists",
-      "argv": [],
-      "status": "passed",
-      "returncode": 0,
-      "durationSeconds": 0,
-      "critical": true,
-      "stdout": "apps/agent/src/governed-action-execution.mjs",
-      "stderr": ""
-    },
-    {
-      "label": "Agent app Prisma composition exists",
-      "argv": [],
-      "status": "passed",
-      "returncode": 0,
-      "durationSeconds": 0,
-      "critical": true,
-      "stdout": "apps/agent/src/governed-action-prisma-composition.mjs",
-      "stderr": ""
-    },
-    {
-      "label": "Final action runtime syntax",
-      "argv": [
-        "node",
-        "--check",
-        "packages/agent-action-runtime/src/index.mjs"
-      ],
-      "status": "passed",
-      "returncode": 0,
-      "durationSeconds": 0.026,
-      "critical": true,
-      "stdout": "",
-      "stderr": ""
-    },
-    {
-      "label": "Final action store syntax",
-      "argv": [
-        "node",
-        "--check",
-        "packages/agent-action-runtime/src/prisma-stores.mjs"
-      ],
-      "status": "passed",
-      "returncode": 0,
-      "durationSeconds": 0.023,
-      "critical": true,
-      "stdout": "",
-      "stderr": ""
-    },
-    {
-      "label": "Final action runtime adversarial suite",
-      "argv": [
-        "node",
-        "--test",
-        "packages/agent-action-runtime/test/governed-action-runtime.test.mjs"
-      ],
-      "status": "failed",
-      "returncode": 1,
-      "durationSeconds": 0.144,
-      "critical": true,
-      "stdout": "TAP version 13\n# Subtest: executes a validated authorized action and records redacted audit events\nok 1 - executes a validated authorized action and records redacted audit events\n  ---\n  duration_ms: 3.684576\n  type: 'test'\n  ...\n# Subtest: rejects tenant ownership fields at any nesting depth\nok 2 - rejects tenant ownership fields at any nesting depth\n  ---\n  duration_ms: 0.640447\n  type: 'test'\n  ...\n# Subtest: rejects missing permissions and object-level authorization\nok 3 - rejects missing permissions and object-level authorization\n  ---\n  duration_ms: 1.304778\n  type: 'test'\n  ...\n# Subtest: replays a completed idempotent result without executing again\nok 4 - replays a completed idempotent result without executing again\n  ---\n  duration_ms: 1.256097\n  type: 'test'\n  ...\n# Subtest: rejects reuse of an idempotency key for another payload\nok 5 - rejects reuse of an idempotency key for another payload\n  ---\n  duration_ms: 0.656157\n  type: 'test'\n  ...\n# Subtest: rejects changed payload after an approval failure acquired the same idempotency key\nok 6 - rejects changed payload after an approval failure acquired the same idempotency key\n  ---\n  duration_ms: 0.853505\n  type: 'test'\n  ...\n# Subtest: allows only one concurrent execution for the same receipt\nok 7 - allows only one concurrent execution for the same receipt\n  ---\n  duration_ms: 7.385772\n  type: 'test'\n  ...\n# Subtest: requires payload-bound tenant-bound approval for high-risk actions\nok 8 - requires payload-bound tenant-bound approval for high-risk actions\n  ---\n  duration_ms: 1.304949\n  type: 'test'\n  ...\n# Subtest: rejects approval bound to another tenant or modified payload\nok 9 - rejects approval bound to another tenant or modified payload\n  ---\n  duration_ms: 0.725085\n  type: 'test'\n  ...\n# Subtest: times out a non-cooperative executor and records failure\nok 10 - times out a non-cooperative executor and records failure\n  ---\n  duration_ms: 21.103839\n  type: 'test'\n  ...\n# Subtest: propagates cancellation and does not retry it\nok 11 - propagates cancellation and does not retry it\n  ---\n  duration_ms: 0.50836\n  type: 'test'\n  ...\n# Subtest: keeps the success receipt when the success audit write fails\nok 12 - keeps the success receipt when the success audit write fails\n  ---\n  duration_ms: 0.643853\n  type: 'test'\n  ...\n# Subtest: propagates the operation digest and idempotency key to the executor\nnot ok 13 - propagates the operation digest and idempotency key to the executor\n  ---\n  duration_ms: 1.207797\n  type: 'test'\n  location: '/mnt/data/crm_autonomous_work_current/crm-release/packages/agent-action-runtime/test/governed-action-runtime.test.mjs:133:1'\n  failureType: 'testCodeFailure'\n  error: |-\n    Expected values to be strictly equal:\n    + actual - expected\n    \n    + undefined\n    - 'provider-key'\n    \n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  expected: 'provider-key'\n  operator: 'strictEqual'\n  stack: |-\n    TestContext.<anonymous> (file:///mnt/data/crm_autonomous_work_current/crm-release/packages/agent-action-runtime/test/governed-action-runtime.test.mjs:137:10)\n    async Test.run (node:internal/test_runner/test:1054:7)\n    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)\n  ...\n# Subtest: validates untrusted model input and executor output\nok 14 - validates untrusted model input and executor output\n  ---\n  duration_ms: 0.739141\n  type: 'test'\n  ...\n1..14\n# tests 14\n# suites 0\n# pass 13\n# fail 1\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 109.480949\n",
-      "stderr": ""
-    },
-    {
-      "label": "Final durable action store suite",
-      "argv": [
-        "node",
-        "--test",
-        "packages/agent-action-runtime/test/prisma-stores.test.mjs"
-      ],
-      "status": "passed",
-      "returncode": 0,
-      "durationSeconds": 0.111,
-      "critical": true,
-      "stdout": "TAP version 13\n# Subtest: receipt store atomically acquires, completes and replays\nok 1 - receipt store atomically acquires, completes and replays\n  ---\n  duration_ms: 3.422135\n  type: 'test'\n  ...\n# Subtest: receipt rejects same key with another digest\nok 2 - receipt rejects same key with another digest\n  ---\n  duration_ms: 0.967989\n  type: 'test'\n  ...\n# Subtest: receipt completion requires the acquired lease token\nok 3 - receipt completion requires the acquired lease token\n  ---\n  duration_ms: 0.412782\n  type: 'test'\n  ...\n# Subtest: approval consumption is tenant, action, digest and expiry bound\nok 4 - approval consumption is tenant, action, digest and expiry bound\n  ---\n  duration_ms: 0.517487\n  type: 'test'\n  ...\n# Subtest: audit sink redacts secret-bearing properties\nok 5 - audit sink redacts secret-bearing properties\n  ---\n  duration_ms: 2.082532\n  type: 'test'\n  ...\n1..5\n# tests 5\n# suites 0\n# pass 5\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 76.1326\n",
-      "stderr": ""
-    },
-    {
-      "label": "Final app governed composition syntax",
-      "argv": [
-        "node",
-        "--check",
-        "apps/agent/src/governed-action-execution.mjs"
-      ],
-      "status": "passed",
-      "returncode": 0,
-      "durationSeconds": 0.023,
-      "critical": true,
-      "stdout": "",
-      "stderr": ""
-    },
-    {
-      "label": "Final app Prisma composition syntax",
-      "argv": [
-        "node",
-        "--check",
-        "apps/agent/src/governed-action-prisma-composition.mjs"
-      ],
-      "status": "passed",
-      "returncode": 0,
-      "durationSeconds": 0.023,
-      "critical": true,
-      "stdout": "",
-      "stderr": ""
-    },
-    {
-      "label": "Final action-boundary audit",
-      "argv": [
-        "node",
-        "tools/quality/audit-agent-action-boundaries.mjs"
-      ],
-      "status": "passed",
-      "returncode": 0,
-      "durationSeconds": 0.109,
-      "critical": false,
-      "stdout": "{\n  \"generatedAt\": \"2026-08-31T22:40:42.086Z\",\n  \"findingCount\": 2,\n  \"findings\": [\n    \"packages/action-registry/src/registry.mjs\",\n    \"packages/action-registry/test/actions.test.mjs\"\n  ],\n  \"note\": \"Findings require manual classification; this audit does not silently baseline direct side effects.\"\n}\n",
-      "stderr": ""
-    },
-    {
-      "label": "All manifests parse",
-      "argv": [],
-      "status": "passed",
-      "returncode": 0,
-      "durationSeconds": 0,
-      "critical": true,
-      "stdout": "",
-      "stderr": ""
-    },
-    {
-      "label": "Governed action schema and migration",
-      "argv": [],
-      "status": "passed",
-      "returncode": 0,
-      "durationSeconds": 0,
-      "critical": true,
-      "stdout": "",
-      "stderr": ""
-    },
-    {
-      "label": "No placeholders in governed action modules",
-      "argv": [],
-      "status": "passed",
-      "returncode": 0,
-      "durationSeconds": 0,
-      "critical": true,
-      "stdout": "",
-      "stderr": ""
-    },
-    {
-      "label": "Bun availability",
-      "argv": [],
-      "status": "not_available",
-      "returncode": null,
-      "durationSeconds": 0,
-      "critical": false,
-      "stdout": "",
-      "stderr": "Bun unavailable"
-    }
-  ],
-  "childReports": {
-    "crm-agent-action-batch-report.json": {
-      "stage": "AGENT-ACTION-INTEGRATION-002..003",
-      "criticalChecksPassed": false,
-      "nextScopeId": "AGENT-ACTION-INTEGRATION-002-REPAIR",
-      "commands": [
-        {
-          "label": "Agent action runtime syntax",
-          "argv": [
-            "node",
-            "--check",
-            "packages/agent-action-runtime/src/index.mjs"
-          ],
-          "status": "passed",
-          "returncode": 0,
-          "durationSeconds": 0.031,
-          "critical": true,
-          "stdout": "",
-          "stderr": ""
-        },
-        {
-          "label": "Prisma stores syntax",
-          "argv": [
-            "node",
-            "--check",
-            "packages/agent-action-runtime/src/prisma-stores.mjs"
-          ],
-          "status": "passed",
-          "returncode": 0,
-          "durationSeconds": 0.024,
-          "critical": true,
-          "stdout": "",
-          "stderr": ""
-        },
-        {
-          "label": "Agent action runtime adversarial tests",
-          "argv": [
-            "node",
-            "--test",
-            "packages/agent-action-runtime/test/governed-action-runtime.test.mjs"
-          ],
-          "status": "failed",
-          "returncode": 1,
-          "durationSeconds": 0.142,
-          "critical": true,
-          "stdout": "TAP version 13\n# Subtest: executes a validated authorized action and records redacted audit events\nok 1 - executes a validated authorized action and records redacted audit events\n  ---\n  duration_ms: 4.088894\n  type: 'test'\n  ...\n# Subtest: rejects tenant ownership fields at any nesting depth\nok 2 - rejects tenant ownership fields at any nesting depth\n  ---\n  duration_ms: 0.684199\n  type: 'test'\n  ...\n# Subtest: rejects missing permissions and object-level authorization\nok 3 - rejects missing permissions and object-level authorization\n  ---\n  duration_ms: 0.55133\n  type: 'test'\n  ...\n# Subtest: replays a completed idempotent result without executing again\nok 4 - replays a completed idempotent result without executing again\n  ---\n  duration_ms: 1.986473\n  type: 'test'\n  ...\n# Subtest: rejects reuse of an idempotency key for another payload\nok 5 - rejects reuse of an idempotency key for another payload\n  ---\n  duration_ms: 0.600532\n  type: 'test'\n  ...\n# Subtest: allows only one concurrent execution for the same receipt\nok 6 - allows only one concurrent execution for the same receipt\n  ---\n  duration_ms: 6.466047\n  type: 'test'\n  ...\n# Subtest: requires payload-bound tenant-bound approval for high-risk actions\nok 7 - requires payload-bound tenant-bound approval for high-risk actions\n  ---\n  duration_ms: 1.365552\n  type: 'test'\n  ...\n# Subtest: rejects approval bound to another tenant or modified payload\nok 8 - rejects approval bound to another tenant or modified payload\n  ---\n  duration_ms: 0.426597\n  type: 'test'\n  ...\n# Subtest: times out a non-cooperative executor and records failure\nnot ok 9 - times out a non-cooperative executor and records failure\n  ---\n  duration_ms: 22.042824\n  type: 'test'\n  location: '/mnt/data/crm_autonomous_work_current/crm-release/packages/agent-action-runtime/test/governed-action-runtime.test.mjs:99:1'\n  failureType: 'testCodeFailure'\n  error: |-\n    Expected values to be strictly equal:\n    + actual - expected\n    \n    + 'agent.action.ambiguous'\n    - 'agent.action.failed'\n                    ^\n    \n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  expected: 'agent.action.failed'\n  actual: 'agent.action.ambiguous'\n  operator: 'strictEqual'\n  stack: |-\n    TestContext.<anonymous> (file:///mnt/data/crm_autonomous_work_current/crm-release/packages/agent-action-runtime/test/governed-action-runtime.test.mjs:102:10)\n    async Test.run (node:internal/test_runner/test:1054:7)\n    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)\n  ...\n# Subtest: propagates cancellation and does not retry it\nnot ok 10 - propagates cancellation and does not retry it\n  ---\n  duration_ms: 2.046436\n  type: 'test'\n  location: '/mnt/data/crm_autonomous_work_current/crm-release/packages/agent-action-runtime/test/governed-action-runtime.test.mjs:105:1'\n  failureType: 'testCodeFailure'\n  error: |-\n    Expected values to be strictly equal:\n    \n    0 !== 1\n    \n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  expected: 1\n  actual: 0\n  operator: 'strictEqual'\n  stack: |-\n    TestContext.<anonymous> (file:///mnt/data/crm_autonomous_work_current/crm-release/packages/agent-action-runtime/test/governed-action-runtime.test.mjs:109:77)\n    async Test.run (node:internal/test_runner/test:1054:7)\n    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)\n  ...\n# Subtest: validates untrusted model input and executor output\nok 11 - validates untrusted model input and executor output\n  ---\n  duration_ms: 0.719655\n  type: 'test'\n  ...\n1..11\n# tests 11\n# suites 0\n# pass 9\n# fail 2\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 109.409059\n",
-          "stderr": ""
-        },
-        {
-          "label": "Durable store contract tests",
-          "argv": [
-            "node",
-            "--test",
-            "packages/agent-action-runtime/test/prisma-stores.test.mjs"
-          ],
-          "status": "passed",
-          "returncode": 0,
-          "durationSeconds": 0.116,
-          "critical": true,
-          "stdout": "TAP version 13\n# Subtest: receipt store atomically acquires, completes and replays\nok 1 - receipt store atomically acquires, completes and replays\n  ---\n  duration_ms: 3.532934\n  type: 'test'\n  ...\n# Subtest: receipt rejects same key with another digest\nok 2 - receipt rejects same key with another digest\n  ---\n  duration_ms: 0.999177\n  type: 'test'\n  ...\n# Subtest: receipt completion requires the acquired lease token\nok 3 - receipt completion requires the acquired lease token\n  ---\n  duration_ms: 0.37397\n  type: 'test'\n  ...\n# Subtest: approval consumption is tenant, action, digest and expiry bound\nok 4 - approval consumption is tenant, action, digest and expiry bound\n  ---\n  duration_ms: 0.594923\n  type: 'test'\n  ...\n# Subtest: audit sink redacts secret-bearing properties\nok 5 - audit sink redacts secret-bearing properties\n  ---\n  duration_ms: 2.02769\n  type: 'test'\n  ...\n1..5\n# tests 5\n# suites 0\n# pass 5\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 83.089427\n",
-          "stderr": ""
-        },
-        {
-          "label": "Agent app governed composition syntax",
-          "argv": [
-            "node",
-            "--check",
-            "apps/agent/src/governed-action-execution.mjs"
-          ],
-          "status": "passed",
-          "returncode": 0,
-          "durationSeconds": 0.023,
-          "critical": true,
-          "stdout": "",
-          "stderr": ""
-        },
-        {
-          "label": "Agent app Prisma composition syntax",
-          "argv": [
-            "node",
-            "--check",
-            "apps/agent/src/governed-action-prisma-composition.mjs"
-          ],
-          "status": "passed",
-          "returncode": 0,
-          "durationSeconds": 0.022,
-          "critical": true,
-          "stdout": "",
-          "stderr": ""
-        },
-        {
-          "label": "Agent action boundary audit",
-          "argv": [
-            "node",
-            "tools/quality/audit-agent-action-boundaries.mjs"
-          ],
-          "status": "passed",
-          "returncode": 0,
-          "durationSeconds": 0.13,
-          "critical": false,
-          "stdout": "{\n  \"generatedAt\": \"2026-08-31T22:30:40.885Z\",\n  \"findingCount\": 2,\n  \"findings\": [\n    \"packages/action-registry/src/registry.mjs\",\n    \"packages/action-registry/test/actions.test.mjs\"\n  ],\n  \"note\": \"Findings require manual classification; this audit does not silently baseline direct side effects.\"\n}\n",
-          "stderr": ""
-        },
-        {
-          "label": "All package.json manifests parse",
-          "argv": [],
-          "status": "passed",
-          "returncode": 0,
-          "durationSeconds": 0,
-          "critical": true,
-          "stdout": "",
-          "stderr": ""
-        },
-        {
-          "label": "Governed action Prisma schema/migration structure",
-          "argv": [],
-          "status": "passed",
-          "returncode": 0,
-          "durationSeconds": 0,
-          "critical": true,
-          "stdout": "",
-          "stderr": ""
-        },
-        {
-          "label": "No placeholders in governed action production modules",
-          "argv": [],
-          "status": "passed",
-          "returncode": 0,
-          "durationSeconds": 0,
-          "critical": true,
-          "stdout": "",
-          "stderr": ""
-        },
-        {
-          "label": "Bun availability",
-          "argv": [],
-          "status": "not_available",
-          "returncode": null,
-          "durationSeconds": 0,
-          "critical": false,
-          "stdout": "",
-          "stderr": "bun not available"
-        },
-        {
-          "label": "Prisma CLI availability",
-          "argv": [],
-          "status": "not_available",
-          "returncode": null,
-          "durationSeconds": 0,
-          "critical": false,
-          "stdout": "",
-          "stderr": "local Prisma CLI not installed"
-        }
-      ],
-      "boundaryAudit": {
-        "generatedAt": "2026-08-31T22:30:40.885Z",
-        "findingCount": 2,
-        "findings": [
-          "packages/action-registry/src/registry.mjs",
-          "packages/action-registry/test/actions.test.mjs"
-        ],
-        "note": "Findings require manual classification; this audit does not silently baseline direct side effects."
-      },
-      "generatedAt": "2026-09-01T00:00:00Z",
-      "changedFiles": [
-        {
-          "path": "apps/agent/package.json",
-          "change": "modified"
-        },
-        {
-          "path": "apps/agent/src/governed-action-execution.mjs",
-          "change": "added"
-        },
-        {
-          "path": "apps/agent/src/governed-action-prisma-composition.mjs",
-          "change": "added"
-        },
-        {
-          "path": "docs/adr/0006-governed-agent-action-execution.md",
-          "change": "added"
-        },
-        {
-          "path": "docs/adr/0007-durable-agent-action-state.md",
-          "change": "added"
-        },
-        {
-          "path": "docs/quality/generated-agent-action-boundary-audit.json",
-          "change": "added"
-        },
-        {
-          "path": "docs/quality/generated-agent-action-integration-build.log",
-          "change": "added"
-        },
-        {
-          "path": "docs/quality/generated-agent-action-integration-report.json",
-          "change": "added"
-        },
-        {
-          "path": "docs/runbooks/agent-action-incidents.md",
-          "change": "added"
-        },
-        {
-          "path": "docs/runbooks/governed-action-receipt-recovery.md",
-          "change": "added"
-        },
-        {
-          "path": "package.json",
-          "change": "modified"
-        },
-        {
-          "path": "packages/agent-action-runtime/package.json",
-          "change": "added"
-        },
-        {
-          "path": "packages/agent-action-runtime/src/index.mjs",
-          "change": "added"
-        },
-        {
-          "path": "packages/agent-action-runtime/src/prisma-stores.mjs",
-          "change": "added"
-        },
-        {
-          "path": "packages/agent-action-runtime/test/governed-action-runtime.test.mjs",
-          "change": "added"
-        },
-        {
-          "path": "packages/agent-action-runtime/test/prisma-stores.test.mjs",
-          "change": "added"
-        },
-        {
-          "path": "packages/db/prisma/migrations/20260831190000_governed_action_execution/migration.sql",
-          "change": "added"
-        },
-        {
-          "path": "packages/db/prisma/schema.prisma",
-          "change": "modified"
-        },
-        {
-          "path": "progress.md",
-          "change": "modified"
-        },
-        {
-          "path": "qa.md",
-          "change": "modified"
-        },
-        {
-          "path": "tools/quality/audit-agent-action-boundaries.mjs",
-          "change": "added"
-        }
-      ],
-      "artifactState": "diagnostic-batch"
-    },
-    "crm-agent-approval-service-report.json": {
-      "stage": "AGENT-APPROVAL-SERVICE-001",
-      "skipped": true,
-      "criticalChecksPassed": false,
-      "commands": [],
-      "nextScopeId": "AGENT-ACTION-INTEGRATION-002-REPAIR",
-      "generatedAt": "2026-09-01T00:00:00Z"
-    },
-    "crm-agent-approval-api-ui-report.json": {
-      "stage": "AGENT-APPROVAL-API-UI-001",
-      "baseReady": false,
-      "criticalChecksPassed": false,
-      "commands": [
-        {
-          "label": "Prerequisite action and approval service gates",
-          "status": "failed",
-          "returncode": null,
-          "critical": true,
-          "stdout": "A prerequisite critical gate is not green",
-          "stderr": ""
-        }
-      ],
-      "nextScopeId": "AGENT-ACTION-INTEGRATION-002-REPAIR",
-      "generatedAt": "2026-09-01T00:00:00Z"
-    },
-    "crm-agent-control-approvals-report.json": {
-      "stage": "AGENT-CONTROL-CENTER-APPROVALS-001",
-      "baseReady": false,
-      "criticalChecksPassed": false,
-      "commands": [
-        {
-          "label": "Prerequisite approval API/UI gate",
-          "status": "failed",
-          "returncode": null,
-          "critical": true,
-          "stdout": "Prerequisite batch is not green",
-          "stderr": ""
-        }
-      ],
-      "nextScopeId": "AGENT-ACTION-INTEGRATION-002-REPAIR",
-      "generatedAt": "2026-09-01T00:00:00Z"
-    }
-  },
-  "boundaryAudit": {
-    "generatedAt": "2026-08-31T22:40:42.086Z",
-    "findingCount": 2,
-    "findings": [
-      "packages/action-registry/src/registry.mjs",
-      "packages/action-registry/test/actions.test.mjs"
-    ],
-    "note": "Findings require manual classification; this audit does not silently baseline direct side effects."
-  },
-  "generatedAt": "2026-09-01T00:00:00Z",
-  "changedFiles": [
-    {
-      "path": "AUTONOMOUS_AGENT_GOVERNANCE_CHECKPOINT.md",
-      "change": "added"
-    },
-    {
-      "path": "DELIVERY_AGENT_ACTION_INTEGRATION.md",
-      "change": "added"
-    },
-    {
-      "path": "apps/agent/package.json",
-      "change": "modified"
-    },
-    {
-      "path": "apps/agent/src/governed-action-execution.mjs",
-      "change": "added"
-    },
-    {
-      "path": "apps/agent/src/governed-action-prisma-composition.mjs",
-      "change": "added"
-    },
-    {
-      "path": "docs/adr/0006-governed-agent-action-execution.md",
-      "change": "added"
-    },
-    {
-      "path": "docs/adr/0007-durable-agent-action-state.md",
-      "change": "added"
-    },
-    {
-      "path": "docs/quality/generated-agent-action-boundary-audit.json",
-      "change": "added"
-    },
-    {
-      "path": "docs/quality/generated-agent-action-integration-build.log",
-      "change": "added"
-    },
-    {
-      "path": "docs/quality/generated-agent-action-integration-report.json",
-      "change": "added"
-    },
-    {
-      "path": "docs/quality/generated-agent-governance-checkpoint-build.log",
-      "change": "added"
-    },
-    {
-      "path": "docs/quality/generated-agent-governance-checkpoint-report.json",
-      "change": "added"
-    },
-    {
-      "path": "docs/runbooks/agent-action-incidents.md",
-      "change": "added"
-    },
-    {
-      "path": "docs/runbooks/governed-action-receipt-recovery.md",
-      "change": "added"
-    },
-    {
-      "path": "package.json",
-      "change": "modified"
-    },
-    {
-      "path": "packages/agent-action-runtime/package.json",
-      "change": "added"
-    },
-    {
-      "path": "packages/agent-action-runtime/src/index.mjs",
-      "change": "added"
-    },
-    {
-      "path": "packages/agent-action-runtime/src/prisma-stores.mjs",
-      "change": "added"
-    },
-    {
-      "path": "packages/agent-action-runtime/test/governed-action-runtime.test.mjs",
-      "change": "added"
-    },
-    {
-      "path": "packages/agent-action-runtime/test/prisma-stores.test.mjs",
-      "change": "added"
-    },
-    {
-      "path": "packages/db/prisma/migrations/20260831190000_governed_action_execution/migration.sql",
-      "change": "added"
-    },
-    {
-      "path": "packages/db/prisma/schema.prisma",
-      "change": "modified"
-    },
-    {
-      "path": "progress.md",
-      "change": "modified"
-    },
-    {
-      "path": "qa.md",
-      "change": "modified"
-    },
-    {
-      "path": "tools/quality/audit-agent-action-boundaries.mjs",
-      "change": "added"
-    }
-  ],
-  "artifactState": "DIAGNOSTIC_BATCH"
+	"stage": "AUTONOMOUS-AGENT-GOVERNANCE-CHECKPOINT",
+	"criticalChecksPassed": false,
+	"nextScopeId": "AGENT-ACTION-INTEGRATION-002-REPAIR",
+	"commands": [
+		{
+			"label": "Action runtime module exists",
+			"argv": [],
+			"status": "passed",
+			"returncode": 0,
+			"durationSeconds": 0,
+			"critical": true,
+			"stdout": "packages/agent-action-runtime/src/index.mjs",
+			"stderr": ""
+		},
+		{
+			"label": "Action durable stores exists",
+			"argv": [],
+			"status": "passed",
+			"returncode": 0,
+			"durationSeconds": 0,
+			"critical": true,
+			"stdout": "packages/agent-action-runtime/src/prisma-stores.mjs",
+			"stderr": ""
+		},
+		{
+			"label": "Action runtime tests exists",
+			"argv": [],
+			"status": "passed",
+			"returncode": 0,
+			"durationSeconds": 0,
+			"critical": true,
+			"stdout": "packages/agent-action-runtime/test/governed-action-runtime.test.mjs",
+			"stderr": ""
+		},
+		{
+			"label": "Action store tests exists",
+			"argv": [],
+			"status": "passed",
+			"returncode": 0,
+			"durationSeconds": 0,
+			"critical": true,
+			"stdout": "packages/agent-action-runtime/test/prisma-stores.test.mjs",
+			"stderr": ""
+		},
+		{
+			"label": "Agent app governed composition exists",
+			"argv": [],
+			"status": "passed",
+			"returncode": 0,
+			"durationSeconds": 0,
+			"critical": true,
+			"stdout": "apps/agent/src/governed-action-execution.mjs",
+			"stderr": ""
+		},
+		{
+			"label": "Agent app Prisma composition exists",
+			"argv": [],
+			"status": "passed",
+			"returncode": 0,
+			"durationSeconds": 0,
+			"critical": true,
+			"stdout": "apps/agent/src/governed-action-prisma-composition.mjs",
+			"stderr": ""
+		},
+		{
+			"label": "Final action runtime syntax",
+			"argv": [
+				"node",
+				"--check",
+				"packages/agent-action-runtime/src/index.mjs"
+			],
+			"status": "passed",
+			"returncode": 0,
+			"durationSeconds": 0.026,
+			"critical": true,
+			"stdout": "",
+			"stderr": ""
+		},
+		{
+			"label": "Final action store syntax",
+			"argv": [
+				"node",
+				"--check",
+				"packages/agent-action-runtime/src/prisma-stores.mjs"
+			],
+			"status": "passed",
+			"returncode": 0,
+			"durationSeconds": 0.023,
+			"critical": true,
+			"stdout": "",
+			"stderr": ""
+		},
+		{
+			"label": "Final action runtime adversarial suite",
+			"argv": [
+				"node",
+				"--test",
+				"packages/agent-action-runtime/test/governed-action-runtime.test.mjs"
+			],
+			"status": "failed",
+			"returncode": 1,
+			"durationSeconds": 0.144,
+			"critical": true,
+			"stdout": "TAP version 13\n# Subtest: executes a validated authorized action and records redacted audit events\nok 1 - executes a validated authorized action and records redacted audit events\n  ---\n  duration_ms: 3.684576\n  type: 'test'\n  ...\n# Subtest: rejects tenant ownership fields at any nesting depth\nok 2 - rejects tenant ownership fields at any nesting depth\n  ---\n  duration_ms: 0.640447\n  type: 'test'\n  ...\n# Subtest: rejects missing permissions and object-level authorization\nok 3 - rejects missing permissions and object-level authorization\n  ---\n  duration_ms: 1.304778\n  type: 'test'\n  ...\n# Subtest: replays a completed idempotent result without executing again\nok 4 - replays a completed idempotent result without executing again\n  ---\n  duration_ms: 1.256097\n  type: 'test'\n  ...\n# Subtest: rejects reuse of an idempotency key for another payload\nok 5 - rejects reuse of an idempotency key for another payload\n  ---\n  duration_ms: 0.656157\n  type: 'test'\n  ...\n# Subtest: rejects changed payload after an approval failure acquired the same idempotency key\nok 6 - rejects changed payload after an approval failure acquired the same idempotency key\n  ---\n  duration_ms: 0.853505\n  type: 'test'\n  ...\n# Subtest: allows only one concurrent execution for the same receipt\nok 7 - allows only one concurrent execution for the same receipt\n  ---\n  duration_ms: 7.385772\n  type: 'test'\n  ...\n# Subtest: requires payload-bound tenant-bound approval for high-risk actions\nok 8 - requires payload-bound tenant-bound approval for high-risk actions\n  ---\n  duration_ms: 1.304949\n  type: 'test'\n  ...\n# Subtest: rejects approval bound to another tenant or modified payload\nok 9 - rejects approval bound to another tenant or modified payload\n  ---\n  duration_ms: 0.725085\n  type: 'test'\n  ...\n# Subtest: times out a non-cooperative executor and records failure\nok 10 - times out a non-cooperative executor and records failure\n  ---\n  duration_ms: 21.103839\n  type: 'test'\n  ...\n# Subtest: propagates cancellation and does not retry it\nok 11 - propagates cancellation and does not retry it\n  ---\n  duration_ms: 0.50836\n  type: 'test'\n  ...\n# Subtest: keeps the success receipt when the success audit write fails\nok 12 - keeps the success receipt when the success audit write fails\n  ---\n  duration_ms: 0.643853\n  type: 'test'\n  ...\n# Subtest: propagates the operation digest and idempotency key to the executor\nnot ok 13 - propagates the operation digest and idempotency key to the executor\n  ---\n  duration_ms: 1.207797\n  type: 'test'\n  location: '/mnt/data/crm_autonomous_work_current/crm-release/packages/agent-action-runtime/test/governed-action-runtime.test.mjs:133:1'\n  failureType: 'testCodeFailure'\n  error: |-\n    Expected values to be strictly equal:\n    + actual - expected\n    \n    + undefined\n    - 'provider-key'\n    \n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  expected: 'provider-key'\n  operator: 'strictEqual'\n  stack: |-\n    TestContext.<anonymous> (file:///mnt/data/crm_autonomous_work_current/crm-release/packages/agent-action-runtime/test/governed-action-runtime.test.mjs:137:10)\n    async Test.run (node:internal/test_runner/test:1054:7)\n    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)\n  ...\n# Subtest: validates untrusted model input and executor output\nok 14 - validates untrusted model input and executor output\n  ---\n  duration_ms: 0.739141\n  type: 'test'\n  ...\n1..14\n# tests 14\n# suites 0\n# pass 13\n# fail 1\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 109.480949\n",
+			"stderr": ""
+		},
+		{
+			"label": "Final durable action store suite",
+			"argv": [
+				"node",
+				"--test",
+				"packages/agent-action-runtime/test/prisma-stores.test.mjs"
+			],
+			"status": "passed",
+			"returncode": 0,
+			"durationSeconds": 0.111,
+			"critical": true,
+			"stdout": "TAP version 13\n# Subtest: receipt store atomically acquires, completes and replays\nok 1 - receipt store atomically acquires, completes and replays\n  ---\n  duration_ms: 3.422135\n  type: 'test'\n  ...\n# Subtest: receipt rejects same key with another digest\nok 2 - receipt rejects same key with another digest\n  ---\n  duration_ms: 0.967989\n  type: 'test'\n  ...\n# Subtest: receipt completion requires the acquired lease token\nok 3 - receipt completion requires the acquired lease token\n  ---\n  duration_ms: 0.412782\n  type: 'test'\n  ...\n# Subtest: approval consumption is tenant, action, digest and expiry bound\nok 4 - approval consumption is tenant, action, digest and expiry bound\n  ---\n  duration_ms: 0.517487\n  type: 'test'\n  ...\n# Subtest: audit sink redacts secret-bearing properties\nok 5 - audit sink redacts secret-bearing properties\n  ---\n  duration_ms: 2.082532\n  type: 'test'\n  ...\n1..5\n# tests 5\n# suites 0\n# pass 5\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 76.1326\n",
+			"stderr": ""
+		},
+		{
+			"label": "Final app governed composition syntax",
+			"argv": [
+				"node",
+				"--check",
+				"apps/agent/src/governed-action-execution.mjs"
+			],
+			"status": "passed",
+			"returncode": 0,
+			"durationSeconds": 0.023,
+			"critical": true,
+			"stdout": "",
+			"stderr": ""
+		},
+		{
+			"label": "Final app Prisma composition syntax",
+			"argv": [
+				"node",
+				"--check",
+				"apps/agent/src/governed-action-prisma-composition.mjs"
+			],
+			"status": "passed",
+			"returncode": 0,
+			"durationSeconds": 0.023,
+			"critical": true,
+			"stdout": "",
+			"stderr": ""
+		},
+		{
+			"label": "Final action-boundary audit",
+			"argv": ["node", "tools/quality/audit-agent-action-boundaries.mjs"],
+			"status": "passed",
+			"returncode": 0,
+			"durationSeconds": 0.109,
+			"critical": false,
+			"stdout": "{\n  \"generatedAt\": \"2026-08-31T22:40:42.086Z\",\n  \"findingCount\": 2,\n  \"findings\": [\n    \"packages/action-registry/src/registry.mjs\",\n    \"packages/action-registry/test/actions.test.mjs\"\n  ],\n  \"note\": \"Findings require manual classification; this audit does not silently baseline direct side effects.\"\n}\n",
+			"stderr": ""
+		},
+		{
+			"label": "All manifests parse",
+			"argv": [],
+			"status": "passed",
+			"returncode": 0,
+			"durationSeconds": 0,
+			"critical": true,
+			"stdout": "",
+			"stderr": ""
+		},
+		{
+			"label": "Governed action schema and migration",
+			"argv": [],
+			"status": "passed",
+			"returncode": 0,
+			"durationSeconds": 0,
+			"critical": true,
+			"stdout": "",
+			"stderr": ""
+		},
+		{
+			"label": "No placeholders in governed action modules",
+			"argv": [],
+			"status": "passed",
+			"returncode": 0,
+			"durationSeconds": 0,
+			"critical": true,
+			"stdout": "",
+			"stderr": ""
+		},
+		{
+			"label": "Bun availability",
+			"argv": [],
+			"status": "not_available",
+			"returncode": null,
+			"durationSeconds": 0,
+			"critical": false,
+			"stdout": "",
+			"stderr": "Bun unavailable"
+		}
+	],
+	"childReports": {
+		"crm-agent-action-batch-report.json": {
+			"stage": "AGENT-ACTION-INTEGRATION-002..003",
+			"criticalChecksPassed": false,
+			"nextScopeId": "AGENT-ACTION-INTEGRATION-002-REPAIR",
+			"commands": [
+				{
+					"label": "Agent action runtime syntax",
+					"argv": [
+						"node",
+						"--check",
+						"packages/agent-action-runtime/src/index.mjs"
+					],
+					"status": "passed",
+					"returncode": 0,
+					"durationSeconds": 0.031,
+					"critical": true,
+					"stdout": "",
+					"stderr": ""
+				},
+				{
+					"label": "Prisma stores syntax",
+					"argv": [
+						"node",
+						"--check",
+						"packages/agent-action-runtime/src/prisma-stores.mjs"
+					],
+					"status": "passed",
+					"returncode": 0,
+					"durationSeconds": 0.024,
+					"critical": true,
+					"stdout": "",
+					"stderr": ""
+				},
+				{
+					"label": "Agent action runtime adversarial tests",
+					"argv": [
+						"node",
+						"--test",
+						"packages/agent-action-runtime/test/governed-action-runtime.test.mjs"
+					],
+					"status": "failed",
+					"returncode": 1,
+					"durationSeconds": 0.142,
+					"critical": true,
+					"stdout": "TAP version 13\n# Subtest: executes a validated authorized action and records redacted audit events\nok 1 - executes a validated authorized action and records redacted audit events\n  ---\n  duration_ms: 4.088894\n  type: 'test'\n  ...\n# Subtest: rejects tenant ownership fields at any nesting depth\nok 2 - rejects tenant ownership fields at any nesting depth\n  ---\n  duration_ms: 0.684199\n  type: 'test'\n  ...\n# Subtest: rejects missing permissions and object-level authorization\nok 3 - rejects missing permissions and object-level authorization\n  ---\n  duration_ms: 0.55133\n  type: 'test'\n  ...\n# Subtest: replays a completed idempotent result without executing again\nok 4 - replays a completed idempotent result without executing again\n  ---\n  duration_ms: 1.986473\n  type: 'test'\n  ...\n# Subtest: rejects reuse of an idempotency key for another payload\nok 5 - rejects reuse of an idempotency key for another payload\n  ---\n  duration_ms: 0.600532\n  type: 'test'\n  ...\n# Subtest: allows only one concurrent execution for the same receipt\nok 6 - allows only one concurrent execution for the same receipt\n  ---\n  duration_ms: 6.466047\n  type: 'test'\n  ...\n# Subtest: requires payload-bound tenant-bound approval for high-risk actions\nok 7 - requires payload-bound tenant-bound approval for high-risk actions\n  ---\n  duration_ms: 1.365552\n  type: 'test'\n  ...\n# Subtest: rejects approval bound to another tenant or modified payload\nok 8 - rejects approval bound to another tenant or modified payload\n  ---\n  duration_ms: 0.426597\n  type: 'test'\n  ...\n# Subtest: times out a non-cooperative executor and records failure\nnot ok 9 - times out a non-cooperative executor and records failure\n  ---\n  duration_ms: 22.042824\n  type: 'test'\n  location: '/mnt/data/crm_autonomous_work_current/crm-release/packages/agent-action-runtime/test/governed-action-runtime.test.mjs:99:1'\n  failureType: 'testCodeFailure'\n  error: |-\n    Expected values to be strictly equal:\n    + actual - expected\n    \n    + 'agent.action.ambiguous'\n    - 'agent.action.failed'\n                    ^\n    \n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  expected: 'agent.action.failed'\n  actual: 'agent.action.ambiguous'\n  operator: 'strictEqual'\n  stack: |-\n    TestContext.<anonymous> (file:///mnt/data/crm_autonomous_work_current/crm-release/packages/agent-action-runtime/test/governed-action-runtime.test.mjs:102:10)\n    async Test.run (node:internal/test_runner/test:1054:7)\n    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)\n  ...\n# Subtest: propagates cancellation and does not retry it\nnot ok 10 - propagates cancellation and does not retry it\n  ---\n  duration_ms: 2.046436\n  type: 'test'\n  location: '/mnt/data/crm_autonomous_work_current/crm-release/packages/agent-action-runtime/test/governed-action-runtime.test.mjs:105:1'\n  failureType: 'testCodeFailure'\n  error: |-\n    Expected values to be strictly equal:\n    \n    0 !== 1\n    \n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  expected: 1\n  actual: 0\n  operator: 'strictEqual'\n  stack: |-\n    TestContext.<anonymous> (file:///mnt/data/crm_autonomous_work_current/crm-release/packages/agent-action-runtime/test/governed-action-runtime.test.mjs:109:77)\n    async Test.run (node:internal/test_runner/test:1054:7)\n    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)\n  ...\n# Subtest: validates untrusted model input and executor output\nok 11 - validates untrusted model input and executor output\n  ---\n  duration_ms: 0.719655\n  type: 'test'\n  ...\n1..11\n# tests 11\n# suites 0\n# pass 9\n# fail 2\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 109.409059\n",
+					"stderr": ""
+				},
+				{
+					"label": "Durable store contract tests",
+					"argv": [
+						"node",
+						"--test",
+						"packages/agent-action-runtime/test/prisma-stores.test.mjs"
+					],
+					"status": "passed",
+					"returncode": 0,
+					"durationSeconds": 0.116,
+					"critical": true,
+					"stdout": "TAP version 13\n# Subtest: receipt store atomically acquires, completes and replays\nok 1 - receipt store atomically acquires, completes and replays\n  ---\n  duration_ms: 3.532934\n  type: 'test'\n  ...\n# Subtest: receipt rejects same key with another digest\nok 2 - receipt rejects same key with another digest\n  ---\n  duration_ms: 0.999177\n  type: 'test'\n  ...\n# Subtest: receipt completion requires the acquired lease token\nok 3 - receipt completion requires the acquired lease token\n  ---\n  duration_ms: 0.37397\n  type: 'test'\n  ...\n# Subtest: approval consumption is tenant, action, digest and expiry bound\nok 4 - approval consumption is tenant, action, digest and expiry bound\n  ---\n  duration_ms: 0.594923\n  type: 'test'\n  ...\n# Subtest: audit sink redacts secret-bearing properties\nok 5 - audit sink redacts secret-bearing properties\n  ---\n  duration_ms: 2.02769\n  type: 'test'\n  ...\n1..5\n# tests 5\n# suites 0\n# pass 5\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 83.089427\n",
+					"stderr": ""
+				},
+				{
+					"label": "Agent app governed composition syntax",
+					"argv": [
+						"node",
+						"--check",
+						"apps/agent/src/governed-action-execution.mjs"
+					],
+					"status": "passed",
+					"returncode": 0,
+					"durationSeconds": 0.023,
+					"critical": true,
+					"stdout": "",
+					"stderr": ""
+				},
+				{
+					"label": "Agent app Prisma composition syntax",
+					"argv": [
+						"node",
+						"--check",
+						"apps/agent/src/governed-action-prisma-composition.mjs"
+					],
+					"status": "passed",
+					"returncode": 0,
+					"durationSeconds": 0.022,
+					"critical": true,
+					"stdout": "",
+					"stderr": ""
+				},
+				{
+					"label": "Agent action boundary audit",
+					"argv": ["node", "tools/quality/audit-agent-action-boundaries.mjs"],
+					"status": "passed",
+					"returncode": 0,
+					"durationSeconds": 0.13,
+					"critical": false,
+					"stdout": "{\n  \"generatedAt\": \"2026-08-31T22:30:40.885Z\",\n  \"findingCount\": 2,\n  \"findings\": [\n    \"packages/action-registry/src/registry.mjs\",\n    \"packages/action-registry/test/actions.test.mjs\"\n  ],\n  \"note\": \"Findings require manual classification; this audit does not silently baseline direct side effects.\"\n}\n",
+					"stderr": ""
+				},
+				{
+					"label": "All package.json manifests parse",
+					"argv": [],
+					"status": "passed",
+					"returncode": 0,
+					"durationSeconds": 0,
+					"critical": true,
+					"stdout": "",
+					"stderr": ""
+				},
+				{
+					"label": "Governed action Prisma schema/migration structure",
+					"argv": [],
+					"status": "passed",
+					"returncode": 0,
+					"durationSeconds": 0,
+					"critical": true,
+					"stdout": "",
+					"stderr": ""
+				},
+				{
+					"label": "No placeholders in governed action production modules",
+					"argv": [],
+					"status": "passed",
+					"returncode": 0,
+					"durationSeconds": 0,
+					"critical": true,
+					"stdout": "",
+					"stderr": ""
+				},
+				{
+					"label": "Bun availability",
+					"argv": [],
+					"status": "not_available",
+					"returncode": null,
+					"durationSeconds": 0,
+					"critical": false,
+					"stdout": "",
+					"stderr": "bun not available"
+				},
+				{
+					"label": "Prisma CLI availability",
+					"argv": [],
+					"status": "not_available",
+					"returncode": null,
+					"durationSeconds": 0,
+					"critical": false,
+					"stdout": "",
+					"stderr": "local Prisma CLI not installed"
+				}
+			],
+			"boundaryAudit": {
+				"generatedAt": "2026-08-31T22:30:40.885Z",
+				"findingCount": 2,
+				"findings": [
+					"packages/action-registry/src/registry.mjs",
+					"packages/action-registry/test/actions.test.mjs"
+				],
+				"note": "Findings require manual classification; this audit does not silently baseline direct side effects."
+			},
+			"generatedAt": "2026-09-01T00:00:00Z",
+			"changedFiles": [
+				{
+					"path": "apps/agent/package.json",
+					"change": "modified"
+				},
+				{
+					"path": "apps/agent/src/governed-action-execution.mjs",
+					"change": "added"
+				},
+				{
+					"path": "apps/agent/src/governed-action-prisma-composition.mjs",
+					"change": "added"
+				},
+				{
+					"path": "docs/adr/0006-governed-agent-action-execution.md",
+					"change": "added"
+				},
+				{
+					"path": "docs/adr/0007-durable-agent-action-state.md",
+					"change": "added"
+				},
+				{
+					"path": "docs/quality/generated-agent-action-boundary-audit.json",
+					"change": "added"
+				},
+				{
+					"path": "docs/quality/generated-agent-action-integration-build.log",
+					"change": "added"
+				},
+				{
+					"path": "docs/quality/generated-agent-action-integration-report.json",
+					"change": "added"
+				},
+				{
+					"path": "docs/runbooks/agent-action-incidents.md",
+					"change": "added"
+				},
+				{
+					"path": "docs/runbooks/governed-action-receipt-recovery.md",
+					"change": "added"
+				},
+				{
+					"path": "package.json",
+					"change": "modified"
+				},
+				{
+					"path": "packages/agent-action-runtime/package.json",
+					"change": "added"
+				},
+				{
+					"path": "packages/agent-action-runtime/src/index.mjs",
+					"change": "added"
+				},
+				{
+					"path": "packages/agent-action-runtime/src/prisma-stores.mjs",
+					"change": "added"
+				},
+				{
+					"path": "packages/agent-action-runtime/test/governed-action-runtime.test.mjs",
+					"change": "added"
+				},
+				{
+					"path": "packages/agent-action-runtime/test/prisma-stores.test.mjs",
+					"change": "added"
+				},
+				{
+					"path": "packages/db/prisma/migrations/20260831190000_governed_action_execution/migration.sql",
+					"change": "added"
+				},
+				{
+					"path": "packages/db/prisma/schema.prisma",
+					"change": "modified"
+				},
+				{
+					"path": "progress.md",
+					"change": "modified"
+				},
+				{
+					"path": "qa.md",
+					"change": "modified"
+				},
+				{
+					"path": "tools/quality/audit-agent-action-boundaries.mjs",
+					"change": "added"
+				}
+			],
+			"artifactState": "diagnostic-batch"
+		},
+		"crm-agent-approval-service-report.json": {
+			"stage": "AGENT-APPROVAL-SERVICE-001",
+			"skipped": true,
+			"criticalChecksPassed": false,
+			"commands": [],
+			"nextScopeId": "AGENT-ACTION-INTEGRATION-002-REPAIR",
+			"generatedAt": "2026-09-01T00:00:00Z"
+		},
+		"crm-agent-approval-api-ui-report.json": {
+			"stage": "AGENT-APPROVAL-API-UI-001",
+			"baseReady": false,
+			"criticalChecksPassed": false,
+			"commands": [
+				{
+					"label": "Prerequisite action and approval service gates",
+					"status": "failed",
+					"returncode": null,
+					"critical": true,
+					"stdout": "A prerequisite critical gate is not green",
+					"stderr": ""
+				}
+			],
+			"nextScopeId": "AGENT-ACTION-INTEGRATION-002-REPAIR",
+			"generatedAt": "2026-09-01T00:00:00Z"
+		},
+		"crm-agent-control-approvals-report.json": {
+			"stage": "AGENT-CONTROL-CENTER-APPROVALS-001",
+			"baseReady": false,
+			"criticalChecksPassed": false,
+			"commands": [
+				{
+					"label": "Prerequisite approval API/UI gate",
+					"status": "failed",
+					"returncode": null,
+					"critical": true,
+					"stdout": "Prerequisite batch is not green",
+					"stderr": ""
+				}
+			],
+			"nextScopeId": "AGENT-ACTION-INTEGRATION-002-REPAIR",
+			"generatedAt": "2026-09-01T00:00:00Z"
+		}
+	},
+	"boundaryAudit": {
+		"generatedAt": "2026-08-31T22:40:42.086Z",
+		"findingCount": 2,
+		"findings": [
+			"packages/action-registry/src/registry.mjs",
+			"packages/action-registry/test/actions.test.mjs"
+		],
+		"note": "Findings require manual classification; this audit does not silently baseline direct side effects."
+	},
+	"generatedAt": "2026-09-01T00:00:00Z",
+	"changedFiles": [
+		{
+			"path": "AUTONOMOUS_AGENT_GOVERNANCE_CHECKPOINT.md",
+			"change": "added"
+		},
+		{
+			"path": "DELIVERY_AGENT_ACTION_INTEGRATION.md",
+			"change": "added"
+		},
+		{
+			"path": "apps/agent/package.json",
+			"change": "modified"
+		},
+		{
+			"path": "apps/agent/src/governed-action-execution.mjs",
+			"change": "added"
+		},
+		{
+			"path": "apps/agent/src/governed-action-prisma-composition.mjs",
+			"change": "added"
+		},
+		{
+			"path": "docs/adr/0006-governed-agent-action-execution.md",
+			"change": "added"
+		},
+		{
+			"path": "docs/adr/0007-durable-agent-action-state.md",
+			"change": "added"
+		},
+		{
+			"path": "docs/quality/generated-agent-action-boundary-audit.json",
+			"change": "added"
+		},
+		{
+			"path": "docs/quality/generated-agent-action-integration-build.log",
+			"change": "added"
+		},
+		{
+			"path": "docs/quality/generated-agent-action-integration-report.json",
+			"change": "added"
+		},
+		{
+			"path": "docs/quality/generated-agent-governance-checkpoint-build.log",
+			"change": "added"
+		},
+		{
+			"path": "docs/quality/generated-agent-governance-checkpoint-report.json",
+			"change": "added"
+		},
+		{
+			"path": "docs/runbooks/agent-action-incidents.md",
+			"change": "added"
+		},
+		{
+			"path": "docs/runbooks/governed-action-receipt-recovery.md",
+			"change": "added"
+		},
+		{
+			"path": "package.json",
+			"change": "modified"
+		},
+		{
+			"path": "packages/agent-action-runtime/package.json",
+			"change": "added"
+		},
+		{
+			"path": "packages/agent-action-runtime/src/index.mjs",
+			"change": "added"
+		},
+		{
+			"path": "packages/agent-action-runtime/src/prisma-stores.mjs",
+			"change": "added"
+		},
+		{
+			"path": "packages/agent-action-runtime/test/governed-action-runtime.test.mjs",
+			"change": "added"
+		},
+		{
+			"path": "packages/agent-action-runtime/test/prisma-stores.test.mjs",
+			"change": "added"
+		},
+		{
+			"path": "packages/db/prisma/migrations/20260831190000_governed_action_execution/migration.sql",
+			"change": "added"
+		},
+		{
+			"path": "packages/db/prisma/schema.prisma",
+			"change": "modified"
+		},
+		{
+			"path": "progress.md",
+			"change": "modified"
+		},
+		{
+			"path": "qa.md",
+			"change": "modified"
+		},
+		{
+			"path": "tools/quality/audit-agent-action-boundaries.mjs",
+			"change": "added"
+		}
+	],
+	"artifactState": "DIAGNOSTIC_BATCH"
 }

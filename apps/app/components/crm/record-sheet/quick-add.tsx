@@ -283,9 +283,17 @@ export function QuickAddDeal({
 			return;
 		}
 
-        let amountCents: number | null;
-        try { amountCents = parseAmountInput(amount); }
-        catch (error) { toast.error(error instanceof Error ? error.message : "Check the amount and try again."); return; }
+		let amountCents: number | null;
+		try {
+			amountCents = parseAmountInput(amount);
+		} catch (error) {
+			toast.error(
+				error instanceof Error
+					? error.message
+					: "Check the amount and try again.",
+			);
+			return;
+		}
 
 		create.mutate({
 			name,

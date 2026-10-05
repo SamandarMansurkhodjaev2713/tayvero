@@ -1,7 +1,7 @@
-import { observeNativeApprovalEvent } from "../lib/approval-continuation";
 import { db, Prisma } from "@crm/db";
 import { defineHook } from "eve/hooks";
 import { z } from "zod";
+import { observeNativeApprovalEvent } from "../lib/approval-continuation";
 import { isTransportOnlyEvent } from "../lib/event-persistence";
 import { currentFocus } from "../lib/focus";
 import { lockAgentRun } from "../lib/run-state";

@@ -16,7 +16,9 @@ export default function AppLayout({
 }: LayoutProps<"/[slug]">) {
 	return (
 		<MobileNavProvider>
-			<a href="#workspace-content" className="skip-to-content">Skip to content</a>
+			<a href="#workspace-content" className="skip-to-content">
+				Skip to content
+			</a>
 			<div className="isolate flex h-svh flex-col">
 				<Suspense fallback={<AppHeaderFallback />}>
 					<WorkspaceHeader params={params} />
@@ -26,7 +28,13 @@ export default function AppLayout({
 					<Suspense fallback={<AppIconRailFallback />}>
 						<AppIconRail />
 					</Suspense>
-					<div id="workspace-content" tabIndex={-1} className="flex min-h-0 min-w-0 flex-1">{children}</div>
+					<div
+						id="workspace-content"
+						tabIndex={-1}
+						className="flex min-h-0 min-w-0 flex-1"
+					>
+						{children}
+					</div>
 				</div>
 
 				<Suspense fallback={null}>

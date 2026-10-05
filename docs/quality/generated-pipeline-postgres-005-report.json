@@ -1,27 +1,27 @@
 {
-  "stage": "CRM-PIPE-POSTGRES-005",
-  "scopeId": "CRM-PIPE-POSTGRES-005",
-  "artifactState": "BLOCKED_EXTERNAL",
-  "criticalChecksPassed": false,
-  "nextScopeId": "CRM-PIPE-POSTGRES-005",
-  "generatedAt": "2026-10-05T12:46:14.324Z",
-  "safety": {
-    "requiresExplicitTestDatabase": true,
-    "requiresTestDatabaseSuffix": "_test",
-    "fallsBackToDatabaseUrl": false,
-    "testEqualsLiveRejected": true,
-    "canonicalDatabaseIdentityChecked": true,
-    "remoteDatabaseRequiresExplicitOptIn": true,
-    "automaticDatabaseReset": false
-  },
-  "environment": {
-    "bunPresent": true,
-    "depsPresent": true,
-    "testDatabaseConfigured": false
-  },
-  "blockers": [
-    "TEST_DATABASE_URL is required explicitly; never fall back to DATABASE_URL.",
-    "TEST_DATABASE_URL is required explicitly; this gate never falls back to DATABASE_URL."
-  ],
-  "commands": []
+	"stage": "CRM-PIPE-POSTGRES-005",
+	"scopeId": "CRM-PIPE-POSTGRES-005",
+	"artifactState": "BLOCKED_EXTERNAL",
+	"criticalChecksPassed": false,
+	"nextScopeId": "CRM-PIPE-POSTGRES-005",
+	"generatedAt": "2026-10-05T12:46:14.324Z",
+	"safety": {
+		"requiresExplicitTestDatabase": true,
+		"requiresTestDatabaseSuffix": "_test",
+		"fallsBackToDatabaseUrl": false,
+		"testEqualsLiveRejected": true,
+		"canonicalDatabaseIdentityChecked": true,
+		"remoteDatabaseRequiresExplicitOptIn": true,
+		"automaticDatabaseReset": false
+	},
+	"environment": {
+		"bunPresent": true,
+		"depsPresent": true,
+		"testDatabaseConfigured": false
+	},
+	"blockers": [
+		"TEST_DATABASE_URL is required explicitly; never fall back to DATABASE_URL.",
+		"TEST_DATABASE_URL is required explicitly; this gate never falls back to DATABASE_URL."
+	],
+	"commands": []
 }

@@ -1,207 +1,200 @@
 {
-  "release": "R9/R10",
-  "repaired": true,
-  "criticalChecksPassed": false,
-  "nextScopeId": "CRM-PIPE-API-003",
-  "commands": [
-    {
-      "name": "Pipeline runtime tests",
-      "command": [
-        "node",
-        "--test",
-        "packages/pipeline-runtime/test/runtime.test.mjs"
-      ],
-      "status": "failed",
-      "exit_code": 1,
-      "duration_seconds": 0.36,
-      "output": "TAP version 13\n# Subtest: creates an idempotent pipeline and writes one audit event\nok 1 - creates an idempotent pipeline and writes one audit event\n  ---\n  duration_ms: 8.250072\n  type: 'test'\n  ...\n# Subtest: rejects an idempotency key reused with another payload\nok 2 - rejects an idempotency key reused with another payload\n  ---\n  duration_ms: 2.064146\n  type: 'test'\n  ...\n# Subtest: rejects tenant ownership supplied for another tenant\nok 3 - rejects tenant ownership supplied for another tenant\n  ---\n  duration_ms: 0.304875\n  type: 'test'\n  ...\n# Subtest: enforces action permission at the operation boundary\nok 4 - enforces action permission at the operation boundary\n  ---\n  duration_ms: 0.321404\n  type: 'test'\n  ...\n# Subtest: transitions a seeded deal with optimistic concurrency\nnot ok 5 - transitions a seeded deal with optimistic concurrency\n  ---\n  duration_ms: 5.902485\n  type: 'test'\n  location: '/mnt/data/crm_r9_r10_repair/crm-release/packages/pipeline-runtime/test/runtime.test.mjs:40:1'\n  failureType: 'testCodeFailure'\n  error: |-\n    The validation function is expected to return \"true\". Received false\n    \n    Caught error:\n    \n    PipelineDomainError: The deal stage changed after it was read\n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  stack: |-\n    async TestContext.<anonymous> (file:///mnt/data/crm_r9_r10_repair/crm-release/packages/pipeline-runtime/test/runtime.test.mjs:48:3)\n    async Test.run (node:internal/test_runner/test:1054:7)\n    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)\n  ...\n# Subtest: serializes two concurrent transitions so only one stale version wins\nok 6 - serializes two concurrent transitions so only one stale version wins\n  ---\n  duration_ms: 2.02729\n  type: 'test'\n  ...\n# Subtest: prevents deleting a stage that still owns a deal assignment\nok 7 - prevents deleting a stage that still owns a deal assignment\n  ---\n  duration_ms: 1.717574\n  type: 'test'\n  ...\n# Subtest: atomically switches the default pipeline\nok 8 - atomically switches the default pipeline\n  ---\n  duration_ms: 16.064977\n  type: 'test'\n  ...\n1..8\n# tests 8\n# suites 0\n# pass 7\n# fail 1\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 243.8075\n"
-    },
-    {
-      "name": "Migration runtime tests",
-      "command": [
-        "node",
-        "--test",
-        "packages/migration-runtime/test/runtime.test.mjs"
-      ],
-      "status": "passed",
-      "exit_code": 0,
-      "duration_seconds": 0.351,
-      "output": "TAP version 13\n# Subtest: rejects invalid state transitions\nok 1 - rejects invalid state transitions\n  ---\n  duration_ms: 3.270216\n  type: 'test'\n  ...\n# Subtest: rejects a dry-run from another tenant\nok 2 - rejects a dry-run from another tenant\n  ---\n  duration_ms: 2.805211\n  type: 'test'\n  ...\n# Subtest: processes bounded batches and completes after the last checkpoint\nok 3 - processes bounded batches and completes after the last checkpoint\n  ---\n  duration_ms: 7.964552\n  type: 'test'\n  ...\n# Subtest: concurrent workers claim distinct batches and never duplicate the same lease\nok 4 - concurrent workers claim distinct batches and never duplicate the same lease\n  ---\n  duration_ms: 10.360352\n  type: 'test'\n  ...\n# Subtest: an expired RUNNING lease is reclaimed with the same operation identity\nok 5 - an expired RUNNING lease is reclaimed with the same operation identity\n  ---\n  duration_ms: 9.166989\n  type: 'test'\n  ...\n# Subtest: retries a transient failure with the same idempotency key\nok 6 - retries a transient failure with the same idempotency key\n  ---\n  duration_ms: 2.538977\n  type: 'test'\n  ...\n# Subtest: moves a poison batch and job to FAILED after bounded attempts\nok 7 - moves a poison batch and job to FAILED after bounded attempts\n  ---\n  duration_ms: 2.613416\n  type: 'test'\n  ...\n# Subtest: cancellation is terminal and prevents execution\nok 8 - cancellation is terminal and prevents execution\n  ---\n  duration_ms: 1.097235\n  type: 'test'\n  ...\n1..8\n# tests 8\n# suites 0\n# pass 8\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 240.189071\n"
-    },
-    {
-      "name": "Combined R9/R10 tests",
-      "command": [
-        "node",
-        "--test",
-        "packages/pipeline-runtime/test/runtime.test.mjs",
-        "packages/migration-runtime/test/runtime.test.mjs"
-      ],
-      "status": "failed",
-      "exit_code": 1,
-      "duration_seconds": 0.414,
-      "output": "TAP version 13\n# Subtest: rejects invalid state transitions\nok 1 - rejects invalid state transitions\n  ---\n  duration_ms: 2.009601\n  type: 'test'\n  ...\n# Subtest: rejects a dry-run from another tenant\nok 2 - rejects a dry-run from another tenant\n  ---\n  duration_ms: 3.445098\n  type: 'test'\n  ...\n# Subtest: processes bounded batches and completes after the last checkpoint\nok 3 - processes bounded batches and completes after the last checkpoint\n  ---\n  duration_ms: 7.382559\n  type: 'test'\n  ...\n# Subtest: concurrent workers claim distinct batches and never duplicate the same lease\nok 4 - concurrent workers claim distinct batches and never duplicate the same lease\n  ---\n  duration_ms: 9.87204\n  type: 'test'\n  ...\n# Subtest: an expired RUNNING lease is reclaimed with the same operation identity\nok 5 - an expired RUNNING lease is reclaimed with the same operation identity\n  ---\n  duration_ms: 8.771909\n  type: 'test'\n  ...\n# Subtest: retries a transient failure with the same idempotency key\nok 6 - retries a transient failure with the same idempotency key\n  ---\n  duration_ms: 2.379377\n  type: 'test'\n  ...\n# Subtest: moves a poison batch and job to FAILED after bounded attempts\nok 7 - moves a poison batch and job to FAILED after bounded attempts\n  ---\n  duration_ms: 2.299682\n  type: 'test'\n  ...\n# Subtest: cancellation is terminal and prevents execution\nok 8 - cancellation is terminal and prevents execution\n  ---\n  duration_ms: 0.645765\n  type: 'test'\n  ...\n# Subtest: creates an idempotent pipeline and writes one audit event\nok 9 - creates an idempotent pipeline and writes one audit event\n  ---\n  duration_ms: 11.660596\n  type: 'test'\n  ...\n# Subtest: rejects an idempotency key reused with another payload\nok 10 - rejects an idempotency key reused with another payload\n  ---\n  duration_ms: 3.793986\n  type: 'test'\n  ...\n# Subtest: rejects tenant ownership supplied for another tenant\nok 11 - rejects tenant ownership supplied for another tenant\n  ---\n  duration_ms: 0.579946\n  type: 'test'\n  ...\n# Subtest: enforces action permission at the operation boundary\nok 12 - enforces action permission at the operation boundary\n  ---\n  duration_ms: 0.508904\n  type: 'test'\n  ...\n# Subtest: transitions a seeded deal with optimistic concurrency\nnot ok 13 - transitions a seeded deal with optimistic concurrency\n  ---\n  duration_ms: 7.785561\n  type: 'test'\n  location: '/mnt/data/crm_r9_r10_repair/crm-release/packages/pipeline-runtime/test/runtime.test.mjs:40:1'\n  failureType: 'testCodeFailure'\n  error: |-\n    The validation function is expected to return \"true\". Received false\n    \n    Caught error:\n    \n    PipelineDomainError: The deal stage changed after it was read\n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  stack: |-\n    async TestContext.<anonymous> (file:///mnt/data/crm_r9_r10_repair/crm-release/packages/pipeline-runtime/test/runtime.test.mjs:48:3)\n    async Test.run (node:internal/test_runner/test:1054:7)\n    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)\n  ...\n# Subtest: serializes two concurrent transitions so only one stale version wins\nok 14 - serializes two concurrent transitions so only one stale version wins\n  ---\n  duration_ms: 5.606808\n  type: 'test'\n  ...\n# Subtest: prevents deleting a stage that still owns a deal assignment\nok 15 - prevents deleting a stage that still owns a deal assignment\n  ---\n  duration_ms: 2.59311\n  type: 'test'\n  ...\n# Subtest: atomically switches the default pipeline\nok 16 - atomically switches the default pipeline\n  ---\n  duration_ms: 16.506747\n  type: 'test'\n  ...\n1..16\n# tests 16\n# suites 0\n# pass 15\n# fail 1\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 299.987045\n"
-    },
-    {
-      "name": "R9/R10 structure verifier",
-      "command": [
-        "node",
-        "tools/release/verify-r9-r10.mjs"
-      ],
-      "status": "failed",
-      "exit_code": 1,
-      "duration_seconds": 0.106,
-      "output": "file:///mnt/data/crm_r9_r10_repair/crm-release/tools/release/verify-r9-r10.mjs:2\n#!/usr/bin/env node\n^\n\nSyntaxError: Invalid or unexpected token\n    at compileSourceTextModule (node:internal/modules/esm/utils:344:16)\n    at ModuleLoader.moduleStrategy (node:internal/modules/esm/translators:105:18)\n    at #translate (node:internal/modules/esm/loader:534:12)\n    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:581:27)\n    at async ModuleJob._link (node:internal/modules/esm/module_job:116:19)\n\nNode.js v22.16.0\n"
-    },
-    {
-      "name": "Syntax packages/pipeline-runtime/src/canonical.mjs",
-      "command": [
-        "node",
-        "--check",
-        "packages/pipeline-runtime/src/canonical.mjs"
-      ],
-      "status": "passed",
-      "exit_code": 0,
-      "duration_seconds": 0.083,
-      "output": ""
-    },
-    {
-      "name": "Syntax packages/pipeline-runtime/src/context.mjs",
-      "command": [
-        "node",
-        "--check",
-        "packages/pipeline-runtime/src/context.mjs"
-      ],
-      "status": "passed",
-      "exit_code": 0,
-      "duration_seconds": 0.099,
-      "output": ""
-    },
-    {
-      "name": "Syntax packages/pipeline-runtime/src/errors.mjs",
-      "command": [
-        "node",
-        "--check",
-        "packages/pipeline-runtime/src/errors.mjs"
-      ],
-      "status": "passed",
-      "exit_code": 0,
-      "duration_seconds": 0.087,
-      "output": ""
-    },
-    {
-      "name": "Syntax packages/pipeline-runtime/src/in-memory-repository.mjs",
-      "command": [
-        "node",
-        "--check",
-        "packages/pipeline-runtime/src/in-memory-repository.mjs"
-      ],
-      "status": "passed",
-      "exit_code": 0,
-      "duration_seconds": 0.087,
-      "output": ""
-    },
-    {
-      "name": "Syntax packages/pipeline-runtime/src/index.mjs",
-      "command": [
-        "node",
-        "--check",
-        "packages/pipeline-runtime/src/index.mjs"
-      ],
-      "status": "passed",
-      "exit_code": 0,
-      "duration_seconds": 0.089,
-      "output": ""
-    },
-    {
-      "name": "Syntax packages/pipeline-runtime/src/prisma-adapter.mjs",
-      "command": [
-        "node",
-        "--check",
-        "packages/pipeline-runtime/src/prisma-adapter.mjs"
-      ],
-      "status": "passed",
-      "exit_code": 0,
-      "duration_seconds": 0.088,
-      "output": ""
-    },
-    {
-      "name": "Syntax packages/pipeline-runtime/src/service.mjs",
-      "command": [
-        "node",
-        "--check",
-        "packages/pipeline-runtime/src/service.mjs"
-      ],
-      "status": "passed",
-      "exit_code": 0,
-      "duration_seconds": 0.086,
-      "output": ""
-    },
-    {
-      "name": "Syntax packages/migration-runtime/src/coordinator.mjs",
-      "command": [
-        "node",
-        "--check",
-        "packages/migration-runtime/src/coordinator.mjs"
-      ],
-      "status": "passed",
-      "exit_code": 0,
-      "duration_seconds": 0.098,
-      "output": ""
-    },
-    {
-      "name": "Syntax packages/migration-runtime/src/errors.mjs",
-      "command": [
-        "node",
-        "--check",
-        "packages/migration-runtime/src/errors.mjs"
-      ],
-      "status": "passed",
-      "exit_code": 0,
-      "duration_seconds": 0.087,
-      "output": ""
-    },
-    {
-      "name": "Syntax packages/migration-runtime/src/in-memory-repository.mjs",
-      "command": [
-        "node",
-        "--check",
-        "packages/migration-runtime/src/in-memory-repository.mjs"
-      ],
-      "status": "passed",
-      "exit_code": 0,
-      "duration_seconds": 0.089,
-      "output": ""
-    },
-    {
-      "name": "Syntax packages/migration-runtime/src/index.mjs",
-      "command": [
-        "node",
-        "--check",
-        "packages/migration-runtime/src/index.mjs"
-      ],
-      "status": "passed",
-      "exit_code": 0,
-      "duration_seconds": 0.089,
-      "output": ""
-    },
-    {
-      "name": "Syntax packages/migration-runtime/src/state.mjs",
-      "command": [
-        "node",
-        "--check",
-        "packages/migration-runtime/src/state.mjs"
-      ],
-      "status": "passed",
-      "exit_code": 0,
-      "duration_seconds": 0.09,
-      "output": ""
-    }
-  ],
-  "claims": {
-    "pipelineRuntime": "IN_PROGRESS",
-    "migrationRuntime": "IN_PROGRESS",
-    "pipelineApiUi": "IN_PROGRESS",
-    "migrationApiUi": "IN_PROGRESS",
-    "postgresVerification": "BLOCKED_EXTERNAL"
-  }
+	"release": "R9/R10",
+	"repaired": true,
+	"criticalChecksPassed": false,
+	"nextScopeId": "CRM-PIPE-API-003",
+	"commands": [
+		{
+			"name": "Pipeline runtime tests",
+			"command": [
+				"node",
+				"--test",
+				"packages/pipeline-runtime/test/runtime.test.mjs"
+			],
+			"status": "failed",
+			"exit_code": 1,
+			"duration_seconds": 0.36,
+			"output": "TAP version 13\n# Subtest: creates an idempotent pipeline and writes one audit event\nok 1 - creates an idempotent pipeline and writes one audit event\n  ---\n  duration_ms: 8.250072\n  type: 'test'\n  ...\n# Subtest: rejects an idempotency key reused with another payload\nok 2 - rejects an idempotency key reused with another payload\n  ---\n  duration_ms: 2.064146\n  type: 'test'\n  ...\n# Subtest: rejects tenant ownership supplied for another tenant\nok 3 - rejects tenant ownership supplied for another tenant\n  ---\n  duration_ms: 0.304875\n  type: 'test'\n  ...\n# Subtest: enforces action permission at the operation boundary\nok 4 - enforces action permission at the operation boundary\n  ---\n  duration_ms: 0.321404\n  type: 'test'\n  ...\n# Subtest: transitions a seeded deal with optimistic concurrency\nnot ok 5 - transitions a seeded deal with optimistic concurrency\n  ---\n  duration_ms: 5.902485\n  type: 'test'\n  location: '/mnt/data/crm_r9_r10_repair/crm-release/packages/pipeline-runtime/test/runtime.test.mjs:40:1'\n  failureType: 'testCodeFailure'\n  error: |-\n    The validation function is expected to return \"true\". Received false\n    \n    Caught error:\n    \n    PipelineDomainError: The deal stage changed after it was read\n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  stack: |-\n    async TestContext.<anonymous> (file:///mnt/data/crm_r9_r10_repair/crm-release/packages/pipeline-runtime/test/runtime.test.mjs:48:3)\n    async Test.run (node:internal/test_runner/test:1054:7)\n    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)\n  ...\n# Subtest: serializes two concurrent transitions so only one stale version wins\nok 6 - serializes two concurrent transitions so only one stale version wins\n  ---\n  duration_ms: 2.02729\n  type: 'test'\n  ...\n# Subtest: prevents deleting a stage that still owns a deal assignment\nok 7 - prevents deleting a stage that still owns a deal assignment\n  ---\n  duration_ms: 1.717574\n  type: 'test'\n  ...\n# Subtest: atomically switches the default pipeline\nok 8 - atomically switches the default pipeline\n  ---\n  duration_ms: 16.064977\n  type: 'test'\n  ...\n1..8\n# tests 8\n# suites 0\n# pass 7\n# fail 1\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 243.8075\n"
+		},
+		{
+			"name": "Migration runtime tests",
+			"command": [
+				"node",
+				"--test",
+				"packages/migration-runtime/test/runtime.test.mjs"
+			],
+			"status": "passed",
+			"exit_code": 0,
+			"duration_seconds": 0.351,
+			"output": "TAP version 13\n# Subtest: rejects invalid state transitions\nok 1 - rejects invalid state transitions\n  ---\n  duration_ms: 3.270216\n  type: 'test'\n  ...\n# Subtest: rejects a dry-run from another tenant\nok 2 - rejects a dry-run from another tenant\n  ---\n  duration_ms: 2.805211\n  type: 'test'\n  ...\n# Subtest: processes bounded batches and completes after the last checkpoint\nok 3 - processes bounded batches and completes after the last checkpoint\n  ---\n  duration_ms: 7.964552\n  type: 'test'\n  ...\n# Subtest: concurrent workers claim distinct batches and never duplicate the same lease\nok 4 - concurrent workers claim distinct batches and never duplicate the same lease\n  ---\n  duration_ms: 10.360352\n  type: 'test'\n  ...\n# Subtest: an expired RUNNING lease is reclaimed with the same operation identity\nok 5 - an expired RUNNING lease is reclaimed with the same operation identity\n  ---\n  duration_ms: 9.166989\n  type: 'test'\n  ...\n# Subtest: retries a transient failure with the same idempotency key\nok 6 - retries a transient failure with the same idempotency key\n  ---\n  duration_ms: 2.538977\n  type: 'test'\n  ...\n# Subtest: moves a poison batch and job to FAILED after bounded attempts\nok 7 - moves a poison batch and job to FAILED after bounded attempts\n  ---\n  duration_ms: 2.613416\n  type: 'test'\n  ...\n# Subtest: cancellation is terminal and prevents execution\nok 8 - cancellation is terminal and prevents execution\n  ---\n  duration_ms: 1.097235\n  type: 'test'\n  ...\n1..8\n# tests 8\n# suites 0\n# pass 8\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 240.189071\n"
+		},
+		{
+			"name": "Combined R9/R10 tests",
+			"command": [
+				"node",
+				"--test",
+				"packages/pipeline-runtime/test/runtime.test.mjs",
+				"packages/migration-runtime/test/runtime.test.mjs"
+			],
+			"status": "failed",
+			"exit_code": 1,
+			"duration_seconds": 0.414,
+			"output": "TAP version 13\n# Subtest: rejects invalid state transitions\nok 1 - rejects invalid state transitions\n  ---\n  duration_ms: 2.009601\n  type: 'test'\n  ...\n# Subtest: rejects a dry-run from another tenant\nok 2 - rejects a dry-run from another tenant\n  ---\n  duration_ms: 3.445098\n  type: 'test'\n  ...\n# Subtest: processes bounded batches and completes after the last checkpoint\nok 3 - processes bounded batches and completes after the last checkpoint\n  ---\n  duration_ms: 7.382559\n  type: 'test'\n  ...\n# Subtest: concurrent workers claim distinct batches and never duplicate the same lease\nok 4 - concurrent workers claim distinct batches and never duplicate the same lease\n  ---\n  duration_ms: 9.87204\n  type: 'test'\n  ...\n# Subtest: an expired RUNNING lease is reclaimed with the same operation identity\nok 5 - an expired RUNNING lease is reclaimed with the same operation identity\n  ---\n  duration_ms: 8.771909\n  type: 'test'\n  ...\n# Subtest: retries a transient failure with the same idempotency key\nok 6 - retries a transient failure with the same idempotency key\n  ---\n  duration_ms: 2.379377\n  type: 'test'\n  ...\n# Subtest: moves a poison batch and job to FAILED after bounded attempts\nok 7 - moves a poison batch and job to FAILED after bounded attempts\n  ---\n  duration_ms: 2.299682\n  type: 'test'\n  ...\n# Subtest: cancellation is terminal and prevents execution\nok 8 - cancellation is terminal and prevents execution\n  ---\n  duration_ms: 0.645765\n  type: 'test'\n  ...\n# Subtest: creates an idempotent pipeline and writes one audit event\nok 9 - creates an idempotent pipeline and writes one audit event\n  ---\n  duration_ms: 11.660596\n  type: 'test'\n  ...\n# Subtest: rejects an idempotency key reused with another payload\nok 10 - rejects an idempotency key reused with another payload\n  ---\n  duration_ms: 3.793986\n  type: 'test'\n  ...\n# Subtest: rejects tenant ownership supplied for another tenant\nok 11 - rejects tenant ownership supplied for another tenant\n  ---\n  duration_ms: 0.579946\n  type: 'test'\n  ...\n# Subtest: enforces action permission at the operation boundary\nok 12 - enforces action permission at the operation boundary\n  ---\n  duration_ms: 0.508904\n  type: 'test'\n  ...\n# Subtest: transitions a seeded deal with optimistic concurrency\nnot ok 13 - transitions a seeded deal with optimistic concurrency\n  ---\n  duration_ms: 7.785561\n  type: 'test'\n  location: '/mnt/data/crm_r9_r10_repair/crm-release/packages/pipeline-runtime/test/runtime.test.mjs:40:1'\n  failureType: 'testCodeFailure'\n  error: |-\n    The validation function is expected to return \"true\". Received false\n    \n    Caught error:\n    \n    PipelineDomainError: The deal stage changed after it was read\n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  stack: |-\n    async TestContext.<anonymous> (file:///mnt/data/crm_r9_r10_repair/crm-release/packages/pipeline-runtime/test/runtime.test.mjs:48:3)\n    async Test.run (node:internal/test_runner/test:1054:7)\n    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)\n  ...\n# Subtest: serializes two concurrent transitions so only one stale version wins\nok 14 - serializes two concurrent transitions so only one stale version wins\n  ---\n  duration_ms: 5.606808\n  type: 'test'\n  ...\n# Subtest: prevents deleting a stage that still owns a deal assignment\nok 15 - prevents deleting a stage that still owns a deal assignment\n  ---\n  duration_ms: 2.59311\n  type: 'test'\n  ...\n# Subtest: atomically switches the default pipeline\nok 16 - atomically switches the default pipeline\n  ---\n  duration_ms: 16.506747\n  type: 'test'\n  ...\n1..16\n# tests 16\n# suites 0\n# pass 15\n# fail 1\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 299.987045\n"
+		},
+		{
+			"name": "R9/R10 structure verifier",
+			"command": ["node", "tools/release/verify-r9-r10.mjs"],
+			"status": "failed",
+			"exit_code": 1,
+			"duration_seconds": 0.106,
+			"output": "file:///mnt/data/crm_r9_r10_repair/crm-release/tools/release/verify-r9-r10.mjs:2\n#!/usr/bin/env node\n^\n\nSyntaxError: Invalid or unexpected token\n    at compileSourceTextModule (node:internal/modules/esm/utils:344:16)\n    at ModuleLoader.moduleStrategy (node:internal/modules/esm/translators:105:18)\n    at #translate (node:internal/modules/esm/loader:534:12)\n    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:581:27)\n    at async ModuleJob._link (node:internal/modules/esm/module_job:116:19)\n\nNode.js v22.16.0\n"
+		},
+		{
+			"name": "Syntax packages/pipeline-runtime/src/canonical.mjs",
+			"command": [
+				"node",
+				"--check",
+				"packages/pipeline-runtime/src/canonical.mjs"
+			],
+			"status": "passed",
+			"exit_code": 0,
+			"duration_seconds": 0.083,
+			"output": ""
+		},
+		{
+			"name": "Syntax packages/pipeline-runtime/src/context.mjs",
+			"command": [
+				"node",
+				"--check",
+				"packages/pipeline-runtime/src/context.mjs"
+			],
+			"status": "passed",
+			"exit_code": 0,
+			"duration_seconds": 0.099,
+			"output": ""
+		},
+		{
+			"name": "Syntax packages/pipeline-runtime/src/errors.mjs",
+			"command": [
+				"node",
+				"--check",
+				"packages/pipeline-runtime/src/errors.mjs"
+			],
+			"status": "passed",
+			"exit_code": 0,
+			"duration_seconds": 0.087,
+			"output": ""
+		},
+		{
+			"name": "Syntax packages/pipeline-runtime/src/in-memory-repository.mjs",
+			"command": [
+				"node",
+				"--check",
+				"packages/pipeline-runtime/src/in-memory-repository.mjs"
+			],
+			"status": "passed",
+			"exit_code": 0,
+			"duration_seconds": 0.087,
+			"output": ""
+		},
+		{
+			"name": "Syntax packages/pipeline-runtime/src/index.mjs",
+			"command": ["node", "--check", "packages/pipeline-runtime/src/index.mjs"],
+			"status": "passed",
+			"exit_code": 0,
+			"duration_seconds": 0.089,
+			"output": ""
+		},
+		{
+			"name": "Syntax packages/pipeline-runtime/src/prisma-adapter.mjs",
+			"command": [
+				"node",
+				"--check",
+				"packages/pipeline-runtime/src/prisma-adapter.mjs"
+			],
+			"status": "passed",
+			"exit_code": 0,
+			"duration_seconds": 0.088,
+			"output": ""
+		},
+		{
+			"name": "Syntax packages/pipeline-runtime/src/service.mjs",
+			"command": [
+				"node",
+				"--check",
+				"packages/pipeline-runtime/src/service.mjs"
+			],
+			"status": "passed",
+			"exit_code": 0,
+			"duration_seconds": 0.086,
+			"output": ""
+		},
+		{
+			"name": "Syntax packages/migration-runtime/src/coordinator.mjs",
+			"command": [
+				"node",
+				"--check",
+				"packages/migration-runtime/src/coordinator.mjs"
+			],
+			"status": "passed",
+			"exit_code": 0,
+			"duration_seconds": 0.098,
+			"output": ""
+		},
+		{
+			"name": "Syntax packages/migration-runtime/src/errors.mjs",
+			"command": [
+				"node",
+				"--check",
+				"packages/migration-runtime/src/errors.mjs"
+			],
+			"status": "passed",
+			"exit_code": 0,
+			"duration_seconds": 0.087,
+			"output": ""
+		},
+		{
+			"name": "Syntax packages/migration-runtime/src/in-memory-repository.mjs",
+			"command": [
+				"node",
+				"--check",
+				"packages/migration-runtime/src/in-memory-repository.mjs"
+			],
+			"status": "passed",
+			"exit_code": 0,
+			"duration_seconds": 0.089,
+			"output": ""
+		},
+		{
+			"name": "Syntax packages/migration-runtime/src/index.mjs",
+			"command": [
+				"node",
+				"--check",
+				"packages/migration-runtime/src/index.mjs"
+			],
+			"status": "passed",
+			"exit_code": 0,
+			"duration_seconds": 0.089,
+			"output": ""
+		},
+		{
+			"name": "Syntax packages/migration-runtime/src/state.mjs",
+			"command": [
+				"node",
+				"--check",
+				"packages/migration-runtime/src/state.mjs"
+			],
+			"status": "passed",
+			"exit_code": 0,
+			"duration_seconds": 0.09,
+			"output": ""
+		}
+	],
+	"claims": {
+		"pipelineRuntime": "IN_PROGRESS",
+		"migrationRuntime": "IN_PROGRESS",
+		"pipelineApiUi": "IN_PROGRESS",
+		"migrationApiUi": "IN_PROGRESS",
+		"postgresVerification": "BLOCKED_EXTERNAL"
+	}
 }

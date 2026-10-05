@@ -6,7 +6,12 @@ const ARRAY_INDEX = /^(0|[1-9][0-9]*)$/;
 
 function dataDescriptor(value, key, path) {
 	const descriptor = Object.getOwnPropertyDescriptor(value, key);
-	if (!descriptor || descriptor.get || descriptor.set || !("value" in descriptor)) {
+	if (
+		!descriptor ||
+		descriptor.get ||
+		descriptor.set ||
+		!("value" in descriptor)
+	) {
 		fail(
 			"UNSAFE_PAYLOAD_PROPERTY",
 			`Command payload property ${path} must be a data property`,
@@ -46,7 +51,10 @@ function normalizeArray(value, seen, path) {
 					{ path },
 				);
 			}
-			if (!allowedKeys.has(key) || (key !== "length" && !ARRAY_INDEX.test(key))) {
+			if (
+				!allowedKeys.has(key) ||
+				(key !== "length" && !ARRAY_INDEX.test(key))
+			) {
 				fail(
 					"UNSAFE_PAYLOAD_PROPERTY",
 					`Command payload array contains unsupported property ${path}.${key}`,
@@ -123,7 +131,11 @@ function normalizeObject(value, seen, path) {
 }
 
 function normalize(value, seen, path) {
-	if (value === null || typeof value === "string" || typeof value === "boolean") {
+	if (
+		value === null ||
+		typeof value === "string" ||
+		typeof value === "boolean"
+	) {
 		return value;
 	}
 	if (typeof value === "number") {
@@ -148,7 +160,9 @@ function normalize(value, seen, path) {
 	if (Object.getPrototypeOf(value) === Date.prototype) {
 		const timestamp = Date.prototype.getTime.call(value);
 		if (Number.isNaN(timestamp)) {
-			fail("INVALID_DATE", "Command payload contains an invalid date", { path });
+			fail("INVALID_DATE", "Command payload contains an invalid date", {
+				path,
+			});
 		}
 		return { $date: new Date(timestamp).toISOString() };
 	}

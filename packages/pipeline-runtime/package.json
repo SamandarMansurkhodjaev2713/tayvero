@@ -1,21 +1,21 @@
 {
-  "name": "@crm/pipeline-runtime",
-  "private": true,
-  "type": "module",
-  "exports": {
-    ".": {
-      "types": "./src/index.d.ts",
-      "default": "./src/index.mjs"
-    }
-  },
-  "engines": {
-    "node": ">=20"
-  },
-  "scripts": {
-    "test": "node --test ./test/*.test.mjs"
-  },
-  "types": "./src/index.d.ts",
-  "dependencies": {
-    "@crm/pipeline-core": "workspace:*"
-  }
+	"name": "@crm/pipeline-runtime",
+	"private": true,
+	"type": "module",
+	"exports": {
+		".": {
+			"types": "./src/index.d.ts",
+			"default": "./src/index.mjs"
+		}
+	},
+	"engines": {
+		"node": ">=20"
+	},
+	"scripts": {
+		"test": "node --test ./test/*.test.mjs"
+	},
+	"types": "./src/index.d.ts",
+	"dependencies": {
+		"@crm/pipeline-core": "workspace:*"
+	}
 }

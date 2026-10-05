@@ -1,10 +1,10 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import {
-	PipelineApiCoreError,
 	canManagePipelines,
 	createDeterministicPipelineIdFactory,
 	createPipelineDefinition,
+	PipelineApiCoreError,
 	permissionsForWorkspaceRole,
 	pipelineCreateCommandPayload,
 	pipelineUpdateCommandPayload,
@@ -98,7 +98,10 @@ test("maps workspace roles to least-privilege pipeline permissions", () => {
 	assert.equal(canManagePipelines("admin"), true);
 	assert.ok(permissionsForWorkspaceRole("owner").includes("pipeline.archive"));
 	assert.ok(permissionsForWorkspaceRole("owner").includes("pipeline.restore"));
-	assert.throws(() => permissionsForWorkspaceRole("viewer"), PipelineApiCoreError);
+	assert.throws(
+		() => permissionsForWorkspaceRole("viewer"),
+		PipelineApiCoreError,
+	);
 });
 
 test("creates deterministic server-owned pipeline and stage identifiers", () => {
@@ -216,9 +219,9 @@ test("preserves existing stage identity during update and creates only new IDs",
 		current.stages.find((stage) => stage.key === "new").id,
 	);
 	assert.ok(
-		updated.stages.find((stage) => stage.key === "discovery").id.startsWith(
-			"generated-",
-		),
+		updated.stages
+			.find((stage) => stage.key === "discovery")
+			.id.startsWith("generated-"),
 	);
 });
 
@@ -245,7 +248,8 @@ test("rejects foreign stage IDs and unknown transition keys", () => {
 				idFactory: idFactory(),
 			}),
 		(error) =>
-			error instanceof PipelineApiCoreError && error.code === "UNKNOWN_STAGE_ID",
+			error instanceof PipelineApiCoreError &&
+			error.code === "UNKNOWN_STAGE_ID",
 	);
 	const invalid = stages();
 	invalid[1] = { ...invalid[1], allowedFromStageKeys: ["missing"] };

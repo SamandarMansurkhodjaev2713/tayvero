@@ -69,5 +69,9 @@ export const formatTrpcError: TRPCErrorFormatter<
 	const readable = readableInputError(shape.message, error.cause);
 
 	const { stack: _stack, ...safeData } = shape.data;
-	return { ...shape, data: safeData, message: publicErrorMessage(shape.data.code, readable ?? shape.message) };
+	return {
+		...shape,
+		data: safeData,
+		message: publicErrorMessage(shape.data.code, readable ?? shape.message),
+	};
 };

@@ -86,6 +86,7 @@ function fields(record, entityType) {
 			value != null &&
 			(typeof value !== "string" ||
 				value.length > 300 ||
+				// biome-ignore lint/suspicious/noControlCharactersInRegex: Reject or sanitize control characters at this security boundary.
 				/[\u0000-\u001f\u007f]/.test(value))
 		)
 			fail("INVALID_ROW", "Field length or control characters are invalid");
@@ -107,24 +108,14 @@ function fields(record, entityType) {
 	}
 	return result;
 }
-/** Dedicated-workspace, create-only import application. No provider side effects. */
-export function createMigrationApplication({
+function createMigrationScope({
 	db,
-	sourceStore,
 	workspaceId,
-	clock = () => new Date(),
-	enabled = false,
-	executeEnabled = false,
-	backgroundEnabled = false,
+	clock,
+	enabled,
+	executeEnabled,
+	prep,
 }) {
-	identifier(workspaceId);
-	const prep = sourceStore
-		? createMigrationSourcePreparation({
-				store: sourceStore,
-				maxBytes: MAX_BYTES,
-				maxRows: MAX_ROWS,
-			})
-		: null;
 	function time() {
 		const date = clock();
 		if (!(date instanceof Date) || !Number.isFinite(date.getTime()))
@@ -282,30 +273,217 @@ export function createMigrationApplication({
 		// after PostgreSQL aborts it; querying it would replace P2034 with 25P02.
 		return coordinator(borrowed, { transactionMaxAttempts: 1 });
 	}
-	async function duplicate(client, entityType, record) {
-		const or = [];
-		if (entityType === "contact") {
-			if (record.email)
-				or.push({ email: { equals: record.email, mode: "insensitive" } });
-			if (record.phone)
-				or.push({
-					phone: {
-						in: [record.phone, record.phone.slice(1), record.phone.slice(4)],
-					},
-				});
-		} else {
-			if (record.domain)
-				or.push({ domain: { equals: record.domain, mode: "insensitive" } });
-			if (record.name)
-				or.push({ name: { equals: record.name, mode: "insensitive" } });
-		}
-		// No fuzzy matching and no overwrite/merge of an existing customer record.
-		return client[entityType].findMany({
-			where: { archivedAt: null, OR: or },
-			select: { id: true },
-			take: 2,
-		});
+	return {
+		time,
+		context,
+		authorize,
+		configured,
+		tx,
+		source,
+		job,
+		event,
+		plan,
+		storedPlan,
+		coordinator,
+		coordinatorInside,
+	};
+}
+
+async function migrationReportSnapshot(
+	job,
+	client,
+	c,
+	jobId,
+	afterRow,
+	pageSize,
+) {
+	const row = await job(client, c, jobId);
+	const receipts = await client.crmMigrationRowReceipt.findMany({
+		where: { workspaceId: c.tenantId, jobId },
+		orderBy: { rowNumber: "asc" },
+		take: MAX_ROWS + 1,
+	});
+	const issues = await client.crmMigrationIssue.findMany({
+		where: { workspaceId: c.tenantId, jobId },
+		orderBy: { rowNumber: "asc" },
+		take: MAX_ROWS * 2 + 1,
+	});
+	if (receipts.length > MAX_ROWS || issues.length > MAX_ROWS * 2)
+		fail("REPORT_LIMIT", "Job exceeds the report safety bound");
+	const invalidRows = new Set(
+		issues.filter((x) => x.severity === "ERROR").map((x) => x.rowNumber),
+	);
+	const receiptRows = new Set(receipts.map((x) => x.rowNumber));
+	const overlap = [...receiptRows].some((n) => invalidRows.has(n));
+	const created = receipts.filter((x) =>
+		["CREATED", "ROLLED_BACK"].includes(x.status),
+	).length;
+	const duplicates = receipts.filter((x) => x.status === "DUPLICATE").length;
+	const rejected =
+		invalidRows.size + receipts.filter((x) => x.status === "REJECTED").length;
+	const rolledBack = receipts.filter((x) => x.status === "ROLLED_BACK").length;
+	const accounted = created + duplicates + rejected;
+	const countersAgree =
+		row.acceptedRows === created && row.rejectedRows === duplicates + rejected;
+	const issuesByRow = new Map();
+	for (const value of issues) {
+		const existing = issuesByRow.get(value.rowNumber) ?? [];
+		existing.push(issue(value));
+		issuesByRow.set(value.rowNumber, existing);
 	}
+	const allRows = [...new Set([...receiptRows, ...invalidRows])]
+		.sort((a, b) => a - b)
+		.filter((n) => n > afterRow);
+	const byNumber = new Map(receipts.map((r) => [r.rowNumber, r]));
+	const rows = allRows.slice(0, pageSize).map((n) => ({
+		rowNumber: n,
+		status: byNumber.get(n)?.status ?? "REJECTED",
+		code:
+			byNumber.get(n)?.code ??
+			issuesByRow.get(n)?.[0]?.code ??
+			"ROW_VALIDATION_FAILED",
+		entityId: byNumber.get(n)?.entityId ?? null,
+		issues: issuesByRow.get(n) ?? [],
+	}));
+	return {
+		jobId,
+		background: {
+			enabled: row.backgroundEnabled,
+			lastErrorCode: row.backgroundLastErrorCode ?? null,
+			nextAttemptAt: row.backgroundNextAttemptAt
+				? new Date(row.backgroundNextAttemptAt).toISOString()
+				: null,
+		},
+		sourceFilename: row.sourceFilename,
+		entityType: row.entityType,
+		status: row.status,
+		totalRows: row.totalRows,
+		created,
+		duplicates,
+		rejected,
+		rolledBack,
+		remaining: Math.max(0, row.totalRows - accounted),
+		reconciliation: {
+			ok:
+				!overlap &&
+				receiptRows.size === receipts.length &&
+				accounted === row.totalRows &&
+				countersAgree,
+			countersAgree,
+			explanation:
+				"Persisted row receipts plus validation issues; not a claim that unchanged CRM records or downstream business results are guaranteed",
+		},
+		rows,
+		nextAfterRow: allRows.length > pageSize ? rows.at(-1).rowNumber : null,
+	};
+}
+
+async function duplicate(client, entityType, record) {
+	const or = [];
+	if (entityType === "contact") {
+		if (record.email)
+			or.push({ email: { equals: record.email, mode: "insensitive" } });
+		if (record.phone)
+			or.push({
+				phone: {
+					in: [record.phone, record.phone.slice(1), record.phone.slice(4)],
+				},
+			});
+	} else {
+		if (record.domain)
+			or.push({ domain: { equals: record.domain, mode: "insensitive" } });
+		if (record.name)
+			or.push({ name: { equals: record.name, mode: "insensitive" } });
+	}
+	// No fuzzy matching and no overwrite/merge of an existing customer record.
+	return client[entityType].findMany({
+		where: { archivedAt: null, OR: or },
+		select: { id: true },
+		take: 2,
+	});
+}
+
+async function dependencies(client, entityType, id) {
+	const key = entityType === "contact" ? "contactId" : "companyId";
+	const models =
+		entityType === "contact"
+			? [
+					"activity",
+					"dealContact",
+					"agentConversation",
+					"emailThread",
+					"calendarEvent",
+					"calendarAttendee",
+					"fieldValue",
+					"contactFact",
+					"contactBrief",
+					"trackedVisitor",
+					"formSubmission",
+				]
+			: [
+					"contact",
+					"deal",
+					"activity",
+					"agentConversation",
+					"emailThread",
+					"calendarEvent",
+					"fieldValue",
+				];
+	for (const model of models) {
+		if ((await client[model].count({ where: { [key]: id } })) > 0) return true;
+	}
+	if (
+		entityType === "contact" &&
+		(await client.company.count({ where: { primaryContactId: id } }))
+	)
+		return true;
+	if (
+		entityType === "company" &&
+		(await client.companyEnrichment.count({ where: { companyId: id } }))
+	)
+		return true;
+	return false;
+}
+
+/** Dedicated-workspace, create-only import application. No provider side effects. */
+export function createMigrationApplication({
+	db,
+	sourceStore,
+	workspaceId,
+	clock = () => new Date(),
+	enabled = false,
+	executeEnabled = false,
+	backgroundEnabled = false,
+}) {
+	identifier(workspaceId);
+	const prep = sourceStore
+		? createMigrationSourcePreparation({
+				store: sourceStore,
+				maxBytes: MAX_BYTES,
+				maxRows: MAX_ROWS,
+			})
+		: null;
+	const {
+		time,
+		context,
+		authorize,
+		configured,
+		tx,
+		source,
+		job,
+		event,
+		plan,
+		storedPlan,
+		coordinator,
+		coordinatorInside,
+	} = createMigrationScope({
+		db,
+		workspaceId,
+		clock,
+		enabled,
+		executeEnabled,
+		prep,
+	});
 	async function importClaim(c, row, dryRun, claim, backgroundClaim = null) {
 		return tx(c, async (client) => {
 			const current = await job(client, c, row.id);
@@ -443,48 +621,6 @@ export function createMigrationApplication({
 			return { importedCount, rejectedCount };
 		});
 	}
-	async function dependencies(client, entityType, id) {
-		const key = entityType === "contact" ? "contactId" : "companyId";
-		const models =
-			entityType === "contact"
-				? [
-						"activity",
-						"dealContact",
-						"agentConversation",
-						"emailThread",
-						"calendarEvent",
-						"calendarAttendee",
-						"fieldValue",
-						"contactFact",
-						"contactBrief",
-						"trackedVisitor",
-						"formSubmission",
-					]
-				: [
-						"contact",
-						"deal",
-						"activity",
-						"agentConversation",
-						"emailThread",
-						"calendarEvent",
-						"fieldValue",
-					];
-		for (const model of models) {
-			if ((await client[model].count({ where: { [key]: id } })) > 0)
-				return true;
-		}
-		if (
-			entityType === "contact" &&
-			(await client.company.count({ where: { primaryContactId: id } }))
-		)
-			return true;
-		if (
-			entityType === "company" &&
-			(await client.companyEnrichment.count({ where: { companyId: id } }))
-		)
-			return true;
-		return false;
-	}
 	async function rollbackRows(client, c, row, afterRow, apply) {
 		const receipts = await client.crmMigrationRowReceipt.findMany({
 			where: {
@@ -560,90 +696,7 @@ export function createMigrationApplication({
 			destructiveDelete: false,
 		};
 	}
-	async function reportSnapshot(client, c, jobId, afterRow, pageSize) {
-		const row = await job(client, c, jobId);
-		const receipts = await client.crmMigrationRowReceipt.findMany({
-			where: { workspaceId: c.tenantId, jobId },
-			orderBy: { rowNumber: "asc" },
-			take: MAX_ROWS + 1,
-		});
-		const issues = await client.crmMigrationIssue.findMany({
-			where: { workspaceId: c.tenantId, jobId },
-			orderBy: { rowNumber: "asc" },
-			take: MAX_ROWS * 2 + 1,
-		});
-		if (receipts.length > MAX_ROWS || issues.length > MAX_ROWS * 2)
-			fail("REPORT_LIMIT", "Job exceeds the report safety bound");
-		const invalidRows = new Set(
-			issues.filter((x) => x.severity === "ERROR").map((x) => x.rowNumber),
-		);
-		const receiptRows = new Set(receipts.map((x) => x.rowNumber));
-		const overlap = [...receiptRows].some((n) => invalidRows.has(n));
-		const created = receipts.filter((x) =>
-			["CREATED", "ROLLED_BACK"].includes(x.status),
-		).length;
-		const duplicates = receipts.filter((x) => x.status === "DUPLICATE").length;
-		const rejected =
-			invalidRows.size + receipts.filter((x) => x.status === "REJECTED").length;
-		const rolledBack = receipts.filter(
-			(x) => x.status === "ROLLED_BACK",
-		).length;
-		const accounted = created + duplicates + rejected;
-		const countersAgree =
-			row.acceptedRows === created &&
-			row.rejectedRows === duplicates + rejected;
-		const issuesByRow = new Map();
-		for (const value of issues) {
-			const existing = issuesByRow.get(value.rowNumber) ?? [];
-			existing.push(issue(value));
-			issuesByRow.set(value.rowNumber, existing);
-		}
-		const allRows = [...new Set([...receiptRows, ...invalidRows])]
-			.sort((a, b) => a - b)
-			.filter((n) => n > afterRow);
-		const byNumber = new Map(receipts.map((r) => [r.rowNumber, r]));
-		const rows = allRows.slice(0, pageSize).map((n) => ({
-			rowNumber: n,
-			status: byNumber.get(n)?.status ?? "REJECTED",
-			code:
-				byNumber.get(n)?.code ??
-				issuesByRow.get(n)?.[0]?.code ??
-				"ROW_VALIDATION_FAILED",
-			entityId: byNumber.get(n)?.entityId ?? null,
-			issues: issuesByRow.get(n) ?? [],
-		}));
-		return {
-			jobId,
-			background: {
-				enabled: row.backgroundEnabled,
-				lastErrorCode: row.backgroundLastErrorCode ?? null,
-				nextAttemptAt: row.backgroundNextAttemptAt
-					? new Date(row.backgroundNextAttemptAt).toISOString()
-					: null,
-			},
-			sourceFilename: row.sourceFilename,
-			entityType: row.entityType,
-			status: row.status,
-			totalRows: row.totalRows,
-			created,
-			duplicates,
-			rejected,
-			rolledBack,
-			remaining: Math.max(0, row.totalRows - accounted),
-			reconciliation: {
-				ok:
-					!overlap &&
-					receiptRows.size === receipts.length &&
-					accounted === row.totalRows &&
-					countersAgree,
-				countersAgree,
-				explanation:
-					"Persisted row receipts plus validation issues; not a claim that unchanged CRM records or downstream business results are guaranteed",
-			},
-			rows,
-			nextAfterRow: allRows.length > pageSize ? rows.at(-1).rowNumber : null,
-		};
-	}
+	const reportSnapshot = (...args) => migrationReportSnapshot(job, ...args);
 	async function executeBatch(inputContext, jobId, backgroundClaim = null) {
 		const c = context(inputContext);
 		await authorize(db, c);

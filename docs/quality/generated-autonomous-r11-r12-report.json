@@ -1,207 +1,188 @@
 {
-  "release": "R11/R12",
-  "repaired": true,
-  "criticalChecksPassed": false,
-  "nextScopeId": "AGENT-ACTION-INTEGRATION-002",
-  "commands": [
-    {
-      "name": "Integration runtime tests",
-      "command": [
-        "node",
-        "--test",
-        "packages/integration-runtime/test/integration.test.mjs"
-      ],
-      "status": "failed",
-      "exit_code": 1,
-      "duration_seconds": 0.405,
-      "output": "TAP version 13\n# Subtest: blocks private, loopback, link-local, metadata, documentation and multicast IP ranges\nok 1 - blocks private, loopback, link-local, metadata, documentation and multicast IP ranges\n  ---\n  duration_ms: 16.932431\n  type: 'test'\n  ...\n# Subtest: rejects URL credentials and DNS rebinding to a private address\nok 2 - rejects URL credentials and DNS rebinding to a private address\n  ---\n  duration_ms: 1.674185\n  type: 'test'\n  ...\n# Subtest: enforces connector host allowlists\nok 3 - enforces connector host allowlists\n  ---\n  duration_ms: 0.545675\n  type: 'test'\n  ...\n# Subtest: executes a pinned bounded request and parses JSON\nnot ok 4 - executes a pinned bounded request and parses JSON\n  ---\n  duration_ms: 23.18326\n  type: 'test'\n  location: '/mnt/data/crm_r11_r12_repair/crm-release/packages/integration-runtime/test/integration.test.mjs:10:1'\n  failureType: 'testCodeFailure'\n  error: 'Invalid IP address: undefined'\n  code: 'ERR_INVALID_IP_ADDRESS'\n  name: 'TypeError'\n  stack: |-\n    emitLookup (node:net:1494:17)\n    lookup (file:///mnt/data/crm_r11_r12_repair/crm-release/packages/integration-runtime/src/http-executor.mjs:18:305)\n    emitLookup (node:net:1445:5)\n    defaultTriggerAsyncIdScope (node:internal/async_hooks:464:18)\n    lookupAndConnectMultiple (node:net:1444:3)\n    node:net:1390:7\n    defaultTriggerAsyncIdScope (node:internal/async_hooks:464:18)\n    lookupAndConnect (node:net:1389:5)\n    Socket.connect (node:net:1284:5)\n    Agent.connect [as createConnection] (node:net:250:17)\n  ...\n# Subtest: rejects mutation retry without idempotency\nok 5 - rejects mutation retry without idempotency\n  ---\n  duration_ms: 1.954716\n  type: 'test'\n  ...\n# Subtest: rejects redirect to a private destination\nnot ok 6 - rejects redirect to a private destination\n  ---\n  duration_ms: 3.970451\n  type: 'test'\n  location: '/mnt/data/crm_r11_r12_repair/crm-release/packages/integration-runtime/test/integration.test.mjs:12:1'\n  failureType: 'testCodeFailure'\n  error: |-\n    The validation function is expected to return \"true\". Received false\n    \n    Caught error:\n    \n    TypeError [ERR_INVALID_IP_ADDRESS]: Invalid IP address: undefined\n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  stack: |-\n    process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    async TestContext.<anonymous> (file:///mnt/data/crm_r11_r12_repair/crm-release/packages/integration-runtime/test/integration.test.mjs:12:306)\n    async Test.run (node:internal/test_runner/test:1054:7)\n    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)\n  ...\n# Subtest: verifies HMAC webhooks and rejects replay\nok 7 - verifies HMAC webhooks and rejects replay\n  ---\n  duration_ms: 2.1306\n  type: 'test'\n  ...\n# Subtest: rejects tampered webhook body\nok 8 - rejects tampered webhook body\n  ---\n  duration_ms: 0.963631\n  type: 'test'\n  ...\n# Subtest: compiles bounded OpenAPI operations and classifies risk\nok 9 - compiles bounded OpenAPI operations and classifies risk\n  ---\n  duration_ms: 2.105995\n  type: 'test'\n  ...\n# Subtest: rejects external OpenAPI references\nok 10 - rejects external OpenAPI references\n  ---\n  duration_ms: 0.750265\n  type: 'test'\n  ...\n1..10\n# tests 10\n# suites 0\n# pass 8\n# fail 2\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 286.199092\n"
-    },
-    {
-      "name": "Action registry tests",
-      "command": [
-        "node",
-        "--test",
-        "packages/action-registry/test/actions.test.mjs"
-      ],
-      "status": "passed",
-      "exit_code": 0,
-      "duration_seconds": 0.358,
-      "output": "TAP version 13\n# Subtest: registers typed actions and executes them once under idempotent replay\nok 1 - registers typed actions and executes them once under idempotent replay\n  ---\n  duration_ms: 7.466124\n  type: 'test'\n  ...\n# Subtest: rejects operation ID reuse with changed input\nok 2 - rejects operation ID reuse with changed input\n  ---\n  duration_ms: 4.650626\n  type: 'test'\n  ...\n# Subtest: validates input and permissions before executor side effects\nok 3 - validates input and permissions before executor side effects\n  ---\n  duration_ms: 0.513691\n  type: 'test'\n  ...\n# Subtest: requires payload-bound approval for high-risk action\nok 4 - requires payload-bound approval for high-risk action\n  ---\n  duration_ms: 1.928007\n  type: 'test'\n  ...\n# Subtest: rejects high-risk action without approval\nok 5 - rejects high-risk action without approval\n  ---\n  duration_ms: 0.566615\n  type: 'test'\n  ...\n# Subtest: rejects invalid executor output\nok 6 - rejects invalid executor output\n  ---\n  duration_ms: 0.991584\n  type: 'test'\n  ...\n# Subtest: forbids non-idempotent high-risk manifests\nok 7 - forbids non-idempotent high-risk manifests\n  ---\n  duration_ms: 0.355623\n  type: 'test'\n  ...\n1..7\n# tests 7\n# suites 0\n# pass 7\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 233.219871\n"
-    },
-    {
-      "name": "Combined R11/R12 tests",
-      "command": [
-        "node",
-        "--test",
-        "packages/integration-runtime/test/integration.test.mjs",
-        "packages/action-registry/test/actions.test.mjs"
-      ],
-      "status": "failed",
-      "exit_code": 1,
-      "duration_seconds": 0.425,
-      "output": "TAP version 13\n# Subtest: registers typed actions and executes them once under idempotent replay\nok 1 - registers typed actions and executes them once under idempotent replay\n  ---\n  duration_ms: 6.345132\n  type: 'test'\n  ...\n# Subtest: rejects operation ID reuse with changed input\nok 2 - rejects operation ID reuse with changed input\n  ---\n  duration_ms: 4.360577\n  type: 'test'\n  ...\n# Subtest: validates input and permissions before executor side effects\nok 3 - validates input and permissions before executor side effects\n  ---\n  duration_ms: 0.443262\n  type: 'test'\n  ...\n# Subtest: requires payload-bound approval for high-risk action\nok 4 - requires payload-bound approval for high-risk action\n  ---\n  duration_ms: 1.979665\n  type: 'test'\n  ...\n# Subtest: rejects high-risk action without approval\nok 5 - rejects high-risk action without approval\n  ---\n  duration_ms: 0.421028\n  type: 'test'\n  ...\n# Subtest: rejects invalid executor output\nok 6 - rejects invalid executor output\n  ---\n  duration_ms: 0.866752\n  type: 'test'\n  ...\n# Subtest: forbids non-idempotent high-risk manifests\nok 7 - forbids non-idempotent high-risk manifests\n  ---\n  duration_ms: 0.347254\n  type: 'test'\n  ...\n# Subtest: blocks private, loopback, link-local, metadata, documentation and multicast IP ranges\nok 8 - blocks private, loopback, link-local, metadata, documentation and multicast IP ranges\n  ---\n  duration_ms: 20.694857\n  type: 'test'\n  ...\n# Subtest: rejects URL credentials and DNS rebinding to a private address\nok 9 - rejects URL credentials and DNS rebinding to a private address\n  ---\n  duration_ms: 1.822965\n  type: 'test'\n  ...\n# Subtest: enforces connector host allowlists\nok 10 - enforces connector host allowlists\n  ---\n  duration_ms: 0.590865\n  type: 'test'\n  ...\n# Subtest: executes a pinned bounded request and parses JSON\nnot ok 11 - executes a pinned bounded request and parses JSON\n  ---\n  duration_ms: 14.35599\n  type: 'test'\n  location: '/mnt/data/crm_r11_r12_repair/crm-release/packages/integration-runtime/test/integration.test.mjs:10:1'\n  failureType: 'testCodeFailure'\n  error: 'Invalid IP address: undefined'\n  code: 'ERR_INVALID_IP_ADDRESS'\n  name: 'TypeError'\n  stack: |-\n    emitLookup (node:net:1494:17)\n    lookup (file:///mnt/data/crm_r11_r12_repair/crm-release/packages/integration-runtime/src/http-executor.mjs:18:305)\n    emitLookup (node:net:1445:5)\n    defaultTriggerAsyncIdScope (node:internal/async_hooks:464:18)\n    lookupAndConnectMultiple (node:net:1444:3)\n    node:net:1390:7\n    defaultTriggerAsyncIdScope (node:internal/async_hooks:464:18)\n    lookupAndConnect (node:net:1389:5)\n    Socket.connect (node:net:1284:5)\n    Agent.connect [as createConnection] (node:net:250:17)\n  ...\n# Subtest: rejects mutation retry without idempotency\nok 12 - rejects mutation retry without idempotency\n  ---\n  duration_ms: 0.449309\n  type: 'test'\n  ...\n# Subtest: rejects redirect to a private destination\nnot ok 13 - rejects redirect to a private destination\n  ---\n  duration_ms: 3.62323\n  type: 'test'\n  location: '/mnt/data/crm_r11_r12_repair/crm-release/packages/integration-runtime/test/integration.test.mjs:12:1'\n  failureType: 'testCodeFailure'\n  error: |-\n    The validation function is expected to return \"true\". Received false\n    \n    Caught error:\n    \n    TypeError [ERR_INVALID_IP_ADDRESS]: Invalid IP address: undefined\n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  stack: |-\n    process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    async TestContext.<anonymous> (file:///mnt/data/crm_r11_r12_repair/crm-release/packages/integration-runtime/test/integration.test.mjs:12:306)\n    async Test.run (node:internal/test_runner/test:1054:7)\n    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)\n  ...\n# Subtest: verifies HMAC webhooks and rejects replay\nok 14 - verifies HMAC webhooks and rejects replay\n  ---\n  duration_ms: 2.064934\n  type: 'test'\n  ...\n# Subtest: rejects tampered webhook body\nok 15 - rejects tampered webhook body\n  ---\n  duration_ms: 0.920721\n  type: 'test'\n  ...\n# Subtest: compiles bounded OpenAPI operations and classifies risk\nok 16 - compiles bounded OpenAPI operations and classifies risk\n  ---\n  duration_ms: 2.217471\n  type: 'test'\n  ...\n# Subtest: rejects external OpenAPI references\nok 17 - rejects external OpenAPI references\n  ---\n  duration_ms: 0.934036\n  type: 'test'\n  ...\n1..17\n# tests 17\n# suites 0\n# pass 15\n# fail 2\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 305.25302\n"
-    },
-    {
-      "name": "R11/R12 structure verifier",
-      "command": [
-        "node",
-        "tools/release/verify-r11-r12.mjs"
-      ],
-      "status": "passed",
-      "exit_code": 0,
-      "duration_seconds": 0.104,
-      "output": "{\"ok\":true,\"files\":5}\n"
-    },
-    {
-      "name": "Syntax packages/integration-runtime/src/errors.mjs",
-      "command": [
-        "node",
-        "--check",
-        "packages/integration-runtime/src/errors.mjs"
-      ],
-      "status": "passed",
-      "exit_code": 0,
-      "duration_seconds": 0.085,
-      "output": ""
-    },
-    {
-      "name": "Syntax packages/integration-runtime/src/http-executor.mjs",
-      "command": [
-        "node",
-        "--check",
-        "packages/integration-runtime/src/http-executor.mjs"
-      ],
-      "status": "passed",
-      "exit_code": 0,
-      "duration_seconds": 0.086,
-      "output": ""
-    },
-    {
-      "name": "Syntax packages/integration-runtime/src/index.mjs",
-      "command": [
-        "node",
-        "--check",
-        "packages/integration-runtime/src/index.mjs"
-      ],
-      "status": "passed",
-      "exit_code": 0,
-      "duration_seconds": 0.088,
-      "output": ""
-    },
-    {
-      "name": "Syntax packages/integration-runtime/src/network-policy.mjs",
-      "command": [
-        "node",
-        "--check",
-        "packages/integration-runtime/src/network-policy.mjs"
-      ],
-      "status": "passed",
-      "exit_code": 0,
-      "duration_seconds": 0.091,
-      "output": ""
-    },
-    {
-      "name": "Syntax packages/integration-runtime/src/openapi.mjs",
-      "command": [
-        "node",
-        "--check",
-        "packages/integration-runtime/src/openapi.mjs"
-      ],
-      "status": "passed",
-      "exit_code": 0,
-      "duration_seconds": 0.083,
-      "output": ""
-    },
-    {
-      "name": "Syntax packages/integration-runtime/src/webhook.mjs",
-      "command": [
-        "node",
-        "--check",
-        "packages/integration-runtime/src/webhook.mjs"
-      ],
-      "status": "passed",
-      "exit_code": 0,
-      "duration_seconds": 0.087,
-      "output": ""
-    },
-    {
-      "name": "Syntax packages/action-registry/src/approval.mjs",
-      "command": [
-        "node",
-        "--check",
-        "packages/action-registry/src/approval.mjs"
-      ],
-      "status": "passed",
-      "exit_code": 0,
-      "duration_seconds": 0.086,
-      "output": ""
-    },
-    {
-      "name": "Syntax packages/action-registry/src/errors.mjs",
-      "command": [
-        "node",
-        "--check",
-        "packages/action-registry/src/errors.mjs"
-      ],
-      "status": "passed",
-      "exit_code": 0,
-      "duration_seconds": 0.09,
-      "output": ""
-    },
-    {
-      "name": "Syntax packages/action-registry/src/index.mjs",
-      "command": [
-        "node",
-        "--check",
-        "packages/action-registry/src/index.mjs"
-      ],
-      "status": "passed",
-      "exit_code": 0,
-      "duration_seconds": 0.085,
-      "output": ""
-    },
-    {
-      "name": "Syntax packages/action-registry/src/registry.mjs",
-      "command": [
-        "node",
-        "--check",
-        "packages/action-registry/src/registry.mjs"
-      ],
-      "status": "passed",
-      "exit_code": 0,
-      "duration_seconds": 0.105,
-      "output": ""
-    },
-    {
-      "name": "Syntax packages/action-registry/src/schema.mjs",
-      "command": [
-        "node",
-        "--check",
-        "packages/action-registry/src/schema.mjs"
-      ],
-      "status": "passed",
-      "exit_code": 0,
-      "duration_seconds": 0.085,
-      "output": ""
-    },
-    {
-      "name": "Syntax packages/action-registry/src/state.mjs",
-      "command": [
-        "node",
-        "--check",
-        "packages/action-registry/src/state.mjs"
-      ],
-      "status": "passed",
-      "exit_code": 0,
-      "duration_seconds": 0.093,
-      "output": ""
-    }
-  ],
-  "claims": {
-    "integrationRuntime": "IN_PROGRESS",
-    "actionRegistry": "IN_PROGRESS",
-    "durableStores": "IN_PROGRESS",
-    "agentIntegration": "IN_PROGRESS",
-    "liveExternalVerification": "BLOCKED_EXTERNAL"
-  }
+	"release": "R11/R12",
+	"repaired": true,
+	"criticalChecksPassed": false,
+	"nextScopeId": "AGENT-ACTION-INTEGRATION-002",
+	"commands": [
+		{
+			"name": "Integration runtime tests",
+			"command": [
+				"node",
+				"--test",
+				"packages/integration-runtime/test/integration.test.mjs"
+			],
+			"status": "failed",
+			"exit_code": 1,
+			"duration_seconds": 0.405,
+			"output": "TAP version 13\n# Subtest: blocks private, loopback, link-local, metadata, documentation and multicast IP ranges\nok 1 - blocks private, loopback, link-local, metadata, documentation and multicast IP ranges\n  ---\n  duration_ms: 16.932431\n  type: 'test'\n  ...\n# Subtest: rejects URL credentials and DNS rebinding to a private address\nok 2 - rejects URL credentials and DNS rebinding to a private address\n  ---\n  duration_ms: 1.674185\n  type: 'test'\n  ...\n# Subtest: enforces connector host allowlists\nok 3 - enforces connector host allowlists\n  ---\n  duration_ms: 0.545675\n  type: 'test'\n  ...\n# Subtest: executes a pinned bounded request and parses JSON\nnot ok 4 - executes a pinned bounded request and parses JSON\n  ---\n  duration_ms: 23.18326\n  type: 'test'\n  location: '/mnt/data/crm_r11_r12_repair/crm-release/packages/integration-runtime/test/integration.test.mjs:10:1'\n  failureType: 'testCodeFailure'\n  error: 'Invalid IP address: undefined'\n  code: 'ERR_INVALID_IP_ADDRESS'\n  name: 'TypeError'\n  stack: |-\n    emitLookup (node:net:1494:17)\n    lookup (file:///mnt/data/crm_r11_r12_repair/crm-release/packages/integration-runtime/src/http-executor.mjs:18:305)\n    emitLookup (node:net:1445:5)\n    defaultTriggerAsyncIdScope (node:internal/async_hooks:464:18)\n    lookupAndConnectMultiple (node:net:1444:3)\n    node:net:1390:7\n    defaultTriggerAsyncIdScope (node:internal/async_hooks:464:18)\n    lookupAndConnect (node:net:1389:5)\n    Socket.connect (node:net:1284:5)\n    Agent.connect [as createConnection] (node:net:250:17)\n  ...\n# Subtest: rejects mutation retry without idempotency\nok 5 - rejects mutation retry without idempotency\n  ---\n  duration_ms: 1.954716\n  type: 'test'\n  ...\n# Subtest: rejects redirect to a private destination\nnot ok 6 - rejects redirect to a private destination\n  ---\n  duration_ms: 3.970451\n  type: 'test'\n  location: '/mnt/data/crm_r11_r12_repair/crm-release/packages/integration-runtime/test/integration.test.mjs:12:1'\n  failureType: 'testCodeFailure'\n  error: |-\n    The validation function is expected to return \"true\". Received false\n    \n    Caught error:\n    \n    TypeError [ERR_INVALID_IP_ADDRESS]: Invalid IP address: undefined\n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  stack: |-\n    process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    async TestContext.<anonymous> (file:///mnt/data/crm_r11_r12_repair/crm-release/packages/integration-runtime/test/integration.test.mjs:12:306)\n    async Test.run (node:internal/test_runner/test:1054:7)\n    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)\n  ...\n# Subtest: verifies HMAC webhooks and rejects replay\nok 7 - verifies HMAC webhooks and rejects replay\n  ---\n  duration_ms: 2.1306\n  type: 'test'\n  ...\n# Subtest: rejects tampered webhook body\nok 8 - rejects tampered webhook body\n  ---\n  duration_ms: 0.963631\n  type: 'test'\n  ...\n# Subtest: compiles bounded OpenAPI operations and classifies risk\nok 9 - compiles bounded OpenAPI operations and classifies risk\n  ---\n  duration_ms: 2.105995\n  type: 'test'\n  ...\n# Subtest: rejects external OpenAPI references\nok 10 - rejects external OpenAPI references\n  ---\n  duration_ms: 0.750265\n  type: 'test'\n  ...\n1..10\n# tests 10\n# suites 0\n# pass 8\n# fail 2\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 286.199092\n"
+		},
+		{
+			"name": "Action registry tests",
+			"command": [
+				"node",
+				"--test",
+				"packages/action-registry/test/actions.test.mjs"
+			],
+			"status": "passed",
+			"exit_code": 0,
+			"duration_seconds": 0.358,
+			"output": "TAP version 13\n# Subtest: registers typed actions and executes them once under idempotent replay\nok 1 - registers typed actions and executes them once under idempotent replay\n  ---\n  duration_ms: 7.466124\n  type: 'test'\n  ...\n# Subtest: rejects operation ID reuse with changed input\nok 2 - rejects operation ID reuse with changed input\n  ---\n  duration_ms: 4.650626\n  type: 'test'\n  ...\n# Subtest: validates input and permissions before executor side effects\nok 3 - validates input and permissions before executor side effects\n  ---\n  duration_ms: 0.513691\n  type: 'test'\n  ...\n# Subtest: requires payload-bound approval for high-risk action\nok 4 - requires payload-bound approval for high-risk action\n  ---\n  duration_ms: 1.928007\n  type: 'test'\n  ...\n# Subtest: rejects high-risk action without approval\nok 5 - rejects high-risk action without approval\n  ---\n  duration_ms: 0.566615\n  type: 'test'\n  ...\n# Subtest: rejects invalid executor output\nok 6 - rejects invalid executor output\n  ---\n  duration_ms: 0.991584\n  type: 'test'\n  ...\n# Subtest: forbids non-idempotent high-risk manifests\nok 7 - forbids non-idempotent high-risk manifests\n  ---\n  duration_ms: 0.355623\n  type: 'test'\n  ...\n1..7\n# tests 7\n# suites 0\n# pass 7\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 233.219871\n"
+		},
+		{
+			"name": "Combined R11/R12 tests",
+			"command": [
+				"node",
+				"--test",
+				"packages/integration-runtime/test/integration.test.mjs",
+				"packages/action-registry/test/actions.test.mjs"
+			],
+			"status": "failed",
+			"exit_code": 1,
+			"duration_seconds": 0.425,
+			"output": "TAP version 13\n# Subtest: registers typed actions and executes them once under idempotent replay\nok 1 - registers typed actions and executes them once under idempotent replay\n  ---\n  duration_ms: 6.345132\n  type: 'test'\n  ...\n# Subtest: rejects operation ID reuse with changed input\nok 2 - rejects operation ID reuse with changed input\n  ---\n  duration_ms: 4.360577\n  type: 'test'\n  ...\n# Subtest: validates input and permissions before executor side effects\nok 3 - validates input and permissions before executor side effects\n  ---\n  duration_ms: 0.443262\n  type: 'test'\n  ...\n# Subtest: requires payload-bound approval for high-risk action\nok 4 - requires payload-bound approval for high-risk action\n  ---\n  duration_ms: 1.979665\n  type: 'test'\n  ...\n# Subtest: rejects high-risk action without approval\nok 5 - rejects high-risk action without approval\n  ---\n  duration_ms: 0.421028\n  type: 'test'\n  ...\n# Subtest: rejects invalid executor output\nok 6 - rejects invalid executor output\n  ---\n  duration_ms: 0.866752\n  type: 'test'\n  ...\n# Subtest: forbids non-idempotent high-risk manifests\nok 7 - forbids non-idempotent high-risk manifests\n  ---\n  duration_ms: 0.347254\n  type: 'test'\n  ...\n# Subtest: blocks private, loopback, link-local, metadata, documentation and multicast IP ranges\nok 8 - blocks private, loopback, link-local, metadata, documentation and multicast IP ranges\n  ---\n  duration_ms: 20.694857\n  type: 'test'\n  ...\n# Subtest: rejects URL credentials and DNS rebinding to a private address\nok 9 - rejects URL credentials and DNS rebinding to a private address\n  ---\n  duration_ms: 1.822965\n  type: 'test'\n  ...\n# Subtest: enforces connector host allowlists\nok 10 - enforces connector host allowlists\n  ---\n  duration_ms: 0.590865\n  type: 'test'\n  ...\n# Subtest: executes a pinned bounded request and parses JSON\nnot ok 11 - executes a pinned bounded request and parses JSON\n  ---\n  duration_ms: 14.35599\n  type: 'test'\n  location: '/mnt/data/crm_r11_r12_repair/crm-release/packages/integration-runtime/test/integration.test.mjs:10:1'\n  failureType: 'testCodeFailure'\n  error: 'Invalid IP address: undefined'\n  code: 'ERR_INVALID_IP_ADDRESS'\n  name: 'TypeError'\n  stack: |-\n    emitLookup (node:net:1494:17)\n    lookup (file:///mnt/data/crm_r11_r12_repair/crm-release/packages/integration-runtime/src/http-executor.mjs:18:305)\n    emitLookup (node:net:1445:5)\n    defaultTriggerAsyncIdScope (node:internal/async_hooks:464:18)\n    lookupAndConnectMultiple (node:net:1444:3)\n    node:net:1390:7\n    defaultTriggerAsyncIdScope (node:internal/async_hooks:464:18)\n    lookupAndConnect (node:net:1389:5)\n    Socket.connect (node:net:1284:5)\n    Agent.connect [as createConnection] (node:net:250:17)\n  ...\n# Subtest: rejects mutation retry without idempotency\nok 12 - rejects mutation retry without idempotency\n  ---\n  duration_ms: 0.449309\n  type: 'test'\n  ...\n# Subtest: rejects redirect to a private destination\nnot ok 13 - rejects redirect to a private destination\n  ---\n  duration_ms: 3.62323\n  type: 'test'\n  location: '/mnt/data/crm_r11_r12_repair/crm-release/packages/integration-runtime/test/integration.test.mjs:12:1'\n  failureType: 'testCodeFailure'\n  error: |-\n    The validation function is expected to return \"true\". Received false\n    \n    Caught error:\n    \n    TypeError [ERR_INVALID_IP_ADDRESS]: Invalid IP address: undefined\n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  stack: |-\n    process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    async TestContext.<anonymous> (file:///mnt/data/crm_r11_r12_repair/crm-release/packages/integration-runtime/test/integration.test.mjs:12:306)\n    async Test.run (node:internal/test_runner/test:1054:7)\n    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)\n  ...\n# Subtest: verifies HMAC webhooks and rejects replay\nok 14 - verifies HMAC webhooks and rejects replay\n  ---\n  duration_ms: 2.064934\n  type: 'test'\n  ...\n# Subtest: rejects tampered webhook body\nok 15 - rejects tampered webhook body\n  ---\n  duration_ms: 0.920721\n  type: 'test'\n  ...\n# Subtest: compiles bounded OpenAPI operations and classifies risk\nok 16 - compiles bounded OpenAPI operations and classifies risk\n  ---\n  duration_ms: 2.217471\n  type: 'test'\n  ...\n# Subtest: rejects external OpenAPI references\nok 17 - rejects external OpenAPI references\n  ---\n  duration_ms: 0.934036\n  type: 'test'\n  ...\n1..17\n# tests 17\n# suites 0\n# pass 15\n# fail 2\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 305.25302\n"
+		},
+		{
+			"name": "R11/R12 structure verifier",
+			"command": ["node", "tools/release/verify-r11-r12.mjs"],
+			"status": "passed",
+			"exit_code": 0,
+			"duration_seconds": 0.104,
+			"output": "{\"ok\":true,\"files\":5}\n"
+		},
+		{
+			"name": "Syntax packages/integration-runtime/src/errors.mjs",
+			"command": [
+				"node",
+				"--check",
+				"packages/integration-runtime/src/errors.mjs"
+			],
+			"status": "passed",
+			"exit_code": 0,
+			"duration_seconds": 0.085,
+			"output": ""
+		},
+		{
+			"name": "Syntax packages/integration-runtime/src/http-executor.mjs",
+			"command": [
+				"node",
+				"--check",
+				"packages/integration-runtime/src/http-executor.mjs"
+			],
+			"status": "passed",
+			"exit_code": 0,
+			"duration_seconds": 0.086,
+			"output": ""
+		},
+		{
+			"name": "Syntax packages/integration-runtime/src/index.mjs",
+			"command": [
+				"node",
+				"--check",
+				"packages/integration-runtime/src/index.mjs"
+			],
+			"status": "passed",
+			"exit_code": 0,
+			"duration_seconds": 0.088,
+			"output": ""
+		},
+		{
+			"name": "Syntax packages/integration-runtime/src/network-policy.mjs",
+			"command": [
+				"node",
+				"--check",
+				"packages/integration-runtime/src/network-policy.mjs"
+			],
+			"status": "passed",
+			"exit_code": 0,
+			"duration_seconds": 0.091,
+			"output": ""
+		},
+		{
+			"name": "Syntax packages/integration-runtime/src/openapi.mjs",
+			"command": [
+				"node",
+				"--check",
+				"packages/integration-runtime/src/openapi.mjs"
+			],
+			"status": "passed",
+			"exit_code": 0,
+			"duration_seconds": 0.083,
+			"output": ""
+		},
+		{
+			"name": "Syntax packages/integration-runtime/src/webhook.mjs",
+			"command": [
+				"node",
+				"--check",
+				"packages/integration-runtime/src/webhook.mjs"
+			],
+			"status": "passed",
+			"exit_code": 0,
+			"duration_seconds": 0.087,
+			"output": ""
+		},
+		{
+			"name": "Syntax packages/action-registry/src/approval.mjs",
+			"command": [
+				"node",
+				"--check",
+				"packages/action-registry/src/approval.mjs"
+			],
+			"status": "passed",
+			"exit_code": 0,
+			"duration_seconds": 0.086,
+			"output": ""
+		},
+		{
+			"name": "Syntax packages/action-registry/src/errors.mjs",
+			"command": ["node", "--check", "packages/action-registry/src/errors.mjs"],
+			"status": "passed",
+			"exit_code": 0,
+			"duration_seconds": 0.09,
+			"output": ""
+		},
+		{
+			"name": "Syntax packages/action-registry/src/index.mjs",
+			"command": ["node", "--check", "packages/action-registry/src/index.mjs"],
+			"status": "passed",
+			"exit_code": 0,
+			"duration_seconds": 0.085,
+			"output": ""
+		},
+		{
+			"name": "Syntax packages/action-registry/src/registry.mjs",
+			"command": [
+				"node",
+				"--check",
+				"packages/action-registry/src/registry.mjs"
+			],
+			"status": "passed",
+			"exit_code": 0,
+			"duration_seconds": 0.105,
+			"output": ""
+		},
+		{
+			"name": "Syntax packages/action-registry/src/schema.mjs",
+			"command": ["node", "--check", "packages/action-registry/src/schema.mjs"],
+			"status": "passed",
+			"exit_code": 0,
+			"duration_seconds": 0.085,
+			"output": ""
+		},
+		{
+			"name": "Syntax packages/action-registry/src/state.mjs",
+			"command": ["node", "--check", "packages/action-registry/src/state.mjs"],
+			"status": "passed",
+			"exit_code": 0,
+			"duration_seconds": 0.093,
+			"output": ""
+		}
+	],
+	"claims": {
+		"integrationRuntime": "IN_PROGRESS",
+		"actionRegistry": "IN_PROGRESS",
+		"durableStores": "IN_PROGRESS",
+		"agentIntegration": "IN_PROGRESS",
+		"liveExternalVerification": "BLOCKED_EXTERNAL"
+	}
 }

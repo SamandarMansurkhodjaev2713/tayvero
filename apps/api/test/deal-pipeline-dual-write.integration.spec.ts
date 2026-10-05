@@ -1,5 +1,5 @@
 import { afterAll, beforeAll, describe, expect, it } from "bun:test";
-import { db, type DealStage, type Prisma } from "@crm/db";
+import { type DealStage, db, type Prisma } from "@crm/db";
 import { DealPipelineBridgeService } from "../src/deals/deal-pipeline-bridge.service";
 
 const suffix = process.env.TEST_RUN_ID ?? `pipeline-dual-write-${process.pid}`;
@@ -28,8 +28,12 @@ const mappingRows = [
 ] as const satisfies ReadonlyArray<readonly [DealStage, string]>;
 
 async function clean() {
-	await db.crmLegacyDealStageMapping.deleteMany({ where: { workspaceId: tenantId } });
-	await db.crmDealPipelineAssignment.deleteMany({ where: { workspaceId: tenantId } });
+	await db.crmLegacyDealStageMapping.deleteMany({
+		where: { workspaceId: tenantId },
+	});
+	await db.crmDealPipelineAssignment.deleteMany({
+		where: { workspaceId: tenantId },
+	});
 	await db.crmPipeline.deleteMany({ where: { workspaceId: tenantId } });
 	await db.deal.deleteMany({ where: { id: dealId } });
 	await db.company.deleteMany({ where: { id: companyId } });
@@ -67,13 +71,20 @@ beforeAll(async () => {
 	const previousMode = process.env.CRM_PIPELINE_DUAL_WRITE_MODE;
 	process.env.CRM_PIPELINE_DUAL_WRITE_MODE = "strict";
 	bridge = new DealPipelineBridgeService();
-	if (previousMode === undefined) delete process.env.CRM_PIPELINE_DUAL_WRITE_MODE;
+	if (previousMode === undefined)
+		delete process.env.CRM_PIPELINE_DUAL_WRITE_MODE;
 	else process.env.CRM_PIPELINE_DUAL_WRITE_MODE = previousMode;
 
 	await db.user.create({
-		data: { id: userId, name: "Pipeline Integration Test", email: `${suffix}@example.test` },
+		data: {
+			id: userId,
+			name: "Pipeline Integration Test",
+			email: `${suffix}@example.test`,
+		},
 	});
-	await db.company.create({ data: { id: companyId, name: `Pipeline Test ${suffix}` } });
+	await db.company.create({
+		data: { id: companyId, name: `Pipeline Test ${suffix}` },
+	});
 	await db.deal.create({
 		data: {
 			id: dealId,
@@ -95,9 +106,39 @@ beforeAll(async () => {
 	});
 	await db.crmPipelineStage.createMany({
 		data: [
-			{ id: stageIds.open, workspaceId: tenantId, pipelineId, key: "open", name: "Open", position: 0, stageType: "OPEN", probabilityBps: 3000, allowedFromStageIds: [] },
-			{ id: stageIds.won, workspaceId: tenantId, pipelineId, key: "won", name: "Won", position: 1, stageType: "WON", probabilityBps: 10000, allowedFromStageIds: [] },
-			{ id: stageIds.lost, workspaceId: tenantId, pipelineId, key: "lost", name: "Lost", position: 2, stageType: "LOST", probabilityBps: 0, allowedFromStageIds: [] },
+			{
+				id: stageIds.open,
+				workspaceId: tenantId,
+				pipelineId,
+				key: "open",
+				name: "Open",
+				position: 0,
+				stageType: "OPEN",
+				probabilityBps: 3000,
+				allowedFromStageIds: [],
+			},
+			{
+				id: stageIds.won,
+				workspaceId: tenantId,
+				pipelineId,
+				key: "won",
+				name: "Won",
+				position: 1,
+				stageType: "WON",
+				probabilityBps: 10000,
+				allowedFromStageIds: [],
+			},
+			{
+				id: stageIds.lost,
+				workspaceId: tenantId,
+				pipelineId,
+				key: "lost",
+				name: "Lost",
+				position: 2,
+				stageType: "LOST",
+				probabilityBps: 0,
+				allowedFromStageIds: [],
+			},
 		],
 	});
 	await db.crmLegacyDealStageMapping.createMany({
@@ -120,31 +161,49 @@ describe("legacy Deal.stage -> configurable pipeline PostgreSQL bridge", () => {
 		});
 		expect(assignment.pipelineId).toBe(pipelineId);
 		expect(assignment.stageId).toBe(stageIds.open);
-		expect(assignment.enteredAt.toISOString()).toBe(initialStageChangedAt.toISOString());
+		expect(assignment.enteredAt.toISOString()).toBe(
+			initialStageChangedAt.toISOString(),
+		);
 	});
 
 	it("rolls back the legacy write if strict mapping is missing", async () => {
 		await db.crmLegacyDealStageMapping.delete({
-			where: { workspaceId_legacyStage: { workspaceId: tenantId, legacyStage: "CLOSED_LOST" } },
+			where: {
+				workspaceId_legacyStage: {
+					workspaceId: tenantId,
+					legacyStage: "CLOSED_LOST",
+				},
+			},
 		});
 		const before = await db.deal.findUniqueOrThrow({ where: { id: dealId } });
-		const beforeAssignment = await db.crmDealPipelineAssignment.findUniqueOrThrow({
-			where: { workspaceId_dealId: { workspaceId: tenantId, dealId } },
-		});
+		const beforeAssignment =
+			await db.crmDealPipelineAssignment.findUniqueOrThrow({
+				where: { workspaceId_dealId: { workspaceId: tenantId, dealId } },
+			});
 
-		await expect(transition("CLOSED_LOST")).rejects.toThrow("legacy write was rolled back");
+		await expect(transition("CLOSED_LOST")).rejects.toThrow(
+			"legacy write was rolled back",
+		);
 
 		const after = await db.deal.findUniqueOrThrow({ where: { id: dealId } });
-		const afterAssignment = await db.crmDealPipelineAssignment.findUniqueOrThrow({
-			where: { workspaceId_dealId: { workspaceId: tenantId, dealId } },
-		});
+		const afterAssignment =
+			await db.crmDealPipelineAssignment.findUniqueOrThrow({
+				where: { workspaceId_dealId: { workspaceId: tenantId, dealId } },
+			});
 		expect(after.stage).toBe(before.stage);
-		expect(after.stageChangedAt.toISOString()).toBe(before.stageChangedAt.toISOString());
+		expect(after.stageChangedAt.toISOString()).toBe(
+			before.stageChangedAt.toISOString(),
+		);
 		expect(afterAssignment.stageId).toBe(beforeAssignment.stageId);
 		expect(afterAssignment.version).toBe(beforeAssignment.version);
 
 		await db.crmLegacyDealStageMapping.create({
-			data: { workspaceId: tenantId, legacyStage: "CLOSED_LOST", pipelineId, stageId: stageIds.lost },
+			data: {
+				workspaceId: tenantId,
+				legacyStage: "CLOSED_LOST",
+				pipelineId,
+				stageId: stageIds.lost,
+			},
 		});
 	});
 
@@ -155,17 +214,27 @@ describe("legacy Deal.stage -> configurable pipeline PostgreSQL bridge", () => {
 		]);
 
 		const [deal, assignment] = await Promise.all([
-			db.deal.findUniqueOrThrow({ where: { id: dealId }, select: { stage: true, stageChangedAt: true } }),
+			db.deal.findUniqueOrThrow({
+				where: { id: dealId },
+				select: { stage: true, stageChangedAt: true },
+			}),
 			db.crmDealPipelineAssignment.findUniqueOrThrow({
 				where: { workspaceId_dealId: { workspaceId: tenantId, dealId } },
 			}),
 		]);
-		const expectedStageId = new Map<DealStage, string>(mappingRows).get(deal.stage);
+		const expectedStageId = new Map<DealStage, string>(mappingRows).get(
+			deal.stage,
+		);
 		expect(expectedStageId).toBeDefined();
-		if (!expectedStageId) throw new Error("The persisted legacy stage has no expected pipeline mapping.");
+		if (!expectedStageId)
+			throw new Error(
+				"The persisted legacy stage has no expected pipeline mapping.",
+			);
 		expect(assignment.pipelineId).toBe(pipelineId);
 		expect(assignment.stageId).toBe(expectedStageId);
-		expect(assignment.enteredAt.toISOString()).toBe(deal.stageChangedAt.toISOString());
+		expect(assignment.enteredAt.toISOString()).toBe(
+			deal.stageChangedAt.toISOString(),
+		);
 		expect(assignment.version).toBeGreaterThan(1);
 	});
 });

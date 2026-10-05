@@ -41,7 +41,14 @@ function normalizedProbability(type, value, fallback) {
 	return Math.min(9_999, Math.max(0, candidate));
 }
 
-function stage(key, name, type, probabilityBps, position, allowedFromStageKeys) {
+function stage(
+	key,
+	name,
+	type,
+	probabilityBps,
+	position,
+	allowedFromStageKeys,
+) {
 	return {
 		id: null,
 		key,
@@ -222,58 +229,31 @@ function addError(errors, message) {
 	if (!errors.includes(message) && errors.length < 50) errors.push(message);
 }
 
-export function validatePipelineDraft(draft) {
-	const errors = [];
-	if (!draft || typeof draft !== "object" || Array.isArray(draft)) {
-		return ["Pipeline draft is invalid."];
-	}
-	const name = typeof draft.name === "string" ? draft.name.trim() : "";
-	if (!name) addError(errors, "Enter a pipeline name.");
-	if (name.length > MAX_PIPELINE_NAME) {
-		addError(errors, `Pipeline name cannot exceed ${MAX_PIPELINE_NAME} characters.`);
-	}
-	const rawSlugSource =
-		typeof draft.slug === "string" && draft.slug.trim()
-			? draft.slug.trim()
-			: name;
-	const normalizedSlug = normalizePipelineSlug(rawSlugSource, false);
-	if (!normalizedSlug) {
-		addError(errors, "Enter a slug that contains Latin letters or digits.");
-	}
-	if (rawSlugSource.length > MAX_PIPELINE_SLUG || normalizedSlug.length > MAX_PIPELINE_SLUG) {
-		addError(errors, `Pipeline slug cannot exceed ${MAX_PIPELINE_SLUG} characters.`);
-	}
-	if (!Array.isArray(draft.stages)) {
-		return [...errors, "Pipeline stages are invalid."];
-	}
-	if (draft.stages.length < 3) {
-		addError(errors, "A pipeline needs at least three stages.");
-	}
-	if (draft.stages.length > MAX_PIPELINE_STAGES) {
-		addError(errors, `A pipeline cannot exceed ${MAX_PIPELINE_STAGES} stages.`);
-	}
-	if (draft.id === null) {
-		if (draft.version !== 0) addError(errors, "A new pipeline has an invalid version.");
-	} else {
-		if (typeof draft.id !== "string" || !SAFE_ID.test(draft.id)) {
-			addError(errors, "Pipeline ID is invalid.");
+function validateStageTransitions(item, index, knownKeys, errors) {
+	const sources = new Set();
+	for (const sourceKey of item.allowedFromStageKeys) {
+		if (typeof sourceKey !== "string" || !STAGE_KEY.test(sourceKey)) {
+			addError(errors, `Stage ${index + 1} has an invalid transition key.`);
+			continue;
 		}
-		if (!Number.isSafeInteger(draft.version) || draft.version < 1) {
-			addError(errors, "Pipeline version is invalid.");
+		if (sources.has(sourceKey)) {
+			addError(errors, `Stage ${index + 1} has a duplicate transition rule.`);
+		}
+		sources.add(sourceKey);
+		if (sourceKey === item.key) {
+			addError(errors, `Stage ${index + 1} cannot transition from itself.`);
+		}
+		if (!knownKeys.has(sourceKey)) {
+			addError(
+				errors,
+				`Stage ${index + 1} references an unknown previous stage.`,
+			);
 		}
 	}
-	if (draft.isArchived && draft.isDefault) {
-		addError(errors, "An archived pipeline cannot be the default pipeline.");
-	}
+}
 
-	const keys = new Set();
-	const ids = new Set();
-	const knownKeys = new Set(
-		draft.stages
-			.map((item) => (typeof item?.key === "string" ? item.key : ""))
-			.filter(Boolean),
-	);
-	for (const [index, item] of draft.stages.entries()) {
+function validateDraftStages(stages, errors, keys, ids, knownKeys) {
+	for (const [index, item] of stages.entries()) {
 		if (!item || typeof item !== "object" || Array.isArray(item)) {
 			addError(errors, `Stage ${index + 1} is invalid.`);
 			continue;
@@ -333,24 +313,72 @@ export function validatePipelineDraft(draft) {
 		if (item.allowedFromStageKeys.length > MAX_PIPELINE_STAGES - 1) {
 			addError(errors, `Stage ${index + 1} has too many transition rules.`);
 		}
-		const sources = new Set();
-		for (const sourceKey of item.allowedFromStageKeys) {
-			if (typeof sourceKey !== "string" || !STAGE_KEY.test(sourceKey)) {
-				addError(errors, `Stage ${index + 1} has an invalid transition key.`);
-				continue;
-			}
-			if (sources.has(sourceKey)) {
-				addError(errors, `Stage ${index + 1} has a duplicate transition rule.`);
-			}
-			sources.add(sourceKey);
-			if (sourceKey === item.key) {
-				addError(errors, `Stage ${index + 1} cannot transition from itself.`);
-			}
-			if (!knownKeys.has(sourceKey)) {
-				addError(errors, `Stage ${index + 1} references an unknown previous stage.`);
-			}
+		validateStageTransitions(item, index, knownKeys, errors);
+	}
+}
+
+export function validatePipelineDraft(draft) {
+	const errors = [];
+	if (!draft || typeof draft !== "object" || Array.isArray(draft)) {
+		return ["Pipeline draft is invalid."];
+	}
+	const name = typeof draft.name === "string" ? draft.name.trim() : "";
+	if (!name) addError(errors, "Enter a pipeline name.");
+	if (name.length > MAX_PIPELINE_NAME) {
+		addError(
+			errors,
+			`Pipeline name cannot exceed ${MAX_PIPELINE_NAME} characters.`,
+		);
+	}
+	const rawSlugSource =
+		typeof draft.slug === "string" && draft.slug.trim()
+			? draft.slug.trim()
+			: name;
+	const normalizedSlug = normalizePipelineSlug(rawSlugSource, false);
+	if (!normalizedSlug) {
+		addError(errors, "Enter a slug that contains Latin letters or digits.");
+	}
+	if (
+		rawSlugSource.length > MAX_PIPELINE_SLUG ||
+		normalizedSlug.length > MAX_PIPELINE_SLUG
+	) {
+		addError(
+			errors,
+			`Pipeline slug cannot exceed ${MAX_PIPELINE_SLUG} characters.`,
+		);
+	}
+	if (!Array.isArray(draft.stages)) {
+		return [...errors, "Pipeline stages are invalid."];
+	}
+	if (draft.stages.length < 3) {
+		addError(errors, "A pipeline needs at least three stages.");
+	}
+	if (draft.stages.length > MAX_PIPELINE_STAGES) {
+		addError(errors, `A pipeline cannot exceed ${MAX_PIPELINE_STAGES} stages.`);
+	}
+	if (draft.id === null) {
+		if (draft.version !== 0)
+			addError(errors, "A new pipeline has an invalid version.");
+	} else {
+		if (typeof draft.id !== "string" || !SAFE_ID.test(draft.id)) {
+			addError(errors, "Pipeline ID is invalid.");
+		}
+		if (!Number.isSafeInteger(draft.version) || draft.version < 1) {
+			addError(errors, "Pipeline version is invalid.");
 		}
 	}
+	if (draft.isArchived && draft.isDefault) {
+		addError(errors, "An archived pipeline cannot be the default pipeline.");
+	}
+
+	const keys = new Set();
+	const ids = new Set();
+	const knownKeys = new Set(
+		draft.stages
+			.map((item) => (typeof item?.key === "string" ? item.key : ""))
+			.filter(Boolean),
+	);
+	validateDraftStages(draft.stages, errors, keys, ids, knownKeys);
 	if (!draft.stages.some((item) => item?.type === "OPEN")) {
 		addError(errors, "Add at least one open stage.");
 	}
@@ -399,7 +427,9 @@ export function toCreateMutationInput(draft, key) {
 export function toUpdateMutationInput(draft, key) {
 	assertMutationInput(draft, key);
 	if (draft.id === null || draft.version < 1) {
-		throw new Error("New pipelines must be created before they can be updated.");
+		throw new Error(
+			"New pipelines must be created before they can be updated.",
+		);
 	}
 	if (draft.isArchived) {
 		throw new Error("Restore an archived pipeline before editing it.");

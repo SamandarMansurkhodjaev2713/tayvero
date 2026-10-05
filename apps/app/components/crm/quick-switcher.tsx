@@ -39,8 +39,13 @@ export function QuickSwitcher() {
 	);
 	const [query, setQuery] = useState("");
 	const [debouncedQuery, setDebouncedQuery] = useState("");
-	useEffect(() => { const timer = setTimeout(() => setDebouncedQuery(query.trim()), 180); return () => clearTimeout(timer); }, [query]);
-	useEffect(() => { if (!open) setQuery(""); }, [open]);
+	useEffect(() => {
+		const timer = setTimeout(() => setDebouncedQuery(query.trim()), 180);
+		return () => clearTimeout(timer);
+	}, [query]);
+	useEffect(() => {
+		if (!open) setQuery("");
+	}, [open]);
 
 	useEffect(() => {
 		const onKeyDown = (event: KeyboardEvent) => {
@@ -60,7 +65,10 @@ export function QuickSwitcher() {
 	});
 
 	const awaitingQuery = query.trim() !== debouncedQuery;
-	const hits = query.trim().length >= 2 && !awaitingQuery && !results.isError ? results.data?.hits ?? [] : [];
+	const hits =
+		query.trim().length >= 2 && !awaitingQuery && !results.isError
+			? (results.data?.hits ?? [])
+			: [];
 
 	const go = (kind: (typeof KINDS)[number], id: string) => {
 		setQuery("");
@@ -85,9 +93,21 @@ export function QuickSwitcher() {
 					<CommandEmpty>
 						{query.trim().length < 2
 							? "Type at least two characters."
-							: awaitingQuery || results.isFetching ? "Searching…" : results.isError ? "Search is unavailable. Your records are unchanged." : "No matching records. Try a different name or email."}
+							: awaitingQuery || results.isFetching
+								? "Searching…"
+								: results.isError
+									? "Search is unavailable. Your records are unchanged."
+									: "No matching records. Try a different name or email."}
 					</CommandEmpty>
-					{results.isError && query.trim().length >= 2 ? <button type="button" className="mx-4 mb-4 rounded-md border px-3 py-2 text-sm" onClick={() => void results.refetch()}>Retry search</button> : null}
+					{results.isError && query.trim().length >= 2 ? (
+						<button
+							type="button"
+							className="mx-4 mb-4 rounded-md border px-3 py-2 text-sm"
+							onClick={() => void results.refetch()}
+						>
+							Retry search
+						</button>
+					) : null}
 
 					{KINDS.map((kind) => {
 						const group = hits.filter((hit) => hit.kind === kind);

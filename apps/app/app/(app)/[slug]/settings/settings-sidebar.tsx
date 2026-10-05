@@ -28,7 +28,9 @@ const ITEMS: SettingsNavItem[] = [
 ];
 
 function isActive(href: string, root: string, pathname: string): boolean {
-	return href === root ? pathname === href : pathname === href || pathname.startsWith(`${href}/`);
+	return href === root
+		? pathname === href
+		: pathname === href || pathname.startsWith(`${href}/`);
 }
 
 function NavLink({

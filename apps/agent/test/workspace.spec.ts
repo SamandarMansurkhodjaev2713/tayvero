@@ -118,12 +118,16 @@ describe("a profile belongs to the website it was read from", () => {
 describe("the website has to be somewhere a fetch can go", () => {
 	it("takes a bare domain and gives back a URL", () => {
 		expect(websiteUrl("product.example")).toBe("https://product.example");
-		expect(websiteUrl(" WWW.Product.Example/ ")).toBe("https://product.example");
+		expect(websiteUrl(" WWW.Product.Example/ ")).toBe(
+			"https://product.example",
+		);
 	});
 
 	it("keeps a scheme it can fetch, and a path that means something", () => {
 		expect(websiteUrl("http://product.example")).toBe("http://product.example");
-		expect(websiteUrl("https://product.example/uk/")).toBe("https://product.example/uk");
+		expect(websiteUrl("https://product.example/uk/")).toBe(
+			"https://product.example/uk",
+		);
 	});
 
 	it("refuses anything that is not a web address", () => {
