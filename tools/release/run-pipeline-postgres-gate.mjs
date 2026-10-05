@@ -4,6 +4,7 @@ import { existsSync, mkdirSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 import process from "node:process";
 import { resolveTestDatabase } from "../../packages/db/src/test-database.mjs";
+import { createEvidenceRedactor } from "../quality/lib/redact-evidence.mjs";
 
 const root = resolve(import.meta.dirname, "../..");
 const qualityDir = resolve(root, "docs/quality");
@@ -24,11 +25,7 @@ function commandAvailable(command, args) {
 	return !result.error && result.status === 0;
 }
 
-function redact(text) {
-	let value = text ?? "";
-	for (const url of [testUrl, liveUrl].filter(Boolean)) value = value.split(url).join("[REDACTED_DATABASE_URL]");
-	return value.replace(/postgres(?:ql)?:\/\/[^\s"'<>]+/gi, "[REDACTED_DATABASE_URL]");
-}
+const redact = createEvidenceRedactor();
 
 function run(label, command, args, env = process.env) {
 	const startedAt = new Date();
@@ -45,7 +42,7 @@ function run(label, command, args, env = process.env) {
 		command: [command, ...args].join(" "),
 		status: !result.error && result.status === 0 ? "passed" : "failed",
 		exitCode: result.status,
-		error: result.error?.message ?? null,
+		error: redact(result.error?.message) || null,
 		stdoutTail: redact(result.stdout).slice(-12000),
 		stderrTail: redact(result.stderr).slice(-12000),
 		startedAt: startedAt.toISOString(),

@@ -26,6 +26,8 @@ These are concrete review outcomes, not a claim that software cannot be criticiz
 - Relative import inventory over the landing tree — no unresolved local import targets.
 - Settled light/dark public screenshot paths exist, copied from the parent's final 1080 × 720 component fixture captures. Theme-specific Next Images have matching reserved dimensions. Captured UI and data are explicitly demonstration-only. README references updated to the actual JPG files.
 - Source scan found no remaining `REPO_STARS`, `github.com/crm`, `4.4k`, inherited "first agentic" claim, "All systems normal" or referral `product.example?` in the landing scope.
+- Required mechanical design scan over the final landing targets returned `[]`.
+- Independently opened the parent's `docs/images/tayvero-landing-desktop.jpg` and `tayvero-landing-mobile.jpg` captures: visible hero hierarchy, responsive CTA layout, product proof and explicit fixture captions render as intended. Parent reports 1440px desktop and 320px mobile with loaded images and no document overflow. These captures verify the component fixture's first viewport, not authenticated backend behavior or every below-fold interaction.
 
 ## Remaining evidence boundary
 

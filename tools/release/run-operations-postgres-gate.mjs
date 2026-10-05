@@ -4,6 +4,7 @@ import { spawnSync } from "node:child_process";
 import { existsSync, mkdirSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { resolveTestDatabase } from "../../packages/db/src/test-database.mjs";
+import { createEvidenceRedactor } from "../quality/lib/redact-evidence.mjs";
 
 const root = resolve(import.meta.dirname, "../..");
 const directory = resolve(root, "docs/quality");
@@ -17,7 +18,7 @@ if (!available("bun", ["--version"])) blockers.push("Bun is not available.");
 const prismaInstalled = ["node_modules/.bin/prisma", "packages/db/node_modules/.bin/prisma"]
   .some(binary => ["", ".exe", ".cmd"].some(suffix => existsSync(resolve(root, `${binary}${suffix}`))));
 if (!prismaInstalled) blockers.push("Installed workspace dependencies including Prisma are required.");
-const redact = text => String(text ?? "").replace(/postgres(?:ql)?:\/\/[^\s"'<>]+/gi, "[REDACTED_DATABASE_URL]");
+const redact = createEvidenceRedactor();
 const commands = [];
 const env = { ...process.env, NODE_ENV: "test", TEST_RUN_ID: `ops-pg-${Date.now()}` };
 function run(label, args, variables = env) {

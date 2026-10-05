@@ -40,3 +40,9 @@ Additional render check: posted the exact README to GitHub's Markdown rendering 
 ## Scope of evidence
 
 README feature statements derive from checked-in source and runbooks; this publication subtask did not run the application or PostgreSQL gates. Screenshots and complete code verification are coordinated by the parent. Historical checkpoint blockers are explicitly historical, and current verification belongs in the current delivery evidence.
+
+## Read-back after the parent's first source publication
+
+- Parent published commit `a513c8029d7cabf23c224bae281fe23f3b4ca6cb`. This agent independently inspected its GitHub Actions run `37312917348`: local-invariants job passed, disposable pipeline DB step passed, migration/approval DB step failed, repository quality step was skipped after that failure. README reports this as the first run rather than certifying the evolving branch.
+- GitHub's repository license endpoint recognized `MIT License` with key `mit` and the expected owned LICENSE URL.
+- Final settled component screenshots are JPG, not PNG; README now references the existing light/dark JPG files. They remain explicitly labeled demonstration fixtures.
