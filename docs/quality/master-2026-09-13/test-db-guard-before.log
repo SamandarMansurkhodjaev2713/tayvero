@@ -1,0 +1,508 @@
+TAP version 13
+# Subtest: test DB never derives a target from DATABASE_URL
+ok 1 - test DB never derives a target from DATABASE_URL
+  ---
+  duration_ms: 1.773239
+  type: 'test'
+  ...
+# Subtest: explicit disposable loopback target is accepted without leaking configuration
+ok 2 - explicit disposable loopback target is accepted without leaking configuration
+  ---
+  duration_ms: 0.354591
+  type: 'test'
+  ...
+# Subtest: same DB is rejected despite changed credentials, scheme, port default and query
+ok 3 - same DB is rejected despite changed credentials, scheme, port default and query
+  ---
+  duration_ms: 0.338318
+  type: 'test'
+  ...
+# Subtest: remote targets require opt-in and still reject normalized live identity
+ok 4 - remote targets require opt-in and still reject normalized live identity
+  ---
+  duration_ms: 0.30556
+  type: 'test'
+  ...
+# Subtest: unsafe database identifiers and ambiguous paths fail closed
+ok 5 - unsafe database identifiers and ambiguous paths fail closed
+  ---
+  duration_ms: 0.599202
+  type: 'test'
+  ...
+# Subtest: connection redirection, schema changes and repeated params are rejected
+ok 6 - connection redirection, schema changes and repeated params are rejected
+  ---
+  duration_ms: 0.542738
+  type: 'test'
+  ...
+# Subtest: invalid URLs do not echo credentials in errors
+ok 7 - invalid URLs do not echo credentials in errors
+  ---
+  duration_ms: 0.357956
+  type: 'test'
+  ...
+# Subtest: reset needs separate explicit consent
+ok 8 - reset needs separate explicit consent
+  ---
+  duration_ms: 0.265881
+  type: 'test'
+  ...
+# Subtest: test DB implementation has no implicit live fallback, auto-reset or credential printing
+not ok 9 - test DB implementation has no implicit live fallback, auto-reset or credential printing
+  ---
+  duration_ms: 1.670097
+  type: 'test'
+  location: '/mnt/data/tayvero_work/crm-release/packages/db/test/test-database.test.mjs:46:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input did not match the regular expression /resolveTestDatabase\(process.env\)/. Input:
+    
+    'import { spawnSync } from "node:child_process";\n' +
+      'import { existsSync, readdirSync } from "node:fs";\n' +
+      'import { dirname, join } from "node:path";\n' +
+      'import pg from "pg";\n' +
+      '\n' +
+      'const SCHEMA = join(dirname(import.meta.dirname), "prisma", "schema.prisma");\n' +
+      'const MIGRATIONS = join(dirname(import.meta.dirname), "prisma", "migrations");\n' +
+      '\n' +
+      'const url = resolve();\n' +
+      '\n' +
+      'if (!url) {\n' +
+      '\tfail([\n' +
+      '\t\t"Neither TEST_DATABASE_URL nor DATABASE_URL is set.",\n' +
+      '\t\t"Copy .env.example to .env at the repo root.",\n' +
+      '\t]);\n' +
+      '}\n' +
+      '\n' +
+      'const name = databaseName(url);\n' +
+      '\n' +
+      'if (!name.endsWith("_test")) {\n' +
+      '\tfail([\n' +
+      '\t\t`TEST_DATABASE_URL names "${name}", which does not end in _test.`,\n' +
+      '\t\t"The suite refuses anything else, because it deletes rows it expects to",\n' +
+      '\t\t"put back and an interrupted run leaves them deleted.",\n' +
+      '\t]);\n' +
+      '}\n' +
+      '\n' +
+      'await create(url, name, process.argv.includes("--reset"));\n' +
+      'migrate(url);\n' +
+      '\n' +
+      'if (!process.env.TEST_DATABASE_URL) {\n' +
+      '\tconsole.log(\n' +
+      '\t\t[\n' +
+      '\t\t\t"",\n' +
+      '\t\t\t"  Add this to .env so the suite finds it:",\n' +
+      '\t\t\t"",\n' +
+      '\t\t\t`    TEST_DATABASE_URL="${url}"`,\n' +
+      '\t\t\t"",\n' +
+      '\t\t].join("\\n"),\n' +
+      '\t);\n' +
+      '}\n' +
+      '\n' +
+      'async function create(\n' +
+      '\ttarget: string,\n' +
+      '\tdatabase: string,\n' +
+      '\tforced: boolean,\n' +
+      '): Promise<void> {\n' +
+      '\tconst maintenance = new URL(target);\n' +
+      '\tmaintenance.pathname = "/postgres";\n' +
+      '\tmaintenance.search = "";\n' +
+      '\n' +
+      '\tconst client = new pg.Client({ connectionString: maintenance.toString() });\n' +
+      '\n' +
+      '\ttry {\n' +
+      '\t\tawait client.connect();\n' +
+      '\t} catch (error) {\n' +
+      '\t\tfail([\n' +
+      '\t\t\t`Could not reach the server at ${new URL(target).host}.`,\n' +
+      '\t\t\t"Is Postgres running?  docker compose up -d",\n' +
+      '\t\t\t"",\n' +
+      '\t\t\terror instanceof Error ? error.message : String(error),\n' +
+      '\t\t]);\n' +
+      '\t}\n' +
+      '\n' +
+      '\ttry {\n' +
+      '\t\tconst existing = await client.query(\n' +
+      '\t\t\t"SELECT 1 FROM pg_database WHERE datname = $1",\n' +
+      '\t\t\t[database],\n' +
+      '\t\t);\n' +
+      '\n' +
+      '\t\tif (existing.rowCount) {\n' +
+      '\t\t\tconst reason = forced\n' +
+      '\t\t\t\t? "you asked for --reset"\n' +
+      '\t\t\t\t: await stale(target, database);\n' +
+      '\n' +
+      '\t\t\tif (!reason) {\n' +
+      '\t\t\t\tconsole.log(`  ${database} already exists`);\n' +
+      '\t\t\t\treturn;\n' +
+      '\t\t\t}\n' +
+      '\n' +
+      '\t\t\tconsole.log(`  rebuilding ${database}: ${reason}`);\n' +
+      '\t\t\tawait drop(client, database);\n' +
+      '\t\t}\n' +
+      '\n' +
+      '\t\tawait client.query(`CREATE DATABASE "${database}"`);\n' +
+      '\t\tconsole.log(`  created ${database}`);\n' +
+      '\t} finally {\n' +
+      '\t\tawait client.end();\n' +
+      '\t}\n' +
+      '}\n' +
+      '\n' +
+      'async function drop(client: pg.Client, database: string): Promise<void> {\n' +
+      '\tawait client.query(\n' +
+      '\t\t`SELECT pg_terminate_backend(pid) FROM pg_stat_activity\n' +
+      '\t\t WHERE datname = $1 AND pid <> pg_backend_pid()`,\n' +
+      '\t\t[database],\n' +
+      '\t);\n' +
+      '\tawait client.query(`DROP DATABASE IF EXISTS "${database}"`);\n' +
+      '}\n' +
+      '\n' +
+      'async function stale(target: string, database: string): Promise<string | null> {\n' +
+      '\tconst applied = await appliedMigrations(target);\n' +
+      '\n' +
+      '\tif (applied === null) return null;\n' +
+      '\n' +
+      '\tconst onDisk = new Set(\n' +
+      '\t\texistsSync(MIGRATIONS)\n' +
+      '\t\t\t? readdirSync(MIGRATIONS, { withFileTypes: true })\n' +
+      '\t\t\t\t\t.filter((entry) => entry.isDirectory())\n' +
+      '\t\t\t\t\t.map((entry) => entry.name)\n' +
+      '\t\t\t: [],\n' +
+      '\t);\n' +
+      '\n' +
+      '\tconst foreign = applied.filter((migration) => !onDisk.has(migration));\n' +
+      '\n' +
+      '\tif (foreign.length > 0) {\n' +
+      '\t\treturn `${database} holds ${foreign.length} migration(s) this branch does not have, starting with ${foreign[0]}`;\n' +
+      '\t}\n' +
+      '\n' +
+      '\treturn drifted(target) ? `${database} no longer matches schema.prisma` : null;\n' +
+      '}\n' +
+      '\n' +
+      'async function appliedMigrations(target: string): Promise<string[] | null> {\n' +
+      '\tconst client = new pg.Client({ connectionString: target });\n' +
+      '\n' +
+      '\ttry {\n' +
+      '\t\tawait client.connect();\n' +
+      '\t} catch {\n' +
+      '\t\treturn null;\n' +
+      '\t}\n' +
+      '\n' +
+      '\ttry {\n' +
+      '\t\tconst rows = await client.query<{ migration_name: string }>(\n' +
+      '\t\t\t`SELECT migration_name FROM _prisma_migrations WHERE finished_at IS NOT NULL`,\n' +
+      '\t\t);\n' +
+      '\t\treturn rows.rows.map((row) => row.migration_name);\n' +
+      '\t} catch {\n' +
+      '\t\treturn null;\n' +
+      '\t} finally {\n' +
+      '\t\tawait client.end();\n' +
+      '\t}\n' +
+      '}\n' +
+      '\n' +
+      'function drifted(target: string): boolean {\n' +
+      '\tconst result = spawnSync(\n' +
+      '\t\t"prisma",\n' +
+      '\t\t[\n' +
+      '\t\t\t"migrate",\n' +
+      '\t\t\t"diff",\n' +
+      '\t\t\t"--from-config-datasource",\n' +
+      '\t\t\t"--to-schema",\n' +
+      '\t\t\tSCHEMA,\n' +
+      '\t\t\t"--exit-code",\n' +
+      '\t\t],\n' +
+      '\t\t{ stdio: "ignore", env: { ...process.env, DATABASE_URL: target } },\n' +
+      '\t);\n' +
+      '\n' +
+      '\treturn result.status === 2;\n' +
+      '}\n' +
+      '\n' +
+      'function migrate(target: string): void {\n' +
+      '\tconst result = spawnSync("prisma", ["migrate", "deploy"], {\n' +
+      '\t\tstdio: "inherit",\n' +
+      '\t\tenv: { ...process.env, DATABASE_URL: target },\n' +
+      '\t});\n' +
+      '\n' +
+      '\tif (result.error) {\n' +
+      '\t\tfail([\n' +
+      '\t\t\t"Could not run prisma migrate deploy.",\n' +
+      '\t\t\t"Run this through the package script, which puts prisma on PATH:",\n' +
+      '\t\t\t"",\n' +
+      '\t\t\t"    bun run db:test",\n' +
+      '\t\t\t"",\n' +
+      '\t\t\tresult.error.message,\n' +
+      '\t\t]);\n' +
+      '\t}\n' +
+      '\n' +
+      '\tif (result.status !== 0) process.exit(result.status ?? 1);\n' +
+      '}\n' +
+      '\n' +
+      'function resolve(): string | null {\n' +
+      '\tconst explicit = process.env.TEST_DATABASE_URL;\n' +
+      '\tif (explicit) return explicit;\n' +
+      '\n' +
+      '\tconst live = process.env.DATABASE_URL;\n' +
+      '\tif (!live) return null;\n' +
+      '\n' +
+      '\ttry {\n' +
+      '\t\tconst parsed = new URL(live);\n' +
+      '\t\tconst database = parsed.pathname.replace(/^\\//, "");\n' +
+      '\t\tif (!database) return null;\n' +
+      '\n' +
+      '\t\tparsed.pathname = `/${database.endsWith("_test") ? database : `${database}_test`}`;\n' +
+      '\n' +
+      '\t\treturn parsed.toString();\n' +
+      '\t} catch {\n' +
+      '\t\treturn null;\n' +
+      '\t}\n' +
+      '}\n' +
+      '\n' +
+      'function databaseName(value: string): string {\n' +
+      '\ttry {\n' +
+      '\t\treturn new URL(value).pathname.replace(/^\\//, "");\n' +
+      '\t} catch {\n' +
+      '\t\treturn value;\n' +
+      '\t}\n' +
+      '}\n' +
+      '\n' +
+      'function fail(lines: string[]): never {\n' +
+      '\tconsole.error(["", ...lines.map((line) => `  ${line}`), ""].join("\\n"));\n' +
+      '\tprocess.exit(1);\n' +
+      '}\n'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual: |-
+    import { spawnSync } from "node:child_process";
+    import { existsSync, readdirSync } from "node:fs";
+    import { dirname, join } from "node:path";
+    import pg from "pg";
+    
+    const SCHEMA = join(dirname(import.meta.dirname), "prisma", "schema.prisma");
+    const MIGRATIONS = join(dirname(import.meta.dirname), "prisma", "migrations");
+    
+    const url = resolve();
+    
+    if (!url) {
+    	fail([
+    		"Neither TEST_DATABASE_URL nor DATABASE_URL is set.",
+    		"Copy .env.example to .env at the repo root.",
+    	]);
+    }
+    
+    const name = databaseName(url);
+    
+    if (!name.endsWith("_test")) {
+    	fail([
+    		`TEST_DATABASE_URL names "${name}", which does not end in _test.`,
+    		"The suite refuses anything else, because it deletes rows it expects to",
+    		"put back and an interrupted run leaves them deleted.",
+    	]);
+    }
+    
+    await create(url, name, process.argv.includes("--reset"));
+    migrate(url);
+    
+    if (!process.env.TEST_DATABASE_URL) {
+    	console.log(
+    		[
+    			"",
+    			"  Add this to .env so the suite finds it:",
+    			"",
+    			`    TEST_DATABASE_URL="${url}"`,
+    			"",
+    		].join("\n"),
+    	);
+    }
+    
+    async function create(
+    	target: string,
+    	database: string,
+    	forced: boolean,
+    ): Promise<void> {
+    	const maintenance = new URL(target);
+    	maintenance.pathname = "/postgres";
+    	maintenance.search = "";
+    
+    	const client = new pg.Client({ connectionString: maintenance.toString() });
+    
+    	try {
+    		await client.connect();
+    	} catch (error) {
+    		fail([
+    			`Could not reach the server at ${new URL(target).host}.`,
+    			"Is Postgres running?  docker compose up -d",
+    			"",
+    			error instanceof Error ? error.message : String(error),
+    		]);
+    	}
+    
+    	try {
+    		const existing = await client.query(
+    			"SELECT 1 FROM pg_database WHERE datname = $1",
+    			[database],
+    		);
+    
+    		if (existing.rowCount) {
+    			const reason = forced
+    				? "you asked for --reset"
+    				: await stale(target, database);
+    
+    			if (!reason) {
+    				console.log(`  ${database} already exists`);
+    				return;
+    			}
+    
+    			console.log(`  rebuilding ${database}: ${reason}`);
+    			await drop(client, database);
+    		}
+    
+    		await client.query(`CREATE DATABASE "${database}"`);
+    		console.log(`  created ${database}`);
+    	} finally {
+    		await client.end();
+    	}
+    }
+    
+    async function drop(client: pg.Client, database: string): Promise<void> {
+    	await client.query(
+    		`SELECT pg_terminate_backend(pid) FROM pg_stat_activity
+    		 WHERE datname = $1 AND pid <> pg_backend_pid()`,
+    		[database],
+    	);
+    	await client.query(`DROP DATABASE IF EXISTS "${database}"`);
+    }
+    
+    async function stale(target: string, database: string): Promise<string | null> {
+    	const applied = await appliedMigrations(target);
+    
+    	if (applied === null) return null;
+    
+    	const onDisk = new Set(
+    		existsSync(MIGRATIONS)
+    			? readdirSync(MIGRATIONS, { withFileTypes: true })
+    					.filter((entry) => entry.isDirectory())
+    					.map((entry) => entry.name)
+    			: [],
+    	);
+    
+    	const foreign = applied.filter((migration) => !onDisk.has(migration));
+    
+    	if (foreign.length > 0) {
+    		return `${database} holds ${foreign.length} migration(s) this branch does not have, starting with ${foreign[0]}`;
+    	}
+    
+    	return drifted(target) ? `${database} no longer matches schema.prisma` : null;
+    }
+    
+    async function appliedMigrations(target: string): Promise<string[] | null> {
+    	const client = new pg.Client({ connectionString: target });
+    
+    	try {
+    		await client.connect();
+    	} catch {
+    		return null;
+    	}
+    
+    	try {
+    		const rows = await client.query<{ migration_name: string }>(
+    			`SELECT migration_name FROM _prisma_migrations WHERE finished_at IS NOT NULL`,
+    		);
+    		return rows.rows.map((row) => row.migration_name);
+    	} catch {
+    		return null;
+    	} finally {
+    		await client.end();
+    	}
+    }
+    
+    function drifted(target: string): boolean {
+    	const result = spawnSync(
+    		"prisma",
+    		[
+    			"migrate",
+    			"diff",
+    			"--from-config-datasource",
+    			"--to-schema",
+    			SCHEMA,
+    			"--exit-code",
+    		],
+    		{ stdio: "ignore", env: { ...process.env, DATABASE_URL: target } },
+    	);
+    
+    	return result.status === 2;
+    }
+    
+    function migrate(target: string): void {
+    	const result = spawnSync("prisma", ["migrate", "deploy"], {
+    		stdio: "inherit",
+    		env: { ...process.env, DATABASE_URL: target },
+    	});
+    
+    	if (result.error) {
+    		fail([
+    			"Could not run prisma migrate deploy.",
+    			"Run this through the package script, which puts prisma on PATH:",
+    			"",
+    			"    bun run db:test",
+    			"",
+    			result.error.message,
+    		]);
+    	}
+    
+    	if (result.status !== 0) process.exit(result.status ?? 1);
+    }
+    
+    function resolve(): string | null {
+    	const explicit = process.env.TEST_DATABASE_URL;
+    	if (explicit) return explicit;
+    
+    	const live = process.env.DATABASE_URL;
+    	if (!live) return null;
+    
+    	try {
+    		const parsed = new URL(live);
+    		const database = parsed.pathname.replace(/^\//, "");
+    		if (!database) return null;
+    
+    		parsed.pathname = `/${database.endsWith("_test") ? database : `${database}_test`}`;
+    
+    		return parsed.toString();
+    	} catch {
+    		return null;
+    	}
+    }
+    
+    function databaseName(value: string): string {
+    	try {
+    		return new URL(value).pathname.replace(/^\//, "");
+    	} catch {
+    		return value;
+    	}
+    }
+    
+    function fail(lines: string[]): never {
+    	console.error(["", ...lines.map((line) => `  ${line}`), ""].join("\n"));
+    	process.exit(1);
+    }
+    
+  operator: 'match'
+  stack: |-
+    TestContext.<anonymous> (file:///mnt/data/tayvero_work/crm-release/packages/db/test/test-database.test.mjs:48:10)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+1..9
+# tests 9
+# suites 0
+# pass 8
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 65.551832

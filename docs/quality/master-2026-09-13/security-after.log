@@ -1,0 +1,154 @@
+TAP version 13
+# Subtest: blocks private, loopback, link-local, metadata, documentation and multicast IP ranges
+ok 1 - blocks private, loopback, link-local, metadata, documentation and multicast IP ranges
+  ---
+  duration_ms: 5.587269
+  type: 'test'
+  ...
+# Subtest: rejects URL credentials and DNS rebinding to a private address
+ok 2 - rejects URL credentials and DNS rebinding to a private address
+  ---
+  duration_ms: 0.797423
+  type: 'test'
+  ...
+# Subtest: enforces connector host allowlists
+ok 3 - enforces connector host allowlists
+  ---
+  duration_ms: 0.231871
+  type: 'test'
+  ...
+# Subtest: executes a pinned bounded request and parses JSON
+ok 4 - executes a pinned bounded request and parses JSON
+  ---
+  duration_ms: 15.259447
+  type: 'test'
+  ...
+# Subtest: rejects mutation retry without idempotency
+ok 5 - rejects mutation retry without idempotency
+  ---
+  duration_ms: 0.470752
+  type: 'test'
+  ...
+# Subtest: rejects redirect to a private destination
+ok 6 - rejects redirect to a private destination
+  ---
+  duration_ms: 3.366413
+  type: 'test'
+  ...
+# Subtest: verifies HMAC webhooks and rejects replay
+ok 7 - verifies HMAC webhooks and rejects replay
+  ---
+  duration_ms: 1.171784
+  type: 'test'
+  ...
+# Subtest: rejects tampered webhook body
+ok 8 - rejects tampered webhook body
+  ---
+  duration_ms: 0.379007
+  type: 'test'
+  ...
+# Subtest: compiles bounded OpenAPI operations and classifies risk
+ok 9 - compiles bounded OpenAPI operations and classifies risk
+  ---
+  duration_ms: 0.76861
+  type: 'test'
+  ...
+# Subtest: rejects external OpenAPI references
+ok 10 - rejects external OpenAPI references
+  ---
+  duration_ms: 0.290747
+  type: 'test'
+  ...
+# Subtest: rejects malformed resolver results before opening a socket
+ok 11 - rejects malformed resolver results before opening a socket
+  ---
+  duration_ms: 0.343566
+  type: 'test'
+  ...
+# Subtest: validates the retry-delay boundary
+ok 12 - validates the retry-delay boundary
+  ---
+  duration_ms: 0.228366
+  type: 'test'
+  ...
+# Subtest: enforces a total request deadline even while response bytes keep arriving
+ok 13 - enforces a total request deadline even while response bytes keep arriving
+  ---
+  duration_ms: 102.220153
+  type: 'test'
+  ...
+# Subtest: SSRF: all mapped, expanded, reserved and transition representations are blocked
+ok 14 - SSRF: all mapped, expanded, reserved and transition representations are blocked
+  ---
+  duration_ms: 5.509315
+  type: 'test'
+  ...
+# Subtest: HTTP: cross-origin redirect cannot forward secrets or reach its destination
+ok 15 - HTTP: cross-origin redirect cannot forward secrets or reach its destination
+  ---
+  duration_ms: 14.50674
+  type: 'test'
+  ...
+# Subtest: HTTP: safe same-origin GET redirect still works
+ok 16 - HTTP: safe same-origin GET redirect still works
+  ---
+  duration_ms: 5.012614
+  type: 'test'
+  ...
+# Subtest: HTTP: an idempotency header alone does not prove the provider can safely retry
+ok 17 - HTTP: an idempotency header alone does not prove the provider can safely retry
+  ---
+  duration_ms: 0.297618
+  type: 'test'
+  ...
+# Subtest: HTTP: abort before dispatch performs no DNS lookup
+ok 18 - HTTP: abort before dispatch performs no DNS lookup
+  ---
+  duration_ms: 0.211712
+  type: 'test'
+  ...
+# Subtest: HTTP: deadline includes stalled DNS resolution
+ok 19 - HTTP: deadline includes stalled DNS resolution
+  ---
+  duration_ms: 100.83165
+  type: 'test'
+  ...
+# Subtest: Webhook: replay protection must not silently disappear
+ok 20 - Webhook: replay protection must not silently disappear
+  ---
+  duration_ms: 1.29849
+  type: 'test'
+  ...
+# Subtest: Webhook: ambiguous duplicate signature fields are rejected
+ok 21 - Webhook: ambiguous duplicate signature fields are rejected
+  ---
+  duration_ms: 0.284538
+  type: 'test'
+  ...
+# Subtest: OpenAPI: server base path is retained and schema is an immutable snapshot
+ok 22 - OpenAPI: server base path is retained and schema is an immutable snapshot
+  ---
+  duration_ms: 0.718127
+  type: 'test'
+  ...
+# Subtest: OpenAPI: reject host-changing and traversal paths
+ok 23 - OpenAPI: reject host-changing and traversal paths
+  ---
+  duration_ms: 0.607844
+  type: 'test'
+  ...
+# Subtest: OpenAPI: cyclic objects are bounded failures, not stack overflows
+ok 24 - OpenAPI: cyclic objects are bounded failures, not stack overflows
+  ---
+  duration_ms: 0.144493
+  type: 'test'
+  ...
+1..24
+# tests 24
+# suites 0
+# pass 24
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 206.390229

@@ -1,0 +1,268 @@
+TAP version 13
+# Subtest: privileged operations derive dedicated workspace and recheck current membership
+ok 1 - privileged operations derive dedicated workspace and recheck current membership
+  ---
+  duration_ms: 9.326535
+  type: 'test'
+  ...
+# Subtest: disabled execution is a real server gate, not a disabled UI button
+ok 2 - disabled execution is a real server gate, not a disabled UI button
+  ---
+  duration_ms: 13.493339
+  type: 'test'
+  ...
+# Subtest: upload persists encrypted bytes and preview survives application recreation
+ok 3 - upload persists encrypted bytes and preview survives application recreation
+  ---
+  duration_ms: 6.768402
+  type: 'test'
+  ...
+# Subtest: invalid encoding, canonical base64, large files and XLSX fail before publication
+ok 4 - invalid encoding, canonical base64, large files and XLSX fail before publication
+  ---
+  duration_ms: 3.26169
+  type: 'test'
+  ...
+# Subtest: source fingerprints and cross-workspace source lookups fail closed
+ok 5 - source fingerprints and cross-workspace source lookups fail closed
+  ---
+  duration_ms: 3.452521
+  type: 'test'
+  ...
+# Subtest: mapping cannot assign owner/tenant fields; unsupported deal writes fail
+ok 6 - mapping cannot assign owner/tenant fields; unsupported deal writes fail
+  ---
+  duration_ms: 10.661124
+  type: 'test'
+  ...
+# Subtest: prepare is atomic, idempotent and immutable for the same command
+ok 7 - prepare is atomic, idempotent and immutable for the same command
+  ---
+  duration_ms: 11.41196
+  type: 'test'
+  ...
+# Subtest: preparation failure rolls back job, plan and issues together
+ok 8 - preparation failure rolls back job, plan and issues together
+  ---
+  duration_ms: 6.081819
+  type: 'test'
+  ...
+# Subtest: every valid row gets a receipt in the transaction creating the CRM record
+ok 9 - every valid row gets a receipt in the transaction creating the CRM record
+  ---
+  duration_ms: 13.423757
+  type: 'test'
+  ...
+# Subtest: repeat execution and repeat import never merge or overwrite exact contacts
+ok 10 - repeat execution and repeat import never merge or overwrite exact contacts
+  ---
+  duration_ms: 11.860311
+  type: 'test'
+  ...
+# Subtest: database receipt failure rolls back customer writes before any retry
+ok 11 - database receipt failure rolls back customer writes before any retry
+  ---
+  duration_ms: 8.545503
+  type: 'test'
+  ...
+# Subtest: crash after CRM commit but before batch settlement replays receipts, not writes
+ok 12 - crash after CRM commit but before batch settlement replays receipts, not writes
+  ---
+  duration_ms: 9.437308
+  type: 'test'
+  ...
+# Subtest: invalid rows and in-file duplicates remain separate, paginatable outcomes
+ok 13 - invalid rows and in-file duplicates remain separate, paginatable outcomes
+  ---
+  duration_ms: 6.272991
+  type: 'test'
+  ...
+# Subtest: source and plan tampering prevent writes
+ok 14 - source and plan tampering prevent writes
+  ---
+  duration_ms: 6.139204
+  type: 'test'
+  ...
+# Subtest: membership revocation between preview and execute prevents all writes
+ok 15 - membership revocation between preview and execute prevents all writes
+  ---
+  duration_ms: 3.466392
+  type: 'test'
+  ...
+# Subtest: cancellation is idempotent, stops new batches and does not claim rollback
+ok 16 - cancellation is idempotent, stops new batches and does not claim rollback
+  ---
+  duration_ms: 6.231229
+  type: 'test'
+  ...
+# Subtest: rollback previews first, requires exact confirmation, archives only own unchanged rows
+ok 17 - rollback previews first, requires exact confirmation, archives only own unchanged rows
+  ---
+  duration_ms: 8.794801
+  type: 'test'
+  ...
+# Subtest: rollback will not archive edited or linked CRM records
+ok 18 - rollback will not archive edited or linked CRM records
+  ---
+  duration_ms: 6.823453
+  type: 'test'
+  ...
+# Subtest: sources used by jobs are retained; unused sources can be tombstoned and physically removed
+ok 19 - sources used by jobs are retained; unused sources can be tombstoned and physically removed
+  ---
+  duration_ms: 6.972513
+  type: 'test'
+  ...
+# Subtest: company imports use source evidence and create-only exact duplicate checks
+ok 20 - company imports use source evidence and create-only exact duplicate checks
+  ---
+  duration_ms: 5.753576
+  type: 'test'
+  ...
+# Subtest: report refuses ambiguous row accounting instead of claiming completion
+ok 21 - report refuses ambiguous row accounting instead of claiming completion
+  ---
+  duration_ms: 7.674268
+  type: 'test'
+  ...
+# Subtest: a lease that expires during CRM writes aborts the entire write transaction
+ok 22 - a lease that expires during CRM writes aborts the entire write transaction
+  ---
+  duration_ms: 16.426941
+  type: 'test'
+  ...
+# Subtest: distinct contacts matching email and phone are rejected, never silently merged
+ok 23 - distinct contacts matching email and phone are rejected, never silently merged
+  ---
+  duration_ms: 7.053051
+  type: 'test'
+  ...
+# Subtest: a replacement admin cannot assign newly imported records to a removed owner
+ok 24 - a replacement admin cannot assign newly imported records to a removed owner
+  ---
+  duration_ms: 5.302961
+  type: 'test'
+  ...
+# Subtest: two application instances replay one prepared job instead of allocating duplicate intents
+ok 25 - two application instances replay one prepared job instead of allocating duplicate intents
+  ---
+  duration_ms: 5.935784
+  type: 'test'
+  ...
+# Subtest: multi-batch report pagination does not truncate row outcomes silently
+ok 26 - multi-batch report pagination does not truncate row outcomes silently
+  ---
+  duration_ms: 57.404228
+  type: 'test'
+  ...
+# Subtest: migration: a stale claim cannot settle a newer lease even with the same workerId
+ok 27 - migration: a stale claim cannot settle a newer lease even with the same workerId
+  ---
+  duration_ms: 7.027264
+  type: 'test'
+  ...
+# Subtest: migration: process crashes consume attempts and eventually quarantine the batch
+ok 28 - migration: process crashes consume attempts and eventually quarantine the batch
+  ---
+  duration_ms: 1.836528
+  type: 'test'
+  ...
+# Subtest: migration: failure after cancellation cannot overwrite CANCELLED with FAILED
+ok 29 - migration: failure after cancellation cannot overwrite CANCELLED with FAILED
+  ---
+  duration_ms: 1.671836
+  type: 'test'
+  ...
+# Subtest: migration: invalid importer result is a terminal contract error
+ok 30 - migration: invalid importer result is a terminal contract error
+  ---
+  duration_ms: 0.595388
+  type: 'test'
+  ...
+# Subtest: migration: tenant/job delimiter ambiguity cannot alias storage keys
+ok 31 - migration: tenant/job delimiter ambiguity cannot alias storage keys
+  ---
+  duration_ms: 0.173756
+  type: 'test'
+  ...
+# Subtest: rejects invalid state transitions
+ok 32 - rejects invalid state transitions
+  ---
+  duration_ms: 1.048456
+  type: 'test'
+  ...
+# Subtest: rejects a dry-run from another tenant
+ok 33 - rejects a dry-run from another tenant
+  ---
+  duration_ms: 1.226499
+  type: 'test'
+  ...
+# Subtest: processes bounded batches and completes after the last checkpoint
+ok 34 - processes bounded batches and completes after the last checkpoint
+  ---
+  duration_ms: 2.306701
+  type: 'test'
+  ...
+# Subtest: concurrent workers claim distinct batches and never duplicate the same lease
+ok 35 - concurrent workers claim distinct batches and never duplicate the same lease
+  ---
+  duration_ms: 5.420494
+  type: 'test'
+  ...
+# Subtest: an expired RUNNING lease is reclaimed with the same operation identity
+ok 36 - an expired RUNNING lease is reclaimed with the same operation identity
+  ---
+  duration_ms: 1.619308
+  type: 'test'
+  ...
+# Subtest: retries a transient failure with the same idempotency key
+ok 37 - retries a transient failure with the same idempotency key
+  ---
+  duration_ms: 1.196375
+  type: 'test'
+  ...
+# Subtest: moves a poison batch and job to FAILED after bounded attempts
+ok 38 - moves a poison batch and job to FAILED after bounded attempts
+  ---
+  duration_ms: 0.988358
+  type: 'test'
+  ...
+# Subtest: cancellation is terminal and prevents execution
+ok 39 - cancellation is terminal and prevents execution
+  ---
+  duration_ms: 1.401917
+  type: 'test'
+  ...
+# Subtest: rejects a dry-run for a different entity type
+ok 40 - rejects a dry-run for a different entity type
+  ---
+  duration_ms: 0.57606
+  type: 'test'
+  ...
+# Subtest: rejects non-contiguous batch indexes and count drift
+ok 41 - rejects non-contiguous batch indexes and count drift
+  ---
+  duration_ms: 0.993395
+  type: 'test'
+  ...
+# Subtest: rejects unsafe source filenames before persistence
+ok 42 - rejects unsafe source filenames before persistence
+  ---
+  duration_ms: 0.415723
+  type: 'test'
+  ...
+# Subtest: fails immediately when importer counters do not reconcile to the claimed batch
+ok 43 - fails immediately when importer counters do not reconcile to the claimed batch
+  ---
+  duration_ms: 0.748494
+  type: 'test'
+  ...
+1..43
+# tests 43
+# suites 0
+# pass 43
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 600.923067

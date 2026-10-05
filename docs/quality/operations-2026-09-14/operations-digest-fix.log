@@ -1,0 +1,88 @@
+TAP version 13
+# Subtest: overview is current-admin only and dedicated-workspace bound
+ok 1 - overview is current-admin only and dedicated-workspace bound
+  ---
+  duration_ms: 3.270457
+  type: 'test'
+  ...
+# Subtest: private drafts and unrelated receipts do not leak into team overview
+ok 2 - private drafts and unrelated receipts do not leak into team overview
+  ---
+  duration_ms: 1.907295
+  type: 'test'
+  ...
+# Subtest: costs use exact micro-USD and report missing records separately
+ok 3 - costs use exact micro-USD and report missing records separately
+  ---
+  duration_ms: 0.1759
+  type: 'test'
+  ...
+# Subtest: missing, negative, invalid costs and zero-completion rates are not invented
+ok 4 - missing, negative, invalid costs and zero-completion rates are not invented
+  ---
+  duration_ms: 0.10825
+  type: 'test'
+  ...
+# Subtest: a truncated window cannot masquerade as a full success rate or cost total
+ok 5 - a truncated window cannot masquerade as a full success rate or cost total
+  ---
+  duration_ms: 0.103292
+  type: 'test'
+  ...
+# Subtest: read period has explicit rolling UTC bounds and rejects arbitrary large windows
+ok 6 - read period has explicit rolling UTC bounds and rejects arbitrary large windows
+  ---
+  duration_ms: 1.238658
+  type: 'test'
+  ...
+# Subtest: operations never turns lack of provider/outcome instrumentation into positive health
+ok 7 - operations never turns lack of provider/outcome instrumentation into positive health
+  ---
+  duration_ms: 0.627856
+  type: 'test'
+  ...
+# Subtest: unsafe database errors and prompt-like error messages are not returned to operators
+ok 8 - unsafe database errors and prompt-like error messages are not returned to operators
+  ---
+  duration_ms: 1.373538
+  type: 'test'
+  ...
+# Subtest: disabled approval lifecycle performs no mutation even for administrators
+ok 9 - disabled approval lifecycle performs no mutation even for administrators
+  ---
+  duration_ms: 0.462893
+  type: 'test'
+  ...
+# Subtest: empty team yields a true empty state, no seeded demo metrics
+ok 10 - empty team yields a true empty state, no seeded demo metrics
+  ---
+  duration_ms: 0.604052
+  type: 'test'
+  ...
+# Subtest: receipt correlation uses governed metadata, never the unrelated CRM requestHash
+ok 11 - receipt correlation uses governed metadata, never the unrelated CRM requestHash
+  ---
+  duration_ms: 2.318331
+  type: 'test'
+  ...
+# Subtest: a different action kind cannot borrow the digest correlation
+ok 12 - a different action kind cannot borrow the digest correlation
+  ---
+  duration_ms: 0.710638
+  type: 'test'
+  ...
+# Subtest: metadata lookup refuses accessors and inherited correlation
+ok 13 - metadata lookup refuses accessors and inherited correlation
+  ---
+  duration_ms: 0.118234
+  type: 'test'
+  ...
+1..13
+# tests 13
+# suites 0
+# pass 13
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 132.09016

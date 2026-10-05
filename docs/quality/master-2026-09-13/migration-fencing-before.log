@@ -1,0 +1,122 @@
+TAP version 13
+# Subtest: migration: a stale claim cannot settle a newer lease even with the same workerId
+not ok 1 - migration: a stale claim cannot settle a newer lease even with the same workerId
+  ---
+  duration_ms: 6.671074
+  type: 'test'
+  location: '/mnt/data/tayvero_work/crm-release/packages/migration-runtime/test/lease-fencing.test.mjs:17:1'
+  failureType: 'testCodeFailure'
+  error: 'Missing expected rejection.'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  stack: |-
+    async TestContext.<anonymous> (file:///mnt/data/tayvero_work/crm-release/packages/migration-runtime/test/lease-fencing.test.mjs:24:19)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+# Subtest: migration: process crashes consume attempts and eventually quarantine the batch
+not ok 2 - migration: process crashes consume attempts and eventually quarantine the batch
+  ---
+  duration_ms: 2.357098
+  type: 'test'
+  location: '/mnt/data/tayvero_work/crm-release/packages/migration-runtime/test/lease-fencing.test.mjs:30:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    true !== false
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: false
+  actual: true
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///mnt/data/tayvero_work/crm-release/packages/migration-runtime/test/lease-fencing.test.mjs:35:10)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: migration: failure after cancellation cannot overwrite CANCELLED with FAILED
+not ok 3 - migration: failure after cancellation cannot overwrite CANCELLED with FAILED
+  ---
+  duration_ms: 2.271912
+  type: 'test'
+  location: '/mnt/data/tayvero_work/crm-release/packages/migration-runtime/test/lease-fencing.test.mjs:42:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + 'FAILED'
+    - 'CANCELLED'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'CANCELLED'
+  actual: 'FAILED'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///mnt/data/tayvero_work/crm-release/packages/migration-runtime/test/lease-fencing.test.mjs:47:10)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: migration: invalid importer result is a terminal contract error
+not ok 4 - migration: invalid importer result is a terminal contract error
+  ---
+  duration_ms: 1.290068
+  type: 'test'
+  location: '/mnt/data/tayvero_work/crm-release/packages/migration-runtime/test/lease-fencing.test.mjs:50:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The validation function is expected to return "true". Received false
+    
+    Caught error:
+    
+    TypeError: Cannot read properties of null (reading 'importedCount')
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  stack: |-
+    async TestContext.<anonymous> (file:///mnt/data/tayvero_work/crm-release/packages/migration-runtime/test/lease-fencing.test.mjs:52:3)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: migration: tenant/job delimiter ambiguity cannot alias storage keys
+not ok 5 - migration: tenant/job delimiter ambiguity cannot alias storage keys
+  ---
+  duration_ms: 0.617648
+  type: 'test'
+  location: '/mnt/data/tayvero_work/crm-release/packages/migration-runtime/test/lease-fencing.test.mjs:56:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + {
+    +   id: 'c',
+    +   tenantId: 'a:b',
+    +   version: 1
+    + }
+    - null
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: ~
+  actual:
+    tenantId: 'a:b'
+    id: 'c'
+    version: 1
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///mnt/data/tayvero_work/crm-release/packages/migration-runtime/test/lease-fencing.test.mjs:59:10)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 0
+# fail 5
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 70.230509

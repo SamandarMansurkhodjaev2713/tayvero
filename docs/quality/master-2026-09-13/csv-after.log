@@ -1,0 +1,136 @@
+TAP version 13
+# Subtest: CSV: auto-detection works beyond the 30-row sampling boundary
+ok 1 - CSV: auto-detection works beyond the 30-row sampling boundary
+  ---
+  duration_ms: 3.648409
+  type: 'test'
+  ...
+# Subtest: CSV: rejects text or a second quoted string after a closing quote
+ok 2 - CSV: rejects text or a second quoted string after a closing quote
+  ---
+  duration_ms: 2.053366
+  type: 'test'
+  ...
+# Subtest: CSV: single-column imports are valid without explicit delimiter selection
+ok 3 - CSV: single-column imports are valid without explicit delimiter selection
+  ---
+  duration_ms: 0.759055
+  type: 'test'
+  ...
+# Subtest: CSV: formula escaping includes line breaks and Unicode whitespace
+ok 4 - CSV: formula escaping includes line breaks and Unicode whitespace
+  ---
+  duration_ms: 0.209317
+  type: 'test'
+  ...
+# Subtest: CSV: limits cannot be disabled by NaN or Infinity
+ok 5 - CSV: limits cannot be disabled by NaN or Infinity
+  ---
+  duration_ms: 0.21764
+  type: 'test'
+  ...
+# Subtest: CSV: source row numbers survive blank and multiline records
+ok 6 - CSV: source row numbers survive blank and multiline records
+  ---
+  duration_ms: 1.207473
+  type: 'test'
+  ...
+# Subtest: CSV: format detection rejects backslash paths and control characters on every OS
+ok 7 - CSV: format detection rejects backslash paths and control characters on every OS
+  ---
+  duration_ms: 0.40844
+  type: 'test'
+  ...
+# Subtest: parses RFC4180 quoted commas, newlines, and escaped quotes
+ok 8 - parses RFC4180 quoted commas, newlines, and escaped quotes
+  ---
+  duration_ms: 3.089568
+  type: 'test'
+  ...
+# Subtest: detects a semicolon delimiter
+ok 9 - detects a semicolon delimiter
+  ---
+  duration_ms: 0.365917
+  type: 'test'
+  ...
+# Subtest: removes UTF-8 BOM from the first header
+ok 10 - removes UTF-8 BOM from the first header
+  ---
+  duration_ms: 0.172964
+  type: 'test'
+  ...
+# Subtest: rejects an unclosed quote
+ok 11 - rejects an unclosed quote
+  ---
+  duration_ms: 0.366789
+  type: 'test'
+  ...
+# Subtest: rejects duplicate normalized headers
+ok 12 - rejects duplicate normalized headers
+  ---
+  duration_ms: 0.181516
+  type: 'test'
+  ...
+# Subtest: enforces row limits
+ok 13 - enforces row limits
+  ---
+  duration_ms: 0.109591
+  type: 'test'
+  ...
+# Subtest: neutralizes spreadsheet formulas in exported reports
+ok 14 - neutralizes spreadsheet formulas in exported reports
+  ---
+  duration_ms: 0.229337
+  type: 'test'
+  ...
+# Subtest: serializes error reports with formula protection
+ok 15 - serializes error reports with formula protection
+  ---
+  duration_ms: 0.26575
+  type: 'test'
+  ...
+# Subtest: parses money deterministically in minor units
+ok 16 - parses money deterministically in minor units
+  ---
+  duration_ms: 0.519013
+  type: 'test'
+  ...
+# Subtest: normalizes Uzbekistan phone numbers
+ok 17 - normalizes Uzbekistan phone numbers
+  ---
+  duration_ms: 0.408881
+  type: 'test'
+  ...
+# Subtest: validates extension, MIME, and XLSX ZIP signature
+ok 18 - validates extension, MIME, and XLSX ZIP signature
+  ---
+  duration_ms: 0.418815
+  type: 'test'
+  ...
+# Subtest: compiles deterministic mappings and validates required fields
+ok 19 - compiles deterministic mappings and validates required fields
+  ---
+  duration_ms: 0.394259
+  type: 'test'
+  ...
+# Subtest: creates deterministic dry-run batches and duplicate issues
+ok 20 - creates deterministic dry-run batches and duplicate issues
+  ---
+  duration_ms: 1.720797
+  type: 'test'
+  ...
+# Subtest: marks existing-record matches as warnings without silently dropping the row
+ok 21 - marks existing-record matches as warnings without silently dropping the row
+  ---
+  duration_ms: 0.338127
+  type: 'test'
+  ...
+1..21
+# tests 21
+# suites 0
+# pass 21
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 85.505352

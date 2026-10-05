@@ -1,0 +1,222 @@
+{
+  "schemaVersion": 1,
+  "release": "security-r2-2026-08-30",
+  "sourceZip": "crm-production-foundation-2026-08-30(1).zip",
+  "generatedAt": "2026-08-30T11:38:27+00:00",
+  "repoRootInArchive": "crm-release",
+  "criticalSecurityChecksPassed": true,
+  "statusMeaning": {
+    "passed": "Command executed and returned exit code 0.",
+    "failed": "Command executed and returned non-zero.",
+    "timeout": "Command exceeded the explicit timeout.",
+    "not_available": "Required executable or environment was unavailable.",
+    "error": "Verification harness itself encountered an error."
+  },
+  "scope": {
+    "implemented": [
+      "Versioned AES-256-GCM credential vault primitive",
+      "Tenant-bound authenticated encryption context",
+      "Environment and in-memory key providers",
+      "Key rotation and explicit legacy migration codec",
+      "Validated tenant context and scoped delegate primitives",
+      "Tenant-bound idempotency keys",
+      "Credential configuration gate",
+      "Tenant static regression ratchet",
+      "Security documentation and runbook"
+    ],
+    "stillInProgress": [
+      "Migration of existing persisted credentials to encrypted columns",
+      "Route-by-route migration to tenant-scoped repositories",
+      "Database-backed cross-tenant integration test matrix",
+      "Live cloud KMS provider verification"
+    ]
+  },
+  "commands": [
+    {
+      "name": "generate tenant audit baseline",
+      "command": [
+        "node",
+        "scripts/audit-tenant-boundaries.mjs",
+        "--write-baseline"
+      ],
+      "cwd": "/mnt/data/crm_security_r2_work/crm-release",
+      "startedAt": "2026-08-30T11:34:09+00:00",
+      "exitCode": 0,
+      "status": "passed",
+      "output": "Tenant audit baseline written with 15 reviewed finding(s).\n",
+      "durationSeconds": 0.552,
+      "finishedAt": "2026-08-30T11:34:09+00:00"
+    },
+    {
+      "name": "security-core unit tests",
+      "command": [
+        "node",
+        "--test",
+        "packages/security-core/test/*.test.mjs"
+      ],
+      "cwd": "/mnt/data/crm_security_r2_work/crm-release",
+      "startedAt": "2026-08-30T11:34:09+00:00",
+      "exitCode": 0,
+      "status": "passed",
+      "output": "TAP version 13\n# Subtest: givenPlainCredential_whenSealingAndOpening_thenReturnsValidatedPlaintext\nok 1 - givenPlainCredential_whenSealingAndOpening_thenReturnsValidatedPlaintext\n  ---\n  duration_ms: 4.179213\n  type: 'test'\n  ...\n# Subtest: givenLegacyPlaintextAndStrictMode_whenOpening_thenRejects\nok 2 - givenLegacyPlaintextAndStrictMode_whenOpening_thenRejects\n  ---\n  duration_ms: 0.693887\n  type: 'test'\n  ...\n# Subtest: givenLegacyPlaintextAndMigrationMode_whenOpening_thenMarksMigrationRequired\nok 3 - givenLegacyPlaintextAndMigrationMode_whenOpening_thenMarksMigrationRequired\n  ---\n  duration_ms: 0.352177\n  type: 'test'\n  ...\n# Subtest: givenEncryptedValue_whenSealingAgain_thenPreventsDoubleEncryption\nok 4 - givenEncryptedValue_whenSealingAgain_thenPreventsDoubleEncryption\n  ---\n  duration_ms: 1.567644\n  type: 'test'\n  ...\n# Subtest: givenValidContext_whenEncryptingAndDecrypting_thenRoundTripsWithoutPlaintextLeakage\nok 5 - givenValidContext_whenEncryptingAndDecrypting_thenRoundTripsWithoutPlaintextLeakage\n  ---\n  duration_ms: 2.989085\n  type: 'test'\n  ...\n# Subtest: givenSamePlaintext_whenEncryptedTwice_thenRandomIvProducesDifferentEnvelopes\nok 6 - givenSamePlaintext_whenEncryptedTwice_thenRandomIvProducesDifferentEnvelopes\n  ---\n  duration_ms: 1.899352\n  type: 'test'\n  ...\n# Subtest: givenWrongTenantContext_whenDecrypting_thenAuthenticationFails\nok 7 - givenWrongTenantContext_whenDecrypting_thenAuthenticationFails\n  ---\n  duration_ms: 1.536108\n  type: 'test'\n  ...\n# Subtest: givenTamperedCiphertext_whenDecrypting_thenAuthenticationFails\nok 8 - givenTamperedCiphertext_whenDecrypting_thenAuthenticationFails\n  ---\n  duration_ms: 0.745859\n  type: 'test'\n  ...\n# Subtest: givenMissingHistoricalKey_whenDecrypting_thenFailsWithoutLeakingSecret\nok 9 - givenMissingHistoricalKey_whenDecrypting_thenFailsWithoutLeakingSecret\n  ---\n  duration_ms: 0.730493\n  type: 'test'\n  ...\n# Subtest: givenHistoricalKeyAndNewActiveKey_whenRotating_thenReencryptsWithNewKey\nok 10 - givenHistoricalKeyAndNewActiveKey_whenRotating_thenReencryptsWithNewKey\n  ---\n  duration_ms: 0.860319\n  type: 'test'\n  ...\n# Subtest: givenPlaintext_whenDecrypting_thenRejectsImplicitLegacyFallback\nok 11 - givenPlaintext_whenDecrypting_thenRejectsImplicitLegacyFallback\n  ---\n  duration_ms: 0.405499\n  type: 'test'\n  ...\n# Subtest: givenInvalidKeyLength_whenCreatingProvider_thenFailsFast\nok 12 - givenInvalidKeyLength_whenCreatingProvider_thenFailsFast\n  ---\n  duration_ms: 0.187532\n  type: 'test'\n  ...\n# Subtest: givenEnvironmentKeyring_whenCreatingProvider_thenValidatesAndDecrypts\nok 13 - givenEnvironmentKeyring_whenCreatingProvider_thenValidatesAndDecrypts\n  ---\n  duration_ms: 0.661343\n  type: 'test'\n  ...\n# Subtest: givenEnvelope_whenRedactingAndFingerprinting_thenNeverReturnsPlaintext\nok 14 - givenEnvelope_whenRedactingAndFingerprinting_thenNeverReturnsPlaintext\n  ---\n  duration_ms: 1.105634\n  type: 'test'\n  ...\n# Subtest: givenOversizedPlaintext_whenEncrypting_thenRejectsBeforeEncryption\nok 15 - givenOversizedPlaintext_whenEncrypting_thenRejectsBeforeEncryption\n  ---\n  duration_ms: 0.268562\n  type: 'test'\n  ...\n# Subtest: givenUnscopedWhere_whenScoping_thenInjectsActiveTenant\nok 16 - givenUnscopedWhere_whenScoping_thenInjectsActiveTenant\n  ---\n  duration_ms: 1.748176\n  type: 'test'\n  ...\n# Subtest: givenCrossTenantSelector_whenScoping_thenRejects\nok 17 - givenCrossTenantSelector_whenScoping_thenRejects\n  ---\n  duration_ms: 0.76648\n  type: 'test'\n  ...\n# Subtest: givenCreatePayloadForAnotherTenant_whenScoping_thenRejects\nok 18 - givenCreatePayloadForAnotherTenant_whenScoping_thenRejects\n  ---\n  duration_ms: 0.334348\n  type: 'test'\n  ...\n# Subtest: givenAttemptedTenantReassignment_whenUpdating_thenRejects\nok 19 - givenAttemptedTenantReassignment_whenUpdating_thenRejects\n  ---\n  duration_ms: 0.389102\n  type: 'test'\n  ...\n# Subtest: givenUniqueSelector_whenScoping_thenKeepsUniqueFieldAndAddsTenant\nok 20 - givenUniqueSelector_whenScoping_thenKeepsUniqueFieldAndAddsTenant\n  ---\n  duration_ms: 0.377524\n  type: 'test'\n  ...\n# Subtest: givenSameOperationInDifferentTenants_whenBuildingIdempotencyKey_thenKeysDiffer\nok 21 - givenSameOperationInDifferentTenants_whenBuildingIdempotencyKey_thenKeysDiffer\n  ---\n  duration_ms: 0.960709\n  type: 'test'\n  ...\n# Subtest: givenTenantScopedDelegate_whenReading_thenAlwaysInjectsTenantAndValidatesResults\nok 22 - givenTenantScopedDelegate_whenReading_thenAlwaysInjectsTenantAndValidatesResults\n  ---\n  duration_ms: 0.690542\n  type: 'test'\n  ...\n# Subtest: givenCompromisedDelegateReturningAnotherTenant_whenReading_thenFailsClosed\nok 23 - givenCompromisedDelegateReturningAnotherTenant_whenReading_thenFailsClosed\n  ---\n  duration_ms: 0.365535\n  type: 'test'\n  ...\n# Subtest: givenScopedMutation_whenUpdating_thenScopesWhereAndForbidsOwnershipChange\nok 24 - givenScopedMutation_whenUpdating_thenScopesWhereAndForbidsOwnershipChange\n  ---\n  duration_ms: 0.734852\n  type: 'test'\n  ...\n# Subtest: givenPrototypePollutionKey_whenScoping_thenRejectsInput\nok 25 - givenPrototypePollutionKey_whenScoping_thenRejectsInput\n  ---\n  duration_ms: 0.65069\n  type: 'test'\n  ...\n1..25\n# tests 25\n# suites 0\n# pass 25\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 84.18659\n",
+      "durationSeconds": 0.118,
+      "finishedAt": "2026-08-30T11:34:09+00:00"
+    },
+    {
+      "name": "security configuration check (development)",
+      "command": [
+        "node",
+        "scripts/verify-security-config.mjs"
+      ],
+      "cwd": "/mnt/data/crm_security_r2_work/crm-release",
+      "startedAt": "2026-08-30T11:34:09+00:00",
+      "exitCode": 0,
+      "status": "passed",
+      "output": "Credential vault configuration is optional in this non-production verification context.\n",
+      "durationSeconds": 0.027,
+      "finishedAt": "2026-08-30T11:34:10+00:00"
+    },
+    {
+      "name": "security configuration check (production valid keyring)",
+      "command": [
+        "node",
+        "scripts/verify-security-config.mjs"
+      ],
+      "cwd": "/mnt/data/crm_security_r2_work/crm-release",
+      "startedAt": "2026-08-30T11:34:10+00:00",
+      "exitCode": 0,
+      "status": "passed",
+      "output": "Credential vault configuration is structurally valid (1 key(s); material redacted).\n",
+      "durationSeconds": 0.029,
+      "finishedAt": "2026-08-30T11:34:10+00:00"
+    },
+    {
+      "name": "tenant boundary audit ratchet",
+      "command": [
+        "node",
+        "scripts/audit-tenant-boundaries.mjs",
+        "--check"
+      ],
+      "cwd": "/mnt/data/crm_security_r2_work/crm-release",
+      "startedAt": "2026-08-30T11:34:10+00:00",
+      "exitCode": 0,
+      "status": "passed",
+      "output": "Tenant boundary ratchet passed. Current findings: 15; new findings: 0.\n",
+      "durationSeconds": 0.501,
+      "finishedAt": "2026-08-30T11:34:10+00:00"
+    },
+    {
+      "name": "root script verify:manifests",
+      "command": [
+        "node",
+        "-e",
+        "const p=require(\"./package.json\"); console.log(p.scripts[\"verify:manifests\"]);"
+      ],
+      "cwd": "/mnt/data/crm_security_r2_work/crm-release",
+      "startedAt": "2026-08-30T11:34:10+00:00",
+      "exitCode": 0,
+      "status": "passed",
+      "output": "node scripts/verify-manifests.mjs\n",
+      "durationSeconds": 0.027,
+      "finishedAt": "2026-08-30T11:34:10+00:00"
+    },
+    {
+      "name": "root script audit:repo",
+      "command": [
+        "node",
+        "-e",
+        "const p=require(\"./package.json\"); console.log(p.scripts[\"audit:repo\"]);"
+      ],
+      "cwd": "/mnt/data/crm_security_r2_work/crm-release",
+      "startedAt": "2026-08-30T11:34:10+00:00",
+      "exitCode": 0,
+      "status": "passed",
+      "output": "node scripts/repository-audit.mjs\n",
+      "durationSeconds": 0.026,
+      "finishedAt": "2026-08-30T11:34:10+00:00"
+    },
+    {
+      "name": "root script test:quality-tooling",
+      "command": [
+        "node",
+        "-e",
+        "const p=require(\"./package.json\"); console.log(p.scripts[\"test:quality-tooling\"]);"
+      ],
+      "cwd": "/mnt/data/crm_security_r2_work/crm-release",
+      "startedAt": "2026-08-30T11:34:10+00:00",
+      "exitCode": 0,
+      "status": "passed",
+      "output": "node --test scripts/tests/repository-audit.test.mjs\n",
+      "durationSeconds": 0.026,
+      "finishedAt": "2026-08-30T11:34:10+00:00"
+    },
+    {
+      "name": "full Bun project verification",
+      "status": "not_available",
+      "exitCode": null,
+      "output": "Bun executable was not available; Node-based security tests still executed.",
+      "durationSeconds": 0,
+      "startedAt": "2026-08-30T11:34:10+00:00",
+      "finishedAt": "2026-08-30T11:34:10+00:00"
+    },
+    {
+      "name": "refresh tenant audit baseline after hardening",
+      "command": [
+        "node",
+        "scripts/audit-tenant-boundaries.mjs",
+        "--write-baseline"
+      ],
+      "status": "passed",
+      "exitCode": 0,
+      "durationSeconds": 0.518,
+      "output": "Tenant audit baseline written with 15 reviewed finding(s).\n",
+      "startedAt": "2026-08-30T11:38:26+00:00",
+      "finishedAt": "2026-08-30T11:38:26+00:00"
+    },
+    {
+      "name": "security-core unit tests after hardening",
+      "command": [
+        "node",
+        "--test",
+        "packages/security-core/test/*.test.mjs"
+      ],
+      "status": "passed",
+      "exitCode": 0,
+      "durationSeconds": 0.128,
+      "output": "TAP version 13\n# Subtest: givenPlainCredential_whenSealingAndOpening_thenReturnsValidatedPlaintext\nok 1 - givenPlainCredential_whenSealingAndOpening_thenReturnsValidatedPlaintext\n  ---\n  duration_ms: 5.410117\n  type: 'test'\n  ...\n# Subtest: givenLegacyPlaintextAndStrictMode_whenOpening_thenRejects\nok 2 - givenLegacyPlaintextAndStrictMode_whenOpening_thenRejects\n  ---\n  duration_ms: 0.86116\n  type: 'test'\n  ...\n# Subtest: givenLegacyPlaintextAndMigrationMode_whenOpening_thenMarksMigrationRequired\nok 3 - givenLegacyPlaintextAndMigrationMode_whenOpening_thenMarksMigrationRequired\n  ---\n  duration_ms: 0.539284\n  type: 'test'\n  ...\n# Subtest: givenEncryptedValue_whenSealingAgain_thenPreventsDoubleEncryption\nok 4 - givenEncryptedValue_whenSealingAgain_thenPreventsDoubleEncryption\n  ---\n  duration_ms: 1.741209\n  type: 'test'\n  ...\n# Subtest: givenValidContext_whenEncryptingAndDecrypting_thenRoundTripsWithoutPlaintextLeakage\nok 5 - givenValidContext_whenEncryptingAndDecrypting_thenRoundTripsWithoutPlaintextLeakage\n  ---\n  duration_ms: 4.264597\n  type: 'test'\n  ...\n# Subtest: givenSamePlaintext_whenEncryptedTwice_thenRandomIvProducesDifferentEnvelopes\nok 6 - givenSamePlaintext_whenEncryptedTwice_thenRandomIvProducesDifferentEnvelopes\n  ---\n  duration_ms: 1.782807\n  type: 'test'\n  ...\n# Subtest: givenWrongTenantContext_whenDecrypting_thenAuthenticationFails\nok 7 - givenWrongTenantContext_whenDecrypting_thenAuthenticationFails\n  ---\n  duration_ms: 1.526681\n  type: 'test'\n  ...\n# Subtest: givenTamperedCiphertext_whenDecrypting_thenAuthenticationFails\nok 8 - givenTamperedCiphertext_whenDecrypting_thenAuthenticationFails\n  ---\n  duration_ms: 0.878571\n  type: 'test'\n  ...\n# Subtest: givenMissingHistoricalKey_whenDecrypting_thenFailsWithoutLeakingSecret\nok 9 - givenMissingHistoricalKey_whenDecrypting_thenFailsWithoutLeakingSecret\n  ---\n  duration_ms: 0.881866\n  type: 'test'\n  ...\n# Subtest: givenHistoricalKeyAndNewActiveKey_whenRotating_thenReencryptsWithNewKey\nok 10 - givenHistoricalKeyAndNewActiveKey_whenRotating_thenReencryptsWithNewKey\n  ---\n  duration_ms: 1.23545\n  type: 'test'\n  ...\n# Subtest: givenPlaintext_whenDecrypting_thenRejectsImplicitLegacyFallback\nok 11 - givenPlaintext_whenDecrypting_thenRejectsImplicitLegacyFallback\n  ---\n  duration_ms: 0.448538\n  type: 'test'\n  ...\n# Subtest: givenInvalidKeyLength_whenCreatingProvider_thenFailsFast\nok 12 - givenInvalidKeyLength_whenCreatingProvider_thenFailsFast\n  ---\n  duration_ms: 0.257828\n  type: 'test'\n  ...\n# Subtest: givenEnvironmentKeyring_whenCreatingProvider_thenValidatesAndDecrypts\nok 13 - givenEnvironmentKeyring_whenCreatingProvider_thenValidatesAndDecrypts\n  ---\n  duration_ms: 1.100523\n  type: 'test'\n  ...\n# Subtest: givenEnvelope_whenRedactingAndFingerprinting_thenNeverReturnsPlaintext\nok 14 - givenEnvelope_whenRedactingAndFingerprinting_thenNeverReturnsPlaintext\n  ---\n  duration_ms: 1.521214\n  type: 'test'\n  ...\n# Subtest: givenOversizedPlaintext_whenEncrypting_thenRejectsBeforeEncryption\nok 15 - givenOversizedPlaintext_whenEncrypting_thenRejectsBeforeEncryption\n  ---\n  duration_ms: 0.301574\n  type: 'test'\n  ...\n# Subtest: givenUnscopedWhere_whenScoping_thenInjectsActiveTenant\nok 16 - givenUnscopedWhere_whenScoping_thenInjectsActiveTenant\n  ---\n  duration_ms: 1.267728\n  type: 'test'\n  ...\n# Subtest: givenCrossTenantSelector_whenScoping_thenRejects\nok 17 - givenCrossTenantSelector_whenScoping_thenRejects\n  ---\n  duration_ms: 0.399643\n  type: 'test'\n  ...\n# Subtest: givenCreatePayloadForAnotherTenant_whenScoping_thenRejects\nok 18 - givenCreatePayloadForAnotherTenant_whenScoping_thenRejects\n  ---\n  duration_ms: 0.288614\n  type: 'test'\n  ...\n# Subtest: givenAttemptedTenantReassignment_whenUpdating_thenRejects\nok 19 - givenAttemptedTenantReassignment_whenUpdating_thenRejects\n  ---\n  duration_ms: 0.132685\n  type: 'test'\n  ...\n# Subtest: givenUniqueSelector_whenScoping_thenKeepsUniqueFieldAndAddsTenant\nok 20 - givenUniqueSelector_whenScoping_thenKeepsUniqueFieldAndAddsTenant\n  ---\n  duration_ms: 0.193208\n  type: 'test'\n  ...\n# Subtest: givenSameOperationInDifferentTenants_whenBuildingIdempotencyKey_thenKeysDiffer\nok 21 - givenSameOperationInDifferentTenants_whenBuildingIdempotencyKey_thenKeysDiffer\n  ---\n  duration_ms: 0.555061\n  type: 'test'\n  ...\n# Subtest: givenTenantScopedDelegate_whenReading_thenAlwaysInjectsTenantAndValidatesResults\nok 22 - givenTenantScopedDelegate_whenReading_thenAlwaysInjectsTenantAndValidatesResults\n  ---\n  duration_ms: 0.4653\n  type: 'test'\n  ...\n# Subtest: givenCompromisedDelegateReturningAnotherTenant_whenReading_thenFailsClosed\nok 23 - givenCompromisedDelegateReturningAnotherTenant_whenReading_thenFailsClosed\n  ---\n  duration_ms: 0.24247\n  type: 'test'\n  ...\n# Subtest: givenScopedMutation_whenUpdating_thenScopesWhereAndForbidsOwnershipChange\nok 24 - givenScopedMutation_whenUpdating_thenScopesWhereAndForbidsOwnershipChange\n  ---\n  duration_ms: 0.457894\n  type: 'test'\n  ...\n# Subtest: givenPrototypePollutionKey_whenScoping_thenRejectsInput\nok 25 - givenPrototypePollutionKey_whenScoping_thenRejectsInput\n  ---\n  duration_ms: 0.388723\n  type: 'test'\n  ...\n# Subtest: givenCallerSelectExcludesTenantField_whenReading_thenVerifiesInternallyAndRestoresRequestedShape\nok 26 - givenCallerSelectExcludesTenantField_whenReading_thenVerifiesInternallyAndRestoresRequestedShape\n  ---\n  duration_ms: 0.324677\n  type: 'test'\n  ...\n1..26\n# tests 26\n# suites 0\n# pass 26\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 97.046529\n",
+      "startedAt": "2026-08-30T11:38:26+00:00",
+      "finishedAt": "2026-08-30T11:38:26+00:00"
+    },
+    {
+      "name": "tenant boundary ratchet after hardening",
+      "command": [
+        "node",
+        "scripts/audit-tenant-boundaries.mjs",
+        "--check"
+      ],
+      "status": "passed",
+      "exitCode": 0,
+      "durationSeconds": 0.504,
+      "output": "Tenant boundary ratchet passed. Current findings: 15; new findings: 0.\n",
+      "startedAt": "2026-08-30T11:38:27+00:00",
+      "finishedAt": "2026-08-30T11:38:27+00:00"
+    },
+    {
+      "name": "production security config after hardening",
+      "command": [
+        "node",
+        "scripts/verify-security-config.mjs"
+      ],
+      "status": "passed",
+      "exitCode": 0,
+      "durationSeconds": 0.031,
+      "output": "Credential vault configuration is structurally valid (1 key(s); material redacted).\n",
+      "startedAt": "2026-08-30T11:38:27+00:00",
+      "finishedAt": "2026-08-30T11:38:27+00:00"
+    }
+  ],
+  "hardening": {
+    "projectionSafeTenantVerification": true,
+    "providerKeyCopyZeroization": true
+  }
+}

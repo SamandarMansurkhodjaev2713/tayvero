@@ -1,0 +1,280 @@
+TAP version 13
+# Subtest: approved native request traverses real governed executor once, then receipt completes continuation
+ok 1 - approved native request traverses real governed executor once, then receipt completes continuation
+  ---
+  duration_ms: 198.912296
+  type: 'test'
+  ...
+# Subtest: lost native acknowledgement is reconciled from actual runtime receipt without another HTTP request
+ok 2 - lost native acknowledgement is reconciled from actual runtime receipt without another HTTP request
+  ---
+  duration_ms: 61.251938
+  type: 'test'
+  ...
+# Subtest: native child/session/call binding is durable across fresh service instances
+ok 3 - native child/session/call binding is durable across fresh service instances
+  ---
+  duration_ms: 30.189257
+  type: 'test'
+  ...
+# Subtest: consent alone cannot resume before durable native input and waiting boundary
+ok 4 - consent alone cannot resume before durable native input and waiting boundary
+  ---
+  duration_ms: 10.753409
+  type: 'test'
+  ...
+# Subtest: pending consent parks without dispatch and polling is bounded/fair
+ok 5 - pending consent parks without dispatch and polling is bounded/fair
+  ---
+  duration_ms: 10.742132
+  type: 'test'
+  ...
+# Subtest: wrong session, actor workspace, payload, call and native request cannot rebind consent
+ok 6 - wrong session, actor workspace, payload, call and native request cannot rebind consent
+  ---
+  duration_ms: 10.159764
+  type: 'test'
+  ...
+# Subtest: two dispatchers cannot both submit one approval or two calls of the same waiting run
+ok 7 - two dispatchers cannot both submit one approval or two calls of the same waiting run
+  ---
+  duration_ms: 33.162758
+  type: 'test'
+  ...
+# Subtest: lost transport acknowledgement is quarantined; never whole-run/new-key replay
+ok 8 - lost transport acknowledgement is quarantined; never whole-run/new-key replay
+  ---
+  duration_ms: 14.840639
+  type: 'test'
+  ...
+# Subtest: crashed dispatcher lease is quarantined, not reacquired
+ok 9 - crashed dispatcher lease is quarantined, not reacquired
+  ---
+  duration_ms: 11.117375
+  type: 'test'
+  ...
+# Subtest: exact-session mismatch in transport acknowledgement fails closed
+ok 10 - exact-session mismatch in transport acknowledgement fails closed
+  ---
+  duration_ms: 6.399343
+  type: 'test'
+  ...
+# Subtest: expired/rejected/cancelled approval resumes only a native denial
+ok 11 - expired/rejected/cancelled approval resumes only a native denial
+  ---
+  duration_ms: 32.679299
+  type: 'test'
+  ...
+# Subtest: revoked approver denies; revoked requester quarantines; cancellation never dispatches
+ok 12 - revoked approver denies; revoked requester quarantines; cancellation never dispatches
+  ---
+  duration_ms: 19.495161
+  type: 'test'
+  ...
+# Subtest: approval waiting extends only execution deadline; original startedAt is preserved
+ok 13 - approval waiting extends only execution deadline; original startedAt is preserved
+  ---
+  duration_ms: 4.129094
+  type: 'test'
+  ...
+# Subtest: replayed waiting event cannot park a resumed run again
+ok 14 - replayed waiting event cannot park a resumed run again
+  ---
+  duration_ms: 19.659858
+  type: 'test'
+  ...
+# Subtest: audit failure rolls back waiting/dispatch state and produces no delivery
+ok 15 - audit failure rolls back waiting/dispatch state and produces no delivery
+  ---
+  duration_ms: 4.442739
+  type: 'test'
+  ...
+# Subtest: only a successful matching governed receipt closes observed execution
+ok 16 - only a successful matching governed receipt closes observed execution
+  ---
+  duration_ms: 5.648578
+  type: 'test'
+  ...
+# Subtest: native HTTP admission is one-use and rechecks fresh authority without consuming business consent
+ok 17 - native HTTP admission is one-use and rechecks fresh authority without consuming business consent
+  ---
+  duration_ms: 10.503997
+  type: 'test'
+  ...
+# Subtest: late expiry/revocation/cancellation at native admission cannot use earlier dispatch authority
+ok 18 - late expiry/revocation/cancellation at native admission cannot use earlier dispatch authority
+  ---
+  duration_ms: 12.584443
+  type: 'test'
+  ...
+# Subtest: execution budget already exhausted before waiting is not restored by approval
+ok 19 - execution budget already exhausted before waiting is not restored by approval
+  ---
+  duration_ms: 3.497336
+  type: 'test'
+  ...
+# Subtest: scheduled continuation preserves the dispatch principal, never the immutable version editor
+ok 20 - scheduled continuation preserves the dispatch principal, never the immutable version editor
+  ---
+  duration_ms: 7.821859
+  type: 'test'
+  ...
+# Subtest: historical scheduled run principal follows original dispatch, and contradictory manual identity is denied
+ok 21 - historical scheduled run principal follows original dispatch, and contradictory manual identity is denied
+  ---
+  duration_ms: 4.085168
+  type: 'test'
+  ...
+# Subtest: request is immutable, requester-bound and idempotent across service instances
+ok 22 - request is immutable, requester-bound and idempotent across service instances
+  ---
+  duration_ms: 22.507714
+  type: 'test'
+  ...
+# Subtest: no forged tenant or digest is accepted
+ok 23 - no forged tenant or digest is accepted
+  ---
+  duration_ms: 5.189373
+  type: 'test'
+  ...
+# Subtest: queue and decisions require current administrator membership
+ok 24 - queue and decisions require current administrator membership
+  ---
+  duration_ms: 4.808876
+  type: 'test'
+  ...
+# Subtest: self approval is prohibited for both direct human and agent-run requesters
+ok 25 - self approval is prohibited for both direct human and agent-run requesters
+  ---
+  duration_ms: 4.50062
+  type: 'test'
+  ...
+# Subtest: agent run linkage is loaded server-side and inactive runs fail closed
+ok 26 - agent run linkage is loaded server-side and inactive runs fail closed
+  ---
+  duration_ms: 7.385663
+  type: 'test'
+  ...
+# Subtest: approval and audit are atomic; audit failure cannot leave consent behind
+ok 27 - approval and audit are atomic; audit failure cannot leave consent behind
+  ---
+  duration_ms: 11.223609
+  type: 'test'
+  ...
+# Subtest: repeated same decision is idempotent but stale opposite decisions are blocked
+ok 28 - repeated same decision is idempotent but stale opposite decisions are blocked
+  ---
+  duration_ms: 5.979285
+  type: 'test'
+  ...
+# Subtest: expiry is committed and audited instead of rolled back with an exception
+ok 29 - expiry is committed and audited instead of rolled back with an exception
+  ---
+  duration_ms: 3.590286
+  type: 'test'
+  ...
+# Subtest: cannot explicitly expire before deadline
+ok 30 - cannot explicitly expire before deadline
+  ---
+  duration_ms: 12.86026
+  type: 'test'
+  ...
+# Subtest: cannot approve redacted or truncated content without a complete safe preview
+ok 31 - cannot approve redacted or truncated content without a complete safe preview
+  ---
+  duration_ms: 5.442256
+  type: 'test'
+  ...
+# Subtest: approved consent is one-shot and bound to execution key, digest and actor
+ok 32 - approved consent is one-shot and bound to execution key, digest and actor
+  ---
+  duration_ms: 5.655436
+  type: 'test'
+  ...
+# Subtest: revoked approving administrator invalidates unused consent
+ok 33 - revoked approving administrator invalidates unused consent
+  ---
+  duration_ms: 4.705363
+  type: 'test'
+  ...
+# Subtest: consumption audit failure leaves consent unconsumed and executes nothing
+ok 34 - consumption audit failure leaves consent unconsumed and executes nothing
+  ---
+  duration_ms: 5.300748
+  type: 'test'
+  ...
+# Subtest: cancel and reject are terminal and do not start execution
+ok 35 - cancel and reject are terminal and do not start execution
+  ---
+  duration_ms: 9.952243
+  type: 'test'
+  ...
+# Subtest: legacy unbound approvals are visible but cannot be newly approved or consumed
+ok 36 - legacy unbound approvals are visible but cannot be newly approved or consumed
+  ---
+  duration_ms: 1.819462
+  type: 'test'
+  ...
+# Subtest: two decision callers cannot both create conflicting final states
+ok 37 - two decision callers cannot both create conflicting final states
+  ---
+  duration_ms: 2.313989
+  type: 'test'
+  ...
+# Subtest: two consumers cannot both obtain one approval (query-contract double, not database proof)
+ok 38 - two consumers cannot both obtain one approval (query-contract double, not database proof)
+  ---
+  duration_ms: 3.834475
+  type: 'test'
+  ...
+# Subtest: list cursor keeps distinct requests with identical timestamps
+ok 39 - list cursor keeps distinct requests with identical timestamps
+  ---
+  duration_ms: 121.659156
+  type: 'test'
+  ...
+# Subtest: pending expiry filters reflect deadlines even without a scheduled sweeper
+ok 40 - pending expiry filters reflect deadlines even without a scheduled sweeper
+  ---
+  duration_ms: 2.070373
+  type: 'test'
+  ...
+# Subtest: governed executor requests consent, rechecks authorization, consumes once and replays receipt
+ok 41 - governed executor requests consent, rechecks authorization, consumes once and replays receipt
+  ---
+  duration_ms: 31.018466
+  type: 'test'
+  ...
+# Subtest: denied actions never allocate approval requests
+ok 42 - denied actions never allocate approval requests
+  ---
+  duration_ms: 0.941143
+  type: 'test'
+  ...
+# Subtest: expiry uses the current service clock, never a caller-provided backdated timestamp
+ok 43 - expiry uses the current service clock, never a caller-provided backdated timestamp
+  ---
+  duration_ms: 7.643498
+  type: 'test'
+  ...
+# Subtest: approval cannot be consumed if authority queries cross its deadline
+ok 44 - approval cannot be consumed if authority queries cross its deadline
+  ---
+  duration_ms: 4.355925
+  type: 'test'
+  ...
+# Subtest: decision crossing the deadline becomes an audited expiration instead of late consent
+ok 45 - decision crossing the deadline becomes an audited expiration instead of late consent
+  ---
+  duration_ms: 2.442869
+  type: 'test'
+  ...
+1..45
+# tests 45
+# suites 0
+# pass 45
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1026.651736

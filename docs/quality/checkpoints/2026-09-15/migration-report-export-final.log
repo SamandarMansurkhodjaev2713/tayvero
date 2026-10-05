@@ -1,0 +1,208 @@
+TAP version 13
+# Subtest: privileged operations derive dedicated workspace and recheck current membership
+ok 1 - privileged operations derive dedicated workspace and recheck current membership
+  ---
+  duration_ms: 26.703456
+  type: 'test'
+  ...
+# Subtest: disabled execution is a real server gate, not a disabled UI button
+ok 2 - disabled execution is a real server gate, not a disabled UI button
+  ---
+  duration_ms: 44.856177
+  type: 'test'
+  ...
+# Subtest: upload persists encrypted bytes and preview survives application recreation
+ok 3 - upload persists encrypted bytes and preview survives application recreation
+  ---
+  duration_ms: 12.809432
+  type: 'test'
+  ...
+# Subtest: invalid encoding, canonical base64, large files and XLSX fail before publication
+ok 4 - invalid encoding, canonical base64, large files and XLSX fail before publication
+  ---
+  duration_ms: 15.661884
+  type: 'test'
+  ...
+# Subtest: source fingerprints and cross-workspace source lookups fail closed
+ok 5 - source fingerprints and cross-workspace source lookups fail closed
+  ---
+  duration_ms: 15.312962
+  type: 'test'
+  ...
+# Subtest: mapping cannot assign owner/tenant fields; unsupported deal writes fail
+ok 6 - mapping cannot assign owner/tenant fields; unsupported deal writes fail
+  ---
+  duration_ms: 34.280198
+  type: 'test'
+  ...
+# Subtest: prepare is atomic, idempotent and immutable for the same command
+ok 7 - prepare is atomic, idempotent and immutable for the same command
+  ---
+  duration_ms: 23.803213
+  type: 'test'
+  ...
+# Subtest: preparation failure rolls back job, plan and issues together
+ok 8 - preparation failure rolls back job, plan and issues together
+  ---
+  duration_ms: 12.587141
+  type: 'test'
+  ...
+# Subtest: every valid row gets a receipt in the transaction creating the CRM record
+ok 9 - every valid row gets a receipt in the transaction creating the CRM record
+  ---
+  duration_ms: 24.641299
+  type: 'test'
+  ...
+# Subtest: repeat execution and repeat import never merge or overwrite exact contacts
+ok 10 - repeat execution and repeat import never merge or overwrite exact contacts
+  ---
+  duration_ms: 31.6933
+  type: 'test'
+  ...
+# Subtest: database receipt failure rolls back customer writes before any retry
+ok 11 - database receipt failure rolls back customer writes before any retry
+  ---
+  duration_ms: 50.002964
+  type: 'test'
+  ...
+# Subtest: crash after CRM commit but before batch settlement replays receipts, not writes
+ok 12 - crash after CRM commit but before batch settlement replays receipts, not writes
+  ---
+  duration_ms: 43.212653
+  type: 'test'
+  ...
+# Subtest: invalid rows and in-file duplicates remain separate, paginatable outcomes
+ok 13 - invalid rows and in-file duplicates remain separate, paginatable outcomes
+  ---
+  duration_ms: 35.317786
+  type: 'test'
+  ...
+# Subtest: source and plan tampering prevent writes
+ok 14 - source and plan tampering prevent writes
+  ---
+  duration_ms: 19.388833
+  type: 'test'
+  ...
+# Subtest: membership revocation between preview and execute prevents all writes
+ok 15 - membership revocation between preview and execute prevents all writes
+  ---
+  duration_ms: 16.628989
+  type: 'test'
+  ...
+# Subtest: cancellation is idempotent, stops new batches and does not claim rollback
+ok 16 - cancellation is idempotent, stops new batches and does not claim rollback
+  ---
+  duration_ms: 23.269536
+  type: 'test'
+  ...
+# Subtest: rollback previews first, requires exact confirmation, archives only own unchanged rows
+ok 17 - rollback previews first, requires exact confirmation, archives only own unchanged rows
+  ---
+  duration_ms: 33.244448
+  type: 'test'
+  ...
+# Subtest: rollback will not archive edited or linked CRM records
+ok 18 - rollback will not archive edited or linked CRM records
+  ---
+  duration_ms: 19.519069
+  type: 'test'
+  ...
+# Subtest: sources used by jobs are retained; unused sources can be tombstoned and physically removed
+ok 19 - sources used by jobs are retained; unused sources can be tombstoned and physically removed
+  ---
+  duration_ms: 19.097512
+  type: 'test'
+  ...
+# Subtest: company imports use source evidence and create-only exact duplicate checks
+ok 20 - company imports use source evidence and create-only exact duplicate checks
+  ---
+  duration_ms: 35.573721
+  type: 'test'
+  ...
+# Subtest: report refuses ambiguous row accounting instead of claiming completion
+ok 21 - report refuses ambiguous row accounting instead of claiming completion
+  ---
+  duration_ms: 14.865825
+  type: 'test'
+  ...
+# Subtest: a lease that expires during CRM writes aborts the entire write transaction
+ok 22 - a lease that expires during CRM writes aborts the entire write transaction
+  ---
+  duration_ms: 21.93147
+  type: 'test'
+  ...
+# Subtest: distinct contacts matching email and phone are rejected, never silently merged
+ok 23 - distinct contacts matching email and phone are rejected, never silently merged
+  ---
+  duration_ms: 17.474397
+  type: 'test'
+  ...
+# Subtest: a replacement admin cannot assign newly imported records to a removed owner
+ok 24 - a replacement admin cannot assign newly imported records to a removed owner
+  ---
+  duration_ms: 10.919401
+  type: 'test'
+  ...
+# Subtest: two application instances replay one prepared job instead of allocating duplicate intents
+ok 25 - two application instances replay one prepared job instead of allocating duplicate intents
+  ---
+  duration_ms: 10.18297
+  type: 'test'
+  ...
+# Subtest: multi-batch report pagination does not truncate row outcomes silently
+ok 26 - multi-batch report pagination does not truncate row outcomes silently
+  ---
+  duration_ms: 110.099841
+  type: 'test'
+  ...
+# Subtest: rollback preserves imported contacts referenced by calendarAttendee
+ok 27 - rollback preserves imported contacts referenced by calendarAttendee
+  ---
+  duration_ms: 13.766033
+  type: 'test'
+  ...
+# Subtest: rollback preserves imported contacts referenced by contactBrief
+ok 28 - rollback preserves imported contacts referenced by contactBrief
+  ---
+  duration_ms: 16.08052
+  type: 'test'
+  ...
+# Subtest: rollback preserves imported contacts referenced by company
+ok 29 - rollback preserves imported contacts referenced by company
+  ---
+  duration_ms: 35.336743
+  type: 'test'
+  ...
+# Subtest: full report export is one persisted snapshot, not the current 100-row page
+ok 30 - full report export is one persisted snapshot, not the current 100-row page
+  ---
+  duration_ms: 151.083526
+  type: 'test'
+  ...
+# Subtest: report CSV neutralizes formula-shaped metadata and includes no raw client contact fields
+ok 31 - report CSV neutralizes formula-shaped metadata and includes no raw client contact fields
+  ---
+  duration_ms: 17.220231
+  type: 'test'
+  ...
+# Subtest: export is reauthorized and never presents an active import as a final report
+ok 32 - export is reauthorized and never presents an active import as a final report
+  ---
+  duration_ms: 11.439514
+  type: 'test'
+  ...
+# Subtest: export audit failure aborts the download instead of silently losing its access record
+ok 33 - export audit failure aborts the download instead of silently losing its access record
+  ---
+  duration_ms: 18.862992
+  type: 'test'
+  ...
+1..33
+# tests 33
+# suites 0
+# pass 33
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1526.546293

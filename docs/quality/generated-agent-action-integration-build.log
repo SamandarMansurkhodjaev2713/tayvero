@@ -1,0 +1,215 @@
+===== Agent action runtime syntax =====
+$ node --check packages/agent-action-runtime/src/index.mjs
+status=passed rc=0 duration=0.031s
+STDOUT:
+
+STDERR:
+
+
+===== Prisma stores syntax =====
+$ node --check packages/agent-action-runtime/src/prisma-stores.mjs
+status=passed rc=0 duration=0.024s
+STDOUT:
+
+STDERR:
+
+
+===== Agent action runtime adversarial tests =====
+$ node --test packages/agent-action-runtime/test/governed-action-runtime.test.mjs
+status=failed rc=1 duration=0.142s
+STDOUT:
+TAP version 13
+# Subtest: executes a validated authorized action and records redacted audit events
+ok 1 - executes a validated authorized action and records redacted audit events
+  ---
+  duration_ms: 4.088894
+  type: 'test'
+  ...
+# Subtest: rejects tenant ownership fields at any nesting depth
+ok 2 - rejects tenant ownership fields at any nesting depth
+  ---
+  duration_ms: 0.684199
+  type: 'test'
+  ...
+# Subtest: rejects missing permissions and object-level authorization
+ok 3 - rejects missing permissions and object-level authorization
+  ---
+  duration_ms: 0.55133
+  type: 'test'
+  ...
+# Subtest: replays a completed idempotent result without executing again
+ok 4 - replays a completed idempotent result without executing again
+  ---
+  duration_ms: 1.986473
+  type: 'test'
+  ...
+# Subtest: rejects reuse of an idempotency key for another payload
+ok 5 - rejects reuse of an idempotency key for another payload
+  ---
+  duration_ms: 0.600532
+  type: 'test'
+  ...
+# Subtest: allows only one concurrent execution for the same receipt
+ok 6 - allows only one concurrent execution for the same receipt
+  ---
+  duration_ms: 6.466047
+  type: 'test'
+  ...
+# Subtest: requires payload-bound tenant-bound approval for high-risk actions
+ok 7 - requires payload-bound tenant-bound approval for high-risk actions
+  ---
+  duration_ms: 1.365552
+  type: 'test'
+  ...
+# Subtest: rejects approval bound to another tenant or modified payload
+ok 8 - rejects approval bound to another tenant or modified payload
+  ---
+  duration_ms: 0.426597
+  type: 'test'
+  ...
+# Subtest: times out a non-cooperative executor and records failure
+not ok 9 - times out a non-cooperative executor and records failure
+  ---
+  duration_ms: 22.042824
+  type: 'test'
+  location: '/mnt/data/crm_autonomous_work_current/crm-release/packages/agent-action-runtime/test/governed-action-runtime.test.mjs:99:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + 'agent.action.ambiguous'
+    - 'agent.action.failed'
+                    ^
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'agent.action.failed'
+  actual: 'agent.action.ambiguous'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///mnt/data/crm_autonomous_work_current/crm-release/packages/agent-action-runtime/test/governed-action-runtime.test.mjs:102:10)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: propagates cancellation and does not retry it
+not ok 10 - propagates cancellation and does not retry it
+  ---
+  duration_ms: 2.046436
+  type: 'test'
+  location: '/mnt/data/crm_autonomous_work_current/crm-release/packages/agent-action-runtime/test/governed-action-runtime.test.mjs:105:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    0 !== 1
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 1
+  actual: 0
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///mnt/data/crm_autonomous_work_current/crm-release/packages/agent-action-runtime/test/governed-action-runtime.test.mjs:109:77)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: validates untrusted model input and executor output
+ok 11 - validates untrusted model input and executor output
+  ---
+  duration_ms: 0.719655
+  type: 'test'
+  ...
+1..11
+# tests 11
+# suites 0
+# pass 9
+# fail 2
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 109.409059
+
+STDERR:
+
+
+===== Durable store contract tests =====
+$ node --test packages/agent-action-runtime/test/prisma-stores.test.mjs
+status=passed rc=0 duration=0.116s
+STDOUT:
+TAP version 13
+# Subtest: receipt store atomically acquires, completes and replays
+ok 1 - receipt store atomically acquires, completes and replays
+  ---
+  duration_ms: 3.532934
+  type: 'test'
+  ...
+# Subtest: receipt rejects same key with another digest
+ok 2 - receipt rejects same key with another digest
+  ---
+  duration_ms: 0.999177
+  type: 'test'
+  ...
+# Subtest: receipt completion requires the acquired lease token
+ok 3 - receipt completion requires the acquired lease token
+  ---
+  duration_ms: 0.37397
+  type: 'test'
+  ...
+# Subtest: approval consumption is tenant, action, digest and expiry bound
+ok 4 - approval consumption is tenant, action, digest and expiry bound
+  ---
+  duration_ms: 0.594923
+  type: 'test'
+  ...
+# Subtest: audit sink redacts secret-bearing properties
+ok 5 - audit sink redacts secret-bearing properties
+  ---
+  duration_ms: 2.02769
+  type: 'test'
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 5
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 83.089427
+
+STDERR:
+
+
+===== Agent app governed composition syntax =====
+$ node --check apps/agent/src/governed-action-execution.mjs
+status=passed rc=0 duration=0.023s
+STDOUT:
+
+STDERR:
+
+
+===== Agent app Prisma composition syntax =====
+$ node --check apps/agent/src/governed-action-prisma-composition.mjs
+status=passed rc=0 duration=0.022s
+STDOUT:
+
+STDERR:
+
+
+===== Agent action boundary audit =====
+$ node tools/quality/audit-agent-action-boundaries.mjs
+status=passed rc=0 duration=0.13s
+STDOUT:
+{
+  "generatedAt": "2026-08-31T22:30:40.885Z",
+  "findingCount": 2,
+  "findings": [
+    "packages/action-registry/src/registry.mjs",
+    "packages/action-registry/test/actions.test.mjs"
+  ],
+  "note": "Findings require manual classification; this audit does not silently baseline direct side effects."
+}
+
+STDERR:
+

@@ -1,0 +1,184 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-10-05T12:39:29.465Z",
+  "tenantModels": {
+    "crmDealPipelineAssignment": "workspaceId",
+    "crmLegacyDealStageMapping": "workspaceId",
+    "crmMigrationBatch": "workspaceId",
+    "crmMigrationEvent": "workspaceId",
+    "crmMigrationIssue": "workspaceId",
+    "crmMigrationJob": "workspaceId",
+    "crmMigrationRowReceipt": "workspaceId",
+    "crmMigrationSource": "workspaceId",
+    "crmMigrationSourceEvent": "workspaceId",
+    "crmPipeline": "workspaceId",
+    "crmPipelineAuditEvent": "workspaceId",
+    "crmPipelineCommandReceipt": "workspaceId",
+    "crmPipelineStage": "workspaceId",
+    "governedActionApproval": "workspaceId",
+    "governedActionAuditEvent": "workspaceId",
+    "governedActionContinuation": "workspaceId",
+    "governedActionReceipt": "workspaceId",
+    "invitation": "organizationId",
+    "member": "organizationId",
+    "ssoProvider": "organizationId"
+  },
+  "counts": {
+    "sourceFilesScanned": 997,
+    "tenantModels": 20,
+    "findings": 15,
+    "high": 1,
+    "review": 14
+  },
+  "disclaimer": "This is a regression ratchet and review aid, not a proof of tenant isolation. Runtime and integration tests remain mandatory.",
+  "findings": [
+    {
+      "rule": "potential-unscoped-tenant-model-operation",
+      "path": "apps/api/src/sso/sso.service.ts",
+      "line": 148,
+      "snippet": "this.db.ssoProvider.findMany({",
+      "severity": "review",
+      "model": "ssoProvider",
+      "tenantField": "organizationId",
+      "fingerprint": "fcb17f83c4c4a9db6c6bf5749046486823659f7463202276ff0a321223c65756"
+    },
+    {
+      "rule": "potential-unscoped-tenant-model-operation",
+      "path": "apps/api/src/sso/sso.service.ts",
+      "line": 155,
+      "snippet": "this.db.ssoProvider.count({ where }),",
+      "severity": "review",
+      "model": "ssoProvider",
+      "tenantField": "organizationId",
+      "fingerprint": "9ad29d3b4d6e0d6dda73a1b9cf03ccf87c9e469911e27d4d77f6284ef8de5399"
+    },
+    {
+      "rule": "potential-unscoped-tenant-model-operation",
+      "path": "apps/api/src/sso/sso.service.ts",
+      "line": 200,
+      "snippet": "const row = await this.db.ssoProvider.findUniqueOrThrow({",
+      "severity": "review",
+      "model": "ssoProvider",
+      "tenantField": "organizationId",
+      "fingerprint": "e31132bc11bef01ac159e3654f94acd9d28dfaf479c32e554f7634d74014acc5"
+    },
+    {
+      "rule": "potential-unscoped-tenant-model-operation",
+      "path": "apps/api/src/telemetry/rollup.service.ts",
+      "line": 141,
+      "snippet": "this.db.ssoProvider.count(),",
+      "severity": "review",
+      "model": "ssoProvider",
+      "tenantField": "organizationId",
+      "fingerprint": "b256dc361dd41c7de3ab3c59d03adae29250613254f90ed4a952fba448e18563"
+    },
+    {
+      "rule": "potential-unscoped-tenant-model-operation",
+      "path": "apps/api/src/workspace/workspace.service.ts",
+      "line": 153,
+      "snippet": "this.db.member.findMany({",
+      "severity": "review",
+      "model": "member",
+      "tenantField": "organizationId",
+      "fingerprint": "fd366b50b3e715cb6de87eadc9fbdc1e7cb68fe72c5b15b81fa53e7247a2d074"
+    },
+    {
+      "rule": "potential-unscoped-tenant-model-operation",
+      "path": "apps/api/src/workspace/workspace.service.ts",
+      "line": 160,
+      "snippet": "this.db.member.count({ where }),",
+      "severity": "review",
+      "model": "member",
+      "tenantField": "organizationId",
+      "fingerprint": "3445b7e03f5d965377e7af82f18a0c6be3ec0d1143098fa59dd0cfcc4e43e31c"
+    },
+    {
+      "rule": "potential-unscoped-tenant-model-operation",
+      "path": "apps/api/src/workspace/workspace.service.ts",
+      "line": 161,
+      "snippet": "this.db.member.groupBy({",
+      "severity": "review",
+      "model": "member",
+      "tenantField": "organizationId",
+      "fingerprint": "4d9eda19cb782b0b1de5a78b96dbb5bad98ec4a0df1e6801b0bda1107203de92"
+    },
+    {
+      "rule": "potential-unscoped-tenant-model-operation",
+      "path": "apps/api/src/workspace/workspace.service.ts",
+      "line": 211,
+      "snippet": "return tx.member.update({",
+      "severity": "review",
+      "model": "member",
+      "tenantField": "organizationId",
+      "fingerprint": "a3481c2e32deff5ffb65eb3614656b934bf876fc72ca13760bd9206a970d44c3"
+    },
+    {
+      "rule": "potential-unscoped-tenant-model-operation",
+      "path": "apps/api/test/agent-delete.spec.ts",
+      "line": 44,
+      "snippet": "await db.member.deleteMany({ where: { id: memberId } });",
+      "severity": "review",
+      "model": "member",
+      "tenantField": "organizationId",
+      "fingerprint": "49398021b76eac88bea1a6db62b29fe36d8577bab1859e7fd48f4f934530bc78"
+    },
+    {
+      "rule": "potential-unscoped-tenant-model-operation",
+      "path": "apps/api/test/agent-lifecycle.spec.ts",
+      "line": 108,
+      "snippet": "await db.member.deleteMany({",
+      "severity": "review",
+      "model": "member",
+      "tenantField": "organizationId",
+      "fingerprint": "a780ade3c5977b72a720f2dad5af62f1e6aa9d4a8dc21dddf6df24678d80a385"
+    },
+    {
+      "rule": "potential-unscoped-tenant-model-operation",
+      "path": "apps/api/test/agent-runs.spec.ts",
+      "line": 117,
+      "snippet": "await db.member.deleteMany({ where: { id: memberId } });",
+      "severity": "review",
+      "model": "member",
+      "tenantField": "organizationId",
+      "fingerprint": "b3077b4bc63f144644332bb785d214531b8180cabd615468e75cfa02cbc171e3"
+    },
+    {
+      "rule": "potential-unscoped-tenant-model-operation",
+      "path": "apps/api/test/conversation-sharing.spec.ts",
+      "line": 107,
+      "snippet": "await db.member.deleteMany({",
+      "severity": "review",
+      "model": "member",
+      "tenantField": "organizationId",
+      "fingerprint": "21c5e39167e02359110608381c18c1554b9b632ec8dc6babaaad04c8d586aef1"
+    },
+    {
+      "rule": "potential-unscoped-tenant-model-operation",
+      "path": "apps/api/test/conversations.spec.ts",
+      "line": 37,
+      "snippet": "await db.member.deleteMany({ where: { id: memberId } });",
+      "severity": "review",
+      "model": "member",
+      "tenantField": "organizationId",
+      "fingerprint": "07b123ec0319de3d276ca9b9a74e6c43ac281d376afa9edc1e3878d6f5ffffba"
+    },
+    {
+      "rule": "potential-unscoped-tenant-model-operation",
+      "path": "apps/api/test/conversations.spec.ts",
+      "line": 83,
+      "snippet": "await db.member.deleteMany({ where: { id: memberId } });",
+      "severity": "review",
+      "model": "member",
+      "tenantField": "organizationId",
+      "fingerprint": "07b123ec0319de3d276ca9b9a74e6c43ac281d376afa9edc1e3878d6f5ffffba"
+    },
+    {
+      "rule": "hardcoded-tenant-identifier",
+      "path": "packages/db/src/workspace.ts",
+      "line": 10,
+      "snippet": "export const WORKSPACE_ID = \"workspace\";",
+      "severity": "high",
+      "fingerprint": "86700aff716d692148fbc3a9cbc88bec98077256ae4319662b14c70f65b3a9e0"
+    }
+  ]
+}

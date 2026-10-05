@@ -1,0 +1,309 @@
+{
+  "release": "R7/R8",
+  "startedAt": "2026-08-31T17:03:19.152617+00:00",
+  "completedAt": "2026-08-31T17:03:22.497425+00:00",
+  "sourceArchive": "crm-autonomous-checkpoint-2026-08-31.zip",
+  "sourceNextScopeId": "UNKNOWN",
+  "nextScopeId": "CRM-PIPE-API-002",
+  "criticalChecksPassed": false,
+  "schema": {
+    "status": "implemented",
+    "schema": "packages/db/prisma/schema.prisma",
+    "migration": "packages/db/prisma/migrations/20260831190000_configurable_pipeline_and_migration_center/migration.sql"
+  },
+  "commands": [
+    {
+      "name": "Node availability",
+      "command": [
+        "node",
+        "--version"
+      ],
+      "status": "passed",
+      "exit_code": 0,
+      "duration_seconds": 0.104,
+      "output": "v22.16.0\n"
+    },
+    {
+      "name": "Pipeline core unit tests",
+      "command": [
+        "node",
+        "--test",
+        "packages/pipeline-core/test/pipeline.test.mjs"
+      ],
+      "status": "passed",
+      "exit_code": 0,
+      "duration_seconds": 0.481,
+      "output": "TAP version 13\n# Subtest: normalizes a safe pipeline slug\nok 1 - normalizes a safe pipeline slug\n  ---\n  duration_ms: 5.055458\n  type: 'test'\n  ...\n# Subtest: accepts a complete pipeline definition\nok 2 - accepts a complete pipeline definition\n  ---\n  duration_ms: 1.650836\n  type: 'test'\n  ...\n# Subtest: rejects duplicate stage IDs\nok 3 - rejects duplicate stage IDs\n  ---\n  duration_ms: 3.209198\n  type: 'test'\n  ...\n# Subtest: rejects non-contiguous positions\nok 4 - rejects non-contiguous positions\n  ---\n  duration_ms: 1.681615\n  type: 'test'\n  ...\n# Subtest: rejects invalid terminal probability\nok 5 - rejects invalid terminal probability\n  ---\n  duration_ms: 0.278913\n  type: 'test'\n  ...\n# Subtest: rejects an archived default pipeline\nok 6 - rejects an archived default pipeline\n  ---\n  duration_ms: 0.390768\n  type: 'test'\n  ...\n# Subtest: plans an allowed transition with optimistic version increment\nok 7 - plans an allowed transition with optimistic version increment\n  ---\n  duration_ms: 0.764725\n  type: 'test'\n  ...\n# Subtest: treats same-stage movement as idempotent\nok 8 - treats same-stage movement as idempotent\n  ---\n  duration_ms: 0.277968\n  type: 'test'\n  ...\n# Subtest: rejects a transition that violates stage rules\nok 9 - rejects a transition that violates stage rules\n  ---\n  duration_ms: 0.774081\n  type: 'test'\n  ...\n# Subtest: rejects stale optimistic version\nok 10 - rejects stale optimistic version\n  ---\n  duration_ms: 0.843872\n  type: 'test'\n  ...\n# Subtest: rejects cross-tenant assignment\nok 11 - rejects cross-tenant assignment\n  ---\n  duration_ms: 0.419267\n  type: 'test'\n  ...\n# Subtest: requires explicit permission to reopen a terminal deal\nok 12 - requires explicit permission to reopen a terminal deal\n  ---\n  duration_ms: 0.220075\n  type: 'test'\n  ...\n# Subtest: allows an explicitly authorized terminal reopen\nok 13 - allows an explicitly authorized terminal reopen\n  ---\n  duration_ms: 0.248359\n  type: 'test'\n  ...\n# Subtest: builds deterministic legacy assignments\nok 14 - builds deterministic legacy assignments\n  ---\n  duration_ms: 7.6683\n  type: 'test'\n  ...\n# Subtest: fails closed when a legacy stage has no mapping\nok 15 - fails closed when a legacy stage has no mapping\n  ---\n  duration_ms: 0.582303\n  type: 'test'\n  ...\n# Subtest: calculates exact minor-unit analytics without floating point\nok 16 - calculates exact minor-unit analytics without floating point\n  ---\n  duration_ms: 7.67491\n  type: 'test'\n  ...\n1..16\n# tests 16\n# suites 0\n# pass 16\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 272.760173\n"
+    },
+    {
+      "name": "Migration core unit tests",
+      "command": [
+        "node",
+        "--test",
+        "packages/migration-core/test/migration.test.mjs"
+      ],
+      "status": "passed",
+      "exit_code": 0,
+      "duration_seconds": 0.382,
+      "output": "TAP version 13\n# Subtest: parses RFC4180 quoted commas, newlines, and escaped quotes\nok 1 - parses RFC4180 quoted commas, newlines, and escaped quotes\n  ---\n  duration_ms: 6.602453\n  type: 'test'\n  ...\n# Subtest: detects a semicolon delimiter\nok 2 - detects a semicolon delimiter\n  ---\n  duration_ms: 0.650603\n  type: 'test'\n  ...\n# Subtest: removes UTF-8 BOM from the first header\nok 3 - removes UTF-8 BOM from the first header\n  ---\n  duration_ms: 0.290979\n  type: 'test'\n  ...\n# Subtest: rejects an unclosed quote\nok 4 - rejects an unclosed quote\n  ---\n  duration_ms: 1.013799\n  type: 'test'\n  ...\n# Subtest: rejects duplicate normalized headers\nok 5 - rejects duplicate normalized headers\n  ---\n  duration_ms: 0.372438\n  type: 'test'\n  ...\n# Subtest: enforces row limits\nok 6 - enforces row limits\n  ---\n  duration_ms: 0.18956\n  type: 'test'\n  ...\n# Subtest: neutralizes spreadsheet formulas in exported reports\nok 7 - neutralizes spreadsheet formulas in exported reports\n  ---\n  duration_ms: 0.545411\n  type: 'test'\n  ...\n# Subtest: serializes error reports with formula protection\nok 8 - serializes error reports with formula protection\n  ---\n  duration_ms: 0.612014\n  type: 'test'\n  ...\n# Subtest: parses money deterministically in minor units\nok 9 - parses money deterministically in minor units\n  ---\n  duration_ms: 1.00267\n  type: 'test'\n  ...\n# Subtest: normalizes Uzbekistan phone numbers\nok 10 - normalizes Uzbekistan phone numbers\n  ---\n  duration_ms: 0.881157\n  type: 'test'\n  ...\n# Subtest: validates extension, MIME, and XLSX ZIP signature\nok 11 - validates extension, MIME, and XLSX ZIP signature\n  ---\n  duration_ms: 0.601563\n  type: 'test'\n  ...\n# Subtest: compiles deterministic mappings and validates required fields\nok 12 - compiles deterministic mappings and validates required fields\n  ---\n  duration_ms: 0.50403\n  type: 'test'\n  ...\n# Subtest: creates deterministic dry-run batches and duplicate issues\nok 13 - creates deterministic dry-run batches and duplicate issues\n  ---\n  duration_ms: 2.761445\n  type: 'test'\n  ...\n# Subtest: marks existing-record matches as warnings without silently dropping the row\nok 14 - marks existing-record matches as warnings without silently dropping the row\n  ---\n  duration_ms: 0.465865\n  type: 'test'\n  ...\n1..14\n# tests 14\n# suites 0\n# pass 14\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 233.192311\n"
+    },
+    {
+      "name": "Combined R7/R8 regression suite",
+      "command": [
+        "node",
+        "--test",
+        "packages/pipeline-core/test/pipeline.test.mjs",
+        "packages/migration-core/test/migration.test.mjs"
+      ],
+      "status": "passed",
+      "exit_code": 0,
+      "duration_seconds": 0.59,
+      "output": "TAP version 13\n# Subtest: parses RFC4180 quoted commas, newlines, and escaped quotes\nok 1 - parses RFC4180 quoted commas, newlines, and escaped quotes\n  ---\n  duration_ms: 6.112203\n  type: 'test'\n  ...\n# Subtest: detects a semicolon delimiter\nok 2 - detects a semicolon delimiter\n  ---\n  duration_ms: 0.670603\n  type: 'test'\n  ...\n# Subtest: removes UTF-8 BOM from the first header\nok 3 - removes UTF-8 BOM from the first header\n  ---\n  duration_ms: 0.251154\n  type: 'test'\n  ...\n# Subtest: rejects an unclosed quote\nok 4 - rejects an unclosed quote\n  ---\n  duration_ms: 0.665852\n  type: 'test'\n  ...\n# Subtest: rejects duplicate normalized headers\nok 5 - rejects duplicate normalized headers\n  ---\n  duration_ms: 0.354592\n  type: 'test'\n  ...\n# Subtest: enforces row limits\nok 6 - enforces row limits\n  ---\n  duration_ms: 0.177452\n  type: 'test'\n  ...\n# Subtest: neutralizes spreadsheet formulas in exported reports\nok 7 - neutralizes spreadsheet formulas in exported reports\n  ---\n  duration_ms: 0.403564\n  type: 'test'\n  ...\n# Subtest: serializes error reports with formula protection\nok 8 - serializes error reports with formula protection\n  ---\n  duration_ms: 0.476266\n  type: 'test'\n  ...\n# Subtest: parses money deterministically in minor units\nok 9 - parses money deterministically in minor units\n  ---\n  duration_ms: 1.03459\n  type: 'test'\n  ...\n# Subtest: normalizes Uzbekistan phone numbers\nok 10 - normalizes Uzbekistan phone numbers\n  ---\n  duration_ms: 0.935854\n  type: 'test'\n  ...\n# Subtest: validates extension, MIME, and XLSX ZIP signature\nok 11 - validates extension, MIME, and XLSX ZIP signature\n  ---\n  duration_ms: 0.589805\n  type: 'test'\n  ...\n# Subtest: compiles deterministic mappings and validates required fields\nok 12 - compiles deterministic mappings and validates required fields\n  ---\n  duration_ms: 0.542811\n  type: 'test'\n  ...\n# Subtest: creates deterministic dry-run batches and duplicate issues\nok 13 - creates deterministic dry-run batches and duplicate issues\n  ---\n  duration_ms: 2.750783\n  type: 'test'\n  ...\n# Subtest: marks existing-record matches as warnings without silently dropping the row\nok 14 - marks existing-record matches as warnings without silently dropping the row\n  ---\n  duration_ms: 0.453199\n  type: 'test'\n  ...\n# Subtest: normalizes a safe pipeline slug\nok 15 - normalizes a safe pipeline slug\n  ---\n  duration_ms: 2.778004\n  type: 'test'\n  ...\n# Subtest: accepts a complete pipeline definition\nok 16 - accepts a complete pipeline definition\n  ---\n  duration_ms: 4.38341\n  type: 'test'\n  ...\n# Subtest: rejects duplicate stage IDs\nok 17 - rejects duplicate stage IDs\n  ---\n  duration_ms: 1.722218\n  type: 'test'\n  ...\n# Subtest: rejects non-contiguous positions\nok 18 - rejects non-contiguous positions\n  ---\n  duration_ms: 0.785804\n  type: 'test'\n  ...\n# Subtest: rejects invalid terminal probability\nok 19 - rejects invalid terminal probability\n  ---\n  duration_ms: 0.336038\n  type: 'test'\n  ...\n# Subtest: rejects an archived default pipeline\nok 20 - rejects an archived default pipeline\n  ---\n  duration_ms: 0.383629\n  type: 'test'\n  ...\n# Subtest: plans an allowed transition with optimistic version increment\nok 21 - plans an allowed transition with optimistic version increment\n  ---\n  duration_ms: 0.741946\n  type: 'test'\n  ...\n# Subtest: treats same-stage movement as idempotent\nok 22 - treats same-stage movement as idempotent\n  ---\n  duration_ms: 0.235422\n  type: 'test'\n  ...\n# Subtest: rejects a transition that violates stage rules\nok 23 - rejects a transition that violates stage rules\n  ---\n  duration_ms: 0.805225\n  type: 'test'\n  ...\n# Subtest: rejects stale optimistic version\nok 24 - rejects stale optimistic version\n  ---\n  duration_ms: 0.914173\n  type: 'test'\n  ...\n# Subtest: rejects cross-tenant assignment\nok 25 - rejects cross-tenant assignment\n  ---\n  duration_ms: 0.417053\n  type: 'test'\n  ...\n# Subtest: requires explicit permission to reopen a terminal deal\nok 26 - requires explicit permission to reopen a terminal deal\n  ---\n  duration_ms: 0.221675\n  type: 'test'\n  ...\n# Subtest: allows an explicitly authorized terminal reopen\nok 27 - allows an explicitly authorized terminal reopen\n  ---\n  duration_ms: 0.249686\n  type: 'test'\n  ...\n# Subtest: builds deterministic legacy assignments\nok 28 - builds deterministic legacy assignments\n  ---\n  duration_ms: 1.415907\n  type: 'test'\n  ...\n# Subtest: fails closed when a legacy stage has no mapping\nok 29 - fails closed when a legacy stage has no mapping\n  ---\n  duration_ms: 0.63206\n  type: 'test'\n  ...\n# Subtest: calculates exact minor-unit analytics without floating point\nok 30 - calculates exact minor-unit analytics without floating point\n  ---\n  duration_ms: 1.444757\n  type: 'test'\n  ...\n1..30\n# tests 30\n# suites 0\n# pass 30\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 427.108726\n"
+    },
+    {
+      "name": "Syntax check packages/pipeline-core/src/errors.mjs",
+      "command": [
+        "node",
+        "--check",
+        "packages/pipeline-core/src/errors.mjs"
+      ],
+      "status": "passed",
+      "exit_code": 0,
+      "duration_seconds": 0.101,
+      "output": ""
+    },
+    {
+      "name": "Syntax check packages/pipeline-core/src/index.mjs",
+      "command": [
+        "node",
+        "--check",
+        "packages/pipeline-core/src/index.mjs"
+      ],
+      "status": "passed",
+      "exit_code": 0,
+      "duration_seconds": 0.092,
+      "output": ""
+    },
+    {
+      "name": "Syntax check packages/pipeline-core/src/pipeline.mjs",
+      "command": [
+        "node",
+        "--check",
+        "packages/pipeline-core/src/pipeline.mjs"
+      ],
+      "status": "passed",
+      "exit_code": 0,
+      "duration_seconds": 0.085,
+      "output": ""
+    },
+    {
+      "name": "Syntax check packages/pipeline-core/src/schemas.mjs",
+      "command": [
+        "node",
+        "--check",
+        "packages/pipeline-core/src/schemas.mjs"
+      ],
+      "status": "passed",
+      "exit_code": 0,
+      "duration_seconds": 0.088,
+      "output": ""
+    },
+    {
+      "name": "Syntax check packages/pipeline-core/src/validation.mjs",
+      "command": [
+        "node",
+        "--check",
+        "packages/pipeline-core/src/validation.mjs"
+      ],
+      "status": "passed",
+      "exit_code": 0,
+      "duration_seconds": 0.087,
+      "output": ""
+    },
+    {
+      "name": "Syntax check packages/migration-core/src/csv.mjs",
+      "command": [
+        "node",
+        "--check",
+        "packages/migration-core/src/csv.mjs"
+      ],
+      "status": "passed",
+      "exit_code": 0,
+      "duration_seconds": 0.091,
+      "output": ""
+    },
+    {
+      "name": "Syntax check packages/migration-core/src/detect.mjs",
+      "command": [
+        "node",
+        "--check",
+        "packages/migration-core/src/detect.mjs"
+      ],
+      "status": "passed",
+      "exit_code": 0,
+      "duration_seconds": 0.089,
+      "output": ""
+    },
+    {
+      "name": "Syntax check packages/migration-core/src/dry-run.mjs",
+      "command": [
+        "node",
+        "--check",
+        "packages/migration-core/src/dry-run.mjs"
+      ],
+      "status": "passed",
+      "exit_code": 0,
+      "duration_seconds": 0.089,
+      "output": ""
+    },
+    {
+      "name": "Syntax check packages/migration-core/src/errors.mjs",
+      "command": [
+        "node",
+        "--check",
+        "packages/migration-core/src/errors.mjs"
+      ],
+      "status": "passed",
+      "exit_code": 0,
+      "duration_seconds": 0.093,
+      "output": ""
+    },
+    {
+      "name": "Syntax check packages/migration-core/src/index.mjs",
+      "command": [
+        "node",
+        "--check",
+        "packages/migration-core/src/index.mjs"
+      ],
+      "status": "passed",
+      "exit_code": 0,
+      "duration_seconds": 0.093,
+      "output": ""
+    },
+    {
+      "name": "Syntax check packages/migration-core/src/mapping.mjs",
+      "command": [
+        "node",
+        "--check",
+        "packages/migration-core/src/mapping.mjs"
+      ],
+      "status": "passed",
+      "exit_code": 0,
+      "duration_seconds": 0.084,
+      "output": ""
+    },
+    {
+      "name": "Syntax check packages/migration-core/src/normalize.mjs",
+      "command": [
+        "node",
+        "--check",
+        "packages/migration-core/src/normalize.mjs"
+      ],
+      "status": "passed",
+      "exit_code": 0,
+      "duration_seconds": 0.099,
+      "output": ""
+    },
+    {
+      "name": "Syntax check tools/pipelines/validate-definition.mjs",
+      "command": [
+        "node",
+        "--check",
+        "tools/pipelines/validate-definition.mjs"
+      ],
+      "status": "failed",
+      "exit_code": 1,
+      "duration_seconds": 0.095,
+      "output": "/mnt/data/crm_autonomous_r7_r8_work/crm-release/tools/pipelines/validate-definition.mjs:2\n#!/usr/bin/env node\n^\n\nSyntaxError: Invalid or unexpected token\n    at checkSyntax (node:internal/main/check_syntax:74:5)\n\nNode.js v22.16.0\n"
+    },
+    {
+      "name": "Syntax check tools/migrations/inspect-csv.mjs",
+      "command": [
+        "node",
+        "--check",
+        "tools/migrations/inspect-csv.mjs"
+      ],
+      "status": "failed",
+      "exit_code": 1,
+      "duration_seconds": 0.091,
+      "output": "/mnt/data/crm_autonomous_r7_r8_work/crm-release/tools/migrations/inspect-csv.mjs:2\n#!/usr/bin/env node\n^\n\nSyntaxError: Invalid or unexpected token\n    at checkSyntax (node:internal/main/check_syntax:74:5)\n\nNode.js v22.16.0\n"
+    },
+    {
+      "name": "Syntax check tools/release/verify-r7-r8.mjs",
+      "command": [
+        "node",
+        "--check",
+        "tools/release/verify-r7-r8.mjs"
+      ],
+      "status": "failed",
+      "exit_code": 1,
+      "duration_seconds": 0.084,
+      "output": "/mnt/data/crm_autonomous_r7_r8_work/crm-release/tools/release/verify-r7-r8.mjs:2\n#!/usr/bin/env node\n^\n\nSyntaxError: Invalid or unexpected token\n    at checkSyntax (node:internal/main/check_syntax:74:5)\n\nNode.js v22.16.0\n"
+    },
+    {
+      "name": "R7/R8 release structure verifier",
+      "command": [
+        "node",
+        "tools/release/verify-r7-r8.mjs"
+      ],
+      "status": "failed",
+      "exit_code": 1,
+      "duration_seconds": 0.104,
+      "output": "file:///mnt/data/crm_autonomous_r7_r8_work/crm-release/tools/release/verify-r7-r8.mjs:2\n#!/usr/bin/env node\n^\n\nSyntaxError: Invalid or unexpected token\n    at compileSourceTextModule (node:internal/modules/esm/utils:344:16)\n    at ModuleLoader.moduleStrategy (node:internal/modules/esm/translators:105:18)\n    at #translate (node:internal/modules/esm/loader:534:12)\n    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:581:27)\n    at async ModuleJob._link (node:internal/modules/esm/module_job:116:19)\n\nNode.js v22.16.0\n"
+    },
+    {
+      "name": "Manifest JSON and UTF-8 verification",
+      "command": [
+        "internal"
+      ],
+      "status": "passed",
+      "exit_code": 0,
+      "duration_seconds": 0.0,
+      "output": "15 manifests parsed without BOM"
+    },
+    {
+      "name": "Prisma schema validation",
+      "command": [
+        "prisma",
+        "validate"
+      ],
+      "status": "not_available",
+      "exit_code": null,
+      "duration_seconds": 0.0,
+      "output": "Repository-local Prisma executable is not installed; no network install was attempted."
+    },
+    {
+      "name": "Repository typecheck",
+      "command": [
+        "bun",
+        "run",
+        "typecheck"
+      ],
+      "status": "not_available",
+      "exit_code": null,
+      "duration_seconds": 0.0,
+      "output": "Dependency installation and/or Bun/typecheck script is unavailable in this isolated runtime."
+    },
+    {
+      "name": "Repository build",
+      "command": [
+        "bun",
+        "run",
+        "build"
+      ],
+      "status": "not_available",
+      "exit_code": null,
+      "duration_seconds": 0.0,
+      "output": "Dependency installation and/or Bun/build script is unavailable in this isolated runtime."
+    }
+  ],
+  "claims": {
+    "pipelineDomain": "IN_PROGRESS",
+    "pipelineDatabaseSidecar": "STATIC_VERIFIED",
+    "pipelineTransportAndUi": "NOT_STARTED",
+    "csvMigrationCore": "IN_PROGRESS",
+    "xlsxWorksheetParsing": "IN_PROGRESS",
+    "migrationPersistenceRuntime": "IN_PROGRESS",
+    "postgresLiveVerification": "BLOCKED_EXTERNAL"
+  }
+}

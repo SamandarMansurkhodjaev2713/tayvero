@@ -1,0 +1,148 @@
+TAP version 13
+# Subtest: migration: a stale claim cannot settle a newer lease even with the same workerId
+ok 1 - migration: a stale claim cannot settle a newer lease even with the same workerId
+  ---
+  duration_ms: 6.726305
+  type: 'test'
+  ...
+# Subtest: migration: process crashes consume attempts and eventually quarantine the batch
+ok 2 - migration: process crashes consume attempts and eventually quarantine the batch
+  ---
+  duration_ms: 1.871113
+  type: 'test'
+  ...
+# Subtest: migration: failure after cancellation cannot overwrite CANCELLED with FAILED
+ok 3 - migration: failure after cancellation cannot overwrite CANCELLED with FAILED
+  ---
+  duration_ms: 1.824014
+  type: 'test'
+  ...
+# Subtest: migration: invalid importer result is a terminal contract error
+ok 4 - migration: invalid importer result is a terminal contract error
+  ---
+  duration_ms: 0.591551
+  type: 'test'
+  ...
+# Subtest: migration: tenant/job delimiter ambiguity cannot alias storage keys
+ok 5 - migration: tenant/job delimiter ambiguity cannot alias storage keys
+  ---
+  duration_ms: 0.192273
+  type: 'test'
+  ...
+# Subtest: uses serializable transactions and scopes durable job reads by tenant
+ok 6 - uses serializable transactions and scopes durable job reads by tenant
+  ---
+  duration_ms: 3.220528
+  type: 'test'
+  ...
+# Subtest: persists batch leases, counters and optimistic versions
+ok 7 - persists batch leases, counters and optimistic versions
+  ---
+  duration_ms: 0.948866
+  type: 'test'
+  ...
+# Subtest: fails closed on a stale batch instead of silently losing a worker update
+ok 8 - fails closed on a stale batch instead of silently losing a worker update
+  ---
+  duration_ms: 0.805125
+  type: 'test'
+  ...
+# Subtest: persists an append-only runtime event with operational details
+ok 9 - persists an append-only runtime event with operational details
+  ---
+  duration_ms: 0.503862
+  type: 'test'
+  ...
+# Subtest: sanitizes event details to durable JSON and rejects non-serializable values
+ok 10 - sanitizes event details to durable JSON and rejects non-serializable values
+  ---
+  duration_ms: 0.440708
+  type: 'test'
+  ...
+# Subtest: coordinator can restart on the Prisma repository without losing durable batch state
+ok 11 - coordinator can restart on the Prisma repository without losing durable batch state
+  ---
+  duration_ms: 2.691649
+  type: 'test'
+  ...
+# Subtest: rejects invalid state transitions
+ok 12 - rejects invalid state transitions
+  ---
+  duration_ms: 1.625411
+  type: 'test'
+  ...
+# Subtest: rejects a dry-run from another tenant
+ok 13 - rejects a dry-run from another tenant
+  ---
+  duration_ms: 1.126538
+  type: 'test'
+  ...
+# Subtest: processes bounded batches and completes after the last checkpoint
+ok 14 - processes bounded batches and completes after the last checkpoint
+  ---
+  duration_ms: 2.258623
+  type: 'test'
+  ...
+# Subtest: concurrent workers claim distinct batches and never duplicate the same lease
+ok 15 - concurrent workers claim distinct batches and never duplicate the same lease
+  ---
+  duration_ms: 5.443708
+  type: 'test'
+  ...
+# Subtest: an expired RUNNING lease is reclaimed with the same operation identity
+ok 16 - an expired RUNNING lease is reclaimed with the same operation identity
+  ---
+  duration_ms: 1.266033
+  type: 'test'
+  ...
+# Subtest: retries a transient failure with the same idempotency key
+ok 17 - retries a transient failure with the same idempotency key
+  ---
+  duration_ms: 1.012109
+  type: 'test'
+  ...
+# Subtest: moves a poison batch and job to FAILED after bounded attempts
+ok 18 - moves a poison batch and job to FAILED after bounded attempts
+  ---
+  duration_ms: 0.893615
+  type: 'test'
+  ...
+# Subtest: cancellation is terminal and prevents execution
+ok 19 - cancellation is terminal and prevents execution
+  ---
+  duration_ms: 0.376814
+  type: 'test'
+  ...
+# Subtest: rejects a dry-run for a different entity type
+ok 20 - rejects a dry-run for a different entity type
+  ---
+  duration_ms: 0.464554
+  type: 'test'
+  ...
+# Subtest: rejects non-contiguous batch indexes and count drift
+ok 21 - rejects non-contiguous batch indexes and count drift
+  ---
+  duration_ms: 0.852734
+  type: 'test'
+  ...
+# Subtest: rejects unsafe source filenames before persistence
+ok 22 - rejects unsafe source filenames before persistence
+  ---
+  duration_ms: 0.40119
+  type: 'test'
+  ...
+# Subtest: fails immediately when importer counters do not reconcile to the claimed batch
+ok 23 - fails immediately when importer counters do not reconcile to the claimed batch
+  ---
+  duration_ms: 0.720259
+  type: 'test'
+  ...
+1..23
+# tests 23
+# suites 0
+# pass 23
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 83.104899

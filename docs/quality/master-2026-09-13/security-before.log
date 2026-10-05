@@ -1,0 +1,172 @@
+TAP version 13
+# Subtest: SSRF: all mapped, expanded, reserved and transition representations are blocked
+not ok 1 - SSRF: all mapped, expanded, reserved and transition representations are blocked
+  ---
+  duration_ms: 4.886287
+  type: 'test'
+  location: '/mnt/data/tayvero_work/crm-release/packages/integration-runtime/test/security-hardening.test.mjs:15:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    ::ffff:7f00:1
+    
+    false !== true
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///mnt/data/tayvero_work/crm-release/packages/integration-runtime/test/security-hardening.test.mjs:17:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.start (node:internal/test_runner/test:944:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17)
+  ...
+# Subtest: HTTP: cross-origin redirect cannot forward secrets or reach its destination
+not ok 2 - HTTP: cross-origin redirect cannot forward secrets or reach its destination
+  ---
+  duration_ms: 16.039193
+  type: 'test'
+  location: '/mnt/data/tayvero_work/crm-release/packages/integration-runtime/test/security-hardening.test.mjs:22:1'
+  failureType: 'testCodeFailure'
+  error: 'Missing expected rejection.'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  stack: |-
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async TestContext.<anonymous> (file:///mnt/data/tayvero_work/crm-release/packages/integration-runtime/test/security-hardening.test.mjs:26:3)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: HTTP: an idempotency header alone does not prove the provider can safely retry
+not ok 3 - HTTP: an idempotency header alone does not prove the provider can safely retry
+  ---
+  duration_ms: 7.595032
+  type: 'test'
+  location: '/mnt/data/tayvero_work/crm-release/packages/integration-runtime/test/security-hardening.test.mjs:36:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The validation function is expected to return "true". Received false
+    
+    Caught error:
+    
+    IntegrationRuntimeError: DNS resolution failed
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  stack: |-
+    async TestContext.<anonymous> (file:///mnt/data/tayvero_work/crm-release/packages/integration-runtime/test/security-hardening.test.mjs:37:3)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: Webhook: replay protection must not silently disappear
+not ok 4 - Webhook: replay protection must not silently disappear
+  ---
+  duration_ms: 1.293103
+  type: 'test'
+  location: '/mnt/data/tayvero_work/crm-release/packages/integration-runtime/test/security-hardening.test.mjs:50:1'
+  failureType: 'testCodeFailure'
+  error: 'Missing expected rejection.'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  stack: |-
+    async TestContext.<anonymous> (file:///mnt/data/tayvero_work/crm-release/packages/integration-runtime/test/security-hardening.test.mjs:52:3)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: Webhook: ambiguous duplicate signature fields are rejected
+not ok 5 - Webhook: ambiguous duplicate signature fields are rejected
+  ---
+  duration_ms: 0.44141
+  type: 'test'
+  location: '/mnt/data/tayvero_work/crm-release/packages/integration-runtime/test/security-hardening.test.mjs:55:1'
+  failureType: 'testCodeFailure'
+  error: 'Missing expected rejection.'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  stack: |-
+    async TestContext.<anonymous> (file:///mnt/data/tayvero_work/crm-release/packages/integration-runtime/test/security-hardening.test.mjs:57:3)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: OpenAPI: server base path is retained and schema is an immutable snapshot
+not ok 6 - OpenAPI: server base path is retained and schema is an immutable snapshot
+  ---
+  duration_ms: 1.015654
+  type: 'test'
+  location: '/mnt/data/tayvero_work/crm-release/packages/integration-runtime/test/security-hardening.test.mjs:60:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + 'https://api.example.com/contacts'
+    - 'https://api.example.com/v1/contacts'
+                               ^
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'https://api.example.com/v1/contacts'
+  actual: 'https://api.example.com/contacts'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///mnt/data/tayvero_work/crm-release/packages/integration-runtime/test/security-hardening.test.mjs:64:10)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: OpenAPI: reject host-changing and traversal paths
+not ok 7 - OpenAPI: reject host-changing and traversal paths
+  ---
+  duration_ms: 0.417173
+  type: 'test'
+  location: '/mnt/data/tayvero_work/crm-release/packages/integration-runtime/test/security-hardening.test.mjs:70:1'
+  failureType: 'testCodeFailure'
+  error: 'Missing expected exception: //evil.example/action'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  stack: |-
+    TestContext.<anonymous> (file:///mnt/data/tayvero_work/crm-release/packages/integration-runtime/test/security-hardening.test.mjs:72:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: OpenAPI: cyclic objects are bounded failures, not stack overflows
+not ok 8 - OpenAPI: cyclic objects are bounded failures, not stack overflows
+  ---
+  duration_ms: 43.874968
+  type: 'test'
+  location: '/mnt/data/tayvero_work/crm-release/packages/integration-runtime/test/security-hardening.test.mjs:76:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The validation function is expected to return "true". Received false
+    
+    Caught error:
+    
+    RangeError: Maximum call stack size exceeded
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  stack: |-
+    TestContext.<anonymous> (file:///mnt/data/tayvero_work/crm-release/packages/integration-runtime/test/security-hardening.test.mjs:78:10)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 0
+# fail 8
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 150.83186

@@ -1,0 +1,376 @@
+===== Integration runtime tests =====
+status=failed exit=1 duration=0.405
+command=node --test packages/integration-runtime/test/integration.test.mjs
+TAP version 13
+# Subtest: blocks private, loopback, link-local, metadata, documentation and multicast IP ranges
+ok 1 - blocks private, loopback, link-local, metadata, documentation and multicast IP ranges
+  ---
+  duration_ms: 16.932431
+  type: 'test'
+  ...
+# Subtest: rejects URL credentials and DNS rebinding to a private address
+ok 2 - rejects URL credentials and DNS rebinding to a private address
+  ---
+  duration_ms: 1.674185
+  type: 'test'
+  ...
+# Subtest: enforces connector host allowlists
+ok 3 - enforces connector host allowlists
+  ---
+  duration_ms: 0.545675
+  type: 'test'
+  ...
+# Subtest: executes a pinned bounded request and parses JSON
+not ok 4 - executes a pinned bounded request and parses JSON
+  ---
+  duration_ms: 23.18326
+  type: 'test'
+  location: '/mnt/data/crm_r11_r12_repair/crm-release/packages/integration-runtime/test/integration.test.mjs:10:1'
+  failureType: 'testCodeFailure'
+  error: 'Invalid IP address: undefined'
+  code: 'ERR_INVALID_IP_ADDRESS'
+  name: 'TypeError'
+  stack: |-
+    emitLookup (node:net:1494:17)
+    lookup (file:///mnt/data/crm_r11_r12_repair/crm-release/packages/integration-runtime/src/http-executor.mjs:18:305)
+    emitLookup (node:net:1445:5)
+    defaultTriggerAsyncIdScope (node:internal/async_hooks:464:18)
+    lookupAndConnectMultiple (node:net:1444:3)
+    node:net:1390:7
+    defaultTriggerAsyncIdScope (node:internal/async_hooks:464:18)
+    lookupAndConnect (node:net:1389:5)
+    Socket.connect (node:net:1284:5)
+    Agent.connect [as createConnection] (node:net:250:17)
+  ...
+# Subtest: rejects mutation retry without idempotency
+ok 5 - rejects mutation retry without idempotency
+  ---
+  duration_ms: 1.954716
+  type: 'test'
+  ...
+# Subtest: rejects redirect to a private destination
+not ok 6 - rejects redirect to a private destination
+  ---
+  duration_ms: 3.970451
+  type: 'test'
+  location: '/mnt/data/crm_r11_r12_repair/crm-release/packages/integration-runtime/test/integration.test.mjs:12:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The validation function is expected to return "true". Received false
+    
+    Caught error:
+    
+    TypeError [ERR_INVALID_IP_ADDRESS]: Invalid IP address: undefined
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  stack: |-
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async TestContext.<anonymous> (file:///mnt/data/crm_r11_r12_repair/crm-release/packages/integration-runtime/test/integration.test.mjs:12:306)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: verifies HMAC webhooks and rejects replay
+ok 7 - verifies HMAC webhooks and rejects replay
+  ---
+  duration_ms: 2.1306
+  type: 'test'
+  ...
+# Subtest: rejects tampered webhook body
+ok 8 - rejects tampered webhook body
+  ---
+  duration_ms: 0.963631
+  type: 'test'
+  ...
+# Subtest: compiles bounded OpenAPI operations and classifies risk
+ok 9 - compiles bounded OpenAPI operations and classifies risk
+  ---
+  duration_ms: 2.105995
+  type: 'test'
+  ...
+# Subtest: rejects external OpenAPI references
+ok 10 - rejects external OpenAPI references
+  ---
+  duration_ms: 0.750265
+  type: 'test'
+  ...
+1..10
+# tests 10
+# suites 0
+# pass 8
+# fail 2
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 286.199092
+
+
+===== Action registry tests =====
+status=passed exit=0 duration=0.358
+command=node --test packages/action-registry/test/actions.test.mjs
+TAP version 13
+# Subtest: registers typed actions and executes them once under idempotent replay
+ok 1 - registers typed actions and executes them once under idempotent replay
+  ---
+  duration_ms: 7.466124
+  type: 'test'
+  ...
+# Subtest: rejects operation ID reuse with changed input
+ok 2 - rejects operation ID reuse with changed input
+  ---
+  duration_ms: 4.650626
+  type: 'test'
+  ...
+# Subtest: validates input and permissions before executor side effects
+ok 3 - validates input and permissions before executor side effects
+  ---
+  duration_ms: 0.513691
+  type: 'test'
+  ...
+# Subtest: requires payload-bound approval for high-risk action
+ok 4 - requires payload-bound approval for high-risk action
+  ---
+  duration_ms: 1.928007
+  type: 'test'
+  ...
+# Subtest: rejects high-risk action without approval
+ok 5 - rejects high-risk action without approval
+  ---
+  duration_ms: 0.566615
+  type: 'test'
+  ...
+# Subtest: rejects invalid executor output
+ok 6 - rejects invalid executor output
+  ---
+  duration_ms: 0.991584
+  type: 'test'
+  ...
+# Subtest: forbids non-idempotent high-risk manifests
+ok 7 - forbids non-idempotent high-risk manifests
+  ---
+  duration_ms: 0.355623
+  type: 'test'
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 7
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 233.219871
+
+
+===== Combined R11/R12 tests =====
+status=failed exit=1 duration=0.425
+command=node --test packages/integration-runtime/test/integration.test.mjs packages/action-registry/test/actions.test.mjs
+TAP version 13
+# Subtest: registers typed actions and executes them once under idempotent replay
+ok 1 - registers typed actions and executes them once under idempotent replay
+  ---
+  duration_ms: 6.345132
+  type: 'test'
+  ...
+# Subtest: rejects operation ID reuse with changed input
+ok 2 - rejects operation ID reuse with changed input
+  ---
+  duration_ms: 4.360577
+  type: 'test'
+  ...
+# Subtest: validates input and permissions before executor side effects
+ok 3 - validates input and permissions before executor side effects
+  ---
+  duration_ms: 0.443262
+  type: 'test'
+  ...
+# Subtest: requires payload-bound approval for high-risk action
+ok 4 - requires payload-bound approval for high-risk action
+  ---
+  duration_ms: 1.979665
+  type: 'test'
+  ...
+# Subtest: rejects high-risk action without approval
+ok 5 - rejects high-risk action without approval
+  ---
+  duration_ms: 0.421028
+  type: 'test'
+  ...
+# Subtest: rejects invalid executor output
+ok 6 - rejects invalid executor output
+  ---
+  duration_ms: 0.866752
+  type: 'test'
+  ...
+# Subtest: forbids non-idempotent high-risk manifests
+ok 7 - forbids non-idempotent high-risk manifests
+  ---
+  duration_ms: 0.347254
+  type: 'test'
+  ...
+# Subtest: blocks private, loopback, link-local, metadata, documentation and multicast IP ranges
+ok 8 - blocks private, loopback, link-local, metadata, documentation and multicast IP ranges
+  ---
+  duration_ms: 20.694857
+  type: 'test'
+  ...
+# Subtest: rejects URL credentials and DNS rebinding to a private address
+ok 9 - rejects URL credentials and DNS rebinding to a private address
+  ---
+  duration_ms: 1.822965
+  type: 'test'
+  ...
+# Subtest: enforces connector host allowlists
+ok 10 - enforces connector host allowlists
+  ---
+  duration_ms: 0.590865
+  type: 'test'
+  ...
+# Subtest: executes a pinned bounded request and parses JSON
+not ok 11 - executes a pinned bounded request and parses JSON
+  ---
+  duration_ms: 14.35599
+  type: 'test'
+  location: '/mnt/data/crm_r11_r12_repair/crm-release/packages/integration-runtime/test/integration.test.mjs:10:1'
+  failureType: 'testCodeFailure'
+  error: 'Invalid IP address: undefined'
+  code: 'ERR_INVALID_IP_ADDRESS'
+  name: 'TypeError'
+  stack: |-
+    emitLookup (node:net:1494:17)
+    lookup (file:///mnt/data/crm_r11_r12_repair/crm-release/packages/integration-runtime/src/http-executor.mjs:18:305)
+    emitLookup (node:net:1445:5)
+    defaultTriggerAsyncIdScope (node:internal/async_hooks:464:18)
+    lookupAndConnectMultiple (node:net:1444:3)
+    node:net:1390:7
+    defaultTriggerAsyncIdScope (node:internal/async_hooks:464:18)
+    lookupAndConnect (node:net:1389:5)
+    Socket.connect (node:net:1284:5)
+    Agent.connect [as createConnection] (node:net:250:17)
+  ...
+# Subtest: rejects mutation retry without idempotency
+ok 12 - rejects mutation retry without idempotency
+  ---
+  duration_ms: 0.449309
+  type: 'test'
+  ...
+# Subtest: rejects redirect to a private destination
+not ok 13 - rejects redirect to a private destination
+  ---
+  duration_ms: 3.62323
+  type: 'test'
+  location: '/mnt/data/crm_r11_r12_repair/crm-release/packages/integration-runtime/test/integration.test.mjs:12:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The validation function is expected to return "true". Received false
+    
+    Caught error:
+    
+    TypeError [ERR_INVALID_IP_ADDRESS]: Invalid IP address: undefined
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  stack: |-
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async TestContext.<anonymous> (file:///mnt/data/crm_r11_r12_repair/crm-release/packages/integration-runtime/test/integration.test.mjs:12:306)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: verifies HMAC webhooks and rejects replay
+ok 14 - verifies HMAC webhooks and rejects replay
+  ---
+  duration_ms: 2.064934
+  type: 'test'
+  ...
+# Subtest: rejects tampered webhook body
+ok 15 - rejects tampered webhook body
+  ---
+  duration_ms: 0.920721
+  type: 'test'
+  ...
+# Subtest: compiles bounded OpenAPI operations and classifies risk
+ok 16 - compiles bounded OpenAPI operations and classifies risk
+  ---
+  duration_ms: 2.217471
+  type: 'test'
+  ...
+# Subtest: rejects external OpenAPI references
+ok 17 - rejects external OpenAPI references
+  ---
+  duration_ms: 0.934036
+  type: 'test'
+  ...
+1..17
+# tests 17
+# suites 0
+# pass 15
+# fail 2
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 305.25302
+
+
+===== R11/R12 structure verifier =====
+status=passed exit=0 duration=0.104
+command=node tools/release/verify-r11-r12.mjs
+{"ok":true,"files":5}
+
+
+===== Syntax packages/integration-runtime/src/errors.mjs =====
+status=passed exit=0 duration=0.085
+command=node --check packages/integration-runtime/src/errors.mjs
+
+
+===== Syntax packages/integration-runtime/src/http-executor.mjs =====
+status=passed exit=0 duration=0.086
+command=node --check packages/integration-runtime/src/http-executor.mjs
+
+
+===== Syntax packages/integration-runtime/src/index.mjs =====
+status=passed exit=0 duration=0.088
+command=node --check packages/integration-runtime/src/index.mjs
+
+
+===== Syntax packages/integration-runtime/src/network-policy.mjs =====
+status=passed exit=0 duration=0.091
+command=node --check packages/integration-runtime/src/network-policy.mjs
+
+
+===== Syntax packages/integration-runtime/src/openapi.mjs =====
+status=passed exit=0 duration=0.083
+command=node --check packages/integration-runtime/src/openapi.mjs
+
+
+===== Syntax packages/integration-runtime/src/webhook.mjs =====
+status=passed exit=0 duration=0.087
+command=node --check packages/integration-runtime/src/webhook.mjs
+
+
+===== Syntax packages/action-registry/src/approval.mjs =====
+status=passed exit=0 duration=0.086
+command=node --check packages/action-registry/src/approval.mjs
+
+
+===== Syntax packages/action-registry/src/errors.mjs =====
+status=passed exit=0 duration=0.09
+command=node --check packages/action-registry/src/errors.mjs
+
+
+===== Syntax packages/action-registry/src/index.mjs =====
+status=passed exit=0 duration=0.085
+command=node --check packages/action-registry/src/index.mjs
+
+
+===== Syntax packages/action-registry/src/registry.mjs =====
+status=passed exit=0 duration=0.105
+command=node --check packages/action-registry/src/registry.mjs
+
+
+===== Syntax packages/action-registry/src/schema.mjs =====
+status=passed exit=0 duration=0.085
+command=node --check packages/action-registry/src/schema.mjs
+
+
+===== Syntax packages/action-registry/src/state.mjs =====
+status=passed exit=0 duration=0.093
+command=node --check packages/action-registry/src/state.mjs
+

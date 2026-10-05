@@ -1,0 +1,201 @@
+===== Final action runtime syntax =====
+$ node --check packages/agent-action-runtime/src/index.mjs
+status=passed rc=0 duration=0.026
+
+
+
+===== Final action store syntax =====
+$ node --check packages/agent-action-runtime/src/prisma-stores.mjs
+status=passed rc=0 duration=0.023
+
+
+
+===== Final action runtime adversarial suite =====
+$ node --test packages/agent-action-runtime/test/governed-action-runtime.test.mjs
+status=failed rc=1 duration=0.144
+TAP version 13
+# Subtest: executes a validated authorized action and records redacted audit events
+ok 1 - executes a validated authorized action and records redacted audit events
+  ---
+  duration_ms: 3.684576
+  type: 'test'
+  ...
+# Subtest: rejects tenant ownership fields at any nesting depth
+ok 2 - rejects tenant ownership fields at any nesting depth
+  ---
+  duration_ms: 0.640447
+  type: 'test'
+  ...
+# Subtest: rejects missing permissions and object-level authorization
+ok 3 - rejects missing permissions and object-level authorization
+  ---
+  duration_ms: 1.304778
+  type: 'test'
+  ...
+# Subtest: replays a completed idempotent result without executing again
+ok 4 - replays a completed idempotent result without executing again
+  ---
+  duration_ms: 1.256097
+  type: 'test'
+  ...
+# Subtest: rejects reuse of an idempotency key for another payload
+ok 5 - rejects reuse of an idempotency key for another payload
+  ---
+  duration_ms: 0.656157
+  type: 'test'
+  ...
+# Subtest: rejects changed payload after an approval failure acquired the same idempotency key
+ok 6 - rejects changed payload after an approval failure acquired the same idempotency key
+  ---
+  duration_ms: 0.853505
+  type: 'test'
+  ...
+# Subtest: allows only one concurrent execution for the same receipt
+ok 7 - allows only one concurrent execution for the same receipt
+  ---
+  duration_ms: 7.385772
+  type: 'test'
+  ...
+# Subtest: requires payload-bound tenant-bound approval for high-risk actions
+ok 8 - requires payload-bound tenant-bound approval for high-risk actions
+  ---
+  duration_ms: 1.304949
+  type: 'test'
+  ...
+# Subtest: rejects approval bound to another tenant or modified payload
+ok 9 - rejects approval bound to another tenant or modified payload
+  ---
+  duration_ms: 0.725085
+  type: 'test'
+  ...
+# Subtest: times out a non-cooperative executor and records failure
+ok 10 - times out a non-cooperative executor and records failure
+  ---
+  duration_ms: 21.103839
+  type: 'test'
+  ...
+# Subtest: propagates cancellation and does not retry it
+ok 11 - propagates cancellation and does not retry it
+  ---
+  duration_ms: 0.50836
+  type: 'test'
+  ...
+# Subtest: keeps the success receipt when the success audit write fails
+ok 12 - keeps the success receipt when the success audit write fails
+  ---
+  duration_ms: 0.643853
+  type: 'test'
+  ...
+# Subtest: propagates the operation digest and idempotency key to the executor
+not ok 13 - propagates the operation digest and idempotency key to the executor
+  ---
+  duration_ms: 1.207797
+  type: 'test'
+  location: '/mnt/data/crm_autonomous_work_current/crm-release/packages/agent-action-runtime/test/governed-action-runtime.test.mjs:133:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + undefined
+    - 'provider-key'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'provider-key'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///mnt/data/crm_autonomous_work_current/crm-release/packages/agent-action-runtime/test/governed-action-runtime.test.mjs:137:10)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: validates untrusted model input and executor output
+ok 14 - validates untrusted model input and executor output
+  ---
+  duration_ms: 0.739141
+  type: 'test'
+  ...
+1..14
+# tests 14
+# suites 0
+# pass 13
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 109.480949
+
+
+
+===== Final durable action store suite =====
+$ node --test packages/agent-action-runtime/test/prisma-stores.test.mjs
+status=passed rc=0 duration=0.111
+TAP version 13
+# Subtest: receipt store atomically acquires, completes and replays
+ok 1 - receipt store atomically acquires, completes and replays
+  ---
+  duration_ms: 3.422135
+  type: 'test'
+  ...
+# Subtest: receipt rejects same key with another digest
+ok 2 - receipt rejects same key with another digest
+  ---
+  duration_ms: 0.967989
+  type: 'test'
+  ...
+# Subtest: receipt completion requires the acquired lease token
+ok 3 - receipt completion requires the acquired lease token
+  ---
+  duration_ms: 0.412782
+  type: 'test'
+  ...
+# Subtest: approval consumption is tenant, action, digest and expiry bound
+ok 4 - approval consumption is tenant, action, digest and expiry bound
+  ---
+  duration_ms: 0.517487
+  type: 'test'
+  ...
+# Subtest: audit sink redacts secret-bearing properties
+ok 5 - audit sink redacts secret-bearing properties
+  ---
+  duration_ms: 2.082532
+  type: 'test'
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 5
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 76.1326
+
+
+
+===== Final app governed composition syntax =====
+$ node --check apps/agent/src/governed-action-execution.mjs
+status=passed rc=0 duration=0.023
+
+
+
+===== Final app Prisma composition syntax =====
+$ node --check apps/agent/src/governed-action-prisma-composition.mjs
+status=passed rc=0 duration=0.023
+
+
+
+===== Final action-boundary audit =====
+$ node tools/quality/audit-agent-action-boundaries.mjs
+status=passed rc=0 duration=0.109
+{
+  "generatedAt": "2026-08-31T22:40:42.086Z",
+  "findingCount": 2,
+  "findings": [
+    "packages/action-registry/src/registry.mjs",
+    "packages/action-registry/test/actions.test.mjs"
+  ],
+  "note": "Findings require manual classification; this audit does not silently baseline direct side effects."
+}
+
+

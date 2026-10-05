@@ -1,0 +1,721 @@
+{
+  "schemaVersion": 2,
+  "releaseDate": "2026-09-18",
+  "releaseTimezone": "Asia/Tashkent",
+  "generatedAt": "2026-09-17T21:01:48.973731+00:00",
+  "source": {
+    "name": "tayvero-master-2026-09-15.zip",
+    "sha256": "6f24d40c4077a92f6622ad8c8870944ec864ab64437acdd49bb353a9a4b02fcf",
+    "files": 1428,
+    "tests": 535,
+    "localGates": 15,
+    "crc": "OK"
+  },
+  "artifact": {
+    "name": "tayvero-master-2026-09-18.zip",
+    "root": "crm-release/",
+    "sha256": "EXTERNAL_SIDECAR_AFTER_PACKAGING",
+    "files": 1446
+  },
+  "releaseClassification": {
+    "wholeProductProductionReady": false,
+    "localGate": "VERIFIED",
+    "product": "IMPLEMENTED_EXTERNAL_VERIFICATION_REQUIRED"
+  },
+  "scopes": [
+    {
+      "id": "MIG-SOURCE-LIFECYCLE-001",
+      "status": "IMPLEMENTED_EXTERNAL_VERIFICATION_REQUIRED",
+      "localInvariantsVerified": true,
+      "realPostgresVerified": false,
+      "scope": "Durable unreferenced-source deletion intent/purge/audit; bounded authenticated orphan cleanup; referenced sources protected"
+    },
+    {
+      "id": "MIG-BACKGROUND-WORKER-001",
+      "status": "IMPLEMENTED_EXTERNAL_VERIFICATION_REQUIRED",
+      "localInvariantsVerified": true,
+      "realPostgresVerified": false,
+      "processDeploymentVerified": false,
+      "enabledByDefault": false,
+      "scope": "Explicit per-job opt-in, same coordinator/receipts, queue claim/version, authority recheck, draining pause, serial CLI worker"
+    },
+    {
+      "id": "MIG-SOURCE-FIFO-GUARD-001",
+      "status": "VERIFIED",
+      "verificationLevel": "Actual Node/POSIX FIFO rejection test; not production filesystem qualification"
+    }
+  ],
+  "fileChanges": {
+    "before": 1428,
+    "after": 1446,
+    "added": 18,
+    "modified": 34,
+    "removed": 0,
+    "addedFiles": [
+      "apps/api/src/migrations/background-import.mjs",
+      "apps/api/src/migrations/source-lifecycle.mjs",
+      "apps/app/app/(app)/[slug]/settings/migrations/background-import-controls.tsx",
+      "apps/app/app/(app)/[slug]/settings/migrations/source-maintenance.tsx",
+      "docs/adr/0016-source-lifecycle-and-background-import.md",
+      "docs/quality/source-worker-20260918/baseline-build.log",
+      "docs/quality/source-worker-20260918/baseline-report.json",
+      "docs/quality/source-worker-20260918/environment.json",
+      "docs/quality/source-worker-20260918/external-gate-attempts.json",
+      "docs/runbooks/migration-source-lifecycle-and-worker.md",
+      "packages/db/prisma/migrations/20260918090000_migration_source_lifecycle/migration.sql",
+      "packages/db/prisma/migrations/20260918091000_background_import/migration.sql",
+      "tools/migrations/background-loop.d.mts",
+      "tools/migrations/background-loop.mjs",
+      "tools/migrations/background-worker.ts",
+      "tools/migrations/source-cleanup.ts",
+      "tools/migrations/test/background-loop.test.mjs",
+      "tools/quality/test/source-worker-boundary.test.mjs"
+    ],
+    "modifiedFiles": [
+      ".env.example",
+      "MASTER_AUDIT.md",
+      "MASTER_EXTERNAL_GATES.md",
+      "MASTER_NEXT_SCOPE.md",
+      "MASTER_REPORT.json",
+      "MASTER_STATUS.md",
+      "MASTER_UX_AUDIT.md",
+      "apps/api/src/generated/server.ts",
+      "apps/api/src/migrations/migration-application.d.mts",
+      "apps/api/src/migrations/migration-application.mjs",
+      "apps/api/src/migrations/migrations.contracts.ts",
+      "apps/api/src/migrations/migrations.router.ts",
+      "apps/api/src/migrations/migrations.service.ts",
+      "apps/api/test/helpers/migration-prisma-double.mjs",
+      "apps/api/test/migration-application.test.mjs",
+      "apps/api/test/operations-postgres.integration.spec.ts",
+      "apps/app/app/(app)/[slug]/settings/migrations/migration-center.tsx",
+      "apps/app/lib/operations-catalog.d.mts",
+      "apps/app/lib/operations-catalog.mjs",
+      "docs/implementation/MASTER_SCOPE.md",
+      "docs/quality/generated-agent-action-boundary-audit.json",
+      "docs/quality/generated-master-local-build.log",
+      "docs/quality/generated-master-local-report.json",
+      "docs/quality/generated-operations-postgres-report.json",
+      "docs/quality/generated-pipeline-postgres-005-report.json",
+      "docs/quality/generated-tenant-audit.json",
+      "package.json",
+      "packages/db/prisma/schema.prisma",
+      "packages/migration-runtime/src/source-store.d.mts",
+      "packages/migration-runtime/src/source-store.mjs",
+      "packages/migration-runtime/test/source-store.test.mjs",
+      "progress.md",
+      "qa.md",
+      "tools/release/run-master-local-gate.mjs"
+    ],
+    "removedFiles": [],
+    "records": [
+      {
+        "path": ".env.example",
+        "change": "modified",
+        "beforeSha256": "f8f6a0c9a953f758297d90036e16b1151ec6e7579dd0d22c4a5fe246f23de6fa",
+        "afterSha256": "40474209385c236170b09e91069c7e68201e6cf1e6507868a74a720fde7ad47d"
+      },
+      {
+        "path": "MASTER_AUDIT.md",
+        "change": "modified",
+        "beforeSha256": "1155cc39766b042fe769f08ff592fe9c7921fcd6f555cb6703ff04d9f6be47c8",
+        "afterSha256": "c2c257faacd622989a496bd656cce3e72902eb965610bb312ad1bd5864e82cd6"
+      },
+      {
+        "path": "MASTER_EXTERNAL_GATES.md",
+        "change": "modified",
+        "beforeSha256": "d63ea34af641378a60e8773c38f71e7863ce53607bbeafd6cf61ddde778dbaf5",
+        "afterSha256": "d8d381d5fe3825e986278d548c231cfa35404f883fc670d2a97e63ca5835bda4"
+      },
+      {
+        "path": "MASTER_NEXT_SCOPE.md",
+        "change": "modified",
+        "beforeSha256": "adacbb7fb2764db3423ff33498e90453f64d58e90ddd226737fc302bba768b7b",
+        "afterSha256": "ad1e969be1a7b3f101383b5d67b3ac378175bbc3282d78045f8ef7fa3045e73f"
+      },
+      {
+        "path": "MASTER_REPORT.json",
+        "change": "modified",
+        "beforeSha256": "80cdc6635c874a36d77a244b71d545f3c062c82c9bc31784bb0bef79321144e8",
+        "afterSha256": null
+      },
+      {
+        "path": "MASTER_STATUS.md",
+        "change": "modified",
+        "beforeSha256": "0a5660ae4bf61ad64fddf15b2c13ea5c1b76f9566a2c698e2512d7fdf96b295f",
+        "afterSha256": "567c6133cd61e1a75516c677df120c2307d8ba8abed5a670b30e7ac88b76c4e3"
+      },
+      {
+        "path": "MASTER_UX_AUDIT.md",
+        "change": "modified",
+        "beforeSha256": "0b3741b4c8caeacaf50e145e3f762a04854d60ac8d162d1ac2f5bf176d9cd997",
+        "afterSha256": "96bc7fff0a520b3c171b3fa97b2d725421264f94e5bb904e7cb495fe8a7653fc"
+      },
+      {
+        "path": "apps/api/src/generated/server.ts",
+        "change": "modified",
+        "beforeSha256": "4c42b74235cd9e787ad673c59f154b796a846d3da8446b3e2894d61e927e01c7",
+        "afterSha256": "fe5b535b697a16b96a5785bde78596ec817f6a2bc8d73155c3dbf7b912b1c83d"
+      },
+      {
+        "path": "apps/api/src/migrations/background-import.mjs",
+        "change": "added",
+        "beforeSha256": null,
+        "afterSha256": "27205346a7d75f9dc445834c310dafd9595294460b7cdb00ab445ac719f98b97"
+      },
+      {
+        "path": "apps/api/src/migrations/migration-application.d.mts",
+        "change": "modified",
+        "beforeSha256": "a7f5aaeff6c018d12a98b7c258cd48d2cf0b3c73544121f8ab620a539845ae5f",
+        "afterSha256": "488f454ebc11077320a520e4e913f29b59f8d21a8672e4eb656bc7784f9f5f31"
+      },
+      {
+        "path": "apps/api/src/migrations/migration-application.mjs",
+        "change": "modified",
+        "beforeSha256": "376d782e087a592af0d074ec1ffc1362db3c9032b1e36013dd2df6293e900259",
+        "afterSha256": "4cd86d95eb35dc34a17bb1a19d56acde9bb0a8f61c67872f708ce7c56037454f"
+      },
+      {
+        "path": "apps/api/src/migrations/migrations.contracts.ts",
+        "change": "modified",
+        "beforeSha256": "993fa6b93a877d627f1beb138c833d76d1b6da7253f40c6d3a61f30df45ed2a5",
+        "afterSha256": "98124a08a153be0f029a40405a61382a452a41660e0063579266022f4b2cbf2e"
+      },
+      {
+        "path": "apps/api/src/migrations/migrations.router.ts",
+        "change": "modified",
+        "beforeSha256": "a52b68c08b4a8376842e18939e81ad46f1af878b2df7183216b2c96ad949451b",
+        "afterSha256": "4532e2ac6d9e129d7ba29e83ab2075819fb6312e9059e9de853115356ee344d6"
+      },
+      {
+        "path": "apps/api/src/migrations/migrations.service.ts",
+        "change": "modified",
+        "beforeSha256": "39e698073d50521d0e57c64776dd09de150989c62f51565e82a60d66289121b6",
+        "afterSha256": "0b049c421a71da7bf46b79859b1e840cee998997711166dd15327787b71bcba7"
+      },
+      {
+        "path": "apps/api/src/migrations/source-lifecycle.mjs",
+        "change": "added",
+        "beforeSha256": null,
+        "afterSha256": "2639dbfdce623f3f63d63994dc8f40c5250b8ad2f49dc16a67878c4d620e05ab"
+      },
+      {
+        "path": "apps/api/test/helpers/migration-prisma-double.mjs",
+        "change": "modified",
+        "beforeSha256": "06d11c00cc3bfb760209304301c38b65db959d356fb864c143ce11d71fdfce61",
+        "afterSha256": "c921fcf8cca0fc0f5087f6be66661a114b486a4ee67165ca0a1589701eb10b4d"
+      },
+      {
+        "path": "apps/api/test/migration-application.test.mjs",
+        "change": "modified",
+        "beforeSha256": "e1d721c4709257d474d9e4eb68daa32d5e9366874cc503d8fdd60a46a286707a",
+        "afterSha256": "30185a0a97ede268cb8652024a37d40270c7f512aed8d0067feb6a8bb056df13"
+      },
+      {
+        "path": "apps/api/test/operations-postgres.integration.spec.ts",
+        "change": "modified",
+        "beforeSha256": "82f4a0dc94f34d7fba3dd8065ba49b40fe4d01b0f2dc0c030cace3807fcd97ff",
+        "afterSha256": "29240711c1a8213c05045b1383b7f66e25b01da049fd21d4ca67e5c03428225c"
+      },
+      {
+        "path": "apps/app/app/(app)/[slug]/settings/migrations/background-import-controls.tsx",
+        "change": "added",
+        "beforeSha256": null,
+        "afterSha256": "aec21133a5992697f13d2b053806dc690088614446fcddcb93c26ab12510e938"
+      },
+      {
+        "path": "apps/app/app/(app)/[slug]/settings/migrations/migration-center.tsx",
+        "change": "modified",
+        "beforeSha256": "7c98576721ab4d966ef34139da0d962d6dd973ac8f99bb7c4af25382eb2b0026",
+        "afterSha256": "938a159315b71471ac8d279646b558474a5182c812d9ecf7af6b5353ce35bfb0"
+      },
+      {
+        "path": "apps/app/app/(app)/[slug]/settings/migrations/source-maintenance.tsx",
+        "change": "added",
+        "beforeSha256": null,
+        "afterSha256": "073908874a6fc215d87170da8f5c02c9c143cfbdfde717a47050e4196c365f94"
+      },
+      {
+        "path": "apps/app/lib/operations-catalog.d.mts",
+        "change": "modified",
+        "beforeSha256": "1740f7bf20df26deccca126a8324e24124142a61872626cc886d31fb9f2b2c3a",
+        "afterSha256": "eca6f845461acc77a788448137722e73a6fa11b86e0302e550f05cdcd452dafe"
+      },
+      {
+        "path": "apps/app/lib/operations-catalog.mjs",
+        "change": "modified",
+        "beforeSha256": "d246b5fce1a5cd8af089757e733f18193271377c145c8815617f742eac58f8c7",
+        "afterSha256": "a070a7ad2acde38169ef3df7623379fb9dca79c02d81b705f82c45c1d70677f8"
+      },
+      {
+        "path": "docs/adr/0016-source-lifecycle-and-background-import.md",
+        "change": "added",
+        "beforeSha256": null,
+        "afterSha256": "d124878f88552d93eb40347cbb75c5c240ba34c41dae861277c29142268f228b"
+      },
+      {
+        "path": "docs/implementation/MASTER_SCOPE.md",
+        "change": "modified",
+        "beforeSha256": "1b379b8e5a2c4c4f329b55726edf64f43aa45e4d1c201d811dcb450649bda497",
+        "afterSha256": "0e56a1f64ff0b56ab36f21c38dded2a0bd3a0e5d9693d553cd26485b100c403f"
+      },
+      {
+        "path": "docs/quality/generated-agent-action-boundary-audit.json",
+        "change": "modified",
+        "beforeSha256": "387bf6d898038a2ae5982c8f045fa54d7c8fbee3f0b51dcf3900d6da89e11edb",
+        "afterSha256": "2fdc5ae283ee7e74b719491b0654e150459908246952ad6af5df879347a71c37"
+      },
+      {
+        "path": "docs/quality/generated-master-local-build.log",
+        "change": "modified",
+        "beforeSha256": "70154696b3543342a3ea51d4c987ca5344e40466a0d3df234dd87421f3e9a1b7",
+        "afterSha256": "fb6bd29d3454be527fa0cd3ee47f0151889e52a784a059679cfe06f86afd7329"
+      },
+      {
+        "path": "docs/quality/generated-master-local-report.json",
+        "change": "modified",
+        "beforeSha256": "eb171337b591b37d0a4add772a7e194a397b1a255319b2dd9e2f11bacb71540d",
+        "afterSha256": "ed4e9cdb5b1897ca1c3784775485c2e315d643bdc93fecc2c3ef46d8385b3d9a"
+      },
+      {
+        "path": "docs/quality/generated-operations-postgres-report.json",
+        "change": "modified",
+        "beforeSha256": "5deb6c0ac9d48853727a5f48653eb153d9fb34ef206f232aabb825e18df7b9b5",
+        "afterSha256": "eafdd808a1a405699b6c92d80885b82c3f5f6a4e26d13b9d2ed882943b3458bd"
+      },
+      {
+        "path": "docs/quality/generated-pipeline-postgres-005-report.json",
+        "change": "modified",
+        "beforeSha256": "da952aa60d03825cd9be506ae2286b322d19661c4444548942fbccb8c2784912",
+        "afterSha256": "0c4084a2f876f394fab78ff199caa04a722b83c370e540d03c36574321c54876"
+      },
+      {
+        "path": "docs/quality/generated-tenant-audit.json",
+        "change": "modified",
+        "beforeSha256": "88e6fd8fed3840fba7882ed5185af8c3d825a9ec7efc9040e2f7e290c7b14e97",
+        "afterSha256": "3c86d3be6152f91b3d2161cc4543bd6deffc3833fc93ada5233f9530d82f9bfd"
+      },
+      {
+        "path": "docs/quality/source-worker-20260918/baseline-build.log",
+        "change": "added",
+        "beforeSha256": null,
+        "afterSha256": "87aa950435120321e371b3df21512395ccbf1376b6bb6a6028cab78a0a0375a5"
+      },
+      {
+        "path": "docs/quality/source-worker-20260918/baseline-report.json",
+        "change": "added",
+        "beforeSha256": null,
+        "afterSha256": "c6457834bd9a858cd76913241a6f84a1df31afbbbbc5d992a038834da7924ca7"
+      },
+      {
+        "path": "docs/quality/source-worker-20260918/environment.json",
+        "change": "added",
+        "beforeSha256": null,
+        "afterSha256": "9a4d2a4c06904badd2f31a1a6882bbd00829eaeb95e1991e6fd94bab4b803cfc"
+      },
+      {
+        "path": "docs/quality/source-worker-20260918/external-gate-attempts.json",
+        "change": "added",
+        "beforeSha256": null,
+        "afterSha256": "0cd6f81ed3d403a4dc4dcff12f1d75d0b73cf00faee8c44567b08d1390a84468"
+      },
+      {
+        "path": "docs/runbooks/migration-source-lifecycle-and-worker.md",
+        "change": "added",
+        "beforeSha256": null,
+        "afterSha256": "3c56f56d654d01d10d37fb35df41ed3f3294fe62b93e9ff2b6f02ba088288c77"
+      },
+      {
+        "path": "package.json",
+        "change": "modified",
+        "beforeSha256": "54a64be3ca31ab5fd10b58746d8e1d75542ebbafbcf81319228fa2897ce032d4",
+        "afterSha256": "78ba6aaca120314a830b5fc8820e8e488aa45ed53622055dd69e106d3efa43af"
+      },
+      {
+        "path": "packages/db/prisma/migrations/20260918090000_migration_source_lifecycle/migration.sql",
+        "change": "added",
+        "beforeSha256": null,
+        "afterSha256": "44d66eedc56599f9f5c03994aa80e6fc2ec6277816e01c9a157c8705c4501a80"
+      },
+      {
+        "path": "packages/db/prisma/migrations/20260918091000_background_import/migration.sql",
+        "change": "added",
+        "beforeSha256": null,
+        "afterSha256": "9d130dbeac95ccaf58e2ff535cf2686096d775f1aaa3f210985da23d046edee4"
+      },
+      {
+        "path": "packages/db/prisma/schema.prisma",
+        "change": "modified",
+        "beforeSha256": "b18c3b2ddcaa6137a086e87f7798dc9755df1160e3d77f40f6f77f8fa5ddc63e",
+        "afterSha256": "e990487b96ab5d8d2d54357d8cb3a1e39cd06a660a05de6c170ca01576bd44ff"
+      },
+      {
+        "path": "packages/migration-runtime/src/source-store.d.mts",
+        "change": "modified",
+        "beforeSha256": "c74eb63a37eefdfdb2268e1fe5f89d2c3621163f00f97f38d62995fd639ea6de",
+        "afterSha256": "f11eac7edd480058e6e06e5cf71aef451fd68db44ef238980ae4a8ceb62e34ca"
+      },
+      {
+        "path": "packages/migration-runtime/src/source-store.mjs",
+        "change": "modified",
+        "beforeSha256": "d0359bb4996d2ab9151095b893ed8e0fb181d6c724395e5d8749c09e4a5700d9",
+        "afterSha256": "886312fe31eb2a2259d151bce9f9ad30e4a95d797c8e0b6fcf0c2c58a5fdfd67"
+      },
+      {
+        "path": "packages/migration-runtime/test/source-store.test.mjs",
+        "change": "modified",
+        "beforeSha256": "e4c28ac756125c56bc8f6d5f5b517045dff21a8373febd8f5bcf6517d5c10ba1",
+        "afterSha256": "2d8c256d1f980327abe6fa76d50f71140c718ab878e5dda159ac37afdbddebaa"
+      },
+      {
+        "path": "progress.md",
+        "change": "modified",
+        "beforeSha256": "db90cf77ca73b17c19f35de1dcb327734a25790fb7154fd0c32c4d832ccbdc29",
+        "afterSha256": "942d3be52c045b5c63105c2e58df3f7e9749d4f64511b1afb5369f60fe3212d1"
+      },
+      {
+        "path": "qa.md",
+        "change": "modified",
+        "beforeSha256": "2514e32257b991464c8b52d698202e960b9b070168edfc87a9cc71c8ced98980",
+        "afterSha256": "11e800fc19258e94feaccb33df93528505ab9f1b707d0cbb42c8e048d2b50a4d"
+      },
+      {
+        "path": "tools/migrations/background-loop.d.mts",
+        "change": "added",
+        "beforeSha256": null,
+        "afterSha256": "bacb7c319c1ff08b2242a9b4b0f595727063ea7ac52ef9ba37f3abb17d84ca0a"
+      },
+      {
+        "path": "tools/migrations/background-loop.mjs",
+        "change": "added",
+        "beforeSha256": null,
+        "afterSha256": "f24367fb11e27efb54f769a223794f2f30e2284d9375bf75c4d69e8aa47a5335"
+      },
+      {
+        "path": "tools/migrations/background-worker.ts",
+        "change": "added",
+        "beforeSha256": null,
+        "afterSha256": "88f8952c6936a0c32fbfb96fdb17f3710eb1bdf0721126c4d303bbf79af8f055"
+      },
+      {
+        "path": "tools/migrations/source-cleanup.ts",
+        "change": "added",
+        "beforeSha256": null,
+        "afterSha256": "494ecc2edbd5d143f570dd1dbe4f394c164530318a50ca93d2bef3df879015b8"
+      },
+      {
+        "path": "tools/migrations/test/background-loop.test.mjs",
+        "change": "added",
+        "beforeSha256": null,
+        "afterSha256": "a498ca55f9568e4bfb06198cb66c538436b330c2255225454dca9c03e3abc695"
+      },
+      {
+        "path": "tools/quality/test/source-worker-boundary.test.mjs",
+        "change": "added",
+        "beforeSha256": null,
+        "afterSha256": "3d33d4ce1caa776c795cab5b8b8a8f5529469030df01949d2f0d233f9bbe0d98"
+      },
+      {
+        "path": "tools/release/run-master-local-gate.mjs",
+        "change": "modified",
+        "beforeSha256": "667a7299baf226a70c2f5c987c7e585a3f4a47040f653e4c02ab036dc85c70ea",
+        "afterSha256": "6e44d7e7b400f57b50304f0d8b325ca7fb139176e70c9251355db2c0b28107fb"
+      }
+    ],
+    "selfReportHashOmitted": true
+  },
+  "localVerification": {
+    "scopeId": "MASTER-SOURCE-WORKER-2026-09-18",
+    "generatedAt": "2026-09-17T21:00:50.074Z",
+    "status": "VERIFIED",
+    "verificationLevel": "Local dependency-free runtime tests, syntax and structural checks only",
+    "wholeProductProductionReady": false,
+    "environment": {
+      "node": "v22.16.0",
+      "platform": "linux",
+      "architecture": "x64",
+      "workspaceDependencyTree": false
+    },
+    "commands": [
+      {
+        "label": "Dependency-free regression",
+        "command": "node tools/quality/run-local-tests.mjs",
+        "status": "passed",
+        "exitCode": 0,
+        "durationMs": 8315,
+        "startedAt": "2026-09-17T21:00:33.831Z",
+        "error": null,
+        "testSummary": {
+          "tests": 571,
+          "pass": 571,
+          "fail": 0,
+          "skipped": 0,
+          "cancelled": 0
+        },
+        "stdoutTail": "f until every mapping is migrated\nok 545 - strict mode guards default-pipeline handoff until every mapping is migrated\n  ---\n  duration_ms: 0.713026\n  type: 'test'\n  ...\n# Subtest: mapped stage removal or outcome-type mutation is blocked before runtime update\nok 546 - mapped stage removal or outcome-type mutation is blocked before runtime update\n  ---\n  duration_ms: 0.570516\n  type: 'test'\n  ...\n# Subtest: same-stage repair preserves the legacy stageChangedAt timestamp\nok 547 - same-stage repair preserves the legacy stageChangedAt timestamp\n  ---\n  duration_ms: 1.603636\n  type: 'test'\n  ...\n# Subtest: migration persistence is tenant scoped and transactionally durable\nok 548 - migration persistence is tenant scoped and transactionally durable\n  ---\n  duration_ms: 3.357395\n  type: 'test'\n  ...\n# Subtest: migration schema permits intentional reuse of the same source file\nok 549 - migration schema permits intentional reuse of the same source file\n  ---\n  duration_ms: 1.206739\n  type: 'test'\n  ...\n# Subtest: migration coordinator validates source identity and final accounting\nok 550 - migration coordinator validates source identity and final accounting\n  ---\n  duration_ms: 1.557178\n  type: 'test'\n  ...\n# Subtest: both new routers enforce authenticated interactive sessions\nok 551 - both new routers enforce authenticated interactive sessions\n  ---\n  duration_ms: 4.219192\n  type: 'test'\n  ...\n# Subtest: mutation input contracts cannot select tenant, actor, raw CRM rows or role\nok 552 - mutation input contracts cannot select tenant, actor, raw CRM rows or role\n  ---\n  duration_ms: 2.027054\n  type: 'test'\n  ...\n# Subtest: operator API contains no public approval request or direct provider execute endpoint\nok 553 - operator API contains no public approval request or direct provider execute endpoint\n  ---\n  duration_ms: 1.30191\n  type: 'test'\n  ...\n# Subtest: new writes and approval storage are opt-in in the example environment\nok 554 - new writes and approval storage are opt-in in the example environment\n  ---\n  duration_ms: 0.728109\n  type: 'test'\n  ...\n# Subtest: operator body bounds run before Nest initialization without globally consuming webhook bodies\nok 555 - operator body bounds run before Nest initialization without globally consuming webhook bodies\n  ---\n  duration_ms: 0.691084\n  type: 'test'\n  ...\n# Subtest: additive operations schema preserves legacy data and composite source isolation\nok 556 - additive operations schema preserves legacy data and composite source isolation\n  ---\n  duration_ms: 2.049988\n  type: 'test'\n  ...\n# Subtest: real operations DB acceptance is explicit and never replaced by local doubles\nok 557 - real operations DB acceptance is explicit and never replaced by local doubles\n  ---\n  duration_ms: 1.481546\n  type: 'test'\n  ...\n# Subtest: pipeline router is registered and requires authenticated interactive sessions\nok 558 - pipeline router is registered and requires authenticated interactive sessions\n  ---\n  duration_ms: 3.982392\n  type: 'test'\n  ...\n# Subtest: pipeline mutations replay stable commands before reading mutable state\nok 559 - pipeline mutations replay stable commands before reading mutable state\n  ---\n  duration_ms: 1.967415\n  type: 'test'\n  ...\n# Subtest: public pipeline contracts are strict and expose no tenant selector\nok 560 - public pipeline contracts are strict and expose no tenant selector\n  ---\n  duration_ms: 1.120079\n  type: 'test'\n  ...\n# Subtest: pipeline persistence uses bounded reads and serializable optimistic mutations\nok 561 - pipeline persistence uses bounded reads and serializable optimistic mutations\n  ---\n  duration_ms: 0.899553\n  type: 'test'\n  ...\n# Subtest: HTTP 412 remains a precondition failure at the tRPC error boundary\nok 562 - HTTP 412 remains a precondition failure at the tRPC error boundary\n  ---\n  duration_ms: 0.839734\n  type: 'test'\n  ...\n# Subtest: generated client and accessible settings UI are connected without unsafe casts\nok 563 - generated client and accessible settings UI are connected without unsafe casts\n  ---\n  duration_ms: 1.708211\n  type: 'test'\n  ...\n# Subtest: PostgreSQL gate refuses implicit or production database targets\nok 564 - PostgreSQL gate refuses implicit or production database targets\n  ---\n  duration_ms: 2.733751\n  type: 'test'\n  ...\n# Subtest: PostgreSQL integration spec exercises row locking, rollback and simultaneous writers\nok 565 - PostgreSQL integration spec exercises row locking, rollback and simultaneous writers\n  ---\n  duration_ms: 0.984769\n  type: 'test'\n  ...\n# Subtest: public migration routes expose consent, not unrestricted worker execution\nok 566 - public migration routes expose consent, not unrestricted worker execution\n  ---\n  duration_ms: 4.029031\n  type: 'test'\n  ...\n# Subtest: source lifecycle schema expands data and preserves receipt/source foreign keys\nok 567 - source lifecycle schema expands data and preserves receipt/source foreign keys\n  ---\n  duration_ms: 1.225356\n  type: 'test'\n  ...\n# Subtest: source cleanup and worker CLIs use deployment workspace and never embed a credential\nok 568 - source cleanup and worker CLIs use deployment workspace and never embed a credential\n  ---\n  duration_ms: 1.780648\n  type: 'test'\n  ...\n# Subtest: JSONC parser preserves quoted URLs and comment-like strings\nok 569 - JSONC parser preserves quoted URLs and comment-like strings\n  ---\n  duration_ms: 2.202724\n  type: 'test'\n  ...\n# Subtest: every declared workspace and local dependency is represented in lock metadata\nok 570 - every declared workspace and local dependency is represented in lock metadata\n  ---\n  duration_ms: 55.435689\n  type: 'test'\n  ...\n# Subtest: missing or stale workspace metadata is a failing finding, not a baseline exemption\nok 571 - missing or stale workspace metadata is a failing finding, not a baseline exemption\n  ---\n  duration_ms: 31.618925\n  type: 'test'\n  ...\n1..571\n# tests 571\n# suites 0\n# pass 571\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 8238.102413\n",
+        "stderrTail": ""
+      },
+      {
+        "label": "All ESM syntax",
+        "command": "node tools/quality/check-esm.mjs",
+        "status": "passed",
+        "exitCode": 0,
+        "durationMs": 4207,
+        "startedAt": "2026-09-17T21:00:42.148Z",
+        "error": null,
+        "stdoutTail": "{\n  \"checkedFiles\": 195,\n  \"failures\": []\n}\n",
+        "stderrTail": ""
+      },
+      {
+        "label": "TypeScript parser sweep (not semantic typecheck)",
+        "command": "node tools/quality/check-typescript-syntax.mjs",
+        "status": "passed",
+        "exitCode": 0,
+        "durationMs": 846,
+        "startedAt": "2026-09-17T21:00:46.355Z",
+        "error": null,
+        "stdoutTail": "{\n  \"compilerVersion\": \"5.8.3\",\n  \"checkedFiles\": 907,\n  \"failureCount\": 0,\n  \"failures\": []\n}\n",
+        "stderrTail": ""
+      },
+      {
+        "label": "Package manifests",
+        "command": "node scripts/verify-manifests.mjs",
+        "status": "passed",
+        "exitCode": 0,
+        "durationMs": 58,
+        "startedAt": "2026-09-17T21:00:47.201Z",
+        "error": null,
+        "stdoutTail": "Verified 20 package.json manifest(s).\n",
+        "stderrTail": ""
+      },
+      {
+        "label": "Workspace lock metadata (not frozen install)",
+        "command": "node tools/quality/verify-workspace-lock.mjs",
+        "status": "passed",
+        "exitCode": 0,
+        "durationMs": 102,
+        "startedAt": "2026-09-17T21:00:47.260Z",
+        "error": null,
+        "stdoutTail": "{\n  \"scope\": \"Workspace metadata only; not a Bun frozen install or registry integrity check\",\n  \"findings\": []\n}\n",
+        "stderrTail": ""
+      },
+      {
+        "label": "Generated appearance tokens current",
+        "command": "node tools/quality/generate-appearance.mjs --check",
+        "status": "passed",
+        "exitCode": 0,
+        "durationMs": 30,
+        "startedAt": "2026-09-17T21:00:47.362Z",
+        "error": null,
+        "stdoutTail": "",
+        "stderrTail": ""
+      },
+      {
+        "label": "Repository identity/secrets/BOM audit",
+        "command": "node scripts/repository-audit.mjs",
+        "status": "passed",
+        "exitCode": 0,
+        "durationMs": 388,
+        "startedAt": "2026-09-17T21:00:47.393Z",
+        "error": null,
+        "stdoutTail": "Repository audit passed: no critical identity, secret, BOM, or manifest findings.\n",
+        "stderrTail": ""
+      },
+      {
+        "label": "Credential configuration contract",
+        "command": "node scripts/verify-security-config.mjs",
+        "status": "passed",
+        "exitCode": 0,
+        "durationMs": 25,
+        "startedAt": "2026-09-17T21:00:47.782Z",
+        "error": null,
+        "stdoutTail": "Credential vault configuration is optional in this non-production verification context.\n",
+        "stderrTail": ""
+      },
+      {
+        "label": "Tenant-boundary ratchet (existing findings remain)",
+        "command": "node scripts/audit-tenant-boundaries.mjs --check",
+        "status": "passed",
+        "exitCode": 0,
+        "durationMs": 1932,
+        "startedAt": "2026-09-17T21:00:47.807Z",
+        "error": null,
+        "stdoutTail": "Tenant boundary ratchet passed. Current findings: 15; new findings: 0.\n",
+        "stderrTail": ""
+      },
+      {
+        "label": "Strict governed-action boundary",
+        "command": "node tools/quality/audit-agent-action-boundaries.mjs --check --strict-legacy",
+        "status": "passed",
+        "exitCode": 0,
+        "durationMs": 95,
+        "startedAt": "2026-09-17T21:00:49.739Z",
+        "error": null,
+        "stdoutTail": "{\n  \"generatedAt\": \"2026-09-17T21:00:49.829Z\",\n  \"findingCount\": 0,\n  \"errorCount\": 0,\n  \"migrationCount\": 0,\n  \"findings\": [],\n  \"policy\": {\n    \"checkFailsOn\": [\n      \"error\",\n      \"migration\"\n    ],\n    \"testsAndFixturesExcluded\": true,\n    \"soleExecutorBoundary\": \"packages/agent-action-runtime/src/index.mjs\"\n  }\n}\n",
+        "stderrTail": ""
+      },
+      {
+        "label": "Legacy action migration structure",
+        "command": "node tools/release/verify-legacy-agent-action-migration.mjs",
+        "status": "passed",
+        "exitCode": 0,
+        "durationMs": 99,
+        "startedAt": "2026-09-17T21:00:49.834Z",
+        "error": null,
+        "stdoutTail": "{\"ok\":true,\"requiredFiles\":21,\"blockingBoundaryFindings\":0,\"legacyMigrationFindings\":0,\"nextScopeId\":\"CRM-PIPE-API-003\"}\n",
+        "stderrTail": ""
+      },
+      {
+        "label": "Pipeline API structure",
+        "command": "node tools/release/verify-pipeline-api-r3.mjs",
+        "status": "passed",
+        "exitCode": 0,
+        "durationMs": 53,
+        "startedAt": "2026-09-17T21:00:49.933Z",
+        "error": null,
+        "stdoutTail": "{\"verified\":true,\"requiredFiles\":11,\"packageFiles\":20}\n",
+        "stderrTail": ""
+      },
+      {
+        "label": "Dual-write structure",
+        "command": "node tools/release/verify-pipeline-dual-write-r4.mjs",
+        "status": "passed",
+        "exitCode": 0,
+        "durationMs": 28,
+        "startedAt": "2026-09-17T21:00:49.986Z",
+        "error": null,
+        "stdoutTail": "{\"ok\":true,\"requiredFiles\":8,\"nextScopeId\":\"CRM-PIPE-POSTGRES-005\"}\n",
+        "stderrTail": ""
+      },
+      {
+        "label": "PostgreSQL gate structure (no DB execution)",
+        "command": "node tools/release/verify-pipeline-postgres-r5.mjs",
+        "status": "passed",
+        "exitCode": 0,
+        "durationMs": 31,
+        "startedAt": "2026-09-17T21:00:50.014Z",
+        "error": null,
+        "stdoutTail": "{\"ok\":true,\"requiredFiles\":3,\"failures\":[],\"nextScopeId\":\"CRM-PIPE-POSTGRES-005\"}\n",
+        "stderrTail": ""
+      },
+      {
+        "label": "Migration persistence structure",
+        "command": "node tools/release/verify-migration-persistence-r13.mjs",
+        "status": "passed",
+        "exitCode": 0,
+        "durationMs": 29,
+        "startedAt": "2026-09-17T21:00:50.045Z",
+        "error": null,
+        "stdoutTail": "{\"ok\":true,\"requiredFiles\":8,\"parallelScopeId\":\"MIG-PERSIST-002\",\"nextScopeId\":\"CRM-PIPE-POSTGRES-005\",\"migrationNextScopeId\":\"MIG-API-002\"}\n",
+        "stderrTail": ""
+      }
+    ],
+    "notVerifiedByThisGate": [
+      "Bun frozen install",
+      "formatter/lint",
+      "semantic monorepo typecheck",
+      "Prisma generation and real PostgreSQL concurrency",
+      "production build",
+      "authenticated Next/tRPC E2E",
+      "live providers",
+      "shared-database tenant isolation",
+      "full accessibility",
+      "LLM evaluation",
+      "production backup/restore/load"
+    ],
+    "nextScopeId": "CRM-PIPE-POSTGRES-005"
+  },
+  "externalGateAttempts": [
+    {
+      "command": "node tools/release/run-pipeline-postgres-gate.mjs",
+      "startedAt": "2026-09-17T21:00:33.612961+00:00",
+      "exitCode": 2,
+      "stdout": "{\"artifactState\":\"BLOCKED_EXTERNAL\",\"criticalChecksPassed\":false,\"nextScopeId\":\"CRM-PIPE-POSTGRES-005\",\"blockers\":[\"TEST_DATABASE_URL is required explicitly; never fall back to DATABASE_URL.\",\"TEST_DATABASE_URL is required explicitly; this gate never falls back to DATABASE_URL.\",\"Bun is required for Prisma generation and Bun integration tests.\",\"Installed workspace dependencies are required (node_modules/.bin is absent).\"]}\n",
+      "stderr": "",
+      "expectedVerification": "REAL_POSTGRESQL",
+      "status": "BLOCKED_EXTERNAL"
+    },
+    {
+      "command": "node tools/release/run-operations-postgres-gate.mjs",
+      "startedAt": "2026-09-17T21:00:33.648548+00:00",
+      "exitCode": 2,
+      "stdout": "{\"status\":\"BLOCKED_EXTERNAL\",\"blockers\":[\"TEST_DATABASE_URL is required explicitly; never fall back to DATABASE_URL.\",\"Bun is not available.\",\"Installed workspace dependencies including Prisma are required.\"],\"nextScopeId\":\"MIG-APPROVAL-POSTGRES-001\"}\n",
+      "stderr": "",
+      "expectedVerification": "REAL_POSTGRESQL",
+      "status": "BLOCKED_EXTERNAL"
+    }
+  ],
+  "newPostgresAcceptanceTests": {
+    "written": 4,
+    "executed": 0,
+    "file": "apps/api/test/operations-postgres.integration.spec.ts",
+    "scenarios": [
+      "prepare/delete race",
+      "concurrent physical purge and audit",
+      "two worker DB connections and row receipts",
+      "protect completed import source"
+    ]
+  },
+  "database": {
+    "schemaChanged": true,
+    "newMigrations": [
+      "20260918090000_migration_source_lifecycle",
+      "20260918091000_background_import"
+    ],
+    "applied": false,
+    "realDbWrites": 0,
+    "prismaClientGenerated": false,
+    "legacyDealStageAuthoritative": true
+  },
+  "ui": {
+    "route": "/<slug>/settings/migrations",
+    "changes": [
+      "source cleanup preview/exact confirmation",
+      "pending purge recovery",
+      "explicit background consent/pause",
+      "job list/report polling",
+      "RU/UZ/EN strings"
+    ],
+    "existingThemesPreserved": true,
+    "browserVerified": false,
+    "nativeCodegenVerified": false
+  },
+  "security": {
+    "tenantFindingsExisting": 15,
+    "tenantFindingsNew": 0,
+    "baselineUpdated": false,
+    "strictGovernedBoundaryFindings": 0,
+    "sharedTenancyVerified": false,
+    "fifoActualTest": true
+  },
+  "scopeLimits": [
+    "ALL referenced source files retained, including terminal jobs",
+    "20 active-source quota and 25 job history limit retained",
+    "bounded cleanup is not exhaustive inventory pagination",
+    "no temporary-file force deletion or corrupt/missing-key cleanup",
+    "no object storage or legal retention certification",
+    "background requires actually supervised process/shared POSIX volume and keys",
+    "pause drains already claimed batch",
+    "no worker heartbeat/SLA/load claims",
+    "DB-oriented tests use serialized contract double, not PostgreSQL",
+    "new real PG tests NOT executed",
+    "no Bun/dependency-backed semantic types/build/Prisma generator",
+    "no authenticated browser/proxy/native Eve/live provider acceptance"
+  ],
+  "remainingCode": [
+    "guided ambiguous continuation reconciliation",
+    "referenced source retention/archive policy, quota, full inventory pagination, temp janitor",
+    "worker health/alerting",
+    "XLSX/deals/associations/merge/update/direct migrations",
+    "channels/onboarding/full localization",
+    "self-maintaining proposals/outcome ledger",
+    "shared tenancy/credential migration"
+  ],
+  "nextScopeId": "CRM-PIPE-POSTGRES-005",
+  "parallelAcceptanceScopeId": "MIG-APPROVAL-POSTGRES-001",
+  "workerAcceptanceScopeId": "MIG-WORKER-STAGING-001",
+  "nativeAcceptanceScopeId": "AGENT-APPROVAL-NATIVE-ACCEPTANCE-001",
+  "independentNextScopeId": "AGENT-CONTINUATION-RECONCILIATION-001",
+  "wholeProductReadinessPercent": null,
+  "readinessReason": "No validated weighted release-scope denominator; acceptance gates remain unpassed."
+}

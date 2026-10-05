@@ -1,0 +1,202 @@
+TAP version 13
+# Subtest: request is immutable, requester-bound and idempotent across service instances
+ok 1 - request is immutable, requester-bound and idempotent across service instances
+  ---
+  duration_ms: 9.325388
+  type: 'test'
+  ...
+# Subtest: no forged tenant or digest is accepted
+ok 2 - no forged tenant or digest is accepted
+  ---
+  duration_ms: 0.86646
+  type: 'test'
+  ...
+# Subtest: queue and decisions require current administrator membership
+ok 3 - queue and decisions require current administrator membership
+  ---
+  duration_ms: 1.247644
+  type: 'test'
+  ...
+# Subtest: self approval is prohibited for both direct human and agent-run requesters
+ok 4 - self approval is prohibited for both direct human and agent-run requesters
+  ---
+  duration_ms: 1.589849
+  type: 'test'
+  ...
+# Subtest: agent run linkage is loaded server-side and inactive runs fail closed
+ok 5 - agent run linkage is loaded server-side and inactive runs fail closed
+  ---
+  duration_ms: 0.955882
+  type: 'test'
+  ...
+# Subtest: approval and audit are atomic; audit failure cannot leave consent behind
+ok 6 - approval and audit are atomic; audit failure cannot leave consent behind
+  ---
+  duration_ms: 1.155578
+  type: 'test'
+  ...
+# Subtest: repeated same decision is idempotent but stale opposite decisions are blocked
+ok 7 - repeated same decision is idempotent but stale opposite decisions are blocked
+  ---
+  duration_ms: 1.127726
+  type: 'test'
+  ...
+# Subtest: expiry is committed and audited instead of rolled back with an exception
+ok 8 - expiry is committed and audited instead of rolled back with an exception
+  ---
+  duration_ms: 0.792391
+  type: 'test'
+  ...
+# Subtest: cannot explicitly expire before deadline
+ok 9 - cannot explicitly expire before deadline
+  ---
+  duration_ms: 1.257898
+  type: 'test'
+  ...
+# Subtest: cannot approve redacted or truncated content without a complete safe preview
+ok 10 - cannot approve redacted or truncated content without a complete safe preview
+  ---
+  duration_ms: 1.584961
+  type: 'test'
+  ...
+# Subtest: approved consent is one-shot and bound to execution key, digest and actor
+ok 11 - approved consent is one-shot and bound to execution key, digest and actor
+  ---
+  duration_ms: 1.304307
+  type: 'test'
+  ...
+# Subtest: revoked approving administrator invalidates unused consent
+ok 12 - revoked approving administrator invalidates unused consent
+  ---
+  duration_ms: 0.83931
+  type: 'test'
+  ...
+# Subtest: consumption audit failure leaves consent unconsumed and executes nothing
+ok 13 - consumption audit failure leaves consent unconsumed and executes nothing
+  ---
+  duration_ms: 0.916845
+  type: 'test'
+  ...
+# Subtest: cancel and reject are terminal and do not start execution
+ok 14 - cancel and reject are terminal and do not start execution
+  ---
+  duration_ms: 2.410532
+  type: 'test'
+  ...
+# Subtest: legacy unbound approvals are visible but cannot be newly approved or consumed
+ok 15 - legacy unbound approvals are visible but cannot be newly approved or consumed
+  ---
+  duration_ms: 0.774805
+  type: 'test'
+  ...
+# Subtest: two decision callers cannot both create conflicting final states
+ok 16 - two decision callers cannot both create conflicting final states
+  ---
+  duration_ms: 0.769637
+  type: 'test'
+  ...
+# Subtest: two consumers cannot both obtain one approval (query-contract double, not database proof)
+ok 17 - two consumers cannot both obtain one approval (query-contract double, not database proof)
+  ---
+  duration_ms: 1.107165
+  type: 'test'
+  ...
+# Subtest: list cursor keeps distinct requests with identical timestamps
+ok 18 - list cursor keeps distinct requests with identical timestamps
+  ---
+  duration_ms: 30.794065
+  type: 'test'
+  ...
+# Subtest: pending expiry filters reflect deadlines even without a scheduled sweeper
+ok 19 - pending expiry filters reflect deadlines even without a scheduled sweeper
+  ---
+  duration_ms: 0.661797
+  type: 'test'
+  ...
+# Subtest: governed executor requests consent, rechecks authorization, consumes once and replays receipt
+ok 20 - governed executor requests consent, rechecks authorization, consumes once and replays receipt
+  ---
+  duration_ms: 4.957524
+  type: 'test'
+  ...
+# Subtest: denied actions never allocate approval requests
+ok 21 - denied actions never allocate approval requests
+  ---
+  duration_ms: 0.29791
+  type: 'test'
+  ...
+# Subtest: expiry uses the current service clock, never a caller-provided backdated timestamp
+ok 22 - expiry uses the current service clock, never a caller-provided backdated timestamp
+  ---
+  duration_ms: 0.538395
+  type: 'test'
+  ...
+# Subtest: approval cannot be consumed if authority queries cross its deadline
+ok 23 - approval cannot be consumed if authority queries cross its deadline
+  ---
+  duration_ms: 1.002782
+  type: 'test'
+  ...
+# Subtest: decision crossing the deadline becomes an audited expiration instead of late consent
+ok 24 - decision crossing the deadline becomes an audited expiration instead of late consent
+  ---
+  duration_ms: 0.591514
+  type: 'test'
+  ...
+# Subtest: unknown actions default to denial
+ok 25 - unknown actions default to denial
+  ---
+  duration_ms: 0.892258
+  type: 'test'
+  ...
+# Subtest: exact ALLOW rule permits only already-authorized low-risk action
+ok 26 - exact ALLOW rule permits only already-authorized low-risk action
+  ---
+  duration_ms: 0.313874
+  type: 'test'
+  ...
+# Subtest: high and critical risks cannot be downgraded by an ALLOW rule
+ok 27 - high and critical risks cannot be downgraded by an ALLOW rule
+  ---
+  duration_ms: 0.180857
+  type: 'test'
+  ...
+# Subtest: read-only overrides allow and approval for mutating actions
+ok 28 - read-only overrides allow and approval for mutating actions
+  ---
+  duration_ms: 0.142832
+  type: 'test'
+  ...
+# Subtest: explicit REQUIRE_APPROVAL is honored for low-risk actions
+ok 29 - explicit REQUIRE_APPROVAL is honored for low-risk actions
+  ---
+  duration_ms: 0.172235
+  type: 'test'
+  ...
+# Subtest: malformed rules, wildcards and getters are rejected without execution
+ok 30 - malformed rules, wildcards and getters are rejected without execution
+  ---
+  duration_ms: 0.272462
+  type: 'test'
+  ...
+# Subtest: malformed risk never becomes an implicitly allowed action
+ok 31 - malformed risk never becomes an implicitly allowed action
+  ---
+  duration_ms: 0.489563
+  type: 'test'
+  ...
+# Subtest: model-supplied policy fields have no authority
+ok 32 - model-supplied policy fields have no authority
+  ---
+  duration_ms: 0.118756
+  type: 'test'
+  ...
+1..32
+# tests 32
+# suites 0
+# pass 32
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 260.314135

@@ -1,0 +1,179 @@
+TAP version 13
+# Subtest: rejects inherited targets instead of resolving Object.prototype
+not ok 1 - rejects inherited targets instead of resolving Object.prototype
+  ---
+  duration_ms: 1.55704
+  type: 'test'
+  location: '/mnt/data/tayvero_work/crm-release/packages/migration-core/test/mapping-hardening.test.mjs:6:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The validation function is expected to return "true". Received false
+    
+    Caught error:
+    
+    MigrationDomainError: Target field has an unsupported type
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  stack: |-
+    rejects (file:///mnt/data/tayvero_work/crm-release/packages/migration-core/test/mapping-hardening.test.mjs:5:38)
+    TestContext.<anonymous> (file:///mnt/data/tayvero_work/crm-release/packages/migration-core/test/mapping-hardening.test.mjs:6:79)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.start (node:internal/test_runner/test:944:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17)
+  ...
+# Subtest: rejects prototype transformer names
+not ok 2 - rejects prototype transformer names
+  ---
+  duration_ms: 0.186264
+  type: 'test'
+  location: '/mnt/data/tayvero_work/crm-release/packages/migration-core/test/mapping-hardening.test.mjs:7:1'
+  failureType: 'testCodeFailure'
+  error: 'Missing expected exception.'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  stack: |-
+    rejects (file:///mnt/data/tayvero_work/crm-release/packages/migration-core/test/mapping-hardening.test.mjs:5:38)
+    TestContext.<anonymous> (file:///mnt/data/tayvero_work/crm-release/packages/migration-core/test/mapping-hardening.test.mjs:7:51)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+# Subtest: rejects duplicate and blank headers without choosing an arbitrary column
+not ok 3 - rejects duplicate and blank headers without choosing an arbitrary column
+  ---
+  duration_ms: 0.178192
+  type: 'test'
+  location: '/mnt/data/tayvero_work/crm-release/packages/migration-core/test/mapping-hardening.test.mjs:8:1'
+  failureType: 'testCodeFailure'
+  error: 'Missing expected exception.'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  stack: |-
+    rejects (file:///mnt/data/tayvero_work/crm-release/packages/migration-core/test/mapping-hardening.test.mjs:5:38)
+    TestContext.<anonymous> (file:///mnt/data/tayvero_work/crm-release/packages/migration-core/test/mapping-hardening.test.mjs:9:3)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: compiled defaults are immutable snapshots, not caller-owned objects
+not ok 4 - compiled defaults are immutable snapshots, not caller-owned objects
+  ---
+  duration_ms: 0.558341
+  type: 'test'
+  location: '/mnt/data/tayvero_work/crm-release/packages/migration-core/test/mapping-hardening.test.mjs:12:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    'injected' !== 'new'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'new'
+  actual: 'injected'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///mnt/data/tayvero_work/crm-release/packages/migration-core/test/mapping-hardening.test.mjs:15:10)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: accessor field definitions are rejected without invoking them
+not ok 5 - accessor field definitions are rejected without invoking them
+  ---
+  duration_ms: 0.172023
+  type: 'test'
+  location: '/mnt/data/tayvero_work/crm-release/packages/migration-core/test/mapping-hardening.test.mjs:17:1'
+  failureType: 'testCodeFailure'
+  error: 'Missing expected exception.'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  stack: |-
+    rejects (file:///mnt/data/tayvero_work/crm-release/packages/migration-core/test/mapping-hardening.test.mjs:5:38)
+    TestContext.<anonymous> (file:///mnt/data/tayvero_work/crm-release/packages/migration-core/test/mapping-hardening.test.mjs:19:3)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: rejects object defaults and unsafe reserved destination fields
+not ok 6 - rejects object defaults and unsafe reserved destination fields
+  ---
+  duration_ms: 0.147056
+  type: 'test'
+  location: '/mnt/data/tayvero_work/crm-release/packages/migration-core/test/mapping-hardening.test.mjs:21:1'
+  failureType: 'testCodeFailure'
+  error: 'Missing expected exception.'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  stack: |-
+    rejects (file:///mnt/data/tayvero_work/crm-release/packages/migration-core/test/mapping-hardening.test.mjs:5:38)
+    TestContext.<anonymous> (file:///mnt/data/tayvero_work/crm-release/packages/migration-core/test/mapping-hardening.test.mjs:22:3)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: rejects non-cell values rather than executing coercion hooks
+not ok 7 - rejects non-cell values rather than executing coercion hooks
+  ---
+  duration_ms: 0.232862
+  type: 'test'
+  location: '/mnt/data/tayvero_work/crm-release/packages/migration-core/test/mapping-hardening.test.mjs:25:1'
+  failureType: 'testCodeFailure'
+  error: 'Missing expected exception.'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  stack: |-
+    rejects (file:///mnt/data/tayvero_work/crm-release/packages/migration-core/test/mapping-hardening.test.mjs:5:38)
+    TestContext.<anonymous> (file:///mnt/data/tayvero_work/crm-release/packages/migration-core/test/mapping-hardening.test.mjs:27:3)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: rejects unsupported entity types before creating an executable migration plan
+not ok 8 - rejects unsupported entity types before creating an executable migration plan
+  ---
+  duration_ms: 0.963137
+  type: 'test'
+  location: '/mnt/data/tayvero_work/crm-release/packages/migration-core/test/mapping-hardening.test.mjs:29:1'
+  failureType: 'testCodeFailure'
+  error: 'Missing expected exception.'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  stack: |-
+    rejects (file:///mnt/data/tayvero_work/crm-release/packages/migration-core/test/mapping-hardening.test.mjs:5:38)
+    TestContext.<anonymous> (file:///mnt/data/tayvero_work/crm-release/packages/migration-core/test/mapping-hardening.test.mjs:30:3)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 0
+# fail 8
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 73.122401

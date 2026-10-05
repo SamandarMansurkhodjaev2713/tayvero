@@ -1,0 +1,145 @@
+TAP version 13
+# Subtest: privileged operations derive dedicated workspace and recheck current membership
+ok 1 - privileged operations derive dedicated workspace and recheck current membership
+  ---
+  duration_ms: 11.128221
+  type: 'test'
+  ...
+# Subtest: disabled execution is a real server gate, not a disabled UI button
+ok 2 - disabled execution is a real server gate, not a disabled UI button
+  ---
+  duration_ms: 19.013274
+  type: 'test'
+  ...
+# Subtest: upload persists encrypted bytes and preview survives application recreation
+ok 3 - upload persists encrypted bytes and preview survives application recreation
+  ---
+  duration_ms: 9.52394
+  type: 'test'
+  ...
+# Subtest: invalid encoding, canonical base64, large files and XLSX fail before publication
+ok 4 - invalid encoding, canonical base64, large files and XLSX fail before publication
+  ---
+  duration_ms: 2.925265
+  type: 'test'
+  ...
+# Subtest: source fingerprints and cross-workspace source lookups fail closed
+ok 5 - source fingerprints and cross-workspace source lookups fail closed
+  ---
+  duration_ms: 3.44951
+  type: 'test'
+  ...
+# Subtest: mapping cannot assign owner/tenant fields; unsupported deal writes fail
+ok 6 - mapping cannot assign owner/tenant fields; unsupported deal writes fail
+  ---
+  duration_ms: 3.855349
+  type: 'test'
+  ...
+# Subtest: prepare is atomic, idempotent and immutable for the same command
+ok 7 - prepare is atomic, idempotent and immutable for the same command
+  ---
+  duration_ms: 12.156572
+  type: 'test'
+  ...
+# Subtest: preparation failure rolls back job, plan and issues together
+ok 8 - preparation failure rolls back job, plan and issues together
+  ---
+  duration_ms: 4.744073
+  type: 'test'
+  ...
+# Subtest: every valid row gets a receipt in the transaction creating the CRM record
+ok 9 - every valid row gets a receipt in the transaction creating the CRM record
+  ---
+  duration_ms: 12.71663
+  type: 'test'
+  ...
+# Subtest: repeat execution and repeat import never merge or overwrite exact contacts
+ok 10 - repeat execution and repeat import never merge or overwrite exact contacts
+  ---
+  duration_ms: 13.783758
+  type: 'test'
+  ...
+# Subtest: database receipt failure rolls back customer writes before any retry
+ok 11 - database receipt failure rolls back customer writes before any retry
+  ---
+  duration_ms: 10.130106
+  type: 'test'
+  ...
+# Subtest: crash after CRM commit but before batch settlement replays receipts, not writes
+not ok 12 - crash after CRM commit but before batch settlement replays receipts, not writes
+  ---
+  duration_ms: 122.482198
+  type: 'test'
+  location: '/mnt/data/tayvero_work/crm-release/apps/api/test/migration-application.test.mjs:36:1'
+  failureType: 'testCodeFailure'
+  error: 'execution did not terminate'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    Object.finish (file:///mnt/data/tayvero_work/crm-release/apps/api/test/migration-application.test.mjs:20:140)
+    async TestContext.<anonymous> (file:///mnt/data/tayvero_work/crm-release/apps/api/test/migration-application.test.mjs:36:509)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: invalid rows and in-file duplicates remain separate, paginatable outcomes
+ok 13 - invalid rows and in-file duplicates remain separate, paginatable outcomes
+  ---
+  duration_ms: 11.140875
+  type: 'test'
+  ...
+# Subtest: source and plan tampering prevent writes
+ok 14 - source and plan tampering prevent writes
+  ---
+  duration_ms: 5.596193
+  type: 'test'
+  ...
+# Subtest: membership revocation between preview and execute prevents all writes
+ok 15 - membership revocation between preview and execute prevents all writes
+  ---
+  duration_ms: 3.21252
+  type: 'test'
+  ...
+# Subtest: cancellation is idempotent, stops new batches and does not claim rollback
+ok 16 - cancellation is idempotent, stops new batches and does not claim rollback
+  ---
+  duration_ms: 4.115444
+  type: 'test'
+  ...
+# Subtest: rollback previews first, requires exact confirmation, archives only own unchanged rows
+ok 17 - rollback previews first, requires exact confirmation, archives only own unchanged rows
+  ---
+  duration_ms: 8.268139
+  type: 'test'
+  ...
+# Subtest: rollback will not archive edited or linked CRM records
+ok 18 - rollback will not archive edited or linked CRM records
+  ---
+  duration_ms: 11.957563
+  type: 'test'
+  ...
+# Subtest: sources used by jobs are retained; unused sources can be tombstoned and physically removed
+ok 19 - sources used by jobs are retained; unused sources can be tombstoned and physically removed
+  ---
+  duration_ms: 6.745252
+  type: 'test'
+  ...
+# Subtest: company imports use source evidence and create-only exact duplicate checks
+ok 20 - company imports use source evidence and create-only exact duplicate checks
+  ---
+  duration_ms: 6.612115
+  type: 'test'
+  ...
+# Subtest: report refuses ambiguous row accounting instead of claiming completion
+ok 21 - report refuses ambiguous row accounting instead of claiming completion
+  ---
+  duration_ms: 8.546004
+  type: 'test'
+  ...
+1..21
+# tests 21
+# suites 0
+# pass 20
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 429.945963

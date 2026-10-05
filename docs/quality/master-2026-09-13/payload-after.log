@@ -1,0 +1,304 @@
+TAP version 13
+# Subtest: executes a validated authorized action and records redacted audit events
+ok 1 - executes a validated authorized action and records redacted audit events
+  ---
+  duration_ms: 5.111208
+  type: 'test'
+  ...
+# Subtest: rejects tenant ownership fields at any nesting depth
+ok 2 - rejects tenant ownership fields at any nesting depth
+  ---
+  duration_ms: 0.549068
+  type: 'test'
+  ...
+# Subtest: rejects missing permissions and object-level authorization
+ok 3 - rejects missing permissions and object-level authorization
+  ---
+  duration_ms: 0.470101
+  type: 'test'
+  ...
+# Subtest: replays a completed idempotent result without executing again
+ok 4 - replays a completed idempotent result without executing again
+  ---
+  duration_ms: 0.972791
+  type: 'test'
+  ...
+# Subtest: rejects reuse of an idempotency key for another payload
+ok 5 - rejects reuse of an idempotency key for another payload
+  ---
+  duration_ms: 0.64589
+  type: 'test'
+  ...
+# Subtest: rejects changed payload after an approval failure acquired the same idempotency key
+ok 6 - rejects changed payload after an approval failure acquired the same idempotency key
+  ---
+  duration_ms: 0.620413
+  type: 'test'
+  ...
+# Subtest: allows only one concurrent execution for the same receipt
+ok 7 - allows only one concurrent execution for the same receipt
+  ---
+  duration_ms: 5.860069
+  type: 'test'
+  ...
+# Subtest: requires payload-bound tenant-bound approval for high-risk actions
+ok 8 - requires payload-bound tenant-bound approval for high-risk actions
+  ---
+  duration_ms: 1.01949
+  type: 'test'
+  ...
+# Subtest: rejects approval bound to another tenant or modified payload
+ok 9 - rejects approval bound to another tenant or modified payload
+  ---
+  duration_ms: 0.558051
+  type: 'test'
+  ...
+# Subtest: times out a non-cooperative executor and records failure
+ok 10 - times out a non-cooperative executor and records failure
+  ---
+  duration_ms: 21.932159
+  type: 'test'
+  ...
+# Subtest: propagates cancellation and does not retry it
+ok 11 - propagates cancellation and does not retry it
+  ---
+  duration_ms: 0.551221
+  type: 'test'
+  ...
+# Subtest: keeps the success receipt when the success audit write fails
+ok 12 - keeps the success receipt when the success audit write fails
+  ---
+  duration_ms: 0.59802
+  type: 'test'
+  ...
+# Subtest: propagates the operation digest and idempotency key to the executor
+ok 13 - propagates the operation digest and idempotency key to the executor
+  ---
+  duration_ms: 0.447839
+  type: 'test'
+  ...
+# Subtest: validates untrusted model input and executor output
+ok 14 - validates untrusted model input and executor output
+  ---
+  duration_ms: 0.593543
+  type: 'test'
+  ...
+# Subtest: rejects mutating manifests without idempotency
+ok 15 - rejects mutating manifests without idempotency
+  ---
+  duration_ms: 0.170772
+  type: 'test'
+  ...
+# Subtest: rejects manifests without explicit permissions
+ok 16 - rejects manifests without explicit permissions
+  ---
+  duration_ms: 0.181107
+  type: 'test'
+  ...
+# Subtest: rejects non-integer, non-finite and unsafe retry policies
+ok 17 - rejects non-integer, non-finite and unsafe retry policies
+  ---
+  duration_ms: 0.499404
+  type: 'test'
+  ...
+# Subtest: passes an immutable permission snapshot to validators, policy and executor
+ok 18 - passes an immutable permission snapshot to validators, policy and executor
+  ---
+  duration_ms: 0.560745
+  type: 'test'
+  ...
+# Subtest: passes immutable validated input to business validation and authorization
+ok 19 - passes immutable validated input to business validation and authorization
+  ---
+  duration_ms: 0.542598
+  type: 'test'
+  ...
+# Subtest: rejects invalid clock values before durable state mutation
+ok 20 - rejects invalid clock values before durable state mutation
+  ---
+  duration_ms: 1.00571
+  type: 'test'
+  ...
+# Subtest: rejects plain object registries that could expose prototype-backed actions
+ok 21 - rejects plain object registries that could expose prototype-backed actions
+  ---
+  duration_ms: 0.175097
+  type: 'test'
+  ...
+# Subtest: invalid approval expiry is rejected instead of being treated as non-expiring
+ok 22 - invalid approval expiry is rejected instead of being treated as non-expiring
+  ---
+  duration_ms: 0.254755
+  type: 'test'
+  ...
+# Subtest: rejects unknown request and execution-option control fields
+ok 23 - rejects unknown request and execution-option control fields
+  ---
+  duration_ms: 0.238801
+  type: 'test'
+  ...
+# Subtest: requires both input and output validators even for a custom registry implementation
+ok 24 - requires both input and output validators even for a custom registry implementation
+  ---
+  duration_ms: 0.258841
+  type: 'test'
+  ...
+# Subtest: normalizes failures from business validation, authorization and policy evaluation
+ok 25 - normalizes failures from business validation, authorization and policy evaluation
+  ---
+  duration_ms: 0.485214
+  type: 'test'
+  ...
+# Subtest: redacts common secret values even when the property name is generic
+ok 26 - redacts common secret values even when the property name is generic
+  ---
+  duration_ms: 0.420458
+  type: 'test'
+  ...
+# Subtest: memory receipt store validates its lease configuration and fails closed on lost leases
+ok 27 - memory receipt store validates its lease configuration and fails closed on lost leases
+  ---
+  duration_ms: 0.201106
+  type: 'test'
+  ...
+# Subtest: a pre-aborted request does not acquire a receipt, consume approval or call an executor
+ok 28 - a pre-aborted request does not acquire a receipt, consume approval or call an executor
+  ---
+  duration_ms: 0.235947
+  type: 'test'
+  ...
+# Subtest: canonical JSON rejects cyclic arrays and unsafe object keys
+ok 29 - canonical JSON rejects cyclic arrays and unsafe object keys
+  ---
+  duration_ms: 0.322755
+  type: 'test'
+  ...
+# Subtest: audit redaction stores unsafe property names without invoking prototype setters
+ok 30 - audit redaction stores unsafe property names without invoking prototype setters
+  ---
+  duration_ms: 0.097002
+  type: 'test'
+  ...
+# Subtest: rejects malformed trusted correlation identifiers
+ok 31 - rejects malformed trusted correlation identifiers
+  ---
+  duration_ms: 0.196278
+  type: 'test'
+  ...
+# Subtest: fails closed when policy approval metadata is malformed
+ok 32 - fails closed when policy approval metadata is malformed
+  ---
+  duration_ms: 0.175598
+  type: 'test'
+  ...
+# Subtest: rejects non-plain request objects without invoking custom serialization hooks
+ok 33 - rejects non-plain request objects without invoking custom serialization hooks
+  ---
+  duration_ms: 0.139785
+  type: 'test'
+  ...
+# Subtest: revalidates validator-transformed input for tenant ownership fields
+ok 34 - revalidates validator-transformed input for tenant ownership fields
+  ---
+  duration_ms: 0.156861
+  type: 'test'
+  ...
+# Subtest: canonical hashing rejects accessor properties without invoking them
+ok 35 - canonical hashing rejects accessor properties without invoking them
+  ---
+  duration_ms: 1.008043
+  type: 'test'
+  ...
+# Subtest: rejects sparse arrays so absent elements cannot alias explicit null
+ok 36 - rejects sparse arrays so absent elements cannot alias explicit null
+  ---
+  duration_ms: 0.166265
+  type: 'test'
+  ...
+# Subtest: rejects over-depth inputs with a bounded domain error rather than stack overflow
+ok 37 - rejects over-depth inputs with a bounded domain error rather than stack overflow
+  ---
+  duration_ms: 0.880224
+  type: 'test'
+  ...
+# Subtest: rejects oversized strings and excessive node counts
+ok 38 - rejects oversized strings and excessive node counts
+  ---
+  duration_ms: 6.720035
+  type: 'test'
+  ...
+# Subtest: input snapshot rejects a getter before execution
+ok 39 - input snapshot rejects a getter before execution
+  ---
+  duration_ms: 1.00607
+  type: 'test'
+  ...
+# Subtest: normal JSON digests remain stable and object undefined fields stay omitted
+ok 40 - normal JSON digests remain stable and object undefined fields stay omitted
+  ---
+  duration_ms: 0.221566
+  type: 'test'
+  ...
+# Subtest: receipt store atomically acquires, completes and replays
+ok 41 - receipt store atomically acquires, completes and replays
+  ---
+  duration_ms: 3.587026
+  type: 'test'
+  ...
+# Subtest: receipt rejects same key with another digest
+ok 42 - receipt rejects same key with another digest
+  ---
+  duration_ms: 1.376435
+  type: 'test'
+  ...
+# Subtest: receipt completion requires the acquired lease token
+ok 43 - receipt completion requires the acquired lease token
+  ---
+  duration_ms: 0.254645
+  type: 'test'
+  ...
+# Subtest: approval consumption is tenant, action, digest and expiry bound
+ok 44 - approval consumption is tenant, action, digest and expiry bound
+  ---
+  duration_ms: 0.430062
+  type: 'test'
+  ...
+# Subtest: audit sink redacts secret-bearing properties
+ok 45 - audit sink redacts secret-bearing properties
+  ---
+  duration_ms: 0.751115
+  type: 'test'
+  ...
+# Subtest: expired unsafe receipt is quarantined instead of repeating an unknown external side effect
+ok 46 - expired unsafe receipt is quarantined instead of repeating an unknown external side effect
+  ---
+  duration_ms: 0.491833
+  type: 'test'
+  ...
+# Subtest: expired receipt may replay only with an explicit safe adapter capability
+ok 47 - expired receipt may replay only with an explicit safe adapter capability
+  ---
+  duration_ms: 0.558251
+  type: 'test'
+  ...
+# Subtest: receipt lease covers the complete declared execution/retry budget
+ok 48 - receipt lease covers the complete declared execution/retry budget
+  ---
+  duration_ms: 0.287012
+  type: 'test'
+  ...
+# Subtest: memory reference adapter quarantines expired unsafe execution too
+ok 49 - memory reference adapter quarantines expired unsafe execution too
+  ---
+  duration_ms: 1.314844
+  type: 'test'
+  ...
+1..49
+# tests 49
+# suites 0
+# pass 49
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 126.222787

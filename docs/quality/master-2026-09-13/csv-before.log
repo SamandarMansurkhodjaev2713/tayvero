@@ -1,0 +1,173 @@
+TAP version 13
+# Subtest: CSV: auto-detection works beyond the 30-row sampling boundary
+not ok 1 - CSV: auto-detection works beyond the 30-row sampling boundary
+  ---
+  duration_ms: 2.210131
+  type: 'test'
+  location: '/mnt/data/tayvero_work/crm-release/packages/migration-core/test/csv-hardening.test.mjs:4:1'
+  failureType: 'testCodeFailure'
+  error: 'Unable to detect a consistent CSV delimiter'
+  code: 'DELIMITER_NOT_DETECTED'
+  name: 'MigrationDomainError'
+  stack: |-
+    fail (file:///mnt/data/tayvero_work/crm-release/packages/migration-core/src/errors.mjs:12:9)
+    detectDelimiter (file:///mnt/data/tayvero_work/crm-release/packages/migration-core/src/csv.mjs:95:34)
+    parseCsv (file:///mnt/data/tayvero_work/crm-release/packages/migration-core/src/csv.mjs:104:81)
+    TestContext.<anonymous> (file:///mnt/data/tayvero_work/crm-release/packages/migration-core/test/csv-hardening.test.mjs:6:18)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.start (node:internal/test_runner/test:944:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17)
+  ...
+# Subtest: CSV: rejects text or a second quoted string after a closing quote
+not ok 2 - CSV: rejects text or a second quoted string after a closing quote
+  ---
+  duration_ms: 0.578872
+  type: 'test'
+  location: '/mnt/data/tayvero_work/crm-release/packages/migration-core/test/csv-hardening.test.mjs:8:1'
+  failureType: 'testCodeFailure'
+  error: 'Missing expected exception.'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  stack: |-
+    TestContext.<anonymous> (file:///mnt/data/tayvero_work/crm-release/packages/migration-core/test/csv-hardening.test.mjs:9:65)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+# Subtest: CSV: single-column imports are valid without explicit delimiter selection
+not ok 3 - CSV: single-column imports are valid without explicit delimiter selection
+  ---
+  duration_ms: 0.247645
+  type: 'test'
+  location: '/mnt/data/tayvero_work/crm-release/packages/migration-core/test/csv-hardening.test.mjs:11:1'
+  failureType: 'testCodeFailure'
+  error: 'Unable to detect a consistent CSV delimiter'
+  code: 'DELIMITER_NOT_DETECTED'
+  name: 'MigrationDomainError'
+  stack: |-
+    fail (file:///mnt/data/tayvero_work/crm-release/packages/migration-core/src/errors.mjs:12:9)
+    detectDelimiter (file:///mnt/data/tayvero_work/crm-release/packages/migration-core/src/csv.mjs:95:34)
+    parseCsv (file:///mnt/data/tayvero_work/crm-release/packages/migration-core/src/csv.mjs:104:81)
+    TestContext.<anonymous> (file:///mnt/data/tayvero_work/crm-release/packages/migration-core/test/csv-hardening.test.mjs:12:20)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: CSV: formula escaping includes line breaks and Unicode whitespace
+not ok 4 - CSV: formula escaping includes line breaks and Unicode whitespace
+  ---
+  duration_ms: 0.575056
+  type: 'test'
+  location: '/mnt/data/tayvero_work/crm-release/packages/migration-core/test/csv-hardening.test.mjs:14:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + '\n=1+1'
+    - "'\n=1+1"
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: |-
+    '
+    =1+1
+  actual: |-
+    
+    =1+1
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///mnt/data/tayvero_work/crm-release/packages/migration-core/test/csv-hardening.test.mjs:15:82)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: CSV: limits cannot be disabled by NaN or Infinity
+not ok 5 - CSV: limits cannot be disabled by NaN or Infinity
+  ---
+  duration_ms: 0.231311
+  type: 'test'
+  location: '/mnt/data/tayvero_work/crm-release/packages/migration-core/test/csv-hardening.test.mjs:17:1'
+  failureType: 'testCodeFailure'
+  error: 'Missing expected exception.'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  stack: |-
+    TestContext.<anonymous> (file:///mnt/data/tayvero_work/crm-release/packages/migration-core/test/csv-hardening.test.mjs:18:94)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: CSV: source row numbers survive blank and multiline records
+not ok 6 - CSV: source row numbers survive blank and multiline records
+  ---
+  duration_ms: 0.692439
+  type: 'test'
+  location: '/mnt/data/tayvero_work/crm-release/packages/migration-core/test/csv-hardening.test.mjs:20:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+    + undefined
+    - [
+    -   3,
+    -   5
+    - ]
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    0: 3
+    1: 5
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///mnt/data/tayvero_work/crm-release/packages/migration-core/test/csv-hardening.test.mjs:22:10)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: CSV: format detection rejects backslash paths and control characters on every OS
+not ok 7 - CSV: format detection rejects backslash paths and control characters on every OS
+  ---
+  duration_ms: 0.294343
+  type: 'test'
+  location: '/mnt/data/tayvero_work/crm-release/packages/migration-core/test/csv-hardening.test.mjs:28:1'
+  failureType: 'testCodeFailure'
+  error: 'Missing expected exception.'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  stack: |-
+    TestContext.<anonymous> (file:///mnt/data/tayvero_work/crm-release/packages/migration-core/test/csv-hardening.test.mjs:29:95)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 0
+# fail 7
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 66.189871

@@ -1,0 +1,42 @@
+name: Bug report
+description: Report a reproducible product defect
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: textarea
+    id: impact
+    attributes:
+      label: Business impact
+      description: Who is affected and what is blocked or incorrect?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction
+      description: Exact GIVEN / WHEN / THEN steps.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected result
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual result
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment / build
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Sanitized logs, request IDs, screenshots, or traces. Never include secrets or unnecessary PII.

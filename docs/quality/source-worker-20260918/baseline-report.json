@@ -1,0 +1,201 @@
+{
+  "scopeId": "MASTER-CONTINUATION-2026-09-15",
+  "generatedAt": "2026-09-17T20:41:28.554Z",
+  "status": "VERIFIED",
+  "verificationLevel": "Local dependency-free runtime tests, syntax and structural checks only",
+  "wholeProductProductionReady": false,
+  "environment": {
+    "node": "v22.16.0",
+    "platform": "linux",
+    "architecture": "x64",
+    "workspaceDependencyTree": false
+  },
+  "commands": [
+    {
+      "label": "Dependency-free regression",
+      "command": "node tools/quality/run-local-tests.mjs",
+      "status": "passed",
+      "exitCode": 0,
+      "durationMs": 7951,
+      "startedAt": "2026-09-17T20:41:12.325Z",
+      "error": null,
+      "testSummary": {
+        "tests": 535,
+        "pass": 535,
+        "fail": 0,
+        "skipped": 0,
+        "cancelled": 0
+      },
+      "stdoutTail": "-\n  duration_ms: 3.712923\n  type: 'test'\n  ...\n# Subtest: legacy reads remain authoritative in this checkpoint\nok 509 - legacy reads remain authoritative in this checkpoint\n  ---\n  duration_ms: 1.681401\n  type: 'test'\n  ...\n# Subtest: strict dual-write is opt-in and the example environment leaves it off\nok 510 - strict dual-write is opt-in and the example environment leaves it off\n  ---\n  duration_ms: 0.964309\n  type: 'test'\n  ...\n# Subtest: the additive migration never removes or rewrites legacy deal.stage\nok 511 - the additive migration never removes or rewrites legacy deal.stage\n  ---\n  duration_ms: 0.731725\n  type: 'test'\n  ...\n# Subtest: strict mode guards default-pipeline handoff until every mapping is migrated\nok 512 - strict mode guards default-pipeline handoff until every mapping is migrated\n  ---\n  duration_ms: 0.720247\n  type: 'test'\n  ...\n# Subtest: mapped stage removal or outcome-type mutation is blocked before runtime update\nok 513 - mapped stage removal or outcome-type mutation is blocked before runtime update\n  ---\n  duration_ms: 0.64073\n  type: 'test'\n  ...\n# Subtest: same-stage repair preserves the legacy stageChangedAt timestamp\nok 514 - same-stage repair preserves the legacy stageChangedAt timestamp\n  ---\n  duration_ms: 2.036538\n  type: 'test'\n  ...\n# Subtest: migration persistence is tenant scoped and transactionally durable\nok 515 - migration persistence is tenant scoped and transactionally durable\n  ---\n  duration_ms: 2.914719\n  type: 'test'\n  ...\n# Subtest: migration schema permits intentional reuse of the same source file\nok 516 - migration schema permits intentional reuse of the same source file\n  ---\n  duration_ms: 1.405904\n  type: 'test'\n  ...\n# Subtest: migration coordinator validates source identity and final accounting\nok 517 - migration coordinator validates source identity and final accounting\n  ---\n  duration_ms: 1.706319\n  type: 'test'\n  ...\n# Subtest: both new routers enforce authenticated interactive sessions\nok 518 - both new routers enforce authenticated interactive sessions\n  ---\n  duration_ms: 4.993239\n  type: 'test'\n  ...\n# Subtest: mutation input contracts cannot select tenant, actor, raw CRM rows or role\nok 519 - mutation input contracts cannot select tenant, actor, raw CRM rows or role\n  ---\n  duration_ms: 1.54602\n  type: 'test'\n  ...\n# Subtest: operator API contains no public approval request or direct provider execute endpoint\nok 520 - operator API contains no public approval request or direct provider execute endpoint\n  ---\n  duration_ms: 1.960194\n  type: 'test'\n  ...\n# Subtest: new writes and approval storage are opt-in in the example environment\nok 521 - new writes and approval storage are opt-in in the example environment\n  ---\n  duration_ms: 1.16714\n  type: 'test'\n  ...\n# Subtest: operator body bounds run before Nest initialization without globally consuming webhook bodies\nok 522 - operator body bounds run before Nest initialization without globally consuming webhook bodies\n  ---\n  duration_ms: 0.760627\n  type: 'test'\n  ...\n# Subtest: additive operations schema preserves legacy data and composite source isolation\nok 523 - additive operations schema preserves legacy data and composite source isolation\n  ---\n  duration_ms: 1.931432\n  type: 'test'\n  ...\n# Subtest: real operations DB acceptance is explicit and never replaced by local doubles\nok 524 - real operations DB acceptance is explicit and never replaced by local doubles\n  ---\n  duration_ms: 1.902308\n  type: 'test'\n  ...\n# Subtest: pipeline router is registered and requires authenticated interactive sessions\nok 525 - pipeline router is registered and requires authenticated interactive sessions\n  ---\n  duration_ms: 3.628937\n  type: 'test'\n  ...\n# Subtest: pipeline mutations replay stable commands before reading mutable state\nok 526 - pipeline mutations replay stable commands before reading mutable state\n  ---\n  duration_ms: 1.90988\n  type: 'test'\n  ...\n# Subtest: public pipeline contracts are strict and expose no tenant selector\nok 527 - public pipeline contracts are strict and expose no tenant selector\n  ---\n  duration_ms: 3.150278\n  type: 'test'\n  ...\n# Subtest: pipeline persistence uses bounded reads and serializable optimistic mutations\nok 528 - pipeline persistence uses bounded reads and serializable optimistic mutations\n  ---\n  duration_ms: 0.738785\n  type: 'test'\n  ...\n# Subtest: HTTP 412 remains a precondition failure at the tRPC error boundary\nok 529 - HTTP 412 remains a precondition failure at the tRPC error boundary\n  ---\n  duration_ms: 0.678415\n  type: 'test'\n  ...\n# Subtest: generated client and accessible settings UI are connected without unsafe casts\nok 530 - generated client and accessible settings UI are connected without unsafe casts\n  ---\n  duration_ms: 1.713139\n  type: 'test'\n  ...\n# Subtest: PostgreSQL gate refuses implicit or production database targets\nok 531 - PostgreSQL gate refuses implicit or production database targets\n  ---\n  duration_ms: 5.194317\n  type: 'test'\n  ...\n# Subtest: PostgreSQL integration spec exercises row locking, rollback and simultaneous writers\nok 532 - PostgreSQL integration spec exercises row locking, rollback and simultaneous writers\n  ---\n  duration_ms: 1.95032\n  type: 'test'\n  ...\n# Subtest: JSONC parser preserves quoted URLs and comment-like strings\nok 533 - JSONC parser preserves quoted URLs and comment-like strings\n  ---\n  duration_ms: 2.182524\n  type: 'test'\n  ...\n# Subtest: every declared workspace and local dependency is represented in lock metadata\nok 534 - every declared workspace and local dependency is represented in lock metadata\n  ---\n  duration_ms: 68.046119\n  type: 'test'\n  ...\n# Subtest: missing or stale workspace metadata is a failing finding, not a baseline exemption\nok 535 - missing or stale workspace metadata is a failing finding, not a baseline exemption\n  ---\n  duration_ms: 31.178519\n  type: 'test'\n  ...\n1..535\n# tests 535\n# suites 0\n# pass 535\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 7878.257673\n",
+      "stderrTail": ""
+    },
+    {
+      "label": "All ESM syntax",
+      "command": "node tools/quality/check-esm.mjs",
+      "status": "passed",
+      "exitCode": 0,
+      "durationMs": 4426,
+      "startedAt": "2026-09-17T20:41:20.280Z",
+      "error": null,
+      "stdoutTail": "{\n  \"checkedFiles\": 190,\n  \"failures\": []\n}\n",
+      "stderrTail": ""
+    },
+    {
+      "label": "TypeScript parser sweep (not semantic typecheck)",
+      "command": "node tools/quality/check-typescript-syntax.mjs",
+      "status": "passed",
+      "exitCode": 0,
+      "durationMs": 959,
+      "startedAt": "2026-09-17T20:41:24.706Z",
+      "error": null,
+      "stdoutTail": "{\n  \"compilerVersion\": \"5.8.3\",\n  \"checkedFiles\": 902,\n  \"failureCount\": 0,\n  \"failures\": []\n}\n",
+      "stderrTail": ""
+    },
+    {
+      "label": "Package manifests",
+      "command": "node scripts/verify-manifests.mjs",
+      "status": "passed",
+      "exitCode": 0,
+      "durationMs": 72,
+      "startedAt": "2026-09-17T20:41:25.665Z",
+      "error": null,
+      "stdoutTail": "Verified 20 package.json manifest(s).\n",
+      "stderrTail": ""
+    },
+    {
+      "label": "Workspace lock metadata (not frozen install)",
+      "command": "node tools/quality/verify-workspace-lock.mjs",
+      "status": "passed",
+      "exitCode": 0,
+      "durationMs": 98,
+      "startedAt": "2026-09-17T20:41:25.737Z",
+      "error": null,
+      "stdoutTail": "{\n  \"scope\": \"Workspace metadata only; not a Bun frozen install or registry integrity check\",\n  \"findings\": []\n}\n",
+      "stderrTail": ""
+    },
+    {
+      "label": "Generated appearance tokens current",
+      "command": "node tools/quality/generate-appearance.mjs --check",
+      "status": "passed",
+      "exitCode": 0,
+      "durationMs": 28,
+      "startedAt": "2026-09-17T20:41:25.835Z",
+      "error": null,
+      "stdoutTail": "",
+      "stderrTail": ""
+    },
+    {
+      "label": "Repository identity/secrets/BOM audit",
+      "command": "node scripts/repository-audit.mjs",
+      "status": "passed",
+      "exitCode": 0,
+      "durationMs": 405,
+      "startedAt": "2026-09-17T20:41:25.863Z",
+      "error": null,
+      "stdoutTail": "Repository audit passed: no critical identity, secret, BOM, or manifest findings.\n",
+      "stderrTail": ""
+    },
+    {
+      "label": "Credential configuration contract",
+      "command": "node scripts/verify-security-config.mjs",
+      "status": "passed",
+      "exitCode": 0,
+      "durationMs": 38,
+      "startedAt": "2026-09-17T20:41:26.268Z",
+      "error": null,
+      "stdoutTail": "Credential vault configuration is optional in this non-production verification context.\n",
+      "stderrTail": ""
+    },
+    {
+      "label": "Tenant-boundary ratchet (existing findings remain)",
+      "command": "node scripts/audit-tenant-boundaries.mjs --check",
+      "status": "passed",
+      "exitCode": 0,
+      "durationMs": 1893,
+      "startedAt": "2026-09-17T20:41:26.306Z",
+      "error": null,
+      "stdoutTail": "Tenant boundary ratchet passed. Current findings: 15; new findings: 0.\n",
+      "stderrTail": ""
+    },
+    {
+      "label": "Strict governed-action boundary",
+      "command": "node tools/quality/audit-agent-action-boundaries.mjs --check --strict-legacy",
+      "status": "passed",
+      "exitCode": 0,
+      "durationMs": 103,
+      "startedAt": "2026-09-17T20:41:28.200Z",
+      "error": null,
+      "stdoutTail": "{\n  \"generatedAt\": \"2026-09-17T20:41:28.298Z\",\n  \"findingCount\": 0,\n  \"errorCount\": 0,\n  \"migrationCount\": 0,\n  \"findings\": [],\n  \"policy\": {\n    \"checkFailsOn\": [\n      \"error\",\n      \"migration\"\n    ],\n    \"testsAndFixturesExcluded\": true,\n    \"soleExecutorBoundary\": \"packages/agent-action-runtime/src/index.mjs\"\n  }\n}\n",
+      "stderrTail": ""
+    },
+    {
+      "label": "Legacy action migration structure",
+      "command": "node tools/release/verify-legacy-agent-action-migration.mjs",
+      "status": "passed",
+      "exitCode": 0,
+      "durationMs": 99,
+      "startedAt": "2026-09-17T20:41:28.303Z",
+      "error": null,
+      "stdoutTail": "{\"ok\":true,\"requiredFiles\":21,\"blockingBoundaryFindings\":0,\"legacyMigrationFindings\":0,\"nextScopeId\":\"CRM-PIPE-API-003\"}\n",
+      "stderrTail": ""
+    },
+    {
+      "label": "Pipeline API structure",
+      "command": "node tools/release/verify-pipeline-api-r3.mjs",
+      "status": "passed",
+      "exitCode": 0,
+      "durationMs": 54,
+      "startedAt": "2026-09-17T20:41:28.403Z",
+      "error": null,
+      "stdoutTail": "{\"verified\":true,\"requiredFiles\":11,\"packageFiles\":20}\n",
+      "stderrTail": ""
+    },
+    {
+      "label": "Dual-write structure",
+      "command": "node tools/release/verify-pipeline-dual-write-r4.mjs",
+      "status": "passed",
+      "exitCode": 0,
+      "durationMs": 34,
+      "startedAt": "2026-09-17T20:41:28.457Z",
+      "error": null,
+      "stdoutTail": "{\"ok\":true,\"requiredFiles\":8,\"nextScopeId\":\"CRM-PIPE-POSTGRES-005\"}\n",
+      "stderrTail": ""
+    },
+    {
+      "label": "PostgreSQL gate structure (no DB execution)",
+      "command": "node tools/release/verify-pipeline-postgres-r5.mjs",
+      "status": "passed",
+      "exitCode": 0,
+      "durationMs": 30,
+      "startedAt": "2026-09-17T20:41:28.491Z",
+      "error": null,
+      "stdoutTail": "{\"ok\":true,\"requiredFiles\":3,\"failures\":[],\"nextScopeId\":\"CRM-PIPE-POSTGRES-005\"}\n",
+      "stderrTail": ""
+    },
+    {
+      "label": "Migration persistence structure",
+      "command": "node tools/release/verify-migration-persistence-r13.mjs",
+      "status": "passed",
+      "exitCode": 0,
+      "durationMs": 32,
+      "startedAt": "2026-09-17T20:41:28.521Z",
+      "error": null,
+      "stdoutTail": "{\"ok\":true,\"requiredFiles\":8,\"parallelScopeId\":\"MIG-PERSIST-002\",\"nextScopeId\":\"CRM-PIPE-POSTGRES-005\",\"migrationNextScopeId\":\"MIG-API-002\"}\n",
+      "stderrTail": ""
+    }
+  ],
+  "notVerifiedByThisGate": [
+    "Bun frozen install",
+    "formatter/lint",
+    "semantic monorepo typecheck",
+    "Prisma generation and real PostgreSQL concurrency",
+    "production build",
+    "authenticated Next/tRPC E2E",
+    "live providers",
+    "shared-database tenant isolation",
+    "full accessibility",
+    "LLM evaluation",
+    "production backup/restore/load"
+  ],
+  "nextScopeId": "CRM-PIPE-POSTGRES-005"
+}

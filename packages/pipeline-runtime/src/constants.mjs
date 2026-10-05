@@ -1,0 +1,1 @@
+export const MAX_PIPELINES_PER_WORKSPACE = 200;

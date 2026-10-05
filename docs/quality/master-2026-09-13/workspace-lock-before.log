@@ -1,0 +1,34 @@
+{
+  "scope": "Workspace metadata only; not a Bun frozen install or registry integrity check",
+  "findings": [
+    {
+      "file": "apps/api/package.json",
+      "code": "WORKSPACE_DEPENDENCIES",
+      "field": "dependencies"
+    },
+    {
+      "file": "packages/integration-runtime/package.json",
+      "code": "WORKSPACE_MISSING"
+    },
+    {
+      "file": "packages/migration-core/package.json",
+      "code": "WORKSPACE_MISSING"
+    },
+    {
+      "file": "packages/migration-runtime/package.json",
+      "code": "WORKSPACE_MISSING"
+    },
+    {
+      "file": "packages/pipeline-core/package.json",
+      "code": "WORKSPACE_MISSING"
+    },
+    {
+      "file": "packages/pipeline-runtime/package.json",
+      "code": "WORKSPACE_MISSING"
+    },
+    {
+      "file": "packages/security-core/package.json",
+      "code": "WORKSPACE_MISSING"
+    }
+  ]
+}

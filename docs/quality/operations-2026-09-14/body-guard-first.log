@@ -1,0 +1,58 @@
+TAP version 13
+# Subtest: bounded operator body is preserved as raw JSON text for the tRPC reader
+ok 1 - bounded operator body is preserved as raw JSON text for the tRPC reader
+  ---
+  duration_ms: 4.899627
+  type: 'test'
+  ...
+# Subtest: oversized declared and chunked bodies are rejected before tRPC
+ok 2 - oversized declared and chunked bodies are rejected before tRPC
+  ---
+  duration_ms: 1.061518
+  type: 'test'
+  ...
+# Subtest: compressed bodies, non-JSON CSRF-like posts and invalid UTF-8 are rejected
+ok 3 - compressed bodies, non-JSON CSRF-like posts and invalid UTF-8 are rejected
+  ---
+  duration_ms: 1.115498
+  type: 'test'
+  ...
+# Subtest: unrelated CRM and webhook paths are not parsed or altered
+ok 4 - unrelated CRM and webhook paths are not parsed or altered
+  ---
+  duration_ms: 0.290269
+  type: 'test'
+  ...
+# Subtest: mixed batches and encoded procedure paths receive the same limit
+ok 5 - mixed batches and encoded procedure paths receive the same limit
+  ---
+  duration_ms: 0.873851
+  type: 'test'
+  ...
+# Subtest: inflight cap lasts through response completion, not just upload completion
+ok 6 - inflight cap lasts through response completion, not just upload completion
+  ---
+  duration_ms: 0.898077
+  type: 'test'
+  ...
+# Subtest: timeouts and aborted uploads free the slot
+ok 7 - timeouts and aborted uploads free the slot
+  ---
+  duration_ms: 31.178204
+  type: 'test'
+  ...
+# Subtest: real Node HTTP transport enforces streaming byte bounds on loopback
+ok 8 - real Node HTTP transport enforces streaming byte bounds on loopback
+  ---
+  duration_ms: 33.523939
+  type: 'test'
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 8
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 187.252905

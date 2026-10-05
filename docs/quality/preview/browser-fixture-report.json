@@ -1,0 +1,197 @@
+{
+  "scope": "Standalone token/layout fixture via set_content. No server or navigation-policy changes. Real-origin localStorage persistence and authenticated Next E2E are NOT verified.",
+  "browser": "system Chromium via Python Playwright",
+  "checks": [
+    {
+      "palette": "graphite",
+      "mode": "light",
+      "width": 1440,
+      "horizontalPageOverflow": false,
+      "status": "passed"
+    },
+    {
+      "palette": "graphite",
+      "mode": "light",
+      "width": 768,
+      "horizontalPageOverflow": false,
+      "status": "passed"
+    },
+    {
+      "palette": "graphite",
+      "mode": "light",
+      "width": 390,
+      "horizontalPageOverflow": false,
+      "status": "passed"
+    },
+    {
+      "palette": "graphite",
+      "mode": "dark",
+      "width": 1440,
+      "horizontalPageOverflow": false,
+      "status": "passed"
+    },
+    {
+      "palette": "graphite",
+      "mode": "dark",
+      "width": 768,
+      "horizontalPageOverflow": false,
+      "status": "passed"
+    },
+    {
+      "palette": "graphite",
+      "mode": "dark",
+      "width": 390,
+      "horizontalPageOverflow": false,
+      "status": "passed"
+    },
+    {
+      "palette": "grove",
+      "mode": "light",
+      "width": 1440,
+      "horizontalPageOverflow": false,
+      "status": "passed"
+    },
+    {
+      "palette": "grove",
+      "mode": "light",
+      "width": 768,
+      "horizontalPageOverflow": false,
+      "status": "passed"
+    },
+    {
+      "palette": "grove",
+      "mode": "light",
+      "width": 390,
+      "horizontalPageOverflow": false,
+      "status": "passed"
+    },
+    {
+      "palette": "grove",
+      "mode": "dark",
+      "width": 1440,
+      "horizontalPageOverflow": false,
+      "status": "passed"
+    },
+    {
+      "palette": "grove",
+      "mode": "dark",
+      "width": 768,
+      "horizontalPageOverflow": false,
+      "status": "passed"
+    },
+    {
+      "palette": "grove",
+      "mode": "dark",
+      "width": 390,
+      "horizontalPageOverflow": false,
+      "status": "passed"
+    },
+    {
+      "palette": "sand",
+      "mode": "light",
+      "width": 1440,
+      "horizontalPageOverflow": false,
+      "status": "passed"
+    },
+    {
+      "palette": "sand",
+      "mode": "light",
+      "width": 768,
+      "horizontalPageOverflow": false,
+      "status": "passed"
+    },
+    {
+      "palette": "sand",
+      "mode": "light",
+      "width": 390,
+      "horizontalPageOverflow": false,
+      "status": "passed"
+    },
+    {
+      "palette": "sand",
+      "mode": "dark",
+      "width": 1440,
+      "horizontalPageOverflow": false,
+      "status": "passed"
+    },
+    {
+      "palette": "sand",
+      "mode": "dark",
+      "width": 768,
+      "horizontalPageOverflow": false,
+      "status": "passed"
+    },
+    {
+      "palette": "sand",
+      "mode": "dark",
+      "width": 390,
+      "horizontalPageOverflow": false,
+      "status": "passed"
+    },
+    {
+      "palette": "indigo",
+      "mode": "light",
+      "width": 1440,
+      "horizontalPageOverflow": false,
+      "status": "passed"
+    },
+    {
+      "palette": "indigo",
+      "mode": "light",
+      "width": 768,
+      "horizontalPageOverflow": false,
+      "status": "passed"
+    },
+    {
+      "palette": "indigo",
+      "mode": "light",
+      "width": 390,
+      "horizontalPageOverflow": false,
+      "status": "passed"
+    },
+    {
+      "palette": "indigo",
+      "mode": "dark",
+      "width": 1440,
+      "horizontalPageOverflow": false,
+      "status": "passed"
+    },
+    {
+      "palette": "indigo",
+      "mode": "dark",
+      "width": 768,
+      "horizontalPageOverflow": false,
+      "status": "passed"
+    },
+    {
+      "palette": "indigo",
+      "mode": "dark",
+      "width": 390,
+      "horizontalPageOverflow": false,
+      "status": "passed"
+    },
+    {
+      "check": "density changes rendered row height",
+      "comfortablePx": 63.5,
+      "compactPx": 50.5,
+      "status": "passed"
+    },
+    {
+      "check": "navigation toggle",
+      "status": "passed"
+    },
+    {
+      "check": "storage denial shows session-only feedback",
+      "status": "passed"
+    },
+    {
+      "check": "keyboard search dialog and escape",
+      "status": "passed"
+    },
+    {
+      "check": "reset + system scheme + reduced-motion CSS",
+      "status": "passed"
+    }
+  ],
+  "pageErrors": []
+}

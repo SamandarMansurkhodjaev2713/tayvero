@@ -1,0 +1,84 @@
+name: Quality Gate
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: quality-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  local-invariants:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: node tools/quality/run-local-tests.mjs
+      - run: node scripts/verify-manifests.mjs
+      - run: node tools/quality/verify-workspace-lock.mjs
+      - run: node tools/quality/generate-appearance.mjs --check
+      - run: node scripts/repository-audit.mjs
+      - run: node tools/quality/audit-agent-action-boundaries.mjs --check --strict-legacy
+      - run: node scripts/audit-tenant-boundaries.mjs --check
+
+  quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    # Disposable job-local PostgreSQL only. Never configure a customer DB here.
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_HOST_AUTH_METHOD: trust
+          POSTGRES_DB: crm_build
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      CI: "true"
+      CRM_TELEMETRY_DISABLED: "true"
+      DATABASE_URL: postgresql://postgres@127.0.0.1:5432/crm_build
+      TEST_DATABASE_URL: postgresql://postgres@127.0.0.1:5432/tayvero_test
+      ALLOWED_SIGN_IN: example.test
+      CREDENTIAL_VAULT_ACTIVE_KEY_ID: ci-ephemeral
+      CREDENTIAL_VAULT_ENFORCE: "true"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: "1.3.12"
+
+      - name: Generate job-local keys (not deployment credentials)
+        shell: bash
+        run: |
+          echo "BETTER_AUTH_SECRET=$(openssl rand -hex 32)" >> "$GITHUB_ENV"
+          echo "AGENT_BRIDGE_SECRET=$(openssl rand -hex 32)" >> "$GITHUB_ENV"
+          echo "CREDENTIAL_VAULT_KEYS={\"ci-ephemeral\":\"$(openssl rand -base64 32)\"}" >> "$GITHUB_ENV"
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Verify disposable pipeline database
+        run: bun run gate:pipeline-postgres
+
+      - name: Verify disposable migration and approval database
+        run: bun run gate:operations-postgres
+
+      - name: Run repository quality gate
+        run: bun run quality:gate

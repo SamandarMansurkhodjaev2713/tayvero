@@ -1,0 +1,2267 @@
+===== Repository ESM syntax sweep =====
+$ node --check <105 discovered .mjs files>
+cwd=/mnt/data/crm_pipe_api_003_work/crm-release
+startedAt=2026-09-01T15:02:30.822Z
+endedAt=2026-09-01T15:02:33.347Z
+status=passed critical=true rc=0 durationMs=2525
+{
+  "checkedFiles": 105,
+  "failures": []
+}
+
+===== Changed TypeScript syntax check =====
+$ /opt/nvm/versions/node/v22.16.0/bin/node tools/quality/check-typescript-syntax.mjs apps/agent/agent/lib/agent-actions.ts apps/agent/agent/lib/governed-run-actions.ts apps/agent/agent/lib/run-runtime.ts apps/agent/agent/subagents/agent_runner/tools/create_crm_activity.ts apps/agent/agent/subagents/agent_runner/tools/post_slack_message.ts apps/agent/src/governed-run-action-runtime.d.mts apps/agent/test/custom-agent-runtime.spec.ts apps/agent/test/durable-agent-runtime.integration.spec.ts
+cwd=/mnt/data/crm_pipe_api_003_work/crm-release
+startedAt=2026-09-01T15:02:33.348Z
+endedAt=2026-09-01T15:02:33.610Z
+status=passed critical=true rc=0 durationMs=262
+{
+  "compilerVersion": "5.8.3",
+  "checkedFiles": 8,
+  "failureCount": 0,
+  "failures": []
+}
+
+===== Repository TypeScript syntax sweep =====
+$ /opt/nvm/versions/node/v22.16.0/bin/node tools/quality/check-typescript-syntax.mjs
+cwd=/mnt/data/crm_pipe_api_003_work/crm-release
+startedAt=2026-09-01T15:02:33.611Z
+endedAt=2026-09-01T15:02:34.449Z
+status=passed critical=true rc=0 durationMs=838
+{
+  "compilerVersion": "5.8.3",
+  "checkedFiles": 857,
+  "failureCount": 0,
+  "failures": []
+}
+
+===== Legacy callsite migration targeted suite =====
+$ /opt/nvm/versions/node/v22.16.0/bin/node --test --test-concurrency=1 packages/action-registry/test/actions.test.mjs packages/agent-action-runtime/test/governed-action-runtime.test.mjs packages/agent-action-runtime/test/prisma-stores.test.mjs packages/integration-runtime/test/integration.test.mjs apps/agent/test/governed-action-execution.test.mjs apps/agent/test/governed-run-action-runtime.test.mjs apps/agent/test/legacy-agent-action-callsite-migration.test.mjs tools/quality/test/agent-action-boundary-audit.test.mjs scripts/tests/repository-audit.test.mjs
+cwd=/mnt/data/crm_pipe_api_003_work/crm-release
+startedAt=2026-09-01T15:02:34.449Z
+endedAt=2026-09-01T15:02:35.342Z
+status=passed critical=true rc=0 durationMs=893
+TAP version 13
+# Subtest: the dependency-free service core delegates only through the governed executor
+ok 1 - the dependency-free service core delegates only through the governed executor
+  ---
+  duration_ms: 16.004246
+  type: 'test'
+  ...
+# Subtest: the production service composition uses the same governed path
+ok 2 - the production service composition uses the same governed path
+  ---
+  duration_ms: 0.72424
+  type: 'test'
+  ...
+# Subtest: requires an explicit catalog-only registry
+ok 3 - requires an explicit catalog-only registry
+  ---
+  duration_ms: 0.382245
+  type: 'test'
+  ...
+# Subtest: rejects model attempts to provide execution context or control fields
+ok 4 - rejects model attempts to provide execution context or control fields
+  ---
+  duration_ms: 0.409677
+  type: 'test'
+  ...
+# Subtest: rejects invalid input before any action executor side effect
+ok 5 - rejects invalid input before any action executor side effect
+  ---
+  duration_ms: 0.427794
+  type: 'test'
+  ...
+# Subtest: rejects invalid cancellation objects and unknown execution options
+ok 6 - rejects invalid cancellation objects and unknown execution options
+  ---
+  duration_ms: 0.314894
+  type: 'test'
+  ...
+# Subtest: the Prisma composition persists receipts and audit through the governed path
+ok 7 - the Prisma composition persists receipts and audit through the governed path
+  ---
+  duration_ms: 2.028402
+  type: 'test'
+  ...
+# Subtest: the Prisma composition fails fast when governance dependencies are missing
+ok 8 - the Prisma composition fails fast when governance dependencies are missing
+  ---
+  duration_ms: 0.316777
+  type: 'test'
+  ...
+# Subtest: publishes only the two governed external run actions
+ok 9 - publishes only the two governed external run actions
+  ---
+  duration_ms: 25.436331
+  type: 'test'
+  ...
+# Subtest: passes the full governed idempotency envelope to the CRM side effect
+ok 10 - passes the full governed idempotency envelope to the CRM side effect
+  ---
+  duration_ms: 5.83384
+  type: 'test'
+  ...
+# Subtest: replays a completed governed receipt without repeating the business side effect
+ok 11 - replays a completed governed receipt without repeating the business side effect
+  ---
+  duration_ms: 1.676684
+  type: 'test'
+  ...
+# Subtest: rejects reuse of one run call for different business input
+ok 12 - rejects reuse of one run call for different business input
+  ---
+  duration_ms: 1.984006
+  type: 'test'
+  ...
+# Subtest: denies execution before the side effect when object authorization fails
+ok 13 - denies execution before the side effect when object authorization fails
+  ---
+  duration_ms: 1.126636
+  type: 'test'
+  ...
+# Subtest: rejects model/control-field injection and invalid business input
+ok 14 - rejects model/control-field injection and invalid business input
+  ---
+  duration_ms: 0.505792
+  type: 'test'
+  ...
+# Subtest: honors cancellation before acquiring or executing a side effect
+ok 15 - honors cancellation before acquiring or executing a side effect
+  ---
+  duration_ms: 0.524089
+  type: 'test'
+  ...
+# Subtest: routes Slack through the same governed receipt and execution envelope
+ok 16 - routes Slack through the same governed receipt and execution envelope
+  ---
+  duration_ms: 1.864986
+  type: 'test'
+  ...
+# Subtest: rejects accessor-backed request fields without invoking application code
+ok 17 - rejects accessor-backed request fields without invoking application code
+  ---
+  duration_ms: 0.568005
+  type: 'test'
+  ...
+# Subtest: rejects accessor-backed business input without evaluating its getter
+ok 18 - rejects accessor-backed business input without evaluating its getter
+  ---
+  duration_ms: 0.465862
+  type: 'test'
+  ...
+# Subtest: rejects ambiguous identifier separators before deriving an idempotency key
+ok 19 - rejects ambiguous identifier separators before deriving an idempotency key
+  ---
+  duration_ms: 0.435445
+  type: 'test'
+  ...
+# Subtest: rejects malformed policy decisions before acquiring a receipt
+ok 20 - rejects malformed policy decisions before acquiring a receipt
+  ---
+  duration_ms: 0.559963
+  type: 'test'
+  ...
+# Subtest: rejects misspelled runtime dependencies instead of ignoring configuration
+ok 21 - rejects misspelled runtime dependencies instead of ignoring configuration
+  ---
+  duration_ms: 0.237127
+  type: 'test'
+  ...
+# Subtest: agent runner tools invoke only the governed run-action bridge
+ok 22 - agent runner tools invoke only the governed run-action bridge
+  ---
+  duration_ms: 4.514404
+  type: 'test'
+  ...
+# Subtest: the governed bridge is the sole production caller of low-level run side effects
+ok 23 - the governed bridge is the sole production caller of low-level run side effects
+  ---
+  duration_ms: 90.155372
+  type: 'test'
+  ...
+# Subtest: run-runtime requires the governed envelope and no longer exposes legacy entrypoints
+ok 24 - run-runtime requires the governed envelope and no longer exposes legacy entrypoints
+  ---
+  duration_ms: 0.725822
+  type: 'test'
+  ...
+# Subtest: run.summary remains a run-control capability instead of becoming an external side effect
+ok 25 - run.summary remains a run-control capability instead of becoming an external side effect
+  ---
+  duration_ms: 0.723899
+  type: 'test'
+  ...
+# Subtest: registers immutable typed action entries without exposing a direct execution path
+ok 26 - registers immutable typed action entries without exposing a direct execution path
+  ---
+  duration_ms: 1.477724
+  type: 'test'
+  ...
+# Subtest: normalizes legacy risk and idempotency vocabulary into the governed runtime contract
+ok 27 - normalizes legacy risk and idempotency vocabulary into the governed runtime contract
+  ---
+  duration_ms: 0.442656
+  type: 'test'
+  ...
+# Subtest: converts JSON schemas into runtime validators
+ok 28 - converts JSON schemas into runtime validators
+  ---
+  duration_ms: 1.096541
+  type: 'test'
+  ...
+# Subtest: defensively snapshots schemas, metadata, permissions and retry configuration
+ok 29 - defensively snapshots schemas, metadata, permissions and retry configuration
+  ---
+  duration_ms: 0.361123
+  type: 'test'
+  ...
+# Subtest: rejects duplicate action identifiers
+ok 30 - rejects duplicate action identifiers
+  ---
+  duration_ms: 0.2725
+  type: 'test'
+  ...
+# Subtest: rejects execution-state options because execution belongs to the governed runtime
+ok 31 - rejects execution-state options because execution belongs to the governed runtime
+  ---
+  duration_ms: 0.138108
+  type: 'test'
+  ...
+# Subtest: rejects a mutating manifest without idempotency
+ok 32 - rejects a mutating manifest without idempotency
+  ---
+  duration_ms: 0.176335
+  type: 'test'
+  ...
+# Subtest: rejects manifests without explicit permissions
+ok 33 - rejects manifests without explicit permissions
+  ---
+  duration_ms: 0.170887
+  type: 'test'
+  ...
+# Subtest: rejects unsafe retry policies for mutating actions
+ok 34 - rejects unsafe retry policies for mutating actions
+  ---
+  duration_ms: 0.389116
+  type: 'test'
+  ...
+# Subtest: rejects non-integer and non-finite retry configuration
+ok 35 - rejects non-integer and non-finite retry configuration
+  ---
+  duration_ms: 0.560483
+  type: 'test'
+  ...
+# Subtest: registerMany accepts tuple and entry forms and returns stable sorted manifests
+ok 36 - registerMany accepts tuple and entry forms and returns stable sorted manifests
+  ---
+  duration_ms: 6.566602
+  type: 'test'
+  ...
+# Subtest: requires own properties instead of inherited prototype properties
+ok 37 - requires own properties instead of inherited prototype properties
+  ---
+  duration_ms: 0.21921
+  type: 'test'
+  ...
+# Subtest: rejects unsafe JSON-schema and metadata object keys
+ok 38 - rejects unsafe JSON-schema and metadata object keys
+  ---
+  duration_ms: 0.196836
+  type: 'test'
+  ...
+# Subtest: executes a validated authorized action and records redacted audit events
+ok 39 - executes a validated authorized action and records redacted audit events
+  ---
+  duration_ms: 3.955012
+  type: 'test'
+  ...
+# Subtest: rejects tenant ownership fields at any nesting depth
+ok 40 - rejects tenant ownership fields at any nesting depth
+  ---
+  duration_ms: 0.499732
+  type: 'test'
+  ...
+# Subtest: rejects missing permissions and object-level authorization
+ok 41 - rejects missing permissions and object-level authorization
+  ---
+  duration_ms: 0.458811
+  type: 'test'
+  ...
+# Subtest: replays a completed idempotent result without executing again
+ok 42 - replays a completed idempotent result without executing again
+  ---
+  duration_ms: 1.083381
+  type: 'test'
+  ...
+# Subtest: rejects reuse of an idempotency key for another payload
+ok 43 - rejects reuse of an idempotency key for another payload
+  ---
+  duration_ms: 0.722858
+  type: 'test'
+  ...
+# Subtest: rejects changed payload after an approval failure acquired the same idempotency key
+ok 44 - rejects changed payload after an approval failure acquired the same idempotency key
+  ---
+  duration_ms: 0.634414
+  type: 'test'
+  ...
+# Subtest: allows only one concurrent execution for the same receipt
+ok 45 - allows only one concurrent execution for the same receipt
+  ---
+  duration_ms: 8.541435
+  type: 'test'
+  ...
+# Subtest: requires payload-bound tenant-bound approval for high-risk actions
+ok 46 - requires payload-bound tenant-bound approval for high-risk actions
+  ---
+  duration_ms: 0.974667
+  type: 'test'
+  ...
+# Subtest: rejects approval bound to another tenant or modified payload
+ok 47 - rejects approval bound to another tenant or modified payload
+  ---
+  duration_ms: 0.550258
+  type: 'test'
+  ...
+# Subtest: times out a non-cooperative executor and records failure
+ok 48 - times out a non-cooperative executor and records failure
+  ---
+  duration_ms: 22.126009
+  type: 'test'
+  ...
+# Subtest: propagates cancellation and does not retry it
+ok 49 - propagates cancellation and does not retry it
+  ---
+  duration_ms: 0.681055
+  type: 'test'
+  ...
+# Subtest: keeps the success receipt when the success audit write fails
+ok 50 - keeps the success receipt when the success audit write fails
+  ---
+  duration_ms: 0.596247
+  type: 'test'
+  ...
+# Subtest: propagates the operation digest and idempotency key to the executor
+ok 51 - propagates the operation digest and idempotency key to the executor
+  ---
+  duration_ms: 0.443106
+  type: 'test'
+  ...
+# Subtest: validates untrusted model input and executor output
+ok 52 - validates untrusted model input and executor output
+  ---
+  duration_ms: 0.548145
+  type: 'test'
+  ...
+# Subtest: rejects mutating manifests without idempotency
+ok 53 - rejects mutating manifests without idempotency
+  ---
+  duration_ms: 0.208925
+  type: 'test'
+  ...
+# Subtest: rejects manifests without explicit permissions
+ok 54 - rejects manifests without explicit permissions
+  ---
+  duration_ms: 0.147843
+  type: 'test'
+  ...
+# Subtest: rejects non-integer, non-finite and unsafe retry policies
+ok 55 - rejects non-integer, non-finite and unsafe retry policies
+  ---
+  duration_ms: 0.497869
+  type: 'test'
+  ...
+# Subtest: passes an immutable permission snapshot to validators, policy and executor
+ok 56 - passes an immutable permission snapshot to validators, policy and executor
+  ---
+  duration_ms: 0.543848
+  type: 'test'
+  ...
+# Subtest: passes immutable validated input to business validation and authorization
+ok 57 - passes immutable validated input to business validation and authorization
+  ---
+  duration_ms: 0.393953
+  type: 'test'
+  ...
+# Subtest: rejects invalid clock values before durable state mutation
+ok 58 - rejects invalid clock values before durable state mutation
+  ---
+  duration_ms: 0.31933
+  type: 'test'
+  ...
+# Subtest: rejects plain object registries that could expose prototype-backed actions
+ok 59 - rejects plain object registries that could expose prototype-backed actions
+  ---
+  duration_ms: 0.142635
+  type: 'test'
+  ...
+# Subtest: invalid approval expiry is rejected instead of being treated as non-expiring
+ok 60 - invalid approval expiry is rejected instead of being treated as non-expiring
+  ---
+  duration_ms: 0.955858
+  type: 'test'
+  ...
+# Subtest: rejects unknown request and execution-option control fields
+ok 61 - rejects unknown request and execution-option control fields
+  ---
+  duration_ms: 0.24579
+  type: 'test'
+  ...
+# Subtest: requires both input and output validators even for a custom registry implementation
+ok 62 - requires both input and output validators even for a custom registry implementation
+  ---
+  duration_ms: 0.250267
+  type: 'test'
+  ...
+# Subtest: normalizes failures from business validation, authorization and policy evaluation
+ok 63 - normalizes failures from business validation, authorization and policy evaluation
+  ---
+  duration_ms: 0.470268
+  type: 'test'
+  ...
+# Subtest: redacts common secret values even when the property name is generic
+ok 64 - redacts common secret values even when the property name is generic
+  ---
+  duration_ms: 0.286502
+  type: 'test'
+  ...
+# Subtest: memory receipt store validates its lease configuration and fails closed on lost leases
+ok 65 - memory receipt store validates its lease configuration and fails closed on lost leases
+  ---
+  duration_ms: 0.154653
+  type: 'test'
+  ...
+# Subtest: a pre-aborted request does not acquire a receipt, consume approval or call an executor
+ok 66 - a pre-aborted request does not acquire a receipt, consume approval or call an executor
+  ---
+  duration_ms: 0.2323
+  type: 'test'
+  ...
+# Subtest: canonical JSON rejects cyclic arrays and unsafe object keys
+ok 67 - canonical JSON rejects cyclic arrays and unsafe object keys
+  ---
+  duration_ms: 0.197898
+  type: 'test'
+  ...
+# Subtest: audit redaction stores unsafe property names without invoking prototype setters
+ok 68 - audit redaction stores unsafe property names without invoking prototype setters
+  ---
+  duration_ms: 0.181714
+  type: 'test'
+  ...
+# Subtest: rejects malformed trusted correlation identifiers
+ok 69 - rejects malformed trusted correlation identifiers
+  ---
+  duration_ms: 0.173391
+  type: 'test'
+  ...
+# Subtest: fails closed when policy approval metadata is malformed
+ok 70 - fails closed when policy approval metadata is malformed
+  ---
+  duration_ms: 0.154873
+  type: 'test'
+  ...
+# Subtest: rejects non-plain request objects without invoking custom serialization hooks
+ok 71 - rejects non-plain request objects without invoking custom serialization hooks
+  ---
+  duration_ms: 0.143345
+  type: 'test'
+  ...
+# Subtest: revalidates validator-transformed input for tenant ownership fields
+ok 72 - revalidates validator-transformed input for tenant ownership fields
+  ---
+  duration_ms: 0.184979
+  type: 'test'
+  ...
+# Subtest: receipt store atomically acquires, completes and replays
+ok 73 - receipt store atomically acquires, completes and replays
+  ---
+  duration_ms: 2.50521
+  type: 'test'
+  ...
+# Subtest: receipt rejects same key with another digest
+ok 74 - receipt rejects same key with another digest
+  ---
+  duration_ms: 1.107066
+  type: 'test'
+  ...
+# Subtest: receipt completion requires the acquired lease token
+ok 75 - receipt completion requires the acquired lease token
+  ---
+  duration_ms: 1.062609
+  type: 'test'
+  ...
+# Subtest: approval consumption is tenant, action, digest and expiry bound
+ok 76 - approval consumption is tenant, action, digest and expiry bound
+  ---
+  duration_ms: 0.439331
+  type: 'test'
+  ...
+# Subtest: audit sink redacts secret-bearing properties
+ok 77 - audit sink redacts secret-bearing properties
+  ---
+  duration_ms: 1.01671
+  type: 'test'
+  ...
+# Subtest: blocks private, loopback, link-local, metadata, documentation and multicast IP ranges
+ok 78 - blocks private, loopback, link-local, metadata, documentation and multicast IP ranges
+  ---
+  duration_ms: 4.695106
+  type: 'test'
+  ...
+# Subtest: rejects URL credentials and DNS rebinding to a private address
+ok 79 - rejects URL credentials and DNS rebinding to a private address
+  ---
+  duration_ms: 0.778101
+  type: 'test'
+  ...
+# Subtest: enforces connector host allowlists
+ok 80 - enforces connector host allowlists
+  ---
+  duration_ms: 0.270457
+  type: 'test'
+  ...
+# Subtest: executes a pinned bounded request and parses JSON
+ok 81 - executes a pinned bounded request and parses JSON
+  ---
+  duration_ms: 13.631845
+  type: 'test'
+  ...
+# Subtest: rejects mutation retry without idempotency
+ok 82 - rejects mutation retry without idempotency
+  ---
+  duration_ms: 0.286101
+  type: 'test'
+  ...
+# Subtest: rejects redirect to a private destination
+ok 83 - rejects redirect to a private destination
+  ---
+  duration_ms: 4.156525
+  type: 'test'
+  ...
+# Subtest: verifies HMAC webhooks and rejects replay
+ok 84 - verifies HMAC webhooks and rejects replay
+  ---
+  duration_ms: 1.020806
+  type: 'test'
+  ...
+# Subtest: rejects tampered webhook body
+ok 85 - rejects tampered webhook body
+  ---
+  duration_ms: 0.361594
+  type: 'test'
+  ...
+# Subtest: compiles bounded OpenAPI operations and classifies risk
+ok 86 - compiles bounded OpenAPI operations and classifies risk
+  ---
+  duration_ms: 0.598511
+  type: 'test'
+  ...
+# Subtest: rejects external OpenAPI references
+ok 87 - rejects external OpenAPI references
+  ---
+  duration_ms: 0.330918
+  type: 'test'
+  ...
+# Subtest: rejects malformed resolver results before opening a socket
+ok 88 - rejects malformed resolver results before opening a socket
+  ---
+  duration_ms: 0.259571
+  type: 'test'
+  ...
+# Subtest: validates the retry-delay boundary
+ok 89 - validates the retry-delay boundary
+  ---
+  duration_ms: 0.152049
+  type: 'test'
+  ...
+# Subtest: enforces a total request deadline even while response bytes keep arriving
+ok 90 - enforces a total request deadline even while response bytes keep arriving
+  ---
+  duration_ms: 102.556324
+  type: 'test'
+  ...
+# Subtest: given clean repository when audited then returns no findings
+ok 91 - given clean repository when audited then returns no findings
+  ---
+  duration_ms: 7.13624
+  type: 'test'
+  ...
+# Subtest: given UTF-8 BOM package manifest when audited then reports JSON_BOM
+ok 92 - given UTF-8 BOM package manifest when audited then reports JSON_BOM
+  ---
+  duration_ms: 3.708201
+  type: 'test'
+  ...
+# Subtest: given legacy identity in source when audited then reports it
+ok 93 - given legacy identity in source when audited then reports it
+  ---
+  duration_ms: 2.676748
+  type: 'test'
+  ...
+# Subtest: given secret-like token in source when audited then reports without exposing token
+ok 94 - given secret-like token in source when audited then reports without exposing token
+  ---
+  duration_ms: 1.78061
+  type: 'test'
+  ...
+# Subtest: given secret placeholder in .env.example when audited then does not treat it as committed secret
+ok 95 - given secret placeholder in .env.example when audited then does not treat it as committed secret
+  ---
+  duration_ms: 1.717535
+  type: 'test'
+  ...
+# Subtest: accepts the single governed executor boundary
+ok 96 - accepts the single governed executor boundary
+  ---
+  duration_ms: 10.097196
+  type: 'test'
+  ...
+# Subtest: reports direct catalog execution in production source
+ok 97 - reports direct catalog execution in production source
+  ---
+  duration_ms: 3.241899
+  type: 'test'
+  ...
+# Subtest: reports the removed parallel execution API
+ok 98 - reports the removed parallel execution API
+  ---
+  duration_ms: 2.919724
+  type: 'test'
+  ...
+# Subtest: reports direct executor calls outside the governed runtime
+ok 99 - reports direct executor calls outside the governed runtime
+  ---
+  duration_ms: 6.676588
+  type: 'test'
+  ...
+# Subtest: reports direct executor calls reached through a catalog lookup
+ok 100 - reports direct executor calls reached through a catalog lookup
+  ---
+  duration_ms: 2.228053
+  type: 'test'
+  ...
+# Subtest: excludes test and fixture paths from production findings
+ok 101 - excludes test and fixture paths from production findings
+  ---
+  duration_ms: 2.794135
+  type: 'test'
+  ...
+# Subtest: classifies the existing legacy dispatch as migration work instead of a hidden success
+ok 102 - classifies the existing legacy dispatch as migration work instead of a hidden success
+  ---
+  duration_ms: 2.417649
+  type: 'test'
+  ...
+# Subtest: accepts low-level run side effects only inside the governed bridge
+ok 103 - accepts low-level run side effects only inside the governed bridge
+  ---
+  duration_ms: 3.185885
+  type: 'test'
+  ...
+# Subtest: reports direct run side-effect calls outside the governed bridge
+ok 104 - reports direct run side-effect calls outside the governed bridge
+  ---
+  duration_ms: 2.715056
+  type: 'test'
+  ...
+# Subtest: reports removed direct run-action entrypoints as migration work
+ok 105 - reports removed direct run-action entrypoints as migration work
+  ---
+  duration_ms: 2.144457
+  type: 'test'
+  ...
+1..105
+# tests 105
+# suites 0
+# pass 105
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 862.67788
+
+===== Dependency-free repository Node regression suite =====
+$ /opt/nvm/versions/node/v22.16.0/bin/node --test --test-concurrency=1 apps/agent/test/governed-action-execution.test.mjs apps/agent/test/governed-run-action-runtime.test.mjs apps/agent/test/legacy-agent-action-callsite-migration.test.mjs apps/api/test/pipeline-api-core.test.mjs apps/app/test/pipeline-command-key-store.test.mjs apps/app/test/pipeline-editor-model.test.mjs packages/action-registry/test/actions.test.mjs packages/agent-action-runtime/test/governed-action-runtime.test.mjs packages/agent-action-runtime/test/prisma-stores.test.mjs packages/business-os-core/test/core.test.mjs packages/integration-runtime/test/integration.test.mjs packages/migration-core/test/migration.test.mjs packages/migration-runtime/test/runtime.test.mjs packages/pipeline-core/test/pipeline.test.mjs packages/pipeline-runtime/test/prisma-adapter.test.mjs packages/pipeline-runtime/test/runtime.test.mjs packages/security-core/test/credential-codec.test.mjs packages/security-core/test/credential-vault.test.mjs packages/security-core/test/tenant-boundary.test.mjs scripts/tests/repository-audit.test.mjs tools/quality/test/agent-action-boundary-audit.test.mjs tools/quality/test/pipeline-api-boundary.test.mjs
+cwd=/mnt/data/crm_pipe_api_003_work/crm-release
+startedAt=2026-09-01T15:02:35.342Z
+endedAt=2026-09-01T15:02:37.080Z
+status=passed critical=true rc=0 durationMs=1738
+TAP version 13
+# Subtest: the dependency-free service core delegates only through the governed executor
+ok 1 - the dependency-free service core delegates only through the governed executor
+  ---
+  duration_ms: 16.896558
+  type: 'test'
+  ...
+# Subtest: the production service composition uses the same governed path
+ok 2 - the production service composition uses the same governed path
+  ---
+  duration_ms: 0.844911
+  type: 'test'
+  ...
+# Subtest: requires an explicit catalog-only registry
+ok 3 - requires an explicit catalog-only registry
+  ---
+  duration_ms: 0.421374
+  type: 'test'
+  ...
+# Subtest: rejects model attempts to provide execution context or control fields
+ok 4 - rejects model attempts to provide execution context or control fields
+  ---
+  duration_ms: 0.461575
+  type: 'test'
+  ...
+# Subtest: rejects invalid input before any action executor side effect
+ok 5 - rejects invalid input before any action executor side effect
+  ---
+  duration_ms: 0.87032
+  type: 'test'
+  ...
+# Subtest: rejects invalid cancellation objects and unknown execution options
+ok 6 - rejects invalid cancellation objects and unknown execution options
+  ---
+  duration_ms: 0.327994
+  type: 'test'
+  ...
+# Subtest: the Prisma composition persists receipts and audit through the governed path
+ok 7 - the Prisma composition persists receipts and audit through the governed path
+  ---
+  duration_ms: 2.674785
+  type: 'test'
+  ...
+# Subtest: the Prisma composition fails fast when governance dependencies are missing
+ok 8 - the Prisma composition fails fast when governance dependencies are missing
+  ---
+  duration_ms: 0.296426
+  type: 'test'
+  ...
+# Subtest: publishes only the two governed external run actions
+ok 9 - publishes only the two governed external run actions
+  ---
+  duration_ms: 26.422235
+  type: 'test'
+  ...
+# Subtest: passes the full governed idempotency envelope to the CRM side effect
+ok 10 - passes the full governed idempotency envelope to the CRM side effect
+  ---
+  duration_ms: 5.76133
+  type: 'test'
+  ...
+# Subtest: replays a completed governed receipt without repeating the business side effect
+ok 11 - replays a completed governed receipt without repeating the business side effect
+  ---
+  duration_ms: 1.988182
+  type: 'test'
+  ...
+# Subtest: rejects reuse of one run call for different business input
+ok 12 - rejects reuse of one run call for different business input
+  ---
+  duration_ms: 2.232911
+  type: 'test'
+  ...
+# Subtest: denies execution before the side effect when object authorization fails
+ok 13 - denies execution before the side effect when object authorization fails
+  ---
+  duration_ms: 1.097291
+  type: 'test'
+  ...
+# Subtest: rejects model/control-field injection and invalid business input
+ok 14 - rejects model/control-field injection and invalid business input
+  ---
+  duration_ms: 0.492441
+  type: 'test'
+  ...
+# Subtest: honors cancellation before acquiring or executing a side effect
+ok 15 - honors cancellation before acquiring or executing a side effect
+  ---
+  duration_ms: 0.803199
+  type: 'test'
+  ...
+# Subtest: routes Slack through the same governed receipt and execution envelope
+ok 16 - routes Slack through the same governed receipt and execution envelope
+  ---
+  duration_ms: 2.138228
+  type: 'test'
+  ...
+# Subtest: rejects accessor-backed request fields without invoking application code
+ok 17 - rejects accessor-backed request fields without invoking application code
+  ---
+  duration_ms: 0.889468
+  type: 'test'
+  ...
+# Subtest: rejects accessor-backed business input without evaluating its getter
+ok 18 - rejects accessor-backed business input without evaluating its getter
+  ---
+  duration_ms: 0.529908
+  type: 'test'
+  ...
+# Subtest: rejects ambiguous identifier separators before deriving an idempotency key
+ok 19 - rejects ambiguous identifier separators before deriving an idempotency key
+  ---
+  duration_ms: 0.402806
+  type: 'test'
+  ...
+# Subtest: rejects malformed policy decisions before acquiring a receipt
+ok 20 - rejects malformed policy decisions before acquiring a receipt
+  ---
+  duration_ms: 0.586713
+  type: 'test'
+  ...
+# Subtest: rejects misspelled runtime dependencies instead of ignoring configuration
+ok 21 - rejects misspelled runtime dependencies instead of ignoring configuration
+  ---
+  duration_ms: 0.23938
+  type: 'test'
+  ...
+# Subtest: agent runner tools invoke only the governed run-action bridge
+ok 22 - agent runner tools invoke only the governed run-action bridge
+  ---
+  duration_ms: 4.743569
+  type: 'test'
+  ...
+# Subtest: the governed bridge is the sole production caller of low-level run side effects
+ok 23 - the governed bridge is the sole production caller of low-level run side effects
+  ---
+  duration_ms: 92.390305
+  type: 'test'
+  ...
+# Subtest: run-runtime requires the governed envelope and no longer exposes legacy entrypoints
+ok 24 - run-runtime requires the governed envelope and no longer exposes legacy entrypoints
+  ---
+  duration_ms: 1.236701
+  type: 'test'
+  ...
+# Subtest: run.summary remains a run-control capability instead of becoming an external side effect
+ok 25 - run.summary remains a run-control capability instead of becoming an external side effect
+  ---
+  duration_ms: 0.68425
+  type: 'test'
+  ...
+# Subtest: maps workspace roles to least-privilege pipeline permissions
+ok 26 - maps workspace roles to least-privilege pipeline permissions
+  ---
+  duration_ms: 1.429913
+  type: 'test'
+  ...
+# Subtest: creates deterministic server-owned pipeline and stage identifiers
+ok 27 - creates deterministic server-owned pipeline and stage identifiers
+  ---
+  duration_ms: 2.191478
+  type: 'test'
+  ...
+# Subtest: preserves an explicit default request in the canonical create payload
+ok 28 - preserves an explicit default request in the canonical create payload
+  ---
+  duration_ms: 0.380784
+  type: 'test'
+  ...
+# Subtest: different tenants and command keys produce different server IDs
+ok 29 - different tenants and command keys produce different server IDs
+  ---
+  duration_ms: 0.174122
+  type: 'test'
+  ...
+# Subtest: preserves existing stage identity during update and creates only new IDs
+ok 30 - preserves existing stage identity during update and creates only new IDs
+  ---
+  duration_ms: 0.627054
+  type: 'test'
+  ...
+# Subtest: rejects foreign stage IDs and unknown transition keys
+ok 31 - rejects foreign stage IDs and unknown transition keys
+  ---
+  duration_ms: 0.464469
+  type: 'test'
+  ...
+# Subtest: rejects client-owned IDs on create and mismatched pipeline IDs on update
+ok 32 - rejects client-owned IDs on create and mismatched pipeline IDs on update
+  ---
+  duration_ms: 0.43149
+  type: 'test'
+  ...
+# Subtest: command payload excludes idempotency metadata and is immutable
+ok 33 - command payload excludes idempotency metadata and is immutable
+  ---
+  duration_ms: 0.154924
+  type: 'test'
+  ...
+# Subtest: command payload rejects unknown and accessor-backed input
+ok 34 - command payload rejects unknown and accessor-backed input
+  ---
+  duration_ms: 0.361835
+  type: 'test'
+  ...
+# Subtest: API output hides tenant identity and exposes transition keys
+ok 35 - API output hides tenant identity and exposes transition keys
+  ---
+  duration_ms: 0.521014
+  type: 'test'
+  ...
+# Subtest: reuses the same key for a retry of an unchanged command
+ok 36 - reuses the same key for a retry of an unchanged command
+  ---
+  duration_ms: 0.841136
+  type: 'test'
+  ...
+# Subtest: rotates the key when the command payload changes
+ok 37 - rotates the key when the command payload changes
+  ---
+  duration_ms: 0.181953
+  type: 'test'
+  ...
+# Subtest: clears only the key that completed
+ok 38 - clears only the key that completed
+  ---
+  duration_ms: 1.36167
+  type: 'test'
+  ...
+# Subtest: bounds retained failed-command keys
+ok 39 - bounds retained failed-command keys
+  ---
+  duration_ms: 0.154623
+  type: 'test'
+  ...
+# Subtest: rejects malformed scopes, fingerprints and generated keys
+ok 40 - rejects malformed scopes, fingerprints and generated keys
+  ---
+  duration_ms: 0.49849
+  type: 'test'
+  ...
+# Subtest: default draft is complete and valid
+ok 41 - default draft is complete and valid
+  ---
+  duration_ms: 2.46511
+  type: 'test'
+  ...
+# Subtest: renaming a stage key updates transition references
+ok 42 - renaming a stage key updates transition references
+  ---
+  duration_ms: 0.580003
+  type: 'test'
+  ...
+# Subtest: terminal and open stage probabilities remain deterministic
+ok 43 - terminal and open stage probabilities remain deterministic
+  ---
+  duration_ms: 0.188885
+  type: 'test'
+  ...
+# Subtest: reordering and removal keep contiguous positions and remove dangling transitions
+ok 44 - reordering and removal keep contiguous positions and remove dangling transitions
+  ---
+  duration_ms: 0.300152
+  type: 'test'
+  ...
+# Subtest: create mutation excludes server-owned identity and preserves default intent
+ok 45 - create mutation excludes server-owned identity and preserves default intent
+  ---
+  duration_ms: 0.449306
+  type: 'test'
+  ...
+# Subtest: update mutation preserves optimistic version and existing stage identity
+ok 46 - update mutation preserves optimistic version and existing stage identity
+  ---
+  duration_ms: 0.479752
+  type: 'test'
+  ...
+# Subtest: validation rejects malformed probabilities, colors, positions and transitions
+ok 47 - validation rejects malformed probabilities, colors, positions and transitions
+  ---
+  duration_ms: 0.214553
+  type: 'test'
+  ...
+# Subtest: mutation conversion refuses invalid drafts and idempotency keys
+ok 48 - mutation conversion refuses invalid drafts and idempotency keys
+  ---
+  duration_ms: 0.455545
+  type: 'test'
+  ...
+# Subtest: registers immutable typed action entries without exposing a direct execution path
+ok 49 - registers immutable typed action entries without exposing a direct execution path
+  ---
+  duration_ms: 1.682002
+  type: 'test'
+  ...
+# Subtest: normalizes legacy risk and idempotency vocabulary into the governed runtime contract
+ok 50 - normalizes legacy risk and idempotency vocabulary into the governed runtime contract
+  ---
+  duration_ms: 0.346943
+  type: 'test'
+  ...
+# Subtest: converts JSON schemas into runtime validators
+ok 51 - converts JSON schemas into runtime validators
+  ---
+  duration_ms: 1.078844
+  type: 'test'
+  ...
+# Subtest: defensively snapshots schemas, metadata, permissions and retry configuration
+ok 52 - defensively snapshots schemas, metadata, permissions and retry configuration
+  ---
+  duration_ms: 0.360142
+  type: 'test'
+  ...
+# Subtest: rejects duplicate action identifiers
+ok 53 - rejects duplicate action identifiers
+  ---
+  duration_ms: 0.340643
+  type: 'test'
+  ...
+# Subtest: rejects execution-state options because execution belongs to the governed runtime
+ok 54 - rejects execution-state options because execution belongs to the governed runtime
+  ---
+  duration_ms: 0.128483
+  type: 'test'
+  ...
+# Subtest: rejects a mutating manifest without idempotency
+ok 55 - rejects a mutating manifest without idempotency
+  ---
+  duration_ms: 0.176436
+  type: 'test'
+  ...
+# Subtest: rejects manifests without explicit permissions
+ok 56 - rejects manifests without explicit permissions
+  ---
+  duration_ms: 1.663113
+  type: 'test'
+  ...
+# Subtest: rejects unsafe retry policies for mutating actions
+ok 57 - rejects unsafe retry policies for mutating actions
+  ---
+  duration_ms: 0.401494
+  type: 'test'
+  ...
+# Subtest: rejects non-integer and non-finite retry configuration
+ok 58 - rejects non-integer and non-finite retry configuration
+  ---
+  duration_ms: 0.513042
+  type: 'test'
+  ...
+# Subtest: registerMany accepts tuple and entry forms and returns stable sorted manifests
+ok 59 - registerMany accepts tuple and entry forms and returns stable sorted manifests
+  ---
+  duration_ms: 6.571209
+  type: 'test'
+  ...
+# Subtest: requires own properties instead of inherited prototype properties
+ok 60 - requires own properties instead of inherited prototype properties
+  ---
+  duration_ms: 0.224358
+  type: 'test'
+  ...
+# Subtest: rejects unsafe JSON-schema and metadata object keys
+ok 61 - rejects unsafe JSON-schema and metadata object keys
+  ---
+  duration_ms: 0.161263
+  type: 'test'
+  ...
+# Subtest: executes a validated authorized action and records redacted audit events
+ok 62 - executes a validated authorized action and records redacted audit events
+  ---
+  duration_ms: 3.860941
+  type: 'test'
+  ...
+# Subtest: rejects tenant ownership fields at any nesting depth
+ok 63 - rejects tenant ownership fields at any nesting depth
+  ---
+  duration_ms: 0.673794
+  type: 'test'
+  ...
+# Subtest: rejects missing permissions and object-level authorization
+ok 64 - rejects missing permissions and object-level authorization
+  ---
+  duration_ms: 0.377648
+  type: 'test'
+  ...
+# Subtest: replays a completed idempotent result without executing again
+ok 65 - replays a completed idempotent result without executing again
+  ---
+  duration_ms: 1.071903
+  type: 'test'
+  ...
+# Subtest: rejects reuse of an idempotency key for another payload
+ok 66 - rejects reuse of an idempotency key for another payload
+  ---
+  duration_ms: 0.832503
+  type: 'test'
+  ...
+# Subtest: rejects changed payload after an approval failure acquired the same idempotency key
+ok 67 - rejects changed payload after an approval failure acquired the same idempotency key
+  ---
+  duration_ms: 0.643027
+  type: 'test'
+  ...
+# Subtest: allows only one concurrent execution for the same receipt
+ok 68 - allows only one concurrent execution for the same receipt
+  ---
+  duration_ms: 6.665521
+  type: 'test'
+  ...
+# Subtest: requires payload-bound tenant-bound approval for high-risk actions
+ok 69 - requires payload-bound tenant-bound approval for high-risk actions
+  ---
+  duration_ms: 1.595521
+  type: 'test'
+  ...
+# Subtest: rejects approval bound to another tenant or modified payload
+ok 70 - rejects approval bound to another tenant or modified payload
+  ---
+  duration_ms: 0.549216
+  type: 'test'
+  ...
+# Subtest: times out a non-cooperative executor and records failure
+ok 71 - times out a non-cooperative executor and records failure
+  ---
+  duration_ms: 21.181017
+  type: 'test'
+  ...
+# Subtest: propagates cancellation and does not retry it
+ok 72 - propagates cancellation and does not retry it
+  ---
+  duration_ms: 0.643759
+  type: 'test'
+  ...
+# Subtest: keeps the success receipt when the success audit write fails
+ok 73 - keeps the success receipt when the success audit write fails
+  ---
+  duration_ms: 0.595646
+  type: 'test'
+  ...
+# Subtest: propagates the operation digest and idempotency key to the executor
+ok 74 - propagates the operation digest and idempotency key to the executor
+  ---
+  duration_ms: 0.428405
+  type: 'test'
+  ...
+# Subtest: validates untrusted model input and executor output
+ok 75 - validates untrusted model input and executor output
+  ---
+  duration_ms: 0.536468
+  type: 'test'
+  ...
+# Subtest: rejects mutating manifests without idempotency
+ok 76 - rejects mutating manifests without idempotency
+  ---
+  duration_ms: 0.186271
+  type: 'test'
+  ...
+# Subtest: rejects manifests without explicit permissions
+ok 77 - rejects manifests without explicit permissions
+  ---
+  duration_ms: 0.149635
+  type: 'test'
+  ...
+# Subtest: rejects non-integer, non-finite and unsafe retry policies
+ok 78 - rejects non-integer, non-finite and unsafe retry policies
+  ---
+  duration_ms: 0.496677
+  type: 'test'
+  ...
+# Subtest: passes an immutable permission snapshot to validators, policy and executor
+ok 79 - passes an immutable permission snapshot to validators, policy and executor
+  ---
+  duration_ms: 0.489927
+  type: 'test'
+  ...
+# Subtest: passes immutable validated input to business validation and authorization
+ok 80 - passes immutable validated input to business validation and authorization
+  ---
+  duration_ms: 0.422355
+  type: 'test'
+  ...
+# Subtest: rejects invalid clock values before durable state mutation
+ok 81 - rejects invalid clock values before durable state mutation
+  ---
+  duration_ms: 0.29276
+  type: 'test'
+  ...
+# Subtest: rejects plain object registries that could expose prototype-backed actions
+ok 82 - rejects plain object registries that could expose prototype-backed actions
+  ---
+  duration_ms: 0.146871
+  type: 'test'
+  ...
+# Subtest: invalid approval expiry is rejected instead of being treated as non-expiring
+ok 83 - invalid approval expiry is rejected instead of being treated as non-expiring
+  ---
+  duration_ms: 1.040386
+  type: 'test'
+  ...
+# Subtest: rejects unknown request and execution-option control fields
+ok 84 - rejects unknown request and execution-option control fields
+  ---
+  duration_ms: 0.266691
+  type: 'test'
+  ...
+# Subtest: requires both input and output validators even for a custom registry implementation
+ok 85 - requires both input and output validators even for a custom registry implementation
+  ---
+  duration_ms: 0.255504
+  type: 'test'
+  ...
+# Subtest: normalizes failures from business validation, authorization and policy evaluation
+ok 86 - normalizes failures from business validation, authorization and policy evaluation
+  ---
+  duration_ms: 0.563858
+  type: 'test'
+  ...
+# Subtest: redacts common secret values even when the property name is generic
+ok 87 - redacts common secret values even when the property name is generic
+  ---
+  duration_ms: 0.388164
+  type: 'test'
+  ...
+# Subtest: memory receipt store validates its lease configuration and fails closed on lost leases
+ok 88 - memory receipt store validates its lease configuration and fails closed on lost leases
+  ---
+  duration_ms: 0.161353
+  type: 'test'
+  ...
+# Subtest: a pre-aborted request does not acquire a receipt, consume approval or call an executor
+ok 89 - a pre-aborted request does not acquire a receipt, consume approval or call an executor
+  ---
+  duration_ms: 0.296466
+  type: 'test'
+  ...
+# Subtest: canonical JSON rejects cyclic arrays and unsafe object keys
+ok 90 - canonical JSON rejects cyclic arrays and unsafe object keys
+  ---
+  duration_ms: 0.169575
+  type: 'test'
+  ...
+# Subtest: audit redaction stores unsafe property names without invoking prototype setters
+ok 91 - audit redaction stores unsafe property names without invoking prototype setters
+  ---
+  duration_ms: 0.094513
+  type: 'test'
+  ...
+# Subtest: rejects malformed trusted correlation identifiers
+ok 92 - rejects malformed trusted correlation identifiers
+  ---
+  duration_ms: 0.258739
+  type: 'test'
+  ...
+# Subtest: fails closed when policy approval metadata is malformed
+ok 93 - fails closed when policy approval metadata is malformed
+  ---
+  duration_ms: 0.204287
+  type: 'test'
+  ...
+# Subtest: rejects non-plain request objects without invoking custom serialization hooks
+ok 94 - rejects non-plain request objects without invoking custom serialization hooks
+  ---
+  duration_ms: 0.145499
+  type: 'test'
+  ...
+# Subtest: revalidates validator-transformed input for tenant ownership fields
+ok 95 - revalidates validator-transformed input for tenant ownership fields
+  ---
+  duration_ms: 0.188954
+  type: 'test'
+  ...
+# Subtest: receipt store atomically acquires, completes and replays
+ok 96 - receipt store atomically acquires, completes and replays
+  ---
+  duration_ms: 2.6244
+  type: 'test'
+  ...
+# Subtest: receipt rejects same key with another digest
+ok 97 - receipt rejects same key with another digest
+  ---
+  duration_ms: 0.672102
+  type: 'test'
+  ...
+# Subtest: receipt completion requires the acquired lease token
+ok 98 - receipt completion requires the acquired lease token
+  ---
+  duration_ms: 0.309807
+  type: 'test'
+  ...
+# Subtest: approval consumption is tenant, action, digest and expiry bound
+ok 99 - approval consumption is tenant, action, digest and expiry bound
+  ---
+  duration_ms: 1.136561
+  type: 'test'
+  ...
+# Subtest: audit sink redacts secret-bearing properties
+ok 100 - audit sink redacts secret-bearing properties
+  ---
+  duration_ms: 0.993586
+  type: 'test'
+  ...
+# Subtest: canonical JSON is stable across object key order
+ok 101 - canonical JSON is stable across object key order
+  ---
+  duration_ms: 1.118744
+  type: 'test'
+  ...
+# Subtest: idempotency key is deterministic and tenant scoped
+ok 102 - idempotency key is deterministic and tenant scoped
+  ---
+  duration_ms: 0.653724
+  type: 'test'
+  ...
+# Subtest: money avoids floating point and uses explicit rounding
+ok 103 - money avoids floating point and uses explicit rounding
+  ---
+  duration_ms: 0.473403
+  type: 'test'
+  ...
+# Subtest: agent policy is deny by default and approval is payload-bound
+ok 104 - agent policy is deny by default and approval is payload-bound
+  ---
+  duration_ms: 0.566292
+  type: 'test'
+  ...
+# Subtest: retry is bounded and uses injected deterministic sleep
+ok 105 - retry is bounded and uses injected deterministic sleep
+  ---
+  duration_ms: 0.925523
+  type: 'test'
+  ...
+# Subtest: integration URL policy blocks local, credential and rebinding targets
+ok 106 - integration URL policy blocks local, credential and rebinding targets
+  ---
+  duration_ms: 4.255154
+  type: 'test'
+  ...
+# Subtest: pipeline validates terminal semantics and transition policy
+ok 107 - pipeline validates terminal semantics and transition policy
+  ---
+  duration_ms: 0.368084
+  type: 'test'
+  ...
+# Subtest: deal health returns deterministic evidence factors
+ok 108 - deal health returns deterministic evidence factors
+  ---
+  duration_ms: 0.355365
+  type: 'test'
+  ...
+# Subtest: contact normalization supports Uzbekistan and safe mapping errors
+ok 109 - contact normalization supports Uzbekistan and safe mapping errors
+  ---
+  duration_ms: 0.504599
+  type: 'test'
+  ...
+# Subtest: ROI calculation uses integer arithmetic
+ok 110 - ROI calculation uses integer arithmetic
+  ---
+  duration_ms: 0.472721
+  type: 'test'
+  ...
+# Subtest: approval payload hash changes when action data changes
+ok 111 - approval payload hash changes when action data changes
+  ---
+  duration_ms: 0.230788
+  type: 'test'
+  ...
+# Subtest: blocks private, loopback, link-local, metadata, documentation and multicast IP ranges
+ok 112 - blocks private, loopback, link-local, metadata, documentation and multicast IP ranges
+  ---
+  duration_ms: 4.57831
+  type: 'test'
+  ...
+# Subtest: rejects URL credentials and DNS rebinding to a private address
+ok 113 - rejects URL credentials and DNS rebinding to a private address
+  ---
+  duration_ms: 0.801526
+  type: 'test'
+  ...
+# Subtest: enforces connector host allowlists
+ok 114 - enforces connector host allowlists
+  ---
+  duration_ms: 0.220752
+  type: 'test'
+  ...
+# Subtest: executes a pinned bounded request and parses JSON
+ok 115 - executes a pinned bounded request and parses JSON
+  ---
+  duration_ms: 14.560784
+  type: 'test'
+  ...
+# Subtest: rejects mutation retry without idempotency
+ok 116 - rejects mutation retry without idempotency
+  ---
+  duration_ms: 0.281614
+  type: 'test'
+  ...
+# Subtest: rejects redirect to a private destination
+ok 117 - rejects redirect to a private destination
+  ---
+  duration_ms: 3.418585
+  type: 'test'
+  ...
+# Subtest: verifies HMAC webhooks and rejects replay
+ok 118 - verifies HMAC webhooks and rejects replay
+  ---
+  duration_ms: 1.023169
+  type: 'test'
+  ...
+# Subtest: rejects tampered webhook body
+ok 119 - rejects tampered webhook body
+  ---
+  duration_ms: 0.328584
+  type: 'test'
+  ...
+# Subtest: compiles bounded OpenAPI operations and classifies risk
+ok 120 - compiles bounded OpenAPI operations and classifies risk
+  ---
+  duration_ms: 0.658191
+  type: 'test'
+  ...
+# Subtest: rejects external OpenAPI references
+ok 121 - rejects external OpenAPI references
+  ---
+  duration_ms: 0.295114
+  type: 'test'
+  ...
+# Subtest: rejects malformed resolver results before opening a socket
+ok 122 - rejects malformed resolver results before opening a socket
+  ---
+  duration_ms: 0.256115
+  type: 'test'
+  ...
+# Subtest: validates the retry-delay boundary
+ok 123 - validates the retry-delay boundary
+  ---
+  duration_ms: 0.180752
+  type: 'test'
+  ...
+# Subtest: enforces a total request deadline even while response bytes keep arriving
+ok 124 - enforces a total request deadline even while response bytes keep arriving
+  ---
+  duration_ms: 101.69248
+  type: 'test'
+  ...
+# Subtest: parses RFC4180 quoted commas, newlines, and escaped quotes
+ok 125 - parses RFC4180 quoted commas, newlines, and escaped quotes
+  ---
+  duration_ms: 2.44464
+  type: 'test'
+  ...
+# Subtest: detects a semicolon delimiter
+ok 126 - detects a semicolon delimiter
+  ---
+  duration_ms: 0.320823
+  type: 'test'
+  ...
+# Subtest: removes UTF-8 BOM from the first header
+ok 127 - removes UTF-8 BOM from the first header
+  ---
+  duration_ms: 0.111158
+  type: 'test'
+  ...
+# Subtest: rejects an unclosed quote
+ok 128 - rejects an unclosed quote
+  ---
+  duration_ms: 0.383597
+  type: 'test'
+  ...
+# Subtest: rejects duplicate normalized headers
+ok 129 - rejects duplicate normalized headers
+  ---
+  duration_ms: 0.359782
+  type: 'test'
+  ...
+# Subtest: enforces row limits
+ok 130 - enforces row limits
+  ---
+  duration_ms: 0.122605
+  type: 'test'
+  ...
+# Subtest: neutralizes spreadsheet formulas in exported reports
+ok 131 - neutralizes spreadsheet formulas in exported reports
+  ---
+  duration_ms: 0.256846
+  type: 'test'
+  ...
+# Subtest: serializes error reports with formula protection
+ok 132 - serializes error reports with formula protection
+  ---
+  duration_ms: 0.260963
+  type: 'test'
+  ...
+# Subtest: parses money deterministically in minor units
+ok 133 - parses money deterministically in minor units
+  ---
+  duration_ms: 0.457198
+  type: 'test'
+  ...
+# Subtest: normalizes Uzbekistan phone numbers
+ok 134 - normalizes Uzbekistan phone numbers
+  ---
+  duration_ms: 0.399902
+  type: 'test'
+  ...
+# Subtest: validates extension, MIME, and XLSX ZIP signature
+ok 135 - validates extension, MIME, and XLSX ZIP signature
+  ---
+  duration_ms: 0.405791
+  type: 'test'
+  ...
+# Subtest: compiles deterministic mappings and validates required fields
+ok 136 - compiles deterministic mappings and validates required fields
+  ---
+  duration_ms: 0.327613
+  type: 'test'
+  ...
+# Subtest: creates deterministic dry-run batches and duplicate issues
+ok 137 - creates deterministic dry-run batches and duplicate issues
+  ---
+  duration_ms: 1.387177
+  type: 'test'
+  ...
+# Subtest: marks existing-record matches as warnings without silently dropping the row
+ok 138 - marks existing-record matches as warnings without silently dropping the row
+  ---
+  duration_ms: 0.25867
+  type: 'test'
+  ...
+# Subtest: rejects invalid state transitions
+ok 139 - rejects invalid state transitions
+  ---
+  duration_ms: 0.917441
+  type: 'test'
+  ...
+# Subtest: rejects a dry-run from another tenant
+ok 140 - rejects a dry-run from another tenant
+  ---
+  duration_ms: 1.158333
+  type: 'test'
+  ...
+# Subtest: processes bounded batches and completes after the last checkpoint
+ok 141 - processes bounded batches and completes after the last checkpoint
+  ---
+  duration_ms: 2.485721
+  type: 'test'
+  ...
+# Subtest: concurrent workers claim distinct batches and never duplicate the same lease
+ok 142 - concurrent workers claim distinct batches and never duplicate the same lease
+  ---
+  duration_ms: 4.384979
+  type: 'test'
+  ...
+# Subtest: an expired RUNNING lease is reclaimed with the same operation identity
+ok 143 - an expired RUNNING lease is reclaimed with the same operation identity
+  ---
+  duration_ms: 2.032969
+  type: 'test'
+  ...
+# Subtest: retries a transient failure with the same idempotency key
+ok 144 - retries a transient failure with the same idempotency key
+  ---
+  duration_ms: 0.982369
+  type: 'test'
+  ...
+# Subtest: moves a poison batch and job to FAILED after bounded attempts
+ok 145 - moves a poison batch and job to FAILED after bounded attempts
+  ---
+  duration_ms: 0.826975
+  type: 'test'
+  ...
+# Subtest: cancellation is terminal and prevents execution
+ok 146 - cancellation is terminal and prevents execution
+  ---
+  duration_ms: 0.394594
+  type: 'test'
+  ...
+# Subtest: normalizes a safe pipeline slug
+ok 147 - normalizes a safe pipeline slug
+  ---
+  duration_ms: 0.993295
+  type: 'test'
+  ...
+# Subtest: accepts a complete pipeline definition
+ok 148 - accepts a complete pipeline definition
+  ---
+  duration_ms: 1.452666
+  type: 'test'
+  ...
+# Subtest: rejects duplicate stage IDs
+ok 149 - rejects duplicate stage IDs
+  ---
+  duration_ms: 0.483648
+  type: 'test'
+  ...
+# Subtest: rejects non-contiguous positions
+ok 150 - rejects non-contiguous positions
+  ---
+  duration_ms: 0.288324
+  type: 'test'
+  ...
+# Subtest: rejects invalid terminal probability
+ok 151 - rejects invalid terminal probability
+  ---
+  duration_ms: 0.164247
+  type: 'test'
+  ...
+# Subtest: rejects an archived default pipeline
+ok 152 - rejects an archived default pipeline
+  ---
+  duration_ms: 0.2194
+  type: 'test'
+  ...
+# Subtest: plans an allowed transition with optimistic version increment
+ok 153 - plans an allowed transition with optimistic version increment
+  ---
+  duration_ms: 0.340923
+  type: 'test'
+  ...
+# Subtest: treats same-stage movement as idempotent
+ok 154 - treats same-stage movement as idempotent
+  ---
+  duration_ms: 0.139781
+  type: 'test'
+  ...
+# Subtest: rejects a transition that violates stage rules
+ok 155 - rejects a transition that violates stage rules
+  ---
+  duration_ms: 0.401895
+  type: 'test'
+  ...
+# Subtest: rejects stale optimistic version
+ok 156 - rejects stale optimistic version
+  ---
+  duration_ms: 0.409096
+  type: 'test'
+  ...
+# Subtest: rejects cross-tenant assignment
+ok 157 - rejects cross-tenant assignment
+  ---
+  duration_ms: 0.205519
+  type: 'test'
+  ...
+# Subtest: requires explicit permission to reopen a terminal deal
+ok 158 - requires explicit permission to reopen a terminal deal
+  ---
+  duration_ms: 0.14657
+  type: 'test'
+  ...
+# Subtest: allows an explicitly authorized terminal reopen
+ok 159 - allows an explicitly authorized terminal reopen
+  ---
+  duration_ms: 0.144177
+  type: 'test'
+  ...
+# Subtest: builds deterministic legacy assignments
+ok 160 - builds deterministic legacy assignments
+  ---
+  duration_ms: 0.742297
+  type: 'test'
+  ...
+# Subtest: fails closed when a legacy stage has no mapping
+ok 161 - fails closed when a legacy stage has no mapping
+  ---
+  duration_ms: 0.278079
+  type: 'test'
+  ...
+# Subtest: calculates exact minor-unit analytics without floating point
+ok 162 - calculates exact minor-unit analytics without floating point
+  ---
+  duration_ms: 0.649107
+  type: 'test'
+  ...
+# Subtest: maps Prisma pipeline rows into the domain shape
+ok 163 - maps Prisma pipeline rows into the domain shape
+  ---
+  duration_ms: 2.420993
+  type: 'test'
+  ...
+# Subtest: scopes every pipeline read by workspace and bounds the list
+ok 164 - scopes every pipeline read by workspace and bounds the list
+  ---
+  duration_ms: 1.180387
+  type: 'test'
+  ...
+# Subtest: uses serializable interactive transactions
+ok 165 - uses serializable interactive transactions
+  ---
+  duration_ms: 0.296106
+  type: 'test'
+  ...
+# Subtest: retries only bounded Prisma serialization conflicts
+ok 166 - retries only bounded Prisma serialization conflicts
+  ---
+  duration_ms: 0.411649
+  type: 'test'
+  ...
+# Subtest: does not retry permanent Prisma errors
+ok 167 - does not retry permanent Prisma errors
+  ---
+  duration_ms: 0.502737
+  type: 'test'
+  ...
+# Subtest: maps exhausted serialization retries to a stable runtime error
+ok 168 - maps exhausted serialization retries to a stable runtime error
+  ---
+  duration_ms: 0.523057
+  type: 'test'
+  ...
+# Subtest: rejects an invalid retry jitter source before sleeping
+ok 169 - rejects an invalid retry jitter source before sleeping
+  ---
+  duration_ms: 0.257057
+  type: 'test'
+  ...
+# Subtest: persists command receipts and audit events using workspace-owned fields
+ok 170 - persists command receipts and audit events using workspace-owned fields
+  ---
+  duration_ms: 0.283757
+  type: 'test'
+  ...
+# Subtest: enforces the maximum number of pipelines inside the transaction
+ok 171 - enforces the maximum number of pipelines inside the transaction
+  ---
+  duration_ms: 0.705602
+  type: 'test'
+  ...
+# Subtest: atomically hands off the default during pipeline creation
+ok 172 - atomically hands off the default during pipeline creation
+  ---
+  duration_ms: 1.314488
+  type: 'test'
+  ...
+# Subtest: maps a duplicate slug to a stable domain error
+ok 173 - maps a duplicate slug to a stable domain error
+  ---
+  duration_ms: 0.502196
+  type: 'test'
+  ...
+# Subtest: neutralizes stage keys and positions before an ordered replacement
+ok 174 - neutralizes stage keys and positions before an ordered replacement
+  ---
+  duration_ms: 1.598676
+  type: 'test'
+  ...
+# Subtest: blocks removal of a stage that already owns assignments
+ok 175 - blocks removal of a stage that already owns assignments
+  ---
+  duration_ms: 0.321484
+  type: 'test'
+  ...
+# Subtest: maps a foreign-key race during stage deletion to STAGE_IN_USE
+ok 176 - maps a foreign-key race during stage deletion to STAGE_IN_USE
+  ---
+  duration_ms: 0.359811
+  type: 'test'
+  ...
+# Subtest: sets the default pipeline with an optimistic version predicate
+ok 177 - sets the default pipeline with an optimistic version predicate
+  ---
+  duration_ms: 0.293382
+  type: 'test'
+  ...
+# Subtest: rejects a stale default-pipeline request before changing any defaults
+ok 178 - rejects a stale default-pipeline request before changing any defaults
+  ---
+  duration_ms: 0.174923
+  type: 'test'
+  ...
+# Subtest: creates an idempotent pipeline and writes one audit event
+ok 179 - creates an idempotent pipeline and writes one audit event
+  ---
+  duration_ms: 4.558651
+  type: 'test'
+  ...
+# Subtest: forces the first pipeline to default even when the caller does not request it
+ok 180 - forces the first pipeline to default even when the caller does not request it
+  ---
+  duration_ms: 1.186666
+  type: 'test'
+  ...
+# Subtest: atomically promotes an explicitly default second pipeline during creation
+ok 181 - atomically promotes an explicitly default second pipeline during creation
+  ---
+  duration_ms: 6.898152
+  type: 'test'
+  ...
+# Subtest: keeps an explicitly non-default later pipeline non-default
+ok 182 - keeps an explicitly non-default later pipeline non-default
+  ---
+  duration_ms: 1.14957
+  type: 'test'
+  ...
+# Subtest: replays a concurrently committed command after a deterministic mutation race
+ok 183 - replays a concurrently committed command after a deterministic mutation race
+  ---
+  duration_ms: 1.148358
+  type: 'test'
+  ...
+# Subtest: canonical payload hashing never invokes object or array accessors
+ok 184 - canonical payload hashing never invokes object or array accessors
+  ---
+  duration_ms: 0.517139
+  type: 'test'
+  ...
+# Subtest: canonical payload hashing rejects cycles, sparse arrays and custom serialization
+ok 185 - canonical payload hashing rejects cycles, sparse arrays and custom serialization
+  ---
+  duration_ms: 0.278739
+  type: 'test'
+  ...
+# Subtest: replays a command by its stable API payload before service-side reads
+ok 186 - replays a command by its stable API payload before service-side reads
+  ---
+  duration_ms: 0.916068
+  type: 'test'
+  ...
+# Subtest: rejects an idempotency key reused with another payload
+ok 187 - rejects an idempotency key reused with another payload
+  ---
+  duration_ms: 1.048367
+  type: 'test'
+  ...
+# Subtest: rejects tenant ownership supplied for another tenant
+ok 188 - rejects tenant ownership supplied for another tenant
+  ---
+  duration_ms: 0.424158
+  type: 'test'
+  ...
+# Subtest: normalizes pipeline-domain validation failures at the runtime boundary
+ok 189 - normalizes pipeline-domain validation failures at the runtime boundary
+  ---
+  duration_ms: 0.387433
+  type: 'test'
+  ...
+# Subtest: enforces action permission at the operation boundary
+ok 190 - enforces action permission at the operation boundary
+  ---
+  duration_ms: 0.184638
+  type: 'test'
+  ...
+# Subtest: transitions a seeded deal with optimistic concurrency
+ok 191 - transitions a seeded deal with optimistic concurrency
+  ---
+  duration_ms: 1.579667
+  type: 'test'
+  ...
+# Subtest: serializes two concurrent transitions so only one stale version wins
+ok 192 - serializes two concurrent transitions so only one stale version wins
+  ---
+  duration_ms: 1.375791
+  type: 'test'
+  ...
+# Subtest: prevents deleting a stage that still owns a deal assignment
+ok 193 - prevents deleting a stage that still owns a deal assignment
+  ---
+  duration_ms: 1.018483
+  type: 'test'
+  ...
+# Subtest: atomically switches the default pipeline with optimistic concurrency
+ok 194 - atomically switches the default pipeline with optimistic concurrency
+  ---
+  duration_ms: 1.105043
+  type: 'test'
+  ...
+# Subtest: restore requires its own permission rather than archive permission
+ok 195 - restore requires its own permission rather than archive permission
+  ---
+  duration_ms: 1.26245
+  type: 'test'
+  ...
+# Subtest: in-memory keys do not collide when tenant and entity IDs contain colons
+ok 196 - in-memory keys do not collide when tenant and entity IDs contain colons
+  ---
+  duration_ms: 0.263426
+  type: 'test'
+  ...
+# Subtest: enforces the bounded pipeline count
+ok 197 - enforces the bounded pipeline count
+  ---
+  duration_ms: 8.325359
+  type: 'test'
+  ...
+# Subtest: givenPlainCredential_whenSealingAndOpening_thenReturnsValidatedPlaintext
+ok 198 - givenPlainCredential_whenSealingAndOpening_thenReturnsValidatedPlaintext
+  ---
+  duration_ms: 3.225825
+  type: 'test'
+  ...
+# Subtest: givenLegacyPlaintextAndStrictMode_whenOpening_thenRejects
+ok 199 - givenLegacyPlaintextAndStrictMode_whenOpening_thenRejects
+  ---
+  duration_ms: 0.512522
+  type: 'test'
+  ...
+# Subtest: givenLegacyPlaintextAndMigrationMode_whenOpening_thenMarksMigrationRequired
+ok 200 - givenLegacyPlaintextAndMigrationMode_whenOpening_thenMarksMigrationRequired
+  ---
+  duration_ms: 0.380322
+  type: 'test'
+  ...
+# Subtest: givenEncryptedValue_whenSealingAgain_thenPreventsDoubleEncryption
+ok 201 - givenEncryptedValue_whenSealingAgain_thenPreventsDoubleEncryption
+  ---
+  duration_ms: 1.163661
+  type: 'test'
+  ...
+# Subtest: givenValidContext_whenEncryptingAndDecrypting_thenRoundTripsWithoutPlaintextLeakage
+ok 202 - givenValidContext_whenEncryptingAndDecrypting_thenRoundTripsWithoutPlaintextLeakage
+  ---
+  duration_ms: 3.575041
+  type: 'test'
+  ...
+# Subtest: givenSamePlaintext_whenEncryptedTwice_thenRandomIvProducesDifferentEnvelopes
+ok 203 - givenSamePlaintext_whenEncryptedTwice_thenRandomIvProducesDifferentEnvelopes
+  ---
+  duration_ms: 1.499056
+  type: 'test'
+  ...
+# Subtest: givenWrongTenantContext_whenDecrypting_thenAuthenticationFails
+ok 204 - givenWrongTenantContext_whenDecrypting_thenAuthenticationFails
+  ---
+  duration_ms: 0.709208
+  type: 'test'
+  ...
+# Subtest: givenTamperedCiphertext_whenDecrypting_thenAuthenticationFails
+ok 205 - givenTamperedCiphertext_whenDecrypting_thenAuthenticationFails
+  ---
+  duration_ms: 0.521375
+  type: 'test'
+  ...
+# Subtest: givenMissingHistoricalKey_whenDecrypting_thenFailsWithoutLeakingSecret
+ok 206 - givenMissingHistoricalKey_whenDecrypting_thenFailsWithoutLeakingSecret
+  ---
+  duration_ms: 0.630509
+  type: 'test'
+  ...
+# Subtest: givenHistoricalKeyAndNewActiveKey_whenRotating_thenReencryptsWithNewKey
+ok 207 - givenHistoricalKeyAndNewActiveKey_whenRotating_thenReencryptsWithNewKey
+  ---
+  duration_ms: 0.760504
+  type: 'test'
+  ...
+# Subtest: givenPlaintext_whenDecrypting_thenRejectsImplicitLegacyFallback
+ok 208 - givenPlaintext_whenDecrypting_thenRejectsImplicitLegacyFallback
+  ---
+  duration_ms: 0.339331
+  type: 'test'
+  ...
+# Subtest: givenInvalidKeyLength_whenCreatingProvider_thenFailsFast
+ok 209 - givenInvalidKeyLength_whenCreatingProvider_thenFailsFast
+  ---
+  duration_ms: 0.195314
+  type: 'test'
+  ...
+# Subtest: givenEnvironmentKeyring_whenCreatingProvider_thenValidatesAndDecrypts
+ok 210 - givenEnvironmentKeyring_whenCreatingProvider_thenValidatesAndDecrypts
+  ---
+  duration_ms: 0.753725
+  type: 'test'
+  ...
+# Subtest: givenEnvelope_whenRedactingAndFingerprinting_thenNeverReturnsPlaintext
+ok 211 - givenEnvelope_whenRedactingAndFingerprinting_thenNeverReturnsPlaintext
+  ---
+  duration_ms: 1.115249
+  type: 'test'
+  ...
+# Subtest: givenOversizedPlaintext_whenEncrypting_thenRejectsBeforeEncryption
+ok 212 - givenOversizedPlaintext_whenEncrypting_thenRejectsBeforeEncryption
+  ---
+  duration_ms: 0.268794
+  type: 'test'
+  ...
+# Subtest: givenUnscopedWhere_whenScoping_thenInjectsActiveTenant
+ok 213 - givenUnscopedWhere_whenScoping_thenInjectsActiveTenant
+  ---
+  duration_ms: 1.397503
+  type: 'test'
+  ...
+# Subtest: givenCrossTenantSelector_whenScoping_thenRejects
+ok 214 - givenCrossTenantSelector_whenScoping_thenRejects
+  ---
+  duration_ms: 0.45846
+  type: 'test'
+  ...
+# Subtest: givenCreatePayloadForAnotherTenant_whenScoping_thenRejects
+ok 215 - givenCreatePayloadForAnotherTenant_whenScoping_thenRejects
+  ---
+  duration_ms: 0.964932
+  type: 'test'
+  ...
+# Subtest: givenAttemptedTenantReassignment_whenUpdating_thenRejects
+ok 216 - givenAttemptedTenantReassignment_whenUpdating_thenRejects
+  ---
+  duration_ms: 0.180762
+  type: 'test'
+  ...
+# Subtest: givenUniqueSelector_whenScoping_thenKeepsUniqueFieldAndAddsTenant
+ok 217 - givenUniqueSelector_whenScoping_thenKeepsUniqueFieldAndAddsTenant
+  ---
+  duration_ms: 0.228584
+  type: 'test'
+  ...
+# Subtest: givenSameOperationInDifferentTenants_whenBuildingIdempotencyKey_thenKeysDiffer
+ok 218 - givenSameOperationInDifferentTenants_whenBuildingIdempotencyKey_thenKeysDiffer
+  ---
+  duration_ms: 0.754035
+  type: 'test'
+  ...
+# Subtest: givenTenantScopedDelegate_whenReading_thenAlwaysInjectsTenantAndValidatesResults
+ok 219 - givenTenantScopedDelegate_whenReading_thenAlwaysInjectsTenantAndValidatesResults
+  ---
+  duration_ms: 0.490117
+  type: 'test'
+  ...
+# Subtest: givenCompromisedDelegateReturningAnotherTenant_whenReading_thenFailsClosed
+ok 220 - givenCompromisedDelegateReturningAnotherTenant_whenReading_thenFailsClosed
+  ---
+  duration_ms: 0.258279
+  type: 'test'
+  ...
+# Subtest: givenScopedMutation_whenUpdating_thenScopesWhereAndForbidsOwnershipChange
+ok 221 - givenScopedMutation_whenUpdating_thenScopesWhereAndForbidsOwnershipChange
+  ---
+  duration_ms: 0.440573
+  type: 'test'
+  ...
+# Subtest: givenPrototypePollutionKey_whenScoping_thenRejectsInput
+ok 222 - givenPrototypePollutionKey_whenScoping_thenRejectsInput
+  ---
+  duration_ms: 0.40527
+  type: 'test'
+  ...
+# Subtest: givenCallerSelectExcludesTenantField_whenReading_thenVerifiesInternallyAndRestoresRequestedShape
+ok 223 - givenCallerSelectExcludesTenantField_whenReading_thenVerifiesInternallyAndRestoresRequestedShape
+  ---
+  duration_ms: 0.316607
+  type: 'test'
+  ...
+# Subtest: given clean repository when audited then returns no findings
+ok 224 - given clean repository when audited then returns no findings
+  ---
+  duration_ms: 7.280978
+  type: 'test'
+  ...
+# Subtest: given UTF-8 BOM package manifest when audited then reports JSON_BOM
+ok 225 - given UTF-8 BOM package manifest when audited then reports JSON_BOM
+  ---
+  duration_ms: 3.04338
+  type: 'test'
+  ...
+# Subtest: given legacy identity in source when audited then reports it
+ok 226 - given legacy identity in source when audited then reports it
+  ---
+  duration_ms: 3.079475
+  type: 'test'
+  ...
+# Subtest: given secret-like token in source when audited then reports without exposing token
+ok 227 - given secret-like token in source when audited then reports without exposing token
+  ---
+  duration_ms: 1.797976
+  type: 'test'
+  ...
+# Subtest: given secret placeholder in .env.example when audited then does not treat it as committed secret
+ok 228 - given secret placeholder in .env.example when audited then does not treat it as committed secret
+  ---
+  duration_ms: 3.140757
+  type: 'test'
+  ...
+# Subtest: accepts the single governed executor boundary
+ok 229 - accepts the single governed executor boundary
+  ---
+  duration_ms: 10.896699
+  type: 'test'
+  ...
+# Subtest: reports direct catalog execution in production source
+ok 230 - reports direct catalog execution in production source
+  ---
+  duration_ms: 3.257923
+  type: 'test'
+  ...
+# Subtest: reports the removed parallel execution API
+ok 231 - reports the removed parallel execution API
+  ---
+  duration_ms: 2.726473
+  type: 'test'
+  ...
+# Subtest: reports direct executor calls outside the governed runtime
+ok 232 - reports direct executor calls outside the governed runtime
+  ---
+  duration_ms: 7.725136
+  type: 'test'
+  ...
+# Subtest: reports direct executor calls reached through a catalog lookup
+ok 233 - reports direct executor calls reached through a catalog lookup
+  ---
+  duration_ms: 2.524098
+  type: 'test'
+  ...
+# Subtest: excludes test and fixture paths from production findings
+ok 234 - excludes test and fixture paths from production findings
+  ---
+  duration_ms: 2.176936
+  type: 'test'
+  ...
+# Subtest: classifies the existing legacy dispatch as migration work instead of a hidden success
+ok 235 - classifies the existing legacy dispatch as migration work instead of a hidden success
+  ---
+  duration_ms: 2.542836
+  type: 'test'
+  ...
+# Subtest: accepts low-level run side effects only inside the governed bridge
+ok 236 - accepts low-level run side effects only inside the governed bridge
+  ---
+  duration_ms: 3.499437
+  type: 'test'
+  ...
+# Subtest: reports direct run side-effect calls outside the governed bridge
+ok 237 - reports direct run side-effect calls outside the governed bridge
+  ---
+  duration_ms: 3.096495
+  type: 'test'
+  ...
+# Subtest: reports removed direct run-action entrypoints as migration work
+ok 238 - reports removed direct run-action entrypoints as migration work
+  ---
+  duration_ms: 3.010581
+  type: 'test'
+  ...
+# Subtest: pipeline router is registered and requires authenticated interactive sessions
+ok 239 - pipeline router is registered and requires authenticated interactive sessions
+  ---
+  duration_ms: 6.910521
+  type: 'test'
+  ...
+# Subtest: pipeline mutations replay stable commands before reading mutable state
+ok 240 - pipeline mutations replay stable commands before reading mutable state
+  ---
+  duration_ms: 1.386807
+  type: 'test'
+  ...
+# Subtest: public pipeline contracts are strict and expose no tenant selector
+ok 241 - public pipeline contracts are strict and expose no tenant selector
+  ---
+  duration_ms: 1.602331
+  type: 'test'
+  ...
+# Subtest: pipeline persistence uses bounded reads and serializable optimistic mutations
+ok 242 - pipeline persistence uses bounded reads and serializable optimistic mutations
+  ---
+  duration_ms: 0.76399
+  type: 'test'
+  ...
+# Subtest: HTTP 412 remains a precondition failure at the tRPC error boundary
+ok 243 - HTTP 412 remains a precondition failure at the tRPC error boundary
+  ---
+  duration_ms: 0.717389
+  type: 'test'
+  ...
+# Subtest: generated client and accessible settings UI are connected without unsafe casts
+ok 244 - generated client and accessible settings UI are connected without unsafe casts
+  ---
+  duration_ms: 1.627699
+  type: 'test'
+  ...
+1..244
+# tests 244
+# suites 0
+# pass 244
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1707.86519
+
+===== Strict agent-action boundary audit =====
+$ /opt/nvm/versions/node/v22.16.0/bin/node tools/quality/audit-agent-action-boundaries.mjs --check --strict-legacy
+cwd=/mnt/data/crm_pipe_api_003_work/crm-release
+startedAt=2026-09-01T15:02:37.081Z
+endedAt=2026-09-01T15:02:37.188Z
+status=passed critical=true rc=0 durationMs=107
+{
+  "generatedAt": "2026-09-01T15:02:37.183Z",
+  "findingCount": 0,
+  "errorCount": 0,
+  "migrationCount": 0,
+  "findings": [],
+  "policy": {
+    "checkFailsOn": [
+      "error",
+      "migration"
+    ],
+    "testsAndFixturesExcluded": true,
+    "soleExecutorBoundary": "packages/agent-action-runtime/src/index.mjs"
+  }
+}
+
+===== Legacy callsite migration structural verifier =====
+$ /opt/nvm/versions/node/v22.16.0/bin/node tools/release/verify-legacy-agent-action-migration.mjs
+cwd=/mnt/data/crm_pipe_api_003_work/crm-release
+startedAt=2026-09-01T15:02:37.188Z
+endedAt=2026-09-01T15:02:37.294Z
+status=passed critical=true rc=0 durationMs=106
+{"ok":true,"requiredFiles":21,"blockingBoundaryFindings":0,"legacyMigrationFindings":0,"nextScopeId":"CRM-PIPE-API-003"}
+
+===== Prior governed action repair regression gate =====
+$ /opt/nvm/versions/node/v22.16.0/bin/node tools/release/verify-agent-action-repair.mjs
+cwd=/mnt/data/crm_pipe_api_003_work/crm-release
+startedAt=2026-09-01T15:02:37.294Z
+endedAt=2026-09-01T15:02:37.377Z
+status=passed critical=true rc=0 durationMs=83
+{"ok":true,"requiredFiles":19,"forbiddenFilesAbsent":2,"blockingBoundaryFindings":0,"legacyMigrationFindings":0,"nextScopeId":"CRM-PIPE-API-003"}
+
+===== Manifest verifier =====
+$ /opt/nvm/versions/node/v22.16.0/bin/node scripts/verify-manifests.mjs
+cwd=/mnt/data/crm_pipe_api_003_work/crm-release
+startedAt=2026-09-01T15:02:37.377Z
+endedAt=2026-09-01T15:02:37.430Z
+status=passed critical=true rc=0 durationMs=53
+Verified 20 package.json manifest(s).
+
+===== Repository identity, secret, BOM and JSON audit =====
+$ /opt/nvm/versions/node/v22.16.0/bin/node scripts/repository-audit.mjs
+cwd=/mnt/data/crm_pipe_api_003_work/crm-release
+startedAt=2026-09-01T15:02:37.430Z
+endedAt=2026-09-01T15:02:37.774Z
+status=passed critical=true rc=0 durationMs=344
+Repository audit passed: no critical identity, secret, BOM, or manifest findings.
+
+===== Credential-vault configuration check =====
+$ /opt/nvm/versions/node/v22.16.0/bin/node scripts/verify-security-config.mjs
+cwd=/mnt/data/crm_pipe_api_003_work/crm-release
+startedAt=2026-09-01T15:02:37.774Z
+endedAt=2026-09-01T15:02:37.800Z
+status=passed critical=true rc=0 durationMs=26
+Credential vault configuration is optional in this non-production verification context.
+
+===== Tenant-boundary regression ratchet =====
+$ /opt/nvm/versions/node/v22.16.0/bin/node scripts/audit-tenant-boundaries.mjs --check
+cwd=/mnt/data/crm_pipe_api_003_work/crm-release
+startedAt=2026-09-01T15:02:37.800Z
+endedAt=2026-09-01T15:02:39.159Z
+status=passed critical=true rc=0 durationMs=1359
+Tenant boundary ratchet passed. Current findings: 15; new findings: 0.
+
+===== Bun availability =====
+$ bun --version
+cwd=/mnt/data/crm_pipe_api_003_work/crm-release
+startedAt=2026-09-01T15:02:39.159Z
+endedAt=2026-09-01T15:02:39.160Z
+status=not_available critical=false rc=null durationMs=1
+reason=bun is not installed in the verification environment
+
+===== Full Bun-backed formatter/lint/typecheck/test/build =====
+$ <not executed>
+cwd=/mnt/data/crm_pipe_api_003_work/crm-release
+startedAt=2026-09-01T15:02:39.161Z
+endedAt=2026-09-01T15:02:39.161Z
+status=not_available critical=false rc=null durationMs=0
+reason=Not executed because Bun availability is not_available and node_modules is present
+
+===== Isolated PostgreSQL migration and true multi-worker verification =====
+$ <not executed>
+cwd=/mnt/data/crm_pipe_api_003_work/crm-release
+startedAt=2026-09-01T15:02:39.161Z
+endedAt=2026-09-01T15:02:39.161Z
+status=blocked_external critical=false rc=null durationMs=0
+reason=TEST_DATABASE_URL was not provided; verification must never fall back to DATABASE_URL
+
+===== Live Slack provider and staging agent-run E2E =====
+$ <not executed>
+cwd=/mnt/data/crm_pipe_api_003_work/crm-release
+startedAt=2026-09-01T15:02:39.161Z
+endedAt=2026-09-01T15:02:39.161Z
+status=blocked_external critical=false rc=null durationMs=0
+reason=Real Slack credentials, a staging deployment, queue/runtime infrastructure and authenticated tenant data are required
+

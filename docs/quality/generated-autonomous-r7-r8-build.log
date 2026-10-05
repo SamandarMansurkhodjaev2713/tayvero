@@ -1,0 +1,546 @@
+===== Node availability =====
+status=passed exit=0 duration=0.104
+command=node --version
+v22.16.0
+
+
+===== Pipeline core unit tests =====
+status=passed exit=0 duration=0.481
+command=node --test packages/pipeline-core/test/pipeline.test.mjs
+TAP version 13
+# Subtest: normalizes a safe pipeline slug
+ok 1 - normalizes a safe pipeline slug
+  ---
+  duration_ms: 5.055458
+  type: 'test'
+  ...
+# Subtest: accepts a complete pipeline definition
+ok 2 - accepts a complete pipeline definition
+  ---
+  duration_ms: 1.650836
+  type: 'test'
+  ...
+# Subtest: rejects duplicate stage IDs
+ok 3 - rejects duplicate stage IDs
+  ---
+  duration_ms: 3.209198
+  type: 'test'
+  ...
+# Subtest: rejects non-contiguous positions
+ok 4 - rejects non-contiguous positions
+  ---
+  duration_ms: 1.681615
+  type: 'test'
+  ...
+# Subtest: rejects invalid terminal probability
+ok 5 - rejects invalid terminal probability
+  ---
+  duration_ms: 0.278913
+  type: 'test'
+  ...
+# Subtest: rejects an archived default pipeline
+ok 6 - rejects an archived default pipeline
+  ---
+  duration_ms: 0.390768
+  type: 'test'
+  ...
+# Subtest: plans an allowed transition with optimistic version increment
+ok 7 - plans an allowed transition with optimistic version increment
+  ---
+  duration_ms: 0.764725
+  type: 'test'
+  ...
+# Subtest: treats same-stage movement as idempotent
+ok 8 - treats same-stage movement as idempotent
+  ---
+  duration_ms: 0.277968
+  type: 'test'
+  ...
+# Subtest: rejects a transition that violates stage rules
+ok 9 - rejects a transition that violates stage rules
+  ---
+  duration_ms: 0.774081
+  type: 'test'
+  ...
+# Subtest: rejects stale optimistic version
+ok 10 - rejects stale optimistic version
+  ---
+  duration_ms: 0.843872
+  type: 'test'
+  ...
+# Subtest: rejects cross-tenant assignment
+ok 11 - rejects cross-tenant assignment
+  ---
+  duration_ms: 0.419267
+  type: 'test'
+  ...
+# Subtest: requires explicit permission to reopen a terminal deal
+ok 12 - requires explicit permission to reopen a terminal deal
+  ---
+  duration_ms: 0.220075
+  type: 'test'
+  ...
+# Subtest: allows an explicitly authorized terminal reopen
+ok 13 - allows an explicitly authorized terminal reopen
+  ---
+  duration_ms: 0.248359
+  type: 'test'
+  ...
+# Subtest: builds deterministic legacy assignments
+ok 14 - builds deterministic legacy assignments
+  ---
+  duration_ms: 7.6683
+  type: 'test'
+  ...
+# Subtest: fails closed when a legacy stage has no mapping
+ok 15 - fails closed when a legacy stage has no mapping
+  ---
+  duration_ms: 0.582303
+  type: 'test'
+  ...
+# Subtest: calculates exact minor-unit analytics without floating point
+ok 16 - calculates exact minor-unit analytics without floating point
+  ---
+  duration_ms: 7.67491
+  type: 'test'
+  ...
+1..16
+# tests 16
+# suites 0
+# pass 16
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 272.760173
+
+
+===== Migration core unit tests =====
+status=passed exit=0 duration=0.382
+command=node --test packages/migration-core/test/migration.test.mjs
+TAP version 13
+# Subtest: parses RFC4180 quoted commas, newlines, and escaped quotes
+ok 1 - parses RFC4180 quoted commas, newlines, and escaped quotes
+  ---
+  duration_ms: 6.602453
+  type: 'test'
+  ...
+# Subtest: detects a semicolon delimiter
+ok 2 - detects a semicolon delimiter
+  ---
+  duration_ms: 0.650603
+  type: 'test'
+  ...
+# Subtest: removes UTF-8 BOM from the first header
+ok 3 - removes UTF-8 BOM from the first header
+  ---
+  duration_ms: 0.290979
+  type: 'test'
+  ...
+# Subtest: rejects an unclosed quote
+ok 4 - rejects an unclosed quote
+  ---
+  duration_ms: 1.013799
+  type: 'test'
+  ...
+# Subtest: rejects duplicate normalized headers
+ok 5 - rejects duplicate normalized headers
+  ---
+  duration_ms: 0.372438
+  type: 'test'
+  ...
+# Subtest: enforces row limits
+ok 6 - enforces row limits
+  ---
+  duration_ms: 0.18956
+  type: 'test'
+  ...
+# Subtest: neutralizes spreadsheet formulas in exported reports
+ok 7 - neutralizes spreadsheet formulas in exported reports
+  ---
+  duration_ms: 0.545411
+  type: 'test'
+  ...
+# Subtest: serializes error reports with formula protection
+ok 8 - serializes error reports with formula protection
+  ---
+  duration_ms: 0.612014
+  type: 'test'
+  ...
+# Subtest: parses money deterministically in minor units
+ok 9 - parses money deterministically in minor units
+  ---
+  duration_ms: 1.00267
+  type: 'test'
+  ...
+# Subtest: normalizes Uzbekistan phone numbers
+ok 10 - normalizes Uzbekistan phone numbers
+  ---
+  duration_ms: 0.881157
+  type: 'test'
+  ...
+# Subtest: validates extension, MIME, and XLSX ZIP signature
+ok 11 - validates extension, MIME, and XLSX ZIP signature
+  ---
+  duration_ms: 0.601563
+  type: 'test'
+  ...
+# Subtest: compiles deterministic mappings and validates required fields
+ok 12 - compiles deterministic mappings and validates required fields
+  ---
+  duration_ms: 0.50403
+  type: 'test'
+  ...
+# Subtest: creates deterministic dry-run batches and duplicate issues
+ok 13 - creates deterministic dry-run batches and duplicate issues
+  ---
+  duration_ms: 2.761445
+  type: 'test'
+  ...
+# Subtest: marks existing-record matches as warnings without silently dropping the row
+ok 14 - marks existing-record matches as warnings without silently dropping the row
+  ---
+  duration_ms: 0.465865
+  type: 'test'
+  ...
+1..14
+# tests 14
+# suites 0
+# pass 14
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 233.192311
+
+
+===== Combined R7/R8 regression suite =====
+status=passed exit=0 duration=0.59
+command=node --test packages/pipeline-core/test/pipeline.test.mjs packages/migration-core/test/migration.test.mjs
+TAP version 13
+# Subtest: parses RFC4180 quoted commas, newlines, and escaped quotes
+ok 1 - parses RFC4180 quoted commas, newlines, and escaped quotes
+  ---
+  duration_ms: 6.112203
+  type: 'test'
+  ...
+# Subtest: detects a semicolon delimiter
+ok 2 - detects a semicolon delimiter
+  ---
+  duration_ms: 0.670603
+  type: 'test'
+  ...
+# Subtest: removes UTF-8 BOM from the first header
+ok 3 - removes UTF-8 BOM from the first header
+  ---
+  duration_ms: 0.251154
+  type: 'test'
+  ...
+# Subtest: rejects an unclosed quote
+ok 4 - rejects an unclosed quote
+  ---
+  duration_ms: 0.665852
+  type: 'test'
+  ...
+# Subtest: rejects duplicate normalized headers
+ok 5 - rejects duplicate normalized headers
+  ---
+  duration_ms: 0.354592
+  type: 'test'
+  ...
+# Subtest: enforces row limits
+ok 6 - enforces row limits
+  ---
+  duration_ms: 0.177452
+  type: 'test'
+  ...
+# Subtest: neutralizes spreadsheet formulas in exported reports
+ok 7 - neutralizes spreadsheet formulas in exported reports
+  ---
+  duration_ms: 0.403564
+  type: 'test'
+  ...
+# Subtest: serializes error reports with formula protection
+ok 8 - serializes error reports with formula protection
+  ---
+  duration_ms: 0.476266
+  type: 'test'
+  ...
+# Subtest: parses money deterministically in minor units
+ok 9 - parses money deterministically in minor units
+  ---
+  duration_ms: 1.03459
+  type: 'test'
+  ...
+# Subtest: normalizes Uzbekistan phone numbers
+ok 10 - normalizes Uzbekistan phone numbers
+  ---
+  duration_ms: 0.935854
+  type: 'test'
+  ...
+# Subtest: validates extension, MIME, and XLSX ZIP signature
+ok 11 - validates extension, MIME, and XLSX ZIP signature
+  ---
+  duration_ms: 0.589805
+  type: 'test'
+  ...
+# Subtest: compiles deterministic mappings and validates required fields
+ok 12 - compiles deterministic mappings and validates required fields
+  ---
+  duration_ms: 0.542811
+  type: 'test'
+  ...
+# Subtest: creates deterministic dry-run batches and duplicate issues
+ok 13 - creates deterministic dry-run batches and duplicate issues
+  ---
+  duration_ms: 2.750783
+  type: 'test'
+  ...
+# Subtest: marks existing-record matches as warnings without silently dropping the row
+ok 14 - marks existing-record matches as warnings without silently dropping the row
+  ---
+  duration_ms: 0.453199
+  type: 'test'
+  ...
+# Subtest: normalizes a safe pipeline slug
+ok 15 - normalizes a safe pipeline slug
+  ---
+  duration_ms: 2.778004
+  type: 'test'
+  ...
+# Subtest: accepts a complete pipeline definition
+ok 16 - accepts a complete pipeline definition
+  ---
+  duration_ms: 4.38341
+  type: 'test'
+  ...
+# Subtest: rejects duplicate stage IDs
+ok 17 - rejects duplicate stage IDs
+  ---
+  duration_ms: 1.722218
+  type: 'test'
+  ...
+# Subtest: rejects non-contiguous positions
+ok 18 - rejects non-contiguous positions
+  ---
+  duration_ms: 0.785804
+  type: 'test'
+  ...
+# Subtest: rejects invalid terminal probability
+ok 19 - rejects invalid terminal probability
+  ---
+  duration_ms: 0.336038
+  type: 'test'
+  ...
+# Subtest: rejects an archived default pipeline
+ok 20 - rejects an archived default pipeline
+  ---
+  duration_ms: 0.383629
+  type: 'test'
+  ...
+# Subtest: plans an allowed transition with optimistic version increment
+ok 21 - plans an allowed transition with optimistic version increment
+  ---
+  duration_ms: 0.741946
+  type: 'test'
+  ...
+# Subtest: treats same-stage movement as idempotent
+ok 22 - treats same-stage movement as idempotent
+  ---
+  duration_ms: 0.235422
+  type: 'test'
+  ...
+# Subtest: rejects a transition that violates stage rules
+ok 23 - rejects a transition that violates stage rules
+  ---
+  duration_ms: 0.805225
+  type: 'test'
+  ...
+# Subtest: rejects stale optimistic version
+ok 24 - rejects stale optimistic version
+  ---
+  duration_ms: 0.914173
+  type: 'test'
+  ...
+# Subtest: rejects cross-tenant assignment
+ok 25 - rejects cross-tenant assignment
+  ---
+  duration_ms: 0.417053
+  type: 'test'
+  ...
+# Subtest: requires explicit permission to reopen a terminal deal
+ok 26 - requires explicit permission to reopen a terminal deal
+  ---
+  duration_ms: 0.221675
+  type: 'test'
+  ...
+# Subtest: allows an explicitly authorized terminal reopen
+ok 27 - allows an explicitly authorized terminal reopen
+  ---
+  duration_ms: 0.249686
+  type: 'test'
+  ...
+# Subtest: builds deterministic legacy assignments
+ok 28 - builds deterministic legacy assignments
+  ---
+  duration_ms: 1.415907
+  type: 'test'
+  ...
+# Subtest: fails closed when a legacy stage has no mapping
+ok 29 - fails closed when a legacy stage has no mapping
+  ---
+  duration_ms: 0.63206
+  type: 'test'
+  ...
+# Subtest: calculates exact minor-unit analytics without floating point
+ok 30 - calculates exact minor-unit analytics without floating point
+  ---
+  duration_ms: 1.444757
+  type: 'test'
+  ...
+1..30
+# tests 30
+# suites 0
+# pass 30
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 427.108726
+
+
+===== Syntax check packages/pipeline-core/src/errors.mjs =====
+status=passed exit=0 duration=0.101
+command=node --check packages/pipeline-core/src/errors.mjs
+
+
+===== Syntax check packages/pipeline-core/src/index.mjs =====
+status=passed exit=0 duration=0.092
+command=node --check packages/pipeline-core/src/index.mjs
+
+
+===== Syntax check packages/pipeline-core/src/pipeline.mjs =====
+status=passed exit=0 duration=0.085
+command=node --check packages/pipeline-core/src/pipeline.mjs
+
+
+===== Syntax check packages/pipeline-core/src/schemas.mjs =====
+status=passed exit=0 duration=0.088
+command=node --check packages/pipeline-core/src/schemas.mjs
+
+
+===== Syntax check packages/pipeline-core/src/validation.mjs =====
+status=passed exit=0 duration=0.087
+command=node --check packages/pipeline-core/src/validation.mjs
+
+
+===== Syntax check packages/migration-core/src/csv.mjs =====
+status=passed exit=0 duration=0.091
+command=node --check packages/migration-core/src/csv.mjs
+
+
+===== Syntax check packages/migration-core/src/detect.mjs =====
+status=passed exit=0 duration=0.089
+command=node --check packages/migration-core/src/detect.mjs
+
+
+===== Syntax check packages/migration-core/src/dry-run.mjs =====
+status=passed exit=0 duration=0.089
+command=node --check packages/migration-core/src/dry-run.mjs
+
+
+===== Syntax check packages/migration-core/src/errors.mjs =====
+status=passed exit=0 duration=0.093
+command=node --check packages/migration-core/src/errors.mjs
+
+
+===== Syntax check packages/migration-core/src/index.mjs =====
+status=passed exit=0 duration=0.093
+command=node --check packages/migration-core/src/index.mjs
+
+
+===== Syntax check packages/migration-core/src/mapping.mjs =====
+status=passed exit=0 duration=0.084
+command=node --check packages/migration-core/src/mapping.mjs
+
+
+===== Syntax check packages/migration-core/src/normalize.mjs =====
+status=passed exit=0 duration=0.099
+command=node --check packages/migration-core/src/normalize.mjs
+
+
+===== Syntax check tools/pipelines/validate-definition.mjs =====
+status=failed exit=1 duration=0.095
+command=node --check tools/pipelines/validate-definition.mjs
+/mnt/data/crm_autonomous_r7_r8_work/crm-release/tools/pipelines/validate-definition.mjs:2
+#!/usr/bin/env node
+^
+
+SyntaxError: Invalid or unexpected token
+    at checkSyntax (node:internal/main/check_syntax:74:5)
+
+Node.js v22.16.0
+
+
+===== Syntax check tools/migrations/inspect-csv.mjs =====
+status=failed exit=1 duration=0.091
+command=node --check tools/migrations/inspect-csv.mjs
+/mnt/data/crm_autonomous_r7_r8_work/crm-release/tools/migrations/inspect-csv.mjs:2
+#!/usr/bin/env node
+^
+
+SyntaxError: Invalid or unexpected token
+    at checkSyntax (node:internal/main/check_syntax:74:5)
+
+Node.js v22.16.0
+
+
+===== Syntax check tools/release/verify-r7-r8.mjs =====
+status=failed exit=1 duration=0.084
+command=node --check tools/release/verify-r7-r8.mjs
+/mnt/data/crm_autonomous_r7_r8_work/crm-release/tools/release/verify-r7-r8.mjs:2
+#!/usr/bin/env node
+^
+
+SyntaxError: Invalid or unexpected token
+    at checkSyntax (node:internal/main/check_syntax:74:5)
+
+Node.js v22.16.0
+
+
+===== R7/R8 release structure verifier =====
+status=failed exit=1 duration=0.104
+command=node tools/release/verify-r7-r8.mjs
+file:///mnt/data/crm_autonomous_r7_r8_work/crm-release/tools/release/verify-r7-r8.mjs:2
+#!/usr/bin/env node
+^
+
+SyntaxError: Invalid or unexpected token
+    at compileSourceTextModule (node:internal/modules/esm/utils:344:16)
+    at ModuleLoader.moduleStrategy (node:internal/modules/esm/translators:105:18)
+    at #translate (node:internal/modules/esm/loader:534:12)
+    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:581:27)
+    at async ModuleJob._link (node:internal/modules/esm/module_job:116:19)
+
+Node.js v22.16.0
+
+
+===== Manifest JSON and UTF-8 verification =====
+status=passed exit=0 duration=0.0
+command=internal
+15 manifests parsed without BOM
+
+===== Prisma schema validation =====
+status=not_available exit=None duration=0.0
+command=prisma validate
+Repository-local Prisma executable is not installed; no network install was attempted.
+
+===== Repository typecheck =====
+status=not_available exit=None duration=0.0
+command=bun run typecheck
+Dependency installation and/or Bun/typecheck script is unavailable in this isolated runtime.
+
+===== Repository build =====
+status=not_available exit=None duration=0.0
+command=bun run build
+Dependency installation and/or Bun/build script is unavailable in this isolated runtime.

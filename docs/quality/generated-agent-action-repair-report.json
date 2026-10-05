@@ -1,0 +1,295 @@
+{
+  "stage": "AGENT-ACTION-INTEGRATION-002-REPAIR",
+  "scopeId": "AGENT-ACTION-INTEGRATION-002-REPAIR",
+  "nextScopeId": "CRM-PIPE-API-003",
+  "artifactState": "VERIFIED_BATCH",
+  "criticalChecksPassed": true,
+  "generatedAt": "2026-09-01T15:02:44.930Z",
+  "environment": {
+    "node": "v22.16.0",
+    "platform": "linux",
+    "architecture": "x64",
+    "bun": null,
+    "nodeModulesPresent": true,
+    "testDatabaseConfigured": false
+  },
+  "discovery": {
+    "esmFilesChecked": 105,
+    "dependencyFreeTestFiles": 22
+  },
+  "testSummary": {
+    "targeted": {
+      "tests": 88,
+      "passed": 88,
+      "failed": 0,
+      "skipped": 0,
+      "cancelled": 0,
+      "todo": 0
+    },
+    "broadDependencyFree": {
+      "tests": 244,
+      "passed": 244,
+      "failed": 0,
+      "skipped": 0,
+      "cancelled": 0,
+      "todo": 0
+    }
+  },
+  "commandStatusCounts": {
+    "passed": 12,
+    "not_available": 2,
+    "blocked_external": 2
+  },
+  "criticalFailures": [],
+  "boundaryAudit": {
+    "generatedAt": "2026-09-01T15:02:42.837Z",
+    "findingCount": 0,
+    "errorCount": 0,
+    "migrationCount": 0,
+    "findings": [],
+    "policy": {
+      "checkFailsOn": [
+        "error"
+      ],
+      "testsAndFixturesExcluded": true,
+      "soleExecutorBoundary": "packages/agent-action-runtime/src/index.mjs"
+    }
+  },
+  "commands": [
+    {
+      "label": "All repository ESM syntax checks",
+      "command": "node --check <105 discovered .mjs files>",
+      "status": "passed",
+      "critical": true,
+      "exitCode": 0,
+      "signal": null,
+      "durationMs": 2329,
+      "reason": null,
+      "tap": null,
+      "stdoutTail": "{\n  \"checkedFiles\": 105,\n  \"failures\": []\n}",
+      "stderrTail": ""
+    },
+    {
+      "label": "Governed action repair targeted suite",
+      "command": "/opt/nvm/versions/node/v22.16.0/bin/node --test packages/action-registry/test/actions.test.mjs packages/agent-action-runtime/test/governed-action-runtime.test.mjs packages/agent-action-runtime/test/prisma-stores.test.mjs packages/integration-runtime/test/integration.test.mjs apps/agent/test/governed-action-execution.test.mjs tools/quality/test/agent-action-boundary-audit.test.mjs scripts/tests/repository-audit.test.mjs",
+      "status": "passed",
+      "critical": true,
+      "exitCode": 0,
+      "signal": null,
+      "durationMs": 336,
+      "reason": null,
+      "tap": {
+        "tests": 88,
+        "passed": 88,
+        "failed": 0,
+        "skipped": 0,
+        "cancelled": 0,
+        "todo": 0
+      },
+      "stdoutTail": "acts common secret values even when the property name is generic\n  ---\n  duration_ms: 0.454524\n  type: 'test'\n  ...\n# Subtest: memory receipt store validates its lease configuration and fails closed on lost leases\nok 48 - memory receipt store validates its lease configuration and fails closed on lost leases\n  ---\n  duration_ms: 0.160231\n  type: 'test'\n  ...\n# Subtest: a pre-aborted request does not acquire a receipt, consume approval or call an executor\nok 49 - a pre-aborted request does not acquire a receipt, consume approval or call an executor\n  ---\n  duration_ms: 0.24587\n  type: 'test'\n  ...\n# Subtest: canonical JSON rejects cyclic arrays and unsafe object keys\nok 50 - canonical JSON rejects cyclic arrays and unsafe object keys\n  ---\n  duration_ms: 0.168173\n  type: 'test'\n  ...\n# Subtest: audit redaction stores unsafe property names without invoking prototype setters\nok 51 - audit redaction stores unsafe property names without invoking prototype setters\n  ---\n  duration_ms: 0.098909\n  type: 'test'\n  ...\n# Subtest: rejects malformed trusted correlation identifiers\nok 52 - rejects malformed trusted correlation identifiers\n  ---\n  duration_ms: 0.23287\n  type: 'test'\n  ...\n# Subtest: fails closed when policy approval metadata is malformed\nok 53 - fails closed when policy approval metadata is malformed\n  ---\n  duration_ms: 0.200792\n  type: 'test'\n  ...\n# Subtest: rejects non-plain request objects without invoking custom serialization hooks\nok 54 - rejects non-plain request objects without invoking custom serialization hooks\n  ---\n  duration_ms: 0.155734\n  type: 'test'\n  ...\n# Subtest: revalidates validator-transformed input for tenant ownership fields\nok 55 - revalidates validator-transformed input for tenant ownership fields\n  ---\n  duration_ms: 0.256947\n  type: 'test'\n  ...\n# Subtest: receipt store atomically acquires, completes and replays\nok 56 - receipt store atomically acquires, completes and replays\n  ---\n  duration_ms: 2.539273\n  type: 'test'\n  ...\n# Subtest: receipt rejects same key with another digest\nok 57 - receipt rejects same key with another digest\n  ---\n  duration_ms: 0.662958\n  type: 'test'\n  ...\n# Subtest: receipt completion requires the acquired lease token\nok 58 - receipt completion requires the acquired lease token\n  ---\n  duration_ms: 0.986395\n  type: 'test'\n  ...\n# Subtest: approval consumption is tenant, action, digest and expiry bound\nok 59 - approval consumption is tenant, action, digest and expiry bound\n  ---\n  duration_ms: 0.396256\n  type: 'test'\n  ...\n# Subtest: audit sink redacts secret-bearing properties\nok 60 - audit sink redacts secret-bearing properties\n  ---\n  duration_ms: 0.885363\n  type: 'test'\n  ...\n# Subtest: blocks private, loopback, link-local, metadata, documentation and multicast IP ranges\nok 61 - blocks private, loopback, link-local, metadata, documentation and multicast IP ranges\n  ---\n  duration_ms: 6.55592\n  type: 'test'\n  ...\n# Subtest: rejects URL credentials and DNS rebinding to a private address\nok 62 - rejects URL credentials and DNS rebinding to a private address\n  ---\n  duration_ms: 1.262281\n  type: 'test'\n  ...\n# Subtest: enforces connector host allowlists\nok 63 - enforces connector host allowlists\n  ---\n  duration_ms: 0.313822\n  type: 'test'\n  ...\n# Subtest: executes a pinned bounded request and parses JSON\nok 64 - executes a pinned bounded request and parses JSON\n  ---\n  duration_ms: 19.797794\n  type: 'test'\n  ...\n# Subtest: rejects mutation retry without idempotency\nok 65 - rejects mutation retry without idempotency\n  ---\n  duration_ms: 0.382486\n  type: 'test'\n  ...\n# Subtest: rejects redirect to a private destination\nok 66 - rejects redirect to a private destination\n  ---\n  duration_ms: 4.641507\n  type: 'test'\n  ...\n# Subtest: verifies HMAC webhooks and rejects replay\nok 67 - verifies HMAC webhooks and rejects replay\n  ---\n  duration_ms: 1.40786\n  type: 'test'\n  ...\n# Subtest: rejects tampered webhook body\nok 68 - rejects tampered webhook body\n  ---\n  duration_ms: 0.526553\n  type: 'test'\n  ...\n# Subtest: compiles bounded OpenAPI operations and classifies risk\nok 69 - compiles bounded OpenAPI operations and classifies risk\n  ---\n  duration_ms: 0.815618\n  type: 'test'\n  ...\n# Subtest: rejects external OpenAPI references\nok 70 - rejects external OpenAPI references\n  ---\n  duration_ms: 0.41181\n  type: 'test'\n  ...\n# Subtest: rejects malformed resolver results before opening a socket\nok 71 - rejects malformed resolver results before opening a socket\n  ---\n  duration_ms: 0.404188\n  type: 'test'\n  ...\n# Subtest: validates the retry-delay boundary\nok 72 - validates the retry-delay boundary\n  ---\n  duration_ms: 0.1529\n  type: 'test'\n  ...\n# Subtest: enforces a total request deadline even while response bytes keep arriving\nok 73 - enforces a total request deadline even while response bytes keep arriving\n  ---\n  duration_ms: 102.955591\n  type: 'test'\n  ...\n# Subtest: given clean repository when audited then returns no findings\nok 74 - given clean repository when audited then returns no findings\n  ---\n  duration_ms: 6.508287\n  type: 'test'\n  ...\n# Subtest: given UTF-8 BOM package manifest when audited then reports JSON_BOM\nok 75 - given UTF-8 BOM package manifest when audited then reports JSON_BOM\n  ---\n  duration_ms: 3.178595\n  type: 'test'\n  ...\n# Subtest: given legacy identity in source when audited then reports it\nok 76 - given legacy identity in source when audited then reports it\n  ---\n  duration_ms: 2.211659\n  type: 'test'\n  ...\n# Subtest: given secret-like token in source when audited then reports without exposing token\nok 77 - given secret-like token in source when audited then reports without exposing token\n  ---\n  duration_ms: 3.562513\n  type: 'test'\n  ...\n# Subtest: given secret placeholder in .env.example when audited then does not treat it as committed secret\nok 78 - given secret placeholder in .env.example when audited then does not treat it as committed secret\n  ---\n  duration_ms: 1.690315\n  type: 'test'\n  ...\n# Subtest: accepts the single governed executor boundary\nok 79 - accepts the single governed executor boundary\n  ---\n  duration_ms: 10.370973\n  type: 'test'\n  ...\n# Subtest: reports direct catalog execution in production source\nok 80 - reports direct catalog execution in production source\n  ---\n  duration_ms: 4.615643\n  type: 'test'\n  ...\n# Subtest: reports the removed parallel execution API\nok 81 - reports the removed parallel execution API\n  ---\n  duration_ms: 2.980426\n  type: 'test'\n  ...\n# Subtest: reports direct executor calls outside the governed runtime\nok 82 - reports direct executor calls outside the governed runtime\n  ---\n  duration_ms: 6.502999\n  type: 'test'\n  ...\n# Subtest: reports direct executor calls reached through a catalog lookup\nok 83 - reports direct executor calls reached through a catalog lookup\n  ---\n  duration_ms: 2.440904\n  type: 'test'\n  ...\n# Subtest: excludes test and fixture paths from production findings\nok 84 - excludes test and fixture paths from production findings\n  ---\n  duration_ms: 2.338971\n  type: 'test'\n  ...\n# Subtest: classifies the existing legacy dispatch as migration work instead of a hidden success\nok 85 - classifies the existing legacy dispatch as migration work instead of a hidden success\n  ---\n  duration_ms: 2.495076\n  type: 'test'\n  ...\n# Subtest: accepts low-level run side effects only inside the governed bridge\nok 86 - accepts low-level run side effects only inside the governed bridge\n  ---\n  duration_ms: 3.023151\n  type: 'test'\n  ...\n# Subtest: reports direct run side-effect calls outside the governed bridge\nok 87 - reports direct run side-effect calls outside the governed bridge\n  ---\n  duration_ms: 2.231659\n  type: 'test'\n  ...\n# Subtest: reports removed direct run-action entrypoints as migration work\nok 88 - reports removed direct run-action entrypoints as migration work\n  ---\n  duration_ms: 2.618432\n  type: 'test'\n  ...\n1..88\n# tests 88\n# suites 0\n# pass 88\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 303.754262\n",
+      "stderrTail": ""
+    },
+    {
+      "label": "Pipeline runtime public-error regression suite",
+      "command": "/opt/nvm/versions/node/v22.16.0/bin/node --test packages/pipeline-runtime/test/runtime.test.mjs",
+      "status": "passed",
+      "critical": true,
+      "exitCode": 0,
+      "signal": null,
+      "durationMs": 148,
+      "reason": null,
+      "tap": {
+        "tests": 19,
+        "passed": 19,
+        "failed": 0,
+        "skipped": 0,
+        "cancelled": 0,
+        "todo": 0
+      },
+      "stdoutTail": "TAP version 13\n# Subtest: creates an idempotent pipeline and writes one audit event\nok 1 - creates an idempotent pipeline and writes one audit event\n  ---\n  duration_ms: 4.451201\n  type: 'test'\n  ...\n# Subtest: forces the first pipeline to default even when the caller does not request it\nok 2 - forces the first pipeline to default even when the caller does not request it\n  ---\n  duration_ms: 1.132435\n  type: 'test'\n  ...\n# Subtest: atomically promotes an explicitly default second pipeline during creation\nok 3 - atomically promotes an explicitly default second pipeline during creation\n  ---\n  duration_ms: 6.996783\n  type: 'test'\n  ...\n# Subtest: keeps an explicitly non-default later pipeline non-default\nok 4 - keeps an explicitly non-default later pipeline non-default\n  ---\n  duration_ms: 0.763529\n  type: 'test'\n  ...\n# Subtest: replays a concurrently committed command after a deterministic mutation race\nok 5 - replays a concurrently committed command after a deterministic mutation race\n  ---\n  duration_ms: 0.878222\n  type: 'test'\n  ...\n# Subtest: canonical payload hashing never invokes object or array accessors\nok 6 - canonical payload hashing never invokes object or array accessors\n  ---\n  duration_ms: 0.484459\n  type: 'test'\n  ...\n# Subtest: canonical payload hashing rejects cycles, sparse arrays and custom serialization\nok 7 - canonical payload hashing rejects cycles, sparse arrays and custom serialization\n  ---\n  duration_ms: 0.275725\n  type: 'test'\n  ...\n# Subtest: replays a command by its stable API payload before service-side reads\nok 8 - replays a command by its stable API payload before service-side reads\n  ---\n  duration_ms: 0.807706\n  type: 'test'\n  ...\n# Subtest: rejects an idempotency key reused with another payload\nok 9 - rejects an idempotency key reused with another payload\n  ---\n  duration_ms: 0.921778\n  type: 'test'\n  ...\n# Subtest: rejects tenant ownership supplied for another tenant\nok 10 - rejects tenant ownership supplied for another tenant\n  ---\n  duration_ms: 0.381645\n  type: 'test'\n  ...\n# Subtest: normalizes pipeline-domain validation failures at the runtime boundary\nok 11 - normalizes pipeline-domain validation failures at the runtime boundary\n  ---\n  duration_ms: 0.393753\n  type: 'test'\n  ...\n# Subtest: enforces action permission at the operation boundary\nok 12 - enforces action permission at the operation boundary\n  ---\n  duration_ms: 0.177627\n  type: 'test'\n  ...\n# Subtest: transitions a seeded deal with optimistic concurrency\nok 13 - transitions a seeded deal with optimistic concurrency\n  ---\n  duration_ms: 1.959931\n  type: 'test'\n  ...\n# Subtest: serializes two concurrent transitions so only one stale version wins\nok 14 - serializes two concurrent transitions so only one stale version wins\n  ---\n  duration_ms: 0.853335\n  type: 'test'\n  ...\n# Subtest: prevents deleting a stage that still owns a deal assignment\nok 15 - prevents deleting a stage that still owns a deal assignment\n  ---\n  duration_ms: 0.979254\n  type: 'test'\n  ...\n# Subtest: atomically switches the default pipeline with optimistic concurrency\nok 16 - atomically switches the default pipeline with optimistic concurrency\n  ---\n  duration_ms: 1.162711\n  type: 'test'\n  ...\n# Subtest: restore requires its own permission rather than archive permission\nok 17 - restore requires its own permission rather than archive permission\n  ---\n  duration_ms: 1.216001\n  type: 'test'\n  ...\n# Subtest: in-memory keys do not collide when tenant and entity IDs contain colons\nok 18 - in-memory keys do not collide when tenant and entity IDs contain colons\n  ---\n  duration_ms: 0.298179\n  type: 'test'\n  ...\n# Subtest: enforces the bounded pipeline count\nok 19 - enforces the bounded pipeline count\n  ---\n  duration_ms: 8.081687\n  type: 'test'\n  ...\n1..19\n# tests 19\n# suites 0\n# pass 19\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 117.438053\n",
+      "stderrTail": ""
+    },
+    {
+      "label": "Dependency-free repository Node regression suite",
+      "command": "/opt/nvm/versions/node/v22.16.0/bin/node --test apps/agent/test/governed-action-execution.test.mjs apps/agent/test/governed-run-action-runtime.test.mjs apps/agent/test/legacy-agent-action-callsite-migration.test.mjs apps/api/test/pipeline-api-core.test.mjs apps/app/test/pipeline-command-key-store.test.mjs apps/app/test/pipeline-editor-model.test.mjs packages/action-registry/test/actions.test.mjs packages/agent-action-runtime/test/governed-action-runtime.test.mjs packages/agent-action-runtime/test/prisma-stores.test.mjs packages/business-os-core/test/core.test.mjs packages/integration-runtime/test/integration.test.mjs packages/migration-core/test/migration.test.mjs packages/migration-runtime/test/runtime.test.mjs packages/pipeline-core/test/pipeline.test.mjs packages/pipeline-runtime/test/prisma-adapter.test.mjs packages/pipeline-runtime/test/runtime.test.mjs packages/security-core/test/credential-codec.test.mjs packages/security-core/test/credential-vault.test.mjs packages/security-core/test/tenant-boundary.test.mjs scripts/tests/repository-audit.test.mjs tools/quality/test/agent-action-boundary-audit.test.mjs tools/quality/test/pipeline-api-boundary.test.mjs",
+      "status": "passed",
+      "critical": true,
+      "exitCode": 0,
+      "signal": null,
+      "durationMs": 740,
+      "reason": null,
+      "tap": {
+        "tests": 244,
+        "passed": 244,
+        "failed": 0,
+        "skipped": 0,
+        "cancelled": 0,
+        "todo": 0
+      },
+      "stdoutTail": "outLeakingSecret\n  ---\n  duration_ms: 0.693023\n  type: 'test'\n  ...\n# Subtest: givenHistoricalKeyAndNewActiveKey_whenRotating_thenReencryptsWithNewKey\nok 207 - givenHistoricalKeyAndNewActiveKey_whenRotating_thenReencryptsWithNewKey\n  ---\n  duration_ms: 0.865863\n  type: 'test'\n  ...\n# Subtest: givenPlaintext_whenDecrypting_thenRejectsImplicitLegacyFallback\nok 208 - givenPlaintext_whenDecrypting_thenRejectsImplicitLegacyFallback\n  ---\n  duration_ms: 0.426062\n  type: 'test'\n  ...\n# Subtest: givenInvalidKeyLength_whenCreatingProvider_thenFailsFast\nok 209 - givenInvalidKeyLength_whenCreatingProvider_thenFailsFast\n  ---\n  duration_ms: 0.238349\n  type: 'test'\n  ...\n# Subtest: givenEnvironmentKeyring_whenCreatingProvider_thenValidatesAndDecrypts\nok 210 - givenEnvironmentKeyring_whenCreatingProvider_thenValidatesAndDecrypts\n  ---\n  duration_ms: 0.729528\n  type: 'test'\n  ...\n# Subtest: givenEnvelope_whenRedactingAndFingerprinting_thenNeverReturnsPlaintext\nok 211 - givenEnvelope_whenRedactingAndFingerprinting_thenNeverReturnsPlaintext\n  ---\n  duration_ms: 1.213326\n  type: 'test'\n  ...\n# Subtest: givenOversizedPlaintext_whenEncrypting_thenRejectsBeforeEncryption\nok 212 - givenOversizedPlaintext_whenEncrypting_thenRejectsBeforeEncryption\n  ---\n  duration_ms: 0.389175\n  type: 'test'\n  ...\n# Subtest: givenUnscopedWhere_whenScoping_thenInjectsActiveTenant\nok 213 - givenUnscopedWhere_whenScoping_thenInjectsActiveTenant\n  ---\n  duration_ms: 1.250432\n  type: 'test'\n  ...\n# Subtest: givenCrossTenantSelector_whenScoping_thenRejects\nok 214 - givenCrossTenantSelector_whenScoping_thenRejects\n  ---\n  duration_ms: 0.49139\n  type: 'test'\n  ...\n# Subtest: givenCreatePayloadForAnotherTenant_whenScoping_thenRejects\nok 215 - givenCreatePayloadForAnotherTenant_whenScoping_thenRejects\n  ---\n  duration_ms: 1.062399\n  type: 'test'\n  ...\n# Subtest: givenAttemptedTenantReassignment_whenUpdating_thenRejects\nok 216 - givenAttemptedTenantReassignment_whenUpdating_thenRejects\n  ---\n  duration_ms: 0.18594\n  type: 'test'\n  ...\n# Subtest: givenUniqueSelector_whenScoping_thenKeepsUniqueFieldAndAddsTenant\nok 217 - givenUniqueSelector_whenScoping_thenKeepsUniqueFieldAndAddsTenant\n  ---\n  duration_ms: 0.269616\n  type: 'test'\n  ...\n# Subtest: givenSameOperationInDifferentTenants_whenBuildingIdempotencyKey_thenKeysDiffer\nok 218 - givenSameOperationInDifferentTenants_whenBuildingIdempotencyKey_thenKeysDiffer\n  ---\n  duration_ms: 0.611982\n  type: 'test'\n  ...\n# Subtest: givenTenantScopedDelegate_whenReading_thenAlwaysInjectsTenantAndValidatesResults\nok 219 - givenTenantScopedDelegate_whenReading_thenAlwaysInjectsTenantAndValidatesResults\n  ---\n  duration_ms: 0.435405\n  type: 'test'\n  ...\n# Subtest: givenCompromisedDelegateReturningAnotherTenant_whenReading_thenFailsClosed\nok 220 - givenCompromisedDelegateReturningAnotherTenant_whenReading_thenFailsClosed\n  ---\n  duration_ms: 0.251759\n  type: 'test'\n  ...\n# Subtest: givenScopedMutation_whenUpdating_thenScopesWhereAndForbidsOwnershipChange\nok 221 - givenScopedMutation_whenUpdating_thenScopesWhereAndForbidsOwnershipChange\n  ---\n  duration_ms: 0.472772\n  type: 'test'\n  ...\n# Subtest: givenPrototypePollutionKey_whenScoping_thenRejectsInput\nok 222 - givenPrototypePollutionKey_whenScoping_thenRejectsInput\n  ---\n  duration_ms: 0.366972\n  type: 'test'\n  ...\n# Subtest: givenCallerSelectExcludesTenantField_whenReading_thenVerifiesInternallyAndRestoresRequestedShape\nok 223 - givenCallerSelectExcludesTenantField_whenReading_thenVerifiesInternallyAndRestoresRequestedShape\n  ---\n  duration_ms: 0.341945\n  type: 'test'\n  ...\n# Subtest: given clean repository when audited then returns no findings\nok 224 - given clean repository when audited then returns no findings\n  ---\n  duration_ms: 8.548334\n  type: 'test'\n  ...\n# Subtest: given UTF-8 BOM package manifest when audited then reports JSON_BOM\nok 225 - given UTF-8 BOM package manifest when audited then reports JSON_BOM\n  ---\n  duration_ms: 3.959299\n  type: 'test'\n  ...\n# Subtest: given legacy identity in source when audited then reports it\nok 226 - given legacy identity in source when audited then reports it\n  ---\n  duration_ms: 2.513653\n  type: 'test'\n  ...\n# Subtest: given secret-like token in source when audited then reports without exposing token\nok 227 - given secret-like token in source when audited then reports without exposing token\n  ---\n  duration_ms: 2.153741\n  type: 'test'\n  ...\n# Subtest: given secret placeholder in .env.example when audited then does not treat it as committed secret\nok 228 - given secret placeholder in .env.example when audited then does not treat it as committed secret\n  ---\n  duration_ms: 2.263646\n  type: 'test'\n  ...\n# Subtest: accepts the single governed executor boundary\nok 229 - accepts the single governed executor boundary\n  ---\n  duration_ms: 9.122098\n  type: 'test'\n  ...\n# Subtest: reports direct catalog execution in production source\nok 230 - reports direct catalog execution in production source\n  ---\n  duration_ms: 3.681431\n  type: 'test'\n  ...\n# Subtest: reports the removed parallel execution API\nok 231 - reports the removed parallel execution API\n  ---\n  duration_ms: 2.238238\n  type: 'test'\n  ...\n# Subtest: reports direct executor calls outside the governed runtime\nok 232 - reports direct executor calls outside the governed runtime\n  ---\n  duration_ms: 5.485836\n  type: 'test'\n  ...\n# Subtest: reports direct executor calls reached through a catalog lookup\nok 233 - reports direct executor calls reached through a catalog lookup\n  ---\n  duration_ms: 3.313757\n  type: 'test'\n  ...\n# Subtest: excludes test and fixture paths from production findings\nok 234 - excludes test and fixture paths from production findings\n  ---\n  duration_ms: 3.066845\n  type: 'test'\n  ...\n# Subtest: classifies the existing legacy dispatch as migration work instead of a hidden success\nok 235 - classifies the existing legacy dispatch as migration work instead of a hidden success\n  ---\n  duration_ms: 3.25566\n  type: 'test'\n  ...\n# Subtest: accepts low-level run side effects only inside the governed bridge\nok 236 - accepts low-level run side effects only inside the governed bridge\n  ---\n  duration_ms: 3.365635\n  type: 'test'\n  ...\n# Subtest: reports direct run side-effect calls outside the governed bridge\nok 237 - reports direct run side-effect calls outside the governed bridge\n  ---\n  duration_ms: 2.380102\n  type: 'test'\n  ...\n# Subtest: reports removed direct run-action entrypoints as migration work\nok 238 - reports removed direct run-action entrypoints as migration work\n  ---\n  duration_ms: 3.614359\n  type: 'test'\n  ...\n# Subtest: pipeline router is registered and requires authenticated interactive sessions\nok 239 - pipeline router is registered and requires authenticated interactive sessions\n  ---\n  duration_ms: 4.952148\n  type: 'test'\n  ...\n# Subtest: pipeline mutations replay stable commands before reading mutable state\nok 240 - pipeline mutations replay stable commands before reading mutable state\n  ---\n  duration_ms: 1.226836\n  type: 'test'\n  ...\n# Subtest: public pipeline contracts are strict and expose no tenant selector\nok 241 - public pipeline contracts are strict and expose no tenant selector\n  ---\n  duration_ms: 1.961772\n  type: 'test'\n  ...\n# Subtest: pipeline persistence uses bounded reads and serializable optimistic mutations\nok 242 - pipeline persistence uses bounded reads and serializable optimistic mutations\n  ---\n  duration_ms: 0.691891\n  type: 'test'\n  ...\n# Subtest: HTTP 412 remains a precondition failure at the tRPC error boundary\nok 243 - HTTP 412 remains a precondition failure at the tRPC error boundary\n  ---\n  duration_ms: 0.632061\n  type: 'test'\n  ...\n# Subtest: generated client and accessible settings UI are connected without unsafe casts\nok 244 - generated client and accessible settings UI are connected without unsafe casts\n  ---\n  duration_ms: 1.528641\n  type: 'test'\n  ...\n1..244\n# tests 244\n# suites 0\n# pass 244\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 704.09934\n",
+      "stderrTail": ""
+    },
+    {
+      "label": "Agent action boundary audit",
+      "command": "/opt/nvm/versions/node/v22.16.0/bin/node tools/quality/audit-agent-action-boundaries.mjs --check",
+      "status": "passed",
+      "critical": true,
+      "exitCode": 0,
+      "signal": null,
+      "durationMs": 83,
+      "reason": null,
+      "tap": null,
+      "stdoutTail": "{\n  \"generatedAt\": \"2026-09-01T15:02:42.837Z\",\n  \"findingCount\": 0,\n  \"errorCount\": 0,\n  \"migrationCount\": 0,\n  \"findings\": [],\n  \"policy\": {\n    \"checkFailsOn\": [\n      \"error\"\n    ],\n    \"testsAndFixturesExcluded\": true,\n    \"soleExecutorBoundary\": \"packages/agent-action-runtime/src/index.mjs\"\n  }\n}\n",
+      "stderrTail": ""
+    },
+    {
+      "label": "Agent action repair structural verifier",
+      "command": "/opt/nvm/versions/node/v22.16.0/bin/node tools/release/verify-agent-action-repair.mjs",
+      "status": "passed",
+      "critical": true,
+      "exitCode": 0,
+      "signal": null,
+      "durationMs": 95,
+      "reason": null,
+      "tap": null,
+      "stdoutTail": "{\"ok\":true,\"requiredFiles\":19,\"forbiddenFilesAbsent\":2,\"blockingBoundaryFindings\":0,\"legacyMigrationFindings\":0,\"nextScopeId\":\"CRM-PIPE-API-003\"}\n",
+      "stderrTail": ""
+    },
+    {
+      "label": "R11-R12 structural verifier",
+      "command": "/opt/nvm/versions/node/v22.16.0/bin/node tools/release/verify-r11-r12.mjs",
+      "status": "passed",
+      "critical": true,
+      "exitCode": 0,
+      "signal": null,
+      "durationMs": 30,
+      "reason": null,
+      "tap": null,
+      "stdoutTail": "{\"ok\":true,\"files\":5}\n",
+      "stderrTail": ""
+    },
+    {
+      "label": "Manifest verifier",
+      "command": "/opt/nvm/versions/node/v22.16.0/bin/node scripts/verify-manifests.mjs",
+      "status": "passed",
+      "critical": true,
+      "exitCode": 0,
+      "signal": null,
+      "durationMs": 64,
+      "reason": null,
+      "tap": null,
+      "stdoutTail": "Verified 20 package.json manifest(s).\n",
+      "stderrTail": ""
+    },
+    {
+      "label": "Repository identity, secret, BOM and JSON audit",
+      "command": "/opt/nvm/versions/node/v22.16.0/bin/node scripts/repository-audit.mjs",
+      "status": "passed",
+      "critical": true,
+      "exitCode": 0,
+      "signal": null,
+      "durationMs": 354,
+      "reason": null,
+      "tap": null,
+      "stdoutTail": "Repository audit passed: no critical identity, secret, BOM, or manifest findings.\n",
+      "stderrTail": ""
+    },
+    {
+      "label": "Credential-vault configuration check",
+      "command": "/opt/nvm/versions/node/v22.16.0/bin/node scripts/verify-security-config.mjs",
+      "status": "passed",
+      "critical": true,
+      "exitCode": 0,
+      "signal": null,
+      "durationMs": 29,
+      "reason": null,
+      "tap": null,
+      "stdoutTail": "Credential vault configuration is optional in this non-production verification context.\n",
+      "stderrTail": ""
+    },
+    {
+      "label": "Tenant-boundary regression ratchet",
+      "command": "/opt/nvm/versions/node/v22.16.0/bin/node scripts/audit-tenant-boundaries.mjs --check",
+      "status": "passed",
+      "critical": true,
+      "exitCode": 0,
+      "signal": null,
+      "durationMs": 1426,
+      "reason": null,
+      "tap": null,
+      "stdoutTail": "Tenant boundary ratchet passed. Current findings: 15; new findings: 0.\n",
+      "stderrTail": ""
+    },
+    {
+      "label": "Strict legacy agent-action migration audit",
+      "command": "/opt/nvm/versions/node/v22.16.0/bin/node tools/quality/audit-agent-action-boundaries.mjs --check --strict-legacy",
+      "status": "passed",
+      "critical": true,
+      "exitCode": 0,
+      "signal": null,
+      "durationMs": 88,
+      "reason": "All legacy dispatch sites have been migrated",
+      "tap": null,
+      "stdoutTail": "{\n  \"generatedAt\": \"2026-09-01T15:02:44.924Z\",\n  \"findingCount\": 0,\n  \"errorCount\": 0,\n  \"migrationCount\": 0,\n  \"findings\": [],\n  \"policy\": {\n    \"checkFailsOn\": [\n      \"error\",\n      \"migration\"\n    ],\n    \"testsAndFixturesExcluded\": true,\n    \"soleExecutorBoundary\": \"packages/agent-action-runtime/src/index.mjs\"\n  }\n}\n",
+      "stderrTail": ""
+    },
+    {
+      "label": "Bun availability",
+      "command": "bun --version",
+      "status": "not_available",
+      "critical": false,
+      "exitCode": null,
+      "signal": null,
+      "durationMs": 1,
+      "reason": "bun is not installed in the verification environment",
+      "tap": null,
+      "stdoutTail": "",
+      "stderrTail": ""
+    },
+    {
+      "label": "Full Bun-backed monorepo lint/typecheck/test/build",
+      "command": null,
+      "status": "not_available",
+      "critical": false,
+      "exitCode": null,
+      "signal": null,
+      "durationMs": 0,
+      "reason": "Not executed because Bun availability is not_available and node_modules is present",
+      "tap": null,
+      "stdoutTail": "",
+      "stderrTail": ""
+    },
+    {
+      "label": "Isolated PostgreSQL migration and multi-worker action-state verification",
+      "command": null,
+      "status": "blocked_external",
+      "critical": false,
+      "exitCode": null,
+      "signal": null,
+      "durationMs": 0,
+      "reason": "TEST_DATABASE_URL was not provided; the suite must never fall back to DATABASE_URL",
+      "tap": null,
+      "stdoutTail": "",
+      "stderrTail": ""
+    },
+    {
+      "label": "Live provider reconciliation and staging tenant/authentication E2E",
+      "command": null,
+      "status": "blocked_external",
+      "critical": false,
+      "exitCode": null,
+      "signal": null,
+      "durationMs": 0,
+      "reason": "Real provider credentials, staging deployment, queues and tenant sessions are required",
+      "tap": null,
+      "stdoutTail": "",
+      "stderrTail": ""
+    }
+  ],
+  "verificationLimits": [
+    "Bun-backed full monorepo lint, typecheck, workspace tests and build require Bun plus installed dependencies.",
+    "The additive governed-action migration requires isolated PostgreSQL application and true concurrent-worker verification.",
+    "Live ambiguous-outcome reconciliation requires real provider credentials and staging infrastructure.",
+    "Legacy run-action call sites are covered by the strict governed-boundary audit."
+  ]
+}

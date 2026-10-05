@@ -1,0 +1,76 @@
+TAP version 13
+# Subtest: test DB never derives a target from DATABASE_URL
+ok 1 - test DB never derives a target from DATABASE_URL
+  ---
+  duration_ms: 1.591551
+  type: 'test'
+  ...
+# Subtest: explicit disposable loopback target is accepted without leaking configuration
+ok 2 - explicit disposable loopback target is accepted without leaking configuration
+  ---
+  duration_ms: 0.318919
+  type: 'test'
+  ...
+# Subtest: same DB is rejected despite changed credentials, scheme, port default and query
+ok 3 - same DB is rejected despite changed credentials, scheme, port default and query
+  ---
+  duration_ms: 0.289836
+  type: 'test'
+  ...
+# Subtest: remote targets require opt-in and still reject normalized live identity
+ok 4 - remote targets require opt-in and still reject normalized live identity
+  ---
+  duration_ms: 0.289966
+  type: 'test'
+  ...
+# Subtest: unsafe database identifiers and ambiguous paths fail closed
+ok 5 - unsafe database identifiers and ambiguous paths fail closed
+  ---
+  duration_ms: 0.334061
+  type: 'test'
+  ...
+# Subtest: connection redirection, schema changes and repeated params are rejected
+ok 6 - connection redirection, schema changes and repeated params are rejected
+  ---
+  duration_ms: 0.585671
+  type: 'test'
+  ...
+# Subtest: invalid URLs do not echo credentials in errors
+ok 7 - invalid URLs do not echo credentials in errors
+  ---
+  duration_ms: 0.364646
+  type: 'test'
+  ...
+# Subtest: reset needs separate explicit consent
+ok 8 - reset needs separate explicit consent
+  ---
+  duration_ms: 0.180286
+  type: 'test'
+  ...
+# Subtest: test DB implementation has no implicit live fallback, auto-reset or credential printing
+ok 9 - test DB implementation has no implicit live fallback, auto-reset or credential printing
+  ---
+  duration_ms: 0.58465
+  type: 'test'
+  ...
+# Subtest: PostgreSQL gate refuses implicit or production database targets
+ok 10 - PostgreSQL gate refuses implicit or production database targets
+  ---
+  duration_ms: 3.239936
+  type: 'test'
+  ...
+# Subtest: PostgreSQL integration spec exercises row locking, rollback and simultaneous writers
+ok 11 - PostgreSQL integration spec exercises row locking, rollback and simultaneous writers
+  ---
+  duration_ms: 1.174708
+  type: 'test'
+  ...
+1..11
+# tests 11
+# suites 0
+# pass 11
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 58.742661

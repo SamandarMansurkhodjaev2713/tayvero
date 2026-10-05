@@ -1,0 +1,9 @@
+Reading package lists...
+Building dependency tree...
+Reading state information...
+Package postgresql is not available, but is referred to by another package.
+This may mean that the package is missing, has been obsoleted, or
+is only available from another source
+
+E: Package 'postgresql' has no installation candidate
+E: Unable to locate package postgresql-client

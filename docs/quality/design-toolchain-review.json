@@ -1,0 +1,113 @@
+{
+  "scopeId": "TAYVERO-DESIGN-TOOLCHAIN-2026-10-05",
+  "verificationDate": "2026-10-05",
+  "status": "FRONTEND_BUILD_AND_SEMANTIC_TYPES_VERIFIED_EXTERNAL_ACCEPTANCE_REQUIRED",
+  "wholeProductProductionReady": false,
+  "environment": {
+    "platform": "win32",
+    "architecture": "x64",
+    "node": "24.13.1",
+    "bun": "1.3.12",
+    "typescript": "5.9.2",
+    "prisma": "7.9.1",
+    "next": "16.3.0"
+  },
+  "safety": {
+    "acceptanceTestDatabaseConfigured": false,
+    "codegenUrlWasNotUsedAsAcceptanceDatabase": true,
+    "buildSecretsWereEphemeralProcessOnly": true,
+    "businessProviderAcceptanceExecuted": false,
+    "databaseMigrationsOrResetsExecuted": false,
+    "posixGuardsWeakened": false,
+    "skippedTestsAcceptedAsVerified": false,
+    "authenticationGuardsBypassed": false
+  },
+  "checks": [
+    {
+      "label": "Complete semantic monorepo graph",
+      "command": "bun run check-types",
+      "workingDirectory": "crm-release",
+      "status": "passed",
+      "exitCode": 0,
+      "turboTasksPassed": 13,
+      "turboTasksTotal": 13,
+      "cachedTasks": 0,
+      "log": "semantic-types-fixed.log",
+      "scope": "Prisma generation, Next route types, tRPC generation and actual declared package TypeScript checks at that snapshot. Final UI callbacks were subsequently verified by the passing Next production build."
+    },
+    {
+      "label": "Governed, policy, pipeline, editor and workspace metadata regressions",
+      "command": "node tools/quality/run-local-tests.mjs apps/agent/test/governed-action-execution.test.mjs apps/agent/test/governed-run-action-runtime.test.mjs apps/agent/test/deployment-action-policy.test.mjs apps/api/test/pipeline-api-core.test.mjs apps/api/test/deal-pipeline-bridge-core.test.mjs apps/app/test/pipeline-editor-model.test.mjs tools/quality/test/workspace-lock.test.mjs",
+      "status": "passed",
+      "exitCode": 0,
+      "tests": 50,
+      "passed": 50,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "label": "Master local structural gate",
+      "command": "node tools/release/run-master-local-gate.mjs",
+      "status": "failed",
+      "exitCode": 1,
+      "stagesPassed": 14,
+      "stagesTotal": 15,
+      "tests": 575,
+      "passed": 502,
+      "failed": 73,
+      "skipped": 0,
+      "cancelled": 0,
+      "reason": "POSIX-only encrypted filesystem tests correctly refuse unsupported Windows O_NOFOLLOW capabilities; no cases were removed or skipped.",
+      "log": "local-gates-after-toolchain.log",
+      "report": "generated-master-local-report.json"
+    },
+    {
+      "label": "Full native monorepo build attempt",
+      "command": "bun run build",
+      "workingDirectory": "crm-release",
+      "status": "failed_external_resource",
+      "exitCode": 1,
+      "reason": "Eve native packaging hit ENOSPC while copying QuickJS WASM. API bundling and Prisma generation succeeded; Turbo cancelled the unfinished Next task.",
+      "log": "native-build-verification.log"
+    },
+    {
+      "label": "Independent native Next production build after refinement",
+      "command": "bun run build",
+      "workingDirectory": "crm-release/apps/app",
+      "status": "passed",
+      "exitCode": 0,
+      "compileSeconds": 7.1,
+      "typescriptSeconds": 10.2,
+      "prerenderedPages": 36,
+      "totalPages": 36,
+      "log": "native-next-build-attempt4.log",
+      "warning": "metadataBase is not configured for social image origin resolution.",
+      "scope": "Production frontend packaging and prerendering only; not authenticated app/staging acceptance."
+    },
+    {
+      "label": "Pipeline PostgreSQL gate",
+      "command": "node tools/release/run-pipeline-postgres-gate.mjs",
+      "status": "blocked_external",
+      "reason": "Explicit TEST_DATABASE_URL is absent.",
+      "databaseCommandsExecuted": 0,
+      "report": "generated-pipeline-postgres-005-report.json"
+    },
+    {
+      "label": "Operations PostgreSQL gate",
+      "command": "node tools/release/run-operations-postgres-gate.mjs",
+      "status": "blocked_external",
+      "reason": "Explicit TEST_DATABASE_URL is absent.",
+      "databaseCommandsExecuted": 0,
+      "report": "generated-operations-postgres-report.json"
+    }
+  ],
+  "notVerified": [
+    "Full POSIX regression on a supported Linux private volume",
+    "Real disposable PostgreSQL migration, receipt and concurrency acceptance",
+    "Successful resource-sufficient Eve production packaging",
+    "Authenticated Next/tRPC role and session E2E",
+    "Native continuation exact-session execution",
+    "Real supervisors, shared storage, backup/restore and load",
+    "Live business providers and production deployment"
+  ]
+}

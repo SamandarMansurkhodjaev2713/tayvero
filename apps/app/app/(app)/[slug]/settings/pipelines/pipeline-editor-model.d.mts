@@ -1,0 +1,22 @@
+// Companion for the ESM implementation; reuse the existing declared model.
+export {
+	addStage,
+	type DraftStage,
+	draftFromPipeline,
+	moveStage,
+	newPipelineDraft,
+	type PipelineApiModel,
+	type PipelineApiStage,
+	type PipelineCreateMutationInput,
+	type PipelineDraft,
+	type PipelineMutationStage,
+	type PipelineStageType,
+	type PipelineUpdateMutationInput,
+	removeStage,
+	toCreateMutationInput,
+	toggleTransition,
+	toMutationInput,
+	toUpdateMutationInput,
+	updateStage,
+	validatePipelineDraft,
+} from "./pipeline-editor-model.js";
