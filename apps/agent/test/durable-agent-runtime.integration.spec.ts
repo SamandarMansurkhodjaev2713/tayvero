@@ -808,7 +808,7 @@ describe("durable custom-agent runtime", () => {
 		} catch (error) {
 			reusedCallError = error as Error;
 		}
-		expect(reusedCallError?.message).toContain("already used for other input");
+		expect(reusedCallError).toMatchObject({ code: "IDEMPOTENCY_KEY_REUSED" });
 		expect(
 			await db.agentAction.count({
 				where: { runId: run.id, idempotencyKey: `${run.id}:shared-call` },
