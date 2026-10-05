@@ -1,8 +1,12 @@
 import { createHash } from "node:crypto";
-import { readdir, readFile, stat, writeFile } from "node:fs/promises";
+import { readdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
 import { fileURLToPath } from "node:url";
+import {
+	isGeneratedAgentBuildOutput,
+	walkTenantAuditSources,
+} from "./lib/tenant-audit-files.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const baselinePath = path.join(
@@ -39,23 +43,6 @@ const ignoredDirectories = new Set([
 	"migrations",
 ]);
 
-async function walk(directory, output = []) {
-	let entries;
-	try {
-		entries = await readdir(directory, { withFileTypes: true });
-	} catch {
-		return output;
-	}
-	for (const entry of entries) {
-		if (ignoredDirectories.has(entry.name)) continue;
-		const absolute = path.join(directory, entry.name);
-		if (entry.isDirectory()) await walk(absolute, output);
-		else if (entry.isFile() && sourceExtensions.has(path.extname(entry.name)))
-			output.push(absolute);
-	}
-	return output;
-}
-
 async function prismaTenantModels() {
 	const prismaFiles = [];
 	async function findPrisma(directory) {
@@ -68,6 +55,7 @@ async function prismaTenantModels() {
 		for (const entry of entries) {
 			if (ignoredDirectories.has(entry.name)) continue;
 			const absolute = path.join(directory, entry.name);
+			if (isGeneratedAgentBuildOutput(absolute, root)) continue;
 			if (entry.isDirectory()) await findPrisma(absolute);
 			else if (entry.isFile() && entry.name.endsWith(".prisma"))
 				prismaFiles.push(absolute);
@@ -104,9 +92,13 @@ function fingerprint(finding) {
 }
 
 const models = await prismaTenantModels();
+const sourceWalkOptions = { root, ignoredDirectories, sourceExtensions };
 const files = [
-	...(await walk(path.join(root, "apps"))),
-	...(await walk(path.join(root, "packages"))),
+	...(await walkTenantAuditSources(path.join(root, "apps"), sourceWalkOptions)),
+	...(await walkTenantAuditSources(
+		path.join(root, "packages"),
+		sourceWalkOptions,
+	)),
 ].filter((file) => !file.includes(`${path.sep}security-core${path.sep}`));
 
 const findings = [];
