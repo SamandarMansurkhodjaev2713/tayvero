@@ -64,7 +64,7 @@ Tayvero объединяет CRM и управляемые агентные пр
 
 ## Запустить локально
 
-Нужны **Node.js 22+**, **Bun 1.3.12**, **PostgreSQL** и доступ к registry зависимостей. `docker-compose.yml` содержит PostgreSQL 17 для разработки. Для механизмов хранения импортируемых источников требуется Linux / WSL с приватным постоянным POSIX volume.
+Нужны **Node.js 24+** (требование Eve), **Bun 1.3.12**, **PostgreSQL** и доступ к registry зависимостей. `docker-compose.yml` содержит PostgreSQL 17 для разработки. Для механизмов хранения импортируемых источников требуется Linux / WSL с приватным постоянным POSIX volume.
 
 ```sh
 git clone https://github.com/SamandarMansurkhodjaev2713/tayvero.git
