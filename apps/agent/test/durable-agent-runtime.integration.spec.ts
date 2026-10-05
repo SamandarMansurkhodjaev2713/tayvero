@@ -1,5 +1,6 @@
 import { afterAll, afterEach, beforeAll, describe, expect, it } from "bun:test";
 import { db } from "@crm/db";
+import { WORKSPACE_ID } from "@crm/db/workspace";
 import type { SendFn } from "eve/channels";
 import { z } from "zod";
 import audit from "../agent/hooks/audit";
@@ -829,7 +830,7 @@ describe("durable custom-agent runtime", () => {
 		} catch (error) {
 			scopeError = error as Error;
 		}
-		expect(scopeError?.message).toContain("outside this agent version");
+		expect(scopeError).toMatchObject({ code: "ACTION_FORBIDDEN" });
 		expect(
 			await db.agentAction.count({
 				where: { idempotencyKey: `${run.id}:out-of-scope` },
@@ -846,12 +847,24 @@ describe("durable custom-agent runtime", () => {
 		} catch (error) {
 			activityTypeError = error as Error;
 		}
-		expect(activityTypeError?.message).toContain(
-			"does not allow CRM task activities",
-		);
+		expect(activityTypeError).toMatchObject({ code: "ACTION_FORBIDDEN" });
 		expect(
 			await db.agentAction.count({
 				where: { idempotencyKey: `${run.id}:unapproved-task` },
+			}),
+		).toBe(0);
+		expect(
+			await db.governedActionReceipt.count({
+				where: {
+					workspaceId: WORKSPACE_ID,
+					actionId: "crm.activity.create",
+					idempotencyKey: {
+						in: [
+							`${WORKSPACE_ID}:crm.activity.create:${run.id}:out-of-scope`,
+							`${WORKSPACE_ID}:crm.activity.create:${run.id}:unapproved-task`,
+						],
+					},
+				},
 			}),
 		).toBe(0);
 	});

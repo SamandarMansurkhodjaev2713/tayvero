@@ -377,7 +377,9 @@ test("rejects reuse of one run call for different business input", async () => {
 });
 
 test("denies execution before the side effect when object authorization fails", async () => {
-	const { runtime, observed } = fixture({ authorize: async () => false });
+	const { runtime, observed, prisma } = fixture({
+		authorize: async () => false,
+	});
 	await assert.rejects(
 		runtime.executeCrmActivity({
 			runId: "run-1",
@@ -392,6 +394,7 @@ test("denies execution before the side effect when object authorization fails", 
 		(error) => error?.code === "ACTION_FORBIDDEN",
 	);
 	assert.equal(observed.length, 0);
+	assert.equal(prisma.receipts.size, 0);
 });
 
 test("rejects model/control-field injection and invalid business input", async () => {
