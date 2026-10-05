@@ -119,7 +119,7 @@ describe("the website has to be somewhere a fetch can go", () => {
 	it("takes a bare domain and gives back a URL", () => {
 		expect(websiteUrl("product.example")).toBe("https://product.example");
 		expect(websiteUrl(" WWW.Product.Example/ ")).toBe(
-			"https://product.example",
+			"https://www.product.example",
 		);
 	});
 

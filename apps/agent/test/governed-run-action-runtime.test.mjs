@@ -246,7 +246,7 @@ test("passes the full governed idempotency envelope to the CRM side effect", asy
 });
 
 test("replays a completed governed receipt without repeating the business side effect", async () => {
-	const { runtime, observed } = fixture();
+	const { runtime, observed, prisma } = fixture();
 	const request = {
 		runId: "run-1",
 		callId: "call-1",
@@ -259,8 +259,93 @@ test("replays a completed governed receipt without repeating the business side e
 	};
 	const first = await runtime.executeCrmActivity(request);
 	const replay = await runtime.executeCrmActivity(request);
-	assert.deepEqual(replay, first);
+	assert.equal(first.replayed, false);
+	assert.deepEqual(replay, { ...first, replayed: true });
+	assert.equal([...prisma.receipts.values()][0].resultJson.replayed, false);
 	assert.equal(observed.length, 1);
+});
+
+test("marks Slack receipt replay while preserving its destination and one side effect", async () => {
+	const { runtime, observed } = fixture();
+	const request = {
+		runId: "run-2",
+		callId: "call-slack",
+		input: { text: "Follow up." },
+	};
+	const first = await runtime.executeSlackMessage(request);
+	const replay = await runtime.executeSlackMessage(request);
+	assert.equal(first.replayed, false);
+	assert.deepEqual(replay, { ...first, replayed: true });
+	assert.equal(observed.length, 1);
+});
+
+test("rechecks authorization before returning a completed receipt", async () => {
+	let allowed = true;
+	const { runtime, observed } = fixture({ authorize: async () => allowed });
+	const request = {
+		runId: "run-1",
+		callId: "call-1",
+		input: {
+			type: "NOTE",
+			targetKind: "company",
+			targetId: "company-1",
+			subject: "Follow-up",
+		},
+	};
+	await runtime.executeCrmActivity(request);
+	allowed = false;
+	await assert.rejects(
+		runtime.executeCrmActivity(request),
+		(error) => error?.code === "ACTION_FORBIDDEN",
+	);
+	assert.equal(observed.length, 1);
+});
+
+test("isolates replay metadata from an overlapping fresh action", async () => {
+	let release;
+	let started;
+	const pending = new Promise((resolve) => {
+		release = resolve;
+	});
+	const ready = new Promise((resolve) => {
+		started = resolve;
+	});
+	let writes = 0;
+	const { runtime } = fixture({
+		executeCrmActivity: async (request) => {
+			writes += 1;
+			if (request.callId === "call-pending") {
+				started();
+				await pending;
+			}
+			return {
+				actionId: request.callId,
+				activityId: request.callId,
+				replayed: false,
+			};
+		},
+	});
+	const input = {
+		type: "NOTE",
+		targetKind: "company",
+		targetId: "company-1",
+		subject: "Follow-up",
+	};
+	const complete = { runId: "run-1", callId: "call-complete", input };
+	await runtime.executeCrmActivity(complete);
+	const fresh = runtime.executeCrmActivity({
+		runId: "run-1",
+		callId: "call-pending",
+		input,
+	});
+	await ready;
+	try {
+		assert.equal((await runtime.executeCrmActivity(complete)).replayed, true);
+	} finally {
+		release();
+	}
+	assert.equal((await fresh).replayed, false);
+	assert.equal(writes, 2);
 });
 
 test("rejects reuse of one run call for different business input", async () => {

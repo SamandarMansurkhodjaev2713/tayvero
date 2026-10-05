@@ -1,3 +1,4 @@
+import { AsyncLocalStorage } from "node:async_hooks";
 import { createActionRegistry } from "@crm/action-registry";
 import { createPrismaBackedAgentActionExecution } from "./governed-action-prisma-composition.mjs";
 
@@ -414,8 +415,12 @@ export function createGovernedRunActionRuntime(options) {
 		"options.executeSlackMessage",
 	);
 
+	// Each invocation owns its marker, including overlapping calls. Receipt replay
+	// returns after all governed checks without invoking either registered handler.
+	const executionScope = new AsyncLocalStorage();
 	const registry = createCatalog({
 		crm: async (execution) => {
+			executionScope.getStore().handlerInvoked = true;
 			const businessInput = normalizeCrmActivityInput(
 				stripControlFields(execution.input),
 			);
@@ -433,6 +438,7 @@ export function createGovernedRunActionRuntime(options) {
 			);
 		},
 		slack: async (execution) => {
+			executionScope.getStore().handlerInvoked = true;
 			const businessInput = normalizeSlackMessageInput(
 				stripControlFields(execution.input),
 			);
@@ -498,26 +504,33 @@ export function createGovernedRunActionRuntime(options) {
 				input,
 			}),
 		);
-		return governed[
-			preflight ? "prepareModelProposedAction" : "executeModelProposedAction"
-		](
-			{
-				actionId,
-				input: {
-					runId: normalized.runId,
-					callId: normalized.callId,
-					...input,
+		const invoke = () =>
+			governed[
+				preflight ? "prepareModelProposedAction" : "executeModelProposedAction"
+			](
+				{
+					actionId,
+					input: {
+						runId: normalized.runId,
+						callId: normalized.callId,
+						...input,
+					},
 				},
-			},
-			trustedContext,
-			{
-				idempotencyKey: actionIdempotencyKey(
-					normalized.runId,
-					normalized.callId,
-				),
-				signal: normalized.signal,
-			},
-		);
+				trustedContext,
+				{
+					idempotencyKey: actionIdempotencyKey(
+						normalized.runId,
+						normalized.callId,
+					),
+					signal: normalized.signal,
+				},
+			);
+		if (preflight) return invoke();
+		const scope = { handlerInvoked: false };
+		return executionScope.run(scope, async () => {
+			const result = await invoke();
+			return scope.handlerInvoked ? result : { ...result, replayed: true };
+		});
 	}
 
 	return Object.freeze({
