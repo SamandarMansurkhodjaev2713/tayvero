@@ -2,6 +2,7 @@ import { afterAll, afterEach, beforeAll, describe, expect, it } from "bun:test";
 import { DEFAULT_WORKSPACE_NAME, WORKSPACE_ID } from "@crm/auth";
 import { db } from "@crm/db";
 import { workspaceSlug } from "@crm/db/workspace";
+import { ConflictException } from "@nestjs/common";
 import { AgentAccessService } from "../src/agent/agent-access.service";
 import { AgentRunsService } from "../src/agent/agent-runs.service";
 import { AgentTriggerService } from "../src/agent/agent-trigger.service";
@@ -395,12 +396,38 @@ describe("manual agent runs", () => {
 			where: { id: first.id },
 			data: { status: "FAILED", finishedAt: new Date() },
 		});
-		await expect(
-			service.retryRun(
-				{ id: agentId, runId: first.id, clientRequestId: crypto.randomUUID() },
+		const before = {
+			runs: await db.agentRun.count({ where: { agentId } }),
+			actions: await db.agentAction.count({ where: { runId: first.id } }),
+			audits: await db.agentAuditEvent.count({ where: { agentId } }),
+		};
+		const retryKey = crypto.randomUUID();
+		let refusal: unknown;
+		// Await the database operation directly; matcher-wrapped execution timed
+		// out on Windows before reaching the domain error assertion.
+		try {
+			await service.retryRun(
+				{ id: agentId, runId: first.id, clientRequestId: retryKey },
 				userId,
-			),
-		).rejects.toThrow("could duplicate");
+			);
+		} catch (error) {
+			refusal = error;
+		}
+		expect(refusal).toBeInstanceOf(ConflictException);
+		expect(refusal).toMatchObject({
+			message:
+				"An action was attempted or completed. A whole-run retry could duplicate it; review receipts and outcomes first.",
+		});
+		expect(await db.agentRun.count({ where: { agentId } })).toBe(before.runs);
+		expect(await db.agentAction.count({ where: { runId: first.id } })).toBe(
+			before.actions,
+		);
+		expect(await db.agentAuditEvent.count({ where: { agentId } })).toBe(
+			before.audits,
+		);
+		expect(
+			await db.agentRun.findUnique({ where: { idempotencyKey: retryKey } }),
+		).toBeNull();
 		const history = await service.list(agentId, 1, userId);
 		expect(history[0]?.canRetry).toBe(false);
 	});

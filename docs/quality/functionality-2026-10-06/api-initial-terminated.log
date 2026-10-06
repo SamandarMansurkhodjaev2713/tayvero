@@ -1,0 +1,134 @@
+bun test v1.3.12 (700fc117)
+
+test\agent-delete.spec.ts:
+(pass) deleting an agent > stops future work while preserving its audit history [63.00ms]
+
+test\agent-events.spec.ts:
+[Nest] 12976  - 06.10.2026, 11:58:22     LOG [AgentTriggerService] Object(4) {
+  message: 'Agent event queued',
+  type: 'contact.created',
+  recordKind: 'contact',
+  recordId: 'event-contact-7535b342-7264-46ff-b207-4e6d7281f12d'
+}
+(pass) CRM agent events > routes every event to its catalog record kind
+[Nest] 12976  - 06.10.2026, 11:58:22     LOG [AgentTriggerService] Object(4) {
+  message: 'Agent event queued',
+  type: 'deal.created',
+  recordKind: 'deal',
+  recordId: 'event-deal-7535b342-7264-46ff-b207-4e6d7281f12d'
+}
+[Nest] 12976  - 06.10.2026, 11:58:22     LOG [AgentTriggerService] Object(4) {
+  message: 'Agent event queued',
+  type: 'deal.closed',
+  recordKind: 'deal',
+  recordId: 'event-deal-7535b342-7264-46ff-b207-4e6d7281f12d'
+}
+(pass) CRM agent events > writes durable created and closed events for the agent worker [16.00ms]
+[Nest] 12976  - 06.10.2026, 11:58:22     LOG [AgentTriggerService] Object(4) {
+  message: 'Agent task queued',
+  kind: 'slack-channel-join',
+  contactId: undefined,
+  companyId: undefined
+}
+(pass) CRM agent events > queues one Slack join for a channel that is renamed [15.00ms]
+(pass) CRM agent events > rolls back the record when its event cannot commit
+[Nest] 12976  - 06.10.2026, 11:58:22     LOG [AgentTriggerService] Object(4) {
+  message: 'Agent event queued',
+  type: 'deal.created',
+  recordKind: 'deal',
+  recordId: 'cmuwmkf58000h0gnnz4n6xhy1'
+}
+[Nest] 12976  - 06.10.2026, 11:58:22     LOG [DealsService] Object(3) {
+  message: 'Deal created',
+  dealId: 'cmuwmkf58000h0gnnz4n6xhy1',
+  stage: 'DEMO_BOOKED'
+}
+[Nest] 12976  - 06.10.2026, 11:58:22     LOG [AgentTriggerService] Object(4) {
+  message: 'Agent event queued',
+  type: 'deal.stage.changed',
+  recordKind: 'deal',
+  recordId: 'cmuwmkf58000h0gnnz4n6xhy1'
+}
+[Nest] 12976  - 06.10.2026, 11:58:22     LOG [AgentTriggerService] Object(4) {
+  message: 'Agent event queued',
+  type: 'deal.closed',
+  recordKind: 'deal',
+  recordId: 'cmuwmkf58000h0gnnz4n6xhy1'
+}
+[Nest] 12976  - 06.10.2026, 11:58:22     LOG [DealsService] Object(4) {
+  message: 'Deal stage changed',
+  dealId: 'cmuwmkf58000h0gnnz4n6xhy1',
+  from: 'DEMO_BOOKED',
+  to: 'CLOSED_WON'
+}
+[Nest] 12976  - 06.10.2026, 11:58:22     LOG [AgentTriggerService] Object(4) {
+  message: 'Agent event queued',
+  type: 'deal.stage.changed',
+  recordKind: 'deal',
+  recordId: 'cmuwmkf58000h0gnnz4n6xhy1'
+}
+[Nest] 12976  - 06.10.2026, 11:58:22     LOG [AgentTriggerService] Object(4) {
+  message: 'Agent event queued',
+  type: 'deal.opened',
+  recordKind: 'deal',
+  recordId: 'cmuwmkf58000h0gnnz4n6xhy1'
+}
+[Nest] 12976  - 06.10.2026, 11:58:22     LOG [DealsService] Object(4) {
+  message: 'Deal stage changed',
+  dealId: 'cmuwmkf58000h0gnnz4n6xhy1',
+  from: 'CLOSED_WON',
+  to: 'QUALIFIED_TO_BUY'
+}
+(pass) CRM agent events > emits each real deal lifecycle transition exactly once [47.00ms]
+
+test\agent-lifecycle.spec.ts:
+(pass) agent lifecycle > returns stable private and team contracts while auditing metadata edits [78.00ms]
+(pass) agent lifecycle > promotes versioned draft metadata only when that version is deployed [15.00ms]
+(pass) agent lifecycle > keeps a draft private when pause or archive is requested [32.00ms]
+(pass) agent lifecycle > moves only through valid deployed lifecycle states [62.00ms]
+(pass) agent lifecycle > serializes deployments and preserves request idempotency [31.00ms]
+(pass) agent lifecycle > moves triggers onto the version a revision creates [47.00ms]
+(pass) agent lifecycle > moves triggers onto the version a file save creates [47.00ms]
+(pass) agent lifecycle > numbers a revision above every existing version [78.00ms]
+[Nest] 12976  - 06.10.2026, 11:58:22     LOG [AgentTriggerService] Object(4) {
+  message: 'Agent task queued',
+  kind: 'slack-channel-join',
+  contactId: undefined,
+  companyId: undefined
+}
+[Nest] 12976  - 06.10.2026, 11:58:22   DEBUG [AgentTriggerService] Object(2) {
+  message: 'Agent poke did not land; the cron will pick this up',
+  reason: 'Unable to connect. Is the computer able to access the url?'
+}
+(pass) agent lifecycle > queues the channel join with the version that moves the agent [31.00ms]
+(pass) agent lifecycle > refuses a channel change when no action posts anywhere [32.00ms]
+(pass) agent lifecycle > cannot resurrect an agent when deletion races a transition [31.00ms]
+
+test\agent-queue.spec.ts:
+(pass) the queued badge > ignores a recheck booked for a later date
+(pass) the queued badge > marks work that is due now
+(pass) the queued badge > asks for nothing when given no records
+
+test\agent-runs.spec.ts:
+(pass) manual agent runs > returns ordered, transport-safe run and activity history [31.00ms]
+(pass) manual agent runs > rejects a manual run while an agent is not live [15.00ms]
+(pass) manual agent runs > deduplicates concurrent requests and keeps the run and audit atomic [16.00ms]
+(pass) manual agent runs > rejects a second manual run while the first is active [31.00ms]
+(pass) manual agent runs > checks workspace membership before replaying an existing request [16.00ms]
+(pass) manual agent runs > retries a failed run against the version that run executed [31.00ms]
+(fail) manual agent runs > refuses whole-run retry after a recorded external side effect [5016.00ms]
+  ^ this test timed out after 5000ms.
+(pass) manual agent runs > allows only one agent to claim a globally reused request id [15.00ms]
+(pass) cancelling a run > settles a queued run and asks the agent to drop the turn [32.00ms]
+(pass) cancelling a run > records one terminal event and one audit event [31.00ms]
+(pass) cancelling a run > cancels outstanding actions so nothing is left running [16.00ms]
+(pass) cancelling a run > is idempotent and never pokes twice [31.00ms]
+(pass) cancelling a run > leaves a finished run alone [31.00ms]
+(pass) cancelling a run > refuses a run id that belongs to another agent [16.00ms]
+(pass) cancelling a run > refuses a caller who is not a workspace member [15.00ms]
+(pass) cancelling a run > reports cancellable runs to the caller who may stop them [63.00ms]
+[Nest] 12976  - 06.10.2026, 11:58:28   DEBUG [AgentTriggerService] Object(2) {
+  message: 'Agent poke did not land; the cron will pick this up',
+  reason: 'Agent poke returned 502.'
+}
+(pass) cancelling a run > asks the agent again until the cancellation lands [31.00ms]

@@ -6,7 +6,7 @@ export function handoffResources(handoff: Handoff) {
 			kind: "integration" as const,
 			id: "slack:workspace",
 			label: "Slack",
-			detail: "Connected workspace",
+			detail: "Slack workspace context",
 		},
 		...(handoff.channel
 			? [

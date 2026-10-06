@@ -13,7 +13,6 @@ import { Spinner } from "@crm/ui/components/spinner";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { useId } from "react";
-import { toast } from "sonner";
 import { useTRPC } from "@/lib/trpc/client";
 
 export function ResearchForm() {
@@ -28,7 +27,6 @@ export function ResearchForm() {
 				router.refresh();
 				router.replace("/");
 			},
-			onError: (error) => toast.error(error.message),
 		}),
 	);
 
@@ -47,6 +45,7 @@ export function ResearchForm() {
 					<Input
 						id={keyId}
 						name="apiKey"
+						disabled={save.isPending}
 						type="password"
 						placeholder="Paste the key"
 						autoComplete="off"
@@ -69,10 +68,23 @@ export function ResearchForm() {
 					</FieldDescription>
 				</Field>
 			</FieldGroup>
+			{save.isError && (
+				<p role="alert" className="text-sm text-destructive">
+					{save.error.message}
+				</p>
+			)}
 
 			<Button type="submit" disabled={save.isPending}>
 				{save.isPending ? <Spinner data-icon="inline-start" /> : null}
-				Continue
+				Connect company research
+			</Button>
+			<Button
+				type="button"
+				variant="outline"
+				disabled={save.isPending}
+				onClick={() => router.replace("/")}
+			>
+				Continue without research
 			</Button>
 		</form>
 	);

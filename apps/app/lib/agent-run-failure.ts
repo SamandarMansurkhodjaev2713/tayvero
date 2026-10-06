@@ -10,15 +10,16 @@ const REASONS: RunFailureReasons = {
 	NOT_AUTHORISED:
 		"The connection refused this. Its access may have been revoked or narrowed.",
 	PROVIDER_ERROR:
-		"The outside service rejected this. It is usually worth trying again.",
+		"The outside service reported an error. Review recorded actions and receipts before deciding whether to retry.",
 	NEVER_SETTLED:
-		"The agent stopped without reporting a result. Nothing was left half-done.",
+		"The agent stopped without reporting a result. Review recorded actions; this status does not confirm whether earlier effects completed.",
 	TURN_FAILED: "The model failed part-way through this run.",
-	DELIVERY_FAILED: "The run never reached the agent.",
+	DELIVERY_FAILED:
+		"Delivery could not be confirmed. Review this run and its recorded actions before retrying; work may already have started.",
 	DELIVERY_EXHAUSTED:
-		"This never reached the agent after three attempts. Nothing ran.",
+		"Delivery attempts were exhausted without confirmation. Review recorded actions before retrying; this status does not prove that nothing ran.",
 	ACTION_REJECTED:
-		"The agent tried the action and the CRM refused it. Nothing was written.",
+		"The CRM refused an action. Check its recorded decision and any earlier actions before starting again.",
 	AGENT_UNAVAILABLE: "The agent was paused or archived when this run started.",
 	AGENT_DELETED: "The agent was deleted before this run finished.",
 	CANCELLED_BY_USER: "Someone stopped this run.",

@@ -103,6 +103,8 @@ The public landing's `.tayvero-landing*` CSS is a scoped exception for editorial
 
 ## Do's and Don'ts
 
+The authentication shell extends the same typography and semantic colors with a plain editorial workflow: customer context, next action, delegation. The form title is its single primary heading on every viewport. Avoid decorative shaders, placeholder brands and unsupported testimonial or outcome claims. Optional enrichment setup must explain its scope and offer an explicit route back to CRM.
+
 - **Do** extend `packages/ui` for recurring variants and consume generated semantic tokens.
 - **Do** keep pending, failed, successful and unknown results distinct, with recovery and coverage context.
 - **Do** preserve wrapping search, readable localized text and both density settings.

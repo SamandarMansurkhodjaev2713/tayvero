@@ -1,0 +1,453 @@
+bun test v1.3.12 (700fc117)
+
+test\authenticated-workspace.e2e.spec.ts:
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [NestFactory] Starting Nest application...
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [InstanceLoader] AppModule dependencies initialized +34ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [InstanceLoader] LoggingModule dependencies initialized +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [InstanceLoader] AppCacheModule dependencies initialized +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [InstanceLoader] ConfigHostModule dependencies initialized +6ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [InstanceLoader] DatabaseModule dependencies initialized +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [InstanceLoader] DiscoveryModule dependencies initialized +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58    WARN [CacheModule] REDIS_URL is not set — falling back to a per-instance in-memory cache. {
+  ttl: [33m60000[39m
+} +1ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [InstanceLoader] TrpcModule dependencies initialized +2ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [InstanceLoader] ConfigModule dependencies initialized +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [InstanceLoader] AuthModule dependencies initialized +1ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [InstanceLoader] CrmModule dependencies initialized +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [InstanceLoader] HealthModule dependencies initialized +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [InstanceLoader] ApiKeysModule dependencies initialized +1ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [InstanceLoader] PipelinesModule dependencies initialized +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [InstanceLoader] MigrationsModule dependencies initialized +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [InstanceLoader] OperationsModule dependencies initialized +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [InstanceLoader] EnrichmentModule dependencies initialized +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [InstanceLoader] SearchModule dependencies initialized +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [InstanceLoader] SsoModule dependencies initialized +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [InstanceLoader] SavedViewsModule dependencies initialized +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [InstanceLoader] ActivitiesModule dependencies initialized +1ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [InstanceLoader] AgentModule dependencies initialized +1ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [InstanceLoader] FieldsModule dependencies initialized +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [InstanceLoader] WorkspaceModule dependencies initialized +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [InstanceLoader] SlackModule dependencies initialized +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [InstanceLoader] DashboardModule dependencies initialized +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [InstanceLoader] ArchiveModule dependencies initialized +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [InstanceLoader] MailboxModule dependencies initialized +1ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [InstanceLoader] CompaniesModule dependencies initialized +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [InstanceLoader] ContactsModule dependencies initialized +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [InstanceLoader] DealsModule dependencies initialized +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [InstanceLoader] TRPCModule dependencies initialized +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [InstanceLoader] CacheModule dependencies initialized +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [InstanceLoader] BackfillModule dependencies initialized +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [InstanceLoader] ConversationsModule dependencies initialized +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [InstanceLoader] UsersModule dependencies initialized +1ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [InstanceLoader] TelemetryModule dependencies initialized +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [InstanceLoader] CurrencyModule dependencies initialized +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [InstanceLoader] SettingsModule dependencies initialized +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [InstanceLoader] AuthModule dependencies initialized +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [InstanceLoader] MicrosoftModule dependencies initialized +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [InstanceLoader] GoogleModule dependencies initialized +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [InstanceLoader] TrackingModule dependencies initialized +1ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [InstanceLoader] SyncModule dependencies initialized +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [AuthModule] AuthModule initialized BetterAuth on '/api/auth' +13ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Router UsersRouter as users. +3ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Query, users.me} route. +1ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Query, users.list} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Router ApiKeysRouter as apiKeys. +1ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Query, apiKeys.list} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, apiKeys.create} route. +1ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, apiKeys.revoke} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Router CompaniesRouter as companies. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Query, companies.list} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Query, companies.byId} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Query, companies.options} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, companies.create} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, companies.update} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, companies.archive} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, companies.restore} route. +1ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, companies.purge} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, companies.bulkAssignOwner} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, companies.bulkEnrich} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, companies.bulkArchive} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, companies.bulkRestore} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, companies.bulkPurge} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, companies.enrich} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, companies.research} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, companies.setPrimaryContact} route. +1ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Router FieldsRouter as fields. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Query, fields.list} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Query, fields.byKey} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Query, fields.filters} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Query, fields.coverage} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, fields.create} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, fields.update} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, fields.reorder} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, fields.archive} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, fields.restore} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, fields.delete} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, fields.backfill} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Router AgentsRouter as agents. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Query, agents.list} route. +1ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, agents.revise} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Query, agents.files} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, agents.saveFile} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Query, agents.byId} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Query, agents.history} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Query, agents.activity} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, agents.update} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, agents.deploy} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, agents.pause} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, agents.resume} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, agents.archive} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, agents.restore} route. +1ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, agents.remove} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, agents.runNow} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, agents.retryRun} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, agents.cancelRun} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Router CurrencyRouter as currency. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Query, currency.settings} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, currency.setReportingCurrency} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, currency.setManualRate} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, currency.removeManualRate} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, currency.refreshRates} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Router ContactsRouter as contacts. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Query, contacts.list} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Query, contacts.byId} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, contacts.create} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, contacts.update} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, contacts.archive} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, contacts.restore} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, contacts.purge} route. +1ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, contacts.enrich} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, contacts.bulkAssignOwner} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, contacts.bulkSetCompany} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, contacts.bulkEnrich} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, contacts.bulkArchive} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, contacts.bulkRestore} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, contacts.bulkPurge} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, contacts.decideFact} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Router ConversationsRouter as conversations. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Query, conversations.list} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Query, conversations.builderList} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Query, conversations.builderResources} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Query, conversations.builderById} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Query, conversations.events} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, conversations.save} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, conversations.createBuilder} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, conversations.submitBuilder} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, conversations.answerBuilderQuestion} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, conversations.rateBuilderResponse} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, conversations.markRead} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Query, conversations.shareStatus} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, conversations.createShare} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, conversations.revokeShare} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Query, conversations.shared} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, conversations.remove} route. +1ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Router DealsRouter as deals. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Query, deals.list} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Query, deals.byId} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, deals.create} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, deals.update} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, deals.archive} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, deals.restore} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, deals.purge} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, deals.setStage} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Query, deals.contactOptions} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, deals.attachContact} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, deals.detachContact} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, deals.setContactRole} route. +1ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, deals.bulkAssignOwner} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, deals.bulkSetStage} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, deals.bulkArchive} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, deals.bulkRestore} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, deals.bulkPurge} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Router PipelinesRouter as pipelines. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Query, pipelines.list} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Query, pipelines.byId} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, pipelines.create} route. +1ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, pipelines.update} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, pipelines.setDefault} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, pipelines.archive} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, pipelines.restore} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Router MigrationsRouter as migrations. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Query, migrations.capabilities} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Query, migrations.list} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, migrations.upload} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Query, migrations.preview} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, migrations.prepare} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, migrations.executeNext} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, migrations.cancel} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Query, migrations.report} route. +1ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, migrations.exportReport} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, migrations.rollback} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, migrations.removeSource} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, migrations.cleanupSources} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, migrations.setBackground} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Router OperationsRouter as operations. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Query, operations.capabilities} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Query, operations.overview} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Query, operations.approvals} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Query, operations.continuations} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, operations.decideApproval} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Router ActivitiesRouter as activities. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Query, activities.timeline} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Query, activities.timelineCounts} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Query, activities.myTasks} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, activities.create} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, activities.complete} route. +1ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Router EnrichmentRouter as enrichment. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Query, enrichment.queue} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Router DashboardRouter as dashboard. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Query, dashboard.summary} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Router SearchRouter as search. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Query, search.quick} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Router GoogleRouter as google. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Query, google.status} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, google.purgeSyncedData} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, google.revokeAccess} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, google.syncNow} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, google.setAutoCreate} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, google.suppressDomain} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Query, google.thread} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Query, google.event} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Router MicrosoftRouter as microsoft. +1ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Query, microsoft.status} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, microsoft.purgeSyncedData} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, microsoft.revokeAccess} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, microsoft.syncNow} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, microsoft.setAutoCreate} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Router SettingsRouter as settings. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Query, settings.agentModel} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Query, settings.modelCatalog} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, settings.setAgentModel} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Query, settings.researchKey} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, settings.setResearchKey} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Query, settings.archiveRetention} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, settings.setArchiveRetention} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Router WorkspaceRouter as workspace. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Query, workspace.get} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Query, workspace.members} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, workspace.update} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, workspace.setMemberRole} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Router SsoRouter as sso. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Query, sso.signInOptions} route. +1ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Query, sso.settings} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Query, sso.list} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, sso.register} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, sso.remove} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Router SlackRouter as slack. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Query, slack.status} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Query, slack.matches} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Query, slack.channels} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, slack.joinChannel} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, slack.refreshPeople} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, slack.createChannel} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, slack.disconnect} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Router TrackingRouter as tracking. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Query, tracking.settings} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, tracking.setFlag} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, tracking.setCookieLifetime} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, tracking.addDomain} route. +1ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, tracking.removeDomain} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, tracking.rotateSiteId} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, tracking.verify} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Query, tracking.sources} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Query, tracking.companyActivity} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Query, tracking.contactActivity} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Router SavedViewsRouter as savedViews. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Query, savedViews.list} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, savedViews.create} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, savedViews.update} route. +9ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [Router Factory] Mapped {Mutation, savedViews.delete} route. +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [RoutesResolver] AuthController {/auth}: +5ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [RouterExplorer] Mapped {/auth/me, GET} route +2ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [RouterExplorer] Mapped {/auth/session, GET} route +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [RoutesResolver] HealthController {/health}: +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [RouterExplorer] Mapped {/health, GET} route +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [RoutesResolver] RatesController {/internal/sync}: +1ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [RouterExplorer] Mapped {/internal/sync/rates, GET} route +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [RouterExplorer] Mapped {/internal/sync/rates, POST} route +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [RoutesResolver] ConversationAttachmentsController {/api/conversations/attachments}: +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [RouterExplorer] Mapped {/api/conversations/attachments/:id, GET} route +1ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [RoutesResolver] SyncController {/internal/sync}: +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [RouterExplorer] Mapped {/internal/sync/mailboxes, GET} route +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [RouterExplorer] Mapped {/internal/sync/mailboxes, POST} route +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [RouterExplorer] Mapped {/internal/sync/google, GET} route +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [RouterExplorer] Mapped {/internal/sync/google, POST} route +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [RoutesResolver] TelemetryController {/internal/telemetry}: +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [RouterExplorer] Mapped {/internal/telemetry/rollup, GET} route +1ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [RouterExplorer] Mapped {/internal/telemetry/rollup, POST} route +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [RoutesResolver] TrackingController {/api/t}: +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [RouterExplorer] Mapped {/api/t/config/:siteId, GET} route +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [RouterExplorer] Mapped {/api/t/e, POST} route +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [RoutesResolver] TrackingRetentionController {/internal/tracking}: +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [RouterExplorer] Mapped {/internal/tracking/retention, GET} route +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [RouterExplorer] Mapped {/internal/tracking/retention, POST} route +1ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [RoutesResolver] ArchiveRetentionController {/internal/archive}: +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [RouterExplorer] Mapped {/internal/archive/prune, GET} route +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [RouterExplorer] Mapped {/internal/archive/prune, POST} route +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [DatabaseModule] Database connected +1ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [TRPC Server] Server has been initialized successfully using the express driver. +2ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [TelemetryService] Anonymous usage telemetry is off for this install. +1ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [NestApplication] Nest application successfully started +8ms
+[Nest] 21552  - 06.10.2026, 11:50:58   DEBUG [AgentTriggerService] Agent poke did not land; the cron will pick this up {
+  reason: [32m'Unable to connect. Is the computer able to access the url?'[39m
+} +67ms
+[Nest] 21552  - 06.10.2026, 11:50:58   DEBUG [AgentTriggerService] Agent poke did not land; the cron will pick this up {
+  reason: [32m'Unable to connect. Is the computer able to access the url?'[39m
+} +1ms
+[Nest] 21552  - 06.10.2026, 11:50:58   DEBUG [AgentTriggerService] Agent poke did not land; the cron will pick this up {
+  reason: [32m'Unable to connect. Is the computer able to access the url?'[39m
+} +0ms
+[Nest] 21552  - 06.10.2026, 11:50:58   DEBUG [AuthService 1c875ffa] Profile cache miss {
+  userId: [32m'http-role-4ece6f1b-d39c-48bc-9cb3-46b0f5639bba'[39m
+} +43ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [HTTP 1c875ffa] GET /auth/me 200 44.1ms {
+  method: [32m'GET'[39m,
+  path: [32m'/auth/me'[39m,
+  statusCode: [33m200[39m,
+  durationMs: [33m44.1[39m,
+  ip: [32m'::ffff:127.0.0.1'[39m,
+  userAgent: [32m'Bun/1.3.12'[39m
+} +8ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [tRPC] query workspace.get ok 10ms {
+  type: [32m'query'[39m,
+  path: [32m'workspace.get'[39m,
+  outcome: [32m'ok'[39m,
+  durationMs: [33m10[39m
+} +24ms
+[Nest] 21552  - 06.10.2026, 11:50:58   DEBUG [AuthService 18939d00] Profile cache miss {
+  userId: [32m'http-role-77322b50-44e1-4ecc-927e-1e97f528f035'[39m
+} +11ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [HTTP 18939d00] GET /auth/me 200 11.4ms {
+  method: [32m'GET'[39m,
+  path: [32m'/auth/me'[39m,
+  statusCode: [33m200[39m,
+  durationMs: [33m11.4[39m,
+  ip: [32m'::ffff:127.0.0.1'[39m,
+  userAgent: [32m'Bun/1.3.12'[39m
+} +4ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [tRPC] query workspace.get ok 8ms {
+  type: [32m'query'[39m,
+  path: [32m'workspace.get'[39m,
+  outcome: [32m'ok'[39m,
+  durationMs: [33m8[39m
+} +16ms
+[Nest] 21552  - 06.10.2026, 11:50:58   DEBUG [AuthService 19332d53] Profile cache miss {
+  userId: [32m'http-role-a76f46ac-349b-4402-8844-88992926264c'[39m
+} +10ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [HTTP 19332d53] GET /auth/me 200 11.3ms {
+  method: [32m'GET'[39m,
+  path: [32m'/auth/me'[39m,
+  statusCode: [33m200[39m,
+  durationMs: [33m11.3[39m,
+  ip: [32m'::ffff:127.0.0.1'[39m,
+  userAgent: [32m'Bun/1.3.12'[39m
+} +3ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [tRPC] query workspace.get ok 10ms {
+  type: [32m'query'[39m,
+  path: [32m'workspace.get'[39m,
+  outcome: [32m'ok'[39m,
+  durationMs: [33m10[39m
+} +20ms
+(pass) real signed sessions and optional workspace onboarding (HTTP/PostgreSQL) > accepts the actual auth cookie for owner, admin and member with correct capabilities [156.00ms]
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [WorkspaceService] Workspace updated {
+  userId: [32m'http-role-4ece6f1b-d39c-48bc-9cb3-46b0f5639bba'[39m
+} +38ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [tRPC] mutation workspace.update ok 17ms {
+  type: [32m'mutation'[39m,
+  path: [32m'workspace.update'[39m,
+  outcome: [32m'ok'[39m,
+  durationMs: [33m17[39m
+} +5ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [WorkspaceService] Workspace updated {
+  userId: [32m'http-role-77322b50-44e1-4ecc-927e-1e97f528f035'[39m
+} +13ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [tRPC] mutation workspace.update ok 9ms {
+  type: [32m'mutation'[39m,
+  path: [32m'workspace.update'[39m,
+  outcome: [32m'ok'[39m,
+  durationMs: [33m9[39m
+} +3ms
+(pass) real signed sessions and optional workspace onboarding (HTTP/PostgreSQL) > onboards owner/admin without a website or provider research key [62.00ms]
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [tRPC] mutation workspace.update err 3ms {
+  type: [32m'mutation'[39m,
+  path: [32m'workspace.update'[39m,
+  outcome: [32m'err'[39m,
+  durationMs: [33m3[39m
+} +12ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [tRPC] mutation workspace.update err 7ms {
+  type: [32m'mutation'[39m,
+  path: [32m'workspace.update'[39m,
+  outcome: [32m'err'[39m,
+  durationMs: [33m7[39m
+} +18ms
+(pass) real signed sessions and optional workspace onboarding (HTTP/PostgreSQL) > denies a member mutation and malformed nonempty website before persistence [32.00ms]
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [tRPC] query workspace.get ok 6ms {
+  type: [32m'query'[39m,
+  path: [32m'workspace.get'[39m,
+  outcome: [32m'ok'[39m,
+  durationMs: [33m6[39m
+} +17ms
+[Nest] 21552  - 06.10.2026, 11:50:58   DEBUG [AuthService 6f1d64c1] Profile cache miss {
+  userId: [32m'http-role-5c2ce2e9-9696-4c0f-8936-2dd794f76377'[39m
+} +10ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [HTTP 6f1d64c1] GET /auth/me 200 7.0ms {
+  method: [32m'GET'[39m,
+  path: [32m'/auth/me'[39m,
+  statusCode: [33m200[39m,
+  durationMs: [33m7[39m,
+  ip: [32m'::ffff:127.0.0.1'[39m,
+  userAgent: [32m'Bun/1.3.12'[39m
+} +2ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [tRPC] query workspace.get err 1ms {
+  type: [32m'query'[39m,
+  path: [32m'workspace.get'[39m,
+  outcome: [32m'err'[39m,
+  durationMs: [33m1[39m
+} +8ms
+(pass) real signed sessions and optional workspace onboarding (HTTP/PostgreSQL) > rejects a revoked membership even while its authenticated session remains valid [31.00ms]
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [tRPC] query workspace.get err 0ms {
+  type: [32m'query'[39m,
+  path: [32m'workspace.get'[39m,
+  outcome: [32m'err'[39m,
+  durationMs: [33m0[39m
+} +3ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [tRPC] query workspace.get err 0ms {
+  type: [32m'query'[39m,
+  path: [32m'workspace.get'[39m,
+  outcome: [32m'err'[39m,
+  durationMs: [33m0[39m
+} +14ms
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [tRPC] query workspace.get err 0ms {
+  type: [32m'query'[39m,
+  path: [32m'workspace.get'[39m,
+  outcome: [32m'err'[39m,
+  durationMs: [33m0[39m
+} +3ms
+(pass) real signed sessions and optional workspace onboarding (HTTP/PostgreSQL) > rejects tampered, expired and absent session cookies [15.00ms]
+[Nest] 21552  - 06.10.2026, 11:50:58     LOG [WorkspaceService] Workspace updated {
+  userId: [32m'http-role-4ece6f1b-d39c-48bc-9cb3-46b0f5639bba'[39m
+} +10ms
+[Nest] 21552  - 06.10.2026, 11:50:59     LOG [WorkspaceService] Workspace updated {
+  userId: [32m'http-role-4ece6f1b-d39c-48bc-9cb3-46b0f5639bba'[39m
+} +9ms
+[Nest] 21552  - 06.10.2026, 11:50:59     LOG [WorkspaceService] Workspace updated {
+  userId: [32m'http-role-4ece6f1b-d39c-48bc-9cb3-46b0f5639bba'[39m
+} +10ms
+[Nest] 21552  - 06.10.2026, 11:50:59     LOG [WorkspaceService] Workspace updated {
+  userId: [32m'http-role-4ece6f1b-d39c-48bc-9cb3-46b0f5639bba'[39m
+} +9ms
+(pass) real signed sessions and optional workspace onboarding (HTTP/PostgreSQL) > preserves omission, clears blank, and triggers research exactly once for a changed normalized website [47.00ms]
+[Nest] 21552  - 06.10.2026, 11:50:59     LOG [DatabaseModule] Database disconnected {
+  signal: [90mundefined[39m
+} +10ms
+
+test\workspace-website.spec.ts:
+(pass) optional workspace enrichment > accepts name-only onboarding and distinguishes omission from clearing
+(pass) optional workspace enrichment > normalizes a supplied domain without changing an omitted stored value
+(pass) optional workspace enrichment > refuses nonempty invalid websites and malformed input types
+
+ 9 pass
+ 0 fail
+ 35 expect() calls
+Ran 9 tests across 2 files. [2.56s]

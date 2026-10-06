@@ -42,7 +42,8 @@ import { SEARCH_PARAM } from "@/lib/search-param-keys";
 import { useCrmCache } from "@/lib/trpc/cache";
 import { useTRPC } from "@/lib/trpc/client";
 import { useWorkspaceUrl } from "@/lib/use-workspace-url";
-import { overviewParsers } from "./overview-search-params";
+import { type OverviewScope, overviewParsers } from "./overview-search-params";
+import { PersonalFollowUps } from "./personal-follow-ups";
 import { SalesDashboard } from "./sales-dashboard";
 
 const CELL = "px-3 py-2.5 align-middle";
@@ -91,15 +92,23 @@ const ACTIVITY_COLUMNS: SimpleTableColumn[] = [
 ];
 
 export function DashboardSummary() {
-	const trpc = useTRPC();
-	const cache = useCrmCache();
-	const openRecord = useOpenRecord();
-	const workspaceUrl = useWorkspaceUrl();
-
 	const [scope] = useQueryState(
 		SEARCH_PARAM.overview.scope,
 		overviewParsers[SEARCH_PARAM.overview.scope],
 	);
+	return (
+		<div className="flex flex-col gap-6">
+			{scope === "me" && <PersonalFollowUps />}
+			<DashboardSnapshot scope={scope} />
+		</div>
+	);
+}
+
+function DashboardSnapshot({ scope }: { scope: OverviewScope }) {
+	const trpc = useTRPC();
+	const cache = useCrmCache();
+	const openRecord = useOpenRecord();
+	const workspaceUrl = useWorkspaceUrl();
 
 	const summaryQuery = useQuery({
 		...trpc.dashboard.summary.queryOptions({ scope }),
@@ -167,7 +176,11 @@ export function DashboardSummary() {
 			)}
 			<SalesDashboard summary={summary} />
 
-			<div className="grid gap-6 @3xl/page-content:grid-cols-2">
+			<div
+				className={
+					mine ? "grid gap-6" : "grid gap-6 @3xl/page-content:grid-cols-2"
+				}
+			>
 				<Card className="min-w-0">
 					<CardHeader>
 						<CardTitle>Deals in progress</CardTitle>
@@ -232,70 +245,74 @@ export function DashboardSummary() {
 					</CardPanel>
 				</Card>
 
-				<Card className="min-w-0">
-					<CardHeader>
-						<CardTitle>Overdue tasks</CardTitle>
-						<CardDescription>
-							{overdueTasks.length === 0
-								? "Every task you have logged is either done or still to come"
-								: `${formatCount(overdueTasks.length, "task")} past due`}
-						</CardDescription>
-					</CardHeader>
-					<CardPanel>
-						{overdueTasks.length === 0 ? (
-							<CardPanelEmpty>Nothing overdue. Good.</CardPanelEmpty>
-						) : (
-							<SimpleTable
-								variant="panel"
-								surface="page"
-								columns={TASK_COLUMNS}
-							>
-								{overdueTasks.map((task) => (
-									<SimpleTableRow key={task.id}>
-										<TableCell className={CELL}>
-											<Checkbox
-												checked={false}
-												disabled={complete.isPending}
-												aria-label="Mark as done"
-												onCheckedChange={() =>
-													complete.mutate({ id: task.id, completed: true })
-												}
-											/>
-										</TableCell>
-										<TableCell className={CELL}>
-											<span className="flex min-w-0 flex-col">
-												<span className="truncate">{task.subject}</span>
-												<span className="flex min-w-0 text-muted-foreground">
-													{task.deal ? (
-														<RecordLink kind="deal" id={task.deal.id}>
-															{task.deal.name}
-														</RecordLink>
-													) : task.company ? (
-														<RecordLink kind="company" id={task.company.id}>
-															{task.company.name}
-														</RecordLink>
-													) : null}
+				{!mine && (
+					<Card className="min-w-0">
+						<CardHeader>
+							<CardTitle>Overdue tasks you created</CardTitle>
+							<CardDescription>
+								{overdueTasks.length === 0
+									? "No overdue tasks in this snapshot"
+									: `${formatCount(overdueTasks.length, "task")} past due in this snapshot (up to 10 shown)`}
+							</CardDescription>
+						</CardHeader>
+						<CardPanel>
+							{overdueTasks.length === 0 ? (
+								<CardPanelEmpty>
+									No overdue tasks in this snapshot.
+								</CardPanelEmpty>
+							) : (
+								<SimpleTable
+									variant="panel"
+									surface="page"
+									columns={TASK_COLUMNS}
+								>
+									{overdueTasks.map((task) => (
+										<SimpleTableRow key={task.id}>
+											<TableCell className={CELL}>
+												<Checkbox
+													checked={false}
+													disabled={complete.isPending}
+													aria-label="Mark as done"
+													onCheckedChange={() =>
+														complete.mutate({ id: task.id, completed: true })
+													}
+												/>
+											</TableCell>
+											<TableCell className={CELL}>
+												<span className="flex min-w-0 flex-col">
+													<span className="truncate">{task.subject}</span>
+													<span className="flex min-w-0 text-muted-foreground">
+														{task.deal ? (
+															<RecordLink kind="deal" id={task.deal.id}>
+																{task.deal.name}
+															</RecordLink>
+														) : task.company ? (
+															<RecordLink kind="company" id={task.company.id}>
+																{task.company.name}
+															</RecordLink>
+														) : null}
+													</span>
 												</span>
-											</span>
-										</TableCell>
-										<TableCell className={`${CELL} text-right`}>
-											<StatusIndicator
-												tone="error"
-												label={
-													task.dueAt ? (
-														<LocalRelativeTime date={task.dueAt} />
-													) : (
-														"No due date"
-													)
-												}
-											/>
-										</TableCell>
-									</SimpleTableRow>
-								))}
-							</SimpleTable>
-						)}
-					</CardPanel>
-				</Card>
+											</TableCell>
+											<TableCell className={`${CELL} text-right`}>
+												<StatusIndicator
+													tone="error"
+													label={
+														task.dueAt ? (
+															<LocalRelativeTime date={task.dueAt} />
+														) : (
+															"No due date"
+														)
+													}
+												/>
+											</TableCell>
+										</SimpleTableRow>
+									))}
+								</SimpleTable>
+							)}
+						</CardPanel>
+					</Card>
+				)}
 			</div>
 
 			<Card className="min-w-0">

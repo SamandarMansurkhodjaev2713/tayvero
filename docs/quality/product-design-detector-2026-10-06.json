@@ -1,0 +1,46 @@
+{
+	"executed": true,
+	"scope": "finished agent, authentication, onboarding, workspace settings and personal follow-up UI",
+	"findings": [
+		{
+			"antipattern": "design-system-font-size",
+			"name": "Font size outside DESIGN.md",
+			"description": "A literal font-size is off the type ramp documented in DESIGN.md typography. Use a documented size step or update the design system if the new step is intentional.",
+			"severity": "advisory",
+			"category": "quality",
+			"file": "apps/app/components/agent-builder/agent-builder-sidebar.tsx",
+			"line": 96,
+			"snippet": "text-[…] class: 11px is off the DESIGN.md type ramp",
+			"advisory": true,
+			"ignoreValue": "11px"
+		},
+		{
+			"antipattern": "design-system-font-size",
+			"name": "Font size outside DESIGN.md",
+			"description": "A literal font-size is off the type ramp documented in DESIGN.md typography. Use a documented size step or update the design system if the new step is intentional.",
+			"severity": "advisory",
+			"category": "quality",
+			"file": "apps/app/components/agent-builder/agent-builder-sidebar.tsx",
+			"line": 175,
+			"snippet": "text-[…] class: 11px is off the DESIGN.md type ramp",
+			"advisory": true,
+			"ignoreValue": "11px"
+		},
+		{
+			"antipattern": "design-system-font-size",
+			"name": "Font size outside DESIGN.md",
+			"description": "A literal font-size is off the type ramp documented in DESIGN.md typography. Use a documented size step or update the design system if the new step is intentional.",
+			"severity": "advisory",
+			"category": "quality",
+			"file": "apps/app/components/agent-builder/chat-chips.tsx",
+			"line": 118,
+			"snippet": "text-[…] class: 11px is off the DESIGN.md type ramp",
+			"advisory": true,
+			"ignoreValue": "11px",
+			"importedBy": ["agent-builder-chat.tsx", "agent-composer.tsx"]
+		}
+	],
+	"changedFilesFindingCount": 0,
+	"inheritedAdvisories": 3,
+	"browserInteractionVerified": false
+}

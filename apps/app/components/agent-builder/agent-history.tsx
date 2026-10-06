@@ -20,6 +20,7 @@ import { Icon } from "@crm/ui/components/icon";
 import { cn } from "@crm/ui/lib/utils";
 import { useState } from "react";
 import { z } from "zod";
+import { LocalDateTime } from "@/components/local-date-time";
 import { runFailureReason } from "@/lib/agent-run-failure";
 import type { RouterOutputs } from "@/lib/trpc/types";
 
@@ -47,22 +48,20 @@ const eventSummary = z
 
 const auditChange = z.object({ before: z.json(), after: z.json() });
 
-const DATE_FORMATTER = new Intl.DateTimeFormat("en-US", {
+const DATE_OPTIONS: Intl.DateTimeFormatOptions = {
 	month: "short",
 	day: "numeric",
 	hour: "numeric",
 	minute: "2-digit",
 	second: "2-digit",
-	timeZone: "UTC",
 	timeZoneName: "short",
-});
-const TIME_FORMATTER = new Intl.DateTimeFormat("en-US", {
+};
+const TIME_OPTIONS: Intl.DateTimeFormatOptions = {
 	hour: "2-digit",
 	minute: "2-digit",
 	second: "2-digit",
 	hour12: false,
-	timeZone: "UTC",
-});
+};
 
 export function AgentRuns({
 	runs,
@@ -70,25 +69,47 @@ export function AgentRuns({
 	cancelling,
 	onRetry,
 	retryingRunId,
+	selectedRunId,
 }: {
 	runs: Runs;
 	onCancel: (runId: string) => void;
 	cancelling: boolean;
 	onRetry: (runId: string) => void;
 	retryingRunId?: string;
+	selectedRunId?: string;
 }) {
 	const [outcome, setOutcome] = useState("ALL");
-	const [expanded, setExpanded] = useState<string | null>(null);
+	const [expanded, setExpanded] = useState<string | null>(
+		selectedRunId ?? null,
+	);
 	const [confirming, setConfirming] = useState<string | null>(null);
 	const visible = runs.filter(
 		(run) => outcome === "ALL" || run.status === outcome,
 	);
-	const runNumbers = new Map(
-		runs.map((run, index) => [run.id, runs.length - index]),
-	);
 
 	return (
 		<div className="flex min-w-0 flex-col gap-4 sm:gap-6">
+			{selectedRunId && !runs.some((run) => run.id === selectedRunId) && (
+				<p role="status" className="rounded-lg border p-4 text-sm leading-6">
+					The requested run is not in this loaded history. It may be older than
+					the latest runs shown here. No result for this reference has been
+					loaded:{" "}
+					<span className="wrap-anywhere font-mono text-xs">
+						{selectedRunId}
+					</span>
+					.
+				</p>
+			)}
+			{selectedRunId &&
+				runs.some((run) => run.id === selectedRunId) &&
+				!visible.some((run) => run.id === selectedRunId) && (
+					<p role="status" className="text-sm">
+						The requested run is hidden by the outcome filter.{" "}
+						<Button variant="link" onClick={() => setOutcome("ALL")}>
+							Show all outcomes
+						</Button>
+					</p>
+				)}
 			<div className="flex min-h-7 items-center justify-start sm:justify-end">
 				<select
 					value={outcome}
@@ -109,9 +130,10 @@ export function AgentRuns({
 			{visible.map((run) => (
 				<div
 					key={run.id}
+					id={`run-${run.id}`}
 					className="min-w-0 overflow-hidden rounded-lg border bg-card"
 				>
-					<div className="flex min-w-0 items-stretch">
+					<div className="flex min-w-0 flex-col items-stretch sm:flex-row">
 						<button
 							type="button"
 							aria-expanded={expanded === run.id}
@@ -123,7 +145,7 @@ export function AgentRuns({
 							<span className="min-w-0 flex-1">
 								<span className="flex flex-wrap items-center gap-x-3 gap-y-1">
 									<span className="font-semibold text-sm">
-										Run #{String(runNumbers.get(run.id)).padStart(3, "0")}
+										Run <span className="font-mono">{run.id.slice(0, 8)}</span>
 									</span>
 									<span
 										className={cn(
@@ -135,8 +157,9 @@ export function AgentRuns({
 									</span>
 								</span>
 								<span className="mt-1 block wrap-break-word font-mono text-muted-foreground text-xs leading-5 sm:mt-0">
-									{humanStatus(run.triggerType)} · {formatDate(run.createdAt)} ·
-									Version {run.version.number}
+									{humanStatus(run.triggerType)} ·{" "}
+									<LocalDateTime date={run.createdAt} options={DATE_OPTIONS} />{" "}
+									· Version {run.version.number}
 								</span>
 								{run.status === "FAILED" || run.status === "CANCELLED" ? (
 									<span className="mt-1.5 flex min-w-0 items-start gap-2 rounded-md bg-destructive/10 px-2.5 py-1.5">
@@ -164,7 +187,7 @@ export function AgentRuns({
 						</button>
 
 						{run.status === "FAILED" || run.status === "CANCELLED" ? (
-							<span className="flex shrink-0 items-center pr-4 sm:pr-5">
+							<span className="flex shrink-0 items-center justify-end px-4 pb-3 sm:px-0 sm:pb-0 sm:pr-5">
 								<Button
 									variant="outline"
 									size="sm"
@@ -172,19 +195,21 @@ export function AgentRuns({
 									title={
 										run.retryBlockedReason ??
 										(run.canRetry === true
-											? "Retry this run"
+											? `Repeat using version ${run.version.number}`
 											: "Retry safety is unavailable from this API version")
 									}
 									onClick={() => onRetry(run.id)}
 								>
 									<Icon icon={Renew} data-icon="inline-start" />
-									Retry
+									{retryingRunId === run.id
+										? "Queueing…"
+										: "Retry same version"}
 								</Button>
 							</span>
 						) : null}
 
 						{run.canCancel ? (
-							<span className="flex shrink-0 items-center pr-4 sm:pr-5">
+							<span className="flex shrink-0 items-center justify-end px-4 pb-3 sm:px-0 sm:pb-0 sm:pr-5">
 								<Button
 									variant="outline"
 									size="sm"
@@ -196,18 +221,26 @@ export function AgentRuns({
 							</span>
 						) : null}
 					</div>
+					{["FAILED", "CANCELLED"].includes(run.status) ? (
+						<p className="border-t px-4 py-3 text-xs text-muted-foreground leading-5 sm:px-5">
+							{run.canRetry === true
+								? `A retry creates a new run using version ${run.version.number}, not the latest edits.`
+								: (run.retryBlockedReason ??
+									"Retry safety is unavailable. Review the recorded actions before starting anything again.")}
+						</p>
+					) : null}
+					{run.status === "WAITING_FOR_APPROVAL" ? (
+						<p
+							role="status"
+							className="border-t px-4 py-3 text-sm text-muted-foreground sm:px-5"
+						>
+							An action is awaiting an authorized reviewer. Review the recorded
+							steps below; starting another run will not bypass approval.
+						</p>
+					) : null}
 
 					{expanded === run.id ? (
 						<>
-							{run.retryBlockedReason &&
-							["FAILED", "CANCELLED"].includes(run.status) ? (
-								<p
-									role="status"
-									className="border-t px-5 py-3 text-sm text-muted-foreground"
-								>
-									{run.retryBlockedReason}
-								</p>
-							) : null}
 							{run.actionsTruncated ? (
 								<p className="px-5 py-2 text-xs text-muted-foreground">
 									Showing the first {run.actions.length} of {run.totalActions}{" "}
@@ -251,7 +284,9 @@ export function AgentRuns({
 
 			{visible.length === 0 ? (
 				<p className="py-12 text-center text-muted-foreground text-sm">
-					No runs match this outcome.
+					{runs.length === 0
+						? "No runs yet. Once this agent is active, choose Run now on its detail page, then check the result here. A queued request is not a completed result."
+						: "No runs match this outcome. Choose All outcomes to see the latest runs."}
 				</p>
 			) : null}
 		</div>
@@ -275,6 +310,26 @@ function ExpandedRun({ run }: { run: RunRow }) {
 
 	return (
 		<div className="min-w-0 border-t">
+			<section
+				className="flex flex-col gap-2 border-b px-4 py-4 sm:px-5"
+				aria-label="Run result"
+			>
+				<h3 className="text-sm font-semibold">Agent-generated report</h3>
+				<p className="whitespace-pre-wrap wrap-break-word text-sm leading-6">
+					{run.summary?.trim() ||
+						(run.status === "SUCCEEDED"
+							? "This run completed without a written report. Check the recorded actions below for its result."
+							: "No written report has been recorded yet.")}
+				</p>
+				<p className="text-xs text-muted-foreground leading-5">
+					{run.totalActions ?? run.actions.length} recorded actions ·{" "}
+					{run.costUsd === null
+						? "Cost not reported"
+						: `Reported cost: $${run.costUsd}`}
+					. Check the action statuses and references below to confirm what
+					happened.
+				</p>
+			</section>
 			<div className="grid grid-cols-2 gap-x-4 gap-y-3 border-b bg-background px-4 py-3 sm:min-h-[58px] sm:grid-cols-4 sm:items-center sm:gap-0 sm:px-5 sm:py-2">
 				<RunMeta label="Trigger" value={humanStatus(run.triggerType)} />
 				<RunMeta
@@ -293,7 +348,7 @@ function ExpandedRun({ run }: { run: RunRow }) {
 							className="grid min-h-8 min-w-0 grid-cols-[68px_minmax(0,1fr)] items-start gap-x-3 border-t px-4 py-2 first:border-t-0 sm:flex sm:items-center sm:gap-5 sm:px-5 sm:py-1.5"
 						>
 							<span className="shrink-0 font-mono text-muted-foreground text-xs sm:w-[78px]">
-								{formatTime(entry.at)}
+								<LocalDateTime date={entry.at} options={TIME_OPTIONS} />
 							</span>
 							<span className="min-w-0 flex-1 wrap-break-word text-sm">
 								{eventLabel(entry.event)}
@@ -308,7 +363,7 @@ function ExpandedRun({ run }: { run: RunRow }) {
 							className="grid min-h-12 min-w-0 grid-cols-[68px_minmax(0,1fr)] items-start gap-x-3 gap-y-1 border-t px-4 py-3 first:border-t-0 sm:flex sm:gap-5 sm:px-5"
 						>
 							<span className="shrink-0 font-mono text-muted-foreground text-xs sm:w-[78px]">
-								{formatTime(entry.at)}
+								<LocalDateTime date={entry.at} options={TIME_OPTIONS} />
 							</span>
 							<span className="min-w-0 flex-1">
 								<span className="block wrap-break-word text-sm">
@@ -320,6 +375,14 @@ function ExpandedRun({ run }: { run: RunRow }) {
 										? ` · ${entry.action.targetLabel}`
 										: ""}
 								</span>
+								{entry.action.errorMessage || entry.action.errorCode ? (
+									<span className="mt-1 block wrap-break-word text-destructive text-xs">
+										{runFailureReason(
+											entry.action.errorCode,
+											entry.action.errorMessage,
+										)}
+									</span>
+								) : null}
 							</span>
 							<span className="col-start-2 min-w-0 wrap-break-word font-mono text-muted-foreground text-xs sm:col-auto sm:shrink-0">
 								{entry.action.externalId ?? entry.action.id.slice(0, 12)}
@@ -402,7 +465,7 @@ export function AgentActivity({ activity }: { activity: Activity }) {
 						className="flex min-h-11 min-w-0 flex-col items-start gap-2 border-t px-4 py-3 first:border-t-0 sm:flex-row sm:items-center sm:gap-0 sm:px-5"
 					>
 						<span className="shrink-0 font-mono text-muted-foreground text-xs sm:w-[166px]">
-							{formatDate(event.emittedAt)}
+							<LocalDateTime date={event.emittedAt} options={DATE_OPTIONS} />
 						</span>
 						<span className="min-w-0 flex-1">
 							<span className="block wrap-break-word text-sm">
@@ -439,14 +502,6 @@ function humanStatus(value: string): string {
 		.toLowerCase()
 		.replace(/_/g, " ")
 		.replace(/^./, (character) => character.toUpperCase());
-}
-
-function formatDate(value: string): string {
-	return DATE_FORMATTER.format(new Date(value));
-}
-
-function formatTime(value: string): string {
-	return TIME_FORMATTER.format(new Date(value));
 }
 
 function duration(startedAt: string | null, finishedAt: string | null): string {

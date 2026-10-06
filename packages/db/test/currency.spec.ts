@@ -2,6 +2,7 @@ import { describe, expect, it } from "bun:test";
 import type { Db } from "../src/client";
 import {
 	CURRENCIES,
+	currencyMeta,
 	currencyName,
 	isCurrencyCode,
 	isWellFormedCurrency,
@@ -62,7 +63,7 @@ describe("normalizeCurrency and isCurrencyCode", () => {
 		}
 	});
 
-	it("offers only the eleven currencies most of the world trades in", () => {
+	it("exposes supported currencies in stable selector order", () => {
 		expect(CURRENCIES.map((entry) => entry.code)).toEqual([
 			"USD",
 			"EUR",
@@ -75,7 +76,20 @@ describe("normalizeCurrency and isCurrencyCode", () => {
 			"HKD",
 			"SGD",
 			"ZAR",
+			"UZS",
 		]);
+	});
+
+	it("recognizes normalized UZS with the ISO 4217 minor units", () => {
+		for (const input of ["UZS", "uzs", " UzS "]) {
+			expect(isCurrencyCode(input)).toBe(true);
+			expect(normalizeCurrency(input)).toBe("UZS");
+			expect(currencyMeta(input)).toEqual({
+				code: "UZS",
+				name: "Uzbekistan Sum",
+				minorUnits: 2,
+			});
+		}
 	});
 
 	it("refuses a real currency it does not offer, and anything that is not one", () => {
@@ -111,6 +125,15 @@ describe("minorUnitsOf", () => {
 });
 
 describe("resolveRate", () => {
+	it("uses UZS identity conversion without inventing a cross-currency rate", async () => {
+		const same = fakeDb([]);
+		const identity = await resolveRate(same.db, "UZS", " uzs ");
+		expect(identity?.rate.toNumber()).toBe(1);
+		expect(identity?.origin).toBe("IDENTITY");
+		expect(same.calls).toBe(0);
+		expect(await resolveRate(fakeDb([]).db, "USD", "UZS")).toBeNull();
+	});
+
 	it("answers 1 for the reporting currency itself, without a read", async () => {
 		const fake = fakeDb([]);
 		const rate = await resolveRate(fake.db, "USD", "usd");
@@ -174,6 +197,22 @@ describe("applyRate", () => {
 	it("converts into the reporting currency", () => {
 		const converted = applyRate(new Prisma.Decimal(1000), rate("1.09"), "USD");
 		expect(converted.baseAmount.toNumber()).toBe(1090);
+	});
+
+	it("preserves fractional UZS with explicit manual-rate provenance", async () => {
+		const resolved = await resolveRate(
+			fakeDb([row("12500.555", RateSource.MANUAL)]).db,
+			"UZS",
+			"USD",
+		);
+		expect(resolved).not.toBeNull();
+		if (!resolved) throw new Error("Expected the configured manual rate");
+		const converted = applyRate(new Prisma.Decimal("1.25"), resolved, "UZS");
+		expect(converted.baseCurrency).toBe("UZS");
+		expect(converted.baseAmount.toString()).toBe("15625.69");
+		expect(converted.fxRate.toString()).toBe("12500.555");
+		expect(converted.origin).toBe("MANUAL");
+		expect(converted.fxRateAt.toISOString()).toBe("2026-08-01T00:00:00.000Z");
 	});
 
 	it("rounds to the reporting currency's own decimals, not to two", () => {

@@ -26,7 +26,6 @@ import { InvalidInput, type Permission, parse, schemas } from "@crm/validation";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { toast } from "sonner";
 import { useSlackChannels } from "@/components/slack/use-slack-channels";
 import { handoffBrief, handoffResources } from "@/lib/agent-handoff";
 import { useTRPC } from "@/lib/trpc/client";
@@ -42,6 +41,7 @@ export function NewAgentDialog({ children }: { children: React.ReactNode }) {
 	const [name, setName] = useState("");
 	const [job, setJob] = useState("");
 	const [channelId, setChannelId] = useState("");
+	const [formError, setFormError] = useState<string | null>(null);
 	const [allowed, setAllowed] = useState<Permission[]>(
 		schemas.agents.defaultPermissions,
 	);
@@ -59,13 +59,15 @@ export function NewAgentDialog({ children }: { children: React.ReactNode }) {
 				setOpen(false);
 				router.push(workspaceUrl(`/chat/${id}`));
 			},
-			onError: (error) => toast.error(error.message),
+			onError: (error) => setFormError(error.message),
 		}),
 	);
 
 	const ready = name.trim().length > 0 && job.trim().length > 0;
 
 	const hand = () => {
+		if (!ready || create.isPending) return;
+		setFormError(null);
 		try {
 			const handoff = parse(
 				schemas.agents.handoff,
@@ -92,122 +94,223 @@ export function NewAgentDialog({ children }: { children: React.ReactNode }) {
 				attachments: [],
 			});
 		} catch (error) {
-			toast.error(
+			setFormError(
 				error instanceof InvalidInput
 					? error.message
-					: "Could not hand this to the builder.",
+					: "Could not prepare the draft. Your details are still here; try again.",
 			);
 		}
 	};
 
 	return (
-		<Dialog onOpenChange={setOpen} open={open}>
+		<Dialog
+			onOpenChange={(next) => {
+				if (!create.isPending) setOpen(next);
+			}}
+			open={open}
+		>
 			<DialogTrigger asChild>{children}</DialogTrigger>
 
-			<DialogContent className="sm:max-w-(--container-sheet)">
+			<DialogContent className="max-h-[85dvh] overflow-y-auto sm:max-w-(--container-sheet)">
 				<DialogHeader>
-					<DialogTitle>New agent</DialogTitle>
+					<DialogTitle>Give your agent a task</DialogTitle>
 					<DialogDescription>
-						Say what it is and where it lives. The builder writes the rest. You
-						can change all of this later.
+						Describe the work and the result you need. Next, the builder
+						prepares a private draft for you to review before activation.
 					</DialogDescription>
 				</DialogHeader>
 
-				<div className="flex flex-col gap-4">
-					<div className="flex flex-col gap-1.5">
-						<Label htmlFor="agent-name">Name</Label>
-						<Input
-							id="agent-name"
-							onChange={(event) => setName(event.target.value)}
-							placeholder="Renewal prep brief"
-							value={name}
-						/>
-					</div>
-
-					<div className="flex flex-col gap-1.5">
-						<Label htmlFor="agent-job">What it should do</Label>
-						<Textarea
-							id="agent-job"
-							onChange={(event) => setJob(event.target.value)}
-							placeholder="A week before a renewal, gather the account history and post a short brief for whoever owns the deal."
-							rows={3}
-							value={job}
-						/>
-					</div>
-
-					<div className="flex flex-col gap-1.5">
-						<Label htmlFor="agent-channel">Lives in</Label>
-						<Select onValueChange={setChannelId} value={channelId}>
-							<SelectTrigger id="agent-channel">
-								<SelectValue placeholder="Pick a Slack channel" />
-							</SelectTrigger>
-							<SelectContent>
-								{rows.map((row) => (
-									<SelectItem key={row.id} value={row.id}>
-										#{row.name}
-									</SelectItem>
-								))}
-							</SelectContent>
-						</Select>
-						<p className="text-muted-foreground text-xs">
-							{channel
-								? channel.isMember
-									? `CRM is already in #${channel.name}.`
-									: `CRM is not in #${channel.name} yet. It joins when you create this.`
-								: "Leave this empty and the builder will ask."}
-						</p>
-					</div>
-
-					<div className="flex flex-col gap-1.5">
-						<Label>Allowed to</Label>
-						<div className="flex flex-wrap gap-2">
-							{schemas.agents.permissions.map((entry) => {
-								const on = allowed.includes(entry.id);
-
-								return (
-									<Button
-										key={entry.id}
-										onClick={() =>
-											setAllowed((current) =>
-												on
-													? current.filter((id) => id !== entry.id)
-													: [...current, entry.id],
-											)
-										}
-										size="sm"
-										type="button"
-										variant={on ? "secondary" : "outline"}
-									>
-										{on ? (
-											<Icon
-												className="size-3.5 text-primary"
-												icon={Checkmark}
-												motion="none"
-											/>
-										) : null}
-										{entry.label}
-									</Button>
-								);
-							})}
-						</div>
-					</div>
-				</div>
-
-				<DialogFooter className="items-center">
-					<p className="mr-auto text-muted-foreground text-xs">
-						Nothing sends until you turn it on.
-					</p>
-					<Button
+				<form
+					className="flex flex-col gap-5"
+					onSubmit={(event) => {
+						event.preventDefault();
+						hand();
+					}}
+				>
+					<fieldset
 						disabled={create.isPending}
-						onClick={() => setOpen(false)}
-						variant="outline"
+						className="flex min-w-0 flex-col gap-4"
 					>
-						Cancel
-					</Button>
-					<Button disabled={!ready || create.isPending} onClick={hand}>
-						{create.isPending ? "Handing over…" : "Hand to the builder"}
-					</Button>
-				</DialogFooter>
+						<div className="flex flex-col gap-1.5">
+							<Label htmlFor="agent-name">Name</Label>
+							<Input
+								id="agent-name"
+								required
+								maxLength={120}
+								onChange={(event) => setName(event.target.value)}
+								placeholder="Renewal prep brief"
+								value={name}
+							/>
+						</div>
+
+						<div className="flex flex-col gap-1.5">
+							<Label htmlFor="agent-job">Task and expected result</Label>
+							<Textarea
+								id="agent-job"
+								required
+								maxLength={20_000}
+								aria-describedby="agent-job-help"
+								onChange={(event) => setJob(event.target.value)}
+								placeholder="Find deals with no recent activity, explain why each needs attention, and prepare next steps for the deal owner."
+								rows={3}
+								value={job}
+							/>
+							<p
+								id="agent-job-help"
+								className="text-muted-foreground text-xs leading-5"
+							>
+								Include when it should act, which records it needs, and how you
+								will check the result.
+							</p>
+						</div>
+
+						<details className="rounded-lg border p-4">
+							<summary className="cursor-pointer rounded-sm text-sm font-medium focus-visible:outline-2 focus-visible:outline-ring">
+								Slack preferences (optional)
+							</summary>
+							<div className="mt-4 flex flex-col gap-4">
+								<div className="flex flex-col gap-1.5">
+									<Label htmlFor="agent-channel">Slack destination</Label>
+									<Select
+										onValueChange={(value) =>
+											setChannelId(value === "__none__" ? "" : value)
+										}
+										value={channelId || "__none__"}
+									>
+										<SelectTrigger id="agent-channel">
+											<SelectValue placeholder="Pick a Slack channel" />
+										</SelectTrigger>
+										<SelectContent>
+											<SelectItem value="__none__">
+												Choose later in the builder
+											</SelectItem>
+											{rows.map((row) => (
+												<SelectItem key={row.id} value={row.id}>
+													#{row.name}
+												</SelectItem>
+											))}
+										</SelectContent>
+									</Select>
+									<p className="text-muted-foreground text-xs">
+										{channel
+											? channel.isMember
+												? `CRM is already in #${channel.name}.`
+												: `CRM is not in #${channel.name}. Review channel access with the builder before activation.`
+											: "A Slack channel is not required to prepare a draft."}
+									</p>
+									{channels.pending || channels.syncing || channels.stalled ? (
+										<p role="status" className="text-xs text-muted-foreground">
+											{channels.stalled
+												? "Channel sync needs attention. Refresh, or continue without a destination."
+												: "Reading Slack channels. You can continue without a destination."}
+										</p>
+									) : null}
+									{!channels.pending &&
+									!channels.syncing &&
+									rows.length === 0 ? (
+										<p className="text-xs text-muted-foreground leading-5">
+											No channels are available in this list. Refresh to check
+											again, or continue without a Slack destination.
+										</p>
+									) : null}
+									<div className="flex flex-wrap gap-2">
+										<Button
+											type="button"
+											size="sm"
+											variant="ghost"
+											onClick={() => void channels.reload()}
+										>
+											Refresh channels
+										</Button>
+										{channels.hasMore ? (
+											<Button
+												type="button"
+												size="sm"
+												variant="outline"
+												disabled={channels.fetchingMore}
+												onClick={channels.loadMore}
+											>
+												{channels.fetchingMore
+													? "Loading…"
+													: "Load more channels"}
+											</Button>
+										) : null}
+									</div>
+								</div>
+
+								<fieldset className="flex min-w-0 flex-col gap-1.5">
+									<legend className="mb-1.5 text-sm font-medium">
+										Requested Slack actions
+									</legend>
+									<p className="text-muted-foreground text-xs leading-5">
+										These preferences guide the draft. Workspace permissions and
+										approval rules still apply.
+									</p>
+									<div className="flex flex-wrap gap-2">
+										{schemas.agents.permissions.map((entry) => {
+											const on = allowed.includes(entry.id);
+
+											return (
+												<Button
+													aria-pressed={on}
+													key={entry.id}
+													onClick={() =>
+														setAllowed((current) =>
+															on
+																? current.filter((id) => id !== entry.id)
+																: [...current, entry.id],
+														)
+													}
+													size="sm"
+													type="button"
+													variant={on ? "secondary" : "outline"}
+												>
+													{on ? (
+														<Icon
+															className="size-3.5 text-primary"
+															icon={Checkmark}
+															motion="none"
+														/>
+													) : null}
+													{entry.label}
+												</Button>
+											);
+										})}
+									</div>
+								</fieldset>
+							</div>
+						</details>
+					</fieldset>
+					{formError ? (
+						<p
+							role="alert"
+							className="rounded-lg border border-destructive/30 bg-destructive/5 p-3 text-sm text-destructive"
+						>
+							{formError} Your details are preserved. Review them and try again.
+						</p>
+					) : null}
+
+					<DialogFooter className="items-center">
+						<p className="mr-auto text-muted-foreground text-xs">
+							This step opens a private planning chat.
+						</p>
+						<Button
+							disabled={create.isPending}
+							onClick={() => setOpen(false)}
+							variant="outline"
+							type="button"
+						>
+							Cancel
+						</Button>
+						<Button
+							type="submit"
+							aria-busy={create.isPending}
+							disabled={!ready || create.isPending}
+						>
+							{create.isPending ? "Preparing…" : "Prepare private draft"}
+						</Button>
+					</DialogFooter>
+				</form>
 			</DialogContent>
 		</Dialog>
 	);

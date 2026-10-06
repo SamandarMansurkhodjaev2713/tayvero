@@ -73,7 +73,7 @@ export function AgentCapabilities({
 					queryKey: trpc.agents.byId.pathKey(),
 				});
 				reset();
-				toast.success("Saved. A new version is live.");
+				toast.success("Updated version published for future runs.");
 			},
 			onError: (error) => toast.error(error.message),
 		}),
@@ -189,18 +189,20 @@ export function AgentCapabilities({
 				<div className="flex flex-col">
 					{capabilities.actions.map((action) => (
 						<div
-							className="flex h-13 items-center gap-3 border-b last:border-b-0"
+							className="flex min-h-13 items-center gap-3 border-b py-3 last:border-b-0"
 							key={action.type}
 						>
 							<div className="min-w-0 flex-1">
 								<p className="text-sm">
-									{ACTION_LABELS.get(action.type) ?? action.type}
+									{ACTION_LABELS.get(action.type) ??
+										(action.summary || action.type)}
 								</p>
 								<p className="text-muted-foreground text-xs">
 									{action.summary || action.provider}
 								</p>
 							</div>
 							<Switch
+								aria-label={`Allow ${ACTION_LABELS.get(action.type) ?? (action.summary || action.type)}`}
 								checked={!off.includes(action.type)}
 								disabled={!canManage || revise.isPending}
 								onCheckedChange={(on) =>
@@ -215,7 +217,7 @@ export function AgentCapabilities({
 					))}
 					{capabilities.actions.length === 0 ? (
 						<p className="text-muted-foreground text-sm">
-							Nothing outside the CRM.
+							No actions are declared in this version.
 						</p>
 					) : null}
 				</div>
@@ -237,7 +239,7 @@ export function AgentCapabilities({
 
 					{shownResources.map((resource) => (
 						<span
-							className="flex h-7 items-center gap-1.5 rounded-md border pr-1.5 pl-2.5 text-sm"
+							className="flex min-h-7 max-w-full items-center gap-1.5 rounded-md border py-1 pr-1.5 pl-2.5 text-sm wrap-break-word"
 							key={`${resource.kind}:${resource.id}`}
 						>
 							{resource.label}
@@ -282,12 +284,21 @@ export function AgentCapabilities({
 				</div>
 			</Section>
 
+			{revise.isError ? (
+				<p
+					role="alert"
+					className="rounded-lg border border-destructive/30 p-3 text-sm text-destructive"
+				>
+					{revise.error.message} Your changes are still here. Review them before
+					trying to publish again.
+				</p>
+			) : null}
 			<SaveBar
 				description={
 					blocked ??
 					(channelChanged
-						? `CRM joins #${to}. It stays in #${from} until you remove it.`
-						: "The old version stays in the history.")
+						? `Publishes a new version for future runs. CRM joins #${to} and stays in #${from} until you remove it.`
+						: "Publishes a new version for future runs. Previous runs keep their original version.")
 				}
 				open={dirty}
 				title={
@@ -311,7 +322,7 @@ export function AgentCapabilities({
 					onClick={save}
 					size="sm"
 				>
-					{revise.isPending ? "Saving…" : "Save"}
+					{revise.isPending ? "Publishing…" : "Publish updated version"}
 				</Button>
 			</SaveBar>
 		</div>
@@ -335,13 +346,17 @@ function ResourcePicker({ onPick }: { onPick: (resource: Resource) => void }) {
 					type="button"
 				>
 					<Icon className="size-3" icon={Add} motion="none" />
-					Add a record type
+					Add a record or integration
 				</button>
 			</PopoverTrigger>
 
-			<PopoverContent align="start" className="w-72 p-0">
+			<PopoverContent
+				align="start"
+				className="w-72 max-w-[calc(100vw-2rem)] p-0"
+			>
 				<input
-					className="w-full border-b bg-transparent px-3 py-2.5 text-sm outline-none"
+					aria-label="Search records and integrations"
+					className="w-full border-b bg-transparent px-3 py-2.5 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring"
 					onChange={(event) => setQuery(event.target.value)}
 					placeholder="Search records and integrations"
 					value={query}
@@ -369,7 +384,29 @@ function ResourcePicker({ onPick }: { onPick: (resource: Resource) => void }) {
 							) : null}
 						</button>
 					))}
-					{(results.data ?? []).length === 0 ? (
+					{results.isPending ? (
+						<p
+							role="status"
+							className="px-3 py-3 text-muted-foreground text-sm"
+						>
+							Reading available records…
+						</p>
+					) : results.isError ? (
+						<div role="alert" className="px-3 py-3 text-sm">
+							<p className="text-destructive">
+								Could not read available records.
+							</p>
+							<Button
+								type="button"
+								variant="outline"
+								size="sm"
+								className="mt-2"
+								onClick={() => void results.refetch()}
+							>
+								Try again
+							</Button>
+						</div>
+					) : (results.data ?? []).length === 0 ? (
 						<p className="px-3 py-2 text-muted-foreground text-sm">
 							Nothing matches.
 						</p>

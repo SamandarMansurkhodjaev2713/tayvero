@@ -62,7 +62,30 @@ export function WorkspaceForm() {
 		}),
 	);
 
-	if (!workspace.data) return null;
+	if (!workspace.data)
+		return (
+			<Card>
+				<CardHeader>
+					<CardTitle>Workspace</CardTitle>
+					<CardDescription role={workspace.isError ? "alert" : "status"}>
+						{workspace.isError
+							? "Workspace settings could not be loaded."
+							: "Loading workspace settings…"}
+					</CardDescription>
+					{workspace.isError && (
+						<CardAction>
+							<Button
+								variant="outline"
+								disabled={workspace.isFetching}
+								onClick={() => void workspace.refetch()}
+							>
+								Try again
+							</Button>
+						</CardAction>
+					)}
+				</CardHeader>
+			</Card>
+		);
 
 	const { name, website, canRename } = workspace.data;
 
@@ -88,8 +111,7 @@ export function WorkspaceForm() {
 							!canRename ||
 							save.isPending ||
 							!dirty ||
-							values.name.trim() === "" ||
-							values.website.trim() === ""
+							values.name.trim() === ""
 						}
 					>
 						{save.isPending ? <Spinner data-icon="inline-start" /> : null}
@@ -118,6 +140,7 @@ export function WorkspaceForm() {
 								onChange={(event) => edit({ name: event.target.value })}
 								placeholder="Acme Inc."
 								autoComplete="organization"
+								maxLength={120}
 								disabled={!canRename || save.isPending}
 								required
 							/>
@@ -127,13 +150,14 @@ export function WorkspaceForm() {
 						</Field>
 
 						<Field>
-							<FieldLabel htmlFor={websiteId}>Website</FieldLabel>
+							<FieldLabel htmlFor={websiteId}>Website (optional)</FieldLabel>
 							<InputGroup>
 								<InputGroupAddon>
 									<InputGroupText>https://</InputGroupText>
 								</InputGroupAddon>
 								<InputGroupInput
 									id={websiteId}
+									maxLength={255}
 									value={values.website}
 									onChange={(event) => edit({ website: event.target.value })}
 									placeholder="acme.com"
@@ -145,9 +169,16 @@ export function WorkspaceForm() {
 									disabled={!canRename || save.isPending}
 								/>
 							</InputGroup>
-							<FieldDescription>Your own company's website.</FieldDescription>
+							<FieldDescription>
+								Used as company research context. Leave blank to remove it.
+							</FieldDescription>
 						</Field>
 					</FieldGroup>
+					{save.isError && (
+						<p role="alert" className="mt-4 text-sm text-destructive">
+							{save.error.message}
+						</p>
+					)}
 				</form>
 
 				{canRename ? null : (

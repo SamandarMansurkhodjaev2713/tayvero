@@ -10,7 +10,7 @@
 		"lint:dead": "knip --no-progress",
 		"format": "biome format --write .",
 		"check-types": "turbo run check-types",
-		"test": "turbo run test --concurrency=1",
+		"test": "turbo run test --concurrency=1 && bun tools/quality/verify-agent-journey.mjs",
 		"auth:generate": "turbo run auth:generate",
 		"db:deploy": "turbo run db:deploy",
 		"db:generate": "turbo run db:generate",

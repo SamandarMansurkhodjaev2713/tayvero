@@ -237,11 +237,11 @@ describe("proxy", () => {
 		const first = await proxy(request(`/${SLUG}/companies`, [SESSION_COOKIE]));
 
 		expect([...first.cookies.getAll()]).toHaveLength(0);
-		expect(calls).toEqual({ workspace: 1, research: 1 });
+		expect(calls).toEqual({ workspace: 1, research: 0 });
 
 		await proxy(request(`/${SLUG}/companies`, [SESSION_COOKIE]));
 
-		expect(calls).toEqual({ workspace: 2, research: 2 });
+		expect(calls).toEqual({ workspace: 2, research: 0 });
 	});
 
 	it("notices when the answer changes underneath it", async () => {
@@ -262,7 +262,7 @@ describe("proxy", () => {
 		).toBe("/onboarding");
 	});
 
-	it("takes a settled rep off both setup pages and into the workspace", async () => {
+	it("takes a settled rep into the workspace and keeps optional research accessible", async () => {
 		setup();
 
 		expect(
@@ -273,7 +273,7 @@ describe("proxy", () => {
 			redirectedTo(
 				await proxy(request("/onboarding/research", [SESSION_COOKIE])),
 			),
-		).toBe(`/${SLUG}`);
+		).toBeNull();
 	});
 
 	it("never fights /grant-access, which would ping-pong forever", async () => {
@@ -355,15 +355,36 @@ describe("the slug the app is served under", () => {
 	});
 });
 
-describe("the research key gate", () => {
-	it("sends an onboarded rep with no key to the key form", async () => {
+describe("optional company research", () => {
+	it("does not ask an unavailable enrichment provider before opening CRM", async () => {
+		let calls = 0;
+		stub(async (url) => {
+			calls += 1;
+			if (!url.includes("workspace.get"))
+				throw new Error("Research unavailable");
+			return json(workspace({ onboarded: true, canRename: true }));
+		});
+		expect(redirectedTo(await proxy(request("/", [SESSION_COOKIE])))).toBe(
+			`/${SLUG}`,
+		);
+		expect(calls).toBe(1);
+	});
+
+	it("does not send a member who cannot configure the workspace to setup", async () => {
+		setup({ onboarded: false, canRename: false, configured: false });
+		expect(
+			redirectedTo(await proxy(request(`/${SLUG}/deals`, [SESSION_COOKIE]))),
+		).toBeNull();
+	});
+
+	it("lets an onboarded rep use CRM without a provider key", async () => {
 		setup({ configured: false });
 
 		expect(
 			redirectedTo(
 				await proxy(request(`/${SLUG}/companies`, [SESSION_COOKIE])),
 			),
-		).toBe("/onboarding/research");
+		).toBeNull();
 	});
 
 	it("lets that form render rather than looping onto itself", async () => {
@@ -386,11 +407,11 @@ describe("the research key gate", () => {
 		).toBe("/onboarding");
 	});
 
-	it("sends them on to the key once the workspace is named", async () => {
+	it("opens the workspace after naming it without requiring research", async () => {
 		setup({ onboarded: true, configured: false });
 
 		expect(
 			redirectedTo(await proxy(request("/onboarding", [SESSION_COOKIE]))),
-		).toBe("/onboarding/research");
+		).toBe(`/${SLUG}`);
 	});
 });

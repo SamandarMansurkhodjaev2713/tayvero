@@ -10,7 +10,6 @@ import {
 import type { Db, Prisma } from "@crm/db";
 import { isOnboarded, markOnboarded, workspaceSlug } from "@crm/db/workspace";
 import {
-	BadRequestException,
 	ForbiddenException,
 	Injectable,
 	Logger,
@@ -18,7 +17,6 @@ import {
 	ServiceUnavailableException,
 } from "@nestjs/common";
 import { AgentTriggerService } from "../agent/agent-trigger.service";
-import { normalizeDomain } from "../companies/domain";
 import { InjectDatabase } from "../database/database.constants";
 import {
 	countsByKey,
@@ -34,6 +32,7 @@ import type {
 	Workspace,
 	WorkspaceMember,
 } from "./workspace.contracts";
+import { resolveWorkspaceWebsite } from "./workspace-website";
 
 const MEMBER_SELECT = {
 	id: true,
@@ -110,13 +109,7 @@ export class WorkspaceService {
 			select: { website: true, metadata: true },
 		});
 
-		const website = normalizeDomain(input.website);
-
-		if (!website) {
-			throw new BadRequestException(
-				"That is not a website. Enter the domain, like acme.com.",
-			);
-		}
+		const website = resolveWorkspaceWebsite(input.website, before?.website);
 
 		await this.db.organization.update({
 			where: { id: WORKSPACE_ID },
@@ -130,7 +123,7 @@ export class WorkspaceService {
 
 		this.logger.log({ message: "Workspace updated", userId });
 
-		if (website !== before?.website) {
+		if (website && website !== before?.website) {
 			await this.agent.workspaceChanged(
 				website,
 				before?.website

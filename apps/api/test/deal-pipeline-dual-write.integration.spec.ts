@@ -181,9 +181,19 @@ describe("legacy Deal.stage -> configurable pipeline PostgreSQL bridge", () => {
 				where: { workspaceId_dealId: { workspaceId: tenantId, dealId } },
 			});
 
-		await expect(transition("CLOSED_LOST")).rejects.toThrow(
-			"legacy write was rolled back",
-		);
+		// Await database work directly, then assert the domain error and rollback.
+		// Matcher-wrapped execution hit transaction acquisition timeout on this host.
+		let refusal: unknown;
+		try {
+			await transition("CLOSED_LOST");
+		} catch (error) {
+			refusal = error;
+		}
+		expect(refusal).toMatchObject({
+			message:
+				"Deal pipeline dual-write is not ready; legacy write was rolled back.",
+			cause: { code: "MAPPING_MISSING" },
+		});
 
 		const after = await db.deal.findUniqueOrThrow({ where: { id: dealId } });
 		const afterAssignment =

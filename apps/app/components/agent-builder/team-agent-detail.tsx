@@ -26,11 +26,13 @@ import {
 } from "@crm/ui/components/dropdown-menu";
 import { Icon } from "@crm/ui/components/icon";
 import { SaveBarViewport } from "@crm/ui/components/save-bar";
+import { WorkspaceNotice, WorkspacePanel } from "@crm/ui/components/workspace";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { type ReactNode, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useState } from "react";
 import { toast } from "sonner";
+import { LocalDateTime } from "@/components/local-date-time";
 import {
 	PageShell,
 	PageShellActions,
@@ -51,22 +53,14 @@ type AgentDetail = RouterOutputs["agents"]["byId"];
 type ReviewVersion = AgentDetail["reviewVersion"];
 type Runs = RouterOutputs["agents"]["history"];
 type Activity = RouterOutputs["agents"]["activity"];
-const DATE_FORMATTER = new Intl.DateTimeFormat("en-US", {
+const DATE_OPTIONS: Intl.DateTimeFormatOptions = {
 	month: "short",
 	day: "numeric",
 	hour: "numeric",
 	minute: "2-digit",
 	second: "2-digit",
-	timeZone: "UTC",
 	timeZoneName: "short",
-});
-const _TIME_FORMATTER = new Intl.DateTimeFormat("en-US", {
-	hour: "2-digit",
-	minute: "2-digit",
-	second: "2-digit",
-	hour12: false,
-	timeZone: "UTC",
-});
+};
 
 export function TeamAgentDetail({
 	agentId,
@@ -82,7 +76,11 @@ export function TeamAgentDetail({
 	const trpc = useTRPC();
 	const queryClient = useQueryClient();
 	const workspaceUrl = useWorkspaceUrl();
-	const [runsOpen, setRunsOpen] = useState(false);
+	const linkedRunId = useSearchParams().get("run") || undefined;
+	const [runsOpen, setRunsOpen] = useState(!!linkedRunId);
+	const [selectedRunId, setSelectedRunId] = useState<string | undefined>(
+		linkedRunId,
+	);
 	const agent = useQuery({
 		...trpc.agents.byId.queryOptions({ id: agentId }),
 		initialData: initialAgent,
@@ -114,8 +112,9 @@ export function TeamAgentDetail({
 		]);
 	const runNow = useMutation(
 		trpc.agents.runNow.mutationOptions({
-			onSuccess: async () => {
+			onSuccess: async (result) => {
 				await invalidate();
+				setSelectedRunId(result.id);
 				setRunsOpen(true);
 				toast.success("Agent run queued.");
 			},
@@ -136,9 +135,11 @@ export function TeamAgentDetail({
 	);
 	const retryRun = useMutation(
 		trpc.agents.retryRun.mutationOptions({
-			onSuccess: async () => {
+			onSuccess: async (result) => {
 				await invalidate();
-				toast.success("Run queued again.");
+				setSelectedRunId(result.id);
+				setRunsOpen(true);
+				toast.success("A new run was queued using the original version.");
 			},
 			onError: (error) => toast.error(error.message),
 		}),
@@ -177,6 +178,16 @@ export function TeamAgentDetail({
 						<PageShellDescription>{agent.error.message}</PageShellDescription>
 					</PageShellHeading>
 				</PageShellHeader>
+				<PageShellContent>
+					<div className="flex flex-wrap gap-2">
+						<Button onClick={() => void agent.refetch()} variant="outline">
+							Try loading again
+						</Button>
+						<Button asChild variant="outline">
+							<Link href={workspaceUrl("/agents")}>Back to agents</Link>
+						</Button>
+					</div>
+				</PageShellContent>
 			</PageShell>
 		);
 	}
@@ -201,6 +212,10 @@ export function TeamAgentDetail({
 		enabledTriggers.length === 1 ? enabledTriggers[0]?.nextRunAt : null;
 	const triggerSummary =
 		enabledTriggers.map((trigger) => trigger.name).join(" · ") || "Manual only";
+	const activeRun = runs.data?.find((run) =>
+		["QUEUED", "RUNNING", "WAITING_FOR_APPROVAL"].includes(run.status),
+	);
+	const latestRun = runs.data?.[0];
 
 	return (
 		<PageShell className="min-h-0" contained>
@@ -223,22 +238,27 @@ export function TeamAgentDetail({
 						<span className="text-muted-foreground text-xs">
 							{isDraft ? "Visibility" : "Trigger"}
 						</span>
-						<span className="font-mono text-sm">
-							{isDraft
-								? "Private draft"
-								: nextRun
-									? formatDate(nextRun)
-									: triggerSummary}
+						<span className="text-sm">
+							{isDraft ? (
+								"Private draft"
+							) : nextRun ? (
+								<LocalDateTime date={nextRun} options={DATE_OPTIONS} />
+							) : (
+								triggerSummary
+							)}
 						</span>
 						<div className="mt-1 flex flex-wrap gap-2">
-							<Button onClick={() => setRunsOpen(true)} variant="outline">
+							<Button
+								onClick={() => {
+									setSelectedRunId(undefined);
+									setRunsOpen(true);
+								}}
+								variant="outline"
+							>
 								Runs
 								<span className="font-mono text-muted-foreground">
 									{data.runCount}
 								</span>
-							</Button>
-							<Button asChild variant="outline">
-								<Link href={workspaceUrl("/chat")}>Open in chat</Link>
 							</Button>
 							{isDraft && data.canManage ? (
 								<DraftAgentActions
@@ -249,7 +269,9 @@ export function TeamAgentDetail({
 							) : canRunManually ? (
 								<Button
 									variant="outline"
-									disabled={data.status !== "LIVE" || runAction.pending}
+									disabled={
+										data.status !== "LIVE" || runAction.pending || !!activeRun
+									}
 									aria-busy={runAction.pending}
 									onClick={() => runAction.run()}
 								>
@@ -309,12 +331,66 @@ export function TeamAgentDetail({
 			</PageShellHeader>
 
 			<PageShellContent className="min-h-0">
-				<div className="-mx-1 min-h-0 flex-1 overflow-y-auto px-1 pb-1">
+				<div className="-mx-1 min-h-0 flex-1 overflow-y-auto px-1 pb-1 flex flex-col gap-6">
+					<AgentReadiness
+						agent={data}
+						activeRun={activeRun}
+						onViewRun={(runId) => {
+							setSelectedRunId(runId);
+							setRunsOpen(true);
+						}}
+					/>
+					{!isDraft && latestRun ? (
+						<WorkspacePanel
+							title="Latest run"
+							description={`${latestRun.status.toLowerCase().replaceAll("_", " ")} · version ${latestRun.version.number}`}
+							action={
+								<Button
+									variant="outline"
+									onClick={() => {
+										setSelectedRunId(latestRun.id);
+										setRunsOpen(true);
+									}}
+								>
+									View result and actions
+								</Button>
+							}
+						>
+							<p className="whitespace-pre-wrap wrap-break-word text-sm leading-6">
+								{latestRun.summary?.trim() ||
+									"No written report was recorded. Open the run to inspect its recorded actions and outcome."}
+							</p>
+							<p className="text-xs text-muted-foreground">
+								This report is generated by the agent. Inspect the recorded
+								actions to check the result.
+							</p>
+						</WorkspacePanel>
+					) : null}
+					{runs.isError ? (
+						<WorkspaceNotice tone="warning">
+							Run history could not refresh. The latest result may be out of
+							date.{" "}
+							<Button
+								size="sm"
+								variant="outline"
+								onClick={() => void runs.refetch()}
+							>
+								Refresh runs
+							</Button>
+						</WorkspaceNotice>
+					) : null}
 					<AgentOverview agent={data} />
 				</div>
 			</PageShellContent>
 
 			<AgentRunsDrawer
+				selectedRunId={selectedRunId}
+				runsError={runs.isError ? runs.error.message : undefined}
+				activityError={activity.isError ? activity.error.message : undefined}
+				onRefresh={() => {
+					void runs.refetch();
+					void activity.refetch();
+				}}
 				activity={activity.data ?? []}
 				agentId={agentId}
 				cancelling={cancelRun.isPending}
@@ -337,6 +413,73 @@ export function TeamAgentDetail({
 	);
 }
 
+function AgentReadiness({
+	agent,
+	activeRun,
+	onViewRun,
+}: {
+	agent: AgentDetail;
+	activeRun?: Runs[number];
+	onViewRun: (runId: string) => void;
+}) {
+	const isDraft = agent.status === "DRAFT";
+	let title = "This agent is not active";
+	let description = "Manual runs require an active, deployed version.";
+	if (isDraft) {
+		title =
+			agent.reviewVersion?.status === "READY"
+				? "Review before activation"
+				: "Finish the private draft";
+		description =
+			"Check the task, data access, actions and trigger. To change a draft, return to its builder conversation.";
+	} else if (activeRun) {
+		title =
+			activeRun.status === "WAITING_FOR_APPROVAL"
+				? "Waiting for an authorized reviewer"
+				: "A run is already in progress";
+		description =
+			"Open the current run to see recorded actions. Another run cannot start while this one is active.";
+	} else if (agent.status === "PAUSED") {
+		title = "This agent is paused";
+		description = "Resume the agent to enable its triggers and manual runs.";
+	} else if (agent.status === "LIVE") {
+		title =
+			agent.runCount === 0 ? "Ready for its first run" : "Active for the team";
+		description =
+			"Activation enables its configured triggers. Run now queues real work within the current version's boundaries; review the result in Runs.";
+	}
+	return (
+		<WorkspacePanel
+			title={title}
+			description={description}
+			action={
+				activeRun ? (
+					<Button
+						variant="outline"
+						wrap
+						onClick={() => onViewRun(activeRun.id)}
+					>
+						View current run
+					</Button>
+				) : undefined
+			}
+		>
+			<p className="text-sm text-muted-foreground">
+				Created by {agent.createdBy.name}.{" "}
+				{agent.canManage
+					? "You can manage this agent's settings."
+					: "You can view this agent. Settings are managed by its creator or a workspace administrator."}
+			</p>
+			{isDraft && agent.reviewVersion?.status !== "READY" ? (
+				<WorkspaceNotice>
+					The builder has not marked this draft ready for activation. Continue
+					its conversation and resolve the remaining questions.
+				</WorkspaceNotice>
+			) : null}
+		</WorkspacePanel>
+	);
+}
+
 function DraftAgentActions({
 	agentId,
 	name,
@@ -350,6 +493,8 @@ function DraftAgentActions({
 	const queryClient = useQueryClient();
 	const workspaceUrl = useWorkspaceUrl();
 	const deployable = version?.status === "READY";
+	const [reviewedVersion, setReviewedVersion] =
+		useState<NonNullable<ReviewVersion> | null>(null);
 	const deploy = useMutation(
 		trpc.agents.deploy.mutationOptions({
 			onSuccess: async () => {
@@ -374,16 +519,17 @@ function DraftAgentActions({
 					}),
 				]);
 				toast.success("Agent deployed to the team.");
+				setReviewedVersion(null);
 			},
 			onError: (error) => toast.error(error.message),
 		}),
 	);
 	const deployAction = useAsyncAction({
 		action: async () => {
-			if (!version || !deployable) return;
+			if (reviewedVersion?.status !== "READY") return;
 			await deploy.mutateAsync({
 				id: agentId,
-				versionId: version.id,
+				versionId: reviewedVersion.id,
 				clientRequestId: crypto.randomUUID(),
 			});
 		},
@@ -404,7 +550,9 @@ function DraftAgentActions({
 			<Button
 				disabled={!deployable || deployAction.pending}
 				aria-busy={deployAction.pending}
-				onClick={() => deployAction.run()}
+				onClick={() => {
+					if (version && deployable) setReviewedVersion(version);
+				}}
 			>
 				<AsyncButtonContent
 					status={deployAction.status}
@@ -412,9 +560,81 @@ function DraftAgentActions({
 					successLabel="Deployed"
 					errorLabel="Try again"
 				>
-					Deploy agent
+					Review and activate
 				</AsyncButtonContent>
 			</Button>
+			<AlertDialog
+				open={reviewedVersion !== null}
+				onOpenChange={(open) => {
+					if (!open && !deployAction.pending) setReviewedVersion(null);
+				}}
+			>
+				<AlertDialogContent className="max-h-[85dvh] overflow-y-auto">
+					<AlertDialogHeader>
+						<AlertDialogTitle>Activate {name} for the team?</AlertDialogTitle>
+						<AlertDialogDescription>
+							Version {reviewedVersion?.number} becomes the active version and
+							its configured triggers are enabled immediately. Runs may perform
+							real actions within its configured boundaries. Review the data
+							access, destinations and actions before continuing.
+						</AlertDialogDescription>
+					</AlertDialogHeader>
+					{reviewedVersion ? (
+						<dl className="space-y-3 rounded-lg border p-3 text-sm">
+							<div>
+								<dt className="text-muted-foreground">Task</dt>
+								<dd className="mt-1 wrap-break-word">
+									{reviewedVersion.manifest.description ||
+										reviewedVersion.manifest.name ||
+										name}
+								</dd>
+							</div>
+							<div>
+								<dt className="text-muted-foreground">Runs when</dt>
+								<dd className="mt-1 wrap-break-word">
+									{reviewedVersion.manifest.triggers
+										.map((trigger) => trigger.summary || trigger.type)
+										.filter(Boolean)
+										.join(" · ") ||
+										"Not specified in the draft summary. Check its trigger details before activating."}
+								</dd>
+							</div>
+							<div>
+								<dt className="text-muted-foreground">Data scope</dt>
+								<dd className="mt-1 wrap-break-word">
+									{reviewedVersion.manifest.dataScope.summary ||
+										"Not described in the draft summary. Check its data access before activating."}
+								</dd>
+							</div>
+						</dl>
+					) : null}
+					{deploy.isError ? (
+						<p role="alert" className="text-sm text-destructive">
+							{deploy.error.message} Activation was not confirmed. Review the
+							current agent state before trying again.
+						</p>
+					) : null}
+					<AlertDialogFooter>
+						<AlertDialogCancel disabled={deployAction.pending}>
+							Keep as draft
+						</AlertDialogCancel>
+						<Button
+							disabled={deployAction.pending || !reviewedVersion}
+							aria-busy={deployAction.pending}
+							onClick={() => deployAction.run()}
+						>
+							<AsyncButtonContent
+								status={deployAction.status}
+								pendingLabel="Activating"
+								successLabel="Activated"
+								errorLabel="Try again"
+							>
+								Activate agent
+							</AsyncButtonContent>
+						</Button>
+					</AlertDialogFooter>
+				</AlertDialogContent>
+			</AlertDialog>
 			<DeleteAgentAction agentId={agentId} name={name} />
 		</>
 	);
@@ -538,39 +758,38 @@ function AgentOverview({ agent }: { agent: AgentDetail }) {
 		<SaveBarViewport>
 			<div className="flex flex-col gap-9">
 				{deployed ? null : (
-					<p className="text-muted-foreground text-sm">
-						This is a draft. Deploy it to the team before you change what it can
-						do.
-					</p>
+					<WorkspaceNotice>
+						This is a read-only preview of your private draft. Use Change
+						details to return to the builder and adjust it before activation.
+					</WorkspaceNotice>
 				)}
 				<AgentCapabilities
 					agentId={agent.id}
 					canManage={canEdit}
 					capabilities={capabilities}
 				/>
-				<AgentCode agentId={agent.id} canManage={canEdit} />
+				{deployed ? (
+					<details className="rounded-lg border p-4">
+						<summary className="cursor-pointer rounded-sm text-sm font-medium focus-visible:outline-2 focus-visible:outline-ring">
+							Advanced: instructions and files
+						</summary>
+						<div className="mt-5">
+							<WorkspaceNotice>
+								File changes publish a new active version. Review changes
+								carefully; use the run history to see which version performed
+								each action.
+							</WorkspaceNotice>
+							<div className="mt-5">
+								<AgentCode agentId={agent.id} canManage={canEdit} />
+							</div>
+						</div>
+					</details>
+				) : null}
 			</div>
 		</SaveBarViewport>
 	);
 }
 
-function _DetailRow({ label, value }: { label: string; value: ReactNode }) {
-	return (
-		<div className="flex min-h-11 flex-col items-start gap-1 border-t px-4 py-3 first:border-t-0 sm:flex-row sm:items-center sm:gap-5 sm:px-5 sm:py-2">
-			<span className="text-muted-foreground text-xs sm:w-36 sm:shrink-0">
-				{label}
-			</span>
-			<div className="min-w-0 max-w-full flex-1 wrap-break-word text-sm">
-				{value}
-			</div>
-		</div>
-	);
-}
-
 function textOf(value: string | undefined, fallback: string): string {
 	return value?.trim() ? value : fallback;
-}
-
-function formatDate(value: string): string {
-	return DATE_FORMATTER.format(new Date(value));
 }

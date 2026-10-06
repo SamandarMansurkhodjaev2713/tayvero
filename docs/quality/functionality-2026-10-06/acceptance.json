@@ -1,0 +1,131 @@
+{
+	"generatedAt": "2026-10-06T12:10:50.075Z",
+	"sourceBase": "42070b09770ca47c59e668d5248af291cac7bc76",
+	"currentSourceHasUncommittedFunctionalityChanges": true,
+	"publishedBaselineCi": {
+		"id": 37457016098,
+		"status": "SUCCESS",
+		"nodeTests": 584,
+		"bunTests": 1437,
+		"acceptsCurrentChanges": false
+	},
+	"isolatedPostgres": {
+		"image": "postgres:16",
+		"container": "tayvero-functional-20261006-54361",
+		"bind": "127.0.0.1:54361",
+		"persistentMounts": 0,
+		"dataFilesystem": "tmpfs",
+		"migrationsApplied": 66,
+		"reset": false,
+		"customerDatabaseUsed": false
+	},
+	"focusedHttpAndContracts": {
+		"command": "cd apps/api && bun test --preload ./test/setup.ts test/workspace-website.spec.ts test/authenticated-workspace.e2e.spec.ts",
+		"exitCode": 0,
+		"summary": {
+			"tests": 15,
+			"pass": 15,
+			"fail": 0,
+			"skipped": 0,
+			"cancelled": 0,
+			"todo": 0
+		},
+		"actualAuth": true,
+		"actualCreateApp": true,
+		"actualPostgres": true,
+		"providerBoundarySpies": true
+	},
+	"pipelinePostgres": {
+		"command": "bun run gate:pipeline-postgres",
+		"exitCode": 0,
+		"summary": {
+			"tests": 3,
+			"pass": 3,
+			"fail": 0,
+			"skipped": 0
+		},
+		"initialAttempts": [
+			{
+				"pass": 1,
+				"fail": 2
+			},
+			{
+				"pass": 1,
+				"fail": 2
+			}
+		],
+		"correction": "Direct awaited transaction then exact domain error/cause and unchanged rollback assertions; no runtime or timeout change."
+	},
+	"apiFullWindows": {
+		"command": "cd apps/api && bun test --preload ./test/setup.ts",
+		"exitCode": 1,
+		"summary": {
+			"tests": 570,
+			"pass": 511,
+			"fail": 59,
+			"skipped": 0,
+			"cancelled": 0,
+			"todo": 0
+		},
+		"beforeFinalCleanupHardening": true,
+		"finalCleanupHardeningFocusedTests": 15,
+		"failureClassification": {
+			"migrationApplicationSourceStoreConfig": 58,
+			"operationsPostgresSourceStoreConfig": 1
+		},
+		"skipsIntroduced": false,
+		"initialAttempt": "Stopped owned runner after retry assertion timed out and runner stalled; no complete aggregate claimed."
+	},
+	"operationsPostgresWindows": {
+		"exitCode": 1,
+		"pass": 0,
+		"fail": 1,
+		"code": "SOURCE_STORE_CONFIG",
+		"reason": "Encrypted source store requires absolute POSIX directory and O_NOFOLLOW.",
+		"linuxBaselineVerified": true,
+		"currentChangesLinuxVerified": false
+	},
+	"apiSemanticTypes": {
+		"command": "bun run --cwd apps/api check-types",
+		"exitCode": 0
+	},
+	"ownedFilesBiome": {
+		"checked": 8,
+		"errors": 0,
+		"warnings": 0
+	},
+	"authScenarios": [
+		"owner/admin/member real signed session",
+		"member settings forbidden",
+		"revoked membership denied with valid session",
+		"tampered/expired/absent session rejected"
+	],
+	"businessScenarios": [
+		"optional onboarding and exact enrichment trigger",
+		"company/contact/deal relationships",
+		"note/task/myTasks actor isolation",
+		"task complete/reopen",
+		"archive/restore and search visibility",
+		"invalid relations/activities/absent record/anonymous write",
+		"agent inventory/operations read-only and revoked denial"
+	],
+	"verificationLimits": [
+		"Current source still requires complete Linux CI",
+		"No browser authenticated E2E acceptance",
+		"No live OAuth/provider/model/native agent execution or staging deployment",
+		"Operations PG tests use fake execution transport; no live agent claim"
+	],
+	"wholeProductProductionReady": false,
+	"fixtureCleanupVerified": {
+		"ownedUsers": 0,
+		"ownedJourneyCompanies": 0,
+		"creationFailureCleanup": true,
+		"environmentSnapshotBeforeSetup": true,
+		"cleanupCollectsCloseFailures": true,
+		"closeFailureRegressionExecuted": false,
+		"untrustedDatabaseTeardownWrites": false,
+		"knownSnapshotRequiredForRestore": true,
+		"workspaceDeleteRequiresSuiteCreation": true
+	},
+	"disposableContainerStoppedAndRemoved": true
+}

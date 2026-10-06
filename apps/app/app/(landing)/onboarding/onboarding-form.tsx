@@ -1,6 +1,6 @@
 "use client";
 
-import { workspaceSlug } from "@crm/db/workspace";
+import { MAX_SLUG, workspaceSlug } from "@crm/db/workspace";
 import { Button } from "@crm/ui/components/button";
 import {
 	Field,
@@ -19,7 +19,6 @@ import { Spinner } from "@crm/ui/components/spinner";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { useId, useRef, useState } from "react";
-import { toast } from "sonner";
 import { useTRPC } from "@/lib/trpc/client";
 
 export function OnboardingForm({ placeholder }: { placeholder: string }) {
@@ -37,9 +36,8 @@ export function OnboardingForm({ placeholder }: { placeholder: string }) {
 		trpc.workspace.update.mutationOptions({
 			onSuccess: () => {
 				router.refresh();
-				router.replace("/onboarding/research");
+				router.replace("/");
 			},
-			onError: (error) => toast.error(error.message),
 		}),
 	);
 
@@ -72,6 +70,8 @@ export function OnboardingForm({ placeholder }: { placeholder: string }) {
 						}}
 						placeholder={placeholder}
 						autoComplete="organization"
+						maxLength={120}
+						disabled={save.isPending}
 						autoFocus
 						required
 					/>
@@ -86,6 +86,8 @@ export function OnboardingForm({ placeholder }: { placeholder: string }) {
 						<InputGroupInput
 							id={slugId}
 							name="slug"
+							maxLength={MAX_SLUG}
+							disabled={save.isPending}
 							value={slug}
 							onChange={(event) => {
 								slugEdited.current = true;
@@ -108,7 +110,7 @@ export function OnboardingForm({ placeholder }: { placeholder: string }) {
 				</Field>
 
 				<Field>
-					<FieldLabel htmlFor={websiteId}>Website</FieldLabel>
+					<FieldLabel htmlFor={websiteId}>Website (optional)</FieldLabel>
 					<InputGroup>
 						<InputGroupAddon>
 							<InputGroupText>https://</InputGroupText>
@@ -116,24 +118,31 @@ export function OnboardingForm({ placeholder }: { placeholder: string }) {
 						<InputGroupInput
 							id={websiteId}
 							name="website"
+							maxLength={255}
+							disabled={save.isPending}
 							placeholder="acme.com"
 							autoComplete="off"
 							autoCapitalize="off"
 							autoCorrect="off"
 							spellCheck={false}
 							inputMode="url"
-							required
 						/>
 					</InputGroup>
 					<FieldDescription>
-						Read once, so every answer afterwards knows what you sell.
+						Add it to give company research more context. You can start without
+						a website and add one in settings later.
 					</FieldDescription>
 				</Field>
 			</FieldGroup>
+			{save.isError && (
+				<p role="alert" className="text-sm text-destructive">
+					{save.error.message}
+				</p>
+			)}
 
 			<Button type="submit" disabled={save.isPending}>
 				{save.isPending ? <Spinner data-icon="inline-start" /> : null}
-				Continue
+				Open workspace
 			</Button>
 		</form>
 	);

@@ -1262,7 +1262,8 @@ function ReviewAgentCard({
 	return (
 		<div className="flex flex-col gap-5">
 			<p className="max-w-[640px] text-pretty text-sm leading-5">
-				Your private draft is ready to review.
+				Review your private draft: the task, trigger, records it can read, and
+				actions it can perform. Activation enables its triggers for the team.
 			</p>
 			<AgentCardShell name={manifest.name ?? agent.name} status="Private">
 				<div className="flex flex-col gap-2 p-4">
@@ -1276,13 +1277,13 @@ function ReviewAgentCard({
 						/>
 					</ReviewRow>
 				</div>
-				<AgentCardFooter note="Sandboxed · credentials never enter the sandbox">
+				<AgentCardFooter note="Private draft. Review the details before activating real work.">
 					<Button asChild size="sm">
 						<Link
 							href={workspaceUrl(`/agents/${agent.id}`)}
 							transitionTypes={["nav-forward"]}
 						>
-							View details
+							Review agent
 							<Icon icon={ArrowRight} data-icon="inline-end" />
 						</Link>
 					</Button>
@@ -1361,9 +1362,11 @@ function DeployedAgentCard({
 	const workspaceUrl = useWorkspaceUrl();
 	const queryClient = useQueryClient();
 	const agent = conversation.agent;
+	const [queuedRunId, setQueuedRunId] = useState<string | null>(null);
 	const run = useMutation(
 		trpc.agents.runNow.mutationOptions({
-			onSuccess: async () => {
+			onSuccess: async (result) => {
+				setQueuedRunId(result.id);
 				await queryClient.invalidateQueries({
 					queryKey: trpc.agents.history.pathKey(),
 				});
@@ -1386,17 +1389,29 @@ function DeployedAgentCard({
 		enabledTriggers.length === 1 ? enabledTriggers[0]?.nextRunAt : null;
 	const triggerSummary =
 		enabledTriggers.map((trigger) => trigger.name).join(" · ") || "Manual only";
+	const canRunManually =
+		enabledTriggers.length === 0 ||
+		enabledTriggers.some((trigger) => trigger.type !== "EVENT");
 
 	return (
 		<div className="flex flex-col gap-[18px]">
 			<div className="flex flex-col gap-1">
-				<p className="text-sm leading-5">{agent.name} is live.</p>
+				<p className="text-sm leading-5">
+					{agent.name} is{" "}
+					{agent.status === "LIVE"
+						? "active for the team"
+						: agent.status.toLowerCase()}
+					.
+				</p>
 				<p className="text-muted-foreground text-sm leading-5">
-					I created the Eve agent, applied its bounded CRM and integration
-					access, and made it live for the team.
+					Its configured triggers determine when it runs. Open the agent to
+					inspect its boundaries, recorded actions and results.
 				</p>
 			</div>
-			<AgentCardShell name={agent.name} status="Live">
+			<AgentCardShell
+				name={agent.name}
+				status={agent.status === "LIVE" ? "Active" : agent.status.toLowerCase()}
+			>
 				<div className="flex flex-col gap-2 p-4">
 					<ReviewRow
 						label="Trigger"
@@ -1417,36 +1432,62 @@ function DeployedAgentCard({
 						}
 					/>
 					<ReviewRow label="Runs in" value="Eve runtime · isolated sandbox" />
-					<ReviewRow label="Owner" value={`Team · ${agent.createdBy.name}`} />
+					<ReviewRow label="Created by" value={agent.createdBy.name} />
 				</div>
 				<AgentCardFooter note="The chat stays private. The agent is team-owned.">
 					<div className="flex items-center gap-2">
-						<Button
-							variant="outline"
-							size="sm"
-							disabled={runAction.pending}
-							aria-busy={runAction.pending}
-							onClick={() => runAction.run()}
-						>
-							<AsyncButtonContent
-								status={runAction.status}
-								pendingLabel="Queueing"
-								successLabel="Queued"
-								errorLabel="Try again"
+						{canRunManually ? (
+							<Button
+								variant="outline"
+								size="sm"
+								disabled={
+									agent.status !== "LIVE" ||
+									runAction.pending ||
+									queuedRunId !== null
+								}
+								aria-busy={runAction.pending}
+								onClick={() => runAction.run()}
 							>
-								<Icon icon={Play} data-icon="inline-start" />
-								Run now
-							</AsyncButtonContent>
-						</Button>
+								<AsyncButtonContent
+									status={runAction.status}
+									pendingLabel="Queueing"
+									successLabel="Queued"
+									errorLabel="Try again"
+								>
+									<Icon icon={Play} data-icon="inline-start" />
+									Run now
+								</AsyncButtonContent>
+							</Button>
+						) : null}
 						<Button asChild size="sm">
-							<Link href={workspaceUrl(`/agents/${agent.id}`)}>
-								Open agent
+							<Link
+								href={workspaceUrl(
+									`/agents/${agent.id}${queuedRunId ? `?run=${encodeURIComponent(queuedRunId)}` : ""}`,
+								)}
+							>
+								{queuedRunId ? "View queued run" : "Open agent"}
 								<Icon icon={ArrowRight} data-icon="inline-end" />
 							</Link>
 						</Button>
 					</div>
 				</AgentCardFooter>
 			</AgentCardShell>
+			{queuedRunId ? (
+				<p
+					role="status"
+					className="max-w-lg rounded-lg border p-3 text-sm leading-6"
+				>
+					Run <span className="font-mono">{queuedRunId.slice(0, 8)}</span> was
+					queued. This is a request, not a completed result. Open the agent's
+					Runs to inspect its progress and recorded actions.
+				</p>
+			) : null}
+			{run.isError ? (
+				<p role="alert" className="max-w-lg text-sm text-destructive">
+					{run.error.message} Open the agent to check its current state and run
+					history.
+				</p>
+			) : null}
 
 			<div>
 				<p className="flex h-7 items-center text-muted-foreground text-sm">
