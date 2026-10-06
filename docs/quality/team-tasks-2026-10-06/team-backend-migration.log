@@ -1,0 +1,9 @@
+bun test v1.3.12 (700fc117)
+
+test\team-task-migration.spec.ts:
+(pass) executes assignment migration against legacy rows without assigning revoked, foreign or NOTE authors [46.00ms]
+
+ 1 pass
+ 0 fail
+ 4 expect() calls
+Ran 1 test across 1 file. [130.00ms]

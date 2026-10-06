@@ -27,6 +27,7 @@ model User {
   ownedContacts  Contact[]           @relation("ContactOwner")
   ownedDeals     Deal[]              @relation("DealOwner")
   activities     Activity[]          @relation("ActivityAuthor")
+  assignedActivities Activity[]      @relation("ActivityAssignee")
   mailboxSyncs   MailboxSync[]
   factDecisions  ContactFact[]       @relation("FactDecider")
   conversations  AgentConversation[] @relation("ConversationOwner")
@@ -1131,6 +1132,9 @@ model Activity {
 
   createdById String
   createdBy   User   @relation("ActivityAuthor", fields: [createdById], references: [id])
+  assigneeId  String?
+  assignee    User?  @relation("ActivityAssignee", fields: [assigneeId], references: [id], onDelete: SetNull)
+  taskVersion Int   @default(0)
   meta        Json?
 
   emailThreadId   String?        @unique
@@ -1146,7 +1150,25 @@ model Activity {
   @@index([contactId, createdAt])
   @@index([dueAt])
   @@index([createdById])
+  @@index([assigneeId, completedAt, dueAt])
   @@map("activity")
+}
+
+// Retained independently of CRM purges; only task metadata, never task bodies.
+model TaskAuditEvent {
+  id          String   @id @default(cuid())
+  workspaceId String
+  taskId      String
+  actorId     String
+  actorName   String
+  action      String
+  before      Json?
+  after       Json
+  taskVersion Int
+  createdAt   DateTime @default(now())
+
+  @@index([workspaceId, taskId, createdAt])
+  @@map("taskAuditEvent")
 }
 
 enum GoogleSyncStatus {

@@ -11,7 +11,6 @@ import {
 	CardTitle,
 } from "@crm/ui/components/card";
 import { CardTableEmpty } from "@crm/ui/components/card-table";
-import { Checkbox } from "@crm/ui/components/checkbox";
 import { EmptyCellValue } from "@crm/ui/components/empty-cell";
 import {
 	EntityLogo,
@@ -23,15 +22,13 @@ import {
 	SimpleTableRow,
 } from "@crm/ui/components/simple-table";
 import { Skeleton } from "@crm/ui/components/skeleton";
-import { StatusIndicator } from "@crm/ui/components/status-indicator";
 import { TableCell } from "@crm/ui/components/table";
 import { WorkspaceNotice } from "@crm/ui/components/workspace";
-import { formatCount, formatMoneyCompact } from "@crm/ui/lib/format";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { formatMoneyCompact } from "@crm/ui/lib/format";
+import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { useQueryState } from "nuqs";
 import type { CSSProperties, ReactNode } from "react";
-import { toast } from "sonner";
 import { DealStageIndicator } from "@/components/crm/deal-stage";
 import { RecordLink } from "@/components/crm/record-sheet/record-link";
 import { useOpenRecord } from "@/components/crm/record-sheet/record-stack";
@@ -39,7 +36,6 @@ import { LocalRelativeTime } from "@/components/local-date-time";
 import { activityLabel } from "@/lib/activity-presentation";
 import { dealStageColor } from "@/lib/deal-stage";
 import { SEARCH_PARAM } from "@/lib/search-param-keys";
-import { useCrmCache } from "@/lib/trpc/cache";
 import { useTRPC } from "@/lib/trpc/client";
 import { useWorkspaceUrl } from "@/lib/use-workspace-url";
 import { type OverviewScope, overviewParsers } from "./overview-search-params";
@@ -62,11 +58,6 @@ const OPEN_COLUMNS: SimpleTableColumn[] = [
 		className: "hidden sm:table-cell",
 	},
 	{ id: "value", header: "Value", width: "w-20", align: "right" },
-];
-const TASK_COLUMNS: SimpleTableColumn[] = [
-	{ id: "done", srLabel: "Done", width: "w-8" },
-	{ id: "task", header: "Task" },
-	{ id: "overdue", header: "Overdue", width: "w-24", align: "right" },
 ];
 const ACTIVITY_COLUMNS: SimpleTableColumn[] = [
 	{ id: "activity", header: "Activity" },
@@ -92,13 +83,19 @@ const ACTIVITY_COLUMNS: SimpleTableColumn[] = [
 ];
 
 export function DashboardSummary() {
-	const [scope] = useQueryState(
+	const [scope, setScope] = useQueryState(
 		SEARCH_PARAM.overview.scope,
 		overviewParsers[SEARCH_PARAM.overview.scope],
 	);
 	return (
 		<div className="flex flex-col gap-6">
-			{scope === "me" && <PersonalFollowUps />}
+			<PersonalFollowUps
+				key={scope}
+				scope={scope === "me" ? "me" : "team"}
+				onScopeChange={(next) =>
+					void setScope(next === "me" ? "me" : "everyone")
+				}
+			/>
 			<DashboardSnapshot scope={scope} />
 		</div>
 	);
@@ -106,7 +103,6 @@ export function DashboardSummary() {
 
 function DashboardSnapshot({ scope }: { scope: OverviewScope }) {
 	const trpc = useTRPC();
-	const cache = useCrmCache();
 	const openRecord = useOpenRecord();
 	const workspaceUrl = useWorkspaceUrl();
 
@@ -114,13 +110,6 @@ function DashboardSnapshot({ scope }: { scope: OverviewScope }) {
 		...trpc.dashboard.summary.queryOptions({ scope }),
 		placeholderData: (previous) => previous,
 	});
-
-	const complete = useMutation(
-		trpc.activities.complete.mutationOptions({
-			onSuccess: () => cache.activity(),
-			onError: (error) => toast.error(error.message),
-		}),
-	);
 
 	const summary = summaryQuery.data;
 
@@ -159,7 +148,7 @@ function DashboardSnapshot({ scope }: { scope: OverviewScope }) {
 		);
 	}
 
-	const { biggestOpen, overdueTasks, recentActivity } = summary;
+	const { biggestOpen, recentActivity } = summary;
 
 	const mine = scope === "me";
 	const largestOpenCents = biggestOpen[0]?.baseAmountCents ?? 0;
@@ -176,11 +165,7 @@ function DashboardSnapshot({ scope }: { scope: OverviewScope }) {
 			)}
 			<SalesDashboard summary={summary} />
 
-			<div
-				className={
-					mine ? "grid gap-6" : "grid gap-6 @3xl/page-content:grid-cols-2"
-				}
-			>
+			<div className="grid gap-6">
 				<Card className="min-w-0">
 					<CardHeader>
 						<CardTitle>Deals in progress</CardTitle>
@@ -244,75 +229,6 @@ function DashboardSnapshot({ scope }: { scope: OverviewScope }) {
 						)}
 					</CardPanel>
 				</Card>
-
-				{!mine && (
-					<Card className="min-w-0">
-						<CardHeader>
-							<CardTitle>Overdue tasks you created</CardTitle>
-							<CardDescription>
-								{overdueTasks.length === 0
-									? "No overdue tasks in this snapshot"
-									: `${formatCount(overdueTasks.length, "task")} past due in this snapshot (up to 10 shown)`}
-							</CardDescription>
-						</CardHeader>
-						<CardPanel>
-							{overdueTasks.length === 0 ? (
-								<CardPanelEmpty>
-									No overdue tasks in this snapshot.
-								</CardPanelEmpty>
-							) : (
-								<SimpleTable
-									variant="panel"
-									surface="page"
-									columns={TASK_COLUMNS}
-								>
-									{overdueTasks.map((task) => (
-										<SimpleTableRow key={task.id}>
-											<TableCell className={CELL}>
-												<Checkbox
-													checked={false}
-													disabled={complete.isPending}
-													aria-label="Mark as done"
-													onCheckedChange={() =>
-														complete.mutate({ id: task.id, completed: true })
-													}
-												/>
-											</TableCell>
-											<TableCell className={CELL}>
-												<span className="flex min-w-0 flex-col">
-													<span className="truncate">{task.subject}</span>
-													<span className="flex min-w-0 text-muted-foreground">
-														{task.deal ? (
-															<RecordLink kind="deal" id={task.deal.id}>
-																{task.deal.name}
-															</RecordLink>
-														) : task.company ? (
-															<RecordLink kind="company" id={task.company.id}>
-																{task.company.name}
-															</RecordLink>
-														) : null}
-													</span>
-												</span>
-											</TableCell>
-											<TableCell className={`${CELL} text-right`}>
-												<StatusIndicator
-													tone="error"
-													label={
-														task.dueAt ? (
-															<LocalRelativeTime date={task.dueAt} />
-														) : (
-															"No due date"
-														)
-													}
-												/>
-											</TableCell>
-										</SimpleTableRow>
-									))}
-								</SimpleTable>
-							)}
-						</CardPanel>
-					</Card>
-				)}
 			</div>
 
 			<Card className="min-w-0">

@@ -24,31 +24,31 @@ export class ActivityStampService {
 
 	constructor(@InjectDatabase() private readonly db: Db) {}
 
-	async touch(target: ActivityTarget, at: Date): Promise<void> {
+	async touch(
+		target: ActivityTarget,
+		at: Date,
+		client: Prisma.TransactionClient = this.db,
+	): Promise<void> {
 		const stale = {
 			OR: [{ lastActivityAt: null }, { lastActivityAt: { lt: at } }],
 		};
 
-		await Promise.all([
-			target.companyId
-				? this.db.company.updateMany({
-						where: { id: target.companyId, ...stale },
-						data: { lastActivityAt: at },
-					})
-				: null,
-			target.contactId
-				? this.db.contact.updateMany({
-						where: { id: target.contactId, ...stale },
-						data: { lastActivityAt: at },
-					})
-				: null,
-			target.dealId
-				? this.db.deal.updateMany({
-						where: { id: target.dealId, ...stale },
-						data: { lastActivityAt: at },
-					})
-				: null,
-		]);
+		// A transaction owns one PostgreSQL connection; issue its updates in order.
+		if (target.companyId)
+			await client.company.updateMany({
+				where: { id: target.companyId, ...stale },
+				data: { lastActivityAt: at },
+			});
+		if (target.contactId)
+			await client.contact.updateMany({
+				where: { id: target.contactId, ...stale },
+				data: { lastActivityAt: at },
+			});
+		if (target.dealId)
+			await client.deal.updateMany({
+				where: { id: target.dealId, ...stale },
+				data: { lastActivityAt: at },
+			});
 	}
 
 	async recompute(target: ActivityTarget): Promise<void> {

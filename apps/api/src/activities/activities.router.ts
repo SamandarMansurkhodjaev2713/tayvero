@@ -18,6 +18,12 @@ import {
 	completeOutput,
 	myTasksInput,
 	myTasksOutput,
+	taskHistoryInput,
+	taskHistoryOutput,
+	taskIdInput,
+	taskQueueInput,
+	taskQueueOutput,
+	taskUpdateInput,
 	timelineCountsInput,
 	timelineCountsOutput,
 	timelineInput,
@@ -37,8 +43,11 @@ export class ActivitiesRouter {
 		output: timelineOutput,
 		meta: restMeta("GET", "/activities", ["Activities"]),
 	})
-	async timeline(@Input() input: z.infer<typeof timelineInput>) {
-		return this.activities.timeline(input);
+	async timeline(
+		@Ctx() ctx: AuthedTrpcContext,
+		@Input() input: z.infer<typeof timelineInput>,
+	) {
+		return this.activities.timeline(input, ctx.user.id);
 	}
 
 	@Query({
@@ -79,7 +88,60 @@ export class ActivitiesRouter {
 		output: completeOutput,
 		meta: restMeta("PATCH", "/activities/{id}/complete", ["Activities"]),
 	})
-	async complete(@Input() input: z.infer<typeof completeInput>) {
-		return this.activities.complete(input.id, input.completed);
+	async complete(
+		@Ctx() ctx: AuthedTrpcContext,
+		@Input() input: z.infer<typeof completeInput>,
+	) {
+		return this.activities.complete(
+			input.id,
+			input.completed,
+			ctx.user.id,
+			input.expectedVersion,
+		);
+	}
+
+	@Query({
+		input: taskQueueInput,
+		output: taskQueueOutput,
+		meta: restMeta("POST", "/tasks/search", ["Activities"]),
+	})
+	taskQueue(
+		@Ctx() ctx: AuthedTrpcContext,
+		@Input() input: z.infer<typeof taskQueueInput>,
+	) {
+		return this.activities.taskQueue(input, ctx.user.id);
+	}
+	@Query({
+		input: taskIdInput,
+		output: activityCreateOutput,
+		meta: restMeta("GET", "/tasks/{id}", ["Activities"]),
+	})
+	taskById(
+		@Ctx() ctx: AuthedTrpcContext,
+		@Input() input: z.infer<typeof taskIdInput>,
+	) {
+		return this.activities.taskById(input.id, ctx.user.id);
+	}
+	@Mutation({
+		input: taskUpdateInput,
+		output: activityCreateOutput,
+		meta: restMeta("PATCH", "/tasks/{id}", ["Activities"]),
+	})
+	updateTask(
+		@Ctx() ctx: AuthedTrpcContext,
+		@Input() input: z.infer<typeof taskUpdateInput>,
+	) {
+		return this.activities.updateTask(input, ctx.user.id);
+	}
+	@Query({
+		input: taskHistoryInput,
+		output: taskHistoryOutput,
+		meta: restMeta("GET", "/tasks/{id}/history", ["Activities"]),
+	})
+	taskHistory(
+		@Ctx() ctx: AuthedTrpcContext,
+		@Input() input: z.infer<typeof taskHistoryInput>,
+	) {
+		return this.activities.taskHistory(input.id, input.limit, ctx.user.id);
 	}
 }

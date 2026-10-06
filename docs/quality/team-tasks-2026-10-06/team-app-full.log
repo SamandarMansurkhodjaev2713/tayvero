@@ -1,0 +1,295 @@
+$ NODE_ENV=test bun test
+bun test v1.3.12 (700fc117)
+
+lib\agent-builder-state.test.ts:
+(pass) agent builder state > shows build progress only while an agent_builder call is active [15.00ms]
+(pass) agent builder state > keeps polling a new turn after an agent has already been deployed
+(pass) agent builder state > starts revision progress from the current turn instead of old files
+(pass) agent builder state > tracks an active Eve session until its continuation token is available
+(pass) agent builder state > reloads the Eve snapshot for parked and completed conversations
+(pass) agent builder state > offers a newer ready version for review without replacing the live version
+(pass) agent builder state > renders the immutable deployed artifact snapshot after completion
+
+lib\search-param-keys.test.ts:
+(pass) SEARCH_PARAM > gives every feature its own url key
+(pass) SEARCH_PARAM > keeps the fields sheet off the table's fields filter
+(pass) assertUnreservedSearchParamKeys > accepts keys no other feature owns
+(pass) assertUnreservedSearchParamKeys > rejects a facet that shadows a reserved key
+(pass) assertUnreservedSearchParamKeys > rejects a facet that shadows a list key
+(pass) list tables > builds every table without a key collision
+
+test\agent-bridge.spec.ts:
+(pass) mintBridgeToken > mints a token eve accepts [15.00ms]
+(pass) mintBridgeToken > names the rep, so the agent knows a person is driving
+(pass) mintBridgeToken > is rejected by a different secret
+(pass) mintBridgeToken > is rejected by an agent expecting another audience
+(pass) mintBridgeToken > expires, so a token left in a tab stops working
+(pass) mintBridgeToken > refuses to mint without a secret
+
+test\agent-builder.spec.ts:
+(pass) agent builder commands > enters agent creation for slash commands and direct build requests
+(pass) agent builder commands > shows creation surfaces only after a creation command
+
+test\agent-results.spec.ts:
+(pass) anchorResults > leaves a finished result under its own call when a pending one follows
+(pass) anchorResults > never anchors to a failed call
+(pass) anchorResults > keeps two different criteria under their own calls
+(pass) anchorResults > anchors paginated pages of one criteria to the final page
+(pass) anchorResults > anchors pagination to the last valid page, not a later failure
+(pass) anchorResults > ignores calls belonging to another tool
+
+test\agent-session.spec.ts:
+(pass) classify > trusts the token over any reading of the events
+(pass) classify > knows a terminal session cannot be continued
+(pass) classify > reads a turn still emitting as working [16.00ms]
+(pass) classify > retires a turn that stopped mid-sentence
+(pass) classify > does not retire a live turn for want of a timestamp
+(pass) the composer > takes input on a parked thread, and on one not started yet
+(pass) the composer > holds input while a turn is in flight, from either side
+(pass) the composer > says an ended thread is ended rather than merely busy
+(pass) the composer > lets somebody type when the agent could not be reached
+(pass) eventsOf > renders the transcript in every state that has one
+(pass) record context > asks about the thing you are actually looking at
+(pass) record context > offers questions that suit the record
+(pass) record context > tells the agent which record it is on
+(pass) record context > files a conversation under one record and no other
+(pass) the panel > takes its copy from the record, never from a literal
+(pass) the panel > offers a way out of a thread that has ended
+(pass) the record sheet > keeps the agent tab mounted behind the others
+
+test\agent-tool-display.spec.ts:
+(pass) toolLabel > names the artifact a builder file write produced
+(pass) toolLabel > switches to the past tense once the write finished
+(pass) toolLabel > falls back to the raw path for an unmapped artifact
+(pass) toolLabel > labels the draft save under the tool the builder actually calls
+(pass) toolLabel > keeps the generic label when the tool has no mapping
+(pass) toolLabel > keeps the generic label when the input is missing
+
+test\agent-transcript.spec.ts:
+(pass) toTranscript > keeps a rep's question as the words they typed
+(pass) toTranscript > keeps one message's parts in one row
+(pass) toTranscript > keeps emitted model reasoning as a first-class part
+(pass) toTranscript > gives a tool call the same id across its streaming states [16.00ms]
+(pass) toTranscript > drops a message whose only text was empty
+(pass) toTranscript > marks a tool that has not returned as pending
+(pass) toTranscript > keeps a tool name and structured output for dedicated result UI
+(pass) toTranscript > keeps an ask_question tool as a first-class follow-up
+(pass) deal list presentation > parses structured list_deals output
+(pass) deal list presentation > merges paginated deal results without duplicate rows
+(pass) deal list presentation > keeps different deal query scopes in separate result groups
+(pass) deal list presentation > removes model-authored Markdown tables while keeping its analysis
+(pass) conversationTimeline > renders each follow-up before the answer submitted for it
+(pass) eventStreamSettled > keeps fetching after a tool step until the terminal event arrives
+(pass) describe > says what happened in a rep's words, not the tool's
+(pass) describe > carries the reason a write did not happen
+(pass) describe > falls back to a readable form of an unknown tool
+(pass) outcomeTone > reads a write as success
+(pass) outcomeTone > reads a refusal as a warning, because that is the interesting half
+(pass) outcomeTone > reads a failed call as a warning
+(pass) outcomeTone > leaves a plain read neutral
+(pass) sourcesOf > offers the page behind a step, labelled by host
+(pass) sourcesOf > does not offer the same page twice
+(pass) sourcesOf > ignores anything that is not a link
+(pass) pendingQuestion > finds a question the agent is parked on
+(pass) pendingQuestion > ignores a question from an earlier message that has moved on
+(pass) pendingQuestion > ignores a question that already has a response
+(pass) pendingQuestion > finds nothing in an empty transcript
+(pass) latestTurnFailure > recognizes the Vercel Gateway free-tier rate limit
+(pass) latestTurnFailure > does not keep an earlier failure after a later turn completes
+(pass) latestTurnFailure > clears an earlier failure when a retry starts
+(pass) latestTurnFailure > recognizes a model restricted to paid Gateway credits
+(pass) latestTurnFailure > keeps provider details out of the display contract
+(pass) resolveThread > lands on the most recent conversation when the URL says nothing
+(pass) resolveThread > opens the thread named in the URL, so a link is a conversation
+(pass) resolveThread > shows nothing for a deliberately new thread
+(pass) resolveThread > does not move the open thread when the list grows underneath it
+(pass) resolveThread > holds its place while the list is still loading
+(pass) resolveThread > survives a thread that has been deleted from under it
+(pass) every tool has a line of English > covers every tool the agent ships with
+(pass) every tool has a line of English > writes them as sentences, not as slugs
+(pass) tool call details > keeps the tool input so the label can describe the work
+(pass) tool call details > surfaces the failure text instead of dropping it [15.00ms]
+(pass) tool call details > leaves errorText null when the call succeeded
+(pass) tool call details > keeps text, tools and text in the order they happened
+
+test\api-proxy-response.spec.ts:
+(pass) API proxy responses > does not attach a body where HTTP forbids one
+(pass) API proxy responses > forwards non-success responses with their body
+(pass) API proxy responses > decodes compressed upstream bodies after stripping encoding headers
+
+test\approval-view-model.test.mjs:
+(pass) approval submission carries the exact current immutable snapshot, never tenant or action input
+(pass) expired, unbound, redacted or disabled snapshots cannot submit approval
+(pass) only unconsumed consent may be revoked; terminal actions cannot be resubmitted
+(pass) operator notes are bounded and no arbitrary decision is accepted
+
+test\chat-date-group.spec.ts:
+(pass) chat date groups > uses deterministic UTC calendar buckets
+(pass) chat date groups > does not group before a query has a stable timestamp
+
+test\chat-route.spec.ts:
+(pass) chat routes > distinguishes private conversation ids from shared link tokens
+
+test\day.spec.ts:
+(pass) day strings > round-trips a date through its local parts
+(pass) day strings > pads single-digit months and days
+(pass) day strings > reads the day the server stored, not the local rendering of it
+(pass) day strings > has nothing to show for nothing
+
+test\enrichment-queue.spec.ts:
+(pass) how long a lookup has been going > pads the seconds under a minute
+(pass) how long a lookup has been going > counts minutes up to an hour
+(pass) how long a lookup has been going > adds an hours field past an hour
+(pass) how long a lookup has been going > drops part seconds instead of rounding up
+(pass) how long a lookup has been going > reads a clock skew as zero, never as a negative time
+(pass) what the meta slot shows > counts up while the agent works
+(pass) what the meta slot shows > shows a dash for a row that is still waiting
+(pass) what the meta slot shows > keeps the time on a row that gave up
+(pass) what the meta slot shows > shows a dash when nothing has started
+(pass) what the meta slot shows > shows a dash rather than NaN for an unreadable date
+(pass) what the queue footer offers > says nothing when every row is on screen
+(pass) what the queue footer offers > offers to show the rows already fetched
+(pass) what the queue footer offers > offers to fetch the rows the server held back
+(pass) what the queue footer offers > shows the rows it has before fetching more
+(pass) what the queue footer offers > stops offering once the page maximum is reached
+(pass) what the queue footer offers > never promises a negative number of rows
+
+test\follow-up-model.test.mjs:
+(pass) Tashkent midnight uses the local day, even while UTC remains yesterday
+(pass) earlier today stays in Today; an overdue calendar day is not an elapsed-hour check
+(pass) spring DST day is 23 hours; the next calendar day is still upcoming
+(pass) fall DST day is 25 hours; both occurrences of the repeated hour are today
+(pass) one instant has different day buckets in different viewer timezones
+(pass) missing and malformed dates remain visible for review rather than disappearing [16.00ms]
+(pass) all returned open tasks stay reachable; grouping retains record data and server order
+(pass) loading, failed first load, empty success and failed refresh have distinct states
+(pass) completion acknowledgement removes only the confirmed task and never mutates cache in place
+
+test\landing-analytics-policy.spec.ts:
+(pass) owner-controlled landing analytics policy > keeps an unconfigured fork disabled even on an allowed host
+(pass) owner-controlled landing analytics policy > requires an explicit nonempty owner key
+(pass) owner-controlled landing analytics policy > honors browser Do Not Track despite deployment opt-in
+(pass) owner-controlled landing analytics policy > does not broaden the marketing-host boundary
+(pass) owner-controlled landing analytics policy > permits only the configured owner opt-in with a permitted host
+
+test\landing-analytics.spec.ts:
+(pass) analyticsAllowed > allows the two hosts the landing page is served from
+(pass) analyticsAllowed > ignores case and surrounding whitespace
+(pass) analyticsAllowed > refuses a self-hosted install serving the same page
+(pass) analyticsAllowed > refuses a preview deployment
+(pass) analyticsAllowed > refuses a host that merely ends in the marketing domain
+
+test\migration-view-model.test.mjs:
+(pass) operation language catalogs contain the same complete set of nonempty keys
+(pass) display never treats missing counts as completed work
+(pass) UI execution respects server capability and terminal state
+(pass) required mapping cannot be omitted and skipped columns are not sent
+
+test\onboarding-gate.spec.ts:
+(pass) readWorkspaceGate > reads the answer out of a plain tRPC envelope [16.00ms]
+(pass) readWorkspaceGate > settles for someone who could not answer the form anyway
+(pass) readWorkspaceGate > carries the slug the app is served under
+(pass) readWorkspaceGate > is unknown rather than required when the API cannot be read
+(pass) readResearchGate > is settled once a key is saved, and required until then
+(pass) readResearchGate > is unknown rather than required when the API cannot be read
+(pass) proxy > shows a stranger the landing page and nothing behind it
+(pass) proxy > sends a stranger to sign in when the install has no landing page
+(pass) proxy > never aims a redirect at the sign-in page itself
+(pass) proxy > reads the flag on every request, and only the literal true turns it on
+(pass) proxy > ignores a neighbour's cookie from the parent domain
+(pass) proxy > gates a signed-in rep who has not answered the form
+(pass) proxy > lets the form itself render
+(pass) proxy > asks again on every request, and remembers nothing
+(pass) proxy > notices when the answer changes underneath it
+(pass) proxy > takes a settled rep into the workspace and keeps optional research accessible
+(pass) proxy > never fights /grant-access, which would ping-pong forever
+(pass) proxy > leaves the agent bridge alone
+(pass) proxy > fails open when the API is unreachable
+(pass) the slug the app is served under > sends a signed-in rep off the landing page and into the workspace
+(pass) the slug the app is served under > puts the slug on a link that predates it, keeping the query
+(pass) the slug the app is served under > moves a stale slug onto the current one, keeping the rest
+(pass) the slug the app is served under > leaves a request that already carries the slug alone
+(pass) the slug the app is served under > rewrites nothing when the API could not say what the slug is
+(pass) optional company research > does not ask an unavailable enrichment provider before opening CRM
+(pass) optional company research > does not send a member who cannot configure the workspace to setup
+(pass) optional company research > lets an onboarded rep use CRM without a provider key
+(pass) optional company research > lets that form render rather than looping onto itself
+(pass) optional company research > asks the first question first when both are outstanding
+(pass) optional company research > opens the workspace after naming it without requiring research
+
+test\personal-follow-ups.spec.tsx:
+(pass) assigned task queue rendered state > team unassigned filter remains explicit while stale, filtered counts are scoped, and mine hides the team filter [31.00ms]
+(pass) assigned task queue rendered state > loading does not fabricate empty tasks or complete counts
+(pass) assigned task queue rendered state > failed first load offers recovery without a fabricated empty state
+(pass) assigned task queue rendered state > stale snapshot retains tasks and disables mutations [15.00ms]
+(pass) assigned task queue rendered state > real links and separate creator/assignee provenance avoid creator-as-owner confusion
+(pass) assigned task queue rendered state > a page exposes every returned row and distinguishes scoped totals from page group counts
+(pass) assigned task queue rendered state > later tasks remain reachable and invalid dates have explicit review copy [16.00ms]
+(pass) assigned task queue rendered state > completed tasks offer visible reopen and are not lost by open-task grouping
+(pass) assigned task queue rendered state > read-only team viewers get history but no enabled task mutation
+(pass) assigned task queue rendered state > revoked assignment uses the actual membership signal, not member search absence
+(pass) assigned task queue rendered state > pending completion disables competing actions and keeps recovery error visible
+(pass) assigned task queue rendered state > a now-empty later page offers first-page recovery instead of claiming no tasks
+(pass) assigned task queue rendered state > empty mine explains assignment and links to actual task-creation records
+(pass) task editor and durable history > assignee can edit deadline but reassignment remains explicitly restricted
+(pass) task editor and durable history > read-only permissions and stale details both block editing controls [16.00ms]
+(pass) task editor and durable history > version conflict notice preserves draft and clearly names destructive reload
+(pass) task editor and durable history > history uses recorded name snapshots and before/after deadline evidence
+(pass) task editor and durable history > legacy missing name snapshots use understandable fallback without prominent technical IDs
+
+test\pipeline-command-key-store.test.mjs:
+(pass) reuses the same key for a retry of an unchanged command
+(pass) rotates the key when the command payload changes
+(pass) clears only the key that completed
+(pass) bounds retained failed-command keys
+(pass) rejects malformed scopes, fingerprints and generated keys
+
+test\pipeline-editor-model.test.mjs:
+(pass) default draft is complete and valid
+(pass) renaming a stage key updates transition references
+(pass) terminal and open stage probabilities remain deterministic
+(pass) reordering and removal keep contiguous positions and remove dangling transitions
+(pass) create mutation excludes server-owned identity and preserves default intent
+(pass) update mutation preserves optimistic version and existing stage identity
+(pass) validation rejects malformed probabilities, colors, positions and transitions
+(pass) mutation conversion refuses invalid drafts and idempotency keys
+
+test\task-editor-model.test.mjs:
+(pass) unchanged displayed deadline preserves the original instant, seconds and offset
+(pass) task creation sends an explicit ISO instant, distinguishes default self from unassigned, and has no hidden midnight
+(pass) omitted fields preserve, explicit blanks clear, and reassignment only sends changed fields
+(pass) invalid or rolled-over dates are rejected rather than rescheduled silently
+(pass) a new local wall time produces a real instant and a blank clears it
+(pass) New York DST gap is rejected; unchanged repeated-hour instant remains exact [63.00ms]
+
+test\team-agents-model.test.mjs:
+(pass) summaries use visible facts, exclude archived review and disclose old-server coverage
+(pass) current filter excludes archived without hiding it from the all view
+(pass) review is explicitly the latest run, not a global approval count
+(pass) search is trimmed case insensitive and matches description
+(pass) zero cost is real recorded cost; unknown does not become zero [15.00ms]
+(pass) empty data never produces invented runs, savings or success rates
+
+test\tracking-bundle.spec.ts:
+(pass) the tracking bundle stays inside its budget > the loader is under a kilobyte
+(pass) the tracking bundle stays inside its budget > the tracker is under the four kilobytes the settings page promises [16.00ms]
+(pass) the tracking bundle stays inside its budget > the loader only ever injects a site it was given
+(pass) the loader finds the site id however the page was built > reads the attribute a rep pasted into their own HTML
+(pass) the loader finds the site id however the page was built > reads the URL when a tag manager stripped the attribute
+(pass) the loader finds the site id however the page was built > prefers the attribute, so a stale URL cannot outvote the pasted tag
+(pass) the loader finds the site id however the page was built > injects nothing when neither carries a site
+(pass) the loader finds the site id however the page was built > refuses a site id from the URL that is not one
+(pass) the loader finds the site id however the page was built > injects once, however many copies of the tag a container fires
+(pass) the loader finds the site id however the page was built > the tracker bakes the config in rather than fetching it
+
+test\workspace-label.spec.ts:
+(pass) what the header calls this install > does not say CRM twice before anybody has named the workspace
+(pass) what the header calls this install > falls back to CRM while the workspace is still loading
+(pass) what the header calls this install > names the company once it has one
+(pass) what the header calls this install > does not repeat a company that already ends in CRM
+(pass) what the header calls this install > still appends to a name that merely contains the letters
+
+ 236 pass
+ 0 fail
+ 499 expect() calls
+Ran 236 tests across 26 files. [1.74s]

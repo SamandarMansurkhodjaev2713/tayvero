@@ -1,0 +1,727 @@
+$ turbo run lint
+• turbo 2.10.8
+
+   • Packages in scope: @crm/action-registry, @crm/agent-action-runtime, @crm/auth, @crm/db, @crm/env, @crm/integration-runtime, @crm/migration-core, @crm/migration-runtime, @crm/pipeline-core, @crm/pipeline-runtime, @crm/security-core, @crm/telemetry, @crm/typescript-config, @crm/ui, @crm/validation, agent, api, app
+   • Running lint in 18 packages
+   • Remote caching disabled
+
+@crm/env:lint: cache miss, executing 6d52951131de0efe
+@crm/db:lint: cache miss, executing 8130ae9e4a8aec58
+@crm/ui:lint: cache miss, executing be7a475a0ae5083b
+agent:lint: cache miss, executing 7533f6b6a2187baa
+@crm/telemetry:lint: cache miss, executing 43846e4f15320220
+@crm/validation:lint: cache miss, executing d7ccbd5d81e6c392
+app:lint: cache miss, executing 39b642904b749da6
+api:lint: cache miss, executing e132cfe99532f387
+@crm/auth:lint: cache miss, executing f3e3709e2cc37b62
+@crm/env:lint: $ biome check .
+@crm/db:lint: $ biome check .
+@crm/ui:lint: $ biome check .
+agent:lint: $ biome check .
+@crm/env:lint: Checked 6 files in 14ms. No fixes applied.
+@crm/telemetry:lint: $ biome check .
+@crm/db:lint: test\test-database.test.mjs:73:3 lint/style/useTemplate  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+@crm/db:lint:
+@crm/db:lint:   i Template literals are preferred over string concatenation.
+@crm/db:lint:
+@crm/db:lint:     71 │ 		"a%00_test",
+@crm/db:lint:     72 │ 		"_test",
+@crm/db:lint:   > 73 │ 		"a".repeat(59) + "_test",
+@crm/db:lint:        │ 		^^^^^^^^^^^^^^^^^^^^^^^^
+@crm/db:lint:     74 │ 		"app-test",
+@crm/db:lint:     75 │ 		"app_test/",
+@crm/db:lint:
+@crm/db:lint:   i Unsafe fix: Use a template literal.
+@crm/db:lint:
+@crm/db:lint:      71  71 │       "a%00_test",
+@crm/db:lint:      72  72 │       "_test",
+@crm/db:lint:      73     │ - → → "a".repeat(59)·+·"_test",
+@crm/db:lint:          73 │ + → → `${"a".repeat(59)}_test`,
+@crm/db:lint:      74  74 │       "app-test",
+@crm/db:lint:      75  75 │       "app_test/",
+@crm/db:lint:
+@crm/db:lint:
+@crm/db:lint: scripts\test-db.ts:35:11 lint/correctness/noUnusedVariables  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+@crm/db:lint:
+@crm/db:lint:   ! This variable error is unused.
+@crm/db:lint:
+@crm/db:lint:     33 │ 	try {
+@crm/db:lint:     34 │ 		await client.connect();
+@crm/db:lint:   > 35 │ 	} catch (error) {
+@crm/db:lint:        │ 	         ^^^^^
+@crm/db:lint:     36 │ 		fail([
+@crm/db:lint:     37 │ 			`Could not reach the server at ${new URL(target).host}.`,
+@crm/db:lint:
+@crm/db:lint:   i Unused variables are often the result of typos, incomplete refactors, or other sources of bugs.
+@crm/db:lint:
+@crm/db:lint:   i Unsafe fix: If this is intentional, prepend error with an underscore.
+@crm/db:lint:
+@crm/db:lint:      33  33 │     try {
+@crm/db:lint:      34  34 │       await client.connect();
+@crm/db:lint:      35     │ - → }·catch·(error)·{
+@crm/db:lint:          35 │ + → }·catch·(_error)·{
+@crm/db:lint:      36  36 │       fail([
+@crm/db:lint:      37  37 │         `Could not reach the server at ${new URL(target).host}.`,
+@crm/db:lint:
+@crm/db:lint:
+@crm/db:lint: src\blob.ts:5:1 lint/performance/noBarrelFile ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+@crm/db:lint:
+@crm/db:lint:   ! Avoid barrel files, they slow down performance, and cause large module graphs with modules that go unused.
+@crm/db:lint:
+@crm/db:lint:     3 │ import { safeFetch } from "./safe-fetch";
+@crm/db:lint:     4 │
+@crm/db:lint:   > 5 │ export { isMirrored, isOptimizable } from "./images";
+@crm/db:lint:       │ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+@crm/db:lint:     6 │
+@crm/db:lint:     7 │ const MAX_BYTES = 3 * 1024 * 1024;
+@crm/db:lint:
+@crm/db:lint:   i Check this thorough explanation to better understand the context.
+@crm/db:lint:
+@crm/db:lint:
+@crm/db:lint: src\fields.ts:18:1 lint/performance/noBarrelFile ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+@crm/db:lint:
+@crm/db:lint:   ! Avoid barrel files, they slow down performance, and cause large module graphs with modules that go unused.
+@crm/db:lint:
+@crm/db:lint:     16 │ } from "./generated/prisma/models";
+@crm/db:lint:     17 │
+@crm/db:lint:   > 18 │ export * from "./fields-shape";
+@crm/db:lint:        │ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+@crm/db:lint:     19 │
+@crm/db:lint:     20 │ export type FieldDefinitionWithOptions = FieldDefinitionModel & {
+@crm/db:lint:
+@crm/db:lint:   i Check this thorough explanation to better understand the context.
+@crm/db:lint:
+@crm/db:lint:
+@crm/db:lint: src\fields.ts:18:8 lint/performance/noReExportAll ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+@crm/db:lint:
+@crm/db:lint:   ! Do not use export all ( export * from ... ).
+@crm/db:lint:
+@crm/db:lint:     16 │ } from "./generated/prisma/models";
+@crm/db:lint:     17 │
+@crm/db:lint:   > 18 │ export * from "./fields-shape";
+@crm/db:lint:        │        ^^^^^^^^^^^^^^^^^^^^^^^^
+@crm/db:lint:     19 │
+@crm/db:lint:     20 │ export type FieldDefinitionWithOptions = FieldDefinitionModel & {
+@crm/db:lint:
+@crm/db:lint:   i Use named export instead.
+@crm/db:lint:
+@crm/db:lint:
+@crm/db:lint: src\fields.ts:3:2 lint/correctness/noUnusedImports  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+@crm/db:lint:
+@crm/db:lint:   ! Several of these imports are unused.
+@crm/db:lint:
+@crm/db:lint:     1 │ import {
+@crm/db:lint:     2 │ 	columnFor,
+@crm/db:lint:   > 3 │ 	type FieldValueColumn,
+@crm/db:lint:       │ 	^^^^^^^^^^^^^^^^^^^^^
+@crm/db:lint:     4 │ 	FieldValueError,
+@crm/db:lint:     5 │ 	type FieldValueJson,
+@crm/db:lint:
+@crm/db:lint:   i Unused imports might be the result of an incomplete refactoring.
+@crm/db:lint:
+@crm/db:lint:   i Unsafe fix: Remove the unused imports.
+@crm/db:lint:
+@crm/db:lint:       1   1 │   import {
+@crm/db:lint:       2   2 │     columnFor,
+@crm/db:lint:       3     │ - → type·FieldValueColumn,
+@crm/db:lint:       4   3 │     FieldValueError,
+@crm/db:lint:       5   4 │     type FieldValueJson,
+@crm/db:lint:
+@crm/db:lint:
+@crm/db:lint: src\index.ts:1:1 lint/performance/noBarrelFile ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+@crm/db:lint:
+@crm/db:lint:   ! Avoid barrel files, they slow down performance, and cause large module graphs with modules that go unused.
+@crm/db:lint:
+@crm/db:lint:   > 1 │ export {
+@crm/db:lint:       │ ^^^^^^^^
+@crm/db:lint:   > 2 │ 	type Db,
+@crm/db:lint:   > 3 │ 	db,
+@crm/db:lint:   > 4 │ 	type PrismaLogRecord,
+@crm/db:lint:   > 5 │ 	type PrismaLogSink,
+@crm/db:lint:   > 6 │ 	setPrismaLogSink,
+@crm/db:lint:   > 7 │ } from "./client";
+@crm/db:lint:       │ ^^^^^^^^^^^^^^^^^^
+@crm/db:lint:     8 │ export { Prisma, PrismaClient } from "./generated/prisma/client";
+@crm/db:lint:     9 │ export * from "./generated/prisma/enums";
+@crm/db:lint:
+@crm/db:lint:   i Check this thorough explanation to better understand the context.
+@crm/db:lint:
+@crm/db:lint:
+@crm/db:lint: src\index.ts:9:8 lint/performance/noReExportAll ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+@crm/db:lint:
+@crm/db:lint:   ! Do not use export all ( export * from ... ).
+@crm/db:lint:
+@crm/db:lint:      7 │ } from "./client";
+@crm/db:lint:      8 │ export { Prisma, PrismaClient } from "./generated/prisma/client";
+@crm/db:lint:    > 9 │ export * from "./generated/prisma/enums";
+@crm/db:lint:        │        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+@crm/db:lint:     10 │ export type * from "./generated/prisma/models";
+@crm/db:lint:     11 │ export type {
+@crm/db:lint:
+@crm/db:lint:   i Use named export instead.
+@crm/db:lint:
+@crm/db:lint:
+@crm/db:lint: Checked 44 files in 66ms. No fixes applied.
+@crm/db:lint: Found 7 warnings.
+@crm/db:lint: Found 1 info.
+@crm/validation:lint: $ biome check .
+@crm/ui:lint: src\theme\appearance.mjs:260:3 lint/style/useTemplate  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+@crm/ui:lint:
+@crm/ui:lint:   i Template literals are preferred over string concatenation.
+@crm/ui:lint:
+@crm/ui:lint:     258 │ export function generateAppearanceCss() {
+@crm/ui:lint:     259 │ 	return (
+@crm/ui:lint:   > 260 │ 		Object.entries(THEME_TOKENS)
+@crm/ui:lint:         │ 		^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+@crm/ui:lint:   > 261 │ 			.flatMap(([palette, modes]) =>
+@crm/ui:lint:          ...
+@crm/ui:lint:   > 274 │ 			)
+@crm/ui:lint:   > 275 │ 			.join("\n\n") + "\n"
+@crm/ui:lint:         │ 			^^^^^^^^^^^^^^^^^^^^
+@crm/ui:lint:     276 │ 	);
+@crm/ui:lint:     277 │ }
+@crm/ui:lint:
+@crm/ui:lint:   i Unsafe fix: Use a template literal.
+@crm/ui:lint:
+@crm/ui:lint:     258 258 │   export function generateAppearanceCss() {
+@crm/ui:lint:     259 259 │     return (
+@crm/ui:lint:     260     │ - → → Object.entries(THEME_TOKENS)
+@crm/ui:lint:         260 │ + → → `${Object.entries(THEME_TOKENS)
+@crm/ui:lint:     261 261 │         .flatMap(([palette, modes]) =>
+@crm/ui:lint:     262 262 │           Object.entries(modes).map(([mode, vars]) => {
+@crm/ui:lint:     ······· │
+@crm/ui:lint:     273 273 │           }),
+@crm/ui:lint:     274 274 │         )
+@crm/ui:lint:     275     │ - → → → .join("\n\n")·+·"\n"
+@crm/ui:lint:         275 │ + → → → .join("\n\n")}\n`
+@crm/ui:lint:     276 276 │     );
+@crm/ui:lint:     277 277 │   }
+@crm/ui:lint:
+@crm/ui:lint:
+@crm/ui:lint: src\styles\globals.css:881:19 lint/complexity/noImportantStyles  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━
+@crm/ui:lint:
+@crm/ui:lint:   ! Avoid the use of the !important style.
+@crm/ui:lint:
+@crm/ui:lint:     879 │ 	.link-hover::before,
+@crm/ui:lint:     880 │ 	.link-hover::after {
+@crm/ui:lint:   > 881 │ 		animation: none !important;
+@crm/ui:lint:         │ 		                ^^^^^^^^^^
+@crm/ui:lint:     882 │ 		transition-duration: 0.01ms !important;
+@crm/ui:lint:     883 │ 	}
+@crm/ui:lint:
+@crm/ui:lint:   i This style reverses the cascade logic, and precedence is reversed. This could lead to having styles with higher specificity being overridden by styles with lower specificity.
+@crm/ui:lint:
+@crm/ui:lint:   i Unsafe fix: Remove the style.
+@crm/ui:lint:
+@crm/ui:lint:     881 │ → → animation:·none·!important;
+@crm/ui:lint:         │                    -----------
+@crm/ui:lint:
+@crm/ui:lint: src\styles\globals.css:882:31 lint/complexity/noImportantStyles  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━
+@crm/ui:lint:
+@crm/ui:lint:   ! Avoid the use of the !important style.
+@crm/ui:lint:
+@crm/ui:lint:     880 │ 	.link-hover::after {
+@crm/ui:lint:     881 │ 		animation: none !important;
+@crm/ui:lint:   > 882 │ 		transition-duration: 0.01ms !important;
+@crm/ui:lint:         │ 		                            ^^^^^^^^^^
+@crm/ui:lint:     883 │ 	}
+@crm/ui:lint:     884 │ }
+@crm/ui:lint:
+@crm/ui:lint:   i This style reverses the cascade logic, and precedence is reversed. This could lead to having styles with higher specificity being overridden by styles with lower specificity.
+@crm/ui:lint:
+@crm/ui:lint:   i Unsafe fix: Remove the style.
+@crm/ui:lint:
+@crm/ui:lint:     882 │ → → transition-duration:·0.01ms·!important;
+@crm/ui:lint:         │                                -----------
+@crm/ui:lint:
+@crm/ui:lint: src\styles\globals.css:1510:25 lint/complexity/noImportantStyles  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━
+@crm/ui:lint:
+@crm/ui:lint:   ! Avoid the use of the !important style.
+@crm/ui:lint:
+@crm/ui:lint:     1508 │ 	*::before,
+@crm/ui:lint:     1509 │ 	*::after {
+@crm/ui:lint:   > 1510 │ 		scroll-behavior: auto !important;
+@crm/ui:lint:          │ 		                      ^^^^^^^^^^
+@crm/ui:lint:     1511 │ 		animation-duration: 0.01ms !important;
+@crm/ui:lint:     1512 │ 		animation-iteration-count: 1 !important;
+@crm/ui:lint:
+@crm/ui:lint:   i This style reverses the cascade logic, and precedence is reversed. This could lead to having styles with higher specificity being overridden by styles with lower specificity.
+@crm/ui:lint:
+@crm/ui:lint:   i Unsafe fix: Remove the style.
+@crm/ui:lint:
+@crm/ui:lint:     1510 │ → → scroll-behavior:·auto·!important;
+@crm/ui:lint:          │                          -----------
+@crm/ui:lint:
+@crm/ui:lint: src\styles\globals.css:1511:30 lint/complexity/noImportantStyles  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━
+@crm/ui:lint:
+@crm/ui:lint:   ! Avoid the use of the !important style.
+@crm/ui:lint:
+@crm/ui:lint:     1509 │ 	*::after {
+@crm/ui:lint:     1510 │ 		scroll-behavior: auto !important;
+@crm/ui:lint:   > 1511 │ 		animation-duration: 0.01ms !important;
+@crm/ui:lint:          │ 		                           ^^^^^^^^^^
+@crm/ui:lint:     1512 │ 		animation-iteration-count: 1 !important;
+@crm/ui:lint:     1513 │ 		transition-duration: 0.01ms !important;
+@crm/ui:lint:
+@crm/ui:lint:   i This style reverses the cascade logic, and precedence is reversed. This could lead to having styles with higher specificity being overridden by styles with lower specificity.
+@crm/ui:lint:
+@crm/ui:lint:   i Unsafe fix: Remove the style.
+@crm/ui:lint:
+@crm/ui:lint:     1511 │ → → animation-duration:·0.01ms·!important;
+@crm/ui:lint:          │                               -----------
+@crm/ui:lint:
+@crm/ui:lint: src\styles\globals.css:1512:32 lint/complexity/noImportantStyles  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━
+@crm/ui:lint:
+@crm/ui:lint:   ! Avoid the use of the !important style.
+@crm/ui:lint:
+@crm/ui:lint:     1510 │ 		scroll-behavior: auto !important;
+@crm/ui:lint:     1511 │ 		animation-duration: 0.01ms !important;
+@crm/ui:lint:   > 1512 │ 		animation-iteration-count: 1 !important;
+@crm/ui:lint:          │ 		                             ^^^^^^^^^^
+@crm/ui:lint:     1513 │ 		transition-duration: 0.01ms !important;
+@crm/ui:lint:     1514 │ 	}
+@crm/ui:lint:
+@crm/ui:lint:   i This style reverses the cascade logic, and precedence is reversed. This could lead to having styles with higher specificity being overridden by styles with lower specificity.
+@crm/ui:lint:
+@crm/ui:lint:   i Unsafe fix: Remove the style.
+@crm/ui:lint:
+@crm/ui:lint:     1512 │ → → animation-iteration-count:·1·!important;
+@crm/ui:lint:          │                                 -----------
+@crm/ui:lint:
+@crm/ui:lint: src\styles\globals.css:1513:31 lint/complexity/noImportantStyles  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━
+@crm/ui:lint:
+@crm/ui:lint:   ! Avoid the use of the !important style.
+@crm/ui:lint:
+@crm/ui:lint:     1511 │ 		animation-duration: 0.01ms !important;
+@crm/ui:lint:     1512 │ 		animation-iteration-count: 1 !important;
+@crm/ui:lint:   > 1513 │ 		transition-duration: 0.01ms !important;
+@crm/ui:lint:          │ 		                            ^^^^^^^^^^
+@crm/ui:lint:     1514 │ 	}
+@crm/ui:lint:     1515 │ }
+@crm/ui:lint:
+@crm/ui:lint:   i This style reverses the cascade logic, and precedence is reversed. This could lead to having styles with higher specificity being overridden by styles with lower specificity.
+@crm/ui:lint:
+@crm/ui:lint:   i Unsafe fix: Remove the style.
+@crm/ui:lint:
+@crm/ui:lint:     1513 │ → → transition-duration:·0.01ms·!important;
+@crm/ui:lint:          │                                -----------
+@crm/ui:lint:
+@crm/ui:lint: Checked 16 files in 74ms. No fixes applied.
+@crm/ui:lint: Found 6 warnings.
+@crm/ui:lint: Found 1 info.
+app:lint: $ biome check .
+@crm/telemetry:lint: src\index.ts:1:1 lint/performance/noBarrelFile ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+@crm/telemetry:lint:
+@crm/telemetry:lint:   ! Avoid barrel files, they slow down performance, and cause large module graphs with modules that go unused.
+@crm/telemetry:lint:
+@crm/telemetry:lint:    > 1 │ export {
+@crm/telemetry:lint:        │ ^^^^^^^^
+@crm/telemetry:lint:    > 2 │ 	AGENT_TOOLS,
+@crm/telemetry:lint:    > 3 │ 	ALLOWED_PROPERTIES,
+@crm/telemetry:lint:    > 4 │ 	type AllowedProperty,
+@crm/telemetry:lint:         ...
+@crm/telemetry:lint:   > 21 │ 	SYNC_SOURCES,
+@crm/telemetry:lint:   > 22 │ } from "./allowlist";
+@crm/telemetry:lint:        │ ^^^^^^^^^^^^^^^^^^^^^
+@crm/telemetry:lint:     23 │ export {
+@crm/telemetry:lint:     24 │ 	capture,
+@crm/telemetry:lint:
+@crm/telemetry:lint:   i Check this thorough explanation to better understand the context.
+@crm/telemetry:lint:
+@crm/telemetry:lint: Checked 15 files in 135ms. No fixes applied.
+@crm/telemetry:lint: Found 1 warning.
+@crm/telemetry:lint:
+agent:lint: agent\lib\run-runtime.ts:262:6 lint/complexity/useOptionalChain  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━
+agent:lint:
+agent:lint:   ! Change to an optional chain.
+agent:lint:
+agent:lint:     260 │ 		},
+agent:lint:     261 │ 	});
+agent:lint:   > 262 │ 	if (!run || run.status !== "RUNNING") return false;
+agent:lint:         │ 	    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+agent:lint:     263 │
+agent:lint:     264 │ 	try {
+agent:lint:
+agent:lint:   i Unsafe fix: Change to an optional chain.
+agent:lint:
+agent:lint:      260  260 │       },
+agent:lint:      261  261 │     });
+agent:lint:      262      │ - → if·(!run·||·run.status·!==·"RUNNING")·return·false;
+agent:lint:           262 │ + → if·(run?.status·!==·"RUNNING")·return·false;
+agent:lint:      263  263 │
+agent:lint:      264  264 │     try {
+agent:lint:
+agent:lint:
+agent:lint: agent\lib\run-runtime.ts:286:6 lint/complexity/useOptionalChain  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━
+agent:lint:
+agent:lint:   ! Change to an optional chain.
+agent:lint:
+agent:lint:     284 │ 		},
+agent:lint:     285 │ 	});
+agent:lint:   > 286 │ 	if (!run || run.status !== "RUNNING") return false;
+agent:lint:         │ 	    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+agent:lint:     287 │
+agent:lint:     288 │ 	try {
+agent:lint:
+agent:lint:   i Unsafe fix: Change to an optional chain.
+agent:lint:
+agent:lint:      284  284 │       },
+agent:lint:      285  285 │     });
+agent:lint:      286      │ - → if·(!run·||·run.status·!==·"RUNNING")·return·false;
+agent:lint:           286 │ + → if·(run?.status·!==·"RUNNING")·return·false;
+agent:lint:      287  287 │
+agent:lint:      288  288 │     try {
+agent:lint:
+agent:lint:
+agent:lint: agent\lib\tasks.ts:29:1 lint/performance/noBarrelFile ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+agent:lint:
+agent:lint:   ! Avoid barrel files, they slow down performance, and cause large module graphs with modules that go unused.
+agent:lint:
+agent:lint:     27 │ const LEASE_MS = DISPATCH.task.leaseMs;
+agent:lint:     28 │
+agent:lint:   > 29 │ export { DIRECT_KINDS, MAX_ATTEMPTS } from "@crm/db/agent-tasks";
+agent:lint:        │ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+agent:lint:     30 │
+agent:lint:     31 │ export async function claimDue(
+agent:lint:
+agent:lint:   i Check this thorough explanation to better understand the context.
+agent:lint:
+agent:lint:
+agent:lint: src\governed-run-action-runtime.mjs:157:7 lint/complexity/useOptionalChain  FIXABLE  ━━━━━━━━━━━━━━━
+agent:lint:
+agent:lint:   ! Change to an optional chain.
+agent:lint:
+agent:lint:     155 │ 		}
+agent:lint:     156 │ 		const descriptor = Object.getOwnPropertyDescriptor(source, key);
+agent:lint:   > 157 │ 		if (!descriptor || !descriptor.enumerable || !("value" in descriptor)) {
+agent:lint:         │ 		    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+agent:lint:     158 │ 			throw new TypeError(
+agent:lint:     159 │ 				`${field}.${key} must be an enumerable data property`,
+agent:lint:
+agent:lint:   i Unsafe fix: Change to an optional chain.
+agent:lint:
+agent:lint:     155 155 │       }
+agent:lint:     156 156 │       const descriptor = Object.getOwnPropertyDescriptor(source, key);
+agent:lint:     157     │ - → → if·(!descriptor·||·!descriptor.enumerable·||·!("value"·in·descriptor))·{
+agent:lint:         157 │ + → → if·(!descriptor?.enumerable·||·!("value"·in·descriptor))·{
+agent:lint:     158 158 │         throw new TypeError(
+agent:lint:     159 159 │           `${field}.${key} must be an enumerable data property`,
+agent:lint:
+agent:lint:
+api:lint: $ biome check .
+agent:lint: src\run-execution-budget.mjs:15:3 lint/complexity/useOptionalChain  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━
+agent:lint:
+agent:lint:   ! Change to an optional chain.
+agent:lint:
+agent:lint:     13 │ 		throw new TypeError("Invalid execution timeout configuration");
+agent:lint:     14 │ 	if (
+agent:lint:   > 15 │ 		!run ||
+agent:lint:        │ 		^^^^^^^
+agent:lint:   > 16 │ 		run.status !== "RUNNING" ||
+agent:lint:        │ 		^^^^^^^^^^^^^^^^^^^^^^^^
+agent:lint:     17 │ 		!run.sessionId ||
+agent:lint:     18 │ 		run.cancelRequestedAt
+agent:lint:
+agent:lint:   i Unsafe fix: Change to an optional chain.
+agent:lint:
+agent:lint:     13 13 │       throw new TypeError("Invalid execution timeout configuration");
+agent:lint:     14 14 │     if (
+agent:lint:     15    │ - → → !run·||
+agent:lint:     16    │ - → → run.status·!==·"RUNNING"·||
+agent:lint:        15 │ + → → run?.status·!==·"RUNNING"·||
+agent:lint:     17 16 │       !run.sessionId ||
+agent:lint: Checked 193 files in 198ms. No fixes applied.
+agent:lint: Found 5 warnings.
+agent:lint:     18 17 │       run.cancelRequestedAt
+agent:lint:
+agent:lint:
+@crm/validation:lint: Checked 16 files in 21ms. No fixes applied.
+@crm/auth:lint: $ biome check .
+app:lint: Checked 311 files in 409ms. No fixes applied.
+app:lint: Found 1 warning.
+app:lint: Found 1 info.
+app:lint: app\(app)\[slug]\settings\pipelines\pipeline-settings.tsx:418:11 lint/style/useTemplate  FIXABLE  ━━━━━━━━━━
+app:lint:
+app:lint:   i Template literals are preferred over string concatenation.
+app:lint:
+app:lint:     416 │ 									expectedVersion: archiveCandidate.version,
+app:lint:     417 │ 									idempotencyKey: commandKey(
+app:lint:   > 418 │ 										"pipeline-archive:" + archiveCandidate.id,
+app:lint:         │ 										^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app:lint:     419 │ 										{
+app:lint:     420 │ 											id: archiveCandidate.id,
+app:lint:
+app:lint:   i Unsafe fix: Use a template literal.
+app:lint:
+app:lint:     416 416 │                     expectedVersion: archiveCandidate.version,
+app:lint:     417 417 │                     idempotencyKey: commandKey(
+app:lint:     418     │ - → → → → → → → → → → "pipeline-archive:"·+·archiveCandidate.id,
+app:lint:         418 │ + → → → → → → → → → → `pipeline-archive:${archiveCandidate.id}`,
+app:lint:     419 419 │                       {
+app:lint:     420 420 │                         id: archiveCandidate.id,
+app:lint:
+app:lint:
+app:lint: postcss.config.mjs:1:1 lint/performance/noBarrelFile ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+app:lint:
+app:lint:   ! Avoid barrel files, they slow down performance, and cause large module graphs with modules that go unused.
+app:lint:
+app:lint:   > 1 │ export { default } from "@crm/ui/postcss.config";
+app:lint:       │ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app:lint:     2 │
+app:lint:
+app:lint:   i Check this thorough explanation to better understand the context.
+app:lint:
+app:lint:
+api:lint: src\operations\operations-core.mjs:274:13 lint/complexity/noExtraBooleanCast  FIXABLE  ━━━━━━━━━━━━━
+api:lint:
+api:lint:   i Avoid redundant `Boolean` call
+api:lint:
+api:lint:     272 │ 						agentId: row.agentId,
+api:lint:     273 │ 						agentName: names.get(row.agentId) ?? row.agentId,
+api:lint:   > 274 │ 						type: Boolean(receiptFor(row))
+api:lint:         │ 						      ^^^^^^^^^^^^^^^^^^^^^^^^
+api:lint:     275 │ 							? "AMBIGUOUS_OUTCOME"
+api:lint:     276 │ 							: "ACTION_FAILED",
+api:lint:
+api:lint:   i It is not necessary to use `Boolean` call when a value will already be coerced to a boolean.
+api:lint:
+api:lint:   i Safe fix: Remove redundant `Boolean` call
+api:lint:
+api:lint:     274 │ → → → → → → type:·Boolean(receiptFor(row))
+api:lint:         │                   --------              -
+api:lint:
+api:lint: src\deals\deals.contracts.ts:10:1 lint/performance/noBarrelFile ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+api:lint:
+api:lint:   ! Avoid barrel files, they slow down performance, and cause large module graphs with modules that go unused.
+api:lint:
+api:lint:      8 │ import { listInput } from "../trpc/list-input";
+api:lint:      9 │
+api:lint:   > 10 │ export { MAX_AMOUNT_CENTS } from "@crm/db/money-input";
+api:lint:        │ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api:lint:     11 │
+api:lint:     12 │ const amountCents = z
+api:lint:
+api:lint:   i Check this thorough explanation to better understand the context.
+api:lint:
+api:lint:
+api:lint: src\google\google.constants.ts:1:1 lint/performance/noBarrelFile ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+api:lint:
+api:lint:   ! Avoid barrel files, they slow down performance, and cause large module graphs with modules that go unused.
+api:lint:
+api:lint:    > 1 │ export {
+api:lint:        │ ^^^^^^^^
+api:lint:    > 2 │ 	CALENDAR_SCOPE,
+api:lint:    > 3 │ 	GMAIL_SCOPE,
+api:lint:    > 4 │ 	GOOGLE_PROVIDER_ID,
+api:lint:    > 5 │ 	GOOGLE_SYNC_SOURCES,
+api:lint:    > 6 │ 	type GoogleSyncSource,
+api:lint:    > 7 │ 	SCOPE_FOR_SOURCE,
+api:lint:    > 8 │ 	SYNC_SCOPES,
+api:lint:    > 9 │ } from "../mailbox/mailbox.constants";
+api:lint:        │ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api:lint:     10 │
+api:lint:
+api:lint:   i Check this thorough explanation to better understand the context.
+api:lint:
+api:lint:
+api:lint: src\mailbox\mailbox.constants.ts:10:1 lint/performance/noBarrelFile ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+api:lint:
+api:lint:   ! Avoid barrel files, they slow down performance, and cause large module graphs with modules that go unused.
+api:lint:
+api:lint:      8 │ } from "@crm/auth";
+api:lint:      9 │
+api:lint:   > 10 │ export {
+api:lint:        │ ^^^^^^^^
+api:lint:   > 11 │ 	CALENDAR_SCOPE,
+api:lint:         ...
+api:lint:   > 18 │ 	SYNC_SCOPES,
+api:lint:   > 19 │ } from "@crm/auth";
+api:lint:        │ ^^^^^^^^^^^^^^^^^^^
+api:lint:     20 │
+api:lint:     21 │ export const SYNC_SOURCES = ["calendar", "gmail", "outlook"] as const;
+api:lint:
+api:lint:   i Check this thorough explanation to better understand the context.
+api:lint:
+api:lint:
+api:lint: src\microsoft\microsoft.constants.ts:1:1 lint/performance/noBarrelFile ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+api:lint:
+api:lint:   ! Avoid barrel files, they slow down performance, and cause large module graphs with modules that go unused.
+api:lint:
+api:lint:   > 1 │ export {
+api:lint:       │ ^^^^^^^^
+api:lint:   > 2 │ 	MICROSOFT_PROVIDER_ID,
+api:lint:   > 3 │ 	MICROSOFT_SYNC_SCOPES,
+api:lint:   > 4 │ 	MICROSOFT_SYNC_SOURCES,
+api:lint:   > 5 │ 	type MicrosoftSyncSource,
+api:lint:   > 6 │ 	OUTLOOK_MAIL_SCOPE,
+api:lint:   > 7 │ 	SCOPE_FOR_SOURCE,
+api:lint:   > 8 │ } from "../mailbox/mailbox.constants";
+api:lint:       │ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api:lint:     9 │
+api:lint:
+api:lint:   i Check this thorough explanation to better understand the context.
+api:lint:
+api:lint:
+api:lint: src\migrations\background-import.mjs:75:6 lint/complexity/useOptionalChain  FIXABLE  ━━━━━━━━━━━━━━━
+api:lint:
+api:lint:   ! Change to an optional chain.
+api:lint:
+api:lint:     73 │ 				});
+api:lint:     74 │ 				if (
+api:lint:   > 75 │ 					!row ||
+api:lint:        │ 					^^^^^^^
+api:lint:   > 76 │ 					!row.backgroundEnabled ||
+api:lint:        │ 					^^^^^^^^^^^^^^^^^^^^^^
+api:lint:     77 │ 					row.backgroundVersion !== claim.version
+api:lint:     78 │ 				)
+api:lint:
+api:lint:   i Unsafe fix: Change to an optional chain.
+api:lint:
+api:lint:      73  73 │           });
+api:lint:      74  74 │           if (
+api:lint:      75     │ - → → → → → !row·||
+api:lint:      76     │ - → → → → → !row.backgroundEnabled·||
+api:lint:          75 │ + → → → → → !row?.backgroundEnabled·||
+api:lint:      77  76 │             row.backgroundVersion !== claim.version
+api:lint:      78  77 │           )
+api:lint:
+api:lint:
+api:lint: src\tracking\tracking.service.ts:40:2 lint/correctness/noUnusedImports  FIXABLE  ━━━━━━━━━━━━━━━━━━━
+api:lint:
+api:lint:   ! Several of these imports are unused.
+api:lint:
+api:lint:     38 │ 	TrackingSettings,
+api:lint:     39 │ 	VerifyResult,
+api:lint:   > 40 │ 	VisitedPage,
+api:lint:        │ 	^^^^^^^^^^^
+api:lint:     41 │ 	WebsiteActivity,
+api:lint:     42 │ } from "./tracking.contracts";
+api:lint:
+api:lint:   i Unused imports might be the result of an incomplete refactoring.
+api:lint:
+api:lint:   i Unsafe fix: Remove the unused imports.
+api:lint:
+api:lint:      38  38 │     TrackingSettings,
+api:lint:      39  39 │     VerifyResult,
+api:lint:      40     │ - → VisitedPage,
+api:lint:      41  40 │     WebsiteActivity,
+api:lint:      42  41 │   } from "./tracking.contracts";
+api:lint:
+api:lint:
+api:lint: test\operations-postgres.integration.spec.ts:320:17 lint/style/noNonNullAssertion ━━━━━━━━━━━━━━━━━━
+api:lint:
+api:lint:   ! Forbidden non-null assertion.
+api:lint:
+api:lint:     318 │ 		});
+api:lint:     319 │ 		await db.contact.update({
+api:lint:   > 320 │ 			where: { id: receipts[0]!.entityId! },
+api:lint:         │ 			             ^^^^^^^^^^^^^^^^^^^^^^
+api:lint:     321 │ 			data: {
+api:lint:     322 │ 				title: "Edited after import",
+api:lint:
+api:lint:
+api:lint: test\operations-postgres.integration.spec.ts:320:17 lint/style/noNonNullAssertion  FIXABLE  ━━━━━━━━━━
+api:lint:
+api:lint:   ! Forbidden non-null assertion.
+api:lint:
+api:lint:     318 │ 		});
+api:lint:     319 │ 		await db.contact.update({
+api:lint:   > 320 │ 			where: { id: receipts[0]!.entityId! },
+api:lint:         │ 			             ^^^^^^^^^^^^
+api:lint:     321 │ 			data: {
+api:lint:     322 │ 				title: "Edited after import",
+api:lint:
+api:lint:   i Unsafe fix: Replace with optional chain operator ?. This operator includes runtime checks, so it is safer than the compile-only non-null assertion operator
+api:lint:
+api:lint:     318 318 │       });
+api:lint:     319 319 │       await db.contact.update({
+api:lint:     320     │ - → → → where:·{·id:·receipts[0]!.entityId!·},
+api:lint:         320 │ + → → → where:·{·id:·receipts[0]?.entityId!·},
+api:lint:     321 321 │         data: {
+api:lint:     322 322 │           title: "Edited after import",
+api:lint:
+api:lint:
+api:lint: test\operations-postgres.integration.spec.ts:340:19 lint/style/noNonNullAssertion ━━━━━━━━━━━━━━━━━━
+api:lint:
+api:lint:   ! Forbidden non-null assertion.
+api:lint:
+api:lint:     338 │ 			(
+api:lint:     339 │ 				await db.contact.findUniqueOrThrow({
+api:lint:   > 340 │ 					where: { id: receipts[0]!.entityId! },
+api:lint:         │ 					             ^^^^^^^^^^^^^^^^^^^^^^
+api:lint:     341 │ 				})
+api:lint:     342 │ 			).archivedAt,
+api:lint:
+api:lint:
+api:lint: test\operations-postgres.integration.spec.ts:340:19 lint/style/noNonNullAssertion  FIXABLE  ━━━━━━━━━━
+api:lint:
+api:lint:   ! Forbidden non-null assertion.
+api:lint:
+api:lint:     338 │ 			(
+api:lint:     339 │ 				await db.contact.findUniqueOrThrow({
+api:lint:   > 340 │ 					where: { id: receipts[0]!.entityId! },
+api:lint:         │ 					             ^^^^^^^^^^^^
+api:lint:     341 │ 				})
+api:lint:     342 │ 			).archivedAt,
+api:lint:
+api:lint:   i Unsafe fix: Replace with optional chain operator ?. This operator includes runtime checks, so it is safer than the compile-only non-null assertion operator
+api:lint:
+api:lint:     338 338 │         (
+api:lint:     339 339 │           await db.contact.findUniqueOrThrow({
+api:lint:     340     │ - → → → → → where:·{·id:·receipts[0]!.entityId!·},
+api:lint:         340 │ + → → → → → where:·{·id:·receipts[0]?.entityId!·},
+api:lint:     341 341 │           })
+api:lint:     342 342 │         ).archivedAt,
+api:lint:
+api:lint:
+api:lint: test\operations-postgres.integration.spec.ts:564:17 lint/style/noNonNullAssertion ━━━━━━━━━━━━━━━━━━
+api:lint:
+api:lint:   ! Forbidden non-null assertion.
+api:lint:
+api:lint:     562 │ 		]);
+api:lint:     563 │ 		expect(claims.filter(Boolean).length).toBe(1);
+api:lint:   > 564 │ 		const claim = claims.find(Boolean)!;
+api:lint:         │ 		              ^^^^^^^^^^^^^^^^^^^^^
+api:lint:     565 │ 		expect(claim.sessionId).toBe(f.identity.sessionId);
+api:lint:     566 │ 		expect(claim.rootSessionId).not.toBe(claim.sessionId);
+api:lint:
+api:lint:
+api:lint: test\operations-postgres.integration.spec.ts:575:17 lint/style/noNonNullAssertion ━━━━━━━━━━━━━━━━━━
+api:lint:
+api:lint:   ! Forbidden non-null assertion.
+api:lint:
+api:lint:     573 │ 	it("one-time transport admission and exact request binding survive new store instances", async () => {
+api:lint:     574 │ 		const f = await fixture("admit");
+api:lint:   > 575 │ 		const claim = (await f.store.claim(f.ticket.id))!;
+api:lint:         │ 		              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api:lint:     576 │ 		expect(
+api:lint:     577 │ 			await f.store.admitDelivery({ ...claim, sessionId: "different-child" }),
+api:lint:
+api:lint:
+api:lint: Checked 284 files in 489ms. No fixes applied.
+api:lint: Found 12 warnings.
+api:lint: Found 1 info.
+@crm/auth:lint: src\index.ts:1:1 lint/performance/noBarrelFile ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+@crm/auth:lint:
+@crm/auth:lint:   ! Avoid barrel files, they slow down performance, and cause large module graphs with modules that go unused.
+@crm/auth:lint:
+@crm/auth:lint:   > 1 │ export {
+@crm/auth:lint:       │ ^^^^^^^^
+@crm/auth:lint:   > 2 │ 	API_KEY_EXPIRATION,
+@crm/auth:lint:   > 3 │ 	API_KEY_HEADER,
+@crm/auth:lint:   > 4 │ 	API_KEY_PREFIX,
+@crm/auth:lint:   > 5 │ 	DAY_SECONDS,
+@crm/auth:lint:   > 6 │ } from "./api-keys";
+@crm/auth:lint:       │ ^^^^^^^^^^^^^^^^^^^^
+@crm/auth:lint:     7 │ export { type Auth, auth, type Session, type SessionUser } from "./auth";
+@crm/auth:lint:     8 │ export { AUTH_COOKIE_PREFIX, SESSION_COOKIE_NAME } from "./cookies";
+@crm/auth:lint:
+@crm/auth:lint:   i Check this thorough explanation to better understand the context.
+@crm/auth:lint:
+@crm/auth:lint:
+@crm/auth:lint: Checked 24 files in 30ms. No fixes applied.
+@crm/auth:lint: Found 1 warning.
+
+ Tasks:    9 successful, 9 total
+Cached:    0 cached, 9 total
+  Time:    1.302s

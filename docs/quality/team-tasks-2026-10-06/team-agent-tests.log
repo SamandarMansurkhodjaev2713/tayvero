@@ -1,0 +1,13 @@
+bun test v1.3.12 (700fc117)
+
+test\task-assignment.integration.spec.ts:
+(pass) governed task assignment > assigns the active trusted initiator and replay preserves later human assignment [156.00ms]
+(pass) governed task assignment > does not assign a revoked principal while preserving immutable authorship [63.00ms]
+(pass) governed task assignment > keeps a principal without deployment membership unassigned [47.00ms]
+(pass) governed task assignment > scheduled tasks use the active definition author and notes remain unassigned [93.00ms]
+(pass) governed task assignment > rejects a model-supplied assignee before effects or durable receipts
+
+ 5 pass
+ 0 fail
+ 14 expect() calls
+Ran 5 tests across 1 file. [989.00ms]

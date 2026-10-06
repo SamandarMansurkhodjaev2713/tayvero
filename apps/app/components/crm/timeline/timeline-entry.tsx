@@ -1,10 +1,12 @@
 "use client";
 
 import { DealStage } from "@crm/db/enums";
+import { Button } from "@crm/ui/components/button";
 import { Checkbox } from "@crm/ui/components/checkbox";
 import { StatusIndicator } from "@crm/ui/components/status-indicator";
 import { cn } from "@crm/ui/lib/utils";
 import { useMutation } from "@tanstack/react-query";
+import { useState } from "react";
 import { toast } from "sonner";
 import { z } from "zod";
 import { RecordLink } from "@/components/crm/record-sheet/record-link";
@@ -14,6 +16,7 @@ import { dealStageLabel } from "@/lib/deal-stage";
 import { useCrmCache } from "@/lib/trpc/cache";
 import { useTRPC } from "@/lib/trpc/client";
 import type { RouterOutputs } from "@/lib/trpc/types";
+import { TaskEditor } from "../tasks/task-editor";
 import { ActivityIcon } from "./activity-icon";
 import { EmailThreadEntry } from "./email-thread-entry";
 import { MeetingEntry } from "./meeting-entry";
@@ -47,6 +50,7 @@ export function TimelineEntry({
 }) {
 	const trpc = useTRPC();
 	const cache = useCrmCache();
+	const [taskOpen, setTaskOpen] = useState(false);
 
 	const complete = useMutation(
 		trpc.activities.complete.mutationOptions({
@@ -93,10 +97,16 @@ export function TimelineEntry({
 				{isTask ? (
 					<Checkbox
 						checked={done}
-						disabled={complete.isPending}
+						disabled={
+							complete.isPending || entry.taskPermissions?.canEdit !== true
+						}
 						aria-label={done ? "Mark as not done" : "Mark as done"}
 						onCheckedChange={(checked) =>
-							complete.mutate({ id: entry.id, completed: checked === true })
+							complete.mutate({
+								id: entry.id,
+								completed: checked === true,
+								expectedVersion: entry.taskVersion,
+							})
 						}
 					/>
 				) : (
@@ -107,6 +117,31 @@ export function TimelineEntry({
 			</span>
 
 			<div className="flex min-w-0 flex-1 flex-col gap-1">
+				{isTask && (
+					<div className="flex flex-wrap items-center justify-between gap-2">
+						<p className="wrap-anywhere text-xs text-muted-foreground">
+							Responsible: {entry.assignee?.name || "Unassigned"}
+							{entry.assigneeActive === false
+								? " (no longer an active member)"
+								: ""}
+						</p>
+						<Button
+							type="button"
+							variant="ghost"
+							size="sm"
+							disabled={complete.isPending}
+							onClick={() => setTaskOpen(true)}
+						>
+							{entry.taskPermissions?.canEdit ? "Edit / history" : "History"}
+						</Button>
+						{taskOpen && (
+							<TaskEditor
+								taskId={entry.id}
+								onClose={() => setTaskOpen(false)}
+							/>
+						)}
+					</div>
+				)}
 				<div className="flex min-w-0 items-baseline gap-3">
 					<div className="min-w-0 flex-1 space-y-0.5">
 						{headline ? (

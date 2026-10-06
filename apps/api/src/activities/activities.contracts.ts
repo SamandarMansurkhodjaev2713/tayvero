@@ -59,7 +59,8 @@ export const activityCreateInput = z
 		subject: z.string().trim().optional(),
 		body: z.string().trim().optional(),
 		occurredAt: z.string().optional(),
-		dueAt: z.string().nullable().optional(),
+		dueAt: z.iso.datetime({ offset: true }).nullable().optional(),
+		assigneeId: z.string().min(1).nullable().optional(),
 		companyId: z.string().optional(),
 		contactId: z.string().optional(),
 		dealId: z.string().optional(),
@@ -73,6 +74,14 @@ export const activityCreateInput = z
 			message: "A task needs a subject — it is the thing to do.",
 			path: ["subject"],
 		},
+	)
+	.refine(
+		(input) =>
+			input.type === ActivityType.TASK || input.assigneeId === undefined,
+		{
+			message: "Only tasks have an assignee.",
+			path: ["assigneeId"],
+		},
 	);
 
 export type ActivityCreateInput = z.infer<typeof activityCreateInput>;
@@ -80,7 +89,53 @@ export type ActivityCreateInput = z.infer<typeof activityCreateInput>;
 export const completeInput = z.object({
 	id: z.string(),
 	completed: z.boolean().default(true),
+	expectedVersion: z.number().int().nonnegative().optional(),
 });
+
+const taskState = z.object({
+	assigneeId: z.string().nullable(),
+	assigneeName: z.string().nullable().default(null),
+	dueAt: z.string().nullable(),
+	completedAt: z.string().nullable(),
+});
+export const taskIdInput = z.object({ id: z.string().min(1) });
+export const taskUpdateInput = z
+	.object({
+		id: z.string().min(1),
+		expectedVersion: z.number().int().nonnegative(),
+		dueAt: z.iso.datetime({ offset: true }).nullable().optional(),
+		assigneeId: z.string().min(1).nullable().optional(),
+	})
+	.refine(
+		(input) => input.dueAt !== undefined || input.assigneeId !== undefined,
+		{ message: "Choose an assignee or deadline to change." },
+	);
+export type TaskUpdateInput = z.infer<typeof taskUpdateInput>;
+export const taskQueueInput = z.object({
+	scope: z.enum(["me", "team"]).default("me"),
+	status: z.enum(["open", "completed", "all"]).default("open"),
+	window: z.enum(["all", "overdue", "upcoming"]).default("all"),
+	assigneeId: z.string().min(1).nullable().optional(),
+	createdById: z.string().min(1).optional(),
+	page: z.number().int().min(0).max(10000).default(0),
+	limit: z.number().int().min(1).max(100).default(25),
+});
+export type TaskQueueInput = z.infer<typeof taskQueueInput>;
+export const taskHistoryInput = taskIdInput.extend({
+	limit: z.number().int().min(1).max(100).default(50),
+});
+export const taskHistoryOutput = z.array(
+	z.object({
+		id: z.string(),
+		actor: z.object({ id: z.string(), name: z.string() }),
+		action: z.enum(["CREATED", "UPDATED", "COMPLETED", "REOPENED"]),
+		before: taskState.nullable(),
+		after: taskState,
+		taskVersion: z.number().int().nonnegative(),
+		createdAt: z.string(),
+	}),
+);
+export type TaskHistoryEntry = z.infer<typeof taskHistoryOutput>[number];
 
 export const myTasksInput = z.object({
 	window: z.enum(["overdue", "upcoming", "all"]).default("all"),
@@ -148,6 +203,13 @@ export const activityEntryOutput = z.object({
 	completedAt: z.string().nullable(),
 	meta: activityMeta,
 	createdAt: z.string(),
+	updatedAt: z.string(),
+	taskVersion: z.number().int().nonnegative(),
+	assignee: activityAuthorOutput.nullable(),
+	assigneeActive: z.boolean().nullable(),
+	taskPermissions: z
+		.object({ canEdit: z.boolean(), canReassign: z.boolean() })
+		.nullable(),
 	createdBy: activityAuthorOutput,
 	company: activityCompanyRefOutput,
 	contact: activityContactRefOutput,
@@ -177,6 +239,18 @@ export const timelineCountsOutput = z.object({
 export type TimelineCounts = z.infer<typeof timelineCountsOutput>;
 
 export const myTasksOutput = z.array(activityEntryOutput);
+export const taskQueueOutput = z.object({
+	rows: z.array(activityEntryOutput),
+	total: z.number().int().nonnegative(),
+	counts: z.object({
+		open: z.number().int().nonnegative(),
+		completed: z.number().int().nonnegative(),
+		overdue: z.number().int().nonnegative(),
+		unassigned: z.number().int().nonnegative(),
+	}),
+	viewerRole: z.enum(["owner", "admin", "member"]),
+});
+export type TaskQueueResult = z.infer<typeof taskQueueOutput>;
 
 export const activityCreateOutput = activityEntryOutput;
 

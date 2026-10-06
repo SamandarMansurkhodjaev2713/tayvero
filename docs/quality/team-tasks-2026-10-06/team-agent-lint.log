@@ -1,0 +1,47 @@
+apps\agent\agent\lib\run-runtime.ts:262:6 lint/complexity/useOptionalChain  FIXABLE  ━━━━━━━━━━━━━━━
+
+  ! Change to an optional chain.
+
+    260 │ 		},
+    261 │ 	});
+  > 262 │ 	if (!run || run.status !== "RUNNING") return false;
+        │ 	    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    263 │
+    264 │ 	try {
+
+  i Unsafe fix: Change to an optional chain.
+
+     260  260 │       },
+     261  261 │     });
+     262      │ - → if·(!run·||·run.status·!==·"RUNNING")·return·false;
+          262 │ + → if·(run?.status·!==·"RUNNING")·return·false;
+     263  263 │
+     264  264 │     try {
+
+
+apps\agent\agent\lib\run-runtime.ts:286:6 lint/complexity/useOptionalChain  FIXABLE  ━━━━━━━━━━━━━━━
+
+  ! Change to an optional chain.
+
+    284 │ 		},
+    285 │ 	});
+  > 286 │ 	if (!run || run.status !== "RUNNING") return false;
+        │ 	    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    287 │
+    288 │ 	try {
+
+  i Unsafe fix: Change to an optional chain.
+
+     284  284 │       },
+     285  285 │     });
+     286      │ - → if·(!run·||·run.status·!==·"RUNNING")·return·false;
+          286 │ + → if·(run?.status·!==·"RUNNING")·return·false;
+     287  287 │
+     288  288 │     try {
+
+
+Skipped 2 suggested fixes.
+If you wish to apply the suggested (unsafe) fixes, use the command biome check --write --unsafe
+
+Checked 1 file in 49ms. No fixes applied.
+Found 2 warnings.

@@ -137,7 +137,7 @@ export class DashboardService {
 					type: ActivityType.TASK,
 					completedAt: null,
 					dueAt: { lt: now },
-					createdById: actingUserId,
+					...(mine ? { assigneeId: actingUserId } : {}),
 				},
 				orderBy: [{ dueAt: "asc" }],
 				take: 10,

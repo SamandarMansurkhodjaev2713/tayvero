@@ -128,6 +128,11 @@ describe("real signed sessions and optional workspace onboarding (HTTP/PostgreSQ
 			}),
 		);
 		await cleanup(() =>
+			db.taskAuditEvent.deleteMany({
+				where: { workspaceId: WORKSPACE_ID, taskId: { in: activityIds } },
+			}),
+		);
+		await cleanup(() =>
 			db.activity.deleteMany({ where: { id: { in: activityIds } } }),
 		);
 		await cleanup(() => db.deal.deleteMany({ where: { id: { in: dealIds } } }));

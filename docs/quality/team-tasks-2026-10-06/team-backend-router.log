@@ -1,0 +1,6 @@
+$ nestjs-trpc generate -e src/app.module.ts -r "**/*.router.ts" -o src/generated
+✓ Generated server.ts successfully!
+
+  Output:     C:\Users\sam4k\Downloads\AgenrCRM_OS\crm-release\apps\api\src/generated\server.ts
+  Routers:    24
+  Procedures: 189

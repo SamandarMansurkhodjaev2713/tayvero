@@ -394,6 +394,25 @@ export async function executeRunActivitySideEffect(
 			if (activeRun.status !== "RUNNING") {
 				throw new Error("This agent run is not active.");
 			}
+			// Assignment derives from the trusted run principal, never model input.
+			// A departed principal leaves a visible unassigned task for the team.
+			const authorId = run.initiatedById ?? run.agent.createdById;
+			const [member] =
+				input.type === "TASK"
+					? await tx.$queryRaw<Array<{ role: string }>>`
+						SELECT role FROM "member"
+						WHERE "organizationId" = ${WORKSPACE_ID} AND "userId" = ${authorId}
+						FOR SHARE
+					`
+					: [];
+			const assigneeId =
+				member && ["owner", "admin", "member"].includes(member.role)
+					? authorId
+					: null;
+			const existingActivity = await tx.activity.findUnique({
+				where: { id: activityId },
+				select: { id: true },
+			});
 			await tx.activity.upsert({
 				where: { id: activityId },
 				create: {
@@ -406,7 +425,8 @@ export async function executeRunActivitySideEffect(
 					companyId: target.companyId,
 					contactId: target.contactId,
 					dealId: target.dealId,
-					createdById: run.initiatedById ?? run.agent.createdById,
+					createdById: authorId,
+					assigneeId,
 					meta: {
 						source: "agent",
 						agentId: run.agentId,
@@ -417,6 +437,28 @@ export async function executeRunActivitySideEffect(
 				},
 				update: {},
 			});
+			if (input.type === "TASK" && !existingActivity) {
+				const author = await tx.user.findUniqueOrThrow({
+					where: { id: authorId },
+					select: { name: true },
+				});
+				await tx.taskAuditEvent.create({
+					data: {
+						workspaceId: WORKSPACE_ID,
+						taskId: activityId,
+						actorId: authorId,
+						actorName: author.name,
+						action: "CREATED",
+						after: {
+							assigneeId,
+							assigneeName: assigneeId ? author.name : null,
+							dueAt: dueAt?.toISOString() ?? null,
+							completedAt: null,
+						},
+						taskVersion: 0,
+					},
+				});
+			}
 
 			if (target.companyId) {
 				await tx.company.update({
