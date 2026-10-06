@@ -1,6 +1,6 @@
 {
 	"schemaVersion": 1,
-	"generatedAt": "2026-10-05T14:14:01.545Z",
+	"generatedAt": "2026-10-05T14:16:55.374Z",
 	"tenantModels": {
 		"crmDealPipelineAssignment": "workspaceId",
 		"crmLegacyDealStageMapping": "workspaceId",
@@ -24,7 +24,7 @@
 		"ssoProvider": "organizationId"
 	},
 	"counts": {
-		"sourceFilesScanned": 991,
+		"sourceFilesScanned": 990,
 		"tenantModels": 20,
 		"findings": 15,
 		"high": 1,

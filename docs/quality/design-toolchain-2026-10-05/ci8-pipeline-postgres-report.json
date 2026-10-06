@@ -1,0 +1,69 @@
+{
+	"stage": "CRM-PIPE-POSTGRES-005",
+	"scopeId": "CRM-PIPE-POSTGRES-005",
+	"artifactState": "VERIFIED_CHECKPOINT",
+	"criticalChecksPassed": true,
+	"nextScopeId": "CRM-PIPE-SHADOW-READ-006",
+	"generatedAt": "2026-10-05T13:37:42.937Z",
+	"safety": {
+		"requiresExplicitTestDatabase": true,
+		"requiresTestDatabaseSuffix": "_test",
+		"fallsBackToDatabaseUrl": false,
+		"testEqualsLiveRejected": true,
+		"canonicalDatabaseIdentityChecked": true,
+		"remoteDatabaseRequiresExplicitOptIn": true,
+		"automaticDatabaseReset": false
+	},
+	"environment": {
+		"bunPresent": true,
+		"depsPresent": true,
+		"testDatabaseConfigured": true
+	},
+	"blockers": [],
+	"commands": [
+		{
+			"label": "Create/migrate isolated PostgreSQL test database",
+			"command": "bun run --cwd packages/db db:test",
+			"status": "passed",
+			"exitCode": 0,
+			"error": null,
+			"stdoutTail": "  created tayvero_pipeline_test\nDatasource \"db\": PostgreSQL database \"tayvero_pipeline_test\", schema \"public\" at \"127.0.0.1:5432\"\n\n66 migrations found in prisma/migrations\n\nApplying migration `20260731150000_init`\nApplying migration `20260731160000_remove_organizations`\nApplying migration `20260731164536_add_crm_models`\nApplying migration `20260731200000_add_google_sync`\nApplying migration `20260731210000_forward_only_sync`\nApplying migration `20260731220000_denormalise_last_activity`\nApplying migration `20260731230000_logo_dark_mode`\nApplying migration `20260801000000_contact_avatar`\nApplying migration `20260801120000_contact_summary_and_socials`\nApplying migration `20260801130000_contact_socials_checked`\nApplying migration `20260801140000_contact_intelligence`\nApplying migration `20260801160000_agent_conversations`\nApplying migration `20260801170000_conversations_on_deals`\nApplying migration `20260801180000_task_timeline_position`\nApplying migration `20260801190000_agent_task_attempts`\nApplying migration `20260802120000_app_settings`\nApplying migration `20260803151440_add_workspace_organization`\nApplying migration `20260803160044_add_sso_provider`\nApplying migration `20260803162518_workspace_profile`\nApplying migration `20260803190000_workspace_onboarded_metadata`\nApplying migration `20260803200000_blank_website_is_not_onboarded`\nApplying migration `20260803210000_agent_builder_foundation`\nApplying migration `20260803210000_suppressed_contact`\nApplying migration `20260803220000_context_dev_api_key`\nApplying migration `20260804160000_agent_conversation_command_type`\nApplying migration `20260804210000_agent_builder_artifacts`\nApplying migration `20260805120000_deal_description`\nApplying migration `20260805130000_builder_submission_concurrency`\nApplying migration `20260805130000_multi_currency`\nApplying migration `20260805140000_single_active_conversation_share`\nApplying migration `20260805150000_deal_base_currency`\nApplying migration `20260805160000_telemetry_install`\nApplying migration `20260805220000_conversation_attachments`\nApplying migration `20260806140000_dynamic_fields`\nApplying migration `20260806150000_field_value_record_indexes_and_user_fk`\nApplying migration `20260806160000_agent_version_model_context_window`\nApplying migration `20260807120000_outlook_mail`\nApplying migration `20260809120000_slack_member_matches`\nApplying migration `20260810090000_agent_conversation_pending_input`\nApplying migration `20260810100000_agent_task_deal_events`\nApplying migration `20260810110000_agent_event_conversation`\nApplying migration `20260810111000_canonical_builder_tokens`\nApplying migration `20260810120000_plural_agent_triggers`\nApplying migration `20260810120000_website_tracking`\nApplying migration `20260810130000_drop_unused_slack_unmatched`\nApplying migration `20260810130000_tracking_hardening`\nApplying migration `20260810140000_source_attribution`\nApplying migration `20260811050330_slack_workspace_grant`\nApplying migration `20260811212311_slack_install_cancel_delivery_task_subject`\nApplying migration `20260820150251_archive_crm_records`\nApplying migration `20260820150700_list_building_fields`\nApplying migration `20260820152910_add_api_keys`\nApplying migration `20260820154345_saved_views`\nApplying migration `20260820154825_field_show_on_filter`\nApplying migration `20260820160000_backfill_seniority_function`\nApplying migration `20260820161500_archive_scoped_uniqueness`\nApplying migration `20260831190000_configurable_pipeline_and_migration_center`\nApplying migration `20260831190000_governed_action_execution`\nApplying migration `20260901150000_pipeline_api_runtime`\nApplying migration `20260905120000_deal_stage_dual_write_bridge`\nApplying migration `20260905133000_migration_runtime_durability`\nApplying migration `20260914090000_migration_source_and_receipts`\nApplying migration `20260914100000_bound_action_approvals`\nApplying migration `20260915100000_approval_continuation`\nApplying migration `20260918090000_migration_source_lifecycle`\nApplying migration `20260918091000_background_import`\n\nThe following migration(s) have been applied:\n\nmigrations/\n  └─ 20260731150000_init/\n    └─ migration.sql\n  └─ 20260731160000_remove_organizations/\n    └─ migration.sql\n  └─ 20260731164536_add_crm_models/\n    └─ migration.sql\n  └─ 20260731200000_add_google_sync/\n    └─ migration.sql\n  └─ 20260731210000_forward_only_sync/\n    └─ migration.sql\n  └─ 20260731220000_denormalise_last_activity/\n    └─ migration.sql\n  └─ 20260731230000_logo_dark_mode/\n    └─ migration.sql\n  └─ 20260801000000_contact_avatar/\n    └─ migration.sql\n  └─ 20260801120000_contact_summary_and_socials/\n    └─ migration.sql\n  └─ 20260801130000_contact_socials_checked/\n    └─ migration.sql\n  └─ 20260801140000_contact_intelligence/\n    └─ migration.sql\n  └─ 20260801160000_agent_conversations/\n    └─ migration.sql\n  └─ 20260801170000_conversations_on_deals/\n    └─ migration.sql\n  └─ 20260801180000_task_timeline_position/\n    └─ migration.sql\n  └─ 20260801190000_agent_task_attempts/\n    └─ migration.sql\n  └─ 20260802120000_app_settings/\n    └─ migration.sql\n  └─ 20260803151440_add_workspace_organization/\n    └─ migration.sql\n  └─ 20260803160044_add_sso_provider/\n    └─ migration.sql\n  └─ 20260803162518_workspace_profile/\n    └─ migration.sql\n  └─ 20260803190000_workspace_onboarded_metadata/\n    └─ migration.sql\n  └─ 20260803200000_blank_website_is_not_onboarded/\n    └─ migration.sql\n  └─ 20260803210000_agent_builder_foundation/\n    └─ migration.sql\n  └─ 20260803210000_suppressed_contact/\n    └─ migration.sql\n  └─ 20260803220000_context_dev_api_key/\n    └─ migration.sql\n  └─ 20260804160000_agent_conversation_command_type/\n    └─ migration.sql\n  └─ 20260804210000_agent_builder_artifacts/\n    └─ migration.sql\n  └─ 20260805120000_deal_description/\n    └─ migration.sql\n  └─ 20260805130000_builder_submission_concurrency/\n    └─ migration.sql\n  └─ 20260805130000_multi_currency/\n    └─ migration.sql\n  └─ 20260805140000_single_active_conversation_share/\n    └─ migration.sql\n  └─ 20260805150000_deal_base_currency/\n    └─ migration.sql\n  └─ 20260805160000_telemetry_install/\n    └─ migration.sql\n  └─ 20260805220000_conversation_attachments/\n    └─ migration.sql\n  └─ 20260806140000_dynamic_fields/\n    └─ migration.sql\n  └─ 20260806150000_field_value_record_indexes_and_user_fk/\n    └─ migration.sql\n  └─ 20260806160000_agent_version_model_context_window/\n    └─ migration.sql\n  └─ 20260807120000_outlook_mail/\n    └─ migration.sql\n  └─ 20260809120000_slack_member_matches/\n    └─ migration.sql\n  └─ 20260810090000_agent_conversation_pending_input/\n    └─ migration.sql\n  └─ 20260810100000_agent_task_deal_events/\n    └─ migration.sql\n  └─ 20260810110000_agent_event_conversation/\n    └─ migration.sql\n  └─ 20260810111000_canonical_builder_tokens/\n    └─ migration.sql\n  └─ 20260810120000_plural_agent_triggers/\n    └─ migration.sql\n  └─ 20260810120000_website_tracking/\n    └─ migration.sql\n  └─ 20260810130000_drop_unused_slack_unmatched/\n    └─ migration.sql\n  └─ 20260810130000_tracking_hardening/\n    └─ migration.sql\n  └─ 20260810140000_source_attribution/\n    └─ migration.sql\n  └─ 20260811050330_slack_workspace_grant/\n    └─ migration.sql\n  └─ 20260811212311_slack_install_cancel_delivery_task_subject/\n    └─ migration.sql\n  └─ 20260820150251_archive_crm_records/\n    └─ migration.sql\n  └─ 20260820150700_list_building_fields/\n    └─ migration.sql\n  └─ 20260820152910_add_api_keys/\n    └─ migration.sql\n  └─ 20260820154345_saved_views/\n    └─ migration.sql\n  └─ 20260820154825_field_show_on_filter/\n    └─ migration.sql\n  └─ 20260820160000_backfill_seniority_function/\n    └─ migration.sql\n  └─ 20260820161500_archive_scoped_uniqueness/\n    └─ migration.sql\n  └─ 20260831190000_configurable_pipeline_and_migration_center/\n    └─ migration.sql\n  └─ 20260831190000_governed_action_execution/\n    └─ migration.sql\n  └─ 20260901150000_pipeline_api_runtime/\n    └─ migration.sql\n  └─ 20260905120000_deal_stage_dual_write_bridge/\n    └─ migration.sql\n  └─ 20260905133000_migration_runtime_durability/\n    └─ migration.sql\n  └─ 20260914090000_migration_source_and_receipts/\n    └─ migration.sql\n  └─ 20260914100000_bound_action_approvals/\n    └─ migration.sql\n  └─ 20260915100000_approval_continuation/\n    └─ migration.sql\n  └─ 20260918090000_migration_source_lifecycle/\n    └─ migration.sql\n  └─ 20260918091000_background_import/\n    └─ migration.sql\n\nAll migrations have been successfully applied.\n",
+			"stderrTail": "$ bun scripts/test-db.ts\nLoaded Prisma config from prisma.config.ts.\n\nPrisma schema loaded from prisma/schema.prisma.\n┌─────────────────────────────────────────────────────────┐\n│  Update available 7.9.1 -> 8.0.0-rc.19                  │\n│                                                         │\n│  This is a major update - please follow the guide at    │\n│  https://pris.ly/d/major-version-upgrade                │\n│                                                         │\n│  Run the following to update                            │\n│    npm i --save-dev prisma@latest                       │\n│    npm i @prisma/client@latest                          │\n└─────────────────────────────────────────────────────────┘\n",
+			"startedAt": "2026-10-05T13:37:36.439Z",
+			"endedAt": "2026-10-05T13:37:40.591Z",
+			"durationMs": 4152
+		},
+		{
+			"label": "Generate Prisma client for integration tests",
+			"command": "bun run --cwd packages/db db:generate",
+			"status": "passed",
+			"exitCode": 0,
+			"error": null,
+			"stdoutTail": "\n✔ Generated Prisma Client (7.9.1) to ./src/generated/prisma in 602ms\n\n",
+			"stderrTail": "$ prisma generate\nLoaded Prisma config from prisma.config.ts.\n\nPrisma schema loaded from prisma/schema.prisma.\n",
+			"startedAt": "2026-10-05T13:37:40.591Z",
+			"endedAt": "2026-10-05T13:37:42.393Z",
+			"durationMs": 1802
+		},
+		{
+			"label": "Deal pipeline PostgreSQL transaction/rollback/concurrency suite",
+			"command": "bun test --preload ./apps/api/test/setup.ts apps/api/test/deal-pipeline-dual-write.integration.spec.ts",
+			"status": "passed",
+			"exitCode": 0,
+			"error": null,
+			"stdoutTail": "bun test v1.3.12 (700fc117)\n",
+			"stderrTail": "\n::group::apps/api/test/deal-pipeline-dual-write.integration.spec.ts:\n(pass) legacy Deal.stage -> configurable pipeline PostgreSQL bridge > creates the sidecar assignment transactionally and preserves enteredAt [27.00ms]\n(pass) legacy Deal.stage -> configurable pipeline PostgreSQL bridge > rolls back the legacy write if strict mapping is missing [24.00ms]\n(pass) legacy Deal.stage -> configurable pipeline PostgreSQL bridge > serializes simultaneous stage transitions and leaves legacy plus sidecar consistent [32.00ms]\n\n::endgroup::\n\n 3 pass\n 0 fail\n 13 expect() calls\nRan 3 tests across 1 file. [532.00ms]\n",
+			"startedAt": "2026-10-05T13:37:42.393Z",
+			"endedAt": "2026-10-05T13:37:42.937Z",
+			"durationMs": 544
+		}
+	],
+	"testSummary": {
+		"tests": 3,
+		"pass": 3,
+		"fail": 0,
+		"skipped": 0,
+		"cancelled": 0,
+		"todo": 0
+	}
+}

@@ -56,4 +56,7 @@ yarn-error.log*
 /packages/db/src/generated/
 /apps/app/next-env.d.ts
 /*.log
+!/MASTER_BUILD.log
 /.impeccable/cache/
+__pycache__/
+*.pyc

@@ -1,8 +1,8 @@
 {
 	"schemaVersion": 3,
-	"releaseDate": "2026-10-05",
+	"releaseDate": "2026-10-06",
 	"releaseTimezone": "Asia/Tashkent",
-	"generatedAt": "2026-10-05T13:06:41.294Z",
+	"generatedAt": "2026-10-05T14:21:46.298188+00:00",
 	"source": {
 		"kind": "existing extracted checkout",
 		"path": "crm-release/",
@@ -14,15 +14,16 @@
 		"reason": "Original archive absent. Inherited checkpoint report preserved as historical claims, not fresh proof."
 	},
 	"artifact": {
-		"name": "tayvero-master-2026-10-05.zip",
+		"name": "tayvero-master-2026-10-06.zip",
 		"root": "crm-release/",
 		"sha256": "EXTERNAL_SIDECAR_AFTER_PACKAGING",
-		"crc": "PENDING_PACKAGING",
-		"freshExtract": "PENDING_PACKAGING"
+		"crc": "EXTERNAL_VERIFIED_SIDECAR_AFTER_PACKAGING",
+		"freshExtract": "EXTERNAL_VERIFIED_SIDECAR_AFTER_PACKAGING",
+		"packager": "tools/release/package-master-checkpoint.py"
 	},
 	"releaseClassification": {
 		"wholeProductProductionReady": false,
-		"product": "FRONTEND_VERIFIED_INTEGRATION_ACCEPTANCE_REQUIRED"
+		"product": "SOURCE_GATES_VERIFIED_AUTHENTICATED_ACCEPTANCE_REQUIRED"
 	},
 	"publication": {
 		"repository": "https://github.com/SamandarMansurkhodjaev2713/tayvero",
@@ -46,21 +47,25 @@
 	],
 	"checks": {
 		"windowsLocal": {
-			"tests": 575,
-			"pass": 502,
+			"tests": 584,
+			"pass": 511,
 			"fail": 73,
 			"skipped": 0,
 			"status": "FAILED_UNSUPPORTED_POSIX_HOST",
-			"scope": "Snapshot before two additional redaction regressions; original POSIX tests retained."
+			"scope": "Final source Windows replay retained the same 73 POSIX-unsupported failures, zero skips; exact fresh artifact replay recorded externally.",
+			"cancelled": 0,
+			"todo": 0,
+			"failureSet": "docs/quality/windows-retained-posix-failures.json"
 		},
 		"linuxLocal": {
-			"tests": 580,
-			"pass": 580,
+			"tests": 584,
+			"pass": 584,
 			"fail": 0,
 			"skipped": 0,
 			"cancelled": 0,
 			"status": "PASSED",
-			"run": "https://github.com/SamandarMansurkhodjaev2713/tayvero/actions/runs/37315398522"
+			"run": "https://github.com/SamandarMansurkhodjaev2713/tayvero/actions/runs/37323135330",
+			"todo": 0
 		},
 		"semantic": {
 			"tasksPassed": 13,
@@ -90,22 +95,31 @@
 		},
 		"pipelinePostgres": {
 			"status": "VERIFIED_DISPOSABLE_POSTGRES",
-			"run": "37315398522",
-			"scope": "Disposable job-local PostgreSQL, detailed runner evidence pending retrieval.",
+			"run": "37323135330",
+			"scope": "Executed against disposable CI PostgreSQL; runner reports and logs retained in docs/quality.",
 			"tests": 3,
 			"passed": 3,
 			"failed": 0,
 			"skipped": 0,
-			"evidence": "docs/quality/design-toolchain-2026-10-05/ci5-pipeline-postgres-report.json"
+			"evidence": "docs/quality/design-toolchain-review.json",
+			"pass": 3,
+			"fail": 0,
+			"cancelled": 0,
+			"todo": 0
 		},
 		"operationsPostgres": {
 			"status": "VERIFIED_DISPOSABLE_POSTGRES",
-			"run": "37315398522",
+			"run": "37323135330",
 			"tests": 17,
 			"passed": 17,
 			"failed": 0,
 			"skipped": 0,
-			"evidence": "docs/quality/design-toolchain-2026-10-05/ci5-operations-postgres-report.json"
+			"evidence": "docs/quality/design-toolchain-review.json",
+			"pass": 17,
+			"fail": 0,
+			"cancelled": 0,
+			"todo": 0,
+			"scope": "Executed against disposable CI PostgreSQL; runner reports and logs retained in docs/quality."
 		},
 		"providers": {
 			"status": "NOT_VERIFIED"
@@ -116,7 +130,82 @@
 		"deployedSchema": {
 			"status": "VERIFIED_EMPTY_DIFF",
 			"sqlExecuted": false,
-			"run": "37315398522"
+			"run": "37323135330"
+		},
+		"fullQualityGate": {
+			"status": "PASSED",
+			"run": "https://github.com/SamandarMansurkhodjaev2713/tayvero/actions/runs/37323135330",
+			"sourceCommit": "7b0906330874ac8bd561ce928534520e2acce645",
+			"rootQuality": {
+				"status": "passed",
+				"exitCode": 0,
+				"allRequiredCommandsPassed": true,
+				"formatPassed": true,
+				"lintTasksPassed": 9,
+				"lintTasksCached": 0,
+				"semanticTasksPassed": 13,
+				"semanticTasksCached": 0,
+				"testTurboTasksPassed": 18,
+				"testPrerequisitesCached": 2
+			},
+			"bunLeafAggregate": {
+				"tests": 1437,
+				"pass": 1437,
+				"fail": 0,
+				"skipped": 0,
+				"todo": 0,
+				"complete": true,
+				"completedLeafTasks": 8,
+				"cachedTestTasks": [],
+				"incompleteLeafTasks": [],
+				"excludesRepeatedRootNodeAndSeparatePostgresSuites": true
+			},
+			"build": {
+				"executed": true,
+				"tasksPassed": 4,
+				"tasksTotal": 4,
+				"tasksCached": 2,
+				"durationSeconds": 36.21,
+				"nextPages": 36,
+				"nextPagesTotal": 36,
+				"nextStatus": "passed",
+				"nextCompileSeconds": 22.2,
+				"nextTypesSeconds": 10.4,
+				"nextPrerenderMilliseconds": 986,
+				"eveStatus": "native production packaging passed"
+			},
+			"finalSecurity": {
+				"executed": true,
+				"status": "passed",
+				"allSubcommandsPassed": true,
+				"tests": 26,
+				"passed": 26,
+				"failed": 0,
+				"skipped": 0,
+				"cancelled": 0,
+				"todo": 0,
+				"vaultConfigurationPassed": true,
+				"tenantAuditPassed": true,
+				"tenantFindings": 15,
+				"newTenantFindings": 0,
+				"sourceFingerprintsUnchanged": true,
+				"baselineExpanded": false
+			},
+			"evidence": "docs/quality/design-toolchain-review.json"
+		},
+		"linuxMonorepoBuild": {
+			"executed": true,
+			"tasksPassed": 4,
+			"tasksTotal": 4,
+			"tasksCached": 2,
+			"durationSeconds": 36.21,
+			"nextPages": 36,
+			"nextPagesTotal": 36,
+			"nextStatus": "passed",
+			"nextCompileSeconds": 22.2,
+			"nextTypesSeconds": 10.4,
+			"nextPrerenderMilliseconds": 986,
+			"eveStatus": "native production packaging passed"
 		}
 	},
 	"safety": {
@@ -134,5 +223,17 @@
 		"Localization is partial RU/UZ/EN on operating screens; other routes retain English.",
 		"Dedicated workspace deployment; shared-database multi-tenant SaaS readiness not claimed.",
 		"CSV/TSV contact/company import only; original bounded lifecycle/worker contracts unchanged."
+	],
+	"reviewEvidence": [
+		"docs/quality/design-shared-review.md",
+		"docs/quality/design-operations-review.md",
+		"docs/quality/design-agent-team-review.md",
+		"docs/quality/design-landing-review.md",
+		"docs/quality/design-finish-review.md",
+		"docs/quality/design-format-review.md",
+		"docs/quality/design-lint-review.md",
+		"docs/quality/design-baseline-review.md",
+		"docs/quality/design-release-review.md",
+		"docs/quality/publication-review.md"
 	]
 }

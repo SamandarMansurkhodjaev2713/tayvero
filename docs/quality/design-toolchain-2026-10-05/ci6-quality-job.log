@@ -159,8 +159,8 @@ quality	Checkout	2026-10-05T13:26:11.5349389Z   allow-unsafe-pr-checkout: false
 quality	Checkout	2026-10-05T13:26:11.5349860Z env:
 quality	Checkout	2026-10-05T13:26:11.5350037Z   CI: true
 quality	Checkout	2026-10-05T13:26:11.5350223Z   CRM_TELEMETRY_DISABLED: true
-quality	Checkout	2026-10-05T13:26:11.5350555Z   DATABASE_URL: postgresql://postgres@127.0.0.1:5432/crm_build
-quality	Checkout	2026-10-05T13:26:11.5351065Z   TEST_DATABASE_URL: postgresql://postgres@127.0.0.1:5432/tayvero_test
+quality	Checkout	2026-10-05T13:26:11.5350555Z   DATABASE_URL: [REDACTED_DATABASE_URL]
+quality	Checkout	2026-10-05T13:26:11.5351065Z   TEST_DATABASE_URL: [REDACTED_DATABASE_URL]
 quality	Checkout	2026-10-05T13:26:11.5351445Z   ALLOWED_SIGN_IN: example.test
 quality	Checkout	2026-10-05T13:26:11.5351721Z   CREDENTIAL_VAULT_ACTIVE_KEY_ID: ci-ephemeral
 quality	Checkout	2026-10-05T13:26:11.5352018Z   CREDENTIAL_VAULT_ENFORCE: true
@@ -229,8 +229,8 @@ quality	Set up Bun	2026-10-05T13:26:12.6658036Z   token: ***
 quality	Set up Bun	2026-10-05T13:26:12.6658240Z env:
 quality	Set up Bun	2026-10-05T13:26:12.6658413Z   CI: true
 quality	Set up Bun	2026-10-05T13:26:12.6658607Z   CRM_TELEMETRY_DISABLED: true
-quality	Set up Bun	2026-10-05T13:26:12.6658945Z   DATABASE_URL: postgresql://postgres@127.0.0.1:5432/crm_build
-quality	Set up Bun	2026-10-05T13:26:12.6659394Z   TEST_DATABASE_URL: postgresql://postgres@127.0.0.1:5432/tayvero_test
+quality	Set up Bun	2026-10-05T13:26:12.6658945Z   DATABASE_URL: [REDACTED_DATABASE_URL]
+quality	Set up Bun	2026-10-05T13:26:12.6659394Z   TEST_DATABASE_URL: [REDACTED_DATABASE_URL]
 quality	Set up Bun	2026-10-05T13:26:12.6659772Z   ALLOWED_SIGN_IN: example.test
 quality	Set up Bun	2026-10-05T13:26:12.6660048Z   CREDENTIAL_VAULT_ACTIVE_KEY_ID: ci-ephemeral
 quality	Set up Bun	2026-10-05T13:26:12.6660353Z   CREDENTIAL_VAULT_ENFORCE: true
@@ -253,8 +253,8 @@ quality	Generate job-local keys (not deployment credentials)	2026-10-05T13:26:14
 quality	Generate job-local keys (not deployment credentials)	2026-10-05T13:26:14.0788540Z env:
 quality	Generate job-local keys (not deployment credentials)	2026-10-05T13:26:14.0788751Z   CI: true
 quality	Generate job-local keys (not deployment credentials)	2026-10-05T13:26:14.0788985Z   CRM_TELEMETRY_DISABLED: true
-quality	Generate job-local keys (not deployment credentials)	2026-10-05T13:26:14.0789414Z   DATABASE_URL: postgresql://postgres@127.0.0.1:5432/crm_build
-quality	Generate job-local keys (not deployment credentials)	2026-10-05T13:26:14.0789962Z   TEST_DATABASE_URL: postgresql://postgres@127.0.0.1:5432/tayvero_test
+quality	Generate job-local keys (not deployment credentials)	2026-10-05T13:26:14.0789414Z   DATABASE_URL: [REDACTED_DATABASE_URL]
+quality	Generate job-local keys (not deployment credentials)	2026-10-05T13:26:14.0789962Z   TEST_DATABASE_URL: [REDACTED_DATABASE_URL]
 quality	Generate job-local keys (not deployment credentials)	2026-10-05T13:26:14.0790421Z   ALLOWED_SIGN_IN: example.test
 quality	Generate job-local keys (not deployment credentials)	2026-10-05T13:26:14.0790748Z   CREDENTIAL_VAULT_ACTIVE_KEY_ID: ci-ephemeral
 quality	Generate job-local keys (not deployment credentials)	2026-10-05T13:26:14.0791102Z   CREDENTIAL_VAULT_ENFORCE: true
@@ -265,8 +265,8 @@ quality	Install dependencies	2026-10-05T13:26:14.1099178Z shell: /usr/bin/bash -
 quality	Install dependencies	2026-10-05T13:26:14.1099443Z env:
 quality	Install dependencies	2026-10-05T13:26:14.1099635Z   CI: true
 quality	Install dependencies	2026-10-05T13:26:14.1099852Z   CRM_TELEMETRY_DISABLED: true
-quality	Install dependencies	2026-10-05T13:26:14.1100199Z   DATABASE_URL: postgresql://postgres@127.0.0.1:5432/crm_build
-quality	Install dependencies	2026-10-05T13:26:14.1100702Z   TEST_DATABASE_URL: postgresql://postgres@127.0.0.1:5432/tayvero_test
+quality	Install dependencies	2026-10-05T13:26:14.1100199Z   DATABASE_URL: [REDACTED_DATABASE_URL]
+quality	Install dependencies	2026-10-05T13:26:14.1100702Z   TEST_DATABASE_URL: [REDACTED_DATABASE_URL]
 quality	Install dependencies	2026-10-05T13:26:14.1101101Z   ALLOWED_SIGN_IN: example.test
 quality	Install dependencies	2026-10-05T13:26:14.1101394Z   CREDENTIAL_VAULT_ACTIVE_KEY_ID: ci-ephemeral
 quality	Install dependencies	2026-10-05T13:26:14.1101720Z   CREDENTIAL_VAULT_ENFORCE: true
@@ -277,7 +277,7 @@ quality	Install dependencies	2026-10-05T13:26:14.1103323Z ##[endgroup]
 quality	Install dependencies	2026-10-05T13:26:14.1206409Z bun install v1.3.12 (700fc117)
 quality	Install dependencies	2026-10-05T13:26:14.1356778Z Resolving dependencies
 quality	Install dependencies	2026-10-05T13:26:15.3064806Z Resolved, downloaded and extracted [152]
-quality	Install dependencies	2026-10-05T13:26:32.5753564Z 
+quality	Install dependencies	2026-10-05T13:26:32.5753564Z
 quality	Install dependencies	2026-10-05T13:26:32.5754039Z + @biomejs/biome@2.5.6
 quality	Install dependencies	2026-10-05T13:26:32.5754349Z + @oxlint/plugins@1.78.0
 quality	Install dependencies	2026-10-05T13:26:32.5754604Z + esbuild@0.25.12
@@ -285,7 +285,7 @@ quality	Install dependencies	2026-10-05T13:26:32.5754828Z + knip@6.32.2
 quality	Install dependencies	2026-10-05T13:26:32.5755046Z + oxlint@1.78.0
 quality	Install dependencies	2026-10-05T13:26:32.5755958Z + turbo@2.10.8
 quality	Install dependencies	2026-10-05T13:26:32.5756269Z + typescript@5.9.2 (v7.0.2 available)
-quality	Install dependencies	2026-10-05T13:26:32.5756472Z 
+quality	Install dependencies	2026-10-05T13:26:32.5756472Z
 quality	Install dependencies	2026-10-05T13:26:32.5756580Z 2409 packages installed [18.46s]
 quality	Verify disposable pipeline database	﻿2026-10-05T13:26:32.6915910Z ##[group]Run bun run gate:pipeline-postgres
 quality	Verify disposable pipeline database	2026-10-05T13:26:32.6916337Z ^[[36;1mbun run gate:pipeline-postgres^[[0m
@@ -293,8 +293,8 @@ quality	Verify disposable pipeline database	2026-10-05T13:26:32.6981877Z shell: 
 quality	Verify disposable pipeline database	2026-10-05T13:26:32.6982146Z env:
 quality	Verify disposable pipeline database	2026-10-05T13:26:32.6982345Z   CI: true
 quality	Verify disposable pipeline database	2026-10-05T13:26:32.6982551Z   CRM_TELEMETRY_DISABLED: true
-quality	Verify disposable pipeline database	2026-10-05T13:26:32.6982906Z   DATABASE_URL: postgresql://postgres@127.0.0.1:5432/crm_build
-quality	Verify disposable pipeline database	2026-10-05T13:26:32.6983416Z   TEST_DATABASE_URL: postgresql://postgres@127.0.0.1:5432/tayvero_pipeline_test
+quality	Verify disposable pipeline database	2026-10-05T13:26:32.6982906Z   DATABASE_URL: [REDACTED_DATABASE_URL]
+quality	Verify disposable pipeline database	2026-10-05T13:26:32.6983416Z   TEST_DATABASE_URL: [REDACTED_DATABASE_URL]
 quality	Verify disposable pipeline database	2026-10-05T13:26:32.6983851Z   ALLOWED_SIGN_IN: example.test
 quality	Verify disposable pipeline database	2026-10-05T13:26:32.6984156Z   CREDENTIAL_VAULT_ACTIVE_KEY_ID: ci-ephemeral
 quality	Verify disposable pipeline database	2026-10-05T13:26:32.6984479Z   CREDENTIAL_VAULT_ENFORCE: true
@@ -310,8 +310,8 @@ quality	Verify deployed schema agrees with Prisma (read-only)	2026-10-05T13:26:3
 quality	Verify deployed schema agrees with Prisma (read-only)	2026-10-05T13:26:37.3534095Z env:
 quality	Verify deployed schema agrees with Prisma (read-only)	2026-10-05T13:26:37.3534293Z   CI: true
 quality	Verify deployed schema agrees with Prisma (read-only)	2026-10-05T13:26:37.3534501Z   CRM_TELEMETRY_DISABLED: true
-quality	Verify deployed schema agrees with Prisma (read-only)	2026-10-05T13:26:37.3534904Z   DATABASE_URL: postgresql://postgres@127.0.0.1:5432/tayvero_pipeline_test
-quality	Verify deployed schema agrees with Prisma (read-only)	2026-10-05T13:26:37.3535446Z   TEST_DATABASE_URL: postgresql://postgres@127.0.0.1:5432/tayvero_test
+quality	Verify deployed schema agrees with Prisma (read-only)	2026-10-05T13:26:37.3534904Z   DATABASE_URL: [REDACTED_DATABASE_URL]
+quality	Verify deployed schema agrees with Prisma (read-only)	2026-10-05T13:26:37.3535446Z   TEST_DATABASE_URL: [REDACTED_DATABASE_URL]
 quality	Verify deployed schema agrees with Prisma (read-only)	2026-10-05T13:26:37.3536228Z   ALLOWED_SIGN_IN: example.test
 quality	Verify deployed schema agrees with Prisma (read-only)	2026-10-05T13:26:37.3536546Z   CREDENTIAL_VAULT_ACTIVE_KEY_ID: ci-ephemeral
 quality	Verify deployed schema agrees with Prisma (read-only)	2026-10-05T13:26:37.3536872Z   CREDENTIAL_VAULT_ENFORCE: true
@@ -320,15 +320,15 @@ quality	Verify deployed schema agrees with Prisma (read-only)	2026-10-05T13:26:3
 quality	Verify deployed schema agrees with Prisma (read-only)	2026-10-05T13:26:37.3538347Z   CREDENTIAL_VAULT_KEYS: ***
 quality	Verify deployed schema agrees with Prisma (read-only)	2026-10-05T13:26:37.3538596Z ##[endgroup]
 quality	Verify deployed schema agrees with Prisma (read-only)	2026-10-05T13:26:38.1422172Z Loaded Prisma config from prisma.config.ts.
-quality	Verify deployed schema agrees with Prisma (read-only)	2026-10-05T13:26:38.1422683Z 
+quality	Verify deployed schema agrees with Prisma (read-only)	2026-10-05T13:26:38.1422683Z
 quality	Verify disposable migration and approval database	﻿2026-10-05T13:26:38.4939847Z ##[group]Run bun run gate:operations-postgres
 quality	Verify disposable migration and approval database	2026-10-05T13:26:38.4940529Z ^[[36;1mbun run gate:operations-postgres^[[0m
 quality	Verify disposable migration and approval database	2026-10-05T13:26:38.5034306Z shell: /usr/bin/bash -e {0}
 quality	Verify disposable migration and approval database	2026-10-05T13:26:38.5034753Z env:
 quality	Verify disposable migration and approval database	2026-10-05T13:26:38.5035077Z   CI: true
 quality	Verify disposable migration and approval database	2026-10-05T13:26:38.5035440Z   CRM_TELEMETRY_DISABLED: true
-quality	Verify disposable migration and approval database	2026-10-05T13:26:38.5036279Z   DATABASE_URL: postgresql://postgres@127.0.0.1:5432/crm_build
-quality	Verify disposable migration and approval database	2026-10-05T13:26:38.5037206Z   TEST_DATABASE_URL: postgresql://postgres@127.0.0.1:5432/tayvero_operations_test
+quality	Verify disposable migration and approval database	2026-10-05T13:26:38.5036279Z   DATABASE_URL: [REDACTED_DATABASE_URL]
+quality	Verify disposable migration and approval database	2026-10-05T13:26:38.5037206Z   TEST_DATABASE_URL: [REDACTED_DATABASE_URL]
 quality	Verify disposable migration and approval database	2026-10-05T13:26:38.5037978Z   ALLOWED_SIGN_IN: example.test
 quality	Verify disposable migration and approval database	2026-10-05T13:26:38.5038507Z   CREDENTIAL_VAULT_ACTIVE_KEY_ID: ci-ephemeral
 quality	Verify disposable migration and approval database	2026-10-05T13:26:38.5039083Z   CREDENTIAL_VAULT_ENFORCE: true
@@ -344,8 +344,8 @@ quality	Run repository quality gate	2026-10-05T13:26:44.2519627Z shell: /usr/bin
 quality	Run repository quality gate	2026-10-05T13:26:44.2519895Z env:
 quality	Run repository quality gate	2026-10-05T13:26:44.2520089Z   CI: true
 quality	Run repository quality gate	2026-10-05T13:26:44.2520480Z   CRM_TELEMETRY_DISABLED: true
-quality	Run repository quality gate	2026-10-05T13:26:44.2520838Z   DATABASE_URL: postgresql://postgres@127.0.0.1:5432/crm_build
-quality	Run repository quality gate	2026-10-05T13:26:44.2521325Z   TEST_DATABASE_URL: postgresql://postgres@127.0.0.1:5432/tayvero_test
+quality	Run repository quality gate	2026-10-05T13:26:44.2520838Z   DATABASE_URL: [REDACTED_DATABASE_URL]
+quality	Run repository quality gate	2026-10-05T13:26:44.2521325Z   TEST_DATABASE_URL: [REDACTED_DATABASE_URL]
 quality	Run repository quality gate	2026-10-05T13:26:44.2521723Z   ALLOWED_SIGN_IN: example.test
 quality	Run repository quality gate	2026-10-05T13:26:44.2522016Z   CREDENTIAL_VAULT_ACTIVE_KEY_ID: ci-ephemeral
 quality	Run repository quality gate	2026-10-05T13:26:44.2522328Z   CREDENTIAL_VAULT_ENFORCE: true
@@ -354,7 +354,7 @@ quality	Run repository quality gate	2026-10-05T13:26:44.2523256Z   AGENT_BRIDGE_
 quality	Run repository quality gate	2026-10-05T13:26:44.2523677Z   CREDENTIAL_VAULT_KEYS: ***
 quality	Run repository quality gate	2026-10-05T13:26:44.2523930Z ##[endgroup]
 quality	Run repository quality gate	2026-10-05T13:26:44.2620296Z $ node scripts/quality-gate.mjs && bun run security:gate
-quality	Run repository quality gate	2026-10-05T13:26:44.2908378Z 
+quality	Run repository quality gate	2026-10-05T13:26:44.2908378Z
 quality	Run repository quality gate	2026-10-05T13:26:44.2908797Z > /usr/local/bin/node tools/quality/run-local-tests.mjs
 quality	Run repository quality gate	2026-10-05T13:26:44.3874391Z TAP version 13
 quality	Run repository quality gate	2026-10-05T13:26:44.5497913Z # Subtest: continuation token admits only the exact session/decision body and preserves principal
@@ -3846,39 +3846,39 @@ quality	Run repository quality gate	2026-10-05T13:26:53.9591724Z # cancelled 0
 quality	Run repository quality gate	2026-10-05T13:26:53.9591939Z # skipped 0
 quality	Run repository quality gate	2026-10-05T13:26:53.9592138Z # todo 0
 quality	Run repository quality gate	2026-10-05T13:26:53.9592335Z # duration_ms 9597.740541
-quality	Run repository quality gate	2026-10-05T13:26:53.9697193Z 
+quality	Run repository quality gate	2026-10-05T13:26:53.9697193Z
 quality	Run repository quality gate	2026-10-05T13:26:53.9697802Z > /usr/local/bin/node scripts/verify-manifests.mjs
 quality	Run repository quality gate	2026-10-05T13:26:54.0292308Z Verified 20 package.json manifest(s).
-quality	Run repository quality gate	2026-10-05T13:26:54.0329104Z 
+quality	Run repository quality gate	2026-10-05T13:26:54.0329104Z
 quality	Run repository quality gate	2026-10-05T13:26:54.0329493Z > /usr/local/bin/node tools/quality/verify-workspace-lock.mjs
 quality	Run repository quality gate	2026-10-05T13:26:54.1322182Z {
 quality	Run repository quality gate	2026-10-05T13:26:54.1322928Z   "scope": "Workspace metadata only; not a Bun frozen install or registry integrity check",
 quality	Run repository quality gate	2026-10-05T13:26:54.1323515Z   "findings": []
 quality	Run repository quality gate	2026-10-05T13:26:54.1323747Z }
-quality	Run repository quality gate	2026-10-05T13:26:54.1398935Z 
+quality	Run repository quality gate	2026-10-05T13:26:54.1398935Z
 quality	Run repository quality gate	2026-10-05T13:26:54.1399377Z > /usr/local/bin/node tools/quality/generate-appearance.mjs --check
-quality	Run repository quality gate	2026-10-05T13:26:54.1696327Z 
+quality	Run repository quality gate	2026-10-05T13:26:54.1696327Z
 quality	Run repository quality gate	2026-10-05T13:26:54.1696764Z > /usr/local/bin/node scripts/repository-audit.mjs
 quality	Run repository quality gate	2026-10-05T13:26:54.9236324Z Repository audit passed: no critical identity, secret, BOM, or manifest findings.
-quality	Run repository quality gate	2026-10-05T13:26:54.9291863Z 
+quality	Run repository quality gate	2026-10-05T13:26:54.9291863Z
 quality	Run repository quality gate	2026-10-05T13:26:54.9292047Z > bun run format:check
 quality	Run repository quality gate	2026-10-05T13:26:54.9321687Z $ biome format .
 quality	Run repository quality gate	2026-10-05T13:26:55.5185221Z Checked 1106 files in 549ms. No fixes applied.
-quality	Run repository quality gate	2026-10-05T13:26:55.5598895Z 
+quality	Run repository quality gate	2026-10-05T13:26:55.5598895Z
 quality	Run repository quality gate	2026-10-05T13:26:55.5599461Z > bun run lint
 quality	Run repository quality gate	2026-10-05T13:26:55.5628438Z $ turbo run lint
-quality	Run repository quality gate	2026-10-05T13:26:55.5957960Z 
+quality	Run repository quality gate	2026-10-05T13:26:55.5957960Z
 quality	Run repository quality gate	2026-10-05T13:26:55.5958463Z Attention:
 quality	Run repository quality gate	2026-10-05T13:26:55.5958977Z Turborepo now collects completely anonymous telemetry regarding usage.
 quality	Run repository quality gate	2026-10-05T13:26:55.5960168Z This information is used to shape the Turborepo roadmap and prioritize features.
 quality	Run repository quality gate	2026-10-05T13:26:55.5961258Z You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
 quality	Run repository quality gate	2026-10-05T13:26:55.5962085Z https://turborepo.dev/docs/telemetry
-quality	Run repository quality gate	2026-10-05T13:26:55.5962302Z 
-quality	Run repository quality gate	2026-10-05T13:26:55.6550933Z 
+quality	Run repository quality gate	2026-10-05T13:26:55.5962302Z
+quality	Run repository quality gate	2026-10-05T13:26:55.6550933Z
 quality	Run repository quality gate	2026-10-05T13:26:55.6553736Z    • Packages in scope: @crm/action-registry, @crm/agent-action-runtime, @crm/auth, @crm/db, @crm/env, @crm/integration-runtime, @crm/migration-core, @crm/migration-runtime, @crm/pipeline-core, @crm/pipeline-runtime, @crm/security-core, @crm/telemetry, @crm/typescript-config, @crm/ui, @crm/validation, agent, api, app
 quality	Run repository quality gate	2026-10-05T13:26:55.6556414Z    • Running lint in 18 packages
 quality	Run repository quality gate	2026-10-05T13:26:55.6556967Z    • Remote caching disabled
-quality	Run repository quality gate	2026-10-05T13:26:55.6557253Z 
+quality	Run repository quality gate	2026-10-05T13:26:55.6557253Z
 quality	Run repository quality gate	2026-10-05T13:26:55.8687441Z ##[group]@crm/env:lint
 quality	Run repository quality gate	2026-10-05T13:26:55.8766635Z cache miss, executing 3e708beaa7ca6d0e
 quality	Run repository quality gate	2026-10-05T13:26:55.8906575Z $ biome check .
@@ -3890,9 +3890,9 @@ quality	Run repository quality gate	2026-10-05T13:26:56.0706698Z $ biome check .
 quality	Run repository quality gate	2026-10-05T13:26:56.0778133Z Checked 15 files in 192ms. No fixes applied.
 quality	Run repository quality gate	2026-10-05T13:26:56.0944364Z src/index.ts:1:1 lint/performance/noBarrelFile ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 quality	Run repository quality gate	2026-10-05T13:26:56.1026504Z Found 1 warning.
-quality	Run repository quality gate	2026-10-05T13:26:56.1126070Z 
+quality	Run repository quality gate	2026-10-05T13:26:56.1126070Z
 quality	Run repository quality gate	2026-10-05T13:26:56.1216951Z   ! Avoid barrel files, they slow down performance, and cause large module graphs with modules that go unused.
-quality	Run repository quality gate	2026-10-05T13:26:56.1306292Z   
+quality	Run repository quality gate	2026-10-05T13:26:56.1306292Z
 quality	Run repository quality gate	2026-10-05T13:26:56.1396638Z    > 1 │ export {
 quality	Run repository quality gate	2026-10-05T13:26:56.1486432Z        │ ^^^^^^^^
 quality	Run repository quality gate	2026-10-05T13:26:56.1556483Z    > 2 │ 	AGENT_TOOLS,
@@ -3904,126 +3904,126 @@ quality	Run repository quality gate	2026-10-05T13:26:56.1785542Z   > 22 │ } fr
 quality	Run repository quality gate	2026-10-05T13:26:56.1818782Z        │ ^^^^^^^^^^^^^^^^^^^^^
 quality	Run repository quality gate	2026-10-05T13:26:56.1836347Z     23 │ export {
 quality	Run repository quality gate	2026-10-05T13:26:56.1896706Z     24 │ 	capture,
-quality	Run repository quality gate	2026-10-05T13:26:56.1936496Z   
+quality	Run repository quality gate	2026-10-05T13:26:56.1936496Z
 quality	Run repository quality gate	2026-10-05T13:26:56.1967270Z   i Check this thorough explanation to better understand the context.
-quality	Run repository quality gate	2026-10-05T13:26:56.2036220Z   
-quality	Run repository quality gate	2026-10-05T13:26:56.2116586Z 
+quality	Run repository quality gate	2026-10-05T13:26:56.2036220Z
+quality	Run repository quality gate	2026-10-05T13:26:56.2116586Z
 quality	Run repository quality gate	2026-10-05T13:26:56.2166796Z ##[endgroup]
 quality	Run repository quality gate	2026-10-05T13:26:56.2240702Z ##[group]@crm/db:lint
 quality	Run repository quality gate	2026-10-05T13:26:56.2266300Z cache miss, executing d86fdc41a59791c8
 quality	Run repository quality gate	2026-10-05T13:26:56.2366544Z $ biome check .
 quality	Run repository quality gate	2026-10-05T13:26:56.2427095Z test/test-database.test.mjs:73:3 lint/style/useTemplate  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-quality	Run repository quality gate	2026-10-05T13:26:56.2456467Z 
+quality	Run repository quality gate	2026-10-05T13:26:56.2456467Z
 quality	Run repository quality gate	2026-10-05T13:26:56.2546438Z   i Template literals are preferred over string concatenation.
-quality	Run repository quality gate	2026-10-05T13:26:56.2626212Z   
+quality	Run repository quality gate	2026-10-05T13:26:56.2626212Z
 quality	Run repository quality gate	2026-10-05T13:26:56.2666414Z     71 │ 		"a%00_test",
 quality	Run repository quality gate	2026-10-05T13:26:56.2776550Z     72 │ 		"_test",
 quality	Run repository quality gate	2026-10-05T13:26:56.2786384Z   > 73 │ 		"a".repeat(59) + "_test",
 quality	Run repository quality gate	2026-10-05T13:26:56.2866562Z        │ 		^^^^^^^^^^^^^^^^^^^^^^^^
 quality	Run repository quality gate	2026-10-05T13:26:56.2936389Z     74 │ 		"app-test",
 quality	Run repository quality gate	2026-10-05T13:26:56.2966331Z     75 │ 		"app_test/",
-quality	Run repository quality gate	2026-10-05T13:26:56.3086179Z   
+quality	Run repository quality gate	2026-10-05T13:26:56.3086179Z
 quality	Run repository quality gate	2026-10-05T13:26:56.3116180Z   i Unsafe fix: Use a template literal.
-quality	Run repository quality gate	2026-10-05T13:26:56.3176193Z   
+quality	Run repository quality gate	2026-10-05T13:26:56.3176193Z
 quality	Run repository quality gate	2026-10-05T13:26:56.3236423Z      71  71 │       "a%00_test",
 quality	Run repository quality gate	2026-10-05T13:26:56.3316542Z      72  72 │       "_test",
 quality	Run repository quality gate	2026-10-05T13:26:56.3406978Z      73     │ - → → "a".repeat(59)·+·"_test",
 quality	Run repository quality gate	2026-10-05T13:26:56.3407763Z          73 │ + → → `${"a".repeat(59)}_test`,
 quality	Run repository quality gate	2026-10-05T13:26:56.3496626Z      74  74 │       "app-test",
 quality	Run repository quality gate	2026-10-05T13:26:56.3556413Z      75  75 │       "app_test/",
-quality	Run repository quality gate	2026-10-05T13:26:56.3556894Z   
-quality	Run repository quality gate	2026-10-05T13:26:56.3557074Z 
+quality	Run repository quality gate	2026-10-05T13:26:56.3556894Z
+quality	Run repository quality gate	2026-10-05T13:26:56.3557074Z
 quality	Run repository quality gate	2026-10-05T13:26:56.3557810Z scripts/test-db.ts:35:11 lint/correctness/noUnusedVariables  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-quality	Run repository quality gate	2026-10-05T13:26:56.3558531Z 
+quality	Run repository quality gate	2026-10-05T13:26:56.3558531Z
 quality	Run repository quality gate	2026-10-05T13:26:56.3558719Z   ! This variable error is unused.
-quality	Run repository quality gate	2026-10-05T13:26:56.3559168Z   
+quality	Run repository quality gate	2026-10-05T13:26:56.3559168Z
 quality	Run repository quality gate	2026-10-05T13:26:56.3559553Z     33 │ 	try {
 quality	Run repository quality gate	2026-10-05T13:26:56.3560017Z     34 │ 		await client.connect();
 quality	Run repository quality gate	2026-10-05T13:26:56.3560556Z   > 35 │ 	} catch (error) {
 quality	Run repository quality gate	2026-10-05T13:26:56.3561037Z        │ 	         ^^^^^
 quality	Run repository quality gate	2026-10-05T13:26:56.3561562Z     36 │ 		fail([
 quality	Run repository quality gate	2026-10-05T13:26:56.3562207Z     37 │ 			`Could not reach the server at ${new URL(target).host}.`,
-quality	Run repository quality gate	2026-10-05T13:26:56.3562862Z   
+quality	Run repository quality gate	2026-10-05T13:26:56.3562862Z
 quality	Run repository quality gate	2026-10-05T13:26:56.3563528Z   i Unused variables are often the result of typos, incomplete refactors, or other sources of bugs.
-quality	Run repository quality gate	2026-10-05T13:26:56.3564366Z   
+quality	Run repository quality gate	2026-10-05T13:26:56.3564366Z
 quality	Run repository quality gate	2026-10-05T13:26:56.3564918Z   i Unsafe fix: If this is intentional, prepend error with an underscore.
-quality	Run repository quality gate	2026-10-05T13:26:56.3565598Z   
+quality	Run repository quality gate	2026-10-05T13:26:56.3565598Z
 quality	Run repository quality gate	2026-10-05T13:26:56.3566291Z      33  33 │     try {
 quality	Run repository quality gate	2026-10-05T13:26:56.3566789Z      34  34 │       await client.connect();
 quality	Run repository quality gate	2026-10-05T13:26:56.3567481Z      35     │ - → }·catch·(error)·{
 quality	Run repository quality gate	2026-10-05T13:26:56.3568046Z          35 │ + → }·catch·(_error)·{
 quality	Run repository quality gate	2026-10-05T13:26:56.3568573Z      36  36 │       fail([
 quality	Run repository quality gate	2026-10-05T13:26:56.3569274Z      37  37 │         `Could not reach the server at ${new URL(target).host}.`,
-quality	Run repository quality gate	2026-10-05T13:26:56.3569904Z   
-quality	Run repository quality gate	2026-10-05T13:26:56.3570178Z 
+quality	Run repository quality gate	2026-10-05T13:26:56.3569904Z
+quality	Run repository quality gate	2026-10-05T13:26:56.3570178Z
 quality	Run repository quality gate	2026-10-05T13:26:56.3570888Z src/blob.ts:5:1 lint/performance/noBarrelFile ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-quality	Run repository quality gate	2026-10-05T13:26:56.3626012Z 
+quality	Run repository quality gate	2026-10-05T13:26:56.3626012Z
 quality	Run repository quality gate	2026-10-05T13:26:56.3686645Z   ! Avoid barrel files, they slow down performance, and cause large module graphs with modules that go unused.
-quality	Run repository quality gate	2026-10-05T13:26:56.3766347Z   
+quality	Run repository quality gate	2026-10-05T13:26:56.3766347Z
 quality	Run repository quality gate	2026-10-05T13:26:56.3833896Z     3 │ import { safeFetch } from "./safe-fetch";
-quality	Run repository quality gate	2026-10-05T13:26:56.3866287Z     4 │ 
+quality	Run repository quality gate	2026-10-05T13:26:56.3866287Z     4 │
 quality	Run repository quality gate	2026-10-05T13:26:56.3946562Z   > 5 │ export { isMirrored, isOptimizable } from "./images";
 quality	Run repository quality gate	2026-10-05T13:26:56.3947354Z       │ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-quality	Run repository quality gate	2026-10-05T13:26:56.3947937Z     6 │ 
+quality	Run repository quality gate	2026-10-05T13:26:56.3947937Z     6 │
 quality	Run repository quality gate	2026-10-05T13:26:56.3948408Z     7 │ const MAX_BYTES = 3 * 1024 * 1024;
-quality	Run repository quality gate	2026-10-05T13:26:56.3948905Z   
+quality	Run repository quality gate	2026-10-05T13:26:56.3948905Z
 quality	Run repository quality gate	2026-10-05T13:26:56.3949431Z   i Check this thorough explanation to better understand the context.
-quality	Run repository quality gate	2026-10-05T13:26:56.3950104Z   
-quality	Run repository quality gate	2026-10-05T13:26:56.3950294Z 
+quality	Run repository quality gate	2026-10-05T13:26:56.3950104Z
+quality	Run repository quality gate	2026-10-05T13:26:56.3950294Z
 quality	Run repository quality gate	2026-10-05T13:26:56.3951042Z src/fields.ts:18:1 lint/performance/noBarrelFile ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-quality	Run repository quality gate	2026-10-05T13:26:56.3951757Z 
+quality	Run repository quality gate	2026-10-05T13:26:56.3951757Z
 quality	Run repository quality gate	2026-10-05T13:26:56.3952336Z   ! Avoid barrel files, they slow down performance, and cause large module graphs with modules that go unused.
-quality	Run repository quality gate	2026-10-05T13:26:56.3953655Z   
+quality	Run repository quality gate	2026-10-05T13:26:56.3953655Z
 quality	Run repository quality gate	2026-10-05T13:26:56.3954154Z     16 │ } from "./generated/prisma/models";
-quality	Run repository quality gate	2026-10-05T13:26:56.3954712Z     17 │ 
+quality	Run repository quality gate	2026-10-05T13:26:56.3954712Z     17 │
 quality	Run repository quality gate	2026-10-05T13:26:56.3955151Z   > 18 │ export * from "./fields-shape";
 quality	Run repository quality gate	2026-10-05T13:26:56.3956285Z        │ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-quality	Run repository quality gate	2026-10-05T13:26:56.3956804Z     19 │ 
+quality	Run repository quality gate	2026-10-05T13:26:56.3956804Z     19 │
 quality	Run repository quality gate	2026-10-05T13:26:56.3957497Z     20 │ export type FieldDefinitionWithOptions = FieldDefinitionModel & {
-quality	Run repository quality gate	2026-10-05T13:26:56.3958211Z   
+quality	Run repository quality gate	2026-10-05T13:26:56.3958211Z
 quality	Run repository quality gate	2026-10-05T13:26:56.3958734Z   i Check this thorough explanation to better understand the context.
-quality	Run repository quality gate	2026-10-05T13:26:56.3959391Z   
-quality	Run repository quality gate	2026-10-05T13:26:56.3959570Z 
+quality	Run repository quality gate	2026-10-05T13:26:56.3959391Z
+quality	Run repository quality gate	2026-10-05T13:26:56.3959570Z
 quality	Run repository quality gate	2026-10-05T13:26:56.3960320Z src/fields.ts:18:8 lint/performance/noReExportAll ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-quality	Run repository quality gate	2026-10-05T13:26:56.3961044Z 
+quality	Run repository quality gate	2026-10-05T13:26:56.3961044Z
 quality	Run repository quality gate	2026-10-05T13:26:56.3961276Z   ! Do not use export all ( export * from ... ).
-quality	Run repository quality gate	2026-10-05T13:26:56.3961808Z   
+quality	Run repository quality gate	2026-10-05T13:26:56.3961808Z
 quality	Run repository quality gate	2026-10-05T13:26:56.3962283Z     16 │ } from "./generated/prisma/models";
-quality	Run repository quality gate	2026-10-05T13:26:56.3962840Z     17 │ 
+quality	Run repository quality gate	2026-10-05T13:26:56.3962840Z     17 │
 quality	Run repository quality gate	2026-10-05T13:26:56.3963321Z   > 18 │ export * from "./fields-shape";
 quality	Run repository quality gate	2026-10-05T13:26:56.3963913Z        │        ^^^^^^^^^^^^^^^^^^^^^^^^
-quality	Run repository quality gate	2026-10-05T13:26:56.3964418Z     19 │ 
+quality	Run repository quality gate	2026-10-05T13:26:56.3964418Z     19 │
 quality	Run repository quality gate	2026-10-05T13:26:56.3965092Z     20 │ export type FieldDefinitionWithOptions = FieldDefinitionModel & {
-quality	Run repository quality gate	2026-10-05T13:26:56.3966068Z   
+quality	Run repository quality gate	2026-10-05T13:26:56.3966068Z
 quality	Run repository quality gate	2026-10-05T13:26:56.3966426Z   i Use named export instead.
-quality	Run repository quality gate	2026-10-05T13:26:56.3966873Z   
-quality	Run repository quality gate	2026-10-05T13:26:56.3967067Z 
+quality	Run repository quality gate	2026-10-05T13:26:56.3966873Z
+quality	Run repository quality gate	2026-10-05T13:26:56.3967067Z
 quality	Run repository quality gate	2026-10-05T13:26:56.4016938Z src/fields.ts:3:2 lint/correctness/noUnusedImports  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-quality	Run repository quality gate	2026-10-05T13:26:56.4076037Z 
+quality	Run repository quality gate	2026-10-05T13:26:56.4076037Z
 quality	Run repository quality gate	2026-10-05T13:26:56.4106290Z   ! Several of these imports are unused.
-quality	Run repository quality gate	2026-10-05T13:26:56.4156414Z   
+quality	Run repository quality gate	2026-10-05T13:26:56.4156414Z
 quality	Run repository quality gate	2026-10-05T13:26:56.4206512Z     1 │ import {
 quality	Run repository quality gate	2026-10-05T13:26:56.4226336Z     2 │ 	columnFor,
 quality	Run repository quality gate	2026-10-05T13:26:56.4306383Z   > 3 │ 	type FieldValueColumn,
 quality	Run repository quality gate	2026-10-05T13:26:56.4336439Z       │ 	^^^^^^^^^^^^^^^^^^^^^
 quality	Run repository quality gate	2026-10-05T13:26:56.4346347Z     4 │ 	FieldValueError,
 quality	Run repository quality gate	2026-10-05T13:26:56.4406360Z     5 │ 	type FieldValueJson,
-quality	Run repository quality gate	2026-10-05T13:26:56.4456410Z   
+quality	Run repository quality gate	2026-10-05T13:26:56.4456410Z
 quality	Run repository quality gate	2026-10-05T13:26:56.4526605Z   i Unused imports might be the result of an incomplete refactoring.
-quality	Run repository quality gate	2026-10-05T13:26:56.4566206Z   
+quality	Run repository quality gate	2026-10-05T13:26:56.4566206Z
 quality	Run repository quality gate	2026-10-05T13:26:56.4642851Z   i Unsafe fix: Remove the unused imports.
-quality	Run repository quality gate	2026-10-05T13:26:56.4716332Z   
+quality	Run repository quality gate	2026-10-05T13:26:56.4716332Z
 quality	Run repository quality gate	2026-10-05T13:26:56.4756332Z       1   1 │   import {
 quality	Run repository quality gate	2026-10-05T13:26:56.4786387Z       2   2 │     columnFor,
 quality	Run repository quality gate	2026-10-05T13:26:56.4846441Z       3     │ - → type·FieldValueColumn,
 quality	Run repository quality gate	2026-10-05T13:26:56.4876388Z       4   3 │     FieldValueError,
 quality	Run repository quality gate	2026-10-05T13:26:56.4956366Z       5   4 │     type FieldValueJson,
-quality	Run repository quality gate	2026-10-05T13:26:56.4966207Z   
-quality	Run repository quality gate	2026-10-05T13:26:56.4996019Z 
+quality	Run repository quality gate	2026-10-05T13:26:56.4966207Z
+quality	Run repository quality gate	2026-10-05T13:26:56.4996019Z
 quality	Run repository quality gate	2026-10-05T13:26:56.5056858Z src/index.ts:1:1 lint/performance/noBarrelFile ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-quality	Run repository quality gate	2026-10-05T13:26:56.5086061Z 
+quality	Run repository quality gate	2026-10-05T13:26:56.5086061Z
 quality	Run repository quality gate	2026-10-05T13:26:56.5146683Z   ! Avoid barrel files, they slow down performance, and cause large module graphs with modules that go unused.
-quality	Run repository quality gate	2026-10-05T13:26:56.5196156Z   
+quality	Run repository quality gate	2026-10-05T13:26:56.5196156Z
 quality	Run repository quality gate	2026-10-05T13:26:56.5196669Z   > 1 │ export {
 quality	Run repository quality gate	2026-10-05T13:26:56.5266317Z       │ ^^^^^^^^
 quality	Run repository quality gate	2026-10-05T13:26:56.5286276Z   > 2 │ 	type Db,
@@ -4038,24 +4038,24 @@ quality	Run repository quality gate	2026-10-05T13:26:56.5616325Z   > 7 │ } fro
 quality	Run repository quality gate	2026-10-05T13:26:56.5656552Z       │ ^^^^^^^^^^^^^^^^^^
 quality	Run repository quality gate	2026-10-05T13:26:56.5706658Z     8 │ export { Prisma, PrismaClient } from "./generated/prisma/client";
 quality	Run repository quality gate	2026-10-05T13:26:56.5736469Z     9 │ export * from "./generated/prisma/enums";
-quality	Run repository quality gate	2026-10-05T13:26:56.5796190Z   
+quality	Run repository quality gate	2026-10-05T13:26:56.5796190Z
 quality	Run repository quality gate	2026-10-05T13:26:56.5836649Z   i Check this thorough explanation to better understand the context.
-quality	Run repository quality gate	2026-10-05T13:26:56.5856337Z   
-quality	Run repository quality gate	2026-10-05T13:26:56.5916101Z 
+quality	Run repository quality gate	2026-10-05T13:26:56.5856337Z
+quality	Run repository quality gate	2026-10-05T13:26:56.5916101Z
 quality	Run repository quality gate	2026-10-05T13:26:56.5957545Z src/index.ts:9:8 lint/performance/noReExportAll ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-quality	Run repository quality gate	2026-10-05T13:26:56.6006003Z 
+quality	Run repository quality gate	2026-10-05T13:26:56.6006003Z
 quality	Run repository quality gate	2026-10-05T13:26:56.6036304Z   ! Do not use export all ( export * from ... ).
-quality	Run repository quality gate	2026-10-05T13:26:56.6087776Z   
+quality	Run repository quality gate	2026-10-05T13:26:56.6087776Z
 quality	Run repository quality gate	2026-10-05T13:26:56.6136444Z      7 │ } from "./client";
 quality	Run repository quality gate	2026-10-05T13:26:56.6176685Z      8 │ export { Prisma, PrismaClient } from "./generated/prisma/client";
 quality	Run repository quality gate	2026-10-05T13:26:56.6216608Z    > 9 │ export * from "./generated/prisma/enums";
 quality	Run repository quality gate	2026-10-05T13:26:56.6256419Z        │        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 quality	Run repository quality gate	2026-10-05T13:26:56.6257211Z     10 │ export type * from "./generated/prisma/models";
 quality	Run repository quality gate	2026-10-05T13:26:56.6257859Z     11 │ export type {
-quality	Run repository quality gate	2026-10-05T13:26:56.6258259Z   
+quality	Run repository quality gate	2026-10-05T13:26:56.6258259Z
 quality	Run repository quality gate	2026-10-05T13:26:56.6258608Z   i Use named export instead.
-quality	Run repository quality gate	2026-10-05T13:26:56.6259036Z   
-quality	Run repository quality gate	2026-10-05T13:26:56.6259225Z 
+quality	Run repository quality gate	2026-10-05T13:26:56.6259036Z
+quality	Run repository quality gate	2026-10-05T13:26:56.6259225Z
 quality	Run repository quality gate	2026-10-05T13:26:56.6259844Z ##[endgroup]
 quality	Run repository quality gate	2026-10-05T13:26:56.6260525Z ##[group]@crm/validation:lint
 quality	Run repository quality gate	2026-10-05T13:26:56.6261012Z cache miss, executing f24c56c1374508b6
@@ -4068,9 +4068,9 @@ quality	Run repository quality gate	2026-10-05T13:26:56.6326281Z $ biome check .
 quality	Run repository quality gate	2026-10-05T13:26:56.6420606Z Checked 24 files in 230ms. No fixes applied.
 quality	Run repository quality gate	2026-10-05T13:26:56.6436236Z Found 1 warning.
 quality	Run repository quality gate	2026-10-05T13:26:56.6496870Z src/index.ts:1:1 lint/performance/noBarrelFile ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-quality	Run repository quality gate	2026-10-05T13:26:56.6526010Z 
+quality	Run repository quality gate	2026-10-05T13:26:56.6526010Z
 quality	Run repository quality gate	2026-10-05T13:26:56.6566836Z   ! Avoid barrel files, they slow down performance, and cause large module graphs with modules that go unused.
-quality	Run repository quality gate	2026-10-05T13:26:56.6626180Z   
+quality	Run repository quality gate	2026-10-05T13:26:56.6626180Z
 quality	Run repository quality gate	2026-10-05T13:26:56.6646337Z   > 1 │ export {
 quality	Run repository quality gate	2026-10-05T13:26:56.6706305Z       │ ^^^^^^^^
 quality	Run repository quality gate	2026-10-05T13:26:56.6746547Z   > 2 │ 	API_KEY_EXPIRATION,
@@ -4081,18 +4081,18 @@ quality	Run repository quality gate	2026-10-05T13:26:56.6916347Z   > 6 │ } fro
 quality	Run repository quality gate	2026-10-05T13:26:56.6946325Z       │ ^^^^^^^^^^^^^^^^^^^^
 quality	Run repository quality gate	2026-10-05T13:26:56.7036648Z     7 │ export { type Auth, auth, type Session, type SessionUser } from "./auth";
 quality	Run repository quality gate	2026-10-05T13:26:56.7066605Z     8 │ export { AUTH_COOKIE_PREFIX, SESSION_COOKIE_NAME } from "./cookies";
-quality	Run repository quality gate	2026-10-05T13:26:56.7160164Z   
+quality	Run repository quality gate	2026-10-05T13:26:56.7160164Z
 quality	Run repository quality gate	2026-10-05T13:26:56.7213754Z   i Check this thorough explanation to better understand the context.
-quality	Run repository quality gate	2026-10-05T13:26:56.7266201Z   
-quality	Run repository quality gate	2026-10-05T13:26:56.7301259Z 
+quality	Run repository quality gate	2026-10-05T13:26:56.7266201Z
+quality	Run repository quality gate	2026-10-05T13:26:56.7301259Z
 quality	Run repository quality gate	2026-10-05T13:26:56.7384868Z ##[endgroup]
 quality	Run repository quality gate	2026-10-05T13:26:56.7416653Z ##[group]@crm/ui:lint
 quality	Run repository quality gate	2026-10-05T13:26:56.7476336Z cache miss, executing cdd6b2658eca498c
 quality	Run repository quality gate	2026-10-05T13:26:56.7506381Z $ biome check .
 quality	Run repository quality gate	2026-10-05T13:26:56.7537145Z src/theme/appearance.mjs:260:3 lint/style/useTemplate  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-quality	Run repository quality gate	2026-10-05T13:26:56.7596034Z 
+quality	Run repository quality gate	2026-10-05T13:26:56.7596034Z
 quality	Run repository quality gate	2026-10-05T13:26:56.7616406Z   i Template literals are preferred over string concatenation.
-quality	Run repository quality gate	2026-10-05T13:26:56.7637941Z   
+quality	Run repository quality gate	2026-10-05T13:26:56.7637941Z
 quality	Run repository quality gate	2026-10-05T13:26:56.7656723Z     258 │ export function generateAppearanceCss() {
 quality	Run repository quality gate	2026-10-05T13:26:56.7686512Z     259 │ 	return (
 quality	Run repository quality gate	2026-10-05T13:26:56.7706398Z   > 260 │ 		Object.entries(THEME_TOKENS)
@@ -4104,100 +4104,100 @@ quality	Run repository quality gate	2026-10-05T13:26:56.7806553Z   > 275 │ 			
 quality	Run repository quality gate	2026-10-05T13:26:56.7836505Z         │ 			^^^^^^^^^^^^^^^^^^^^
 quality	Run repository quality gate	2026-10-05T13:26:56.7856250Z     276 │ 	);
 quality	Run repository quality gate	2026-10-05T13:26:56.7886333Z     277 │ }
-quality	Run repository quality gate	2026-10-05T13:26:56.7896430Z   
+quality	Run repository quality gate	2026-10-05T13:26:56.7896430Z
 quality	Run repository quality gate	2026-10-05T13:26:56.7906346Z   i Unsafe fix: Use a template literal.
-quality	Run repository quality gate	2026-10-05T13:26:56.7946164Z   
+quality	Run repository quality gate	2026-10-05T13:26:56.7946164Z
 quality	Run repository quality gate	2026-10-05T13:26:56.7956882Z     258 258 │   export function generateAppearanceCss() {
 quality	Run repository quality gate	2026-10-05T13:26:56.7976265Z     259 259 │     return (
 quality	Run repository quality gate	2026-10-05T13:26:56.8006476Z     260     │ - → → Object.entries(THEME_TOKENS)
 quality	Run repository quality gate	2026-10-05T13:26:56.8026441Z         260 │ + → → `${Object.entries(THEME_TOKENS)
 quality	Run repository quality gate	2026-10-05T13:26:56.8046615Z     261 261 │         .flatMap(([palette, modes]) =>
 quality	Run repository quality gate	2026-10-05T13:26:56.8049218Z     262 262 │           Object.entries(modes).map(([mode, vars]) => {
-quality	Run repository quality gate	2026-10-05T13:26:56.8086408Z     ······· │ 
+quality	Run repository quality gate	2026-10-05T13:26:56.8086408Z     ······· │
 quality	Run repository quality gate	2026-10-05T13:26:56.8106743Z     273 273 │           }),
 quality	Run repository quality gate	2026-10-05T13:26:56.8136479Z     274 274 │         )
 quality	Run repository quality gate	2026-10-05T13:26:56.8156714Z     275     │ - → → → .join("\n\n")·+·"\n"
 quality	Run repository quality gate	2026-10-05T13:26:56.8176378Z         275 │ + → → → .join("\n\n")}\n`
 quality	Run repository quality gate	2026-10-05T13:26:56.8196680Z     276 276 │     );
 quality	Run repository quality gate	2026-10-05T13:26:56.8256499Z     277 277 │   }
-quality	Run repository quality gate	2026-10-05T13:26:56.8276477Z   
-quality	Run repository quality gate	2026-10-05T13:26:56.8326133Z 
+quality	Run repository quality gate	2026-10-05T13:26:56.8276477Z
+quality	Run repository quality gate	2026-10-05T13:26:56.8326133Z
 quality	Run repository quality gate	2026-10-05T13:26:56.8367472Z src/styles/globals.css:881:19 lint/complexity/noImportantStyles  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━
-quality	Run repository quality gate	2026-10-05T13:26:56.8376211Z 
+quality	Run repository quality gate	2026-10-05T13:26:56.8376211Z
 quality	Run repository quality gate	2026-10-05T13:26:56.8456466Z   ! Avoid the use of the !important style.
-quality	Run repository quality gate	2026-10-05T13:26:56.8496396Z   
+quality	Run repository quality gate	2026-10-05T13:26:56.8496396Z
 quality	Run repository quality gate	2026-10-05T13:26:56.8532511Z     879 │ 	.link-hover::before,
 quality	Run repository quality gate	2026-10-05T13:26:56.8533243Z     880 │ 	.link-hover::after {
 quality	Run repository quality gate	2026-10-05T13:26:56.8533899Z   > 881 │ 		animation: none !important;
 quality	Run repository quality gate	2026-10-05T13:26:56.8534466Z         │ 		                ^^^^^^^^^^
 quality	Run repository quality gate	2026-10-05T13:26:56.8535088Z     882 │ 		transition-duration: 0.01ms !important;
 quality	Run repository quality gate	2026-10-05T13:26:56.8535958Z     883 │ 	}
-quality	Run repository quality gate	2026-10-05T13:26:56.8536304Z   
+quality	Run repository quality gate	2026-10-05T13:26:56.8536304Z
 quality	Run repository quality gate	2026-10-05T13:26:56.8537507Z   i This style reverses the cascade logic, and precedence is reversed. This could lead to having styles with higher specificity being overridden by styles with lower specificity.
-quality	Run repository quality gate	2026-10-05T13:26:56.8538823Z   
+quality	Run repository quality gate	2026-10-05T13:26:56.8538823Z
 quality	Run repository quality gate	2026-10-05T13:26:56.8539159Z   i Unsafe fix: Remove the style.
-quality	Run repository quality gate	2026-10-05T13:26:56.8539596Z   
+quality	Run repository quality gate	2026-10-05T13:26:56.8539596Z
 quality	Run repository quality gate	2026-10-05T13:26:56.8540058Z     881 │ → → animation:·none·!important;
-quality	Run repository quality gate	2026-10-05T13:26:56.8540648Z         │                    ----------- 
-quality	Run repository quality gate	2026-10-05T13:26:56.8540965Z 
+quality	Run repository quality gate	2026-10-05T13:26:56.8540648Z         │                    -----------
+quality	Run repository quality gate	2026-10-05T13:26:56.8540965Z
 quality	Run repository quality gate	2026-10-05T13:26:56.8541672Z src/styles/globals.css:882:31 lint/complexity/noImportantStyles  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━
-quality	Run repository quality gate	2026-10-05T13:26:56.8542393Z 
+quality	Run repository quality gate	2026-10-05T13:26:56.8542393Z
 quality	Run repository quality gate	2026-10-05T13:26:56.8542608Z   ! Avoid the use of the !important style.
-quality	Run repository quality gate	2026-10-05T13:26:56.8543103Z   
+quality	Run repository quality gate	2026-10-05T13:26:56.8543103Z
 quality	Run repository quality gate	2026-10-05T13:26:56.8543594Z     880 │ 	.link-hover::after {
 quality	Run repository quality gate	2026-10-05T13:26:56.8544162Z     881 │ 		animation: none !important;
 quality	Run repository quality gate	2026-10-05T13:26:56.8544862Z   > 882 │ 		transition-duration: 0.01ms !important;
 quality	Run repository quality gate	2026-10-05T13:26:56.8545529Z         │ 		                            ^^^^^^^^^^
 quality	Run repository quality gate	2026-10-05T13:26:56.8546360Z     883 │ 	}
 quality	Run repository quality gate	2026-10-05T13:26:56.8546756Z     884 │ }
-quality	Run repository quality gate	2026-10-05T13:26:56.8547083Z   
+quality	Run repository quality gate	2026-10-05T13:26:56.8547083Z
 quality	Run repository quality gate	2026-10-05T13:26:56.8548304Z   i This style reverses the cascade logic, and precedence is reversed. This could lead to having styles with higher specificity being overridden by styles with lower specificity.
-quality	Run repository quality gate	2026-10-05T13:26:56.8549673Z   
+quality	Run repository quality gate	2026-10-05T13:26:56.8549673Z
 quality	Run repository quality gate	2026-10-05T13:26:56.8550052Z   i Unsafe fix: Remove the style.
-quality	Run repository quality gate	2026-10-05T13:26:56.8550493Z   
+quality	Run repository quality gate	2026-10-05T13:26:56.8550493Z
 quality	Run repository quality gate	2026-10-05T13:26:56.8551047Z     882 │ → → transition-duration:·0.01ms·!important;
-quality	Run repository quality gate	2026-10-05T13:26:56.8551770Z         │                                ----------- 
-quality	Run repository quality gate	2026-10-05T13:26:56.8552565Z 
+quality	Run repository quality gate	2026-10-05T13:26:56.8551770Z         │                                -----------
+quality	Run repository quality gate	2026-10-05T13:26:56.8552565Z
 quality	Run repository quality gate	2026-10-05T13:26:56.8553297Z src/styles/globals.css:1510:25 lint/complexity/noImportantStyles  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━
-quality	Run repository quality gate	2026-10-05T13:26:56.8554030Z 
+quality	Run repository quality gate	2026-10-05T13:26:56.8554030Z
 quality	Run repository quality gate	2026-10-05T13:26:56.8554244Z   ! Avoid the use of the !important style.
-quality	Run repository quality gate	2026-10-05T13:26:56.8555047Z   
+quality	Run repository quality gate	2026-10-05T13:26:56.8555047Z
 quality	Run repository quality gate	2026-10-05T13:26:56.8555538Z     1508 │ 	*::before,
 quality	Run repository quality gate	2026-10-05T13:26:56.8616488Z     1509 │ 	*::after {
 quality	Run repository quality gate	2026-10-05T13:26:56.8617092Z   > 1510 │ 		scroll-behavior: auto !important;
 quality	Run repository quality gate	2026-10-05T13:26:56.8617730Z          │ 		                      ^^^^^^^^^^
 quality	Run repository quality gate	2026-10-05T13:26:56.8618390Z     1511 │ 		animation-duration: 0.01ms !important;
 quality	Run repository quality gate	2026-10-05T13:26:56.8619137Z     1512 │ 		animation-iteration-count: 1 !important;
-quality	Run repository quality gate	2026-10-05T13:26:56.8619704Z   
+quality	Run repository quality gate	2026-10-05T13:26:56.8619704Z
 quality	Run repository quality gate	2026-10-05T13:26:56.8620917Z   i This style reverses the cascade logic, and precedence is reversed. This could lead to having styles with higher specificity being overridden by styles with lower specificity.
-quality	Run repository quality gate	2026-10-05T13:26:56.8622278Z   
+quality	Run repository quality gate	2026-10-05T13:26:56.8622278Z
 quality	Run repository quality gate	2026-10-05T13:26:56.8622630Z   i Unsafe fix: Remove the style.
-quality	Run repository quality gate	2026-10-05T13:26:56.8623102Z   
+quality	Run repository quality gate	2026-10-05T13:26:56.8623102Z
 quality	Run repository quality gate	2026-10-05T13:26:56.8623611Z     1510 │ → → scroll-behavior:·auto·!important;
-quality	Run repository quality gate	2026-10-05T13:26:56.8624286Z          │                          ----------- 
-quality	Run repository quality gate	2026-10-05T13:26:56.8624673Z 
+quality	Run repository quality gate	2026-10-05T13:26:56.8624286Z          │                          -----------
+quality	Run repository quality gate	2026-10-05T13:26:56.8624673Z
 quality	Run repository quality gate	2026-10-05T13:26:56.8625431Z src/styles/globals.css:1511:30 lint/complexity/noImportantStyles  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━
-quality	Run repository quality gate	2026-10-05T13:26:56.8626449Z 
+quality	Run repository quality gate	2026-10-05T13:26:56.8626449Z
 quality	Run repository quality gate	2026-10-05T13:26:56.8626664Z   ! Avoid the use of the !important style.
-quality	Run repository quality gate	2026-10-05T13:26:56.8627158Z   
+quality	Run repository quality gate	2026-10-05T13:26:56.8627158Z
 quality	Run repository quality gate	2026-10-05T13:26:56.8627642Z     1509 │ 	*::after {
 quality	Run repository quality gate	2026-10-05T13:26:56.8628201Z     1510 │ 		scroll-behavior: auto !important;
 quality	Run repository quality gate	2026-10-05T13:26:56.8628901Z   > 1511 │ 		animation-duration: 0.01ms !important;
 quality	Run repository quality gate	2026-10-05T13:26:56.8629578Z          │ 		                           ^^^^^^^^^^
 quality	Run repository quality gate	2026-10-05T13:26:56.8630258Z     1512 │ 		animation-iteration-count: 1 !important;
 quality	Run repository quality gate	2026-10-05T13:26:56.8630992Z     1513 │ 		transition-duration: 0.01ms !important;
-quality	Run repository quality gate	2026-10-05T13:26:56.8631521Z   
+quality	Run repository quality gate	2026-10-05T13:26:56.8631521Z
 quality	Run repository quality gate	2026-10-05T13:26:56.8632778Z   i This style reverses the cascade logic, and precedence is reversed. This could lead to having styles with higher specificity being overridden by styles with lower specificity.
-quality	Run repository quality gate	2026-10-05T13:26:56.8634150Z   
+quality	Run repository quality gate	2026-10-05T13:26:56.8634150Z
 quality	Run repository quality gate	2026-10-05T13:26:56.8634503Z   i Unsafe fix: Remove the style.
-quality	Run repository quality gate	2026-10-05T13:26:56.8634979Z   
+quality	Run repository quality gate	2026-10-05T13:26:56.8634979Z
 quality	Run repository quality gate	2026-10-05T13:26:56.8635531Z     1511 │ → → animation-duration:·0.01ms·!important;
-quality	Run repository quality gate	2026-10-05T13:26:56.8636520Z          │                               ----------- 
-quality	Run repository quality gate	2026-10-05T13:26:56.8636917Z 
+quality	Run repository quality gate	2026-10-05T13:26:56.8636520Z          │                               -----------
+quality	Run repository quality gate	2026-10-05T13:26:56.8636917Z
 quality	Run repository quality gate	2026-10-05T13:26:56.8637652Z src/styles/globals.css:1512:32 lint/complexity/noImportantStyles  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━
-quality	Run repository quality gate	2026-10-05T13:26:56.8638398Z 
+quality	Run repository quality gate	2026-10-05T13:26:56.8638398Z
 quality	Run repository quality gate	2026-10-05T13:26:56.8638593Z   ! Avoid the use of the !important style.
-quality	Run repository quality gate	2026-10-05T13:26:56.8639095Z   
+quality	Run repository quality gate	2026-10-05T13:26:56.8639095Z
 quality	Run repository quality gate	2026-10-05T13:26:56.8639590Z     1510 │ 		scroll-behavior: auto !important;
 quality	Run repository quality gate	2026-10-05T13:26:56.8640276Z     1511 │ 		animation-duration: 0.01ms !important;
 quality	Run repository quality gate	2026-10-05T13:26:56.8640996Z   > 1512 │ 		animation-iteration-count: 1 !important;
@@ -4207,105 +4207,105 @@ quality	Run repository quality gate	2026-10-05T13:26:56.8642530Z Found 1 info.
 quality	Run repository quality gate	2026-10-05T13:26:56.8643021Z          │ 		                             ^^^^^^^^^^
 quality	Run repository quality gate	2026-10-05T13:26:56.8643701Z     1513 │ 		transition-duration: 0.01ms !important;
 quality	Run repository quality gate	2026-10-05T13:26:56.8644289Z     1514 │ 	}
-quality	Run repository quality gate	2026-10-05T13:26:56.8644627Z   
+quality	Run repository quality gate	2026-10-05T13:26:56.8644627Z
 quality	Run repository quality gate	2026-10-05T13:26:56.8706173Z   i This style reverses the cascade logic, and precedence is reversed. This could lead to having styles with higher specificity being overridden by styles with lower specificity.
-quality	Run repository quality gate	2026-10-05T13:26:56.8707589Z   
+quality	Run repository quality gate	2026-10-05T13:26:56.8707589Z
 quality	Run repository quality gate	2026-10-05T13:26:56.8707955Z   i Unsafe fix: Remove the style.
-quality	Run repository quality gate	2026-10-05T13:26:56.8708415Z   
+quality	Run repository quality gate	2026-10-05T13:26:56.8708415Z
 quality	Run repository quality gate	2026-10-05T13:26:56.8709000Z     1512 │ → → animation-iteration-count:·1·!important;
-quality	Run repository quality gate	2026-10-05T13:26:56.8709713Z          │                                 ----------- 
-quality	Run repository quality gate	2026-10-05T13:26:56.8710102Z 
+quality	Run repository quality gate	2026-10-05T13:26:56.8709713Z          │                                 -----------
+quality	Run repository quality gate	2026-10-05T13:26:56.8710102Z
 quality	Run repository quality gate	2026-10-05T13:26:56.8710840Z src/styles/globals.css:1513:31 lint/complexity/noImportantStyles  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━
-quality	Run repository quality gate	2026-10-05T13:26:56.8711927Z 
+quality	Run repository quality gate	2026-10-05T13:26:56.8711927Z
 quality	Run repository quality gate	2026-10-05T13:26:56.8712127Z   ! Avoid the use of the !important style.
-quality	Run repository quality gate	2026-10-05T13:26:56.8712602Z   
+quality	Run repository quality gate	2026-10-05T13:26:56.8712602Z
 quality	Run repository quality gate	2026-10-05T13:26:56.8713162Z     1511 │ 		animation-duration: 0.01ms !important;
 quality	Run repository quality gate	2026-10-05T13:26:56.8714081Z     1512 │ 		animation-iteration-count: 1 !important;
 quality	Run repository quality gate	2026-10-05T13:26:56.8714770Z   > 1513 │ 		transition-duration: 0.01ms !important;
 quality	Run repository quality gate	2026-10-05T13:26:56.8715387Z          │ 		                            ^^^^^^^^^^
 quality	Run repository quality gate	2026-10-05T13:26:56.8716131Z     1514 │ 	}
 quality	Run repository quality gate	2026-10-05T13:26:56.8716485Z     1515 │ }
-quality	Run repository quality gate	2026-10-05T13:26:56.8716798Z   
+quality	Run repository quality gate	2026-10-05T13:26:56.8716798Z
 quality	Run repository quality gate	2026-10-05T13:26:56.8717931Z   i This style reverses the cascade logic, and precedence is reversed. This could lead to having styles with higher specificity being overridden by styles with lower specificity.
-quality	Run repository quality gate	2026-10-05T13:26:56.8719200Z   
+quality	Run repository quality gate	2026-10-05T13:26:56.8719200Z
 quality	Run repository quality gate	2026-10-05T13:26:56.8719531Z   i Unsafe fix: Remove the style.
-quality	Run repository quality gate	2026-10-05T13:26:56.8719953Z   
+quality	Run repository quality gate	2026-10-05T13:26:56.8719953Z
 quality	Run repository quality gate	2026-10-05T13:26:56.8720457Z     1513 │ → → transition-duration:·0.01ms·!important;
-quality	Run repository quality gate	2026-10-05T13:26:56.8721165Z          │                                ----------- 
-quality	Run repository quality gate	2026-10-05T13:26:56.8721521Z 
+quality	Run repository quality gate	2026-10-05T13:26:56.8721165Z          │                                -----------
+quality	Run repository quality gate	2026-10-05T13:26:56.8721521Z
 quality	Run repository quality gate	2026-10-05T13:26:56.8722056Z ##[endgroup]
 quality	Run repository quality gate	2026-10-05T13:26:56.8722659Z ##[group]agent:lint
 quality	Run repository quality gate	2026-10-05T13:26:56.8723067Z cache miss, executing dbd3ed446d9d3a3e
 quality	Run repository quality gate	2026-10-05T13:26:56.8723543Z $ biome check .
 quality	Run repository quality gate	2026-10-05T13:26:56.8724437Z agent/lib/run-runtime.ts:262:6 lint/complexity/useOptionalChain  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━
-quality	Run repository quality gate	2026-10-05T13:26:56.8725125Z 
+quality	Run repository quality gate	2026-10-05T13:26:56.8725125Z
 quality	Run repository quality gate	2026-10-05T13:26:56.8725296Z   ! Change to an optional chain.
-quality	Run repository quality gate	2026-10-05T13:26:56.8725928Z   
+quality	Run repository quality gate	2026-10-05T13:26:56.8725928Z
 quality	Run repository quality gate	2026-10-05T13:26:56.8726351Z     260 │ 		},
 quality	Run repository quality gate	2026-10-05T13:26:56.8726764Z     261 │ 	});
 quality	Run repository quality gate	2026-10-05T13:26:56.8727348Z   > 262 │ 	if (!run || run.status !== "RUNNING") return false;
 quality	Run repository quality gate	2026-10-05T13:26:56.8728046Z         │ 	    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-quality	Run repository quality gate	2026-10-05T13:26:56.8728562Z     263 │ 
+quality	Run repository quality gate	2026-10-05T13:26:56.8728562Z     263 │
 quality	Run repository quality gate	2026-10-05T13:26:56.8728925Z     264 │ 	try {
-quality	Run repository quality gate	2026-10-05T13:26:56.8729256Z   
+quality	Run repository quality gate	2026-10-05T13:26:56.8729256Z
 quality	Run repository quality gate	2026-10-05T13:26:56.8729638Z   i Unsafe fix: Change to an optional chain.
-quality	Run repository quality gate	2026-10-05T13:26:56.8730141Z   
+quality	Run repository quality gate	2026-10-05T13:26:56.8730141Z
 quality	Run repository quality gate	2026-10-05T13:26:56.8730565Z      260  260 │       },
 quality	Run repository quality gate	2026-10-05T13:26:56.8731032Z      261  261 │     });
 quality	Run repository quality gate	2026-10-05T13:26:56.8731728Z      262      │ - → if·(!run·||·run.status·!==·"RUNNING")·return·false;
 quality	Run repository quality gate	2026-10-05T13:26:56.8732640Z           262 │ + → if·(run?.status·!==·"RUNNING")·return·false;
-quality	Run repository quality gate	2026-10-05T13:26:56.8733287Z      263  263 │   
+quality	Run repository quality gate	2026-10-05T13:26:56.8733287Z      263  263 │
 quality	Run repository quality gate	2026-10-05T13:26:56.8733736Z      264  264 │     try {
-quality	Run repository quality gate	2026-10-05T13:26:56.8734132Z   
-quality	Run repository quality gate	2026-10-05T13:26:56.8734312Z 
+quality	Run repository quality gate	2026-10-05T13:26:56.8734132Z
+quality	Run repository quality gate	2026-10-05T13:26:56.8734312Z
 quality	Run repository quality gate	2026-10-05T13:26:56.8735023Z agent/lib/run-runtime.ts:286:6 lint/complexity/useOptionalChain  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━
-quality	Run repository quality gate	2026-10-05T13:26:56.8796082Z 
+quality	Run repository quality gate	2026-10-05T13:26:56.8796082Z
 quality	Run repository quality gate	2026-10-05T13:26:56.8796315Z   ! Change to an optional chain.
-quality	Run repository quality gate	2026-10-05T13:26:56.8796782Z   
+quality	Run repository quality gate	2026-10-05T13:26:56.8796782Z
 quality	Run repository quality gate	2026-10-05T13:26:56.8797212Z     284 │ 		},
 quality	Run repository quality gate	2026-10-05T13:26:56.8797607Z     285 │ 	});
 quality	Run repository quality gate	2026-10-05T13:26:56.8798171Z   > 286 │ 	if (!run || run.status !== "RUNNING") return false;
 quality	Run repository quality gate	2026-10-05T13:26:56.8798878Z         │ 	    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-quality	Run repository quality gate	2026-10-05T13:26:56.8799406Z     287 │ 
+quality	Run repository quality gate	2026-10-05T13:26:56.8799406Z     287 │
 quality	Run repository quality gate	2026-10-05T13:26:56.8799838Z     288 │ 	try {
-quality	Run repository quality gate	2026-10-05T13:26:56.8800179Z   
+quality	Run repository quality gate	2026-10-05T13:26:56.8800179Z
 quality	Run repository quality gate	2026-10-05T13:26:56.8800557Z   i Unsafe fix: Change to an optional chain.
-quality	Run repository quality gate	2026-10-05T13:26:56.8801057Z   
+quality	Run repository quality gate	2026-10-05T13:26:56.8801057Z
 quality	Run repository quality gate	2026-10-05T13:26:56.8801446Z      284  284 │       },
 quality	Run repository quality gate	2026-10-05T13:26:56.8801919Z      285  285 │     });
 quality	Run repository quality gate	2026-10-05T13:26:56.8802596Z      286      │ - → if·(!run·||·run.status·!==·"RUNNING")·return·false;
 quality	Run repository quality gate	2026-10-05T13:26:56.8803475Z           286 │ + → if·(run?.status·!==·"RUNNING")·return·false;
-quality	Run repository quality gate	2026-10-05T13:26:56.8804117Z      287  287 │   
+quality	Run repository quality gate	2026-10-05T13:26:56.8804117Z      287  287 │
 quality	Run repository quality gate	2026-10-05T13:26:56.8804555Z      288  288 │     try {
-quality	Run repository quality gate	2026-10-05T13:26:56.8804956Z   
-quality	Run repository quality gate	2026-10-05T13:26:56.8805128Z 
+quality	Run repository quality gate	2026-10-05T13:26:56.8804956Z
+quality	Run repository quality gate	2026-10-05T13:26:56.8805128Z
 quality	Run repository quality gate	2026-10-05T13:26:56.8806079Z agent/lib/tasks.ts:29:1 lint/performance/noBarrelFile ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-quality	Run repository quality gate	2026-10-05T13:26:56.8806800Z 
+quality	Run repository quality gate	2026-10-05T13:26:56.8806800Z
 quality	Run repository quality gate	2026-10-05T13:26:56.8807375Z   ! Avoid barrel files, they slow down performance, and cause large module graphs with modules that go unused.
-quality	Run repository quality gate	2026-10-05T13:26:56.8808251Z   
+quality	Run repository quality gate	2026-10-05T13:26:56.8808251Z
 quality	Run repository quality gate	2026-10-05T13:26:56.8808755Z     27 │ const LEASE_MS = DISPATCH.task.leaseMs;
-quality	Run repository quality gate	2026-10-05T13:26:56.8809623Z     28 │ 
+quality	Run repository quality gate	2026-10-05T13:26:56.8809623Z     28 │
 quality	Run repository quality gate	2026-10-05T13:26:56.8810274Z   > 29 │ export { DIRECT_KINDS, MAX_ATTEMPTS } from "@crm/db/agent-tasks";
 quality	Run repository quality gate	2026-10-05T13:26:56.8811130Z        │ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-quality	Run repository quality gate	2026-10-05T13:26:56.8811982Z     30 │ 
+quality	Run repository quality gate	2026-10-05T13:26:56.8811982Z     30 │
 quality	Run repository quality gate	2026-10-05T13:26:56.8812443Z     31 │ export async function claimDue(
-quality	Run repository quality gate	2026-10-05T13:26:56.8813031Z   
+quality	Run repository quality gate	2026-10-05T13:26:56.8813031Z
 quality	Run repository quality gate	2026-10-05T13:26:56.8813543Z   i Check this thorough explanation to better understand the context.
-quality	Run repository quality gate	2026-10-05T13:26:56.8814208Z   
-quality	Run repository quality gate	2026-10-05T13:26:56.8814390Z 
+quality	Run repository quality gate	2026-10-05T13:26:56.8814208Z
+quality	Run repository quality gate	2026-10-05T13:26:56.8814390Z
 quality	Run repository quality gate	2026-10-05T13:26:56.8815127Z src/governed-run-action-runtime.mjs:156:7 lint/complexity/useOptionalChain  FIXABLE  ━━━━━━━━━━━━━━━
-quality	Run repository quality gate	2026-10-05T13:26:56.8816114Z 
+quality	Run repository quality gate	2026-10-05T13:26:56.8816114Z
 quality	Run repository quality gate	2026-10-05T13:26:56.8816309Z   ! Change to an optional chain.
-quality	Run repository quality gate	2026-10-05T13:26:56.8816755Z   
+quality	Run repository quality gate	2026-10-05T13:26:56.8816755Z
 quality	Run repository quality gate	2026-10-05T13:26:56.8817164Z     154 │ 		}
 quality	Run repository quality gate	2026-10-05T13:26:56.8817877Z     155 │ 		const descriptor = Object.getOwnPropertyDescriptor(source, key);
 quality	Run repository quality gate	2026-10-05T13:26:56.8818967Z   > 156 │ 		if (!descriptor || !descriptor.enumerable || !("value" in descriptor)) {
 quality	Run repository quality gate	2026-10-05T13:26:56.8819859Z         │ 		    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 quality	Run repository quality gate	2026-10-05T13:26:56.8820445Z     157 │ 			throw new TypeError(
 quality	Run repository quality gate	2026-10-05T13:26:56.8821113Z     158 │ 				`${field}.${key} must be an enumerable data property`,
-quality	Run repository quality gate	2026-10-05T13:26:56.8821675Z   
+quality	Run repository quality gate	2026-10-05T13:26:56.8821675Z
 quality	Run repository quality gate	2026-10-05T13:26:56.8822041Z   i Unsafe fix: Change to an optional chain.
-quality	Run repository quality gate	2026-10-05T13:26:56.8822527Z   
+quality	Run repository quality gate	2026-10-05T13:26:56.8822527Z
 quality	Run repository quality gate	2026-10-05T13:26:56.8822884Z Checked 192 files in 962ms. No fixes applied.
 quality	Run repository quality gate	2026-10-05T13:26:56.8823452Z     154 154 │       }
 quality	Run repository quality gate	2026-10-05T13:26:56.8823810Z Found 5 warnings.
@@ -4314,12 +4314,12 @@ quality	Run repository quality gate	2026-10-05T13:26:56.8886079Z     156     │
 quality	Run repository quality gate	2026-10-05T13:26:56.8887361Z         156 │ + → → if·(!descriptor?.enumerable·||·!("value"·in·descriptor))·{
 quality	Run repository quality gate	2026-10-05T13:26:56.8888156Z     157 157 │         throw new TypeError(
 quality	Run repository quality gate	2026-10-05T13:26:56.8888957Z     158 158 │           `${field}.${key} must be an enumerable data property`,
-quality	Run repository quality gate	2026-10-05T13:26:56.8889570Z   
-quality	Run repository quality gate	2026-10-05T13:26:56.8889742Z 
+quality	Run repository quality gate	2026-10-05T13:26:56.8889570Z
+quality	Run repository quality gate	2026-10-05T13:26:56.8889742Z
 quality	Run repository quality gate	2026-10-05T13:26:56.8890474Z src/run-execution-budget.mjs:15:3 lint/complexity/useOptionalChain  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━
-quality	Run repository quality gate	2026-10-05T13:26:56.8891241Z 
+quality	Run repository quality gate	2026-10-05T13:26:56.8891241Z
 quality	Run repository quality gate	2026-10-05T13:26:56.8891426Z   ! Change to an optional chain.
-quality	Run repository quality gate	2026-10-05T13:26:56.8891859Z   
+quality	Run repository quality gate	2026-10-05T13:26:56.8891859Z
 quality	Run repository quality gate	2026-10-05T13:26:56.8892501Z     13 │ 		throw new TypeError("Invalid execution timeout configuration");
 quality	Run repository quality gate	2026-10-05T13:26:56.8893225Z     14 │ 	if (
 quality	Run repository quality gate	2026-10-05T13:26:56.8893629Z   > 15 │ 		!run ||
@@ -4328,9 +4328,9 @@ quality	Run repository quality gate	2026-10-05T13:26:56.8894492Z   > 16 │ 		ru
 quality	Run repository quality gate	2026-10-05T13:26:56.8895045Z        │ 		^^^^^^^^^^^^^^^^^^^^^^^^
 quality	Run repository quality gate	2026-10-05T13:26:56.8895574Z     17 │ 		!run.sessionId ||
 quality	Run repository quality gate	2026-10-05T13:26:56.8896343Z     18 │ 		run.cancelRequestedAt
-quality	Run repository quality gate	2026-10-05T13:26:56.8896791Z   
+quality	Run repository quality gate	2026-10-05T13:26:56.8896791Z
 quality	Run repository quality gate	2026-10-05T13:26:56.8897162Z   i Unsafe fix: Change to an optional chain.
-quality	Run repository quality gate	2026-10-05T13:26:56.8897916Z   
+quality	Run repository quality gate	2026-10-05T13:26:56.8897916Z
 quality	Run repository quality gate	2026-10-05T13:26:56.8898589Z     13 13 │       throw new TypeError("Invalid execution timeout configuration");
 quality	Run repository quality gate	2026-10-05T13:26:56.8899335Z     14 14 │     if (
 quality	Run repository quality gate	2026-10-05T13:26:56.8900036Z     15    │ - → → !run·||
@@ -4338,8 +4338,8 @@ quality	Run repository quality gate	2026-10-05T13:26:56.8900581Z     16    │ -
 quality	Run repository quality gate	2026-10-05T13:26:56.8901238Z        15 │ + → → run?.status·!==·"RUNNING"·||
 quality	Run repository quality gate	2026-10-05T13:26:56.8901847Z     17 16 │       !run.sessionId ||
 quality	Run repository quality gate	2026-10-05T13:26:56.8902405Z     18 17 │       run.cancelRequestedAt
-quality	Run repository quality gate	2026-10-05T13:26:56.8902866Z   
-quality	Run repository quality gate	2026-10-05T13:26:56.8903040Z 
+quality	Run repository quality gate	2026-10-05T13:26:56.8902866Z
+quality	Run repository quality gate	2026-10-05T13:26:56.8903040Z
 quality	Run repository quality gate	2026-10-05T13:26:56.8903512Z ##[endgroup]
 quality	Run repository quality gate	2026-10-05T13:26:57.1868259Z ##[group]app:lint
 quality	Run repository quality gate	2026-10-05T13:26:57.1868813Z cache miss, executing 9aaf36772e0d755c
@@ -4348,77 +4348,77 @@ quality	Run repository quality gate	2026-10-05T13:26:57.1870566Z app/(app)/[slug
 quality	Run repository quality gate	2026-10-05T13:26:57.1871604Z Checked 299 files in 1247ms. No fixes applied.
 quality	Run repository quality gate	2026-10-05T13:26:57.1872201Z Found 1 warning.
 quality	Run repository quality gate	2026-10-05T13:26:57.1872589Z Found 1 info.
-quality	Run repository quality gate	2026-10-05T13:26:57.1872805Z 
+quality	Run repository quality gate	2026-10-05T13:26:57.1872805Z
 quality	Run repository quality gate	2026-10-05T13:26:57.1873122Z   i Template literals are preferred over string concatenation.
-quality	Run repository quality gate	2026-10-05T13:26:57.1873783Z   
+quality	Run repository quality gate	2026-10-05T13:26:57.1873783Z
 quality	Run repository quality gate	2026-10-05T13:26:57.1874398Z     416 │ 									expectedVersion: archiveCandidate.version,
 quality	Run repository quality gate	2026-10-05T13:26:57.1875168Z     417 │ 									idempotencyKey: commandKey(
 quality	Run repository quality gate	2026-10-05T13:26:57.1876196Z   > 418 │ 										"pipeline-archive:" + archiveCandidate.id,
 quality	Run repository quality gate	2026-10-05T13:26:57.1877121Z         │ 										^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 quality	Run repository quality gate	2026-10-05T13:26:57.1877728Z     419 │ 										{
 quality	Run repository quality gate	2026-10-05T13:26:57.1878277Z     420 │ 											id: archiveCandidate.id,
-quality	Run repository quality gate	2026-10-05T13:26:57.1878785Z   
+quality	Run repository quality gate	2026-10-05T13:26:57.1878785Z
 quality	Run repository quality gate	2026-10-05T13:26:57.1879167Z   i Unsafe fix: Use a template literal.
-quality	Run repository quality gate	2026-10-05T13:26:57.1879651Z   
+quality	Run repository quality gate	2026-10-05T13:26:57.1879651Z
 quality	Run repository quality gate	2026-10-05T13:26:57.1880273Z     416 416 │                     expectedVersion: archiveCandidate.version,
 quality	Run repository quality gate	2026-10-05T13:26:57.1881136Z     417 417 │                     idempotencyKey: commandKey(
 quality	Run repository quality gate	2026-10-05T13:26:57.1882154Z     418     │ - → → → → → → → → → → "pipeline-archive:"·+·archiveCandidate.id,
 quality	Run repository quality gate	2026-10-05T13:26:57.1883116Z         418 │ + → → → → → → → → → → `pipeline-archive:${archiveCandidate.id}`,
 quality	Run repository quality gate	2026-10-05T13:26:57.1883988Z     419 419 │                       {
 quality	Run repository quality gate	2026-10-05T13:26:57.1884681Z     420 420 │                         id: archiveCandidate.id,
-quality	Run repository quality gate	2026-10-05T13:26:57.1885251Z   
-quality	Run repository quality gate	2026-10-05T13:26:57.1885440Z 
+quality	Run repository quality gate	2026-10-05T13:26:57.1885251Z
+quality	Run repository quality gate	2026-10-05T13:26:57.1885440Z
 quality	Run repository quality gate	2026-10-05T13:26:57.1886471Z postcss.config.mjs:1:1 lint/performance/noBarrelFile ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-quality	Run repository quality gate	2026-10-05T13:26:57.1887205Z 
+quality	Run repository quality gate	2026-10-05T13:26:57.1887205Z
 quality	Run repository quality gate	2026-10-05T13:26:57.1887777Z   ! Avoid barrel files, they slow down performance, and cause large module graphs with modules that go unused.
-quality	Run repository quality gate	2026-10-05T13:26:57.1888678Z   
+quality	Run repository quality gate	2026-10-05T13:26:57.1888678Z
 quality	Run repository quality gate	2026-10-05T13:26:57.1889214Z   > 1 │ export { default } from "@crm/ui/postcss.config";
 quality	Run repository quality gate	2026-10-05T13:26:57.1889940Z       │ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-quality	Run repository quality gate	2026-10-05T13:26:57.1890473Z     2 │ 
-quality	Run repository quality gate	2026-10-05T13:26:57.1890815Z   
+quality	Run repository quality gate	2026-10-05T13:26:57.1890473Z     2 │
+quality	Run repository quality gate	2026-10-05T13:26:57.1890815Z
 quality	Run repository quality gate	2026-10-05T13:26:57.1891327Z   i Check this thorough explanation to better understand the context.
-quality	Run repository quality gate	2026-10-05T13:26:57.1891965Z   
-quality	Run repository quality gate	2026-10-05T13:26:57.1892137Z 
+quality	Run repository quality gate	2026-10-05T13:26:57.1891965Z
+quality	Run repository quality gate	2026-10-05T13:26:57.1892137Z
 quality	Run repository quality gate	2026-10-05T13:26:57.1892579Z ##[endgroup]
 quality	Run repository quality gate	2026-10-05T13:26:57.2656758Z ##[group]api:lint
 quality	Run repository quality gate	2026-10-05T13:26:57.2657268Z cache miss, executing a8320e226a619f70
 quality	Run repository quality gate	2026-10-05T13:26:57.2657746Z $ biome check .
 quality	Run repository quality gate	2026-10-05T13:26:57.2658847Z src/operations/operations-core.mjs:274:13 lint/complexity/noExtraBooleanCast  FIXABLE  ━━━━━━━━━━━━━
-quality	Run repository quality gate	2026-10-05T13:26:57.2659565Z 
+quality	Run repository quality gate	2026-10-05T13:26:57.2659565Z
 quality	Run repository quality gate	2026-10-05T13:26:57.2659741Z   i Avoid redundant `Boolean` call
-quality	Run repository quality gate	2026-10-05T13:26:57.2660175Z   
+quality	Run repository quality gate	2026-10-05T13:26:57.2660175Z
 quality	Run repository quality gate	2026-10-05T13:26:57.2660564Z     272 │ 						agentId: row.agentId,
 quality	Run repository quality gate	2026-10-05T13:26:57.2661215Z     273 │ 						agentName: names.get(row.agentId) ?? row.agentId,
 quality	Run repository quality gate	2026-10-05T13:26:57.2661743Z   > 274 │ 						type: Boolean(receiptFor(row))
 quality	Run repository quality gate	2026-10-05T13:26:57.2662108Z         │ 						      ^^^^^^^^^^^^^^^^^^^^^^^^
 quality	Run repository quality gate	2026-10-05T13:26:57.2662820Z     275 │ 							? "AMBIGUOUS_OUTCOME"
 quality	Run repository quality gate	2026-10-05T13:26:57.2663733Z     276 │ 							: "ACTION_FAILED",
-quality	Run repository quality gate	2026-10-05T13:26:57.2664196Z   
+quality	Run repository quality gate	2026-10-05T13:26:57.2664196Z
 quality	Run repository quality gate	2026-10-05T13:26:57.2664867Z   i It is not necessary to use `Boolean` call when a value will already be coerced to a boolean.
-quality	Run repository quality gate	2026-10-05T13:26:57.2666173Z   
+quality	Run repository quality gate	2026-10-05T13:26:57.2666173Z
 quality	Run repository quality gate	2026-10-05T13:26:57.2666555Z   i Safe fix: Remove redundant `Boolean` call
-quality	Run repository quality gate	2026-10-05T13:26:57.2667045Z   
+quality	Run repository quality gate	2026-10-05T13:26:57.2667045Z
 quality	Run repository quality gate	2026-10-05T13:26:57.2667602Z     274 │ → → → → → → type:·Boolean(receiptFor(row))
-quality	Run repository quality gate	2026-10-05T13:26:57.2668268Z         │                   --------              - 
-quality	Run repository quality gate	2026-10-05T13:26:57.2668732Z 
+quality	Run repository quality gate	2026-10-05T13:26:57.2668268Z         │                   --------              -
+quality	Run repository quality gate	2026-10-05T13:26:57.2668732Z
 quality	Run repository quality gate	2026-10-05T13:26:57.2669425Z src/deals/deals.contracts.ts:10:1 lint/performance/noBarrelFile ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-quality	Run repository quality gate	2026-10-05T13:26:57.2670105Z 
+quality	Run repository quality gate	2026-10-05T13:26:57.2670105Z
 quality	Run repository quality gate	2026-10-05T13:26:57.2670663Z   ! Avoid barrel files, they slow down performance, and cause large module graphs with modules that go unused.
-quality	Run repository quality gate	2026-10-05T13:26:57.2671624Z   
+quality	Run repository quality gate	2026-10-05T13:26:57.2671624Z
 quality	Run repository quality gate	2026-10-05T13:26:57.2672198Z      8 │ import { listInput } from "../trpc/list-input";
-quality	Run repository quality gate	2026-10-05T13:26:57.2672802Z      9 │ 
+quality	Run repository quality gate	2026-10-05T13:26:57.2672802Z      9 │
 quality	Run repository quality gate	2026-10-05T13:26:57.2673413Z   > 10 │ export { MAX_AMOUNT_CENTS } from "@crm/db/money-input";
 quality	Run repository quality gate	2026-10-05T13:26:57.2674123Z        │ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-quality	Run repository quality gate	2026-10-05T13:26:57.2674449Z     11 │ 
+quality	Run repository quality gate	2026-10-05T13:26:57.2674449Z     11 │
 quality	Run repository quality gate	2026-10-05T13:26:57.2674703Z     12 │ const amountCents = z
-quality	Run repository quality gate	2026-10-05T13:26:57.2674939Z   
+quality	Run repository quality gate	2026-10-05T13:26:57.2674939Z
 quality	Run repository quality gate	2026-10-05T13:26:57.2675230Z   i Check this thorough explanation to better understand the context.
-quality	Run repository quality gate	2026-10-05T13:26:57.2675592Z   
-quality	Run repository quality gate	2026-10-05T13:26:57.2676306Z 
+quality	Run repository quality gate	2026-10-05T13:26:57.2675592Z
+quality	Run repository quality gate	2026-10-05T13:26:57.2676306Z
 quality	Run repository quality gate	2026-10-05T13:26:57.2676778Z src/google/google.constants.ts:1:1 lint/performance/noBarrelFile ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-quality	Run repository quality gate	2026-10-05T13:26:57.2677196Z 
+quality	Run repository quality gate	2026-10-05T13:26:57.2677196Z
 quality	Run repository quality gate	2026-10-05T13:26:57.2677526Z   ! Avoid barrel files, they slow down performance, and cause large module graphs with modules that go unused.
-quality	Run repository quality gate	2026-10-05T13:26:57.2678028Z   
+quality	Run repository quality gate	2026-10-05T13:26:57.2678028Z
 quality	Run repository quality gate	2026-10-05T13:26:57.2678239Z    > 1 │ export {
 quality	Run repository quality gate	2026-10-05T13:26:57.2678466Z        │ ^^^^^^^^
 quality	Run repository quality gate	2026-10-05T13:26:57.2678712Z    > 2 │ 	CALENDAR_SCOPE,
@@ -4430,17 +4430,17 @@ quality	Run repository quality gate	2026-10-05T13:26:57.2680098Z    > 7 │ 	SCO
 quality	Run repository quality gate	2026-10-05T13:26:57.2680360Z    > 8 │ 	SYNC_SCOPES,
 quality	Run repository quality gate	2026-10-05T13:26:57.2680669Z    > 9 │ } from "../mailbox/mailbox.constants";
 quality	Run repository quality gate	2026-10-05T13:26:57.2681022Z        │ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-quality	Run repository quality gate	2026-10-05T13:26:57.2681300Z     10 │ 
-quality	Run repository quality gate	2026-10-05T13:26:57.2681488Z   
+quality	Run repository quality gate	2026-10-05T13:26:57.2681300Z     10 │
+quality	Run repository quality gate	2026-10-05T13:26:57.2681488Z
 quality	Run repository quality gate	2026-10-05T13:26:57.2681773Z   i Check this thorough explanation to better understand the context.
-quality	Run repository quality gate	2026-10-05T13:26:57.2682146Z   
-quality	Run repository quality gate	2026-10-05T13:26:57.2682241Z 
+quality	Run repository quality gate	2026-10-05T13:26:57.2682146Z
+quality	Run repository quality gate	2026-10-05T13:26:57.2682241Z
 quality	Run repository quality gate	2026-10-05T13:26:57.2682619Z src/mailbox/mailbox.constants.ts:10:1 lint/performance/noBarrelFile ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-quality	Run repository quality gate	2026-10-05T13:26:57.2683011Z 
+quality	Run repository quality gate	2026-10-05T13:26:57.2683011Z
 quality	Run repository quality gate	2026-10-05T13:26:57.2683327Z   ! Avoid barrel files, they slow down performance, and cause large module graphs with modules that go unused.
-quality	Run repository quality gate	2026-10-05T13:26:57.2683811Z   
+quality	Run repository quality gate	2026-10-05T13:26:57.2683811Z
 quality	Run repository quality gate	2026-10-05T13:26:57.2684026Z      8 │ } from "@crm/auth";
-quality	Run repository quality gate	2026-10-05T13:26:57.2684287Z      9 │ 
+quality	Run repository quality gate	2026-10-05T13:26:57.2684287Z      9 │
 quality	Run repository quality gate	2026-10-05T13:26:57.2684493Z   > 10 │ export {
 quality	Run repository quality gate	2026-10-05T13:26:57.2684717Z        │ ^^^^^^^^
 quality	Run repository quality gate	2026-10-05T13:26:57.2684945Z   > 11 │ 	CALENDAR_SCOPE,
@@ -4448,16 +4448,16 @@ quality	Run repository quality gate	2026-10-05T13:26:57.2685182Z         ...
 quality	Run repository quality gate	2026-10-05T13:26:57.2685411Z   > 18 │ 	SYNC_SCOPES,
 quality	Run repository quality gate	2026-10-05T13:26:57.2685955Z   > 19 │ } from "@crm/auth";
 quality	Run repository quality gate	2026-10-05T13:26:57.2686439Z        │ ^^^^^^^^^^^^^^^^^^^
-quality	Run repository quality gate	2026-10-05T13:26:57.2686749Z     20 │ 
+quality	Run repository quality gate	2026-10-05T13:26:57.2686749Z     20 │
 quality	Run repository quality gate	2026-10-05T13:26:57.2687306Z     21 │ export const SYNC_SOURCES = ["calendar", "gmail", "outlook"] as const;
-quality	Run repository quality gate	2026-10-05T13:26:57.2687723Z   
+quality	Run repository quality gate	2026-10-05T13:26:57.2687723Z
 quality	Run repository quality gate	2026-10-05T13:26:57.2688015Z   i Check this thorough explanation to better understand the context.
-quality	Run repository quality gate	2026-10-05T13:26:57.2688585Z   
-quality	Run repository quality gate	2026-10-05T13:26:57.2688743Z 
+quality	Run repository quality gate	2026-10-05T13:26:57.2688585Z
+quality	Run repository quality gate	2026-10-05T13:26:57.2688743Z
 quality	Run repository quality gate	2026-10-05T13:26:57.2689404Z src/microsoft/microsoft.constants.ts:1:1 lint/performance/noBarrelFile ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-quality	Run repository quality gate	2026-10-05T13:26:57.2690089Z 
+quality	Run repository quality gate	2026-10-05T13:26:57.2690089Z
 quality	Run repository quality gate	2026-10-05T13:26:57.2690703Z   ! Avoid barrel files, they slow down performance, and cause large module graphs with modules that go unused.
-quality	Run repository quality gate	2026-10-05T13:26:57.2691822Z   
+quality	Run repository quality gate	2026-10-05T13:26:57.2691822Z
 quality	Run repository quality gate	2026-10-05T13:26:57.2692311Z   > 1 │ export {
 quality	Run repository quality gate	2026-10-05T13:26:57.2692562Z       │ ^^^^^^^^
 quality	Run repository quality gate	2026-10-05T13:26:57.2692834Z   > 2 │ 	MICROSOFT_PROVIDER_ID,
@@ -4468,15 +4468,15 @@ quality	Run repository quality gate	2026-10-05T13:26:57.2694233Z   > 6 │ 	OUTL
 quality	Run repository quality gate	2026-10-05T13:26:57.2694535Z   > 7 │ 	SCOPE_FOR_SOURCE,
 quality	Run repository quality gate	2026-10-05T13:26:57.2694843Z   > 8 │ } from "../mailbox/mailbox.constants";
 quality	Run repository quality gate	2026-10-05T13:26:57.2695208Z       │ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-quality	Run repository quality gate	2026-10-05T13:26:57.2695482Z     9 │ 
-quality	Run repository quality gate	2026-10-05T13:26:57.2696086Z   
+quality	Run repository quality gate	2026-10-05T13:26:57.2695482Z     9 │
+quality	Run repository quality gate	2026-10-05T13:26:57.2696086Z
 quality	Run repository quality gate	2026-10-05T13:26:57.2696656Z   i Check this thorough explanation to better understand the context.
-quality	Run repository quality gate	2026-10-05T13:26:57.2697060Z   
-quality	Run repository quality gate	2026-10-05T13:26:57.2697163Z 
+quality	Run repository quality gate	2026-10-05T13:26:57.2697060Z
+quality	Run repository quality gate	2026-10-05T13:26:57.2697163Z
 quality	Run repository quality gate	2026-10-05T13:26:57.2697606Z src/migrations/background-import.mjs:75:6 lint/complexity/useOptionalChain  FIXABLE  ━━━━━━━━━━━━━━━
-quality	Run repository quality gate	2026-10-05T13:26:57.2698050Z 
+quality	Run repository quality gate	2026-10-05T13:26:57.2698050Z
 quality	Run repository quality gate	2026-10-05T13:26:57.2698155Z   ! Change to an optional chain.
-quality	Run repository quality gate	2026-10-05T13:26:57.2698407Z   
+quality	Run repository quality gate	2026-10-05T13:26:57.2698407Z
 quality	Run repository quality gate	2026-10-05T13:26:57.2698610Z     73 │ 				});
 quality	Run repository quality gate	2026-10-05T13:26:57.2698839Z     74 │ 				if (
 quality	Run repository quality gate	2026-10-05T13:26:57.2699121Z   > 75 │ 					!row ||
@@ -4485,9 +4485,9 @@ quality	Run repository quality gate	2026-10-05T13:26:57.2699636Z   > 76 │ 				
 quality	Run repository quality gate	2026-10-05T13:26:57.2699954Z        │ 					^^^^^^^^^^^^^^^^^^^^^^
 quality	Run repository quality gate	2026-10-05T13:26:57.2700286Z     77 │ 					row.backgroundVersion !== claim.version
 quality	Run repository quality gate	2026-10-05T13:26:57.2700616Z     78 │ 				)
-quality	Run repository quality gate	2026-10-05T13:26:57.2700808Z   
+quality	Run repository quality gate	2026-10-05T13:26:57.2700808Z
 quality	Run repository quality gate	2026-10-05T13:26:57.2701017Z   i Unsafe fix: Change to an optional chain.
-quality	Run repository quality gate	2026-10-05T13:26:57.2701300Z   
+quality	Run repository quality gate	2026-10-05T13:26:57.2701300Z
 quality	Run repository quality gate	2026-10-05T13:26:57.2701512Z      73  73 │           });
 quality	Run repository quality gate	2026-10-05T13:26:57.2701789Z      74  74 │           if (
 quality	Run repository quality gate	2026-10-05T13:26:57.2702082Z      75     │ - → → → → → !row·||
@@ -4495,137 +4495,137 @@ quality	Run repository quality gate	2026-10-05T13:26:57.2702415Z      76     │
 quality	Run repository quality gate	2026-10-05T13:26:57.2702813Z          75 │ + → → → → → !row?.backgroundEnabled·||
 quality	Run repository quality gate	2026-10-05T13:26:57.2703234Z      77  76 │             row.backgroundVersion !== claim.version
 quality	Run repository quality gate	2026-10-05T13:26:57.2703590Z      78  77 │           )
-quality	Run repository quality gate	2026-10-05T13:26:57.2703814Z   
-quality	Run repository quality gate	2026-10-05T13:26:57.2703916Z 
+quality	Run repository quality gate	2026-10-05T13:26:57.2703814Z
+quality	Run repository quality gate	2026-10-05T13:26:57.2703916Z
 quality	Run repository quality gate	2026-10-05T13:26:57.2704298Z src/tracking/tracking.service.ts:40:2 lint/correctness/noUnusedImports  FIXABLE  ━━━━━━━━━━━━━━━━━━━
-quality	Run repository quality gate	2026-10-05T13:26:57.2704692Z 
+quality	Run repository quality gate	2026-10-05T13:26:57.2704692Z
 quality	Run repository quality gate	2026-10-05T13:26:57.2704802Z   ! Several of these imports are unused.
-quality	Run repository quality gate	2026-10-05T13:26:57.2705062Z   
+quality	Run repository quality gate	2026-10-05T13:26:57.2705062Z
 quality	Run repository quality gate	2026-10-05T13:26:57.2705284Z     38 │ 	TrackingSettings,
 quality	Run repository quality gate	2026-10-05T13:26:57.2705543Z     39 │ 	VerifyResult,
 quality	Run repository quality gate	2026-10-05T13:26:57.2706181Z   > 40 │ 	VisitedPage,
 quality	Run repository quality gate	2026-10-05T13:26:57.2706681Z        │ 	^^^^^^^^^^^
 quality	Run repository quality gate	2026-10-05T13:26:57.2707211Z     41 │ 	WebsiteActivity,
 quality	Run repository quality gate	2026-10-05T13:26:57.2707817Z     42 │ } from "./tracking.contracts";
-quality	Run repository quality gate	2026-10-05T13:26:57.2708349Z   
+quality	Run repository quality gate	2026-10-05T13:26:57.2708349Z
 quality	Run repository quality gate	2026-10-05T13:26:57.2708865Z   i Unused imports might be the result of an incomplete refactoring.
-quality	Run repository quality gate	2026-10-05T13:26:57.2709567Z   
+quality	Run repository quality gate	2026-10-05T13:26:57.2709567Z
 quality	Run repository quality gate	2026-10-05T13:26:57.2710041Z   i Unsafe fix: Remove the unused imports.
-quality	Run repository quality gate	2026-10-05T13:26:57.2710455Z   
+quality	Run repository quality gate	2026-10-05T13:26:57.2710455Z
 quality	Run repository quality gate	2026-10-05T13:26:57.2710982Z      38  38 │     TrackingSettings,
 quality	Run repository quality gate	2026-10-05T13:26:57.2711618Z      39  39 │     VerifyResult,
 quality	Run repository quality gate	2026-10-05T13:26:57.2712306Z      40     │ - → VisitedPage,
 quality	Run repository quality gate	2026-10-05T13:26:57.2712872Z      41  40 │     WebsiteActivity,
 quality	Run repository quality gate	2026-10-05T13:26:57.2713503Z      42  41 │   } from "./tracking.contracts";
-quality	Run repository quality gate	2026-10-05T13:26:57.2713985Z   
-quality	Run repository quality gate	2026-10-05T13:26:57.2714187Z 
+quality	Run repository quality gate	2026-10-05T13:26:57.2713985Z
+quality	Run repository quality gate	2026-10-05T13:26:57.2714187Z
 quality	Run repository quality gate	2026-10-05T13:26:57.2715115Z test/operations-postgres.integration.spec.ts:320:17 lint/style/noNonNullAssertion ━━━━━━━━━━━━━━━━━━
-quality	Run repository quality gate	2026-10-05T13:26:57.2716060Z 
+quality	Run repository quality gate	2026-10-05T13:26:57.2716060Z
 quality	Run repository quality gate	2026-10-05T13:26:57.2716228Z   ! Forbidden non-null assertion.
-quality	Run repository quality gate	2026-10-05T13:26:57.2716693Z   
+quality	Run repository quality gate	2026-10-05T13:26:57.2716693Z
 quality	Run repository quality gate	2026-10-05T13:26:57.2717068Z     318 │ 		});
 quality	Run repository quality gate	2026-10-05T13:26:57.2717560Z     319 │ 		await db.contact.update({
 quality	Run repository quality gate	2026-10-05T13:26:57.2718161Z   > 320 │ 			where: { id: receipts[0]!.entityId! },
 quality	Run repository quality gate	2026-10-05T13:26:57.2718724Z         │ 			             ^^^^^^^^^^^^^^^^^^^^^^
 quality	Run repository quality gate	2026-10-05T13:26:57.2719437Z     321 │ 			data: {
 quality	Run repository quality gate	2026-10-05T13:26:57.2719880Z     322 │ 				title: "Edited after import",
-quality	Run repository quality gate	2026-10-05T13:26:57.2720291Z   
-quality	Run repository quality gate	2026-10-05T13:26:57.2720450Z 
+quality	Run repository quality gate	2026-10-05T13:26:57.2720291Z
+quality	Run repository quality gate	2026-10-05T13:26:57.2720450Z
 quality	Run repository quality gate	2026-10-05T13:26:57.2721178Z test/operations-postgres.integration.spec.ts:320:17 lint/style/noNonNullAssertion  FIXABLE  ━━━━━━━━━━
-quality	Run repository quality gate	2026-10-05T13:26:57.2722173Z 
+quality	Run repository quality gate	2026-10-05T13:26:57.2722173Z
 quality	Run repository quality gate	2026-10-05T13:26:57.2722351Z   ! Forbidden non-null assertion.
-quality	Run repository quality gate	2026-10-05T13:26:57.2722767Z   
+quality	Run repository quality gate	2026-10-05T13:26:57.2722767Z
 quality	Run repository quality gate	2026-10-05T13:26:57.2723084Z     318 │ 		});
 quality	Run repository quality gate	2026-10-05T13:26:57.2723481Z     319 │ 		await db.contact.update({
 quality	Run repository quality gate	2026-10-05T13:26:57.2724063Z   > 320 │ 			where: { id: receipts[0]!.entityId! },
 quality	Run repository quality gate	2026-10-05T13:26:57.2724821Z         │ 			             ^^^^^^^^^^^^
 quality	Run repository quality gate	2026-10-05T13:26:57.2725438Z     321 │ 			data: {
 quality	Run repository quality gate	2026-10-05T13:26:57.2726083Z     322 │ 				title: "Edited after import",
-quality	Run repository quality gate	2026-10-05T13:26:57.2726560Z   
+quality	Run repository quality gate	2026-10-05T13:26:57.2726560Z
 quality	Run repository quality gate	2026-10-05T13:26:57.2727542Z   i Unsafe fix: Replace with optional chain operator ?. This operator includes runtime checks, so it is safer than the compile-only non-null assertion operator
-quality	Run repository quality gate	2026-10-05T13:26:57.2728908Z   
+quality	Run repository quality gate	2026-10-05T13:26:57.2728908Z
 quality	Run repository quality gate	2026-10-05T13:26:57.2729447Z     318 318 │       });
 quality	Run repository quality gate	2026-10-05T13:26:57.2730100Z     319 319 │       await db.contact.update({
 quality	Run repository quality gate	2026-10-05T13:26:57.2730920Z     320     │ - → → → where:·{·id:·receipts[0]!.entityId!·},
 quality	Run repository quality gate	2026-10-05T13:26:57.2731668Z         320 │ + → → → where:·{·id:·receipts[0]?.entityId!·},
 quality	Run repository quality gate	2026-10-05T13:26:57.2732214Z     321 321 │         data: {
 quality	Run repository quality gate	2026-10-05T13:26:57.2732730Z     322 322 │           title: "Edited after import",
-quality	Run repository quality gate	2026-10-05T13:26:57.2733179Z   
-quality	Run repository quality gate	2026-10-05T13:26:57.2733336Z 
+quality	Run repository quality gate	2026-10-05T13:26:57.2733179Z
+quality	Run repository quality gate	2026-10-05T13:26:57.2733336Z
 quality	Run repository quality gate	2026-10-05T13:26:57.2733985Z test/operations-postgres.integration.spec.ts:340:19 lint/style/noNonNullAssertion ━━━━━━━━━━━━━━━━━━
-quality	Run repository quality gate	2026-10-05T13:26:57.2734646Z 
+quality	Run repository quality gate	2026-10-05T13:26:57.2734646Z
 quality	Run repository quality gate	2026-10-05T13:26:57.2734797Z   ! Forbidden non-null assertion.
-quality	Run repository quality gate	2026-10-05T13:26:57.2735193Z   
+quality	Run repository quality gate	2026-10-05T13:26:57.2735193Z
 quality	Run repository quality gate	2026-10-05T13:26:57.2735508Z     338 │ 			(
 quality	Run repository quality gate	2026-10-05T13:26:57.2736219Z     339 │ 				await db.contact.findUniqueOrThrow({
 quality	Run repository quality gate	2026-10-05T13:26:57.2736846Z   > 340 │ 					where: { id: receipts[0]!.entityId! },
 quality	Run repository quality gate	2026-10-05T13:26:57.2737416Z         │ 					             ^^^^^^^^^^^^^^^^^^^^^^
 quality	Run repository quality gate	2026-10-05T13:26:57.2737891Z     341 │ 				})
 quality	Run repository quality gate	2026-10-05T13:26:57.2738275Z     342 │ 			).archivedAt,
-quality	Run repository quality gate	2026-10-05T13:26:57.2738644Z   
-quality	Run repository quality gate	2026-10-05T13:26:57.2738834Z 
+quality	Run repository quality gate	2026-10-05T13:26:57.2738644Z
+quality	Run repository quality gate	2026-10-05T13:26:57.2738834Z
 quality	Run repository quality gate	2026-10-05T13:26:57.2739526Z test/operations-postgres.integration.spec.ts:340:19 lint/style/noNonNullAssertion  FIXABLE  ━━━━━━━━━━
-quality	Run repository quality gate	2026-10-05T13:26:57.2740259Z 
+quality	Run repository quality gate	2026-10-05T13:26:57.2740259Z
 quality	Run repository quality gate	2026-10-05T13:26:57.2740423Z   ! Forbidden non-null assertion.
-quality	Run repository quality gate	2026-10-05T13:26:57.2740835Z   
+quality	Run repository quality gate	2026-10-05T13:26:57.2740835Z
 quality	Run repository quality gate	2026-10-05T13:26:57.2741162Z     338 │ 			(
 quality	Run repository quality gate	2026-10-05T13:26:57.2741641Z     339 │ 				await db.contact.findUniqueOrThrow({
 quality	Run repository quality gate	2026-10-05T13:26:57.2742251Z   > 340 │ 					where: { id: receipts[0]!.entityId! },
 quality	Run repository quality gate	2026-10-05T13:26:57.2742826Z         │ 					             ^^^^^^^^^^^^
 quality	Run repository quality gate	2026-10-05T13:26:57.2743345Z     341 │ 				})
 quality	Run repository quality gate	2026-10-05T13:26:57.2743712Z     342 │ 			).archivedAt,
-quality	Run repository quality gate	2026-10-05T13:26:57.2744065Z   
+quality	Run repository quality gate	2026-10-05T13:26:57.2744065Z
 quality	Run repository quality gate	2026-10-05T13:26:57.2745081Z   i Unsafe fix: Replace with optional chain operator ?. This operator includes runtime checks, so it is safer than the compile-only non-null assertion operator
-quality	Run repository quality gate	2026-10-05T13:26:57.2746586Z   
+quality	Run repository quality gate	2026-10-05T13:26:57.2746586Z
 quality	Run repository quality gate	2026-10-05T13:26:57.2746925Z     338 338 │         (
 quality	Run repository quality gate	2026-10-05T13:26:57.2747419Z     339 339 │           await db.contact.findUniqueOrThrow({
 quality	Run repository quality gate	2026-10-05T13:26:57.2748336Z     340     │ - → → → → → where:·{·id:·receipts[0]!.entityId!·},
 quality	Run repository quality gate	2026-10-05T13:26:57.2749081Z         340 │ + → → → → → where:·{·id:·receipts[0]?.entityId!·},
 quality	Run repository quality gate	2026-10-05T13:26:57.2749678Z     341 341 │           })
 quality	Run repository quality gate	2026-10-05T13:26:57.2750127Z     342 342 │         ).archivedAt,
-quality	Run repository quality gate	2026-10-05T13:26:57.2750535Z   
-quality	Run repository quality gate	2026-10-05T13:26:57.2750696Z 
+quality	Run repository quality gate	2026-10-05T13:26:57.2750535Z
+quality	Run repository quality gate	2026-10-05T13:26:57.2750696Z
 quality	Run repository quality gate	2026-10-05T13:26:57.2751347Z test/operations-postgres.integration.spec.ts:564:17 lint/style/noNonNullAssertion ━━━━━━━━━━━━━━━━━━
-quality	Run repository quality gate	2026-10-05T13:26:57.2751778Z 
+quality	Run repository quality gate	2026-10-05T13:26:57.2751778Z
 quality	Run repository quality gate	2026-10-05T13:26:57.2751880Z   ! Forbidden non-null assertion.
-quality	Run repository quality gate	2026-10-05T13:26:57.2752135Z   
+quality	Run repository quality gate	2026-10-05T13:26:57.2752135Z
 quality	Run repository quality gate	2026-10-05T13:26:57.2752341Z     562 │ 		]);
 quality	Run repository quality gate	2026-10-05T13:26:57.2752647Z     563 │ 		expect(claims.filter(Boolean).length).toBe(1);
 quality	Run repository quality gate	2026-10-05T13:26:57.2753064Z   > 564 │ 		const claim = claims.find(Boolean)!;
 quality	Run repository quality gate	2026-10-05T13:26:57.2753407Z         │ 		              ^^^^^^^^^^^^^^^^^^^^^
 quality	Run repository quality gate	2026-10-05T13:26:57.2753801Z     565 │ 		expect(claim.sessionId).toBe(f.identity.sessionId);
 quality	Run repository quality gate	2026-10-05T13:26:57.2754292Z     566 │ 		expect(claim.rootSessionId).not.toBe(claim.sessionId);
-quality	Run repository quality gate	2026-10-05T13:26:57.2754636Z   
-quality	Run repository quality gate	2026-10-05T13:26:57.2754739Z 
+quality	Run repository quality gate	2026-10-05T13:26:57.2754636Z
+quality	Run repository quality gate	2026-10-05T13:26:57.2754739Z
 quality	Run repository quality gate	2026-10-05T13:26:57.2755133Z test/operations-postgres.integration.spec.ts:575:17 lint/style/noNonNullAssertion ━━━━━━━━━━━━━━━━━━
-quality	Run repository quality gate	2026-10-05T13:26:57.2755547Z 
+quality	Run repository quality gate	2026-10-05T13:26:57.2755547Z
 quality	Run repository quality gate	2026-10-05T13:26:57.2755874Z   ! Forbidden non-null assertion.
-quality	Run repository quality gate	2026-10-05T13:26:57.2756213Z   
+quality	Run repository quality gate	2026-10-05T13:26:57.2756213Z
 quality	Run repository quality gate	2026-10-05T13:26:57.2756733Z     573 │ 	it("one-time transport admission and exact request binding survive new store instances", async () => {
 quality	Run repository quality gate	2026-10-05T13:26:57.2757307Z     574 │ 		const f = await fixture("admit");
 quality	Run repository quality gate	2026-10-05T13:26:57.2757701Z   > 575 │ 		const claim = (await f.store.claim(f.ticket.id))!;
 quality	Run repository quality gate	2026-10-05T13:26:57.2758107Z         │ 		              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 quality	Run repository quality gate	2026-10-05T13:26:57.2758432Z     576 │ 		expect(
 quality	Run repository quality gate	2026-10-05T13:26:57.2758841Z     577 │ 			await f.store.admitDelivery({ ...claim, sessionId: "different-child" }),
-quality	Run repository quality gate	2026-10-05T13:26:57.2759248Z   
-quality	Run repository quality gate	2026-10-05T13:26:57.2759363Z 
+quality	Run repository quality gate	2026-10-05T13:26:57.2759248Z
+quality	Run repository quality gate	2026-10-05T13:26:57.2759363Z
 quality	Run repository quality gate	2026-10-05T13:26:57.2759483Z Checked 277 files in 1424ms. No fixes applied.
 quality	Run repository quality gate	2026-10-05T13:26:57.2759786Z Found 12 warnings.
 quality	Run repository quality gate	2026-10-05T13:26:57.2759990Z Found 1 info.
 quality	Run repository quality gate	2026-10-05T13:26:57.2760454Z ##[endgroup]
-quality	Run repository quality gate	2026-10-05T13:26:57.2760576Z 
+quality	Run repository quality gate	2026-10-05T13:26:57.2760576Z
 quality	Run repository quality gate	2026-10-05T13:26:57.2760679Z  Tasks:    9 successful, 9 total
 quality	Run repository quality gate	2026-10-05T13:26:57.2760938Z Cached:    0 cached, 9 total
-quality	Run repository quality gate	2026-10-05T13:26:57.2761178Z   Time:    1.67s 
-quality	Run repository quality gate	2026-10-05T13:26:57.2761304Z 
-quality	Run repository quality gate	2026-10-05T13:26:57.2798409Z 
+quality	Run repository quality gate	2026-10-05T13:26:57.2761178Z   Time:    1.67s
+quality	Run repository quality gate	2026-10-05T13:26:57.2761304Z
+quality	Run repository quality gate	2026-10-05T13:26:57.2798409Z
 quality	Run repository quality gate	2026-10-05T13:26:57.2798597Z > bun run check-types
 quality	Run repository quality gate	2026-10-05T13:26:57.2827410Z $ turbo run check-types
-quality	Run repository quality gate	2026-10-05T13:26:57.3737692Z 
+quality	Run repository quality gate	2026-10-05T13:26:57.3737692Z
 quality	Run repository quality gate	2026-10-05T13:26:57.3740717Z    • Packages in scope: @crm/action-registry, @crm/agent-action-runtime, @crm/auth, @crm/db, @crm/env, @crm/integration-runtime, @crm/migration-core, @crm/migration-runtime, @crm/pipeline-core, @crm/pipeline-runtime, @crm/security-core, @crm/telemetry, @crm/typescript-config, @crm/ui, @crm/validation, agent, api, app
 quality	Run repository quality gate	2026-10-05T13:26:57.3743934Z    • Running check-types in 18 packages
 quality	Run repository quality gate	2026-10-05T13:26:57.3756807Z    • Remote caching disabled
-quality	Run repository quality gate	2026-10-05T13:26:57.3757493Z 
+quality	Run repository quality gate	2026-10-05T13:26:57.3757493Z
 quality	Run repository quality gate	2026-10-05T13:26:57.8276522Z ##[group]app:typegen
 quality	Run repository quality gate	2026-10-05T13:26:57.8286649Z cache miss, executing 170ade75f117e6ab
 quality	Run repository quality gate	2026-10-05T13:26:57.8319216Z $ next typegen
@@ -4640,30 +4640,30 @@ quality	Run repository quality gate	2026-10-05T13:26:59.8926852Z ##[group]@crm/d
 quality	Run repository quality gate	2026-10-05T13:26:59.8927401Z cache miss, executing 44598decfbcad5cc
 quality	Run repository quality gate	2026-10-05T13:26:59.8927923Z $ prisma generate
 quality	Run repository quality gate	2026-10-05T13:26:59.8928690Z Loaded Prisma config from prisma.config.ts.
-quality	Run repository quality gate	2026-10-05T13:26:59.8929084Z 
+quality	Run repository quality gate	2026-10-05T13:26:59.8929084Z
 quality	Run repository quality gate	2026-10-05T13:26:59.8929359Z Prisma schema loaded from prisma/schema.prisma.
-quality	Run repository quality gate	2026-10-05T13:26:59.8929790Z 
+quality	Run repository quality gate	2026-10-05T13:26:59.8929790Z
 quality	Run repository quality gate	2026-10-05T13:26:59.8930694Z ✔ Generated Prisma Client (7.9.1) to ./src/generated/prisma in 645ms
-quality	Run repository quality gate	2026-10-05T13:26:59.8931283Z 
+quality	Run repository quality gate	2026-10-05T13:26:59.8931283Z
 quality	Run repository quality gate	2026-10-05T13:26:59.8931794Z ##[endgroup]
 quality	Run repository quality gate	2026-10-05T13:27:00.0787382Z ##[group]api:build
 quality	Run repository quality gate	2026-10-05T13:27:00.0816651Z cache miss, executing 472c29ebd79dba95
 quality	Run repository quality gate	2026-10-05T13:27:00.0817544Z $ bun build src/main.ts --target=bun --outdir dist --packages=external --sourcemap
 quality	Run repository quality gate	2026-10-05T13:27:00.0818371Z Bundled 206 modules in 152ms
-quality	Run repository quality gate	2026-10-05T13:27:00.0818682Z 
+quality	Run repository quality gate	2026-10-05T13:27:00.0818682Z
 quality	Run repository quality gate	2026-10-05T13:27:00.0818867Z   main.js      0.84 MB  (entry point)
 quality	Run repository quality gate	2026-10-05T13:27:00.0819385Z   main.js.map  1.49 MB  (source map)
-quality	Run repository quality gate	2026-10-05T13:27:00.0819701Z 
+quality	Run repository quality gate	2026-10-05T13:27:00.0819701Z
 quality	Run repository quality gate	2026-10-05T13:27:00.0820213Z ##[endgroup]
 quality	Run repository quality gate	2026-10-05T13:27:04.2875105Z ##[group]api:trpc:generate
 quality	Run repository quality gate	2026-10-05T13:27:04.2930873Z cache miss, executing a2c5eb5dba0238b2
 quality	Run repository quality gate	2026-10-05T13:27:04.3037453Z $ nestjs-trpc generate -e src/app.module.ts -r "**/*.router.ts" -o src/generated
 quality	Run repository quality gate	2026-10-05T13:27:04.3136984Z ✓ Generated server.ts successfully!
-quality	Run repository quality gate	2026-10-05T13:27:04.3178194Z 
+quality	Run repository quality gate	2026-10-05T13:27:04.3178194Z
 quality	Run repository quality gate	2026-10-05T13:27:04.3266158Z   Output:     /home/runner/work/tayvero/tayvero/apps/api/src/generated/server.ts
 quality	Run repository quality gate	2026-10-05T13:27:04.3346761Z   Routers:    24
 quality	Run repository quality gate	2026-10-05T13:27:04.3428765Z   Procedures: 185
-quality	Run repository quality gate	2026-10-05T13:27:04.3486169Z 
+quality	Run repository quality gate	2026-10-05T13:27:04.3486169Z
 quality	Run repository quality gate	2026-10-05T13:27:04.3487109Z ##[endgroup]
 quality	Run repository quality gate	2026-10-05T13:27:08.0190661Z ##[group]@crm/validation:check-types
 quality	Run repository quality gate	2026-10-05T13:27:08.0306734Z cache miss, executing 233ca5ea17bbc66a
@@ -4697,19 +4697,19 @@ quality	Run repository quality gate	2026-10-05T13:27:35.6955238Z ##[group]app:ch
 quality	Run repository quality gate	2026-10-05T13:27:35.6956029Z cache miss, executing eaa977b6f7e35467
 quality	Run repository quality gate	2026-10-05T13:27:35.6956547Z $ tsc --noEmit
 quality	Run repository quality gate	2026-10-05T13:27:35.6957510Z ##[endgroup]
-quality	Run repository quality gate	2026-10-05T13:27:35.6962727Z 
+quality	Run repository quality gate	2026-10-05T13:27:35.6962727Z
 quality	Run repository quality gate	2026-10-05T13:27:35.6962967Z  Tasks:    13 successful, 13 total
 quality	Run repository quality gate	2026-10-05T13:27:35.6963486Z Cached:    0 cached, 13 total
-quality	Run repository quality gate	2026-10-05T13:27:35.6963904Z   Time:    38.379s 
-quality	Run repository quality gate	2026-10-05T13:27:35.6964134Z 
-quality	Run repository quality gate	2026-10-05T13:27:35.7075228Z 
+quality	Run repository quality gate	2026-10-05T13:27:35.6963904Z   Time:    38.379s
+quality	Run repository quality gate	2026-10-05T13:27:35.6964134Z
+quality	Run repository quality gate	2026-10-05T13:27:35.7075228Z
 quality	Run repository quality gate	2026-10-05T13:27:35.7075899Z > bun run test
 quality	Run repository quality gate	2026-10-05T13:27:35.7106360Z $ turbo run test --concurrency=1
-quality	Run repository quality gate	2026-10-05T13:27:35.8122179Z 
+quality	Run repository quality gate	2026-10-05T13:27:35.8122179Z
 quality	Run repository quality gate	2026-10-05T13:27:35.8124957Z    • Packages in scope: @crm/action-registry, @crm/agent-action-runtime, @crm/auth, @crm/db, @crm/env, @crm/integration-runtime, @crm/migration-core, @crm/migration-runtime, @crm/pipeline-core, @crm/pipeline-runtime, @crm/security-core, @crm/telemetry, @crm/typescript-config, @crm/ui, @crm/validation, agent, api, app
 quality	Run repository quality gate	2026-10-05T13:27:35.8127671Z    • Running test in 18 packages
 quality	Run repository quality gate	2026-10-05T13:27:35.8128235Z    • Remote caching disabled
-quality	Run repository quality gate	2026-10-05T13:27:35.8128943Z 
+quality	Run repository quality gate	2026-10-05T13:27:35.8128943Z
 quality	Run repository quality gate	2026-10-05T13:27:35.9508422Z ##[group]@crm/action-registry:test
 quality	Run repository quality gate	2026-10-05T13:27:35.9508854Z cache miss, executing b61fa426100cba41
 quality	Run repository quality gate	2026-10-05T13:27:35.9509240Z $ node --test ./test/*.test.mjs
@@ -5824,11 +5824,11 @@ quality	Run repository quality gate	2026-10-05T13:27:36.9250489Z ##[group]@crm/d
 quality	Run repository quality gate	2026-10-05T13:27:36.9250902Z cache hit, replaying logs 44598decfbcad5cc
 quality	Run repository quality gate	2026-10-05T13:27:36.9251385Z $ prisma generate
 quality	Run repository quality gate	2026-10-05T13:27:36.9251792Z Loaded Prisma config from prisma.config.ts.
-quality	Run repository quality gate	2026-10-05T13:27:36.9252151Z 
+quality	Run repository quality gate	2026-10-05T13:27:36.9252151Z
 quality	Run repository quality gate	2026-10-05T13:27:36.9252366Z Prisma schema loaded from prisma/schema.prisma.
-quality	Run repository quality gate	2026-10-05T13:27:36.9252750Z 
+quality	Run repository quality gate	2026-10-05T13:27:36.9252750Z
 quality	Run repository quality gate	2026-10-05T13:27:36.9253413Z ✔ Generated Prisma Client (7.9.1) to ./src/generated/prisma in 645ms
-quality	Run repository quality gate	2026-10-05T13:27:36.9253937Z 
+quality	Run repository quality gate	2026-10-05T13:27:36.9253937Z
 quality	Run repository quality gate	2026-10-05T13:27:36.9254307Z ##[endgroup]
 quality	Run repository quality gate	2026-10-05T13:27:37.0962945Z ##[group]@crm/pipeline-runtime:test
 quality	Run repository quality gate	2026-10-05T13:27:37.0963609Z cache miss, executing 29d2de00c60c1c50
@@ -6058,7 +6058,7 @@ quality	Run repository quality gate	2026-10-05T13:27:37.1326247Z ^[[;31m@crm/env
 quality	Run repository quality gate	2026-10-05T13:27:37.1327196Z cache miss, executing f4d9a35e9283fc63
 quality	Run repository quality gate	2026-10-05T13:27:37.1333293Z $ NODE_ENV=test bun test
 quality	Run repository quality gate	2026-10-05T13:27:37.1335403Z bun test v1.3.12 (700fc117)
-quality	Run repository quality gate	2026-10-05T13:27:37.1336150Z 
+quality	Run repository quality gate	2026-10-05T13:27:37.1336150Z
 quality	Run repository quality gate	2026-10-05T13:27:37.1336828Z ##[group]test/parse.spec.ts:
 quality	Run repository quality gate	2026-10-05T13:27:37.1337491Z (pass) parseEnv > reads plain and quoted values
 quality	Run repository quality gate	2026-10-05T13:27:37.1338233Z (pass) parseEnv > ignores comments and blank lines
@@ -6073,9 +6073,9 @@ quality	Run repository quality gate	2026-10-05T13:27:37.1385231Z (pass) parseEnv
 quality	Run repository quality gate	2026-10-05T13:27:37.1386395Z (pass) parseEnv > skips lines that are not assignments
 quality	Run repository quality gate	2026-10-05T13:27:37.1386848Z (pass) parseEnv > lets a later line win, which is how a file is edited
 quality	Run repository quality gate	2026-10-05T13:27:37.1387351Z (pass) parseEnv > survives CRLF, which is what a Windows editor writes
-quality	Run repository quality gate	2026-10-05T13:27:37.1387636Z 
+quality	Run repository quality gate	2026-10-05T13:27:37.1387636Z
 quality	Run repository quality gate	2026-10-05T13:27:37.1387916Z ##[endgroup]
-quality	Run repository quality gate	2026-10-05T13:27:37.1388076Z 
+quality	Run repository quality gate	2026-10-05T13:27:37.1388076Z
 quality	Run repository quality gate	2026-10-05T13:27:37.1388322Z ##[group]test/root.spec.ts:
 quality	Run repository quality gate	2026-10-05T13:27:37.1388919Z (pass) finding the workspace root > finds it from the repo root itself
 quality	Run repository quality gate	2026-10-05T13:27:37.1390372Z (pass) finding the workspace root > finds it from a package that has its own turbo.json
@@ -6083,7 +6083,7 @@ quality	Run repository quality gate	2026-10-05T13:27:37.1390950Z (pass) finding 
 quality	Run repository quality gate	2026-10-05T13:27:37.1391868Z (pass) finding the workspace root > returns null above the repo rather than walking to / [1.00ms]
 quality	Run repository quality gate	2026-10-05T13:27:37.1392706Z (pass) finding the workspace root > only matches a manifest that declares workspaces
 quality	Run repository quality gate	2026-10-05T13:27:37.1393494Z (pass) the committed .env.example > names every variable the required section promises
-quality	Run repository quality gate	2026-10-05T13:27:37.1394059Z 72 | 
+quality	Run repository quality gate	2026-10-05T13:27:37.1394059Z 72 |
 quality	Run repository quality gate	2026-10-05T13:27:37.1394286Z 73 | 	it("ships no secret of its own", () => {
 quality	Run repository quality gate	2026-10-05T13:27:37.1394613Z 74 | 		for (const line of example.split("\n")) {
 quality	Run repository quality gate	2026-10-05T13:27:37.1395178Z 75 | 			if (line.startsWith("#") || !line.includes("=")) continue;
@@ -6091,20 +6091,20 @@ quality	Run repository quality gate	2026-10-05T13:27:37.1395602Z 76 | 			const v
 quality	Run repository quality gate	2026-10-05T13:27:37.1396316Z 77 | 			expect(value === '""' || value.length > 0).toBe(true);
 quality	Run repository quality gate	2026-10-05T13:27:37.1396662Z                                                    ^
 quality	Run repository quality gate	2026-10-05T13:27:37.1396964Z error: expect(received).toBe(expected)
-quality	Run repository quality gate	2026-10-05T13:27:37.1397191Z 
+quality	Run repository quality gate	2026-10-05T13:27:37.1397191Z
 quality	Run repository quality gate	2026-10-05T13:27:37.1397285Z Expected: true
 quality	Run repository quality gate	2026-10-05T13:27:37.1397488Z Received: false
-quality	Run repository quality gate	2026-10-05T13:27:37.1397613Z 
+quality	Run repository quality gate	2026-10-05T13:27:37.1397613Z
 quality	Run repository quality gate	2026-10-05T13:27:37.1397894Z       at <anonymous> (/home/runner/work/tayvero/tayvero/packages/env/test/root.spec.ts:77:47)
-quality	Run repository quality gate	2026-10-05T13:27:37.1398270Z 
+quality	Run repository quality gate	2026-10-05T13:27:37.1398270Z
 quality	Run repository quality gate	2026-10-05T13:27:37.1401632Z ##[error]Expected: true
 quality	Run repository quality gate	Received: false
-quality	Run repository quality gate	
+quality	Run repository quality gate
 quality	Run repository quality gate	      at <anonymous> (/home/runner/work/tayvero/tayvero/packages/env/test/root.spec.ts:77:47)
 quality	Run repository quality gate	2026-10-05T13:27:37.1403111Z (fail) the committed .env.example > ships no secret of its own
-quality	Run repository quality gate	2026-10-05T13:27:37.1403398Z 
+quality	Run repository quality gate	2026-10-05T13:27:37.1403398Z
 quality	Run repository quality gate	2026-10-05T13:27:37.1403666Z ##[endgroup]
-quality	Run repository quality gate	2026-10-05T13:27:37.1403798Z 
+quality	Run repository quality gate	2026-10-05T13:27:37.1403798Z
 quality	Run repository quality gate	2026-10-05T13:27:37.1403889Z  16 pass
 quality	Run repository quality gate	2026-10-05T13:27:37.1404083Z  1 fail
 quality	Run repository quality gate	2026-10-05T13:27:37.1404277Z  33 expect() calls
@@ -6113,12 +6113,12 @@ quality	Run repository quality gate	2026-10-05T13:27:37.1404833Z error: script "
 quality	Run repository quality gate	2026-10-05T13:27:37.1405288Z ##[group]@crm/migration-runtime:test
 quality	Run repository quality gate	2026-10-05T13:27:37.1405586Z cache miss, executing 8839086d604b8ae6
 quality	Run repository quality gate	2026-10-05T13:27:37.1406312Z ##[endgroup]
-quality	Run repository quality gate	2026-10-05T13:27:37.1406440Z 
+quality	Run repository quality gate	2026-10-05T13:27:37.1406440Z
 quality	Run repository quality gate	2026-10-05T13:27:37.1406538Z  Tasks:    8 successful, 10 total
 quality	Run repository quality gate	2026-10-05T13:27:37.1406818Z Cached:    1 cached, 10 total
-quality	Run repository quality gate	2026-10-05T13:27:37.1407060Z   Time:    1.388s 
+quality	Run repository quality gate	2026-10-05T13:27:37.1407060Z   Time:    1.388s
 quality	Run repository quality gate	2026-10-05T13:27:37.1407285Z Failed:    @crm/env#test
-quality	Run repository quality gate	2026-10-05T13:27:37.1407431Z 
+quality	Run repository quality gate	2026-10-05T13:27:37.1407431Z
 quality	Run repository quality gate	2026-10-05T13:27:37.1455451Z error: script "test" exited with code 1
 quality	Run repository quality gate	2026-10-05T13:27:37.1492342Z error: script "quality:gate" exited with code 1
 quality	Run repository quality gate	2026-10-05T13:27:37.1500177Z ##[error]Process completed with exit code 1.
@@ -6134,8 +6134,8 @@ quality	Preserve acceptance reports and logs	2026-10-05T13:27:37.1586940Z   incl
 quality	Preserve acceptance reports and logs	2026-10-05T13:27:37.1587183Z env:
 quality	Preserve acceptance reports and logs	2026-10-05T13:27:37.1587378Z   CI: true
 quality	Preserve acceptance reports and logs	2026-10-05T13:27:37.1587580Z   CRM_TELEMETRY_DISABLED: true
-quality	Preserve acceptance reports and logs	2026-10-05T13:27:37.1587926Z   DATABASE_URL: postgresql://postgres@127.0.0.1:5432/crm_build
-quality	Preserve acceptance reports and logs	2026-10-05T13:27:37.1588407Z   TEST_DATABASE_URL: postgresql://postgres@127.0.0.1:5432/tayvero_test
+quality	Preserve acceptance reports and logs	2026-10-05T13:27:37.1587926Z   DATABASE_URL: [REDACTED_DATABASE_URL]
+quality	Preserve acceptance reports and logs	2026-10-05T13:27:37.1588407Z   TEST_DATABASE_URL: [REDACTED_DATABASE_URL]
 quality	Preserve acceptance reports and logs	2026-10-05T13:27:37.1588813Z   ALLOWED_SIGN_IN: example.test
 quality	Preserve acceptance reports and logs	2026-10-05T13:27:37.1589102Z   CREDENTIAL_VAULT_ACTIVE_KEY_ID: ci-ephemeral
 quality	Preserve acceptance reports and logs	2026-10-05T13:27:37.1589413Z   CREDENTIAL_VAULT_ENFORCE: true
@@ -6179,12 +6179,12 @@ quality	Stop containers	2026-10-05T13:27:38.4858427Z  WARNING: POSTGRES_HOST_AUT
 quality	Stop containers	2026-10-05T13:27:38.4859392Z           anyone with access to the Postgres port to access your database without
 quality	Stop containers	2026-10-05T13:27:38.4860276Z           a password, even if POSTGRES_PASSWORD is set. See PostgreSQL
 quality	Stop containers	2026-10-05T13:27:38.4861203Z  This user must also own the server process.
-quality	Stop containers	2026-10-05T13:27:38.4861743Z  
+quality	Stop containers	2026-10-05T13:27:38.4861743Z
 quality	Stop containers	2026-10-05T13:27:38.4862174Z           documentation about "trust":
 quality	Stop containers	2026-10-05T13:27:38.4862851Z           https://www.postgresql.org/docs/current/auth-trust.html
 quality	Stop containers	2026-10-05T13:27:38.4864036Z           In Docker's default configuration, this is effectively any other
 quality	Stop containers	2026-10-05T13:27:38.4864718Z           container on the same system.
-quality	Stop containers	2026-10-05T13:27:38.4865177Z  
+quality	Stop containers	2026-10-05T13:27:38.4865177Z
 quality	Stop containers	2026-10-05T13:27:38.4865925Z           It is not recommended to use POSTGRES_HOST_AUTH_METHOD=trust. Replace
 quality	Stop containers	2026-10-05T13:27:38.4866812Z           it with "-e POSTGRES_PASSWORD=password" instead to set a password in
 quality	Stop containers	2026-10-05T13:27:38.4867478Z           "docker run".
@@ -6243,9 +6243,9 @@ quality	Stop containers	2026-10-05T13:27:38.4983217Z  2026-10-05 13:26:44.061 UT
 quality	Stop containers	2026-10-05T13:27:38.4984804Z  The database cluster will be initialized with locale "en_US.utf8".
 quality	Stop containers	2026-10-05T13:27:38.4985272Z  The default database encoding has accordingly been set to "UTF8".
 quality	Stop containers	2026-10-05T13:27:38.4985938Z  The default text search configuration will be set to "english".
-quality	Stop containers	2026-10-05T13:27:38.4986306Z  
+quality	Stop containers	2026-10-05T13:27:38.4986306Z
 quality	Stop containers	2026-10-05T13:27:38.4986515Z  Data page checksums are disabled.
-quality	Stop containers	2026-10-05T13:27:38.4986780Z  
+quality	Stop containers	2026-10-05T13:27:38.4986780Z
 quality	Stop containers	2026-10-05T13:27:38.4987094Z  fixing permissions on existing directory /var/lib/postgresql/data ... ok
 quality	Stop containers	2026-10-05T13:27:38.4987507Z  creating subdirectories ... ok
 quality	Stop containers	2026-10-05T13:27:38.4987862Z  selecting dynamic shared memory implementation ... posix
@@ -6256,12 +6256,12 @@ quality	Stop containers	2026-10-05T13:27:38.4989306Z  creating configuration fil
 quality	Stop containers	2026-10-05T13:27:38.4989603Z  running bootstrap script ... ok
 quality	Stop containers	2026-10-05T13:27:38.4989921Z  performing post-bootstrap initialization ... ok
 quality	Stop containers	2026-10-05T13:27:38.4990248Z  syncing data to disk ... ok
-quality	Stop containers	2026-10-05T13:27:38.4990492Z  
-quality	Stop containers	2026-10-05T13:27:38.4991257Z  
+quality	Stop containers	2026-10-05T13:27:38.4990492Z
+quality	Stop containers	2026-10-05T13:27:38.4991257Z
 quality	Stop containers	2026-10-05T13:27:38.4991684Z  Success. You can now start the database server using:
-quality	Stop containers	2026-10-05T13:27:38.4992238Z  
+quality	Stop containers	2026-10-05T13:27:38.4992238Z
 quality	Stop containers	2026-10-05T13:27:38.4992811Z      pg_ctl -D /var/lib/postgresql/data -l logfile start
-quality	Stop containers	2026-10-05T13:27:38.4993595Z  
+quality	Stop containers	2026-10-05T13:27:38.4993595Z
 quality	Stop containers	2026-10-05T13:27:38.4994878Z  waiting for server to start....2026-10-05 13:26:05.624 UTC [49] LOG:  starting PostgreSQL 16.15 (Debian 16.15-1.pgdg13+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit
 quality	Stop containers	2026-10-05T13:27:38.4996892Z  2026-10-05 13:26:05.625 UTC [49] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
 quality	Stop containers	2026-10-05T13:27:38.4998061Z  2026-10-05 13:26:05.627 UTC [52] LOG:  database system was shut down at 2026-10-05 13:26:05 UTC
@@ -6269,10 +6269,10 @@ quality	Stop containers	2026-10-05T13:27:38.4999499Z  2026-10-05 13:26:05.631 UT
 quality	Stop containers	2026-10-05T13:27:38.5000181Z   done
 quality	Stop containers	2026-10-05T13:27:38.5000598Z  server started
 quality	Stop containers	2026-10-05T13:27:38.5000932Z  CREATE DATABASE
-quality	Stop containers	2026-10-05T13:27:38.5001331Z  
-quality	Stop containers	2026-10-05T13:27:38.5001649Z  
+quality	Stop containers	2026-10-05T13:27:38.5001331Z
+quality	Stop containers	2026-10-05T13:27:38.5001649Z
 quality	Stop containers	2026-10-05T13:27:38.5002131Z  /usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/*
-quality	Stop containers	2026-10-05T13:27:38.5002689Z  
+quality	Stop containers	2026-10-05T13:27:38.5002689Z
 quality	Stop containers	2026-10-05T13:27:38.5003253Z  waiting for server to shut down...2026-10-05 13:26:05.809 UTC [49] LOG:  received fast shutdown request
 quality	Stop containers	2026-10-05T13:27:38.5003954Z  .2026-10-05 13:26:05.810 UTC [49] LOG:  aborting any active transactions
 quality	Stop containers	2026-10-05T13:27:38.5004747Z  2026-10-05 13:26:05.812 UTC [49] LOG:  background worker "logical replication launcher" (PID 55) exited with exit code 1
@@ -6282,9 +6282,9 @@ quality	Stop containers	2026-10-05T13:27:38.5007731Z  2026-10-05 13:26:05.828 UT
 quality	Stop containers	2026-10-05T13:27:38.5008964Z  2026-10-05 13:26:05.835 UTC [49] LOG:  database system is shut down
 quality	Stop containers	2026-10-05T13:27:38.5009471Z   done
 quality	Stop containers	2026-10-05T13:27:38.5009805Z  server stopped
-quality	Stop containers	2026-10-05T13:27:38.5010223Z  
+quality	Stop containers	2026-10-05T13:27:38.5010223Z
 quality	Stop containers	2026-10-05T13:27:38.5010577Z  PostgreSQL init process complete; ready for start up.
-quality	Stop containers	2026-10-05T13:27:38.5011080Z  
+quality	Stop containers	2026-10-05T13:27:38.5011080Z
 quality	Stop containers	2026-10-05T13:27:38.5016973Z Stop and remove container: 7b4b54a4e1134c3b93b8fb9f3e65063c_postgres16_afd71e
 quality	Stop containers	2026-10-05T13:27:38.5021851Z ##[command]/usr/bin/docker rm --force beefd1998b95242e73cf7df2ad5607804368ffadc9fc5a379fd41639d4864254
 quality	Stop containers	2026-10-05T13:27:38.6414308Z beefd1998b95242e73cf7df2ad5607804368ffadc9fc5a379fd41639d4864254

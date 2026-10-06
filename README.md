@@ -140,7 +140,7 @@ bun run gate:operations-postgres
 bun run quality:gate
 ```
 
-В [проверенном Linux CI](https://github.com/SamandarMansurkhodjaev2713/tayvero/actions/runs/37315398522) прошли **580/580** локальных тестов, PostgreSQL pipeline **3/3** и Operations **17/17**, без пропусков. Сравнение развёрнутой тестовой схемы с Prisma вернуло пустой diff. Семантическая проверка monorepo и Next production build также выполнены; общий quality gate повторяется после финальных lint-исправлений. Актуальное состояние — в [GitHub Actions](https://github.com/SamandarMansurkhodjaev2713/tayvero/actions). Перед эксплуатацией остаются авторизованные E2E, native-agent/worker staging, внешние провайдеры и backup / restore.
+В [проверенном Linux CI](https://github.com/SamandarMansurkhodjaev2713/tayvero/actions/runs/37323135330) прошёл полный quality gate: formatting, lint, semantic types, monorepo tests, production build и security gates. Dependency-free Node **584/584**, Bun leaf suites **1437/1437**, PostgreSQL pipeline **3/3** и Operations **17/17**, без пропусков. Сравнение развёрнутой тестовой схемы с Prisma вернуло пустой diff. Подробные source commit, task/cache counters и ограничения — в [toolchain report](docs/quality/design-toolchain-review.json). Перед эксплуатацией остаются авторизованные E2E, native-agent/worker staging, внешние провайдеры и backup / restore.
 
 Новые write / continuation / background flags в `.env.example` выключены. Их включение не заменяет acceptance и запуск worker. Исторический checkpoint и незакрытые обязательства: [MASTER_STATUS](MASTER_STATUS.md), [внешние проверки](MASTER_EXTERNAL_GATES.md), [следующая область работ](MASTER_NEXT_SCOPE.md). Актуальные проверки этого изменения фиксируются в [docs/quality](docs/quality/).
 

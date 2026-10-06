@@ -1,7 +1,7 @@
 {
 	"scopeId": "TAYVERO-DESIGN-TOOLCHAIN-2026-10-05",
 	"verificationDate": "2026-10-05",
-	"status": "FRONTEND_BUILD_AND_SEMANTIC_TYPES_VERIFIED_EXTERNAL_ACCEPTANCE_REQUIRED",
+	"status": "FULL_REPOSITORY_QUALITY_GATE_VERIFIED",
 	"wholeProductProductionReady": false,
 	"environment": {
 		"platform": "win32",
@@ -264,5 +264,357 @@
 		"ratchetLogicChanged": false,
 		"finalPublicationCIRequired": true,
 		"baselineEntriesExpanded": false
-	}
+	},
+	"completedRefactorCI": {
+		"securityGateExecuted": false,
+		"fullQualityVerified": false,
+		"localInvariants": {
+			"passed": 580,
+			"tenantNew": 0,
+			"verified": true,
+			"cancelled": 0,
+			"skipped": 0,
+			"tests": 580,
+			"tenantExisting": 15,
+			"todo": 0,
+			"failed": 0
+		},
+		"schemaDiff": {
+			"exitCode": 0,
+			"empty": true
+		},
+		"nextCIRequired": true,
+		"lintTasksTotal": 9,
+		"semanticTasksTotal": 13,
+		"runId": "37316730927",
+		"operations": {
+			"skipped": 0,
+			"passed": 17,
+			"verified": true,
+			"failed": 0,
+			"tests": 17
+		},
+		"sourceCommit": "1a9b4e8cb6eb208051e75f4e919739c5cc8cf922",
+		"lintTasksPassed": 9,
+		"refinement": {
+			"targetedEnvTestsFailed": 0,
+			"optionalEmptyValuesQuoted": 6,
+			"skipped": 0,
+			"productionDatabaseFallback": false,
+			"automaticReset": false,
+			"fullSuiteDisposableDbPreparationAdded": true,
+			"targetedEnvTestsPassed": 17,
+			"repositoryAuditExitCode": 0
+		},
+		"buildExecuted": false,
+		"pipeline": {
+			"skipped": 0,
+			"passed": 3,
+			"verified": true,
+			"failed": 0,
+			"tests": 3
+		},
+		"formatVerified": true,
+		"failedStage": "Bun environment template test: six unquoted optional empty assignments",
+		"semanticTasksPassed": 13
+	},
+	"subsequentBunRefinement": {
+		"nativeBuildExecuted": false,
+		"operationsTestsPassed": 17,
+		"sourceCommit": "f92c735ac7f3b2e36eb5a984fbc81e22eda0f07e",
+		"runId": "37317562464",
+		"postgresSkipped": 0,
+		"dbUnitTestsFailed": 1,
+		"schemaDiffEmpty": true,
+		"refinement": "Compare Tayvero CRM and whitespace/case variant; runtime unchanged",
+		"fullQualityVerified": false,
+		"targetedDbUnitTests": {
+			"skipped": 0,
+			"tests": 128,
+			"passed": 128,
+			"failed": 0
+		},
+		"lintVerified": true,
+		"nextCIRequired": true,
+		"fullSuiteDbPrepared": true,
+		"pipelineTestsPassed": 3,
+		"formatVerified": true,
+		"securityGateExecuted": false,
+		"dbUnitTestsPassed": 127,
+		"failedInvariant": "Unrelated fixture names CRM and comp  ai were asserted equivalent",
+		"semanticVerified": true,
+		"envTestsPassed": 17,
+		"localInvariantsVerified": true
+	},
+	"latestCiAcceptance": {
+		"runId": "37323135330",
+		"sourceCommit": "7b0906330874ac8bd561ce928534520e2acce645",
+		"url": "https://github.com/SamandarMansurkhodjaev2713/tayvero/actions/runs/37323135330",
+		"conclusion": "success",
+		"runner": {
+			"platform": "Ubuntu GitHub Actions",
+			"node": "24.21.0",
+			"bun": "1.3.12",
+			"postgres": "16"
+		},
+		"rootQuality": {
+			"status": "passed",
+			"exitCode": 0,
+			"allRequiredCommandsPassed": true,
+			"formatPassed": true,
+			"lintTasksPassed": 9,
+			"lintTasksCached": 0,
+			"semanticTasksPassed": 13,
+			"semanticTasksCached": 0,
+			"testTurboTasksPassed": 18,
+			"testPrerequisitesCached": 2
+		},
+		"localNode": {
+			"tests": 584,
+			"passed": 584,
+			"failed": 0,
+			"skipped": 0,
+			"cancelled": 0,
+			"todo": 0
+		},
+		"postgres": {
+			"pipeline": {
+				"tests": 3,
+				"pass": 3,
+				"fail": 0,
+				"skipped": 0,
+				"cancelled": 0,
+				"todo": 0
+			},
+			"operations": {
+				"tests": 17,
+				"pass": 17,
+				"fail": 0,
+				"skipped": 0,
+				"cancelled": 0,
+				"todo": 0
+			},
+			"schemaDiffEmpty": true,
+			"repositoryTestDbPrepared": true,
+			"disposableJobLocalOnly": true,
+			"productionDatabaseFallback": false,
+			"automaticReset": false
+		},
+		"bunLeafAggregate": {
+			"tests": 1437,
+			"pass": 1437,
+			"fail": 0,
+			"skipped": 0,
+			"todo": 0,
+			"complete": true,
+			"completedLeafTasks": 8,
+			"cachedTestTasks": [],
+			"incompleteLeafTasks": [],
+			"excludesRepeatedRootNodeAndSeparatePostgresSuites": true
+		},
+		"bunLeafTasks": [
+			{
+				"task": "@crm/env:test",
+				"tests": 17,
+				"pass": 17,
+				"fail": 0,
+				"skipped": 0,
+				"todo": 0,
+				"cached": false
+			},
+			{
+				"task": "@crm/db:test",
+				"tests": 128,
+				"pass": 128,
+				"fail": 0,
+				"skipped": 0,
+				"todo": 0,
+				"cached": false
+			},
+			{
+				"task": "@crm/validation:test",
+				"tests": 5,
+				"pass": 5,
+				"fail": 0,
+				"skipped": 0,
+				"todo": 0,
+				"cached": false
+			},
+			{
+				"task": "@crm/telemetry:test",
+				"tests": 62,
+				"pass": 62,
+				"fail": 0,
+				"skipped": 0,
+				"todo": 0,
+				"cached": false
+			},
+			{
+				"task": "@crm/auth:test",
+				"tests": 43,
+				"pass": 43,
+				"fail": 0,
+				"skipped": 0,
+				"todo": 0,
+				"cached": false
+			},
+			{
+				"task": "agent:test",
+				"tests": 412,
+				"pass": 412,
+				"fail": 0,
+				"skipped": 0,
+				"todo": 0,
+				"cached": false
+			},
+			{
+				"task": "api:test",
+				"tests": 569,
+				"pass": 569,
+				"fail": 0,
+				"skipped": 0,
+				"todo": 0,
+				"cached": false
+			},
+			{
+				"task": "app:test",
+				"tests": 201,
+				"pass": 201,
+				"fail": 0,
+				"skipped": 0,
+				"todo": 0,
+				"cached": false
+			}
+		],
+		"monorepoNodeLeafScope": {
+			"tests": 246,
+			"passed": 246,
+			"failed": 0,
+			"skipped": 0,
+			"alreadyIncludedInRootNodeSuite": true
+		},
+		"build": {
+			"executed": true,
+			"tasksPassed": 4,
+			"tasksTotal": 4,
+			"tasksCached": 2,
+			"durationSeconds": 36.21,
+			"nextPages": 36,
+			"nextPagesTotal": 36,
+			"nextStatus": "passed",
+			"nextCompileSeconds": 22.2,
+			"nextTypesSeconds": 10.4,
+			"nextPrerenderMilliseconds": 986,
+			"eveStatus": "native production packaging passed"
+		},
+		"finalSecurity": {
+			"executed": true,
+			"status": "passed",
+			"allSubcommandsPassed": true,
+			"tests": 26,
+			"passed": 26,
+			"failed": 0,
+			"skipped": 0,
+			"cancelled": 0,
+			"todo": 0,
+			"vaultConfigurationPassed": true,
+			"tenantAuditPassed": true,
+			"tenantFindings": 15,
+			"newTenantFindings": 0,
+			"sourceFingerprintsUnchanged": true,
+			"baselineExpanded": false
+		},
+		"windowsSourceVerification": {
+			"tests": 584,
+			"passed": 511,
+			"failed": 73,
+			"skipped": 0,
+			"cancelled": 0,
+			"todo": 0,
+			"exactRetainedPosixFailureTitlesUnchanged": true,
+			"supportedPosixAcceptanceProvidedByLinux": true
+		},
+		"authenticatedStagingE2EVerified": false,
+		"nativeContinuationVerified": false,
+		"liveProviderSmokeVerified": false,
+		"wholeProductProductionReady": false
+	},
+	"ciRefinementHistory": [
+		{
+			"runId": "37318936555",
+			"sourceCommit": "bb83c2e19a0c67e2102e3b65546c3b3011db7ca7",
+			"conclusion": "failure",
+			"failedTask": "agent:test",
+			"localNode": {
+				"tests": 580,
+				"passed": 580,
+				"failed": 0,
+				"skipped": 0,
+				"cancelled": 0,
+				"todo": 0
+			},
+			"bunLeafAggregate": {
+				"tests": 664,
+				"pass": 662,
+				"fail": 2,
+				"skipped": 0,
+				"todo": 0,
+				"complete": false,
+				"completedLeafTasks": 6,
+				"cachedTestTasks": [],
+				"incompleteLeafTasks": ["api:test"],
+				"excludesRepeatedRootNodeAndSeparatePostgresSuites": true
+			},
+			"buildExecuted": false,
+			"securityExecuted": false
+		},
+		{
+			"runId": "37320572581",
+			"sourceCommit": "df4e964dbf8707184a4e0d51e37898198f525a63",
+			"conclusion": "failure",
+			"failedTask": "agent:test",
+			"localNode": {
+				"tests": 583,
+				"passed": 583,
+				"failed": 0,
+				"skipped": 0,
+				"cancelled": 0,
+				"todo": 0
+			},
+			"bunLeafAggregate": {
+				"tests": 1236,
+				"pass": 1235,
+				"fail": 1,
+				"skipped": 0,
+				"todo": 0,
+				"complete": false,
+				"completedLeafTasks": 7,
+				"cachedTestTasks": [],
+				"incompleteLeafTasks": ["app:test"],
+				"excludesRepeatedRootNodeAndSeparatePostgresSuites": true
+			},
+			"buildExecuted": false,
+			"securityExecuted": false
+		},
+		{
+			"runId": "37321323433",
+			"sourceCommit": "6b0f1c907a7ba152e0190b25ce77e8bee77773ad",
+			"failedTask": "agent:build",
+			"bunTestsPassed": 1437,
+			"buildFailure": "Eve requires Node.js >=24; job runtime was v22.23.3",
+			"securityExecuted": false
+		},
+		{
+			"runId": "37322058835",
+			"sourceCommit": "e459f479d5ca6aeb8de0e552948b0779c2e4e138",
+			"failedTask": "security:tenant-audit",
+			"bunTestsPassed": 1437,
+			"buildPassed": true,
+			"nextPages": 36,
+			"securityTestsPassed": 26,
+			"newGeneratedTenantFindings": 8
+		}
+	],
+	"fullQualityVerified": true,
+	"criticalChecksPassed": true
 }

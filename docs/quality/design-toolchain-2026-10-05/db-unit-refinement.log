@@ -1,0 +1,154 @@
+bun test v1.3.12 (700fc117)
+
+packages\db\test\attribution.spec.ts:
+(pass) a touch with utm parameters > takes the campaign the marketer named, verbatim
+(pass) a touch with utm parameters > beats the referrer, because the marketer was explicit
+(pass) a touch with utm parameters > folds the paid aliases onto one medium [15.00ms]
+(pass) a touch with utm parameters > keeps an unknown medium out of the vocabulary
+(pass) a touch with only a referrer > names the search engine and calls it organic
+(pass) a touch with only a referrer > names the social network and calls it social
+(pass) a touch with only a referrer > calls a webmail host email, not the search engine it shares a name with
+(pass) a touch with only a referrer > never trusts a host that merely contains a provider's name
+(pass) a touch with only a referrer > never trusts a provider's name used as somebody else's subdomain
+(pass) a touch with only a referrer > still recognises a provider on a subdomain or a country domain
+(pass) a touch with only a referrer > falls back to the bare host for anything else
+(pass) a touch with only a referrer > is direct when there is no referrer at all
+(pass) a touch with only a referrer > is direct when the referrer is not a URL [16.00ms]
+(pass) reading a touch back > reads as source, medium and campaign
+(pass) reading a touch back > does not repeat itself for direct traffic
+(pass) reading a touch back > says so when there is nothing to say
+
+packages\db\test\currency.spec.ts:
+(pass) normalizeCurrency and isCurrencyCode > accepts a code however a rep typed it
+(pass) normalizeCurrency and isCurrencyCode > offers only the eleven currencies most of the world trades in
+(pass) normalizeCurrency and isCurrencyCode > refuses a real currency it does not offer, and anything that is not one
+(pass) normalizeCurrency and isCurrencyCode > knows the difference between well formed and real
+(pass) normalizeCurrency and isCurrencyCode > names the currencies it knows
+(pass) minorUnitsOf > knows the currencies that are not two-decimal
+(pass) minorUnitsOf > assumes two for anything else, so an amount still round-trips
+(pass) resolveRate > answers 1 for the reporting currency itself, without a read
+(pass) resolveRate > prefers a rate entered by hand over a fetched one
+(pass) resolveRate > falls back to the fetched rate when nobody has overridden it
+(pass) resolveRate > is null when there is nowhere to get a rate
+(pass) resolveRate > refuses a nonsense rate rather than converting with it
+(pass) resolveRate > is null for a currency that is not a currency
+(pass) applyRate > converts into the reporting currency
+(pass) applyRate > rounds to the reporting currency's own decimals, not to two
+(pass) applyRate > carries the rate and its date onto the record, so a total is reproducible
+
+packages\db\test\favicon.spec.ts:
+(pass) isBlockedAddress > blocks loopback however it is written
+(pass) isBlockedAddress > blocks cloud metadata and the private ranges
+(pass) isBlockedAddress > allows public addresses
+(pass) isBlockedAddress > blocks anything it cannot parse
+
+packages\db\test\fields.spec.ts:
+(pass) fieldKeyFromLabel > slugs a label
+(pass) fieldKeyFromLabel > never starts with a digit
+(pass) fieldKeyFromLabel > steps around keys the record shape already uses
+(pass) fieldKeyFromLabel > steps around the sentinel the fields sheet opens the create form with
+(pass) columnFor > routes every type to one storage column
+(pass) recordColumn > maps an entity to its foreign key
+(pass) coerceValue > trims text
+(pass) coerceValue > clears an optional field when the value is blank
+(pass) coerceValue > refuses to clear a required field
+(pass) coerceValue > takes numbers as numbers or strings
+(pass) coerceValue > reads a plain date as UTC midnight
+(pass) coerceValue > takes a checkbox as a boolean or its string
+(pass) coerceValue > resolves a select by id or by label, and rejects anything else
+(pass) readValue > reads each type back out of its column
+(pass) readValue > is null when the record has no row
+(pass) serializeField > drops archived options and orders the rest [15.00ms]
+(pass) attachValues > orders by position, hides archived fields and fills in values
+
+packages\db\test\images.spec.ts:
+(pass) isMirrored > recognises our own store, so a re-run does not re-upload
+(pass) isMirrored > does not recognise somebody else's CDN
+(pass) isMirrored > is not fooled by a lookalike host
+(pass) isMirrored > treats nothing and nonsense as not ours
+(pass) isOptimizable > passes a raster we minted
+(pass) isOptimizable > refuses an SVG even though it is ours
+(pass) isOptimizable > refuses an ico, which the optimizer cannot serve
+(pass) isOptimizable > refuses anything we did not mint, whatever its extension
+(pass) isOptimizable > refuses a URL with no extension to read
+(pass) COMPANY_IMAGE_FIELDS > names every artwork column and nothing else
+
+packages\db\test\money-input.test.mjs:
+(pass) decimal money input converts exactly without binary floating-point rounding
+(pass) rejects parseFloat-style trailing junk, grouping, exponent, negative and overprecision
+(pass) maximum supported amount round trips exactly and overflow is rejected
+(pass) input formatter does not turn absent data into zero or accept corrupt stored cents
+
+packages\db\test\test-database.test.mjs:
+(pass) test DB never derives a target from DATABASE_URL
+(pass) explicit disposable loopback target is accepted without leaking configuration
+(pass) same DB is rejected despite changed credentials, scheme, port default and query
+(pass) remote targets require opt-in and still reject normalized live identity
+(pass) unsafe database identifiers and ambiguous paths fail closed
+(pass) connection redirection, schema changes and repeated params are rejected
+(pass) invalid URLs do not echo credentials in errors
+(pass) reset needs separate explicit consent
+(pass) test DB implementation has no implicit live fallback, auto-reset or credential printing [16.00ms]
+
+packages\db\test\tracking.spec.ts:
+(pass) a site id > is minted in the shape the loader checks for
+(pass) a site id > rejects anything else
+(pass) the snippet a rep copies > is one line, so no paste target can eat the newlines
+(pass) the snippet a rep copies > keeps a real space between every attribute
+(pass) the snippet a rep copies > survives a paste target that trims every line
+(pass) the snippet a rep copies > does not double the slash on a trailing-slash APP_URL
+(pass) the snippet a rep pastes into Tag Manager > carries the site id in the URL, where the injector cannot drop it
+(pass) the snippet a rep pastes into Tag Manager > carries no data-site, so there is nothing to lose
+(pass) finding the tag inside a Tag Manager container > reads the container ids out of a page
+(pass) finding the tag inside a Tag Manager container > takes at most two containers, because each one is half a megabyte
+(pass) finding the tag inside a Tag Manager container > finds nothing in a page that has no container
+(pass) finding the tag inside a Tag Manager container > builds the container URL from the id alone, so nothing user-typed is fetched
+(pass) finding the tag inside a Tag Manager container > reports the URL form as the one that survives injection
+(pass) finding the tag inside a Tag Manager container > reports the attribute form, which Tag Manager strips on the way in
+(pass) finding the tag inside a Tag Manager container > is absent when the container carries a tag for a site id we rotated away from
+(pass) finding the tag inside a Tag Manager container > is absent from a container full of somebody else's tags
+(pass) whether there is anything to install yet > is not ready with the limit on and no domains
+(pass) whether there is anything to install yet > is ready as soon as one domain exists
+(pass) whether there is anything to install yet > is ready with the limit off, because every host is allowed
+(pass) a domain > is reduced to its host
+(pass) a domain > is refused when it is not one
+(pass) a page path > drops the query and the fragment so one page is one row
+(pass) a page path > drops a trailing slash so /pricing and /pricing/ are one page
+(pass) a page path > falls back to the root when it is not a path
+(pass) the allow-list > covers subdomains only where the scope says so
+(pass) the allow-list > never matches a host that merely ends the same way
+(pass) the allow-list > lets everything through when the limit is off
+(pass) the domain an event belongs to > is the parent when the scope covers subdomains
+(pass) the domain an event belongs to > is the exact row when that is the whole of the scope
+(pass) the domain an event belongs to > is nothing for a host nobody configured
+(pass) the domain an event belongs to > prefers the host's own row to the parent that also covers it
+(pass) a stored referrer > keeps the page but never the query a secret could sit in
+(pass) a stored referrer > is nothing when there was nothing but a query
+(pass) the origin check > accepts an allowed origin and refuses the rest
+(pass) the origin check > refuses a missing or unparseable origin
+(pass) the origin check > refuses a missing origin even with the limit off
+(pass) the config hash > does not move when only the order of the domains does [15.00ms]
+(pass) the config hash > moves when a setting does
+(pass) the submission dedupe key > collapses the same form inside one minute
+(pass) the submission dedupe key > separates a different address on the same page
+
+packages\db\test\workspace-onboarded.spec.ts:
+(pass) isOnboarded > is false for a workspace nobody has answered for
+(pass) isOnboarded > is true once the timestamp is in the metadata
+(pass) isOnboarded > does not throw on metadata written by something else
+(pass) markOnboarded > records the moment the form was answered
+(pass) markOnboarded > keeps the first answer, so saving settings again does not move it
+(pass) markOnboarded > leaves metadata the plugin owns alone
+
+packages\db\test\workspace-slug.spec.ts:
+(pass) workspaceSlug > is the company name a rep can read in the address bar
+(pass) workspaceSlug > keeps the punctuation out of the URL rather than escaping it
+(pass) workspaceSlug > never collides with a route the app already serves
+(pass) workspaceSlug > falls back rather than producing an empty segment
+(pass) workspaceSlug > is bounded, and never ends on the dash the cut left behind
+(pass) workspaceSlug > gives one name one answer, whoever asks
+
+ 128 pass
+ 0 fail
+ 299 expect() calls
+Ran 128 tests across 10 files. [438.00ms]

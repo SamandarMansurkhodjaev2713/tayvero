@@ -1,8 +1,8 @@
-# MASTER_NEXT_SCOPE — 5 октября 2026
+# MASTER_NEXT_SCOPE — 6 октября 2026
 
-Продолжать от текущего tayvero-master-2026-10-05.zip / публичного main. SHA конечного ZIP — внешний MASTER_SHA256.txt. Исторический source ZIP отсутствовал и не был заново сертифицирован.
+Продолжать от текущего tayvero-master-2026-10-06.zip / публичного main. SHA конечного ZIP — внешний MASTER_SHA256.txt. Исторический source ZIP отсутствовал и не был заново сертифицирован.
 
-Primary NEXT_SCOPE_ID: MIG-APPROVAL-AUTHENTICATED-E2E-001. PostgreSQL acceptance выполнен на CI5: pipeline3/3 и operations17/17, zero skips; schema diff пуст. Запустить реальные owner/admin/member/revoked flows, затем worker/native staging. Независимый pipeline code next: CRM-PIPE-SHADOW-READ-006.
+Primary NEXT_SCOPE_ID: MIG-APPROVAL-AUTHENTICATED-E2E-001. PostgreSQL acceptance выполнен на финальном source CI: pipeline3/3 и operations17/17, zero skips; schema diff пуст. Запустить реальные owner/admin/member/revoked flows, затем worker/native staging. Независимый pipeline code next: CRM-PIPE-SHADOW-READ-006.
 
 После DB acceptance: MIG-APPROVAL-AUTHENTICATED-E2E-001, MIG-WORKER-STAGING-001, AGENT-APPROVAL-NATIVE-ACCEPTANCE-001. Независимое code next: AGENT-CONTINUATION-RECONCILIATION-001.
 

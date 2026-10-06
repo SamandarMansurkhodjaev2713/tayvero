@@ -1,6 +1,6 @@
 {
 	"schemaVersion": 1,
-	"generatedAt": "2026-10-05T14:14:01.545Z",
+	"generatedAt": "2026-10-05T14:09:54.247Z",
 	"tenantModels": {
 		"crmDealPipelineAssignment": "workspaceId",
 		"crmLegacyDealStageMapping": "workspaceId",
@@ -24,14 +24,78 @@
 		"ssoProvider": "organizationId"
 	},
 	"counts": {
-		"sourceFilesScanned": 991,
+		"sourceFilesScanned": 1033,
 		"tenantModels": 20,
-		"findings": 15,
-		"high": 1,
+		"findings": 23,
+		"high": 9,
 		"review": 14
 	},
 	"disclaimer": "This is a regression ratchet and review aid, not a proof of tenant isolation. Runtime and integration tests remain mandatory.",
 	"findings": [
+		{
+			"rule": "hardcoded-tenant-identifier",
+			"path": "apps/agent/.output/server/index.mjs",
+			"line": 4688,
+			"snippet": "workspaceId: \"workspace\",",
+			"severity": "high",
+			"fingerprint": "1d2c543839a6d7352445b1ba1677cd9648849587fcc198719ba79daba12423c3"
+		},
+		{
+			"rule": "hardcoded-tenant-identifier",
+			"path": "apps/agent/.output/server/index.mjs",
+			"line": 4695,
+			"snippet": "tenantId: \"workspace\",",
+			"severity": "high",
+			"fingerprint": "96e50b5d485f3e472c0d04280a3028e871028340843c784bcd41666ed650206b"
+		},
+		{
+			"rule": "hardcoded-tenant-identifier",
+			"path": "apps/agent/.output/server/index.mjs",
+			"line": 4723,
+			"snippet": "workspaceId: \"workspace\",",
+			"severity": "high",
+			"fingerprint": "1d2c543839a6d7352445b1ba1677cd9648849587fcc198719ba79daba12423c3"
+		},
+		{
+			"rule": "hardcoded-tenant-identifier",
+			"path": "apps/agent/.output/server/index.mjs",
+			"line": 7148,
+			"snippet": "where: { organizationId: \"workspace\" },",
+			"severity": "high",
+			"fingerprint": "c7dc9fe7c0359d0f10b57a445d10b6ef6deb15346fc779b17d640aa2cdffab90"
+		},
+		{
+			"rule": "hardcoded-tenant-identifier",
+			"path": "apps/agent/.output/server/index.mjs",
+			"line": 9633,
+			"snippet": "workspaceId: \"workspace\",",
+			"severity": "high",
+			"fingerprint": "1d2c543839a6d7352445b1ba1677cd9648849587fcc198719ba79daba12423c3"
+		},
+		{
+			"rule": "hardcoded-tenant-identifier",
+			"path": "apps/agent/.output/server/index.mjs",
+			"line": 13803,
+			"snippet": "where: { organizationId: \"workspace\" },",
+			"severity": "high",
+			"fingerprint": "c7dc9fe7c0359d0f10b57a445d10b6ef6deb15346fc779b17d640aa2cdffab90"
+		},
+		{
+			"rule": "hardcoded-tenant-identifier",
+			"path": "apps/agent/.output/server/index.mjs",
+			"line": 14225,
+			"snippet": "tenantId: \"workspace\",",
+			"severity": "high",
+			"fingerprint": "96e50b5d485f3e472c0d04280a3028e871028340843c784bcd41666ed650206b"
+		},
+		{
+			"rule": "hardcoded-tenant-identifier",
+			"path": "apps/agent/.output/server/index.mjs",
+			"line": 14251,
+			"snippet": "workspaceId: \"workspace\",",
+			"severity": "high",
+			"fingerprint": "1d2c543839a6d7352445b1ba1677cd9648849587fcc198719ba79daba12423c3"
+		},
 		{
 			"rule": "potential-unscoped-tenant-model-operation",
 			"path": "apps/api/src/sso/sso.service.ts",

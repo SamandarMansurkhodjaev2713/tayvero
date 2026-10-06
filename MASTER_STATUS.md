@@ -1,8 +1,8 @@
-# TAYVERO — cumulative master, 5 октября 2026
+# TAYVERO — cumulative master, 6 октября 2026
 
 Публичный репозиторий: https://github.com/SamandarMansurkhodjaev2713/tayvero. MIT © 2026 Samandar Mansurkhodjaev. Коммиты GitHub связаны с аккаунтом владельца.
 
-**FRONTEND_VERIFIED_INTEGRATION_ACCEPTANCE_REQUIRED; wholeProductProductionReady=false.**
+**SOURCE_GATES_VERIFIED_AUTHENTICATED_ACCEPTANCE_REQUIRED; wholeProductProductionReady=false.**
 
 Работа продолжена в существующем crm-release. Исходный ZIP 2026-09-18 отсутствовал; его заявленный SHA не проверен. Исторический MASTER_REPORT сохранён в docs/quality/checkpoints/2026-09-18/inherited-master-report.json. Точные before/after counts относительно исходного ZIP не выдаются за измеренные.
 
@@ -16,10 +16,41 @@ Operations ставит инциденты и ожидающие решения 
 
 ## Фактические проверки
 
-TypeScript: 13/13 задач monorepo. Next production: build exit0, 36/36 страниц. Первый Linux CI: 575/575, fail/skip/cancel=0; pipeline PostgreSQL step passed. На CI5 Operations PostgreSQL17/17 и pipeline3/3 прошли без пропусков; deployed-schema comparison вернул пустой diff. Общий quality gate проверяется отдельно после форматирования/lint. Windows: 502/575, 73 POSIX-only failures, 0 skipped; safeguards не ослаблялись. Полный native build остановился на Eve ENOSPC. Это разные уровни проверки, не общий green.
+Полный [Linux CI](https://github.com/SamandarMansurkhodjaev2713/tayvero/actions/runs/37323135330) прошёл на commit `7b0906330874ac8bd561ce928534520e2acce645`: Node — 584/584, Bun — 1437/1437, без ошибок и пропусков; PostgreSQL pipeline — 3/3, Operations — 17/17, сравнение схемы дало пустой diff. Форматирование, 9 задач lint, 13 задач семантической проверки типов, полная сборка и финальные security gates прошли. Next создал 36/36 страниц; Eve успешно упакован. Windows: 511/584, 73 сохранённые ошибки POSIX-защиты, без пропусков. Отдельная Windows-упаковка Eve ранее остановилась на ENOSPC. Успешная Linux-сборка не подтверждает работу native runtime в staging.
 
 Браузер: реальные компоненты с synthetic data и выключенными business mutations; desktop/tablet/mobile, 8 appearances, поиск/no-match/reset, язык RU/EN, error recovery, approval dialog и mobile navigation. Это не authenticated E2E. Независимое ревью: 11 проверок, две P2 исправлены, P0/P1 не найдено в проверенном scope. См. MASTER_UX_AUDIT и docs/quality/design-finish-review.md.
 
-Архив: tayvero-master-2026-10-05.zip, корень crm-release/. CRC, свежая распаковка, inventory и SHA конечных ZIP-байтов фиксируются при упаковке; SHA находится во внешнем sidecar. MASTER_REPORT содержит текущую машиночитаемую evidence.
+Архив: tayvero-master-2026-10-06.zip, корень crm-release/. CRC, свежая распаковка, inventory и SHA конечных ZIP-байтов фиксируются при упаковке; SHA находится во внешнем sidecar. MASTER_REPORT содержит текущую машиночитаемую evidence.
+
+## Происхождение и inventory
+
+| Поле | Факт |
+| --- | --- |
+| Source artifact | Извлечённый `crm-release/`; ожидаемый `tayvero-master-2026-09-18.zip` отсутствует |
+| Source SHA | Ожидался `97084420aee135ac2462a9b3279a52a2b9d4858dc8ef6e06076c6049c588063b`; не проверен |
+| Final artifact | `tayvero-master-2026-10-06.zip` |
+| Final SHA | SHA конечных ZIP-байтов — во внешнем `MASTER_SHA256.txt` и внешнем `MASTER_REPORT.json`; сам архив не может содержать собственный окончательный hash |
+| Files before | Не измерено относительно отсутствующего исходного ZIP |
+| Files after | Точное количество упакованных source files — во внешнем отчёте и внешнем `MASTER_STATUS.md` после упаковки |
+| Added / Modified / Removed | Точный delta к исходному ZIP неизвестен; Git history показывает только изменения после первой публикации, а не исходный baseline |
+
+## Scopes и границы результата
+
+- Completed: `TAYVERO-DESIGN-001`, `TAYVERO-OPEN-SOURCE-001`; общий UI, operating screens, agents, landing, дизайн-система, публичный репозиторий и MIT/README.
+- Verified: semantic TypeScript, Next production packaging, Linux dependency-free regression, disposable PostgreSQL pipeline/operations и пустой schema diff. Полный Linux quality gate прошёл; exact run/head и task counters — в MASTER_REPORT и design-toolchain-review.json.
+- Implemented / external verification required: authenticated app flows, native approval/continuation, CLI worker и интеграции с провайдерами.
+- Blocked external: worker staging и native acceptance без запущенного supervised runtime/private POSIX volume; production providers/backup/load не проверены.
+- Deferred by design: shared-database SaaS, XLSX/deal/link import, все каналы и единый Inbox, полный Outcome Ledger и полная локализация.
+- Failed checks: Windows POSIX-only suites и Windows Eve packaging ENOSPC; прежние неудачные CI сохранены с причиной и не выданы за успешные.
+
+## Gates, риски и откат
+
+Regression evidence находится в `docs/quality/design-toolchain-review.json`. Security: strict governed action boundary, manifest/lock/source audit; telemetry требует ключ владельца. Tenant ratchet сохраняет прежние 15 baseline fingerprints, новых нарушений не добавлено. Migration gates проверяют отдельные test DB; исторические SQL migrations сохранены. Agent gates проверяют прикладные policy/receipt/bridge contracts; locked native runtime acceptance остаётся отдельным.
+
+Database status: использованы только disposable CI PostgreSQL базы. Имена существующих FK/index согласованы в Prisma annotations, разрушительных SQL изменений и production DB операций нет. Staging status: NOT_VERIFIED. Provider status: NOT_VERIFIED, business provider calls=0.
+
+Rollback: возврат к предыдущему проверенному Git commit откатывает UI/tooling/Prisma annotations и transaction retry correction; исторические migrations этим проходом не изменены. В deployed базе не требуется обратная schema migration для этих annotations. При реальном worker pilot остановить новые задания, отозвать согласие и дождаться leases; private sources и receipts сохранять по существующему lifecycle, не удалять произвольно. Возврат UI не отменяет уже выполненные бизнес-действия.
+
+До controlled pilot нужны реальные owner/admin/member/revoked sessions, authenticated mutation/query E2E, supervised worker на приватном POSIX volume, native Eve acceptance, provider callbacks и проверенный backup/restore. Существующие guards/default-OFF flags и authoritative `Deal.stage` остаются действующими.
 
 Primary NEXT_SCOPE_ID: MIG-APPROVAL-AUTHENTICATED-E2E-001. После acceptance: authenticated app, worker staging и native Eve. Старые feature flags/guards, receipts и authoritative Deal.stage сохранены. Реальных production DB/provider операций не выполнялось.

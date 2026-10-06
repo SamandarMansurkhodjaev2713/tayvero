@@ -1,10 +1,18 @@
-TAYVERO 2026-10-05 — executed evidence index
+TAYVERO 2026-10-06 — executed evidence index
 
-Windows native toolchain: docs/quality/design-toolchain-review.json and design-toolchain-2026-10-05/*.log.
-Monorepo semantic:13/13 tasks. IndependentNext:36/36pages. WholeEvebuild:ENOSPC.
-Windows dependency-free:575/502passed/73failed/zero skips; POSIX safeguards preserved.
-Linux first CI:575/575 zero skips, pipelinePG step passed, operationsPG failed.
-CI source:https://github.com/SamandarMansurkhodjaev2713/tayvero/actions/runs/37312917348
-Latest reports/diagnosis added after CI artifact retrieval.
-Browser fixtures:actualReactcomponents/syntheticdata/disabledmutations,8appearances,320/393/768/1440CSSpx.
-No authenticatedE2E/provider/staging/productiondatabase acceptance inferred.
+Canonical source CI: https://github.com/SamandarMansurkhodjaev2713/tayvero/actions/runs/37323135330
+Source commit: 7b0906330874ac8bd561ce928534520e2acce645
+Conclusion: success. Full repository quality exit 0.
+Node: {'tests': 584, 'passed': 584, 'failed': 0, 'skipped': 0, 'cancelled': 0, 'todo': 0}
+Bun leaf aggregate (excludes repeated Node/independent PG): {'tests': 1437, 'pass': 1437, 'fail': 0, 'skipped': 0, 'todo': 0, 'complete': True, 'completedLeafTasks': 8, 'cachedTestTasks': [], 'incompleteLeafTasks': [], 'excludesRepeatedRootNodeAndSeparatePostgresSuites': True}
+Root quality: {'status': 'passed', 'exitCode': 0, 'allRequiredCommandsPassed': True, 'formatPassed': True, 'lintTasksPassed': 9, 'lintTasksCached': 0, 'semanticTasksPassed': 13, 'semanticTasksCached': 0, 'testTurboTasksPassed': 18, 'testPrerequisitesCached': 2}
+Build: {'executed': True, 'tasksPassed': 4, 'tasksTotal': 4, 'tasksCached': 2, 'durationSeconds': 36.21, 'nextPages': 36, 'nextPagesTotal': 36, 'nextStatus': 'passed', 'nextCompileSeconds': 22.2, 'nextTypesSeconds': 10.4, 'nextPrerenderMilliseconds': 986, 'eveStatus': 'native production packaging passed'}
+Final security: {'executed': True, 'status': 'passed', 'allSubcommandsPassed': True, 'tests': 26, 'passed': 26, 'failed': 0, 'skipped': 0, 'cancelled': 0, 'todo': 0, 'vaultConfigurationPassed': True, 'tenantAuditPassed': True, 'tenantFindings': 15, 'newTenantFindings': 0, 'sourceFingerprintsUnchanged': True, 'baselineExpanded': False}
+Pipeline PG: {'tests': 3, 'pass': 3, 'fail': 0, 'skipped': 0, 'cancelled': 0, 'todo': 0}; Operations PG: {'tests': 17, 'pass': 17, 'fail': 0, 'skipped': 0, 'cancelled': 0, 'todo': 0}; empty schema diff=True
+Evidence: docs/quality/design-toolchain-review.json, design-toolchain-2026-10-05/*.log and CI reports.
+Historical failed attempts remain indexed in design-baseline-review.md, not treated as the final gate.
+Windows dependency-free: 511/584 passed; 73 retained POSIX failures; zero skips/cancellations/todos.
+Windows Eve packaging: historical ENOSPC; independent Next production passed36/36pages.
+Browser: actual React component fixtures/synthetic data/disabled mutations,8appearances,320/393/768/1440CSSpx.
+No authenticated production/staging/provider/locked native runtime acceptance inferred.
+Final CRC/SHA/inventory/fresh extraction and replay results: external MASTER_REPORT.json / MASTER_SHA256.txt / MASTER_STATUS.md.
