@@ -23,3 +23,7 @@ Separate reviewers inspected agent/onboarding/auth changes and task/fixture cont
 - Full localization, B2C deal modeling, separate task assignment and complete outcome verification are not implemented by this release.
 
 Detailed evidence: `activation-review-2026-10-06.md`, `agent-journey-review.md`, `product-follow-up-review.md`, `product-functionality-2026-10-06.md` and dated database/HTTP records.
+
+## Functional source CI16 — 2026-10-06
+
+Application commit 6b83173d76fec2089968f1a86e9a4636079d68f8; https://github.com/SamandarMansurkhodjaev2713/tayvero/actions/runs/37461560544: both jobs SUCCESS. Node 593/593, Bun 1477/1477 (eight uncached leaves), 39 separate contract/SSR assertions, PG pipeline3/3 and operations17/17, zero failures/skips in Linux acceptance. Lint9/9 and semantic13/13 uncached; build4/4 (two prerequisite cache hits), Next36/36 and Eve packaging passed. Security26/26, vault valid, tenant15existing/0new with unchanged fingerprints; deployed schema diff empty. Local signed-session HTTP/contract acceptance15/15. Windows Node593/520pass/73exactretainedPOSIXfailures, zero new/skip/cancel/todo; full API Windows source-store failures retained separately. Whole-product production readiness false. Browser/live-provider/native worker/staging acceptance remains separate.

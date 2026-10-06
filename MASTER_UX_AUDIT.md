@@ -1,5 +1,7 @@
 # MASTER_UX_AUDIT — 6 октября 2026
 
+Актуальная функциональная acceptance: source `6b83173`, CI16 `37461560544`, `docs/quality/product-toolchain-review.json`. Более ранние design-checkpoint сведения ниже сохранены как история; текущие результаты приведены в closing section. Whole-product production readiness не заявляется.
+
 Изменены production React-компоненты, а не только отдельный макет. packages/ui — единый источник operating surfaces и tokens; четыре палитры / light-dark / density / navigation preferences сохранены. Scoped landing.css отвечает за публичную редакционную композицию, использует те же semantic colors и shared controls.
 
 ## Проверенные сценарии
@@ -22,3 +24,7 @@ Independent finish review содержит11 конкретных проверо
 ## Ограничения
 
 Нет authenticated app/role/provider E2E, полной screen-reader certification, реальных customer data или mutation acceptance в этом preview. RU/UZ/EN покрытие частичное; Uzbek требует редакторской проверки. Фоновые процессы, callbacks, source cleanup и approvals требуют отдельной PostgreSQL/staging проверки. Production readiness=false.
+
+## Functional source CI16 — 2026-10-06
+
+Application commit 6b83173d76fec2089968f1a86e9a4636079d68f8; https://github.com/SamandarMansurkhodjaev2713/tayvero/actions/runs/37461560544: both jobs SUCCESS. Node 593/593, Bun 1477/1477 (eight uncached leaves), 39 separate contract/SSR assertions, PG pipeline3/3 and operations17/17, zero failures/skips in Linux acceptance. Lint9/9 and semantic13/13 uncached; build4/4 (two prerequisite cache hits), Next36/36 and Eve packaging passed. Security26/26, vault valid, tenant15existing/0new with unchanged fingerprints; deployed schema diff empty. Local signed-session HTTP/contract acceptance15/15. Windows Node593/520pass/73exactretainedPOSIXfailures, zero new/skip/cancel/todo; full API Windows source-store failures retained separately. Whole-product production readiness false. Browser/live-provider/native worker/staging acceptance remains separate.

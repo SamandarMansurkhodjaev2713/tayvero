@@ -1,0 +1,4465 @@
+TAP version 13
+# Subtest: continuation token admits only the exact session/decision body and preserves principal
+ok 1 - continuation token admits only the exact session/decision body and preserves principal
+  ---
+  duration_ms: 58.4245
+  type: 'test'
+  ...
+# Subtest: session/create/general token, altered body, verb, signature and time are rejected before admission
+ok 2 - session/create/general token, altered body, verb, signature and time are rejected before admission
+  ---
+  duration_ms: 10.9684
+  type: 'test'
+  ...
+# Subtest: bounded authentication rejects oversized and malicious JSON without creating consent
+ok 3 - bounded authentication rejects oversized and malicious JSON without creating consent
+  ---
+  duration_ms: 3.5262
+  type: 'test'
+  ...
+# Subtest: expired token during bounded body processing does not enter admission
+ok 4 - expired token during bounded body processing does not enter admission
+  ---
+  duration_ms: 1.7841
+  type: 'test'
+  ...
+# Subtest: transport sends one exact ID request on a real loopback HTTP server, never a new session
+ok 5 - transport sends one exact ID request on a real loopback HTTP server, never a new session
+  ---
+  duration_ms: 105.8762
+  type: 'test'
+  ...
+# Subtest: transport rejects untrusted origins, redirects/errors, mismatched acknowledgement and never retries
+ok 6 - transport rejects untrusted origins, redirects/errors, mismatched acknowledgement and never retries
+  ---
+  duration_ms: 4.2683
+  type: 'test'
+  ...
+# Subtest: both native mutation tools preserve disabled-default behavior before parsing optional input
+ok 7 - both native mutation tools preserve disabled-default behavior before parsing optional input
+  ---
+  duration_ms: 6.969
+  type: 'test'
+  ...
+# Subtest: native event journal observer is wired outside the best-effort audit catch
+ok 8 - native event journal observer is wired outside the best-effort audit catch
+  ---
+  duration_ms: 3.5517
+  type: 'test'
+  ...
+# Subtest: timeout confirmation remains inside the locked transaction and completion cannot skip pending consent
+ok 9 - timeout confirmation remains inside the locked transaction and completion cannot skip pending consent
+  ---
+  duration_ms: 3.7208
+  type: 'test'
+  ...
+# Subtest: strict Turbo development passes the actual application feature/config variable names
+ok 10 - strict Turbo development passes the actual application feature/config variable names
+  ---
+  duration_ms: 3.1624
+  type: 'test'
+  ...
+# Subtest: unset and example-env blank rules preserve the bounded deployed manifest policy
+ok 11 - unset and example-env blank rules preserve the bounded deployed manifest policy
+  ---
+  duration_ms: 1.6173
+  type: 'test'
+  ...
+# Subtest: malformed configuration fails closed, never silently ignores intended restrictions
+ok 12 - malformed configuration fails closed, never silently ignores intended restrictions
+  ---
+  duration_ms: 4.0342
+  type: 'test'
+  ...
+# Subtest: deployment rules and read-only mode cannot be changed with request fields
+ok 13 - deployment rules and read-only mode cannot be changed with request fields
+  ---
+  duration_ms: 0.5364
+  type: 'test'
+  ...
+# Subtest: the dependency-free service core delegates only through the governed executor
+ok 14 - the dependency-free service core delegates only through the governed executor
+  ---
+  duration_ms: 24.2339
+  type: 'test'
+  ...
+# Subtest: the production service composition uses the same governed path
+ok 15 - the production service composition uses the same governed path
+  ---
+  duration_ms: 1.3994
+  type: 'test'
+  ...
+# Subtest: requires an explicit catalog-only registry
+ok 16 - requires an explicit catalog-only registry
+  ---
+  duration_ms: 0.8853
+  type: 'test'
+  ...
+# Subtest: rejects model attempts to provide execution context or control fields
+ok 17 - rejects model attempts to provide execution context or control fields
+  ---
+  duration_ms: 0.9485
+  type: 'test'
+  ...
+# Subtest: rejects invalid input before any action executor side effect
+ok 18 - rejects invalid input before any action executor side effect
+  ---
+  duration_ms: 0.7728
+  type: 'test'
+  ...
+# Subtest: rejects invalid cancellation objects and unknown execution options
+ok 19 - rejects invalid cancellation objects and unknown execution options
+  ---
+  duration_ms: 0.6029
+  type: 'test'
+  ...
+# Subtest: the Prisma composition persists receipts and audit through the governed path
+ok 20 - the Prisma composition persists receipts and audit through the governed path
+  ---
+  duration_ms: 3.9074
+  type: 'test'
+  ...
+# Subtest: the Prisma composition fails fast when governance dependencies are missing
+ok 21 - the Prisma composition fails fast when governance dependencies are missing
+  ---
+  duration_ms: 0.58
+  type: 'test'
+  ...
+# Subtest: publishes only the two governed external run actions
+ok 22 - publishes only the two governed external run actions
+  ---
+  duration_ms: 74.184
+  type: 'test'
+  ...
+# Subtest: passes the full governed idempotency envelope to the CRM side effect
+ok 23 - passes the full governed idempotency envelope to the CRM side effect
+  ---
+  duration_ms: 10.6379
+  type: 'test'
+  ...
+# Subtest: replays a completed governed receipt without repeating the business side effect
+ok 24 - replays a completed governed receipt without repeating the business side effect
+  ---
+  duration_ms: 3.7304
+  type: 'test'
+  ...
+# Subtest: marks Slack receipt replay while preserving its destination and one side effect
+ok 25 - marks Slack receipt replay while preserving its destination and one side effect
+  ---
+  duration_ms: 4.3806
+  type: 'test'
+  ...
+# Subtest: rechecks authorization before returning a completed receipt
+ok 26 - rechecks authorization before returning a completed receipt
+  ---
+  duration_ms: 3.6552
+  type: 'test'
+  ...
+# Subtest: isolates replay metadata from an overlapping fresh action
+ok 27 - isolates replay metadata from an overlapping fresh action
+  ---
+  duration_ms: 4.1762
+  type: 'test'
+  ...
+# Subtest: rejects reuse of one run call for different business input
+ok 28 - rejects reuse of one run call for different business input
+  ---
+  duration_ms: 3.3381
+  type: 'test'
+  ...
+# Subtest: denies execution before the side effect when object authorization fails
+ok 29 - denies execution before the side effect when object authorization fails
+  ---
+  duration_ms: 1.0018
+  type: 'test'
+  ...
+# Subtest: rejects model/control-field injection and invalid business input
+ok 30 - rejects model/control-field injection and invalid business input
+  ---
+  duration_ms: 1.0386
+  type: 'test'
+  ...
+# Subtest: honors cancellation before acquiring or executing a side effect
+ok 31 - honors cancellation before acquiring or executing a side effect
+  ---
+  duration_ms: 0.8064
+  type: 'test'
+  ...
+# Subtest: routes Slack through the same governed receipt and execution envelope
+ok 32 - routes Slack through the same governed receipt and execution envelope
+  ---
+  duration_ms: 2.1844
+  type: 'test'
+  ...
+# Subtest: rejects accessor-backed request fields without invoking application code
+ok 33 - rejects accessor-backed request fields without invoking application code
+  ---
+  duration_ms: 0.6227
+  type: 'test'
+  ...
+# Subtest: rejects accessor-backed business input without evaluating its getter
+ok 34 - rejects accessor-backed business input without evaluating its getter
+  ---
+  duration_ms: 0.5179
+  type: 'test'
+  ...
+# Subtest: rejects ambiguous identifier separators before deriving an idempotency key
+ok 35 - rejects ambiguous identifier separators before deriving an idempotency key
+  ---
+  duration_ms: 0.6816
+  type: 'test'
+  ...
+# Subtest: rejects malformed policy decisions before acquiring a receipt
+ok 36 - rejects malformed policy decisions before acquiring a receipt
+  ---
+  duration_ms: 0.8762
+  type: 'test'
+  ...
+# Subtest: rejects misspelled runtime dependencies instead of ignoring configuration
+ok 37 - rejects misspelled runtime dependencies instead of ignoring configuration
+  ---
+  duration_ms: 0.3768
+  type: 'test'
+  ...
+# Subtest: agent runner tools invoke only the governed run-action bridge
+ok 38 - agent runner tools invoke only the governed run-action bridge
+  ---
+  duration_ms: 5.7016
+  type: 'test'
+  ...
+# Subtest: the governed bridge is the sole production caller of low-level run side effects
+ok 39 - the governed bridge is the sole production caller of low-level run side effects
+  ---
+  duration_ms: 483.1886
+  type: 'test'
+  ...
+# Subtest: run-runtime requires the governed envelope and no longer exposes legacy entrypoints
+ok 40 - run-runtime requires the governed envelope and no longer exposes legacy entrypoints
+  ---
+  duration_ms: 1.5658
+  type: 'test'
+  ...
+# Subtest: run.summary remains a run-control capability instead of becoming an external side effect
+ok 41 - run.summary remains a run-control capability instead of becoming an external side effect
+  ---
+  duration_ms: 1.4872
+  type: 'test'
+  ...
+# Subtest: timeout selection cannot fail a run that parked after the query snapshot
+ok 42 - timeout selection cannot fail a run that parked after the query snapshot
+  ---
+  duration_ms: 1.4098
+  type: 'test'
+  ...
+# Subtest: resume uses extended execution budget without changing historical startedAt
+ok 43 - resume uses extended execution budget without changing historical startedAt
+  ---
+  duration_ms: 0.2964
+  type: 'test'
+  ...
+# Subtest: cancelled, detached and terminal runs are never timed out by a stale scan
+ok 44 - cancelled, detached and terminal runs are never timed out by a stale scan
+  ---
+  duration_ms: 0.2788
+  type: 'test'
+  ...
+# Subtest: execution budget rejects corrupt configuration and saved deadlines
+ok 45 - execution budget rejects corrupt configuration and saved deadlines
+  ---
+  duration_ms: 0.6964
+  type: 'test'
+  ...
+# Subtest: approved native request traverses real governed executor once, then receipt completes continuation
+ok 46 - approved native request traverses real governed executor once, then receipt completes continuation
+  ---
+  duration_ms: 98.2368
+  type: 'test'
+  ...
+# Subtest: lost native acknowledgement is reconciled from actual runtime receipt without another HTTP request
+ok 47 - lost native acknowledgement is reconciled from actual runtime receipt without another HTTP request
+  ---
+  duration_ms: 26.984
+  type: 'test'
+  ...
+# Subtest: native child/session/call binding is durable across fresh service instances
+ok 48 - native child/session/call binding is durable across fresh service instances
+  ---
+  duration_ms: 11.3704
+  type: 'test'
+  ...
+# Subtest: consent alone cannot resume before durable native input and waiting boundary
+ok 49 - consent alone cannot resume before durable native input and waiting boundary
+  ---
+  duration_ms: 3.9744
+  type: 'test'
+  ...
+# Subtest: pending consent parks without dispatch and polling is bounded/fair
+ok 50 - pending consent parks without dispatch and polling is bounded/fair
+  ---
+  duration_ms: 2.8942
+  type: 'test'
+  ...
+# Subtest: wrong session, actor workspace, payload, call and native request cannot rebind consent
+ok 51 - wrong session, actor workspace, payload, call and native request cannot rebind consent
+  ---
+  duration_ms: 3.8019
+  type: 'test'
+  ...
+# Subtest: two dispatchers cannot both submit one approval or two calls of the same waiting run
+ok 52 - two dispatchers cannot both submit one approval or two calls of the same waiting run
+  ---
+  duration_ms: 3.7296
+  type: 'test'
+  ...
+# Subtest: lost transport acknowledgement is quarantined; never whole-run/new-key replay
+ok 53 - lost transport acknowledgement is quarantined; never whole-run/new-key replay
+  ---
+  duration_ms: 2.6912
+  type: 'test'
+  ...
+# Subtest: crashed dispatcher lease is quarantined, not reacquired
+ok 54 - crashed dispatcher lease is quarantined, not reacquired
+  ---
+  duration_ms: 4.7935
+  type: 'test'
+  ...
+# Subtest: exact-session mismatch in transport acknowledgement fails closed
+ok 55 - exact-session mismatch in transport acknowledgement fails closed
+  ---
+  duration_ms: 2.6343
+  type: 'test'
+  ...
+# Subtest: expired/rejected/cancelled approval resumes only a native denial
+ok 56 - expired/rejected/cancelled approval resumes only a native denial
+  ---
+  duration_ms: 6.4232
+  type: 'test'
+  ...
+# Subtest: revoked approver denies; revoked requester quarantines; cancellation never dispatches
+ok 57 - revoked approver denies; revoked requester quarantines; cancellation never dispatches
+  ---
+  duration_ms: 5.222
+  type: 'test'
+  ...
+# Subtest: approval waiting extends only execution deadline; original startedAt is preserved
+ok 58 - approval waiting extends only execution deadline; original startedAt is preserved
+  ---
+  duration_ms: 1.8579
+  type: 'test'
+  ...
+# Subtest: replayed waiting event cannot park a resumed run again
+ok 59 - replayed waiting event cannot park a resumed run again
+  ---
+  duration_ms: 2.4841
+  type: 'test'
+  ...
+# Subtest: audit failure rolls back waiting/dispatch state and produces no delivery
+ok 60 - audit failure rolls back waiting/dispatch state and produces no delivery
+  ---
+  duration_ms: 1.5005
+  type: 'test'
+  ...
+# Subtest: only a successful matching governed receipt closes observed execution
+ok 61 - only a successful matching governed receipt closes observed execution
+  ---
+  duration_ms: 2.3684
+  type: 'test'
+  ...
+# Subtest: native HTTP admission is one-use and rechecks fresh authority without consuming business consent
+ok 62 - native HTTP admission is one-use and rechecks fresh authority without consuming business consent
+  ---
+  duration_ms: 3.7858
+  type: 'test'
+  ...
+# Subtest: late expiry/revocation/cancellation at native admission cannot use earlier dispatch authority
+ok 63 - late expiry/revocation/cancellation at native admission cannot use earlier dispatch authority
+  ---
+  duration_ms: 6.2708
+  type: 'test'
+  ...
+# Subtest: execution budget already exhausted before waiting is not restored by approval
+ok 64 - execution budget already exhausted before waiting is not restored by approval
+  ---
+  duration_ms: 1.629
+  type: 'test'
+  ...
+# Subtest: scheduled continuation preserves the dispatch principal, never the immutable version editor
+ok 65 - scheduled continuation preserves the dispatch principal, never the immutable version editor
+  ---
+  duration_ms: 1.8713
+  type: 'test'
+  ...
+# Subtest: historical scheduled run principal follows original dispatch, and contradictory manual identity is denied
+ok 66 - historical scheduled run principal follows original dispatch, and contradictory manual identity is denied
+  ---
+  duration_ms: 1.2657
+  type: 'test'
+  ...
+# Subtest: request is immutable, requester-bound and idempotent across service instances
+ok 67 - request is immutable, requester-bound and idempotent across service instances
+  ---
+  duration_ms: 7.8816
+  type: 'test'
+  ...
+# Subtest: no forged tenant or digest is accepted
+ok 68 - no forged tenant or digest is accepted
+  ---
+  duration_ms: 0.3477
+  type: 'test'
+  ...
+# Subtest: queue and decisions require current administrator membership
+ok 69 - queue and decisions require current administrator membership
+  ---
+  duration_ms: 2.0297
+  type: 'test'
+  ...
+# Subtest: self approval is prohibited for both direct human and agent-run requesters
+ok 70 - self approval is prohibited for both direct human and agent-run requesters
+  ---
+  duration_ms: 2.5245
+  type: 'test'
+  ...
+# Subtest: agent run linkage is loaded server-side and inactive runs fail closed
+ok 71 - agent run linkage is loaded server-side and inactive runs fail closed
+  ---
+  duration_ms: 1.2544
+  type: 'test'
+  ...
+# Subtest: approval and audit are atomic; audit failure cannot leave consent behind
+ok 72 - approval and audit are atomic; audit failure cannot leave consent behind
+  ---
+  duration_ms: 1.7346
+  type: 'test'
+  ...
+# Subtest: repeated same decision is idempotent but stale opposite decisions are blocked
+ok 73 - repeated same decision is idempotent but stale opposite decisions are blocked
+  ---
+  duration_ms: 1.7505
+  type: 'test'
+  ...
+# Subtest: expiry is committed and audited instead of rolled back with an exception
+ok 74 - expiry is committed and audited instead of rolled back with an exception
+  ---
+  duration_ms: 1.1591
+  type: 'test'
+  ...
+# Subtest: cannot explicitly expire before deadline
+ok 75 - cannot explicitly expire before deadline
+  ---
+  duration_ms: 0.7471
+  type: 'test'
+  ...
+# Subtest: cannot approve redacted or truncated content without a complete safe preview
+ok 76 - cannot approve redacted or truncated content without a complete safe preview
+  ---
+  duration_ms: 2.1515
+  type: 'test'
+  ...
+# Subtest: approved consent is one-shot and bound to execution key, digest and actor
+ok 77 - approved consent is one-shot and bound to execution key, digest and actor
+  ---
+  duration_ms: 1.997
+  type: 'test'
+  ...
+# Subtest: revoked approving administrator invalidates unused consent
+ok 78 - revoked approving administrator invalidates unused consent
+  ---
+  duration_ms: 1.1723
+  type: 'test'
+  ...
+# Subtest: consumption audit failure leaves consent unconsumed and executes nothing
+ok 79 - consumption audit failure leaves consent unconsumed and executes nothing
+  ---
+  duration_ms: 0.7864
+  type: 'test'
+  ...
+# Subtest: cancel and reject are terminal and do not start execution
+ok 80 - cancel and reject are terminal and do not start execution
+  ---
+  duration_ms: 1.1163
+  type: 'test'
+  ...
+# Subtest: legacy unbound approvals are visible but cannot be newly approved or consumed
+ok 81 - legacy unbound approvals are visible but cannot be newly approved or consumed
+  ---
+  duration_ms: 0.4074
+  type: 'test'
+  ...
+# Subtest: two decision callers cannot both create conflicting final states
+ok 82 - two decision callers cannot both create conflicting final states
+  ---
+  duration_ms: 0.5473
+  type: 'test'
+  ...
+# Subtest: two consumers cannot both obtain one approval (query-contract double, not database proof)
+ok 83 - two consumers cannot both obtain one approval (query-contract double, not database proof)
+  ---
+  duration_ms: 0.8906
+  type: 'test'
+  ...
+# Subtest: list cursor keeps distinct requests with identical timestamps
+ok 84 - list cursor keeps distinct requests with identical timestamps
+  ---
+  duration_ms: 33.5877
+  type: 'test'
+  ...
+# Subtest: pending expiry filters reflect deadlines even without a scheduled sweeper
+ok 85 - pending expiry filters reflect deadlines even without a scheduled sweeper
+  ---
+  duration_ms: 0.8395
+  type: 'test'
+  ...
+# Subtest: governed executor requests consent, rechecks authorization, consumes once and replays receipt
+ok 86 - governed executor requests consent, rechecks authorization, consumes once and replays receipt
+  ---
+  duration_ms: 6.5292
+  type: 'test'
+  ...
+# Subtest: denied actions never allocate approval requests
+ok 87 - denied actions never allocate approval requests
+  ---
+  duration_ms: 0.4329
+  type: 'test'
+  ...
+# Subtest: expiry uses the current service clock, never a caller-provided backdated timestamp
+ok 88 - expiry uses the current service clock, never a caller-provided backdated timestamp
+  ---
+  duration_ms: 0.9744
+  type: 'test'
+  ...
+# Subtest: approval cannot be consumed if authority queries cross its deadline
+ok 89 - approval cannot be consumed if authority queries cross its deadline
+  ---
+  duration_ms: 0.6604
+  type: 'test'
+  ...
+# Subtest: decision crossing the deadline becomes an audited expiration instead of late consent
+ok 90 - decision crossing the deadline becomes an audited expiration instead of late consent
+  ---
+  duration_ms: 0.6691
+  type: 'test'
+  ...
+# Subtest: clear means no configured signals, not win probability or ROI
+ok 91 - clear means no configured signals, not win probability or ROI
+  ---
+  duration_ms: 42.7968
+  type: 'test'
+  ...
+# Subtest: closed, unqualified and archived records never get an open-deal risk score
+ok 92 - closed, unqualified and archived records never get an open-deal risk score
+  ---
+  duration_ms: 0.6418
+  type: 'test'
+  ...
+# Subtest: every signal points to a recorded source and a reproducible weight
+ok 93 - every signal points to a recorded source and a reproducible weight
+  ---
+  duration_ms: 0.3753
+  type: 'test'
+  ...
+# Subtest: overdue tasks link to the exact activity, not an inferred commitment
+ok 94 - overdue tasks link to the exact activity, not an inferred commitment
+  ---
+  duration_ms: 0.2568
+  type: 'test'
+  ...
+# Subtest: future/missing source timestamps make score unknown, never silently healthy
+ok 95 - future/missing source timestamps make score unknown, never silently healthy
+  ---
+  duration_ms: 0.3943
+  type: 'test'
+  ...
+# Subtest: task snapshot gaps are not reported as absence of a next step
+ok 96 - task snapshot gaps are not reported as absence of a next step
+  ---
+  duration_ms: 0.2287
+  type: 'test'
+  ...
+# Subtest: business-date comparison follows Tashkent midnight rather than UTC midnight
+ok 97 - business-date comparison follows Tashkent midnight rather than UTC midnight
+  ---
+  duration_ms: 0.3965
+  type: 'test'
+  ...
+# Subtest: activity and stage thresholds use complete days without boundary rounding
+ok 98 - activity and stage thresholds use complete days without boundary rounding
+  ---
+  duration_ms: 0.3042
+  type: 'test'
+  ...
+# Subtest: does not mutate the source record and produces deterministic snapshots
+ok 99 - does not mutate the source record and produces deterministic snapshots
+  ---
+  duration_ms: 0.952
+  type: 'test'
+  ...
+# Subtest: unknown stage semantics and incomplete task records fail closed
+ok 100 - unknown stage semantics and incomplete task records fail closed
+  ---
+  duration_ms: 0.4176
+  type: 'test'
+  ...
+# Subtest: dual-write defaults off and accepts only explicit strict mode
+ok 101 - dual-write defaults off and accepts only explicit strict mode
+  ---
+  duration_ms: 0.9422
+  type: 'test'
+  ...
+# Subtest: plans assignment creation for a backfilled mapping target
+ok 102 - plans assignment creation for a backfilled mapping target
+  ---
+  duration_ms: 0.7092
+  type: 'test'
+  ...
+# Subtest: is idempotent when legacy and sidecar stages already agree
+ok 103 - is idempotent when legacy and sidecar stages already agree
+  ---
+  duration_ms: 0.1528
+  type: 'test'
+  ...
+# Subtest: plans optimistic assignment update when stages drift
+ok 104 - plans optimistic assignment update when stages drift
+  ---
+  duration_ms: 0.1194
+  type: 'test'
+  ...
+# Subtest: fails closed for missing mapping, non-default mapping or semantic mismatch
+ok 105 - fails closed for missing mapping, non-default mapping or semantic mismatch
+  ---
+  duration_ms: 0.1792
+  type: 'test'
+  ...
+# Subtest: privileged operations derive dedicated workspace and recheck current membership
+not ok 106 - privileged operations derive dedicated workspace and recheck current membership
+  ---
+  duration_ms: 9.076
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\apps\\api\\test\\migration-application.test.mjs:89:1'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    setup (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:26:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:90:12)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3)
+  ...
+# Subtest: disabled execution is a real server gate, not a disabled UI button
+not ok 107 - disabled execution is a real server gate, not a disabled UI button
+  ---
+  duration_ms: 1.785
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\apps\\api\\test\\migration-application.test.mjs:99:1'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    setup (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:26:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:100:12)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: upload persists encrypted bytes and preview survives application recreation
+not ok 108 - upload persists encrypted bytes and preview survives application recreation
+  ---
+  duration_ms: 1.2023
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\apps\\api\\test\\migration-application.test.mjs:109:1'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    setup (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:26:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:110:12)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: invalid encoding, canonical base64, large files and XLSX fail before publication
+not ok 109 - invalid encoding, canonical base64, large files and XLSX fail before publication
+  ---
+  duration_ms: 1.2227
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\apps\\api\\test\\migration-application.test.mjs:128:1'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    setup (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:26:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:129:12)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: source fingerprints and cross-workspace source lookups fail closed
+not ok 110 - source fingerprints and cross-workspace source lookups fail closed
+  ---
+  duration_ms: 1.5506
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\apps\\api\\test\\migration-application.test.mjs:156:1'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    setup (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:26:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:157:12)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: mapping cannot assign owner/tenant fields; unsupported deal writes fail
+not ok 111 - mapping cannot assign owner/tenant fields; unsupported deal writes fail
+  ---
+  duration_ms: 1.1474
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\apps\\api\\test\\migration-application.test.mjs:175:1'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    setup (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:26:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:176:12)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: prepare is atomic, idempotent and immutable for the same command
+not ok 112 - prepare is atomic, idempotent and immutable for the same command
+  ---
+  duration_ms: 1.7981
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\apps\\api\\test\\migration-application.test.mjs:199:1'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    setup (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:26:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:200:12)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: preparation failure rolls back job, plan and issues together
+not ok 113 - preparation failure rolls back job, plan and issues together
+  ---
+  duration_ms: 1.0402
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\apps\\api\\test\\migration-application.test.mjs:224:1'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    setup (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:26:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:225:12)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: every valid row gets a receipt in the transaction creating the CRM record
+not ok 114 - every valid row gets a receipt in the transaction creating the CRM record
+  ---
+  duration_ms: 1.3502
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\apps\\api\\test\\migration-application.test.mjs:234:1'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    setup (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:26:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:235:12)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: repeat execution and repeat import never merge or overwrite exact contacts
+not ok 115 - repeat execution and repeat import never merge or overwrite exact contacts
+  ---
+  duration_ms: 1.4487
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\apps\\api\\test\\migration-application.test.mjs:246:1'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    setup (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:26:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:247:12)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: database receipt failure rolls back customer writes before any retry
+not ok 116 - database receipt failure rolls back customer writes before any retry
+  ---
+  duration_ms: 1.5845
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\apps\\api\\test\\migration-application.test.mjs:265:1'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    setup (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:26:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:266:12)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: crash after CRM commit but before batch settlement replays receipts, not writes
+not ok 117 - crash after CRM commit but before batch settlement replays receipts, not writes
+  ---
+  duration_ms: 1.3548
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\apps\\api\\test\\migration-application.test.mjs:279:1'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    setup (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:26:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:280:12)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: invalid rows and in-file duplicates remain separate, paginatable outcomes
+not ok 118 - invalid rows and in-file duplicates remain separate, paginatable outcomes
+  ---
+  duration_ms: 1.5603
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\apps\\api\\test\\migration-application.test.mjs:305:1'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    setup (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:26:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:306:12)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: source and plan tampering prevent writes
+not ok 119 - source and plan tampering prevent writes
+  ---
+  duration_ms: 1.4761
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\apps\\api\\test\\migration-application.test.mjs:319:1'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    setup (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:26:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:320:12)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: membership revocation between preview and execute prevents all writes
+not ok 120 - membership revocation between preview and execute prevents all writes
+  ---
+  duration_ms: 2.4627
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\apps\\api\\test\\migration-application.test.mjs:329:1'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    setup (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:26:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:330:12)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: cancellation is idempotent, stops new batches and does not claim rollback
+not ok 121 - cancellation is idempotent, stops new batches and does not claim rollback
+  ---
+  duration_ms: 1.5499
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\apps\\api\\test\\migration-application.test.mjs:339:1'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    setup (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:26:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:340:12)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: rollback previews first, requires exact confirmation, archives only own unchanged rows
+not ok 122 - rollback previews first, requires exact confirmation, archives only own unchanged rows
+  ---
+  duration_ms: 1.4392
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\apps\\api\\test\\migration-application.test.mjs:348:1'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    setup (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:26:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:349:12)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: rollback will not archive edited or linked CRM records
+not ok 123 - rollback will not archive edited or linked CRM records
+  ---
+  duration_ms: 1.676
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\apps\\api\\test\\migration-application.test.mjs:379:1'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    setup (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:26:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:380:12)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: sources used by jobs are retained; unused sources can be tombstoned and physically removed
+not ok 124 - sources used by jobs are retained; unused sources can be tombstoned and physically removed
+  ---
+  duration_ms: 1.0228
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\apps\\api\\test\\migration-application.test.mjs:396:1'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    setup (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:26:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:397:12)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: company imports use source evidence and create-only exact duplicate checks
+not ok 125 - company imports use source evidence and create-only exact duplicate checks
+  ---
+  duration_ms: 1.3151
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\apps\\api\\test\\migration-application.test.mjs:420:1'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    setup (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:26:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:421:12)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: report refuses ambiguous row accounting instead of claiming completion
+not ok 126 - report refuses ambiguous row accounting instead of claiming completion
+  ---
+  duration_ms: 1.435
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\apps\\api\\test\\migration-application.test.mjs:439:1'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    setup (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:26:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:440:12)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: a lease that expires during CRM writes aborts the entire write transaction
+not ok 127 - a lease that expires during CRM writes aborts the entire write transaction
+  ---
+  duration_ms: 1.049
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\apps\\api\\test\\migration-application.test.mjs:449:1'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    setup (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:26:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:450:12)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: distinct contacts matching email and phone are rejected, never silently merged
+not ok 128 - distinct contacts matching email and phone are rejected, never silently merged
+  ---
+  duration_ms: 2.1814
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\apps\\api\\test\\migration-application.test.mjs:468:1'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    setup (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:26:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:469:12)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: a replacement admin cannot assign newly imported records to a removed owner
+not ok 129 - a replacement admin cannot assign newly imported records to a removed owner
+  ---
+  duration_ms: 0.9387
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\apps\\api\\test\\migration-application.test.mjs:490:1'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    setup (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:26:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:491:12)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: two application instances replay one prepared job instead of allocating duplicate intents
+not ok 130 - two application instances replay one prepared job instead of allocating duplicate intents
+  ---
+  duration_ms: 1.0664
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\apps\\api\\test\\migration-application.test.mjs:500:1'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    setup (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:26:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:501:12)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: multi-batch report pagination does not truncate row outcomes silently
+not ok 131 - multi-batch report pagination does not truncate row outcomes silently
+  ---
+  duration_ms: 0.9901
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\apps\\api\\test\\migration-application.test.mjs:517:1'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    setup (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:26:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:518:12)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: rollback preserves imported contacts referenced by calendarAttendee
+not ok 132 - rollback preserves imported contacts referenced by calendarAttendee
+  ---
+  duration_ms: 0.8088
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\apps\\api\\test\\migration-application.test.mjs:545:2'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    setup (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:26:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:546:13)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: rollback preserves imported contacts referenced by contactBrief
+not ok 133 - rollback preserves imported contacts referenced by contactBrief
+  ---
+  duration_ms: 0.81
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\apps\\api\\test\\migration-application.test.mjs:545:2'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    setup (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:26:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:546:13)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: rollback preserves imported contacts referenced by company
+not ok 134 - rollback preserves imported contacts referenced by company
+  ---
+  duration_ms: 1.1364
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\apps\\api\\test\\migration-application.test.mjs:545:2'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    setup (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:26:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:546:13)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: full report export is one persisted snapshot, not the current 100-row page
+not ok 135 - full report export is one persisted snapshot, not the current 100-row page
+  ---
+  duration_ms: 1.4001
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\apps\\api\\test\\migration-application.test.mjs:560:1'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    setup (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:26:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:561:12)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: report CSV neutralizes formula-shaped metadata and includes no raw client contact fields
+not ok 136 - report CSV neutralizes formula-shaped metadata and includes no raw client contact fields
+  ---
+  duration_ms: 0.908
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\apps\\api\\test\\migration-application.test.mjs:594:1'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    setup (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:26:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:595:12)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: export is reauthorized and never presents an active import as a final report
+not ok 137 - export is reauthorized and never presents an active import as a final report
+  ---
+  duration_ms: 0.9731
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\apps\\api\\test\\migration-application.test.mjs:605:1'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    setup (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:26:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:606:12)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: export audit failure aborts the download instead of silently losing its access record
+not ok 138 - export audit failure aborts the download instead of silently losing its access record
+  ---
+  duration_ms: 1.3343
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\apps\\api\\test\\migration-application.test.mjs:629:1'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    setup (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:26:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:630:12)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: source deletion persists intent, audit and physical-purge acknowledgement
+not ok 139 - source deletion persists intent, audit and physical-purge acknowledgement
+  ---
+  duration_ms: 0.9425
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\apps\\api\\test\\migration-application.test.mjs:644:1'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    setup (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:26:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:645:12)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: deletion audit failure rolls back intent and leaves encrypted bytes intact
+not ok 140 - deletion audit failure rolls back intent and leaves encrypted bytes intact
+  ---
+  duration_ms: 1.0808
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\apps\\api\\test\\migration-application.test.mjs:658:1'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    setup (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:26:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:659:12)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: crash after tombstone leaves visible pending purge and a new process can finish
+not ok 141 - crash after tombstone leaves visible pending purge and a new process can finish
+  ---
+  duration_ms: 1.1029
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\apps\\api\\test\\migration-application.test.mjs:678:1'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    setup (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:26:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:679:12)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: lost purge acknowledgement is reconciled from absent file without resurrecting source
+not ok 142 - lost purge acknowledgement is reconciled from absent file without resurrecting source
+  ---
+  duration_ms: 1.5892
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\apps\\api\\test\\migration-application.test.mjs:705:1'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    setup (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:26:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:706:12)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: retention is preview-first and protects recently uploaded and all job-referenced sources
+not ok 143 - retention is preview-first and protects recently uploaded and all job-referenced sources
+  ---
+  duration_ms: 1.4686
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\apps\\api\\test\\migration-application.test.mjs:744:1'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    setup (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:26:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:745:12)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: creating a job after cleanup preview invalidates the destructive plan
+not ok 144 - creating a job after cleanup preview invalidates the destructive plan
+  ---
+  duration_ms: 1.1081
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\apps\\api\\test\\migration-application.test.mjs:778:1'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    setup (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:26:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:779:12)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: source tombstone prevents late plan publication and new CRM writes
+not ok 145 - source tombstone prevents late plan publication and new CRM writes
+  ---
+  duration_ms: 1.0792
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\apps\\api\\test\\migration-application.test.mjs:800:1'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    setup (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:26:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:801:12)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: authenticated old orphan cleanup reserves a tombstone before deleting source bytes
+not ok 146 - authenticated old orphan cleanup reserves a tombstone before deleting source bytes
+  ---
+  duration_ms: 2.9214
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\apps\\api\\test\\migration-application.test.mjs:819:1'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    setup (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:26:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:820:12)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: cleanup denies a revoked admin and does not accept a newer-than-retention cutoff
+not ok 147 - cleanup denies a revoked admin and does not accept a newer-than-retention cutoff
+  ---
+  duration_ms: 1.0058
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\apps\\api\\test\\migration-application.test.mjs:845:1'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    setup (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:26:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:846:12)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: tampered encrypted source is never force-deleted by recovery cleanup
+not ok 148 - tampered encrypted source is never force-deleted by recovery cleanup
+  ---
+  duration_ms: 0.933
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\apps\\api\\test\\migration-application.test.mjs:863:1'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    setup (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:26:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:864:12)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: fresh orphan is excluded until both encrypted timestamp and filesystem grace expire
+not ok 149 - fresh orphan is excluded until both encrypted timestamp and filesystem grace expire
+  ---
+  duration_ms: 0.8327
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\apps\\api\\test\\migration-application.test.mjs:880:1'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    setup (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:26:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:881:12)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: background import requires deployment flag and explicit consent for the exact job
+not ok 150 - background import requires deployment flag and explicit consent for the exact job
+  ---
+  duration_ms: 0.9412
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\apps\\api\\test\\migration-application.test.mjs:892:1'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    setup (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:26:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:893:12)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: background worker completes multiple batches across independent application instances
+not ok 151 - background worker completes multiple batches across independent application instances
+  ---
+  duration_ms: 1.2127
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\apps\\api\\test\\migration-application.test.mjs:932:1'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    setup (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:26:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:933:12)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: worker rechecks requester permissions and never substitutes its own privileges
+not ok 152 - worker rechecks requester permissions and never substitutes its own privileges
+  ---
+  duration_ms: 1.0566
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\apps\\api\\test\\migration-application.test.mjs:957:1'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    setup (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:26:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:958:12)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: pause during source loading prevents the next claim and does not fail the job
+not ok 153 - pause during source loading prevents the next claim and does not fail the job
+  ---
+  duration_ms: 0.8814
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\apps\\api\\test\\migration-application.test.mjs:971:1'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    setup (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:26:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:972:12)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: a pause drains a claimed batch but stale worker acknowledgement cannot re-enable scheduling
+not ok 154 - a pause drains a claimed batch but stale worker acknowledgement cannot re-enable scheduling
+  ---
+  duration_ms: 0.8733
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\apps\\api\\test\\migration-application.test.mjs:1002:1'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    setup (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:26:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:1003:12)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: revoked original owner cannot be silently replaced by a worker requester
+not ok 155 - revoked original owner cannot be silently replaced by a worker requester
+  ---
+  duration_ms: 0.857
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\apps\\api\\test\\migration-application.test.mjs:1028:1'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    setup (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:26:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:1029:12)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: lost batch acknowledgement with transient database error retries receipts, not CRM creation
+not ok 156 - lost batch acknowledgement with transient database error retries receipts, not CRM creation
+  ---
+  duration_ms: 1.0905
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\apps\\api\\test\\migration-application.test.mjs:1045:1'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    setup (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:26:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:1046:12)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: unknown worker errors suspend processing without logging sensitive exception text
+not ok 157 - unknown worker errors suspend processing without logging sensitive exception text
+  ---
+  duration_ms: 1.4774
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\apps\\api\\test\\migration-application.test.mjs:1079:1'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    setup (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:26:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:1080:12)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: cancellation clears consent and worker claims; it is not interpreted as pause/resume
+not ok 158 - cancellation clears consent and worker claims; it is not interpreted as pause/resume
+  ---
+  duration_ms: 1.3001
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\apps\\api\\test\\migration-application.test.mjs:1104:1'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    setup (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:26:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:1105:12)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: worker ticks are bounded and an already-aborted signal processes no job
+not ok 159 - worker ticks are bounded and an already-aborted signal processes no job
+  ---
+  duration_ms: 1.4828
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\apps\\api\\test\\migration-application.test.mjs:1125:1'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    setup (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:26:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:1126:12)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: source cleanup protects files needed by an opted-in background import
+not ok 160 - source cleanup protects files needed by an opted-in background import
+  ---
+  duration_ms: 1.3417
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\apps\\api\\test\\migration-application.test.mjs:1140:1'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    setup (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:26:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:1141:12)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: two competing worker instances cannot claim the same queue lease
+not ok 161 - two competing worker instances cannot claim the same queue lease
+  ---
+  duration_ms: 2.1797
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\apps\\api\\test\\migration-application.test.mjs:1159:1'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    setup (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:26:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:1160:12)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: persisted queue claim recovers after lease expiry without changing the import intent
+not ok 162 - persisted queue claim recovers after lease expiry without changing the import intent
+  ---
+  duration_ms: 1.2453
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\apps\\api\\test\\migration-application.test.mjs:1172:1'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    setup (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:26:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:1173:12)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: cleanup fails closed if a source audit cannot be saved after physical removal
+not ok 163 - cleanup fails closed if a source audit cannot be saved after physical removal
+  ---
+  duration_ms: 0.9202
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\apps\\api\\test\\migration-application.test.mjs:1191:1'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    setup (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:26:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/apps/api/test/migration-application.test.mjs:1192:12)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: bounded operator body is preserved as raw JSON text for the tRPC reader
+ok 164 - bounded operator body is preserved as raw JSON text for the tRPC reader
+  ---
+  duration_ms: 3.8888
+  type: 'test'
+  ...
+# Subtest: oversized declared and chunked bodies are rejected before tRPC
+ok 165 - oversized declared and chunked bodies are rejected before tRPC
+  ---
+  duration_ms: 1.31
+  type: 'test'
+  ...
+# Subtest: compressed bodies, non-JSON CSRF-like posts and invalid UTF-8 are rejected
+ok 166 - compressed bodies, non-JSON CSRF-like posts and invalid UTF-8 are rejected
+  ---
+  duration_ms: 1.9974
+  type: 'test'
+  ...
+# Subtest: unrelated CRM and webhook paths are not parsed or altered
+ok 167 - unrelated CRM and webhook paths are not parsed or altered
+  ---
+  duration_ms: 0.3856
+  type: 'test'
+  ...
+# Subtest: mixed batches and encoded procedure paths receive the same limit
+ok 168 - mixed batches and encoded procedure paths receive the same limit
+  ---
+  duration_ms: 0.8489
+  type: 'test'
+  ...
+# Subtest: inflight cap lasts through response completion, not just upload completion
+ok 169 - inflight cap lasts through response completion, not just upload completion
+  ---
+  duration_ms: 0.9336
+  type: 'test'
+  ...
+# Subtest: timeouts and aborted uploads free the slot
+ok 170 - timeouts and aborted uploads free the slot
+  ---
+  duration_ms: 37.27
+  type: 'test'
+  ...
+# Subtest: real Node HTTP transport enforces streaming byte bounds on loopback
+ok 171 - real Node HTTP transport enforces streaming byte bounds on loopback
+  ---
+  duration_ms: 38.1568
+  type: 'test'
+  ...
+# Subtest: overview is current-admin only and dedicated-workspace bound
+ok 172 - overview is current-admin only and dedicated-workspace bound
+  ---
+  duration_ms: 2.3611
+  type: 'test'
+  ...
+# Subtest: private drafts and unrelated receipts do not leak into team overview
+ok 173 - private drafts and unrelated receipts do not leak into team overview
+  ---
+  duration_ms: 2.6461
+  type: 'test'
+  ...
+# Subtest: costs use exact micro-USD and report missing records separately
+ok 174 - costs use exact micro-USD and report missing records separately
+  ---
+  duration_ms: 0.1375
+  type: 'test'
+  ...
+# Subtest: missing, negative, invalid costs and zero-completion rates are not invented
+ok 175 - missing, negative, invalid costs and zero-completion rates are not invented
+  ---
+  duration_ms: 0.0911
+  type: 'test'
+  ...
+# Subtest: a truncated window cannot masquerade as a full success rate or cost total
+ok 176 - a truncated window cannot masquerade as a full success rate or cost total
+  ---
+  duration_ms: 0.0972
+  type: 'test'
+  ...
+# Subtest: read period has explicit rolling UTC bounds and rejects arbitrary large windows
+ok 177 - read period has explicit rolling UTC bounds and rejects arbitrary large windows
+  ---
+  duration_ms: 0.6857
+  type: 'test'
+  ...
+# Subtest: operations never turns lack of provider/outcome instrumentation into positive health
+ok 178 - operations never turns lack of provider/outcome instrumentation into positive health
+  ---
+  duration_ms: 0.6085
+  type: 'test'
+  ...
+# Subtest: unsafe database errors and prompt-like error messages are not returned to operators
+ok 179 - unsafe database errors and prompt-like error messages are not returned to operators
+  ---
+  duration_ms: 0.6125
+  type: 'test'
+  ...
+# Subtest: disabled approval lifecycle performs no mutation even for administrators
+ok 180 - disabled approval lifecycle performs no mutation even for administrators
+  ---
+  duration_ms: 0.3289
+  type: 'test'
+  ...
+# Subtest: empty team yields a true empty state, no seeded demo metrics
+ok 181 - empty team yields a true empty state, no seeded demo metrics
+  ---
+  duration_ms: 0.4204
+  type: 'test'
+  ...
+# Subtest: receipt correlation uses governed metadata, never the unrelated CRM requestHash
+ok 182 - receipt correlation uses governed metadata, never the unrelated CRM requestHash
+  ---
+  duration_ms: 1.5461
+  type: 'test'
+  ...
+# Subtest: a different action kind cannot borrow the digest correlation
+ok 183 - a different action kind cannot borrow the digest correlation
+  ---
+  duration_ms: 0.5389
+  type: 'test'
+  ...
+# Subtest: metadata lookup refuses accessors and inherited correlation
+ok 184 - metadata lookup refuses accessors and inherited correlation
+  ---
+  duration_ms: 0.0997
+  type: 'test'
+  ...
+# Subtest: continuation view is current-admin only, opt-in and exposes no lease/JWT/raw payload
+ok 185 - continuation view is current-admin only, opt-in and exposes no lease/JWT/raw payload
+  ---
+  duration_ms: 0.9233
+  type: 'test'
+  ...
+# Subtest: continuation pagination has stable tie-breaks and does not silently drop same-time rows
+ok 186 - continuation pagination has stable tie-breaks and does not silently drop same-time rows
+  ---
+  duration_ms: 2.5491
+  type: 'test'
+  ...
+# Subtest: maps workspace roles to least-privilege pipeline permissions
+ok 187 - maps workspace roles to least-privilege pipeline permissions
+  ---
+  duration_ms: 2.4193
+  type: 'test'
+  ...
+# Subtest: creates deterministic server-owned pipeline and stage identifiers
+ok 188 - creates deterministic server-owned pipeline and stage identifiers
+  ---
+  duration_ms: 2.388
+  type: 'test'
+  ...
+# Subtest: preserves an explicit default request in the canonical create payload
+ok 189 - preserves an explicit default request in the canonical create payload
+  ---
+  duration_ms: 0.3517
+  type: 'test'
+  ...
+# Subtest: different tenants and command keys produce different server IDs
+ok 190 - different tenants and command keys produce different server IDs
+  ---
+  duration_ms: 0.1425
+  type: 'test'
+  ...
+# Subtest: preserves existing stage identity during update and creates only new IDs
+ok 191 - preserves existing stage identity during update and creates only new IDs
+  ---
+  duration_ms: 0.5205
+  type: 'test'
+  ...
+# Subtest: rejects foreign stage IDs and unknown transition keys
+ok 192 - rejects foreign stage IDs and unknown transition keys
+  ---
+  duration_ms: 0.3438
+  type: 'test'
+  ...
+# Subtest: rejects client-owned IDs on create and mismatched pipeline IDs on update
+ok 193 - rejects client-owned IDs on create and mismatched pipeline IDs on update
+  ---
+  duration_ms: 0.4183
+  type: 'test'
+  ...
+# Subtest: command payload excludes idempotency metadata and is immutable
+ok 194 - command payload excludes idempotency metadata and is immutable
+  ---
+  duration_ms: 0.3073
+  type: 'test'
+  ...
+# Subtest: command payload rejects unknown and accessor-backed input
+ok 195 - command payload rejects unknown and accessor-backed input
+  ---
+  duration_ms: 0.2866
+  type: 'test'
+  ...
+# Subtest: API output hides tenant identity and exposes transition keys
+ok 196 - API output hides tenant identity and exposes transition keys
+  ---
+  duration_ms: 0.4942
+  type: 'test'
+  ...
+# Subtest: unexpected server errors never expose raw diagnostic messages
+ok 197 - unexpected server errors never expose raw diagnostic messages
+  ---
+  duration_ms: 0.573
+  type: 'test'
+  ...
+# Subtest: expected validation guidance remains useful but bounded and single-line
+ok 198 - expected validation guidance remains useful but bounded and single-line
+  ---
+  duration_ms: 0.7616
+  type: 'test'
+  ...
+# Subtest: misclassified internal or credential diagnostics are masked
+ok 199 - misclassified internal or credential diagnostics are masked
+  ---
+  duration_ms: 0.1823
+  type: 'test'
+  ...
+# Subtest: allows failed/cancelled runs only when no attempted side effects are recorded
+ok 200 - allows failed/cancelled runs only when no attempted side effects are recorded
+  ---
+  duration_ms: 0.7286
+  type: 'test'
+  ...
+# Subtest: blocks a succeeded action even when the run failed afterwards
+ok 201 - blocks a succeeded action even when the run failed afterwards
+  ---
+  duration_ms: 0.11
+  type: 'test'
+  ...
+# Subtest: blocks uncertain remote outcomes and attempts that are marked failed
+ok 202 - blocks uncertain remote outcomes and attempts that are marked failed
+  ---
+  duration_ms: 0.1083
+  type: 'test'
+  ...
+# Subtest: missing/truncated history never becomes proof of no side effects
+ok 203 - missing/truncated history never becomes proof of no side effects
+  ---
+  duration_ms: 0.0826
+  type: 'test'
+  ...
+# Subtest: ambiguous receipt errors stay blocked even without an action mirror
+ok 204 - ambiguous receipt errors stay blocked even without an action mirror
+  ---
+  duration_ms: 0.1844
+  type: 'test'
+  ...
+# Subtest: successful, active and unknown run states are not retried under a failure label
+ok 205 - successful, active and unknown run states are not retried under a failure label
+  ---
+  duration_ms: 0.1049
+  type: 'test'
+  ...
+# Subtest: unknown attempt counters or action states fail closed
+ok 206 - unknown attempt counters or action states fail closed
+  ---
+  duration_ms: 0.1205
+  type: 'test'
+  ...
+# Subtest: auth revalidates current membership using trusted deployment identity
+ok 207 - auth revalidates current membership using trusted deployment identity
+  ---
+  duration_ms: 1.0909
+  type: 'test'
+  ...
+# Subtest: removed member with otherwise live session is forbidden immediately
+ok 208 - removed member with otherwise live session is forbidden immediately
+  ---
+  duration_ms: 0.4426
+  type: 'test'
+  ...
+# Subtest: foreign workspace session cannot read singleton CRM tables
+ok 209 - foreign workspace session cannot read singleton CRM tables
+  ---
+  duration_ms: 0.2109
+  type: 'test'
+  ...
+# Subtest: API-key synthetic session without active organization still needs membership
+ok 210 - API-key synthetic session without active organization still needs membership
+  ---
+  duration_ms: 0.1863
+  type: 'test'
+  ...
+# Subtest: expired, mismatched, missing or malformed sessions fail closed
+ok 211 - expired, mismatched, missing or malformed sessions fail closed
+  ---
+  duration_ms: 0.3012
+  type: 'test'
+  ...
+# Subtest: unrecognized membership roles are denied rather than promoted to member
+ok 212 - unrecognized membership roles are denied rather than promoted to member
+  ---
+  duration_ms: 0.3452
+  type: 'test'
+  ...
+# Subtest: approval submission carries the exact current immutable snapshot, never tenant or action input
+ok 213 - approval submission carries the exact current immutable snapshot, never tenant or action input
+  ---
+  duration_ms: 0.9873
+  type: 'test'
+  ...
+# Subtest: expired, unbound, redacted or disabled snapshots cannot submit approval
+ok 214 - expired, unbound, redacted or disabled snapshots cannot submit approval
+  ---
+  duration_ms: 1.0684
+  type: 'test'
+  ...
+# Subtest: only unconsumed consent may be revoked; terminal actions cannot be resubmitted
+ok 215 - only unconsumed consent may be revoked; terminal actions cannot be resubmitted
+  ---
+  duration_ms: 0.1325
+  type: 'test'
+  ...
+# Subtest: operator notes are bounded and no arbitrary decision is accepted
+ok 216 - operator notes are bounded and no arbitrary decision is accepted
+  ---
+  duration_ms: 0.1004
+  type: 'test'
+  ...
+# Subtest: Tashkent midnight uses the local day, even while UTC remains yesterday
+ok 217 - Tashkent midnight uses the local day, even while UTC remains yesterday
+  ---
+  duration_ms: 14.9011
+  type: 'test'
+  ...
+# Subtest: earlier today stays in Today; an overdue calendar day is not an elapsed-hour check
+ok 218 - earlier today stays in Today; an overdue calendar day is not an elapsed-hour check
+  ---
+  duration_ms: 0.3517
+  type: 'test'
+  ...
+# Subtest: spring DST day is 23 hours; the next calendar day is still upcoming
+ok 219 - spring DST day is 23 hours; the next calendar day is still upcoming
+  ---
+  duration_ms: 0.8736
+  type: 'test'
+  ...
+# Subtest: fall DST day is 25 hours; both occurrences of the repeated hour are today
+ok 220 - fall DST day is 25 hours; both occurrences of the repeated hour are today
+  ---
+  duration_ms: 0.4512
+  type: 'test'
+  ...
+# Subtest: one instant has different day buckets in different viewer timezones
+ok 221 - one instant has different day buckets in different viewer timezones
+  ---
+  duration_ms: 0.2786
+  type: 'test'
+  ...
+# Subtest: missing and malformed dates remain visible for review rather than disappearing
+ok 222 - missing and malformed dates remain visible for review rather than disappearing
+  ---
+  duration_ms: 0.5872
+  type: 'test'
+  ...
+# Subtest: all returned open tasks stay reachable; grouping retains record data and server order
+ok 223 - all returned open tasks stay reachable; grouping retains record data and server order
+  ---
+  duration_ms: 0.7431
+  type: 'test'
+  ...
+# Subtest: loading, failed first load, empty success and failed refresh have distinct states
+ok 224 - loading, failed first load, empty success and failed refresh have distinct states
+  ---
+  duration_ms: 0.1446
+  type: 'test'
+  ...
+# Subtest: completion acknowledgement removes only the confirmed task and never mutates cache in place
+ok 225 - completion acknowledgement removes only the confirmed task and never mutates cache in place
+  ---
+  duration_ms: 0.1435
+  type: 'test'
+  ...
+# Subtest: operation language catalogs contain the same complete set of nonempty keys
+ok 226 - operation language catalogs contain the same complete set of nonempty keys
+  ---
+  duration_ms: 1.2537
+  type: 'test'
+  ...
+# Subtest: display never treats missing counts as completed work
+ok 227 - display never treats missing counts as completed work
+  ---
+  duration_ms: 0.2052
+  type: 'test'
+  ...
+# Subtest: UI execution respects server capability and terminal state
+ok 228 - UI execution respects server capability and terminal state
+  ---
+  duration_ms: 0.2954
+  type: 'test'
+  ...
+# Subtest: required mapping cannot be omitted and skipped columns are not sent
+ok 229 - required mapping cannot be omitted and skipped columns are not sent
+  ---
+  duration_ms: 0.3278
+  type: 'test'
+  ...
+# Subtest: reuses the same key for a retry of an unchanged command
+ok 230 - reuses the same key for a retry of an unchanged command
+  ---
+  duration_ms: 0.878
+  type: 'test'
+  ...
+# Subtest: rotates the key when the command payload changes
+ok 231 - rotates the key when the command payload changes
+  ---
+  duration_ms: 0.1851
+  type: 'test'
+  ...
+# Subtest: clears only the key that completed
+ok 232 - clears only the key that completed
+  ---
+  duration_ms: 0.1288
+  type: 'test'
+  ...
+# Subtest: bounds retained failed-command keys
+ok 233 - bounds retained failed-command keys
+  ---
+  duration_ms: 0.1089
+  type: 'test'
+  ...
+# Subtest: rejects malformed scopes, fingerprints and generated keys
+ok 234 - rejects malformed scopes, fingerprints and generated keys
+  ---
+  duration_ms: 0.3834
+  type: 'test'
+  ...
+# Subtest: default draft is complete and valid
+ok 235 - default draft is complete and valid
+  ---
+  duration_ms: 1.4411
+  type: 'test'
+  ...
+# Subtest: renaming a stage key updates transition references
+ok 236 - renaming a stage key updates transition references
+  ---
+  duration_ms: 0.424
+  type: 'test'
+  ...
+# Subtest: terminal and open stage probabilities remain deterministic
+ok 237 - terminal and open stage probabilities remain deterministic
+  ---
+  duration_ms: 0.1431
+  type: 'test'
+  ...
+# Subtest: reordering and removal keep contiguous positions and remove dangling transitions
+ok 238 - reordering and removal keep contiguous positions and remove dangling transitions
+  ---
+  duration_ms: 0.2947
+  type: 'test'
+  ...
+# Subtest: create mutation excludes server-owned identity and preserves default intent
+ok 239 - create mutation excludes server-owned identity and preserves default intent
+  ---
+  duration_ms: 0.2802
+  type: 'test'
+  ...
+# Subtest: update mutation preserves optimistic version and existing stage identity
+ok 240 - update mutation preserves optimistic version and existing stage identity
+  ---
+  duration_ms: 0.3666
+  type: 'test'
+  ...
+# Subtest: validation rejects malformed probabilities, colors, positions and transitions
+ok 241 - validation rejects malformed probabilities, colors, positions and transitions
+  ---
+  duration_ms: 0.3054
+  type: 'test'
+  ...
+# Subtest: mutation conversion refuses invalid drafts and idempotency keys
+ok 242 - mutation conversion refuses invalid drafts and idempotency keys
+  ---
+  duration_ms: 0.5247
+  type: 'test'
+  ...
+# Subtest: summaries use visible facts, exclude archived review and disclose old-server coverage
+ok 243 - summaries use visible facts, exclude archived review and disclose old-server coverage
+  ---
+  duration_ms: 1.0436
+  type: 'test'
+  ...
+# Subtest: current filter excludes archived without hiding it from the all view
+ok 244 - current filter excludes archived without hiding it from the all view
+  ---
+  duration_ms: 0.2292
+  type: 'test'
+  ...
+# Subtest: review is explicitly the latest run, not a global approval count
+ok 245 - review is explicitly the latest run, not a global approval count
+  ---
+  duration_ms: 0.1267
+  type: 'test'
+  ...
+# Subtest: search is trimmed case insensitive and matches description
+ok 246 - search is trimmed case insensitive and matches description
+  ---
+  duration_ms: 0.1359
+  type: 'test'
+  ...
+# Subtest: zero cost is real recorded cost; unknown does not become zero
+ok 247 - zero cost is real recorded cost; unknown does not become zero
+  ---
+  duration_ms: 16.1555
+  type: 'test'
+  ...
+# Subtest: empty data never produces invented runs, savings or success rates
+ok 248 - empty data never produces invented runs, savings or success rates
+  ---
+  duration_ms: 0.1559
+  type: 'test'
+  ...
+# Subtest: registers immutable typed action entries without exposing a direct execution path
+ok 249 - registers immutable typed action entries without exposing a direct execution path
+  ---
+  duration_ms: 1.9111
+  type: 'test'
+  ...
+# Subtest: normalizes legacy risk and idempotency vocabulary into the governed runtime contract
+ok 250 - normalizes legacy risk and idempotency vocabulary into the governed runtime contract
+  ---
+  duration_ms: 0.3924
+  type: 'test'
+  ...
+# Subtest: converts JSON schemas into runtime validators
+ok 251 - converts JSON schemas into runtime validators
+  ---
+  duration_ms: 1.4414
+  type: 'test'
+  ...
+# Subtest: defensively snapshots schemas, metadata, permissions and retry configuration
+ok 252 - defensively snapshots schemas, metadata, permissions and retry configuration
+  ---
+  duration_ms: 0.3575
+  type: 'test'
+  ...
+# Subtest: rejects duplicate action identifiers
+ok 253 - rejects duplicate action identifiers
+  ---
+  duration_ms: 0.3279
+  type: 'test'
+  ...
+# Subtest: rejects execution-state options because execution belongs to the governed runtime
+ok 254 - rejects execution-state options because execution belongs to the governed runtime
+  ---
+  duration_ms: 0.2176
+  type: 'test'
+  ...
+# Subtest: rejects a mutating manifest without idempotency
+ok 255 - rejects a mutating manifest without idempotency
+  ---
+  duration_ms: 0.1782
+  type: 'test'
+  ...
+# Subtest: rejects manifests without explicit permissions
+ok 256 - rejects manifests without explicit permissions
+  ---
+  duration_ms: 0.1534
+  type: 'test'
+  ...
+# Subtest: rejects unsafe retry policies for mutating actions
+ok 257 - rejects unsafe retry policies for mutating actions
+  ---
+  duration_ms: 0.2004
+  type: 'test'
+  ...
+# Subtest: rejects non-integer and non-finite retry configuration
+ok 258 - rejects non-integer and non-finite retry configuration
+  ---
+  duration_ms: 1.2784
+  type: 'test'
+  ...
+# Subtest: registerMany accepts tuple and entry forms and returns stable sorted manifests
+ok 259 - registerMany accepts tuple and entry forms and returns stable sorted manifests
+  ---
+  duration_ms: 10.4916
+  type: 'test'
+  ...
+# Subtest: requires own properties instead of inherited prototype properties
+ok 260 - requires own properties instead of inherited prototype properties
+  ---
+  duration_ms: 0.2697
+  type: 'test'
+  ...
+# Subtest: rejects unsafe JSON-schema and metadata object keys
+ok 261 - rejects unsafe JSON-schema and metadata object keys
+  ---
+  duration_ms: 0.2507
+  type: 'test'
+  ...
+# Subtest: executes a validated authorized action and records redacted audit events
+ok 262 - executes a validated authorized action and records redacted audit events
+  ---
+  duration_ms: 4.934
+  type: 'test'
+  ...
+# Subtest: rejects tenant ownership fields at any nesting depth
+ok 263 - rejects tenant ownership fields at any nesting depth
+  ---
+  duration_ms: 0.9758
+  type: 'test'
+  ...
+# Subtest: rejects missing permissions and object-level authorization
+ok 264 - rejects missing permissions and object-level authorization
+  ---
+  duration_ms: 0.7404
+  type: 'test'
+  ...
+# Subtest: replays a completed idempotent result without executing again
+ok 265 - replays a completed idempotent result without executing again
+  ---
+  duration_ms: 1.7269
+  type: 'test'
+  ...
+# Subtest: rejects reuse of an idempotency key for another payload
+ok 266 - rejects reuse of an idempotency key for another payload
+  ---
+  duration_ms: 1.1667
+  type: 'test'
+  ...
+# Subtest: rejects changed payload after an approval failure acquired the same idempotency key
+ok 267 - rejects changed payload after an approval failure acquired the same idempotency key
+  ---
+  duration_ms: 0.8964
+  type: 'test'
+  ...
+# Subtest: allows only one concurrent execution for the same receipt
+ok 268 - allows only one concurrent execution for the same receipt
+  ---
+  duration_ms: 8.5934
+  type: 'test'
+  ...
+# Subtest: requires payload-bound tenant-bound approval for high-risk actions
+ok 269 - requires payload-bound tenant-bound approval for high-risk actions
+  ---
+  duration_ms: 1.2193
+  type: 'test'
+  ...
+# Subtest: rejects approval bound to another tenant or modified payload
+ok 270 - rejects approval bound to another tenant or modified payload
+  ---
+  duration_ms: 0.3218
+  type: 'test'
+  ...
+# Subtest: times out a non-cooperative executor and records failure
+ok 271 - times out a non-cooperative executor and records failure
+  ---
+  duration_ms: 21.3408
+  type: 'test'
+  ...
+# Subtest: propagates cancellation and does not retry it
+ok 272 - propagates cancellation and does not retry it
+  ---
+  duration_ms: 0.4811
+  type: 'test'
+  ...
+# Subtest: keeps the success receipt when the success audit write fails
+ok 273 - keeps the success receipt when the success audit write fails
+  ---
+  duration_ms: 0.5115
+  type: 'test'
+  ...
+# Subtest: propagates the operation digest and idempotency key to the executor
+ok 274 - propagates the operation digest and idempotency key to the executor
+  ---
+  duration_ms: 0.3
+  type: 'test'
+  ...
+# Subtest: validates untrusted model input and executor output
+ok 275 - validates untrusted model input and executor output
+  ---
+  duration_ms: 0.5026
+  type: 'test'
+  ...
+# Subtest: rejects mutating manifests without idempotency
+ok 276 - rejects mutating manifests without idempotency
+  ---
+  duration_ms: 0.1635
+  type: 'test'
+  ...
+# Subtest: rejects manifests without explicit permissions
+ok 277 - rejects manifests without explicit permissions
+  ---
+  duration_ms: 0.1083
+  type: 'test'
+  ...
+# Subtest: rejects non-integer, non-finite and unsafe retry policies
+ok 278 - rejects non-integer, non-finite and unsafe retry policies
+  ---
+  duration_ms: 0.38
+  type: 'test'
+  ...
+# Subtest: passes an immutable permission snapshot to validators, policy and executor
+ok 279 - passes an immutable permission snapshot to validators, policy and executor
+  ---
+  duration_ms: 0.4434
+  type: 'test'
+  ...
+# Subtest: passes immutable validated input to business validation and authorization
+ok 280 - passes immutable validated input to business validation and authorization
+  ---
+  duration_ms: 0.3006
+  type: 'test'
+  ...
+# Subtest: rejects invalid clock values before durable state mutation
+ok 281 - rejects invalid clock values before durable state mutation
+  ---
+  duration_ms: 0.2573
+  type: 'test'
+  ...
+# Subtest: rejects plain object registries that could expose prototype-backed actions
+ok 282 - rejects plain object registries that could expose prototype-backed actions
+  ---
+  duration_ms: 0.107
+  type: 'test'
+  ...
+# Subtest: invalid approval expiry is rejected instead of being treated as non-expiring
+ok 283 - invalid approval expiry is rejected instead of being treated as non-expiring
+  ---
+  duration_ms: 0.2037
+  type: 'test'
+  ...
+# Subtest: rejects unknown request and execution-option control fields
+ok 284 - rejects unknown request and execution-option control fields
+  ---
+  duration_ms: 0.1723
+  type: 'test'
+  ...
+# Subtest: requires both input and output validators even for a custom registry implementation
+ok 285 - requires both input and output validators even for a custom registry implementation
+  ---
+  duration_ms: 0.2287
+  type: 'test'
+  ...
+# Subtest: normalizes failures from business validation, authorization and policy evaluation
+ok 286 - normalizes failures from business validation, authorization and policy evaluation
+  ---
+  duration_ms: 0.3734
+  type: 'test'
+  ...
+# Subtest: redacts common secret values even when the property name is generic
+ok 287 - redacts common secret values even when the property name is generic
+  ---
+  duration_ms: 0.2496
+  type: 'test'
+  ...
+# Subtest: memory receipt store validates its lease configuration and fails closed on lost leases
+ok 288 - memory receipt store validates its lease configuration and fails closed on lost leases
+  ---
+  duration_ms: 0.1255
+  type: 'test'
+  ...
+# Subtest: a pre-aborted request does not acquire a receipt, consume approval or call an executor
+ok 289 - a pre-aborted request does not acquire a receipt, consume approval or call an executor
+  ---
+  duration_ms: 0.1753
+  type: 'test'
+  ...
+# Subtest: canonical JSON rejects cyclic arrays and unsafe object keys
+ok 290 - canonical JSON rejects cyclic arrays and unsafe object keys
+  ---
+  duration_ms: 0.2223
+  type: 'test'
+  ...
+# Subtest: audit redaction stores unsafe property names without invoking prototype setters
+ok 291 - audit redaction stores unsafe property names without invoking prototype setters
+  ---
+  duration_ms: 0.5656
+  type: 'test'
+  ...
+# Subtest: rejects malformed trusted correlation identifiers
+ok 292 - rejects malformed trusted correlation identifiers
+  ---
+  duration_ms: 0.1693
+  type: 'test'
+  ...
+# Subtest: fails closed when policy approval metadata is malformed
+ok 293 - fails closed when policy approval metadata is malformed
+  ---
+  duration_ms: 0.1363
+  type: 'test'
+  ...
+# Subtest: rejects non-plain request objects without invoking custom serialization hooks
+ok 294 - rejects non-plain request objects without invoking custom serialization hooks
+  ---
+  duration_ms: 0.1587
+  type: 'test'
+  ...
+# Subtest: revalidates validator-transformed input for tenant ownership fields
+ok 295 - revalidates validator-transformed input for tenant ownership fields
+  ---
+  duration_ms: 0.1317
+  type: 'test'
+  ...
+# Subtest: preflight shares authorization but only requests consent: no receipt, consumption or side effects
+ok 296 - preflight shares authorization but only requests consent: no receipt, consumption or side effects
+  ---
+  duration_ms: 0.33
+  type: 'test'
+  ...
+# Subtest: preflight cannot grant authority, skip policy or silently use missing approval persistence
+ok 297 - preflight cannot grant authority, skip policy or silently use missing approval persistence
+  ---
+  duration_ms: 0.3186
+  type: 'test'
+  ...
+# Subtest: canonical hashing rejects accessor properties without invoking them
+ok 298 - canonical hashing rejects accessor properties without invoking them
+  ---
+  duration_ms: 1.0131
+  type: 'test'
+  ...
+# Subtest: rejects sparse arrays so absent elements cannot alias explicit null
+ok 299 - rejects sparse arrays so absent elements cannot alias explicit null
+  ---
+  duration_ms: 0.1344
+  type: 'test'
+  ...
+# Subtest: rejects over-depth inputs with a bounded domain error rather than stack overflow
+ok 300 - rejects over-depth inputs with a bounded domain error rather than stack overflow
+  ---
+  duration_ms: 0.2654
+  type: 'test'
+  ...
+# Subtest: rejects oversized strings and excessive node counts
+ok 301 - rejects oversized strings and excessive node counts
+  ---
+  duration_ms: 5.9146
+  type: 'test'
+  ...
+# Subtest: input snapshot rejects a getter before execution
+ok 302 - input snapshot rejects a getter before execution
+  ---
+  duration_ms: 1.0481
+  type: 'test'
+  ...
+# Subtest: normal JSON digests remain stable and object undefined fields stay omitted
+ok 303 - normal JSON digests remain stable and object undefined fields stay omitted
+  ---
+  duration_ms: 0.2052
+  type: 'test'
+  ...
+# Subtest: unknown actions default to denial
+ok 304 - unknown actions default to denial
+  ---
+  duration_ms: 0.9187
+  type: 'test'
+  ...
+# Subtest: exact ALLOW rule permits only already-authorized low-risk action
+ok 305 - exact ALLOW rule permits only already-authorized low-risk action
+  ---
+  duration_ms: 0.3934
+  type: 'test'
+  ...
+# Subtest: high and critical risks cannot be downgraded by an ALLOW rule
+ok 306 - high and critical risks cannot be downgraded by an ALLOW rule
+  ---
+  duration_ms: 0.2225
+  type: 'test'
+  ...
+# Subtest: read-only overrides allow and approval for mutating actions
+ok 307 - read-only overrides allow and approval for mutating actions
+  ---
+  duration_ms: 0.1304
+  type: 'test'
+  ...
+# Subtest: explicit REQUIRE_APPROVAL is honored for low-risk actions
+ok 308 - explicit REQUIRE_APPROVAL is honored for low-risk actions
+  ---
+  duration_ms: 0.1077
+  type: 'test'
+  ...
+# Subtest: malformed rules, wildcards and getters are rejected without execution
+ok 309 - malformed rules, wildcards and getters are rejected without execution
+  ---
+  duration_ms: 0.2946
+  type: 'test'
+  ...
+# Subtest: malformed risk never becomes an implicitly allowed action
+ok 310 - malformed risk never becomes an implicitly allowed action
+  ---
+  duration_ms: 0.113
+  type: 'test'
+  ...
+# Subtest: model-supplied policy fields have no authority
+ok 311 - model-supplied policy fields have no authority
+  ---
+  duration_ms: 0.0926
+  type: 'test'
+  ...
+# Subtest: receipt store atomically acquires, completes and replays
+ok 312 - receipt store atomically acquires, completes and replays
+  ---
+  duration_ms: 2.9312
+  type: 'test'
+  ...
+# Subtest: receipt rejects same key with another digest
+ok 313 - receipt rejects same key with another digest
+  ---
+  duration_ms: 0.581
+  type: 'test'
+  ...
+# Subtest: receipt completion requires the acquired lease token
+ok 314 - receipt completion requires the acquired lease token
+  ---
+  duration_ms: 0.316
+  type: 'test'
+  ...
+# Subtest: approval consumption is tenant, action, digest and expiry bound
+ok 315 - approval consumption is tenant, action, digest and expiry bound
+  ---
+  duration_ms: 0.4284
+  type: 'test'
+  ...
+# Subtest: audit sink redacts secret-bearing properties
+ok 316 - audit sink redacts secret-bearing properties
+  ---
+  duration_ms: 1.8774
+  type: 'test'
+  ...
+# Subtest: expired unsafe receipt is quarantined instead of repeating an unknown external side effect
+ok 317 - expired unsafe receipt is quarantined instead of repeating an unknown external side effect
+  ---
+  duration_ms: 0.6334
+  type: 'test'
+  ...
+# Subtest: expired receipt may replay only with an explicit safe adapter capability
+ok 318 - expired receipt may replay only with an explicit safe adapter capability
+  ---
+  duration_ms: 0.5228
+  type: 'test'
+  ...
+# Subtest: receipt lease covers the complete declared execution/retry budget
+ok 319 - receipt lease covers the complete declared execution/retry budget
+  ---
+  duration_ms: 0.4555
+  type: 'test'
+  ...
+# Subtest: memory reference adapter quarantines expired unsafe execution too
+ok 320 - memory reference adapter quarantines expired unsafe execution too
+  ---
+  duration_ms: 1.2005
+  type: 'test'
+  ...
+# Subtest: canonical JSON is stable across object key order
+ok 321 - canonical JSON is stable across object key order
+  ---
+  duration_ms: 1.6437
+  type: 'test'
+  ...
+# Subtest: idempotency key is deterministic and tenant scoped
+ok 322 - idempotency key is deterministic and tenant scoped
+  ---
+  duration_ms: 0.8477
+  type: 'test'
+  ...
+# Subtest: money avoids floating point and uses explicit rounding
+ok 323 - money avoids floating point and uses explicit rounding
+  ---
+  duration_ms: 5.4976
+  type: 'test'
+  ...
+# Subtest: agent policy is deny by default and approval is payload-bound
+ok 324 - agent policy is deny by default and approval is payload-bound
+  ---
+  duration_ms: 0.4393
+  type: 'test'
+  ...
+# Subtest: retry is bounded and uses injected deterministic sleep
+ok 325 - retry is bounded and uses injected deterministic sleep
+  ---
+  duration_ms: 0.8484
+  type: 'test'
+  ...
+# Subtest: integration URL policy blocks local, credential and rebinding targets
+ok 326 - integration URL policy blocks local, credential and rebinding targets
+  ---
+  duration_ms: 4.479
+  type: 'test'
+  ...
+# Subtest: pipeline validates terminal semantics and transition policy
+ok 327 - pipeline validates terminal semantics and transition policy
+  ---
+  duration_ms: 0.4429
+  type: 'test'
+  ...
+# Subtest: deal health returns deterministic evidence factors
+ok 328 - deal health returns deterministic evidence factors
+  ---
+  duration_ms: 0.3316
+  type: 'test'
+  ...
+# Subtest: contact normalization supports Uzbekistan and safe mapping errors
+ok 329 - contact normalization supports Uzbekistan and safe mapping errors
+  ---
+  duration_ms: 0.3942
+  type: 'test'
+  ...
+# Subtest: ROI calculation uses integer arithmetic
+ok 330 - ROI calculation uses integer arithmetic
+  ---
+  duration_ms: 0.2849
+  type: 'test'
+  ...
+# Subtest: approval payload hash changes when action data changes
+ok 331 - approval payload hash changes when action data changes
+  ---
+  duration_ms: 0.149
+  type: 'test'
+  ...
+# Subtest: decimal money input converts exactly without binary floating-point rounding
+ok 332 - decimal money input converts exactly without binary floating-point rounding
+  ---
+  duration_ms: 0.7461
+  type: 'test'
+  ...
+# Subtest: rejects parseFloat-style trailing junk, grouping, exponent, negative and overprecision
+ok 333 - rejects parseFloat-style trailing junk, grouping, exponent, negative and overprecision
+  ---
+  duration_ms: 0.4128
+  type: 'test'
+  ...
+# Subtest: maximum supported amount round trips exactly and overflow is rejected
+ok 334 - maximum supported amount round trips exactly and overflow is rejected
+  ---
+  duration_ms: 0.1985
+  type: 'test'
+  ...
+# Subtest: input formatter does not turn absent data into zero or accept corrupt stored cents
+ok 335 - input formatter does not turn absent data into zero or accept corrupt stored cents
+  ---
+  duration_ms: 0.1161
+  type: 'test'
+  ...
+# Subtest: test DB never derives a target from DATABASE_URL
+ok 336 - test DB never derives a target from DATABASE_URL
+  ---
+  duration_ms: 0.8815
+  type: 'test'
+  ...
+# Subtest: explicit disposable loopback target is accepted without leaking configuration
+ok 337 - explicit disposable loopback target is accepted without leaking configuration
+  ---
+  duration_ms: 0.761
+  type: 'test'
+  ...
+# Subtest: same DB is rejected despite changed credentials, scheme, port default and query
+ok 338 - same DB is rejected despite changed credentials, scheme, port default and query
+  ---
+  duration_ms: 0.4105
+  type: 'test'
+  ...
+# Subtest: remote targets require opt-in and still reject normalized live identity
+ok 339 - remote targets require opt-in and still reject normalized live identity
+  ---
+  duration_ms: 0.3145
+  type: 'test'
+  ...
+# Subtest: unsafe database identifiers and ambiguous paths fail closed
+ok 340 - unsafe database identifiers and ambiguous paths fail closed
+  ---
+  duration_ms: 0.368
+  type: 'test'
+  ...
+# Subtest: connection redirection, schema changes and repeated params are rejected
+ok 341 - connection redirection, schema changes and repeated params are rejected
+  ---
+  duration_ms: 0.5274
+  type: 'test'
+  ...
+# Subtest: invalid URLs do not echo credentials in errors
+ok 342 - invalid URLs do not echo credentials in errors
+  ---
+  duration_ms: 0.3619
+  type: 'test'
+  ...
+# Subtest: reset needs separate explicit consent
+ok 343 - reset needs separate explicit consent
+  ---
+  duration_ms: 0.2524
+  type: 'test'
+  ...
+# Subtest: test DB implementation has no implicit live fallback, auto-reset or credential printing
+ok 344 - test DB implementation has no implicit live fallback, auto-reset or credential printing
+  ---
+  duration_ms: 0.6181
+  type: 'test'
+  ...
+# Subtest: blocks private, loopback, link-local, metadata, documentation and multicast IP ranges
+ok 345 - blocks private, loopback, link-local, metadata, documentation and multicast IP ranges
+  ---
+  duration_ms: 5.0117
+  type: 'test'
+  ...
+# Subtest: rejects URL credentials and DNS rebinding to a private address
+ok 346 - rejects URL credentials and DNS rebinding to a private address
+  ---
+  duration_ms: 0.7411
+  type: 'test'
+  ...
+# Subtest: enforces connector host allowlists
+ok 347 - enforces connector host allowlists
+  ---
+  duration_ms: 0.1774
+  type: 'test'
+  ...
+# Subtest: executes a pinned bounded request and parses JSON
+ok 348 - executes a pinned bounded request and parses JSON
+  ---
+  duration_ms: 17.2886
+  type: 'test'
+  ...
+# Subtest: rejects mutation retry without idempotency
+ok 349 - rejects mutation retry without idempotency
+  ---
+  duration_ms: 0.4304
+  type: 'test'
+  ...
+# Subtest: rejects redirect to a private destination
+ok 350 - rejects redirect to a private destination
+  ---
+  duration_ms: 5.5513
+  type: 'test'
+  ...
+# Subtest: verifies HMAC webhooks and rejects replay
+ok 351 - verifies HMAC webhooks and rejects replay
+  ---
+  duration_ms: 1.4977
+  type: 'test'
+  ...
+# Subtest: rejects tampered webhook body
+ok 352 - rejects tampered webhook body
+  ---
+  duration_ms: 0.3726
+  type: 'test'
+  ...
+# Subtest: compiles bounded OpenAPI operations and classifies risk
+ok 353 - compiles bounded OpenAPI operations and classifies risk
+  ---
+  duration_ms: 0.8104
+  type: 'test'
+  ...
+# Subtest: rejects external OpenAPI references
+ok 354 - rejects external OpenAPI references
+  ---
+  duration_ms: 0.2628
+  type: 'test'
+  ...
+# Subtest: rejects malformed resolver results before opening a socket
+ok 355 - rejects malformed resolver results before opening a socket
+  ---
+  duration_ms: 0.3208
+  type: 'test'
+  ...
+# Subtest: validates the retry-delay boundary
+ok 356 - validates the retry-delay boundary
+  ---
+  duration_ms: 0.1657
+  type: 'test'
+  ...
+# Subtest: enforces a total request deadline even while response bytes keep arriving
+ok 357 - enforces a total request deadline even while response bytes keep arriving
+  ---
+  duration_ms: 103.8303
+  type: 'test'
+  ...
+# Subtest: SSRF: all mapped, expanded, reserved and transition representations are blocked
+ok 358 - SSRF: all mapped, expanded, reserved and transition representations are blocked
+  ---
+  duration_ms: 5.2539
+  type: 'test'
+  ...
+# Subtest: HTTP: cross-origin redirect cannot forward secrets or reach its destination
+ok 359 - HTTP: cross-origin redirect cannot forward secrets or reach its destination
+  ---
+  duration_ms: 17.9196
+  type: 'test'
+  ...
+# Subtest: HTTP: safe same-origin GET redirect still works
+ok 360 - HTTP: safe same-origin GET redirect still works
+  ---
+  duration_ms: 5.5452
+  type: 'test'
+  ...
+# Subtest: HTTP: an idempotency header alone does not prove the provider can safely retry
+ok 361 - HTTP: an idempotency header alone does not prove the provider can safely retry
+  ---
+  duration_ms: 0.3371
+  type: 'test'
+  ...
+# Subtest: HTTP: abort before dispatch performs no DNS lookup
+ok 362 - HTTP: abort before dispatch performs no DNS lookup
+  ---
+  duration_ms: 0.1913
+  type: 'test'
+  ...
+# Subtest: HTTP: deadline includes stalled DNS resolution
+ok 363 - HTTP: deadline includes stalled DNS resolution
+  ---
+  duration_ms: 102.9779
+  type: 'test'
+  ...
+# Subtest: Webhook: replay protection must not silently disappear
+ok 364 - Webhook: replay protection must not silently disappear
+  ---
+  duration_ms: 1.0311
+  type: 'test'
+  ...
+# Subtest: Webhook: ambiguous duplicate signature fields are rejected
+ok 365 - Webhook: ambiguous duplicate signature fields are rejected
+  ---
+  duration_ms: 0.2515
+  type: 'test'
+  ...
+# Subtest: OpenAPI: server base path is retained and schema is an immutable snapshot
+ok 366 - OpenAPI: server base path is retained and schema is an immutable snapshot
+  ---
+  duration_ms: 0.5857
+  type: 'test'
+  ...
+# Subtest: OpenAPI: reject host-changing and traversal paths
+ok 367 - OpenAPI: reject host-changing and traversal paths
+  ---
+  duration_ms: 0.4392
+  type: 'test'
+  ...
+# Subtest: OpenAPI: cyclic objects are bounded failures, not stack overflows
+ok 368 - OpenAPI: cyclic objects are bounded failures, not stack overflows
+  ---
+  duration_ms: 0.1209
+  type: 'test'
+  ...
+# Subtest: CSV: auto-detection works beyond the 30-row sampling boundary
+ok 369 - CSV: auto-detection works beyond the 30-row sampling boundary
+  ---
+  duration_ms: 3.9819
+  type: 'test'
+  ...
+# Subtest: CSV: rejects text or a second quoted string after a closing quote
+ok 370 - CSV: rejects text or a second quoted string after a closing quote
+  ---
+  duration_ms: 0.4575
+  type: 'test'
+  ...
+# Subtest: CSV: single-column imports are valid without explicit delimiter selection
+ok 371 - CSV: single-column imports are valid without explicit delimiter selection
+  ---
+  duration_ms: 0.567
+  type: 'test'
+  ...
+# Subtest: CSV: formula escaping includes line breaks and Unicode whitespace
+ok 372 - CSV: formula escaping includes line breaks and Unicode whitespace
+  ---
+  duration_ms: 0.1903
+  type: 'test'
+  ...
+# Subtest: CSV: limits cannot be disabled by NaN or Infinity
+ok 373 - CSV: limits cannot be disabled by NaN or Infinity
+  ---
+  duration_ms: 0.1746
+  type: 'test'
+  ...
+# Subtest: CSV: source row numbers survive blank and multiline records
+ok 374 - CSV: source row numbers survive blank and multiline records
+  ---
+  duration_ms: 1.2527
+  type: 'test'
+  ...
+# Subtest: CSV: format detection rejects backslash paths and control characters on every OS
+ok 375 - CSV: format detection rejects backslash paths and control characters on every OS
+  ---
+  duration_ms: 0.3103
+  type: 'test'
+  ...
+# Subtest: rejects inherited targets instead of resolving Object.prototype
+ok 376 - rejects inherited targets instead of resolving Object.prototype
+  ---
+  duration_ms: 1.0099
+  type: 'test'
+  ...
+# Subtest: rejects prototype transformer names
+ok 377 - rejects prototype transformer names
+  ---
+  duration_ms: 1.0395
+  type: 'test'
+  ...
+# Subtest: rejects duplicate and blank headers without choosing an arbitrary column
+ok 378 - rejects duplicate and blank headers without choosing an arbitrary column
+  ---
+  duration_ms: 0.161
+  type: 'test'
+  ...
+# Subtest: compiled defaults are immutable snapshots, not caller-owned objects
+ok 379 - compiled defaults are immutable snapshots, not caller-owned objects
+  ---
+  duration_ms: 0.3235
+  type: 'test'
+  ...
+# Subtest: accessor field definitions are rejected without invoking them
+ok 380 - accessor field definitions are rejected without invoking them
+  ---
+  duration_ms: 0.1875
+  type: 'test'
+  ...
+# Subtest: rejects object defaults and unsafe reserved destination fields
+ok 381 - rejects object defaults and unsafe reserved destination fields
+  ---
+  duration_ms: 0.1429
+  type: 'test'
+  ...
+# Subtest: rejects non-cell values rather than executing coercion hooks
+ok 382 - rejects non-cell values rather than executing coercion hooks
+  ---
+  duration_ms: 0.2331
+  type: 'test'
+  ...
+# Subtest: rejects unsupported entity types before creating an executable migration plan
+ok 383 - rejects unsupported entity types before creating an executable migration plan
+  ---
+  duration_ms: 0.3664
+  type: 'test'
+  ...
+# Subtest: parses RFC4180 quoted commas, newlines, and escaped quotes
+ok 384 - parses RFC4180 quoted commas, newlines, and escaped quotes
+  ---
+  duration_ms: 1.4894
+  type: 'test'
+  ...
+# Subtest: detects a semicolon delimiter
+ok 385 - detects a semicolon delimiter
+  ---
+  duration_ms: 0.2903
+  type: 'test'
+  ...
+# Subtest: removes UTF-8 BOM from the first header
+ok 386 - removes UTF-8 BOM from the first header
+  ---
+  duration_ms: 0.0955
+  type: 'test'
+  ...
+# Subtest: rejects an unclosed quote
+ok 387 - rejects an unclosed quote
+  ---
+  duration_ms: 0.4593
+  type: 'test'
+  ...
+# Subtest: rejects duplicate normalized headers
+ok 388 - rejects duplicate normalized headers
+  ---
+  duration_ms: 0.1453
+  type: 'test'
+  ...
+# Subtest: enforces row limits
+ok 389 - enforces row limits
+  ---
+  duration_ms: 0.106
+  type: 'test'
+  ...
+# Subtest: neutralizes spreadsheet formulas in exported reports
+ok 390 - neutralizes spreadsheet formulas in exported reports
+  ---
+  duration_ms: 0.1442
+  type: 'test'
+  ...
+# Subtest: serializes error reports with formula protection
+ok 391 - serializes error reports with formula protection
+  ---
+  duration_ms: 0.2376
+  type: 'test'
+  ...
+# Subtest: parses money deterministically in minor units
+ok 392 - parses money deterministically in minor units
+  ---
+  duration_ms: 0.2818
+  type: 'test'
+  ...
+# Subtest: normalizes Uzbekistan phone numbers
+ok 393 - normalizes Uzbekistan phone numbers
+  ---
+  duration_ms: 0.2313
+  type: 'test'
+  ...
+# Subtest: validates extension, MIME, and XLSX ZIP signature
+ok 394 - validates extension, MIME, and XLSX ZIP signature
+  ---
+  duration_ms: 0.3099
+  type: 'test'
+  ...
+# Subtest: compiles deterministic mappings and validates required fields
+ok 395 - compiles deterministic mappings and validates required fields
+  ---
+  duration_ms: 0.4486
+  type: 'test'
+  ...
+# Subtest: creates deterministic dry-run batches and duplicate issues
+ok 396 - creates deterministic dry-run batches and duplicate issues
+  ---
+  duration_ms: 1.2635
+  type: 'test'
+  ...
+# Subtest: marks existing-record matches as warnings without silently dropping the row
+ok 397 - marks existing-record matches as warnings without silently dropping the row
+  ---
+  duration_ms: 0.2504
+  type: 'test'
+  ...
+# Subtest: migration: a stale claim cannot settle a newer lease even with the same workerId
+ok 398 - migration: a stale claim cannot settle a newer lease even with the same workerId
+  ---
+  duration_ms: 6.0228
+  type: 'test'
+  ...
+# Subtest: migration: process crashes consume attempts and eventually quarantine the batch
+ok 399 - migration: process crashes consume attempts and eventually quarantine the batch
+  ---
+  duration_ms: 2.0082
+  type: 'test'
+  ...
+# Subtest: migration: failure after cancellation cannot overwrite CANCELLED with FAILED
+ok 400 - migration: failure after cancellation cannot overwrite CANCELLED with FAILED
+  ---
+  duration_ms: 0.9863
+  type: 'test'
+  ...
+# Subtest: migration: invalid importer result is a terminal contract error
+ok 401 - migration: invalid importer result is a terminal contract error
+  ---
+  duration_ms: 0.5124
+  type: 'test'
+  ...
+# Subtest: migration: tenant/job delimiter ambiguity cannot alias storage keys
+ok 402 - migration: tenant/job delimiter ambiguity cannot alias storage keys
+  ---
+  duration_ms: 0.1024
+  type: 'test'
+  ...
+# Subtest: borrowed transaction hands serialization failure to its outer retry owner without querying an aborted transaction
+ok 403 - borrowed transaction hands serialization failure to its outer retry owner without querying an aborted transaction
+  ---
+  duration_ms: 1.368
+  type: 'test'
+  ...
+# Subtest: owned serialization retries use fresh transaction callbacks and do not retry unknown database failures
+ok 404 - owned serialization retries use fresh transaction callbacks and do not retry unknown database failures
+  ---
+  duration_ms: 0.4196
+  type: 'test'
+  ...
+# Subtest: uses serializable transactions and scopes durable job reads by tenant
+ok 405 - uses serializable transactions and scopes durable job reads by tenant
+  ---
+  duration_ms: 2.0153
+  type: 'test'
+  ...
+# Subtest: persists batch leases, counters and optimistic versions
+ok 406 - persists batch leases, counters and optimistic versions
+  ---
+  duration_ms: 0.886
+  type: 'test'
+  ...
+# Subtest: fails closed on a stale batch instead of silently losing a worker update
+ok 407 - fails closed on a stale batch instead of silently losing a worker update
+  ---
+  duration_ms: 0.4297
+  type: 'test'
+  ...
+# Subtest: persists an append-only runtime event with operational details
+ok 408 - persists an append-only runtime event with operational details
+  ---
+  duration_ms: 0.3291
+  type: 'test'
+  ...
+# Subtest: sanitizes event details to durable JSON and rejects non-serializable values
+ok 409 - sanitizes event details to durable JSON and rejects non-serializable values
+  ---
+  duration_ms: 0.3575
+  type: 'test'
+  ...
+# Subtest: coordinator can restart on the Prisma repository without losing durable batch state
+ok 410 - coordinator can restart on the Prisma repository without losing durable batch state
+  ---
+  duration_ms: 3.4453
+  type: 'test'
+  ...
+# Subtest: rejects invalid state transitions
+ok 411 - rejects invalid state transitions
+  ---
+  duration_ms: 1.5367
+  type: 'test'
+  ...
+# Subtest: rejects a dry-run from another tenant
+ok 412 - rejects a dry-run from another tenant
+  ---
+  duration_ms: 2.6085
+  type: 'test'
+  ...
+# Subtest: processes bounded batches and completes after the last checkpoint
+ok 413 - processes bounded batches and completes after the last checkpoint
+  ---
+  duration_ms: 3.5999
+  type: 'test'
+  ...
+# Subtest: concurrent workers claim distinct batches and never duplicate the same lease
+ok 414 - concurrent workers claim distinct batches and never duplicate the same lease
+  ---
+  duration_ms: 6.7414
+  type: 'test'
+  ...
+# Subtest: an expired RUNNING lease is reclaimed with the same operation identity
+ok 415 - an expired RUNNING lease is reclaimed with the same operation identity
+  ---
+  duration_ms: 1.6929
+  type: 'test'
+  ...
+# Subtest: retries a transient failure with the same idempotency key
+ok 416 - retries a transient failure with the same idempotency key
+  ---
+  duration_ms: 0.799
+  type: 'test'
+  ...
+# Subtest: moves a poison batch and job to FAILED after bounded attempts
+ok 417 - moves a poison batch and job to FAILED after bounded attempts
+  ---
+  duration_ms: 0.9804
+  type: 'test'
+  ...
+# Subtest: cancellation is terminal and prevents execution
+ok 418 - cancellation is terminal and prevents execution
+  ---
+  duration_ms: 0.3717
+  type: 'test'
+  ...
+# Subtest: rejects a dry-run for a different entity type
+ok 419 - rejects a dry-run for a different entity type
+  ---
+  duration_ms: 0.2206
+  type: 'test'
+  ...
+# Subtest: rejects non-contiguous batch indexes and count drift
+ok 420 - rejects non-contiguous batch indexes and count drift
+  ---
+  duration_ms: 0.436
+  type: 'test'
+  ...
+# Subtest: rejects unsafe source filenames before persistence
+ok 421 - rejects unsafe source filenames before persistence
+  ---
+  duration_ms: 0.222
+  type: 'test'
+  ...
+# Subtest: fails immediately when importer counters do not reconcile to the claimed batch
+ok 422 - fails immediately when importer counters do not reconcile to the claimed batch
+  ---
+  duration_ms: 1.4057
+  type: 'test'
+  ...
+# Subtest: source storage refuses unsupported filesystem capabilities before publishing directories
+ok 423 - source storage refuses unsupported filesystem capabilities before publishing directories
+  ---
+  duration_ms: 5.5234
+  type: 'test'
+  ...
+# Subtest: real filesystem encrypted source survives a fresh process and contains no plaintext customer data
+not ok 424 - real filesystem encrypted source survives a fresh process and contains no plaintext customer data
+  ---
+  duration_ms: 5.2656
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\packages\\migration-runtime\\test\\source-store.test.mjs:45:1'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    fixture (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/test/source-store.test.mjs:30:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/test/source-store.test.mjs:46:12)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3)
+  ...
+# Subtest: same source bytes can be uploaded as distinct import intents
+not ok 425 - same source bytes can be uploaded as distinct import intents
+  ---
+  duration_ms: 2.406
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\packages\\migration-runtime\\test\\source-store.test.mjs:77:1'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    fixture (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/test/source-store.test.mjs:30:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/test/source-store.test.mjs:78:12)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: tenant, hash and ciphertext tampering fail closed
+not ok 426 - tenant, hash and ciphertext tampering fail closed
+  ---
+  duration_ms: 1.4159
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\packages\\migration-runtime\\test\\source-store.test.mjs:84:1'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    fixture (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/test/source-store.test.mjs:30:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/test/source-store.test.mjs:85:12)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: old source keys remain readable across active-key rotation
+not ok 427 - old source keys remain readable across active-key rotation
+  ---
+  duration_ms: 1.3533
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\packages\\migration-runtime\\test\\source-store.test.mjs:107:1'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    fixture (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/test/source-store.test.mjs:30:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/test/source-store.test.mjs:108:12)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: opaque identifiers, file limits and symlinks cannot access arbitrary paths
+not ok 428 - opaque identifiers, file limits and symlinks cannot access arbitrary paths
+  ---
+  duration_ms: 1.5639
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\packages\\migration-runtime\\test\\source-store.test.mjs:125:1'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    fixture (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/test/source-store.test.mjs:30:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/test/source-store.test.mjs:126:12)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: concurrent ID collision publishes exactly one source without overwriting
+not ok 429 - concurrent ID collision publishes exactly one source without overwriting
+  ---
+  duration_ms: 1.5538
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\packages\\migration-runtime\\test\\source-store.test.mjs:157:1'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    fixture (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/test/source-store.test.mjs:30:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/test/source-store.test.mjs:158:12)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: preparation plans from reloaded persisted bytes, preserving physical source rows
+not ok 430 - preparation plans from reloaded persisted bytes, preserving physical source rows
+  ---
+  duration_ms: 1.0975
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\packages\\migration-runtime\\test\\source-store.test.mjs:168:1'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    fixture (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/test/source-store.test.mjs:30:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/test/source-store.test.mjs:169:12)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: unsupported XLSX and invalid UTF-8 are rejected before storage side effects
+not ok 431 - unsupported XLSX and invalid UTF-8 are rejected before storage side effects
+  ---
+  duration_ms: 2.4958
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\packages\\migration-runtime\\test\\source-store.test.mjs:195:1'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    fixture (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/test/source-store.test.mjs:30:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/test/source-store.test.mjs:196:12)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: a private root inside an attacker-writable ancestor is rejected
+not ok 432 - a private root inside an attacker-writable ancestor is rejected
+  ---
+  duration_ms: 3.9319
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\packages\\migration-runtime\\test\\source-store.test.mjs:218:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+
+      Comparison {
+    +   code: 'SOURCE_STORE_CONFIG'
+    -   code: 'UNSAFE_SOURCE_DIRECTORY'
+      }
+
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    code: 'UNSAFE_SOURCE_DIRECTORY'
+  actual:
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/test/source-store.test.mjs:223:3)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  operator: 'rejects'
+  stack: |-
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/test/source-store.test.mjs:222:2)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: directory permissions are rechecked when an existing store is used
+not ok 433 - directory permissions are rechecked when an existing store is used
+  ---
+  duration_ms: 1.9436
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\packages\\migration-runtime\\test\\source-store.test.mjs:231:1'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    fixture (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/test/source-store.test.mjs:30:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/test/source-store.test.mjs:232:12)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: inventory is tenant-local, bounded and ignores symlinks and unfinished uploads
+not ok 434 - inventory is tenant-local, bounded and ignores symlinks and unfinished uploads
+  ---
+  duration_ms: 2.3189
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\packages\\migration-runtime\\test\\source-store.test.mjs:241:1'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    fixture (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/test/source-store.test.mjs:30:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/test/source-store.test.mjs:242:12)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: simultaneous physical purges are idempotent and always require an exact digest
+not ok 435 - simultaneous physical purges are idempotent and always require an exact digest
+  ---
+  duration_ms: 1.3111
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\packages\\migration-runtime\\test\\source-store.test.mjs:268:1'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    fixture (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/test/source-store.test.mjs:30:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/test/source-store.test.mjs:269:12)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: inventory never enters a symlinked tenant directory
+not ok 436 - inventory never enters a symlinked tenant directory
+  ---
+  duration_ms: 1.0221
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\packages\\migration-runtime\\test\\source-store.test.mjs:279:1'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    fixture (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/test/source-store.test.mjs:30:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/test/source-store.test.mjs:280:12)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: a FIFO substituted for source ciphertext is rejected instead of blocking the file reader
+not ok 437 - a FIFO substituted for source ciphertext is rejected instead of blocking the file reader
+  ---
+  duration_ms: 1.1274
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\packages\\migration-runtime\\test\\source-store.test.mjs:292:1'
+  failureType: 'testCodeFailure'
+  error: 'An absolute POSIX storage directory with O_NOFOLLOW support is required'
+  code: 'SOURCE_STORE_CONFIG'
+  name: 'MigrationRuntimeError'
+  stack: |-
+    fail (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/errors.mjs:10:8)
+    createEncryptedFileSourceStore (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/src/source-store.mjs:82:3)
+    fixture (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/test/source-store.test.mjs:30:22)
+    async TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/packages/migration-runtime/test/source-store.test.mjs:293:12)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:785:7)
+  ...
+# Subtest: compiles a complete deterministic legacy stage map
+ok 438 - compiles a complete deterministic legacy stage map
+  ---
+  duration_ms: 2.0309
+  type: 'test'
+  ...
+# Subtest: requires every legacy stage to be mapped
+ok 439 - requires every legacy stage to be mapped
+  ---
+  duration_ms: 1.1621
+  type: 'test'
+  ...
+# Subtest: rejects semantic mismatch between legacy outcome and pipeline stage type
+ok 440 - rejects semantic mismatch between legacy outcome and pipeline stage type
+  ---
+  duration_ms: 0.1692
+  type: 'test'
+  ...
+# Subtest: reconciliation reports missing, wrong and orphan assignments deterministically
+ok 441 - reconciliation reports missing, wrong and orphan assignments deterministically
+  ---
+  duration_ms: 0.9359
+  type: 'test'
+  ...
+# Subtest: normalizes a safe pipeline slug
+ok 442 - normalizes a safe pipeline slug
+  ---
+  duration_ms: 0.8501
+  type: 'test'
+  ...
+# Subtest: accepts a complete pipeline definition
+ok 443 - accepts a complete pipeline definition
+  ---
+  duration_ms: 0.5649
+  type: 'test'
+  ...
+# Subtest: rejects duplicate stage IDs
+ok 444 - rejects duplicate stage IDs
+  ---
+  duration_ms: 0.4278
+  type: 'test'
+  ...
+# Subtest: rejects non-contiguous positions
+ok 445 - rejects non-contiguous positions
+  ---
+  duration_ms: 0.1809
+  type: 'test'
+  ...
+# Subtest: rejects invalid terminal probability
+ok 446 - rejects invalid terminal probability
+  ---
+  duration_ms: 0.1747
+  type: 'test'
+  ...
+# Subtest: rejects an archived default pipeline
+ok 447 - rejects an archived default pipeline
+  ---
+  duration_ms: 0.1297
+  type: 'test'
+  ...
+# Subtest: plans an allowed transition with optimistic version increment
+ok 448 - plans an allowed transition with optimistic version increment
+  ---
+  duration_ms: 0.295
+  type: 'test'
+  ...
+# Subtest: treats same-stage movement as idempotent
+ok 449 - treats same-stage movement as idempotent
+  ---
+  duration_ms: 0.1058
+  type: 'test'
+  ...
+# Subtest: rejects a transition that violates stage rules
+ok 450 - rejects a transition that violates stage rules
+  ---
+  duration_ms: 0.1246
+  type: 'test'
+  ...
+# Subtest: rejects stale optimistic version
+ok 451 - rejects stale optimistic version
+  ---
+  duration_ms: 0.207
+  type: 'test'
+  ...
+# Subtest: rejects cross-tenant assignment
+ok 452 - rejects cross-tenant assignment
+  ---
+  duration_ms: 0.1245
+  type: 'test'
+  ...
+# Subtest: requires explicit permission to reopen a terminal deal
+ok 453 - requires explicit permission to reopen a terminal deal
+  ---
+  duration_ms: 0.0964
+  type: 'test'
+  ...
+# Subtest: allows an explicitly authorized terminal reopen
+ok 454 - allows an explicitly authorized terminal reopen
+  ---
+  duration_ms: 0.1034
+  type: 'test'
+  ...
+# Subtest: builds deterministic legacy assignments
+ok 455 - builds deterministic legacy assignments
+  ---
+  duration_ms: 0.6929
+  type: 'test'
+  ...
+# Subtest: fails closed when a legacy stage has no mapping
+ok 456 - fails closed when a legacy stage has no mapping
+  ---
+  duration_ms: 0.1517
+  type: 'test'
+  ...
+# Subtest: calculates exact minor-unit analytics without floating point
+ok 457 - calculates exact minor-unit analytics without floating point
+  ---
+  duration_ms: 1.2145
+  type: 'test'
+  ...
+# Subtest: maps Prisma pipeline rows into the domain shape
+ok 458 - maps Prisma pipeline rows into the domain shape
+  ---
+  duration_ms: 2.5412
+  type: 'test'
+  ...
+# Subtest: scopes every pipeline read by workspace and bounds the list
+ok 459 - scopes every pipeline read by workspace and bounds the list
+  ---
+  duration_ms: 1.001
+  type: 'test'
+  ...
+# Subtest: uses serializable interactive transactions
+ok 460 - uses serializable interactive transactions
+  ---
+  duration_ms: 0.4182
+  type: 'test'
+  ...
+# Subtest: retries only bounded Prisma serialization conflicts
+ok 461 - retries only bounded Prisma serialization conflicts
+  ---
+  duration_ms: 0.4957
+  type: 'test'
+  ...
+# Subtest: does not retry permanent Prisma errors
+ok 462 - does not retry permanent Prisma errors
+  ---
+  duration_ms: 0.4
+  type: 'test'
+  ...
+# Subtest: maps exhausted serialization retries to a stable runtime error
+ok 463 - maps exhausted serialization retries to a stable runtime error
+  ---
+  duration_ms: 0.5741
+  type: 'test'
+  ...
+# Subtest: rejects an invalid retry jitter source before sleeping
+ok 464 - rejects an invalid retry jitter source before sleeping
+  ---
+  duration_ms: 0.2247
+  type: 'test'
+  ...
+# Subtest: persists command receipts and audit events using workspace-owned fields
+ok 465 - persists command receipts and audit events using workspace-owned fields
+  ---
+  duration_ms: 0.2509
+  type: 'test'
+  ...
+# Subtest: enforces the maximum number of pipelines inside the transaction
+ok 466 - enforces the maximum number of pipelines inside the transaction
+  ---
+  duration_ms: 0.7959
+  type: 'test'
+  ...
+# Subtest: atomically hands off the default during pipeline creation
+ok 467 - atomically hands off the default during pipeline creation
+  ---
+  duration_ms: 0.6153
+  type: 'test'
+  ...
+# Subtest: maps a duplicate slug to a stable domain error
+ok 468 - maps a duplicate slug to a stable domain error
+  ---
+  duration_ms: 0.2708
+  type: 'test'
+  ...
+# Subtest: neutralizes stage keys and positions before an ordered replacement
+ok 469 - neutralizes stage keys and positions before an ordered replacement
+  ---
+  duration_ms: 1.0596
+  type: 'test'
+  ...
+# Subtest: blocks removal of a stage that already owns assignments
+ok 470 - blocks removal of a stage that already owns assignments
+  ---
+  duration_ms: 0.2608
+  type: 'test'
+  ...
+# Subtest: maps a foreign-key race during stage deletion to STAGE_IN_USE
+ok 471 - maps a foreign-key race during stage deletion to STAGE_IN_USE
+  ---
+  duration_ms: 0.3652
+  type: 'test'
+  ...
+# Subtest: sets the default pipeline with an optimistic version predicate
+ok 472 - sets the default pipeline with an optimistic version predicate
+  ---
+  duration_ms: 0.2361
+  type: 'test'
+  ...
+# Subtest: rejects a stale default-pipeline request before changing any defaults
+ok 473 - rejects a stale default-pipeline request before changing any defaults
+  ---
+  duration_ms: 0.1508
+  type: 'test'
+  ...
+# Subtest: creates an idempotent pipeline and writes one audit event
+ok 474 - creates an idempotent pipeline and writes one audit event
+  ---
+  duration_ms: 3.9835
+  type: 'test'
+  ...
+# Subtest: forces the first pipeline to default even when the caller does not request it
+ok 475 - forces the first pipeline to default even when the caller does not request it
+  ---
+  duration_ms: 0.4188
+  type: 'test'
+  ...
+# Subtest: atomically promotes an explicitly default second pipeline during creation
+ok 476 - atomically promotes an explicitly default second pipeline during creation
+  ---
+  duration_ms: 8.0953
+  type: 'test'
+  ...
+# Subtest: keeps an explicitly non-default later pipeline non-default
+ok 477 - keeps an explicitly non-default later pipeline non-default
+  ---
+  duration_ms: 1.2604
+  type: 'test'
+  ...
+# Subtest: replays a concurrently committed command after a deterministic mutation race
+ok 478 - replays a concurrently committed command after a deterministic mutation race
+  ---
+  duration_ms: 0.9404
+  type: 'test'
+  ...
+# Subtest: canonical payload hashing never invokes object or array accessors
+ok 479 - canonical payload hashing never invokes object or array accessors
+  ---
+  duration_ms: 0.8029
+  type: 'test'
+  ...
+# Subtest: canonical payload hashing rejects cycles, sparse arrays and custom serialization
+ok 480 - canonical payload hashing rejects cycles, sparse arrays and custom serialization
+  ---
+  duration_ms: 0.222
+  type: 'test'
+  ...
+# Subtest: replays a command by its stable API payload before service-side reads
+ok 481 - replays a command by its stable API payload before service-side reads
+  ---
+  duration_ms: 1.042
+  type: 'test'
+  ...
+# Subtest: rejects an idempotency key reused with another payload
+ok 482 - rejects an idempotency key reused with another payload
+  ---
+  duration_ms: 1.3562
+  type: 'test'
+  ...
+# Subtest: rejects tenant ownership supplied for another tenant
+ok 483 - rejects tenant ownership supplied for another tenant
+  ---
+  duration_ms: 0.2521
+  type: 'test'
+  ...
+# Subtest: normalizes pipeline-domain validation failures at the runtime boundary
+ok 484 - normalizes pipeline-domain validation failures at the runtime boundary
+  ---
+  duration_ms: 0.2305
+  type: 'test'
+  ...
+# Subtest: enforces action permission at the operation boundary
+ok 485 - enforces action permission at the operation boundary
+  ---
+  duration_ms: 0.141
+  type: 'test'
+  ...
+# Subtest: transitions a seeded deal with optimistic concurrency
+ok 486 - transitions a seeded deal with optimistic concurrency
+  ---
+  duration_ms: 1.5073
+  type: 'test'
+  ...
+# Subtest: serializes two concurrent transitions so only one stale version wins
+ok 487 - serializes two concurrent transitions so only one stale version wins
+  ---
+  duration_ms: 1.3001
+  type: 'test'
+  ...
+# Subtest: prevents deleting a stage that still owns a deal assignment
+ok 488 - prevents deleting a stage that still owns a deal assignment
+  ---
+  duration_ms: 1.2839
+  type: 'test'
+  ...
+# Subtest: atomically switches the default pipeline with optimistic concurrency
+ok 489 - atomically switches the default pipeline with optimistic concurrency
+  ---
+  duration_ms: 1.7267
+  type: 'test'
+  ...
+# Subtest: restore requires its own permission rather than archive permission
+ok 490 - restore requires its own permission rather than archive permission
+  ---
+  duration_ms: 1.605
+  type: 'test'
+  ...
+# Subtest: in-memory keys do not collide when tenant and entity IDs contain colons
+ok 491 - in-memory keys do not collide when tenant and entity IDs contain colons
+  ---
+  duration_ms: 0.3028
+  type: 'test'
+  ...
+# Subtest: enforces the bounded pipeline count
+ok 492 - enforces the bounded pipeline count
+  ---
+  duration_ms: 9.4797
+  type: 'test'
+  ...
+# Subtest: givenPlainCredential_whenSealingAndOpening_thenReturnsValidatedPlaintext
+ok 493 - givenPlainCredential_whenSealingAndOpening_thenReturnsValidatedPlaintext
+  ---
+  duration_ms: 9.2057
+  type: 'test'
+  ...
+# Subtest: givenLegacyPlaintextAndStrictMode_whenOpening_thenRejects
+ok 494 - givenLegacyPlaintextAndStrictMode_whenOpening_thenRejects
+  ---
+  duration_ms: 0.7573
+  type: 'test'
+  ...
+# Subtest: givenLegacyPlaintextAndMigrationMode_whenOpening_thenMarksMigrationRequired
+ok 495 - givenLegacyPlaintextAndMigrationMode_whenOpening_thenMarksMigrationRequired
+  ---
+  duration_ms: 1.562
+  type: 'test'
+  ...
+# Subtest: givenEncryptedValue_whenSealingAgain_thenPreventsDoubleEncryption
+ok 496 - givenEncryptedValue_whenSealingAgain_thenPreventsDoubleEncryption
+  ---
+  duration_ms: 0.5562
+  type: 'test'
+  ...
+# Subtest: givenValidContext_whenEncryptingAndDecrypting_thenRoundTripsWithoutPlaintextLeakage
+ok 497 - givenValidContext_whenEncryptingAndDecrypting_thenRoundTripsWithoutPlaintextLeakage
+  ---
+  duration_ms: 9.1427
+  type: 'test'
+  ...
+# Subtest: givenSamePlaintext_whenEncryptedTwice_thenRandomIvProducesDifferentEnvelopes
+ok 498 - givenSamePlaintext_whenEncryptedTwice_thenRandomIvProducesDifferentEnvelopes
+  ---
+  duration_ms: 2.9253
+  type: 'test'
+  ...
+# Subtest: givenWrongTenantContext_whenDecrypting_thenAuthenticationFails
+ok 499 - givenWrongTenantContext_whenDecrypting_thenAuthenticationFails
+  ---
+  duration_ms: 3.5994
+  type: 'test'
+  ...
+# Subtest: givenTamperedCiphertext_whenDecrypting_thenAuthenticationFails
+ok 500 - givenTamperedCiphertext_whenDecrypting_thenAuthenticationFails
+  ---
+  duration_ms: 1.333
+  type: 'test'
+  ...
+# Subtest: givenMissingHistoricalKey_whenDecrypting_thenFailsWithoutLeakingSecret
+ok 501 - givenMissingHistoricalKey_whenDecrypting_thenFailsWithoutLeakingSecret
+  ---
+  duration_ms: 1.7647
+  type: 'test'
+  ...
+# Subtest: givenHistoricalKeyAndNewActiveKey_whenRotating_thenReencryptsWithNewKey
+ok 502 - givenHistoricalKeyAndNewActiveKey_whenRotating_thenReencryptsWithNewKey
+  ---
+  duration_ms: 3.9838
+  type: 'test'
+  ...
+# Subtest: givenPlaintext_whenDecrypting_thenRejectsImplicitLegacyFallback
+ok 503 - givenPlaintext_whenDecrypting_thenRejectsImplicitLegacyFallback
+  ---
+  duration_ms: 0.9002
+  type: 'test'
+  ...
+# Subtest: givenInvalidKeyLength_whenCreatingProvider_thenFailsFast
+ok 504 - givenInvalidKeyLength_whenCreatingProvider_thenFailsFast
+  ---
+  duration_ms: 0.523
+  type: 'test'
+  ...
+# Subtest: givenEnvironmentKeyring_whenCreatingProvider_thenValidatesAndDecrypts
+ok 505 - givenEnvironmentKeyring_whenCreatingProvider_thenValidatesAndDecrypts
+  ---
+  duration_ms: 1.4379
+  type: 'test'
+  ...
+# Subtest: givenEnvelope_whenRedactingAndFingerprinting_thenNeverReturnsPlaintext
+ok 506 - givenEnvelope_whenRedactingAndFingerprinting_thenNeverReturnsPlaintext
+  ---
+  duration_ms: 1.9142
+  type: 'test'
+  ...
+# Subtest: givenOversizedPlaintext_whenEncrypting_thenRejectsBeforeEncryption
+ok 507 - givenOversizedPlaintext_whenEncrypting_thenRejectsBeforeEncryption
+  ---
+  duration_ms: 0.8956
+  type: 'test'
+  ...
+# Subtest: givenUnscopedWhere_whenScoping_thenInjectsActiveTenant
+ok 508 - givenUnscopedWhere_whenScoping_thenInjectsActiveTenant
+  ---
+  duration_ms: 3.9407
+  type: 'test'
+  ...
+# Subtest: givenCrossTenantSelector_whenScoping_thenRejects
+ok 509 - givenCrossTenantSelector_whenScoping_thenRejects
+  ---
+  duration_ms: 0.471
+  type: 'test'
+  ...
+# Subtest: givenCreatePayloadForAnotherTenant_whenScoping_thenRejects
+ok 510 - givenCreatePayloadForAnotherTenant_whenScoping_thenRejects
+  ---
+  duration_ms: 0.1706
+  type: 'test'
+  ...
+# Subtest: givenAttemptedTenantReassignment_whenUpdating_thenRejects
+ok 511 - givenAttemptedTenantReassignment_whenUpdating_thenRejects
+  ---
+  duration_ms: 0.1146
+  type: 'test'
+  ...
+# Subtest: givenUniqueSelector_whenScoping_thenKeepsUniqueFieldAndAddsTenant
+ok 512 - givenUniqueSelector_whenScoping_thenKeepsUniqueFieldAndAddsTenant
+  ---
+  duration_ms: 0.1997
+  type: 'test'
+  ...
+# Subtest: givenSameOperationInDifferentTenants_whenBuildingIdempotencyKey_thenKeysDiffer
+ok 513 - givenSameOperationInDifferentTenants_whenBuildingIdempotencyKey_thenKeysDiffer
+  ---
+  duration_ms: 0.6712
+  type: 'test'
+  ...
+# Subtest: givenTenantScopedDelegate_whenReading_thenAlwaysInjectsTenantAndValidatesResults
+ok 514 - givenTenantScopedDelegate_whenReading_thenAlwaysInjectsTenantAndValidatesResults
+  ---
+  duration_ms: 0.4832
+  type: 'test'
+  ...
+# Subtest: givenCompromisedDelegateReturningAnotherTenant_whenReading_thenFailsClosed
+ok 515 - givenCompromisedDelegateReturningAnotherTenant_whenReading_thenFailsClosed
+  ---
+  duration_ms: 0.261
+  type: 'test'
+  ...
+# Subtest: givenScopedMutation_whenUpdating_thenScopesWhereAndForbidsOwnershipChange
+ok 516 - givenScopedMutation_whenUpdating_thenScopesWhereAndForbidsOwnershipChange
+  ---
+  duration_ms: 0.3856
+  type: 'test'
+  ...
+# Subtest: givenPrototypePollutionKey_whenScoping_thenRejectsInput
+ok 517 - givenPrototypePollutionKey_whenScoping_thenRejectsInput
+  ---
+  duration_ms: 0.4733
+  type: 'test'
+  ...
+# Subtest: givenCallerSelectExcludesTenantField_whenReading_thenVerifiesInternallyAndRestoresRequestedShape
+ok 518 - givenCallerSelectExcludesTenantField_whenReading_thenVerifiesInternallyAndRestoresRequestedShape
+  ---
+  duration_ms: 0.4358
+  type: 'test'
+  ...
+# Subtest: graphite/light: semantic text and controls meet contrast thresholds
+ok 519 - graphite/light: semantic text and controls meet contrast thresholds
+  ---
+  duration_ms: 1.0955
+  type: 'test'
+  ...
+# Subtest: graphite/dark: semantic text and controls meet contrast thresholds
+ok 520 - graphite/dark: semantic text and controls meet contrast thresholds
+  ---
+  duration_ms: 0.234
+  type: 'test'
+  ...
+# Subtest: grove/light: semantic text and controls meet contrast thresholds
+ok 521 - grove/light: semantic text and controls meet contrast thresholds
+  ---
+  duration_ms: 1.3609
+  type: 'test'
+  ...
+# Subtest: grove/dark: semantic text and controls meet contrast thresholds
+ok 522 - grove/dark: semantic text and controls meet contrast thresholds
+  ---
+  duration_ms: 0.1615
+  type: 'test'
+  ...
+# Subtest: sand/light: semantic text and controls meet contrast thresholds
+ok 523 - sand/light: semantic text and controls meet contrast thresholds
+  ---
+  duration_ms: 0.1125
+  type: 'test'
+  ...
+# Subtest: sand/dark: semantic text and controls meet contrast thresholds
+ok 524 - sand/dark: semantic text and controls meet contrast thresholds
+  ---
+  duration_ms: 0.1411
+  type: 'test'
+  ...
+# Subtest: indigo/light: semantic text and controls meet contrast thresholds
+ok 525 - indigo/light: semantic text and controls meet contrast thresholds
+  ---
+  duration_ms: 0.0896
+  type: 'test'
+  ...
+# Subtest: indigo/dark: semantic text and controls meet contrast thresholds
+ok 526 - indigo/dark: semantic text and controls meet contrast thresholds
+  ---
+  duration_ms: 0.0833
+  type: 'test'
+  ...
+# Subtest: invalid, oversized or future-version stored preferences fall back safely
+ok 527 - invalid, oversized or future-version stored preferences fall back safely
+  ---
+  duration_ms: 0.8269
+  type: 'test'
+  ...
+# Subtest: whitelisted preferences survive parsing and DOM application; unrelated attributes remain
+ok 528 - whitelisted preferences survive parsing and DOM application; unrelated attributes remain
+  ---
+  duration_ms: 0.2441
+  type: 'test'
+  ...
+# Subtest: pre-paint bootstrap and parser agree, including unavailable storage
+ok 529 - pre-paint bootstrap and parser agree, including unavailable storage
+  ---
+  duration_ms: 2.0636
+  type: 'test'
+  ...
+# Subtest: generated CSS is exactly derived from the tested token registry
+ok 530 - generated CSS is exactly derived from the tested token registry
+  ---
+  duration_ms: 7.9166
+  type: 'test'
+  ...
+# Subtest: palette contracts are immutable and equally capable
+ok 531 - palette contracts are immutable and equally capable
+  ---
+  duration_ms: 0.5509
+  type: 'test'
+  ...
+# Subtest: semantic check-types is mandatory, not an absent typecheck alias
+ok 532 - semantic check-types is mandatory, not an absent typecheck alias
+  ---
+  duration_ms: 1.2813
+  type: 'test'
+  ...
+# Subtest: a full quality gate cannot silently skip build
+ok 533 - a full quality gate cannot silently skip build
+  ---
+  duration_ms: 0.1185
+  type: 'test'
+  ...
+# Subtest: given clean repository when audited then returns no findings
+ok 534 - given clean repository when audited then returns no findings
+  ---
+  duration_ms: 10.8469
+  type: 'test'
+  ...
+# Subtest: given UTF-8 BOM package manifest when audited then reports JSON_BOM
+ok 535 - given UTF-8 BOM package manifest when audited then reports JSON_BOM
+  ---
+  duration_ms: 6.7706
+  type: 'test'
+  ...
+# Subtest: given legacy identity in source when audited then reports it
+ok 536 - given legacy identity in source when audited then reports it
+  ---
+  duration_ms: 4.8604
+  type: 'test'
+  ...
+# Subtest: given secret-like token in source when audited then reports without exposing token
+ok 537 - given secret-like token in source when audited then reports without exposing token
+  ---
+  duration_ms: 3.3729
+  type: 'test'
+  ...
+# Subtest: given secret placeholder in .env.example when audited then does not treat it as committed secret
+ok 538 - given secret placeholder in .env.example when audited then does not treat it as committed secret
+  ---
+  duration_ms: 3.2666
+  type: 'test'
+  ...
+# Subtest: tenant audit omits only canonical generated Eve output and keeps similar source paths
+ok 539 - tenant audit omits only canonical generated Eve output and keeps similar source paths
+  ---
+  duration_ms: 26.6866
+  type: 'test'
+  ...
+# Subtest: worker once processes one tick and returns without claiming an asynchronous promise
+ok 540 - worker once processes one tick and returns without claiming an asynchronous promise
+  ---
+  duration_ms: 0.6643
+  type: 'test'
+  ...
+# Subtest: worker shutdown drains the current tick and does not start a replacement tick
+ok 541 - worker shutdown drains the current tick and does not start a replacement tick
+  ---
+  duration_ms: 0.6067
+  type: 'test'
+  ...
+# Subtest: worker exits for review on once failure and emits no raw credentials
+ok 542 - worker exits for review on once failure and emits no raw credentials
+  ---
+  duration_ms: 0.4861
+  type: 'test'
+  ...
+# Subtest: worker validates poll bounds and honors already-aborted signal
+ok 543 - worker validates poll bounds and honors already-aborted signal
+  ---
+  duration_ms: 0.154
+  type: 'test'
+  ...
+# Subtest: operator upload and a new-process plan recover the same encrypted source
+not ok 544 - operator upload and a new-process plan recover the same encrypted source
+  ---
+  duration_ms: 149.7214
+  type: 'test'
+  location: 'C:\\Users\\sam4k\\Downloads\\AgenrCRM_OS\\crm-release\\tools\\migrations\\test\\source-cli.test.mjs:34:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    SOURCE_STORE_CONFIG: Source preparation failed. No CRM records were written; verify arguments, private storage, file limits, key and digest. An empty reserved output may remain.
+
+
+    1 !== 0
+
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 0
+  actual: 1
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///C:/Users/sam4k/Downloads/AgenrCRM_OS/crm-release/tools/migrations/test/source-cli.test.mjs:42:9)
+    async Test.run (node:internal/test_runner/test:1110:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3)
+  ...
+# Subtest: operator preparation fails without keys and never overwrites a report
+ok 545 - operator preparation fails without keys and never overwrites a report
+  ---
+  duration_ms: 251.9412
+  type: 'test'
+  ...
+# Subtest: unsupported files fail before any CRM write or success report
+ok 546 - unsupported files fail before any CRM write or success report
+  ---
+  duration_ms: 118.4051
+  type: 'test'
+  ...
+# Subtest: accepts the single governed executor boundary
+ok 547 - accepts the single governed executor boundary
+  ---
+  duration_ms: 16.5857
+  type: 'test'
+  ...
+# Subtest: reports direct catalog execution in production source
+ok 548 - reports direct catalog execution in production source
+  ---
+  duration_ms: 5.5732
+  type: 'test'
+  ...
+# Subtest: reports the removed parallel execution API
+ok 549 - reports the removed parallel execution API
+  ---
+  duration_ms: 3.9716
+  type: 'test'
+  ...
+# Subtest: reports direct executor calls outside the governed runtime
+ok 550 - reports direct executor calls outside the governed runtime
+  ---
+  duration_ms: 4.7915
+  type: 'test'
+  ...
+# Subtest: reports direct executor calls reached through a catalog lookup
+ok 551 - reports direct executor calls reached through a catalog lookup
+  ---
+  duration_ms: 4.6104
+  type: 'test'
+  ...
+# Subtest: excludes test and fixture paths from production findings
+ok 552 - excludes test and fixture paths from production findings
+  ---
+  duration_ms: 5.3828
+  type: 'test'
+  ...
+# Subtest: classifies the existing legacy dispatch as migration work instead of a hidden success
+ok 553 - classifies the existing legacy dispatch as migration work instead of a hidden success
+  ---
+  duration_ms: 5.6473
+  type: 'test'
+  ...
+# Subtest: accepts low-level run side effects only inside the governed bridge
+ok 554 - accepts low-level run side effects only inside the governed bridge
+  ---
+  duration_ms: 6.6526
+  type: 'test'
+  ...
+# Subtest: reports direct run side-effect calls outside the governed bridge
+ok 555 - reports direct run side-effect calls outside the governed bridge
+  ---
+  duration_ms: 4.4217
+  type: 'test'
+  ...
+# Subtest: reports removed direct run-action entrypoints as migration work
+ok 556 - reports removed direct run-action entrypoints as migration work
+  ---
+  duration_ms: 4.8899
+  type: 'test'
+  ...
+# Subtest: deal create and stage changes invoke strict sidecar synchronization inside the CRM transaction
+ok 557 - deal create and stage changes invoke strict sidecar synchronization inside the CRM transaction
+  ---
+  duration_ms: 5.1995
+  type: 'test'
+  ...
+# Subtest: legacy reads remain authoritative in this checkpoint
+ok 558 - legacy reads remain authoritative in this checkpoint
+  ---
+  duration_ms: 1.6592
+  type: 'test'
+  ...
+# Subtest: strict dual-write is opt-in and the example environment leaves it off
+ok 559 - strict dual-write is opt-in and the example environment leaves it off
+  ---
+  duration_ms: 1.1734
+  type: 'test'
+  ...
+# Subtest: the additive migration never removes or rewrites legacy deal.stage
+ok 560 - the additive migration never removes or rewrites legacy deal.stage
+  ---
+  duration_ms: 1.1267
+  type: 'test'
+  ...
+# Subtest: strict mode guards default-pipeline handoff until every mapping is migrated
+ok 561 - strict mode guards default-pipeline handoff until every mapping is migrated
+  ---
+  duration_ms: 1.324
+  type: 'test'
+  ...
+# Subtest: mapped stage removal or outcome-type mutation is blocked before runtime update
+ok 562 - mapped stage removal or outcome-type mutation is blocked before runtime update
+  ---
+  duration_ms: 0.9702
+  type: 'test'
+  ...
+# Subtest: same-stage repair preserves the legacy stageChangedAt timestamp
+ok 563 - same-stage repair preserves the legacy stageChangedAt timestamp
+  ---
+  duration_ms: 0.6942
+  type: 'test'
+  ...
+# Subtest: migration persistence is tenant scoped and transactionally durable
+ok 564 - migration persistence is tenant scoped and transactionally durable
+  ---
+  duration_ms: 4.2607
+  type: 'test'
+  ...
+# Subtest: migration schema permits intentional reuse of the same source file
+ok 565 - migration schema permits intentional reuse of the same source file
+  ---
+  duration_ms: 2.2009
+  type: 'test'
+  ...
+# Subtest: migration coordinator validates source identity and final accounting
+ok 566 - migration coordinator validates source identity and final accounting
+  ---
+  duration_ms: 1.0488
+  type: 'test'
+  ...
+# Subtest: both new routers enforce authenticated interactive sessions
+ok 567 - both new routers enforce authenticated interactive sessions
+  ---
+  duration_ms: 8.7199
+  type: 'test'
+  ...
+# Subtest: mutation input contracts cannot select tenant, actor, raw CRM rows or role
+ok 568 - mutation input contracts cannot select tenant, actor, raw CRM rows or role
+  ---
+  duration_ms: 2.1427
+  type: 'test'
+  ...
+# Subtest: operator API contains no public approval request or direct provider execute endpoint
+ok 569 - operator API contains no public approval request or direct provider execute endpoint
+  ---
+  duration_ms: 1.1102
+  type: 'test'
+  ...
+# Subtest: new writes and approval storage are opt-in in the example environment
+ok 570 - new writes and approval storage are opt-in in the example environment
+  ---
+  duration_ms: 0.9953
+  type: 'test'
+  ...
+# Subtest: operator body bounds run before Nest initialization without globally consuming webhook bodies
+ok 571 - operator body bounds run before Nest initialization without globally consuming webhook bodies
+  ---
+  duration_ms: 1.1307
+  type: 'test'
+  ...
+# Subtest: additive operations schema preserves legacy data and composite source isolation
+ok 572 - additive operations schema preserves legacy data and composite source isolation
+  ---
+  duration_ms: 1.4795
+  type: 'test'
+  ...
+# Subtest: real operations DB acceptance is explicit and never replaced by local doubles
+ok 573 - real operations DB acceptance is explicit and never replaced by local doubles
+  ---
+  duration_ms: 1.2051
+  type: 'test'
+  ...
+# Subtest: pipeline router is registered and requires authenticated interactive sessions
+ok 574 - pipeline router is registered and requires authenticated interactive sessions
+  ---
+  duration_ms: 4.3959
+  type: 'test'
+  ...
+# Subtest: pipeline mutations replay stable commands before reading mutable state
+ok 575 - pipeline mutations replay stable commands before reading mutable state
+  ---
+  duration_ms: 2.4445
+  type: 'test'
+  ...
+# Subtest: public pipeline contracts are strict and expose no tenant selector
+ok 576 - public pipeline contracts are strict and expose no tenant selector
+  ---
+  duration_ms: 1.5918
+  type: 'test'
+  ...
+# Subtest: pipeline persistence uses bounded reads and serializable optimistic mutations
+ok 577 - pipeline persistence uses bounded reads and serializable optimistic mutations
+  ---
+  duration_ms: 0.8104
+  type: 'test'
+  ...
+# Subtest: HTTP 412 remains a precondition failure at the tRPC error boundary
+ok 578 - HTTP 412 remains a precondition failure at the tRPC error boundary
+  ---
+  duration_ms: 0.8885
+  type: 'test'
+  ...
+# Subtest: generated client and accessible settings UI are connected without unsafe casts
+ok 579 - generated client and accessible settings UI are connected without unsafe casts
+  ---
+  duration_ms: 1.4585
+  type: 'test'
+  ...
+# Subtest: PostgreSQL gate refuses implicit or production database targets
+ok 580 - PostgreSQL gate refuses implicit or production database targets
+  ---
+  duration_ms: 3.4414
+  type: 'test'
+  ...
+# Subtest: PostgreSQL integration spec exercises row locking, rollback and simultaneous writers
+ok 581 - PostgreSQL integration spec exercises row locking, rollback and simultaneous writers
+  ---
+  duration_ms: 2.2213
+  type: 'test'
+  ...
+# Subtest: acceptance evidence removes configured keys, key ring and database credentials
+ok 582 - acceptance evidence removes configured keys, key ring and database credentials
+  ---
+  duration_ms: 1.1728
+  type: 'test'
+  ...
+# Subtest: evidence redaction handles absent or invalid key-ring configuration without losing diagnostics
+ok 583 - evidence redaction handles absent or invalid key-ring configuration without losing diagnostics
+  ---
+  duration_ms: 0.2334
+  type: 'test'
+  ...
+# Subtest: public migration routes expose consent, not unrestricted worker execution
+ok 584 - public migration routes expose consent, not unrestricted worker execution
+  ---
+  duration_ms: 4.4079
+  type: 'test'
+  ...
+# Subtest: source lifecycle schema expands data and preserves receipt/source foreign keys
+ok 585 - source lifecycle schema expands data and preserves receipt/source foreign keys
+  ---
+  duration_ms: 1.9389
+  type: 'test'
+  ...
+# Subtest: source cleanup and worker CLIs use deployment workspace and never embed a credential
+ok 586 - source cleanup and worker CLIs use deployment workspace and never embed a credential
+  ---
+  duration_ms: 2.648
+  type: 'test'
+  ...
+# Subtest: Bun acceptance requires positive totals, all passing and no skipped or todo cases
+ok 587 - Bun acceptance requires positive totals, all passing and no skipped or todo cases
+  ---
+  duration_ms: 1.7048
+  type: 'test'
+  ...
+# Subtest: release test evidence accepts a complete TAP summary on LF and Windows CRLF
+ok 588 - release test evidence accepts a complete TAP summary on LF and Windows CRLF
+  ---
+  duration_ms: 1.2818
+  type: 'test'
+  ...
+# Subtest: release test evidence cannot turn missing, skipped, cancelled or failed coverage green
+ok 589 - release test evidence cannot turn missing, skipped, cancelled or failed coverage green
+  ---
+  duration_ms: 0.1785
+  type: 'test'
+  ...
+# Subtest: release test evidence uses the final TAP summary rather than an earlier passing run
+ok 590 - release test evidence uses the final TAP summary rather than an earlier passing run
+  ---
+  duration_ms: 0.1831
+  type: 'test'
+  ...
+# Subtest: JSONC parser preserves quoted URLs and comment-like strings
+ok 591 - JSONC parser preserves quoted URLs and comment-like strings
+  ---
+  duration_ms: 1.1959
+  type: 'test'
+  ...
+# Subtest: every declared workspace and local dependency is represented in lock metadata
+ok 592 - every declared workspace and local dependency is represented in lock metadata
+  ---
+  duration_ms: 65.5516
+  type: 'test'
+  ...
+# Subtest: missing or stale workspace metadata is a failing finding, not a baseline exemption
+ok 593 - missing or stale workspace metadata is a failing finding, not a baseline exemption
+  ---
+  duration_ms: 26.2324
+  type: 'test'
+  ...
+1..593
+# tests 593
+# suites 0
+# pass 520
+# fail 73
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 11773.9798

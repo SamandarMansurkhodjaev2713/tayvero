@@ -2,7 +2,7 @@
 	"schemaVersion": 3,
 	"releaseDate": "2026-10-06",
 	"releaseTimezone": "Asia/Tashkent",
-	"generatedAt": "2026-10-05T14:21:46.298188+00:00",
+	"generatedAt": "2026-10-06T12:20:09.979Z",
 	"source": {
 		"kind": "existing extracted checkout",
 		"path": "crm-release/",
@@ -21,10 +21,7 @@
 		"freshExtract": "EXTERNAL_VERIFIED_SIDECAR_AFTER_PACKAGING",
 		"packager": "tools/release/package-master-checkpoint.py"
 	},
-	"releaseClassification": {
-		"wholeProductProductionReady": false,
-		"product": "SOURCE_GATES_VERIFIED_AUTHENTICATED_ACCEPTANCE_REQUIRED"
-	},
+	"releaseClassification": "IMPLEMENTED_AND_CORE_HTTP_VERIFIED_EXTERNAL_ACCEPTANCE_REMAINS",
 	"publication": {
 		"repository": "https://github.com/SamandarMansurkhodjaev2713/tayvero",
 		"visibility": "public",
@@ -43,45 +40,49 @@
 			"id": "TAYVERO-OPEN-SOURCE-001",
 			"status": "PUBLISHED",
 			"scope": "Public owned repository, MIT, truthful illustrated README and default-off owner telemetry."
+		},
+		{
+			"id": "TAYVERO-PRODUCT-FUNCTIONAL-001",
+			"status": "IMPLEMENTED_CORE_HTTP_AND_REPOSITORY_VERIFIED",
+			"scope": "Optional enrichment activation, personal follow-ups, UZS, agent task-to-result UX, real signed-session core CRM HTTP journeys and failure-path fixture isolation."
 		}
 	],
 	"checks": {
 		"windowsLocal": {
-			"tests": 584,
-			"pass": 511,
+			"tests": 593,
+			"pass": 520,
 			"fail": 73,
-			"skipped": 0,
-			"status": "FAILED_UNSUPPORTED_POSIX_HOST",
-			"scope": "Final source Windows replay retained the same 73 POSIX-unsupported failures, zero skips; exact fresh artifact replay recorded externally.",
 			"cancelled": 0,
+			"skipped": 0,
 			"todo": 0,
-			"failureSet": "docs/quality/windows-retained-posix-failures.json"
+			"status": "FAILED_UNSUPPORTED_POSIX_HOST",
+			"knownFailureSetMatches": true,
+			"evidence": "docs/quality/product-ci-2026-10-06/windows-dependency-free.log"
 		},
 		"linuxLocal": {
-			"tests": 584,
-			"pass": 584,
+			"tests": 593,
+			"pass": 593,
 			"fail": 0,
-			"skipped": 0,
 			"cancelled": 0,
+			"skipped": 0,
+			"todo": 0,
 			"status": "PASSED",
-			"run": "https://github.com/SamandarMansurkhodjaev2713/tayvero/actions/runs/37323135330",
-			"todo": 0
+			"run": "https://github.com/SamandarMansurkhodjaev2713/tayvero/actions/runs/37461560544",
+			"sourceCommit": "6b83173d76fec2089968f1a86e9a4636079d68f8",
+			"evidence": "docs/quality/product-ci-2026-10-06/ci16-local-invariants.log"
 		},
 		"semantic": {
+			"status": "PASSED",
 			"tasksPassed": 13,
 			"tasksTotal": 13,
-			"status": "PASSED",
-			"evidence": "docs/quality/design-toolchain-2026-10-05/semantic-types-final.log"
+			"tasksCached": 0,
+			"evidence": "docs/quality/product-ci-2026-10-06/ci16-quality.log"
 		},
 		"nextProduction": {
 			"status": "PASSED",
 			"pages": 36,
 			"totalPages": 36,
-			"evidence": "docs/quality/design-toolchain-review.json"
-		},
-		"nativeMonorepo": {
-			"status": "FAILED_EXTERNAL_RESOURCE",
-			"reason": "Eve packaging ENOSPC, independent Next succeeded"
+			"evidence": "docs/quality/product-ci-2026-10-06/ci16-quality.log"
 		},
 		"browser": {
 			"kind": "mounted production component fixtures",
@@ -95,31 +96,25 @@
 		},
 		"pipelinePostgres": {
 			"status": "VERIFIED_DISPOSABLE_POSTGRES",
-			"run": "37323135330",
-			"scope": "Executed against disposable CI PostgreSQL; runner reports and logs retained in docs/quality.",
 			"tests": 3,
-			"passed": 3,
-			"failed": 0,
-			"skipped": 0,
-			"evidence": "docs/quality/design-toolchain-review.json",
 			"pass": 3,
 			"fail": 0,
+			"skipped": 0,
 			"cancelled": 0,
-			"todo": 0
+			"todo": 0,
+			"run": "https://github.com/SamandarMansurkhodjaev2713/tayvero/actions/runs/37461560544",
+			"evidence": "docs/quality/product-ci-2026-10-06/ci16-generated-pipeline-postgres-005-report.json"
 		},
 		"operationsPostgres": {
 			"status": "VERIFIED_DISPOSABLE_POSTGRES",
-			"run": "37323135330",
 			"tests": 17,
-			"passed": 17,
-			"failed": 0,
-			"skipped": 0,
-			"evidence": "docs/quality/design-toolchain-review.json",
 			"pass": 17,
 			"fail": 0,
+			"skipped": 0,
 			"cancelled": 0,
 			"todo": 0,
-			"scope": "Executed against disposable CI PostgreSQL; runner reports and logs retained in docs/quality."
+			"run": "https://github.com/SamandarMansurkhodjaev2713/tayvero/actions/runs/37461560544",
+			"evidence": "docs/quality/product-ci-2026-10-06/ci16-generated-operations-postgres-report.json"
 		},
 		"providers": {
 			"status": "NOT_VERIFIED"
@@ -130,12 +125,13 @@
 		"deployedSchema": {
 			"status": "VERIFIED_EMPTY_DIFF",
 			"sqlExecuted": false,
-			"run": "37323135330"
+			"run": "https://github.com/SamandarMansurkhodjaev2713/tayvero/actions/runs/37461560544",
+			"evidence": "docs/quality/product-ci-2026-10-06/ci16-generated-test-db-schema-diff.sql"
 		},
 		"fullQualityGate": {
 			"status": "PASSED",
-			"run": "https://github.com/SamandarMansurkhodjaev2713/tayvero/actions/runs/37323135330",
-			"sourceCommit": "7b0906330874ac8bd561ce928534520e2acce645",
+			"run": "https://github.com/SamandarMansurkhodjaev2713/tayvero/actions/runs/37461560544",
+			"sourceCommit": "6b83173d76fec2089968f1a86e9a4636079d68f8",
 			"rootQuality": {
 				"status": "passed",
 				"exitCode": 0,
@@ -149,8 +145,8 @@
 				"testPrerequisitesCached": 2
 			},
 			"bunLeafAggregate": {
-				"tests": 1437,
-				"pass": 1437,
+				"tests": 1477,
+				"pass": 1477,
 				"fail": 0,
 				"skipped": 0,
 				"todo": 0,
@@ -161,51 +157,49 @@
 				"excludesRepeatedRootNodeAndSeparatePostgresSuites": true
 			},
 			"build": {
-				"executed": true,
-				"tasksPassed": 4,
-				"tasksTotal": 4,
-				"tasksCached": 2,
-				"durationSeconds": 36.21,
+				"passed": 4,
+				"total": 4,
+				"prerequisitesCached": 2,
 				"nextPages": 36,
-				"nextPagesTotal": 36,
-				"nextStatus": "passed",
-				"nextCompileSeconds": 22.2,
-				"nextTypesSeconds": 10.4,
-				"nextPrerenderMilliseconds": 986,
-				"eveStatus": "native production packaging passed"
+				"evePackagingPassed": true
 			},
-			"finalSecurity": {
-				"executed": true,
-				"status": "passed",
-				"allSubcommandsPassed": true,
+			"security": {
 				"tests": 26,
-				"passed": 26,
-				"failed": 0,
-				"skipped": 0,
+				"pass": 26,
+				"fail": 0,
 				"cancelled": 0,
-				"todo": 0,
-				"vaultConfigurationPassed": true,
-				"tenantAuditPassed": true,
-				"tenantFindings": 15,
-				"newTenantFindings": 0,
-				"sourceFingerprintsUnchanged": true,
-				"baselineExpanded": false
+				"skipped": 0,
+				"todo": 0
 			},
-			"evidence": "docs/quality/design-toolchain-review.json"
+			"evidence": "docs/quality/product-toolchain-review.json"
 		},
 		"linuxMonorepoBuild": {
 			"executed": true,
 			"tasksPassed": 4,
 			"tasksTotal": 4,
 			"tasksCached": 2,
-			"durationSeconds": 36.21,
 			"nextPages": 36,
 			"nextPagesTotal": 36,
 			"nextStatus": "passed",
-			"nextCompileSeconds": 22.2,
-			"nextTypesSeconds": 10.4,
-			"nextPrerenderMilliseconds": 986,
-			"eveStatus": "native production packaging passed"
+			"eveStatus": "native production packaging passed",
+			"evidence": "docs/quality/product-ci-2026-10-06/ci16-quality.log"
+		},
+		"windowsNativeHistorical": {
+			"status": "FAILED_EXTERNAL_RESOURCE",
+			"reason": "Eve packaging ENOSPC, independent Next succeeded"
+		},
+		"authenticatedHttp": {
+			"tests": 15,
+			"pass": 15,
+			"fail": 0,
+			"skipped": 0,
+			"evidence": "docs/quality/functionality-2026-10-06/acceptance.json"
+		},
+		"agentSsr": {
+			"assertions": 39,
+			"synthetic": true,
+			"mutationsDisabled": true,
+			"browserInteraction": false
 		}
 	},
 	"safety": {
@@ -217,7 +211,7 @@
 		"telemetryRequiresOwnerKey": true,
 		"landingAnalyticsOffByDefault": true
 	},
-	"nextScopeId": "MIG-APPROVAL-AUTHENTICATED-E2E-001",
+	"nextScopeId": "CRM-AUTHENTICATED-BROWSER-001",
 	"limitations": [
 		"Authenticated application E2E, native Eve acceptance, providers, worker staging, backup/load remain unverified.",
 		"Localization is partial RU/UZ/EN on operating screens; other routes retain English.",
@@ -234,6 +228,13 @@
 		"docs/quality/design-lint-review.md",
 		"docs/quality/design-baseline-review.md",
 		"docs/quality/design-release-review.md",
-		"docs/quality/publication-review.md"
+		"docs/quality/publication-review.md",
+		"docs/quality/product-release-review-2026-10-06.md",
+		"docs/quality/activation-review-2026-10-06.md",
+		"docs/quality/agent-journey-review.md",
+		"docs/quality/product-follow-up-review.md",
+		"docs/quality/product-functionality-2026-10-06.md",
+		"docs/quality/functionality-2026-10-06.md",
+		"docs/quality/product-toolchain-review.json"
 	]
 }

@@ -1,5 +1,7 @@
 # MASTER_AUDIT — 5 октября 2026
 
+Актуальная функциональная acceptance: source `6b83173`, CI16 `37461560544`, `docs/quality/product-toolchain-review.json`. Более ранние design-checkpoint сведения ниже сохранены как история; текущие результаты приведены в closing section. Whole-product production readiness не заявляется.
+
 Текущий аудит относится к существующему checkout и дизайну/публикации 2026-10-05. Исходный ZIP отсутствовал: исторические counts/hash ниже не воспроизводились заново. Полные актуальные факты — MASTER_REPORT.json и docs/quality/design-*.
 
 Независимое UX-ревью:11 проверок,2P2 исправлены, P0/P1 в проверенном scope не найдено. В отдельных lane зафиксированы минимум5 конкретных критик/исправлений. Это целевой аудит, не заявление о ручной построчной проверке всего репозитория или идеальности.
@@ -54,3 +56,7 @@ job sources; quota20 и bounded history25 не сняты. Cleanup не явля
 Нет реального DB concurrency, process deployment, browser/native Eve acceptance, backup/restore/load evidence.
 Также остаются XLSX/расширенные импорты, каналы/onboarding, proposals/Outcome и operator action reconciliation.
 Полный список и порядок — MASTER_EXTERNAL_GATES и MASTER_NEXT_SCOPE.
+
+## Functional source CI16 — 2026-10-06
+
+Application commit 6b83173d76fec2089968f1a86e9a4636079d68f8; https://github.com/SamandarMansurkhodjaev2713/tayvero/actions/runs/37461560544: both jobs SUCCESS. Node 593/593, Bun 1477/1477 (eight uncached leaves), 39 separate contract/SSR assertions, PG pipeline3/3 and operations17/17, zero failures/skips in Linux acceptance. Lint9/9 and semantic13/13 uncached; build4/4 (two prerequisite cache hits), Next36/36 and Eve packaging passed. Security26/26, vault valid, tenant15existing/0new with unchanged fingerprints; deployed schema diff empty. Local signed-session HTTP/contract acceptance15/15. Windows Node593/520pass/73exactretainedPOSIXfailures, zero new/skip/cancel/todo; full API Windows source-store failures retained separately. Whole-product production readiness false. Browser/live-provider/native worker/staging acceptance remains separate.

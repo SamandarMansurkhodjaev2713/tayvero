@@ -16,3 +16,299 @@ Windows Eve packaging: historical ENOSPC; independent Next production passed36/3
 Browser: actual React component fixtures/synthetic data/disabled mutations,8appearances,320/393/768/1440CSSpx.
 No authenticated production/staging/provider/locked native runtime acceptance inferred.
 Final CRC/SHA/inventory/fresh extraction and replay results: external MASTER_REPORT.json / MASTER_SHA256.txt / MASTER_STATUS.md.
+
+Executed functional-source CI16 summary:
+{
+  "scopeId": "TAYVERO-PRODUCT-FUNCTIONAL-001",
+  "verifiedApplicationCommit": "6b83173d76fec2089968f1a86e9a4636079d68f8",
+  "ci": {
+    "run": "https://github.com/SamandarMansurkhodjaev2713/tayvero/actions/runs/37461560544",
+    "runId": 37461560544,
+    "conclusion": "success",
+    "jobs": [
+      {
+        "name": "local-invariants",
+        "conclusion": "success"
+      },
+      {
+        "name": "quality",
+        "conclusion": "success"
+      }
+    ]
+  },
+  "wholeProductProductionReady": false,
+  "node": {
+    "tests": 593,
+    "pass": 593,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "windows": {
+    "tests": 593,
+    "pass": 520,
+    "fail": 73,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "bunLeaves": {
+    "rows": [
+      {
+        "task": "@crm/action-registry:test",
+        "cached": false,
+        "runner": "node",
+        "tests": 13,
+        "pass": 13,
+        "fail": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      {
+        "task": "@crm/pipeline-core:test",
+        "cached": false,
+        "runner": "node",
+        "tests": 20,
+        "pass": 20,
+        "fail": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      {
+        "task": "@crm/security-core:test",
+        "cached": false,
+        "runner": "node",
+        "tests": 26,
+        "pass": 26,
+        "fail": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      {
+        "task": "@crm/migration-core:test",
+        "cached": false,
+        "runner": "node",
+        "tests": 29,
+        "pass": 29,
+        "fail": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      {
+        "task": "@crm/agent-action-runtime:test",
+        "cached": false,
+        "runner": "node",
+        "tests": 59,
+        "pass": 59,
+        "fail": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      {
+        "task": "@crm/integration-runtime:test",
+        "cached": false,
+        "runner": "node",
+        "tests": 24,
+        "pass": 24,
+        "fail": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      {
+        "task": "@crm/env:test",
+        "cached": false,
+        "runner": "bun",
+        "tests": 17,
+        "pass": 17,
+        "fail": 0,
+        "skipped": 0,
+        "todo": 0,
+        "files": 2
+      },
+      {
+        "task": "@crm/pipeline-runtime:test",
+        "cached": false,
+        "runner": "node",
+        "tests": 35,
+        "pass": 35,
+        "fail": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      {
+        "task": "@crm/migration-runtime:test",
+        "cached": false,
+        "runner": "node",
+        "tests": 40,
+        "pass": 40,
+        "fail": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      {
+        "task": "@crm/db:test",
+        "cached": false,
+        "runner": "bun",
+        "tests": 131,
+        "pass": 131,
+        "fail": 0,
+        "skipped": 0,
+        "todo": 0,
+        "files": 10
+      },
+      {
+        "task": "@crm/validation:test",
+        "cached": false,
+        "runner": "bun",
+        "tests": 5,
+        "pass": 5,
+        "fail": 0,
+        "skipped": 0,
+        "todo": 0,
+        "files": 1
+      },
+      {
+        "task": "@crm/telemetry:test",
+        "cached": false,
+        "runner": "bun",
+        "tests": 62,
+        "pass": 62,
+        "fail": 0,
+        "skipped": 0,
+        "todo": 0,
+        "files": 5
+      },
+      {
+        "task": "@crm/auth:test",
+        "cached": false,
+        "runner": "bun",
+        "tests": 43,
+        "pass": 43,
+        "fail": 0,
+        "skipped": 0,
+        "todo": 0,
+        "files": 5
+      },
+      {
+        "task": "agent:test",
+        "cached": false,
+        "runner": "bun",
+        "tests": 412,
+        "pass": 412,
+        "fail": 0,
+        "skipped": 0,
+        "todo": 0,
+        "files": 41
+      },
+      {
+        "task": "api:test",
+        "cached": false,
+        "runner": "bun",
+        "tests": 587,
+        "pass": 587,
+        "fail": 0,
+        "skipped": 0,
+        "todo": 0,
+        "files": 52
+      },
+      {
+        "task": "app:test",
+        "cached": false,
+        "runner": "bun",
+        "tests": 220,
+        "pass": 220,
+        "fail": 0,
+        "skipped": 0,
+        "todo": 0,
+        "files": 25
+      }
+    ],
+    "bunTotals": {
+      "tests": 1477,
+      "pass": 1477,
+      "fail": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    "bunCompletedLeafTasks": 8,
+    "incompleteLeafTasks": [],
+    "cachedTestTasks": []
+  },
+  "agentSsr": {
+    "assertions": 39,
+    "synthetic": true,
+    "mutationsDisabled": true,
+    "browserInteraction": false
+  },
+  "pipelinePostgres": {
+    "tests": 3,
+    "pass": 3,
+    "fail": 0,
+    "skipped": 0,
+    "cancelled": 0,
+    "todo": 0
+  },
+  "operationsPostgres": {
+    "tests": 17,
+    "pass": 17,
+    "fail": 0,
+    "skipped": 0,
+    "cancelled": 0,
+    "todo": 0
+  },
+  "quality": {
+    "lint": {
+      "passed": 9,
+      "total": 9,
+      "cached": 0
+    },
+    "semantic": {
+      "passed": 13,
+      "total": 13,
+      "cached": 0
+    },
+    "testTurbo": {
+      "passed": 18,
+      "total": 18,
+      "prerequisitesCached": 2
+    },
+    "build": {
+      "passed": 4,
+      "total": 4,
+      "prerequisitesCached": 2,
+      "nextPages": 36,
+      "evePackagingPassed": true
+    },
+    "security": {
+      "tests": 26,
+      "pass": 26,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    "schemaDiff": "empty-comment-only",
+    "vault": "valid-material-redacted",
+    "tenant": {
+      "existing": 15,
+      "new": 0,
+      "fingerprintsUnchanged": true
+    }
+  },
+  "liveProviderCalls": 0,
+  "productionDatabaseOperations": 0,
+  "authenticatedHttpLocal": {
+    "tests": 15,
+    "pass": 15,
+    "fail": 0,
+    "skipped": 0,
+    "evidence": "docs/quality/functionality-2026-10-06/acceptance.json"
+  },
+  "limits": [
+    "Authenticated browser/OAuth entry not accepted",
+    "Live providers and native worker/staging not accepted",
+    "Task assignment distinct from creation is not implemented",
+    "Full localization and comparative superiority unproven"
+  ]
+}

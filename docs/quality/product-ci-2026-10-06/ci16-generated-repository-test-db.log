@@ -1,6 +1,9 @@
-Create/migrate isolated PostgreSQL test database: passed
-  created tayvero_pipeline_test
-Datasource "db": PostgreSQL database "tayvero_pipeline_test", schema "public" at "127.0.0.1:5432"
+$ bun scripts/test-db.ts
+  created tayvero_test
+Loaded Prisma config from prisma.config.ts.
+
+Prisma schema loaded from prisma/schema.prisma.
+Datasource "db": PostgreSQL database "tayvero_test", schema "public" at "127.0.0.1:5432"
 
 66 migrations found in prisma/migrations
 
@@ -208,46 +211,3 @@ migrations/
     └─ migration.sql
 
 All migrations have been successfully applied.
-
-$ bun scripts/test-db.ts
-Loaded Prisma config from prisma.config.ts.
-
-Prisma schema loaded from prisma/schema.prisma.
-┌─────────────────────────────────────────────────────────┐
-│  Update available 7.9.1 -> 8.0.0-rc.20                  │
-│                                                         │
-│  This is a major update - please follow the guide at    │
-│  https://pris.ly/d/major-version-upgrade                │
-│                                                         │
-│  Run the following to update                            │
-│    npm i --save-dev prisma@latest                       │
-│    npm i @prisma/client@latest                          │
-└─────────────────────────────────────────────────────────┘
-
-
-Generate Prisma client for integration tests: passed
-
-✔ Generated Prisma Client (7.9.1) to ./src/generated/prisma in 502ms
-
-
-$ prisma generate
-Loaded Prisma config from prisma.config.ts.
-
-Prisma schema loaded from prisma/schema.prisma.
-
-
-Deal pipeline PostgreSQL transaction/rollback/concurrency suite: passed
-bun test v1.3.12 (700fc117)
-
-
-::group::apps/api/test/deal-pipeline-dual-write.integration.spec.ts:
-(pass) legacy Deal.stage -> configurable pipeline PostgreSQL bridge > creates the sidecar assignment transactionally and preserves enteredAt [22.00ms]
-(pass) legacy Deal.stage -> configurable pipeline PostgreSQL bridge > rolls back the legacy write if strict mapping is missing [20.00ms]
-(pass) legacy Deal.stage -> configurable pipeline PostgreSQL bridge > serializes simultaneous stage transitions and leaves legacy plus sidecar consistent [26.00ms]
-
-::endgroup::
-
- 3 pass
- 0 fail
- 13 expect() calls
-Ran 3 tests across 1 file. [439.00ms]
